@@ -15,6 +15,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <inceptionYear>2019</inceptionYear>
+
+    <organization>
+        <name>4Soft GmbH</name>
+        <url>https://www.4soft.de/</url>
+    </organization>
+
     <scm>
         <connection>scm:git:ssh://git@github.com:Pitority/jaxb-enhanced-navigation.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:Pitority/jaxb-enhanced-navigation.git</developerConnection>
@@ -130,19 +137,54 @@
                     <artifactId>maven-source-plugin</artifactId>
                     <version>3.2.1</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>2.0.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <verbose>false</verbose>
+                    <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                    <processStartTag>========================LICENSE_START=================================</processStartTag>
+                    <processEndTag>=========================LICENSE_END==================================</processEndTag>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>first</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <licenseName>mit</licenseName>
+                            <roots>
+                                <root>src/main/java</root>
+                                <root>src/test/java</root>
+                            </roots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
     <profiles>
         <profile>
             <id>with-sources</id>
-            <activation>
-                <property>
-                    <name>env</name>
-                    <value>with-sources</value>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -176,12 +218,7 @@
             </build>
         </profile>
         <profile>
-            <id>ci</id>
-            <activation>
-                <property>
-                    <name>ci</name>
-                </property>
-            </activation>
+            <id>coverage</id>
             <build>
                 <plugins>
                     <plugin>
