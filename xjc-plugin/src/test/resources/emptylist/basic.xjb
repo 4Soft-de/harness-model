@@ -15,13 +15,13 @@
 			  
 	 <!-- Customise the package name -->
 	<jxb:schemaBindings>
-		<jxb:package name="de.foursoft.harness.xml.xjc.test" />
+		<jxb:package name="de.foursoft.xml.xjc.test" />
 		<jxb:nameXmlTransform> 
 			<jxb:typeName  prefix="Navs"/>
 		</jxb:nameXmlTransform>	
 	</jxb:schemaBindings>
 	
-	<nav:selector name="UpsDupsi" implements="de.foursoft.harness.xml.xjc.test.Referenceable"/>
+	<nav:selector name="UpsDupsi" implements="de.foursoft.xml.xjc.test.Referenceable"/>
 	
 	<jxb:bindings node="//xs:complexType[@name='ChildA']">
 	  <nav:selector name="Referenceable"/>

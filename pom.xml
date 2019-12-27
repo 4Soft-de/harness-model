@@ -246,11 +246,7 @@
                                 <id>report-code-coverage</id>
                                 <goals>
                                     <goal>report</goal>
-                                    <!-- <goal>report-aggregate</goal> -->
                                 </goals>
-                                <configuration>
-                                    <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

@@ -1,2 +1,2 @@
-de.foursoft.harness.xml.xjc.plugin.NavigationsPlugin
-de.foursoft.harness.xml.xjc.plugin.EmptyListHandlerPlugin
+de.foursoft.xml.xjc.plugin.NavigationsPlugin
+de.foursoft.xml.xjc.plugin.EmptyListHandlerPlugin
