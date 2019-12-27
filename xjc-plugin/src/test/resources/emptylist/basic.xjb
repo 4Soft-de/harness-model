@@ -21,7 +21,7 @@
 		</jxb:nameXmlTransform>	
 	</jxb:schemaBindings>
 	
-	<nav:selector name="UpsDupsi" implements="de.foursoft.xml.xjc.test.Referenceable"/>
+	<nav:selector name="Doh" implements="de.foursoft.xml.xjc.test.Referenceable"/>
 	
 	<jxb:bindings node="//xs:complexType[@name='ChildA']">
 	  <nav:selector name="Referenceable"/>
