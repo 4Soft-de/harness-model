@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings 
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+	xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" 
+   xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" extensionBindingPrefixes="xjc"
+	xmlns:nav="http://www.4soft.de/xjc-plugins/navigations"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              node="/xs:schema"
+              schemaLocation="basic.xsd"
+              version="2.1">
+   <jxb:globalBindings>
+      <xjc:simple/>
+      <jxb:serializable uid="1"/>
+   </jxb:globalBindings>
+			  
+	 <!-- Customise the package name -->
+	<jxb:schemaBindings>
+		<jxb:package name="de.foursoft.harness.xml.xjc.test" />
+		<jxb:nameXmlTransform> 
+			<jxb:typeName  prefix="Navs"/>
+		</jxb:nameXmlTransform>	
+	</jxb:schemaBindings>
+	
+	<nav:selector name="UpsDupsi" implements="de.foursoft.harness.xml.xjc.test.Referenceable"/>
+	
+	<jxb:bindings node="//xs:complexType[@name='ChildA']">
+	  <nav:selector name="Referenceable"/>
+	  <nav:selector name="Children"/>
+	  <nav:parent name="parent" schema-type="Root" />
+	  <jxb:bindings node=".//xs:element[@name='RefAlls']">
+	  	<nav:ext-reference selector="Children" inverse="inverseAlls" />
+	  </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RefBs']">
+      	<nav:ext-reference schema-type="ChildB" inverse="inverseAs" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Root']">
+	  <nav:selector name="Referenceable"/>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='ChildB']">
+	  <nav:parent name="parent" selector="Referenceable" />
+      <nav:selector name="Children"/>
+      <jxb:bindings node=".//xs:element[@name='RelAs']">
+      	<nav:ext-reference schema-type="ChildA" />
+      </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>
