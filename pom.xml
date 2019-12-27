@@ -13,6 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputDirectory>reporting</project.reporting.outputDirectory>
     </properties>
 
     <inceptionYear>2019</inceptionYear>
@@ -28,8 +29,8 @@
     </scm>
 
     <modules>
-        <module>harness-xml</module>
-        <module>harness-xjc-plugin</module>
+        <module>xml-runtime</module>
+        <module>xjc-plugin</module>
     </modules>
 
     <developers>
@@ -159,8 +160,10 @@
                 <configuration>
                     <verbose>false</verbose>
                     <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
-                    <processStartTag>========================LICENSE_START=================================</processStartTag>
-                    <processEndTag>=========================LICENSE_END==================================</processEndTag>
+                    <processStartTag>========================LICENSE_START=================================
+                    </processStartTag>
+                    <processEndTag>=========================LICENSE_END==================================
+                    </processEndTag>
                 </configuration>
                 <executions>
                     <execution>
@@ -238,6 +241,16 @@
                                 <goals>
                                     <goal>prepare-agent-integration</goal>
                                 </goals>
+                            </execution>
+                            <execution>
+                                <id>report-code-coverage</id>
+                                <goals>
+                                    <goal>report</goal>
+                                    <!-- <goal>report-aggregate</goal> -->
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
