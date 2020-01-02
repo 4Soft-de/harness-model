@@ -2,11 +2,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.foursoft.jaxb2-basics</groupId>
-    <artifactId>jaxb-enhanced-navigation</artifactId>
+    <groupId>de.foursoft.jaxb2</groupId>
+    <artifactId>navigation-extender-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Parent of jaxb2-basics</name>
+    <name>Parent of jaxb2</name>
     <description>A lib for enhanced navigations for JAXB modells. It consists of two parts: An xjc-plugin (compile time)
         and a runtime component.
     </description>
@@ -29,8 +29,8 @@
     </scm>
 
     <modules>
-        <module>xml-runtime</module>
-        <module>xjc-plugin</module>
+        <module>navigation-extender</module>
+        <module>navigation-extender-runtime</module>
     </modules>
 
     <developers>
