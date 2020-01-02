@@ -49,9 +49,9 @@ public class ModelPostProcessorRegistry {
     }
 
     /**
-     * 
-     * @param postProcessor
-     * @return
+     *  Adds a default post processor. It will be used if no special postprocessor is specified.
+     * @param postProcessor the post processor
+     * @return this for fluent API
      */
     public ModelPostProcessorRegistry addDefaultPostProcessor(final ModelPostProcessor postProcessor) {
         defaultPostProcessor.add(postProcessor);
@@ -65,8 +65,8 @@ public class ModelPostProcessorRegistry {
      * given class only, for inherited aspects of super classes an individual
      * {@link ModelPostProcessor} is created.
      * 
-     * @param cachedModelPostProcessorFactory
-     * @return
+     * @param modelPostProcessorFactory a function providing a special post processor per class
+     * @return this for fluent API
      */
     public ModelPostProcessorRegistry withFactory(
             final Function<Class<?>, ModelPostProcessor> modelPostProcessorFactory) {
@@ -91,8 +91,9 @@ public class ModelPostProcessorRegistry {
      * Finds all registered default {@link ModelPostProcessor}s that are an
      * instance of <tt>postProcessorType</tt>.
      * 
-     * @param postProcessorType
-     * @return
+     * @param postProcessorType the class of the post processors to find
+     * @param <T> the type of processors to look for
+     * @return the list of processor of the given type. Can be empty - never null.
      */
     public <T extends ModelPostProcessor> List<T> findModelPostProcessors(final Class<T> postProcessorType) {
         return defaultPostProcessor.stream()
@@ -104,13 +105,13 @@ public class ModelPostProcessorRegistry {
     /**
      * Retrieves a list of all {@link ModelPostProcessor} that are registered in
      * this registry and that are applicable for <tt>classToHandle</tt>.
-     * <p/>
-     * Applicable {@link ModelPostProcessor}s are basically all that satisfy
+     * <p>
+     * Applicable {@link ModelPostProcessor}s are basically all that satisfy the interface and can handle the given class.
      * 
      * <tt>{@link ModelPostProcessor#getClassToHandle()}.isAssignableFrom(classToHandle)</tt>.
      * 
-     * @param classToHandle
-     * @return
+     * @param classToHandle the class to processor
+     * @return the list of post processors found for the given class.
      */
     public List<ModelPostProcessor> postProcessorsFor(final Class<?> classToHandle) {
         return modelPostProcessors.get(classToHandle);

@@ -40,7 +40,7 @@ public class JaxbModel<R, I> {
      * {@link JaxbModel} returned by the {@link ExtendedUnmarshaller} shall be
      * extended with its own convenience methods.
      * 
-     * @param model
+     * @param model the jaxModel
      */
     protected JaxbModel(final JaxbModel<R, I> model) {
         this.rootElement = model.rootElement;
@@ -54,12 +54,12 @@ public class JaxbModel<R, I> {
     /**
      * A {@link IdLookupProvider} to allow the lookup of identifiable elements
      * in this model.
-     * <p/>
+     * <p>
      * The {@link IdLookupProvider} must be initialized during the unmarshalling
      * process (see
      * {@link ExtendedUnmarshaller#withIdMapper(Class, java.util.function.Function)}).
      * 
-     * @return
+     * @return the id lookup provider hold by this model
      */
     public IdLookupProvider<I> getIdLookup() {
         if (idLookup == null) {

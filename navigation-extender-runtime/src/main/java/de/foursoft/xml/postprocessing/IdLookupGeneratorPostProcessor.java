@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,13 +31,10 @@ import java.util.function.Function;
 import de.foursoft.xml.IdLookupProvider;
 
 /**
- * {@link ModelPostProcessor} to generate a {@link IdLookupProvider} during the
- * unmarshalling Process.
- * 
- * @author becker
+ * {@link ModelPostProcessor} to generate a {@link IdLookupProvider} during the unmarshalling Process.
  *
- * @param <I>
- *            Type of the identifiable elements.
+ * @param <I> Type of the identifiable elements.
+ * @author becker
  */
 public class IdLookupGeneratorPostProcessor<I> implements ModelPostProcessor {
 
@@ -72,7 +69,7 @@ public class IdLookupGeneratorPostProcessor<I> implements ModelPostProcessor {
         final I element = identifiableElements.cast(target);
         idLookup.put(idMapper.apply(element), element);
     }
-
+ 
     @Override
     public void clearState() {
         objectCount = 0;
@@ -80,10 +77,9 @@ public class IdLookupGeneratorPostProcessor<I> implements ModelPostProcessor {
     }
 
     /**
-     * Creates a new {@link IdLookupProvider} based on the current state of the
-     * post processor.
-     * 
-     * @return
+     * Creates a new {@link IdLookupProvider} based on the current state of the post processor.
+     *
+     * @return the id lookup provider
      */
     public IdLookupProvider<I> createIdLookkup() {
         return new IdLookupProvider<>(idLookup);

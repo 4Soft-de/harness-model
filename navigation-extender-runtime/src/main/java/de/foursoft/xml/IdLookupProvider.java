@@ -57,8 +57,8 @@ public class IdLookupProvider<I> {
      * <tt>this</tt>. Duplicate id mappings are removed, the mappings in
      * <tt>toMerge</tt> are kept.
      * 
-     * @param toJoin
-     * @return
+     * @param toMerge the id provider to merge
+     * @return this for fluent API
      */
     public IdLookupProvider<I> merge(final IdLookupProvider<I> toMerge) {
         idLookup.putAll(toMerge.idLookup);

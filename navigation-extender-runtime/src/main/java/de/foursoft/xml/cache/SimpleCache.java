@@ -36,8 +36,8 @@ import java.util.Map;
  * 
  * @author becker
  *
- * @param <K>
- * @param <V>
+ * @param <K> The type of the key
+ * @param <V> The type of the value
  */
 public class SimpleCache<K, V> {
 
@@ -60,7 +60,7 @@ public class SimpleCache<K, V> {
     /**
      * All loaded values that are currently initialized in this cache.
      * 
-     * @return
+     * @return returning all values of the cache
      */
     public Collection<V> getAllLoadedValues() {
         return cachedResults.values();

@@ -91,8 +91,8 @@ public class ExtendedUnmarshaller<R, I> {
     /**
      * Adds a custom {@link ModelPostProcessor} to the deserialization.
      *
-     * @param modelPostProcessor
-     * @return
+     * @param modelPostProcessor the model post processor to use. Must not be null.
+     * @return this for fluent API
      */
     public ExtendedUnmarshaller<R, I> withCustomPostProcessor(final ModelPostProcessor modelPostProcessor) {
         postProcessorRegistry.addDefaultPostProcessor(modelPostProcessor);
@@ -102,8 +102,8 @@ public class ExtendedUnmarshaller<R, I> {
     /**
      * The jaxb unmarshaller has an event handler which is intercepted to provide the event for the consumer
      * @param eventConsumer the consumer for the jaxb validation event
-     * @return this
-     * @throws JAXBException
+     * @return this for fluent API
+     * @throws JAXBException if the unmarshalling goes wrong
      */
     public ExtendedUnmarshaller<R, I> withEventLogging(final Consumer<ValidationEvent> eventConsumer) throws JAXBException {
         final ValidationEventHandler eventHandler = unmarshaller.getEventHandler();
@@ -118,24 +118,24 @@ public class ExtendedUnmarshaller<R, I> {
     /**
      * Defines an id mapper to create a {@link IdLookupProvider} during the
      * unmarshalling process.
-     * <p/>
+     * <p>
      * If no id mapper is defined, the resulting {@link JaxbModel} will have no
      * {@link IdLookupProvider} initialized.
-     * <p/>
+     * <p>
      * If more than one id mapper is registered, all are processed and the
      * result is merged into one {@link IdLookupProvider}. This allows a common
      * the handling of all classes during the unmarshalling, even if the do not
      * have a shared superclass or interface.
      *
      *
-     * @param identifiableElements
-     * @param idMapper
-     * @return
+     * @param classOfIdentifiableElements the class of the identifiable element
+     * @param idMapper the mapper function to get the id of each element
+     * @return this for fluent API
      */
-    public ExtendedUnmarshaller<R, I> withIdMapper(final Class<I> identifiableElements,
+    public ExtendedUnmarshaller<R, I> withIdMapper(final Class<I> classOfIdentifiableElements,
             final Function<I, String> idMapper) {
         final IdLookupGeneratorPostProcessor<I> idLookupGenerator = new IdLookupGeneratorPostProcessor<>(
-                identifiableElements, idMapper);
+                classOfIdentifiableElements, idMapper);
 
         idLookupGenerators.add(idLookupGenerator);
         postProcessorRegistry.addDefaultPostProcessor(idLookupGenerator);
