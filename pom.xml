@@ -6,26 +6,34 @@
     <artifactId>navigation-extender-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Parent of jaxb2</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>A lib for enhanced navigations for JAXB models. It consists of two parts: An xjc-plugin (compile time)
         and a runtime component.
     </description>
+    <url>https://github.com/4Soft-de/jaxb-enhanced-navigation</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputDirectory>reporting</project.reporting.outputDirectory>
     </properties>
 
     <inceptionYear>2019</inceptionYear>
 
     <organization>
         <name>4Soft GmbH</name>
-        <url>https://www.4soft.de/</url>
+        <url>https://www.4soft.de</url>
     </organization>
 
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
     <scm>
-        <connection>scm:git:ssh://git@github.com:Pitority/jaxb-enhanced-navigation.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:Pitority/jaxb-enhanced-navigation.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com:4Soft-de/jaxb-enhanced-navigation.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:4Soft-de/jaxb-enhanced-navigation.git</developerConnection>
+        <url>https://github.com/4Soft-de/jaxb-enhanced-navigation/tree/master</url>
     </scm>
 
     <modules>
@@ -37,10 +45,14 @@
         <developer>
             <name>Rainer Ganß</name>
             <email>ganss@4soft.de</email>
+            <organization>4Soft GmbH</organization>
+            <organizationUrl>https://www.4soft.de</organizationUrl>
         </developer>
         <developer>
             <name>Johannes Becker</name>
             <email>becker@4soft.de</email>
+            <organization>4Soft GmbH</organization>
+            <organizationUrl>https://www.4soft.de</organizationUrl>
         </developer>
     </developers>
 
@@ -178,33 +190,78 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <verbose>false</verbose>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <verbose>false</verbose>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 </project>
