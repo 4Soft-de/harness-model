@@ -1,2 +1,2 @@
-de.foursoft.xml.xjc.plugin.NavigationsPlugin
-de.foursoft.xml.xjc.plugin.EmptyListHandlerPlugin
+com.foursoft.xml.xjc.plugin.NavigationsPlugin
+com.foursoft.xml.xjc.plugin.EmptyListHandlerPlugin
