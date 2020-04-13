@@ -162,10 +162,17 @@ public class ExtendedUnmarshaller<R, I> {
         return new JaxbModel<>(root, idLookupProvider.orElse(null));
     }
 
+    /**
+     * Provides access to the internal jax-b unmarshaller for further configuration. Use with caution.
+     * @return the internal jax-b unmarshaller
+     */
+    public Unmarshaller getUnmarshaller() {
+        return unmarshaller;
+    }
+
     private void cleanUp() {
         // Allow garbage collection.
         unmarshaller.setListener(null);
-
         postProcessorRegistry.clearStateOfPostProcessors();
     }
 
