@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.foursoft.jaxb2</groupId>
     <artifactId>navigation-extender-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A lib for enhanced navigations for JAXB models. It consists of two parts: An xjc-plugin (compile time)
