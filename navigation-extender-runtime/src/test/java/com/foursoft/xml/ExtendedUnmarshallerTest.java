@@ -68,17 +68,17 @@ public class ExtendedUnmarshallerTest {
 		assertThat(unmarshalledResult.getIdLookup()
 				.findById(ChildB.class, "id_6")
 				.get()
-				.getReverseChildA()).containsExactly(childAone);
+				.getReverseChildA()).containsExactlyInAnyOrder(childAone);
 
 		assertThat(unmarshalledResult.getIdLookup()
 				.findById(ChildB.class, "id_7")
 				.get()
-				.getReverseChildA()).containsExactly(childAone, childATwo);
+				.getReverseChildA()).containsExactlyInAnyOrder(childAone, childATwo);
 
 		assertThat(unmarshalledResult.getIdLookup()
 				.findById(ChildB.class, "id_8")
 				.get()
-				.getReverseChildA()).containsExactly(childATwo);
+				.getReverseChildA()).containsExactlyInAnyOrder(childATwo);
 
 	}
 
