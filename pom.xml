@@ -13,7 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<navigation-extender.version>1.0.1-SNAPSHOT</navigation-extender.version>
+		<navigation-extender.version>1.0.1</navigation-extender.version>
     </properties>
 
     <inceptionYear>2020</inceptionYear>

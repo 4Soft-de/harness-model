@@ -102,7 +102,7 @@
 								<plugin>
 									<groupId>com.foursoft.jaxb2</groupId>
 									<artifactId>navigation-extender</artifactId>
-									<version>1.0.1-SNAPSHOT</version>
+									<version>${navigation-extender.version}</version>
 								</plugin>
 							</plugins>
 						</configuration>
