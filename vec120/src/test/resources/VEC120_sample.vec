@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?cs checksum="2764192431"?>
+<?xsd validated="true"?>
+<vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<CustomProperty id="id_1006_2" xsi:type="vec:SimpleValueProperty">
+		<PropertyType>ExampleType</PropertyType>
+		<Value>CAP</Value>
+	</CustomProperty>
+	<VecVersion>1.2.0</VecVersion>
+	<Contract id="id_2107_0">
+		<CompanyName>4Soft GmbH</CompanyName>
+		<ContractRole>Oem</ContractRole>
+	</Contract>
+	<DocumentVersion id="id_1002_0">
+		<CompanyName>4Soft GmbH</CompanyName>
+		<Approval id="id_2014_0">
+			<Status>Approved</Status>
+			<Permission id="id_2185_0">
+				<Permission>Released</Permission>
+				<PermissionDate>2020-05-28T16:07:46.503+02:00</PermissionDate>
+				<Permitter id="id_2186_0">
+					<LastName>/NULL</LastName>
+				</Permitter>
+			</Permission>
+		</Approval>
+		<ChangeDescription id="id_2056_0">
+			<ChangeDate>2020-05-27T14:24:43.060+02:00</ChangeDate>
+			<ResponsibleDesigner id="id_2114_0">
+				<LastName>/NULL</LastName>
+			</ResponsibleDesigner>
+		</ChangeDescription>
+		<Creation id="id_1007_0">
+			<CreationDate>2020-05-21T11:29:23.340+02:00</CreationDate>
+		</Creation>
+		<DocumentNumber>123_456_789</DocumentNumber>
+		<DocumentType>PartMaster</DocumentType>
+		<DocumentVersion>1</DocumentVersion>
+		<CreatingSystem>4Soft_MDS</CreatingSystem>
+		<ReferencedPart>id_1001_0</ReferencedPart>
+		<RelatedDocument>id_1002_1</RelatedDocument>
+		<Specification id="id_2000_0" xsi:type="vec:ConnectorHousingCapSpecification">
+			<Identification>Ccs-123_456_789-1</Identification>
+			<DescribedPart>id_1001_0</DescribedPart>
+		</Specification>
+		<Specification id="id_2000_1" xsi:type="vec:GeneralTechnicalPartSpecification">
+			<Identification>Gtps-123_456_789-1</Identification>
+			<DescribedPart>id_1001_0</DescribedPart>
+			<ColorInformation id="id_2078_0">
+				<Key>schwarz</Key>
+				<ReferenceSystem>RAL</ReferenceSystem>
+			</ColorInformation>
+			<MassInformation id="id_2002_0">
+				<DeterminationType>Calculated</DeterminationType>
+				<Value id="id_1004_0">
+					<UnitComponent>id_1005_0</UnitComponent>
+					<ValueComponent>71.9</ValueComponent>
+				</Value>
+			</MassInformation>
+			<MaterialInformation id="id_2009_0">
+				<Key>GT8-TF15</Key>
+				<ReferenceSystem>ExampleSpecific</ReferenceSystem>
+			</MaterialInformation>
+		</Specification>
+	</DocumentVersion>
+	<DocumentVersion id="id_1002_1">
+		<CompanyName>4Soft GmbH</CompanyName>
+		<Creation id="id_1007_1">
+			<CreationDate>2020-05-27T14:24:32.737+02:00</CreationDate>
+		</Creation>
+		<DocumentNumber>Svg-123_456_789</DocumentNumber>
+		<DocumentType>GraphicsSymbol</DocumentType>
+		<DocumentVersion>2</DocumentVersion>
+		<FileName>123_456_789.svg</FileName>
+		<ReferencedPart>id_1001_0</ReferencedPart>
+	</DocumentVersion>
+	<PartVersion id="id_1001_0">
+		<Description id="id_1003_0" xsi:type="vec:LocalizedString">
+			<LanguageCode>De</LanguageCode>
+			<Value>DECKEL KABELKANAL</Value>
+		</Description>
+		<CompanyName>4Soft GmbH</CompanyName>
+		<Contract>id_2107_0</Contract>
+		<PartNumber>123_456_789</PartNumber>
+		<PartVersion>1</PartVersion>
+		<PrimaryPartType>ConnectorHousingCap</PrimaryPartType>
+		<IsPreferredPart>undefined</IsPreferredPart>
+	</PartVersion>
+	<Unit id="id_1005_0" xsi:type="vec:SIUnit">
+		<SiUnitName>Gram</SiUnitName>
+	</Unit>
+</vec:VecContent>
