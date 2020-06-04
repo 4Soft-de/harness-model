@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" extensionBindingPrefixes="xjc dg"
+    xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+    xmlns:ci="http://jaxb.dev.java.net/plugin/code-injector"
+    xmlns:dg="http://www.codesup.net/jaxb/plugins/delegate"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:annox="http://annox.dev.java.net" jxb:extensionBindingPrefixes="xjc annox xhtml"
+    node="/xs:schema" schemaLocation="vec_1.1.3.xsd" version="2.1">
+
+
+    <jxb:bindings multiple="true" node="//xs:complexType[xs:attribute[@name='id']]">
+        <inheritance:implements>com.foursoft.xml.model.Identifiable</inheritance:implements>
+        <ci:code> @Override public String toString() { return this.getClass().getSimpleName() + "["
+            + this.getXmlId() + "]"; } </ci:code>
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:attribute[@name='id']" multiple="true">
+        <jxb:property name="xmlId"/>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Identification']]">
+        <inheritance:implements>com.foursoft.vecmodel.vec113.common.HasIdentification</inheritance:implements>
+    </jxb:bindings>
+
+
+    <jxb:bindings node="//xs:complexType[@name='DocumentVersion']">
+        <dg:delegate class="com.foursoft.vecmodel.vec113.delegate.VecDocumentVersionDelegate">
+            <dg:method name="getSpecificationsWithType" type="java.util.List&lt;T&gt;"
+                modifiers="public synchronized">
+                <dg:type-param name="T" extends="VecSpecification"/>
+                <dg:param name="type" type="java.lang.Class&lt;T&gt;"/>
+            </dg:method>
+        </dg:delegate>
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='OccurrenceOrUsage']">
+        <dg:delegate class="com.foursoft.vecmodel.vec113.delegate.VecOccurrenceOrUsageDelegate">
+            <dg:method name="getRolesWithType" type="java.util.List&lt;T&gt;"
+                modifiers="public synchronized">
+                <dg:type-param name="T" extends="VecRole"/>
+                <dg:param name="type" type="java.lang.Class&lt;T&gt;"/>
+            </dg:method>
+        </dg:delegate>
+    </jxb:bindings>
+
+
+</jxb:bindings>

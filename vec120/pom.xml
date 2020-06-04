@@ -1,0 +1,144 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.foursoft.vecmodel</groupId>
+        <artifactId>vec-parent</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>vec120</artifactId>
+
+    <description>The model for VEC version 1.2.0.</description>
+
+    <dependencies>
+        <!--project-->
+        <dependency>
+            <groupId>com.foursoft.jaxb2</groupId>
+            <artifactId>navigation-extender-runtime</artifactId>
+        </dependency>
+
+        <!--general-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
+
+        <!--logging-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
+
+        <!-- test -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <extension>true</extension>
+
+                    <plugins>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics</artifactId>
+                            <version>1.11.1</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics-annotate</artifactId>
+                            <version>1.0.4</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.cxf.xjcplugins</groupId>
+                            <artifactId>cxf-xjc-javadoc</artifactId>
+                            <version>3.2.1</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>net.codesup.util</groupId>
+                            <artifactId>jaxb-delegate-plugin</artifactId>
+                            <version>2.1.0</version>
+                        </plugin>
+                        <!-- using a locally patched version due to incorrect handling of IDREF(S)
+                            properties a pull request was published to offical version. If this is merged
+                            an released, the current version can be used. see: https://github.com/massfords/jaxb-visitor/pull/13 -->
+                        <plugin>
+                            <groupId>com.massfords</groupId>
+                            <artifactId>jaxb-visitor</artifactId>
+                            <version>2.8</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.foursoft.jaxb2</groupId>
+                            <artifactId>navigation-extender</artifactId>
+                            <version>${navigation-extender.version}</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-vec120</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaIncludes>
+                                <include>vec120/vec_1.2.1.RC-SNAPSHOT.xsd</include>
+                            </schemaIncludes>
+                            <bindingIncludes>
+                                <include>vec120/*.xjb</include>
+                            </bindingIncludes>
+                            <args>
+                                <arg>-Xannotate</arg>
+                                <arg>-Xdelegate</arg>
+                                <arg>-Xext-navs</arg>
+                                <arg>-Xjavadoc</arg>
+                                <arg>-Xinheritance</arg>
+                                <arg>-Xinject-code</arg>
+                                <arg>-Xvisitor</arg>
+                                <arg>-Xvisitor-includeType</arg>
+                                <arg>-Xvisitor-noIdrefTraversal</arg>
+                                <arg>-Xvisitor-package:com.foursoft.vecmodel.vec120.visitor</arg>
+                            </args>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-vec120</generateDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
+    </build>
+</project>
