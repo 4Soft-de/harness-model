@@ -14,6 +14,19 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <navigation-extender.version>1.0.1</navigation-extender.version>
+        <cglib.version>3.3.0</cglib.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <testng.version>7.1.0</testng.version>
+        <jaxb2-basics.version>1.11.1</jaxb2-basics.version>
+        <assertj-core.version>3.16.1</assertj-core.version>
+        <logback-classic.version>1.2.3</logback-classic.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <license-maven-plugin.version>2.0.0</license-maven-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-jaxb2-plugin.testing.version>0.14.0</maven-jaxb2-plugin.testing.version>
     </properties>
 
     <inceptionYear>2020</inceptionYear>
@@ -62,12 +75,12 @@
             <dependency>
                 <groupId>org.jvnet.jaxb2_commons</groupId>
                 <artifactId>jaxb2-basics</artifactId>
-                <version>1.11.1</version>
+                <version>${jaxb2-basics.version}</version>
             </dependency>
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
-                <version>3.3.0</version>
+                <version>${cglib.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.foursoft.jaxb2</groupId>
@@ -84,37 +97,37 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.30</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
-                <version>1.7.30</version>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <!--test-->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.2.3</version>
+                <version>${logback-classic.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
-                <version>7.1.0</version>
+                <version>${testng.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
-                <version>3.16.1</version>
+                <version>${assertj-core.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin-testing</artifactId>
-                <version>0.14.0</version>
+                <version>${maven-jaxb2-plugin-testing.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -127,7 +140,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
@@ -146,7 +159,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>${maven-javadoc-plugin.version}</version>
                     <configuration>
                         <doclint>none</doclint>
                     </configuration>
@@ -154,17 +167,17 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>${maven-jar-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>${maven-source-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>license-maven-plugin</artifactId>
-                    <version>2.0.0</version>
+                    <version>${license-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -172,17 +185,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${maven-jar-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>2.0.0</version>
+                <version>${license-maven-plugin.version}</version>
                 <configuration>
                     <verbose>false</verbose>
                     <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
@@ -219,7 +232,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.2.1</version>
+                        <version>${maven-source-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -232,7 +245,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.2.0</version>
+                        <version>${maven-javadoc-plugin.version}</version>
                         <configuration>
                             <verbose>false</verbose>
                         </configuration>
