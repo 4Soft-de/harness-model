@@ -82,17 +82,17 @@
                         <plugin>
                             <groupId>org.jvnet.jaxb2_commons</groupId>
                             <artifactId>jaxb2-basics-annotate</artifactId>
-                            <version>1.1.0</version>
+                            <version>${jaxb2-basics-annotate.version}</version>
                         </plugin>
                         <plugin>
                             <groupId>org.apache.cxf.xjcplugins</groupId>
                             <artifactId>cxf-xjc-javadoc</artifactId>
-                            <version>3.3.1</version>
+                            <version>${cxf-xjc-javadoc.version}</version>
                         </plugin>
                         <plugin>
                             <groupId>net.codesup.util</groupId>
                             <artifactId>jaxb-delegate-plugin</artifactId>
-                            <version>2.3.0</version>
+                            <version>${jaxb-delegate-plugin.version}</version>
                         </plugin>
                         <!-- using a locally patched version due to incorrect handling of IDREF(S)
                             properties a pull request was published to offical version. If this is merged
@@ -100,7 +100,7 @@
                         <plugin>
                             <groupId>com.massfords</groupId>
                             <artifactId>jaxb-visitor</artifactId>
-                            <version>2.8</version>
+                            <version>${jaxb-visitor.version}</version>
                         </plugin>
                         <plugin>
                             <groupId>com.foursoft.jaxb2</groupId>
