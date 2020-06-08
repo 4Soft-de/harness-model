@@ -21,6 +21,7 @@
         <assertj-core.version>3.16.1</assertj-core.version>
         <logback-classic.version>1.2.3</logback-classic.version>
         <navigation-extender.version>1.0.1</navigation-extender.version>
+        <maven-jaxb2-plugin-testing.version>0.14.0</maven-jaxb2-plugin-testing.version>
 
         <!-- Plugins -->
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
@@ -30,7 +31,6 @@
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <gitflow-maven-plugin.version>1.14.0</gitflow-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-jaxb2-plugin-testing.version>0.14.0</maven-jaxb2-plugin-testing.version>
 
         <!-- maven-jaxb2-plugin plugins -->
         <jaxb-visitor.version>2.8</jaxb-visitor.version>
