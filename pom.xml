@@ -14,7 +14,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Dependencies -->
-        <cglib.version>3.3.0</cglib.version>
         <slf4j.version>1.7.30</slf4j.version>
         <testng.version>7.1.0</testng.version>
         <jaxb2-basics.version>1.11.1</jaxb2-basics.version>
@@ -90,11 +89,6 @@
                 <groupId>org.jvnet.jaxb2_commons</groupId>
                 <artifactId>jaxb2-basics</artifactId>
                 <version>${jaxb2-basics.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cglib</groupId>
-                <artifactId>cglib</artifactId>
-                <version>${cglib.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.foursoft.jaxb2</groupId>

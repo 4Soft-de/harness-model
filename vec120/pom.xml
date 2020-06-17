@@ -18,12 +18,6 @@
             <artifactId>navigation-extender-runtime</artifactId>
         </dependency>
 
-        <!--general-->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-        </dependency>
-
         <!--logging-->
         <dependency>
             <groupId>org.slf4j</groupId>
