@@ -37,3 +37,63 @@ tba
 ### Visual Studio Code
 1. File -> Open Folder
 2. Navigate to the cloned project and choose it.
+
+## Making changes
+No matter if you do code or documentation changes, the changes have to be consistent. We didn't use special save actions
+or code formatter at all so a vanilla installation of your IDE is fine for it. If you do have them, make sure they
+don't break the format we used so the diffs only contain the real changes.
+
+#### Rules in general
+- Put curly braces on the same line as the code is, don't put them on a new line (as you would do in C#).
+- Use an indentation of 4 spaces instead of tabs.
+- Variables should be final wherever possible.
+- Follow code conventions when writing code.
+- Only use the lowest modifier (public, package, protected, private) possible. 
+- JavaDoc for public method is required, for the rest its optional.
+
+#### Example
+##### Bad
+```java
+public class BadCode
+{
+   public String GetFirstWord(String x)
+   {
+     boolean contains_space = containsspace(x);
+     if(contains_space){
+         return x.substring(0, x.indexOf(" ")+1);
+     }else{
+         return x;
+     }
+   }
+   public boolean containsspace(String x){
+      return x.contains(" ");
+   }
+}
+```
+##### Good
+```java
+public class BetterCode {
+
+    /**
+     * Gets the first word from a given string.
+     *
+     * @param input Input string to get the first word from
+     * @return The first word if the string contains a space or the input else.
+     */
+    public String getFirstWord(final String input) {
+        if (input == null) {
+            return null;
+        }
+        final boolean containsSpace = containsSpace(input);  // not really needed, just for modifier
+        if (containsSpace) {
+            return input.substring(0, input.indexOf(' ') + 1);
+        } else {
+            return input;
+        }
+    }
+
+    private boolean containsSpace(final String input) {
+        return input.contains(" ");
+    }
+}
+```
