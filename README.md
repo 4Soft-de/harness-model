@@ -81,3 +81,77 @@ public class MyVecReader {
     }
 }
 ```
+
+### Writing a VEC file
+#### Java file
+```java
+public class MyVecWriter {
+    public void testWriteModel() throws JAXBException, TransformerFactoryConfigurationError, IOException {
+        final JAXBContext jc = JAXBContext.newInstance(VecContent.class);
+
+        final VecContent root = new VecContent();
+        root.setXmlId("id_1000_0");
+        root.setVecVersion("1.1.3");
+
+        final VecPermission permission = new VecPermission();
+        permission.setPermission("Released");
+
+        final VecApproval approval = new VecApproval();
+        approval.setStatus("Approved");
+        approval.getPermissions().add(permission);
+
+        final VecDocumentVersion documentVersion = new VecDocumentVersion();
+        documentVersion.getApprovals().add(approval);
+        documentVersion.setDocumentNumber("123_456_789");
+
+        final VecSpecification specification = new VecConnectorHousingCapSpecification();
+        specification.setXmlId("id_2000_0");
+        specification.setIdentification("Ccs-123_456_789-1");
+
+        documentVersion.getSpecifications().add(specification);
+
+        final VecPartVersion partVersion = new VecPartVersion();
+        partVersion.setXmlId("id_1001_0");
+        partVersion.setPartNumber("123_456_789");
+
+        root.getDocumentVersions().add(documentVersion);
+        root.getPartVersions().add(partVersion);
+
+        final Marshaller marshaller = jc.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        final StringWriter stringWriter = new StringWriter();
+        marshaller.marshal(root, stringWriter);
+        final String result = stringWriter.toString();
+
+        final Path outPath = Paths.get("test.vec").toAbsolutePath();
+        if (Files.notExists(outPath))  {
+            Files.createFile(outPath);
+        }
+        Files.write(outPath, result.getBytes(StandardCharsets.UTF_8));
+    }
+}
+```
+
+#### Generated VEC file
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:VecContent id="id_1000_0" xmlns:ns2="http://www.prostep.org/ecad-if/2011/vec">
+    <VecVersion>1.1.3</VecVersion>
+    <DocumentVersion>
+        <Approval>
+            <Status>Approved</Status>
+            <Permission>
+                <Permission>Released</Permission>
+            </Permission>
+        </Approval>
+        <DocumentNumber>123_456_789</DocumentNumber>
+        <Specification xsi:type="ns2:ConnectorHousingCapSpecification" id="id_2000_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Identification>Ccs-123_456_789-1</Identification>
+        </Specification>
+    </DocumentVersion>
+    <PartVersion id="id_1001_0">
+        <PartNumber>123_456_789</PartNumber>
+    </PartVersion>
+</ns2:VecContent>
+```
