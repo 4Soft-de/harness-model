@@ -23,3 +23,17 @@ If you want to contribute again, you need to update your fork to our current sta
    `git rebase upstream/develop`
 3. (Force) push your develop to the remove state.<br />
    `git push origin develop --force`
+
+## IDE setup
+
+### IntelliJ
+1. File -> New -> Project from Existing Sources...
+2. Navigate to the cloned project and choose it.
+3. Import project from external model -> Maven
+
+### Eclipse
+tba
+
+### Visual Studio Code
+1. File -> Open Folder
+2. Navigate to the cloned project and choose it.
