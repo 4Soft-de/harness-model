@@ -123,7 +123,7 @@ public class MyVecReader {
 #### Java file
 ```java
 public class MyVecWriter {
-    public void testWriteModel() throws JAXBException, TransformerFactoryConfigurationError, IOException {
+    public void writeVecFile(final String target) throws JAXBException, TransformerFactoryConfigurationError, IOException {
         final JAXBContext jc = JAXBContext.newInstance(VecContent.class);
 
         final VecContent root = new VecContent();
@@ -161,10 +161,15 @@ public class MyVecWriter {
         marshaller.marshal(root, stringWriter);
         final String result = stringWriter.toString();
 
-        final Path outPath = Paths.get("test.vec").toAbsolutePath();
+        final Path outPath = Paths.get(target).toAbsolutePath();
         if (Files.notExists(outPath))  {
+            final Path parentFolder = outPath.getParent();
+            if (parentFolder != null) {
+                Files.createDirectory(parentFolder);
+            }
             Files.createFile(outPath);
         }
+
         Files.write(outPath, result.getBytes(StandardCharsets.UTF_8));
     }
 }
