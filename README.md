@@ -192,3 +192,8 @@ public class MyVecWriter {
     </PartVersion>
 </ns2:VecContent>
 ```
+
+## Contributing
+We appreciate if you like to contribute to our project! Please make sure to base your branch off of our [develop branch](https://github.com/4Soft-de/vec-model/tree/develop) and create your PR into that same branch. We will reject any PRs not following that or if the feature is already worked on.
+
+And please read our detailed [Contribution Guidelines](https://github.com/4Soft-de/vec-model/blob/develop/.github/CONTRIBUTING.md) for more information, for example code style, formatter, etc.
