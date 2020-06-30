@@ -58,6 +58,10 @@ implementation group: 'com.foursoft.vecmodel', name: 'vec120', version: 'VERSION
 
 In the codebase, the root of a vec file is the `VecContent` class.
 
+More examples can be found in the examples of each module:
+- [VEC 1.1.3 examples](https://github.com/4Soft-de/vec-model/tree/develop/vec113/src/examples/)
+- [VEC 1.2.0 examples](https://github.com/4Soft-de/vec-model/tree/develop/vec120/src/examples/)
+
 ### Reading a VEC file
 #### Example VEC file
 ```xml
