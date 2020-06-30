@@ -17,6 +17,43 @@ For an optimized performance, the XML is parsed by our
 
 More information about VEC can be found in the [ECAD wiki](https://ecad-wiki.prostep.org/specifications/vec).
 
+## Download
+Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.vecmodel).
+
+Latest Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.vecmodel/vec-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.vecmodel)
+
+**Make sure to replace the `VERSION` below with a real version as the one shown above!**
+
+### VEC 1.1.3
+#### Maven
+```xml
+<dependency>
+    <groupId>com.foursoft.vecmodel</groupId>
+    <artifactId>vec113</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+#### Gradle
+```groovy
+implementation group: 'com.foursoft.vecmodel', name: 'vec113', version: 'VERSION'
+```
+
+### VEC 1.2.0
+#### Maven
+```xml
+<dependency>
+    <groupId>com.foursoft.vecmodel</groupId>
+    <artifactId>vec120</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+#### Gradle
+```groovy
+implementation group: 'com.foursoft.vecmodel', name: 'vec120', version: 'VERSION'
+```
+
 ## Code examples
 
 In the codebase, the root of a vec file is the `VecContent` class.
