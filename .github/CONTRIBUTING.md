@@ -32,7 +32,11 @@ If you want to contribute again, you need to update your fork to our current sta
 3. Import project from external model -> Maven
 
 ### Eclipse
-tba
+1. File -> Import
+2. Search for Maven -> Existing Maven Projects
+3. Navigate to the cloned project and choose it.
+4. Select the POM.xml of the project (in this case select the main or all pom.xml's).
+5. Confirm by clicking 'Finish'.
 
 ### Visual Studio Code
 1. File -> Open Folder
