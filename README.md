@@ -55,27 +55,29 @@ In the codebase, the root of a vec file is the `VecContent` class.
 
 #### Java file
 ```java
-public void readVecFile(String pathToFile)  {
-    try (final InputStream is = MyVecReaderClass.class.getResourceAsStream(pathToFile)) {
-        final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
-            new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
-                .withBackReferences()
-                .withIdMapper(Identifiable.class, Identifiable::getXmlId);
-
-        final JaxbModel<VecContent, Identifiable> model = unmarshaller
-                .unmarshall(new BufferedInputStream(is));
-
-        final VecApproval approval = model.getIdLookup()
-                .findById(VecApproval.class, "id_2014_0")
-                .orElse(null);
-
-        // get a specific permission
-        final VecPermission vecPermission = model.getIdLookup()
-                .findById(VecPermission.class, "id_2185_0")
-                .orElse(null);
-
-        // get all permissions of an approval (in oop style)
-        final List<VecPermission> permissions = approval.getPermissions();
+public class MyVecReader {
+    public void readVecFile(String pathToFile) throws JAXBException, IOException  {
+        try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
+            final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
+                new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
+                    .withBackReferences()
+                    .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+    
+            final JaxbModel<VecContent, Identifiable> model = unmarshaller
+                    .unmarshall(new BufferedInputStream(is));
+    
+            final VecApproval approval = model.getIdLookup()
+                    .findById(VecApproval.class, "id_2014_0")
+                    .orElse(null);
+    
+            // get a specific permission
+            final VecPermission vecPermission = model.getIdLookup()
+                    .findById(VecPermission.class, "id_2185_0")
+                    .orElse(null);
+    
+            // get all permissions of an approval (in oop style)
+            final List<VecPermission> permissions = approval.getPermissions();
+        }
     }
 }
 ```
