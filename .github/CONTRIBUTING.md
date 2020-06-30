@@ -1,6 +1,6 @@
 # Contributing
 
-## Setup yourself
+## Git setup
 
 1. Fork this repository, clone the fork and navigate into it.
 2. Add an upstream to the original repository to keep a reference to it.<br />
@@ -13,7 +13,7 @@
 7. Allow edits from maintainers.
 8. Submit the pull request.
 
-## Keep your fork in sync
+### Keep your fork in sync
 
 If you want to contribute again, you need to update your fork to our current state.
 
@@ -21,28 +21,29 @@ If you want to contribute again, you need to update your fork to our current sta
    `git fetch upstream`
 2. Rewrite your develop's history with upstream’s develop.<br />
    `git rebase upstream/develop`
-3. (Force) push your develop to the remove state.<br />
+3. (Force) push your develop to the remote state.<br />
    `git push origin develop --force`
 
 ## IDE setup
 
 ### IntelliJ
-1. File -> New -> Project from Existing Sources...
+1. `File -> New -> Project from Existing Sources...`
 2. Navigate to the cloned project and choose it.
-3. Import project from external model -> Maven
+3. `Import project from external model` -> Select `Maven`
 
 ### Eclipse
-1. File -> Import
-2. Search for Maven -> Existing Maven Projects
+1. `File -> Import`
+2. Search for `Maven` -> Select `Existing Maven Projects`
 3. Navigate to the cloned project and choose it.
 4. Select the POM.xml of the project (in this case select the main or all pom.xml's).
-5. Confirm by clicking 'Finish'.
+5. Confirm by clicking `Finish`.
 
 ### Visual Studio Code
-1. File -> Open Folder
+1. `File -> Open Folder`
 2. Navigate to the cloned project and choose it.
 
 ## Making changes
+
 No matter if you do code or documentation changes, the changes have to be consistent. We didn't use special save actions
 or code formatter at all so a vanilla installation of your IDE is fine for it. If you do have them, make sure they
 don't break the format we used so the diffs only contain the real changes.
@@ -52,7 +53,7 @@ don't break the format we used so the diffs only contain the real changes.
 - Use an indentation of 4 spaces instead of tabs.
 - Variables should be final wherever possible.
 - Follow code conventions when writing code.
-- Only use the lowest modifier (public, package, protected, private) possible. 
+- Only use the lowest visibility modifier (public, protected, package, private) possible. 
 - JavaDoc for public method is required, for the rest its optional.
 
 #### Example
