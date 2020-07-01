@@ -17,6 +17,22 @@ For an optimized performance, the XML is parsed by our
 
 More information about VEC can be found in the [ECAD wiki](https://ecad-wiki.prostep.org/specifications/vec).
 
+## Key Features
+VEC contains data of a multi-harness overall wiring system and includes its schematic information. Its key features are:
+
+- Multiple 3D harness geometries (including variant configurations)
+- Multiple 2D drawing information
+- System schematics (including variant configurations)
+- Harness topology and wire routing
+- Electrical wiring and connectivity
+- Module-based bill of material
+- Multi-level composite part structures (e.g. for assembly parts)
+- Predefined harness configurations
+- Powerful property-based extensibility
+- Comprehensive master data information
+- Universal lifecycle and versioning information
+- Defined mappings to external resources
+
 ## Download
 Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.vecmodel).
 
