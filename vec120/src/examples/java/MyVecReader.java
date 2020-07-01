@@ -9,6 +9,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MyVecReader {
@@ -124,6 +125,45 @@ public class MyVecReader {
             final String output = builder.toString();
 
             System.out.println(output);
+        }
+    }
+
+    public void getBackReferences(String pathToFile) throws IOException, JAXBException {
+        try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
+            final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
+                    new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
+                            .withBackReferences()
+                            .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+
+            final JaxbModel<VecContent, Identifiable> model = unmarshaller
+                    .unmarshall(new BufferedInputStream(is));
+
+            final VecContent content = model.getRootElement();
+
+            // VecUnit -> VecValueWithUnit
+            final List<VecUnit> units = content.getUnits();
+            if (units.isEmpty())  {
+                return;
+            }
+            final VecUnit vecUnit = units.get(0);
+            final Set<VecValueWithUnit> refValueWithUnit = vecUnit.getRefValueWithUnit();
+            final VecValueWithUnit vecValueWithUnit = refValueWithUnit.stream().findFirst().orElse(null);
+            if (vecValueWithUnit == null)  {
+                return;
+            }
+            final String xmlId = vecValueWithUnit.getXmlId();
+
+            // VecValueWithUnit -> VecUnit
+            final VecValueWithUnit unitWithValue = model.getIdLookup()
+                    .findById(VecValueWithUnit.class, xmlId)
+                    .orElse(null);
+            if (unitWithValue == null)  {
+                return;
+            }
+            System.out.println("VecValueWithUnit from VecContent = VecValueWithUnit by id lookup? " +
+                    (vecValueWithUnit.equals(unitWithValue)));
+            final VecUnit unitComponent = unitWithValue.getUnitComponent();
+            System.out.println("VecUnit from VecContent = VecUnit by VecUnitByValue? " + (vecUnit.equals(unitComponent)));
         }
     }
 }
