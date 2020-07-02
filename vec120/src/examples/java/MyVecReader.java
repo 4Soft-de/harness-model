@@ -74,7 +74,7 @@ public class MyVecReader {
 
             final List<VecCopyrightInformation> copyrightInformation = rootElement.getCopyrightInformations();
             final String copyrightInformationAsString = copyrightInformation.stream()
-                    .map(copyright -> String.format("\tCopyright Notes: %s, Item Version: %s",
+                    .map(copyright -> String.format("\tCopyright Notes: %s, Item Versions: %s",
                             copyright.getCopyrightNotes(), copyright.getRefItemVersion()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
@@ -104,9 +104,9 @@ public class MyVecReader {
                     ? ""
                     : itemHistoryEntries.stream()
                     .map(item -> String.format("\tItem XML Id: %s, Item Type: %s," +
-                                    "Predecessor ItemVersion available: %b, Successor ItemVersion available: %b",
+                                    "Predecessor ItemVersion: %s, Successor ItemVersion: %s",
                             item.getXmlId(), item.getType().value(),
-                            item.getPredecessorVersion() != null, item.getSuccessorVersion() != null))
+                            item.getPredecessorVersion(), item.getSuccessorVersion()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final List<VecPartVersion> partVersions = rootElement.getPartVersions();
