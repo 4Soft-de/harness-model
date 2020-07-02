@@ -86,18 +86,8 @@
         <dependencies>
             <!--general-->
             <dependency>
-                <groupId>org.jvnet.jaxb2_commons</groupId>
-                <artifactId>jaxb2-basics</artifactId>
-                <version>${jaxb2-basics.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.foursoft.jaxb2</groupId>
                 <artifactId>navigation-extender-runtime</artifactId>
-                <version>${navigation-extender.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.foursoft.jaxb2</groupId>
-                <artifactId>navigation-extender</artifactId>
                 <version>${navigation-extender.version}</version>
             </dependency>
 
