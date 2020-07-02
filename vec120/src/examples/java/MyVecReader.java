@@ -150,98 +150,37 @@ public class MyVecReader {
                     .append("Standard copyright: ").append(standardCopyrightInformationAsString)
                     .append(System.lineSeparator());
 
-            builder.append("Contracts:");
-            if (contractsAsString.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(contractsAsString);
-            }
-            builder.append(System.lineSeparator());
-
-            builder.append("Copyright information:");
-            if (copyrightInformationAsString.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(copyrightInformationAsString);
-            }
-            builder.append(System.lineSeparator());
-
-            builder.append("Document versions:");
-            if (documentVersionsAsString.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(documentVersionsAsString);
-            }
-            builder.append(System.lineSeparator());
-
-            builder.append("Specifications:");
-            if (specificationsAsString.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(specificationsAsString);
-            }
-            builder.append(System.lineSeparator());
-
-            builder.append("Item History:");
-            if (items.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(items);
-            }
-            builder.append(System.lineSeparator());
-
-            builder.append("Part Versions:");
-            if (versions.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(versions);
-            }
-            builder.append(System.lineSeparator());
-
-            builder.append("Projects:");
-            if (projectAsString.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(projectAsString);
-            }
-            builder.append(System.lineSeparator());
-
-            builder.append("Units:");
-            if (unitsAsString.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(unitsAsString);
-            }
-            builder.append(System.lineSeparator());
-
-            builder.append("Custom Properties:");
-            if (properties.isEmpty())  {
-                builder.append(" None");
-            }  else {
-                builder
-                        .append(System.lineSeparator())
-                        .append(properties);
-            }
+            addDataToBuilder(builder, "Contracts", contractsAsString);
+            addDataToBuilder(builder, "Copyright information", copyrightInformationAsString);
+            addDataToBuilder(builder, "Document versions", documentVersionsAsString);
+            addDataToBuilder(builder, "Specifications", specificationsAsString);
+            addDataToBuilder(builder, "Item History", items);
+            addDataToBuilder(builder, "Part Versions", versions);
+            addDataToBuilder(builder, "Projects", projectAsString);
+            addDataToBuilder(builder, "Units", unitsAsString);
+            addDataToBuilder(builder, "Custom Properties", properties, false);
 
             final String output = builder.toString();
 
             System.out.println(output);
+        }
+    }
+
+    private void addDataToBuilder(StringBuilder builder, String name, String data) {
+        addDataToBuilder(builder, name, data, true);
+    }
+
+    private void addDataToBuilder(StringBuilder builder, String name, String data, boolean newLine)  {
+        builder.append(name).append(":");
+        if (data.isEmpty())  {
+            builder.append(" None");
+        }  else {
+            builder
+                    .append(System.lineSeparator())
+                    .append(data);
+        }
+        if (newLine) {
+            builder.append(System.lineSeparator());
         }
     }
 
