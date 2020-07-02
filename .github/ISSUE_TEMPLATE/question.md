@@ -1,6 +1,6 @@
 ---
 name: Question
-about: Use this template to ask a question regarding the VEC.
+about: Have a question regarding the VEC?
 ---
 
 ## General Troubleshooting

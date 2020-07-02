@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Found bug that needs to be fixed?
+about: Found a bug that needs to be fixed?
 ---
 
 ## General Troubleshooting
