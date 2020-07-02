@@ -32,6 +32,7 @@ VEC contains data of a multi-harness overall wiring system and includes its sche
 - Comprehensive master data information
 - Universal lifecycle and versioning information
 - Defined mappings to external resources
+- Elements can have back references to other elements (e.g. `VecUnit -> VecValueWithUnit` and `VecValueWithUnit -> VecUnit`)
 
 ## Download
 Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.vecmodel).
