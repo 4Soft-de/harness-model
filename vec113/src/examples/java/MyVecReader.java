@@ -8,6 +8,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -86,9 +87,65 @@ public class MyVecReader {
             final List<VecDocumentVersion> documentVersions = rootElement.getDocumentVersions();
             final String documentVersionsAsString = documentVersions.stream()
                     .map(document -> String.format("\tDocument Number: %s, Document Version: %s, Document Type: %s, " +
-                                    "Document Location: %s, Linked Document: %s, Amount of sheets: %s",
+                                    "Document Location: %s, Linked Document: %s, Amount of sheets: %s, " +
+                                    "Company Name: %s, Specification Ids: %s",
                             document.getDocumentNumber(), document.getDocumentVersion(), document.getDocumentType(),
-                            document.getLocation(), document.getFileName(), document.getNumberOfSheets()))
+                            document.getLocation(), document.getFileName(), document.getNumberOfSheets(),
+                            document.getCompanyName(), document.getSpecifications().stream()
+                                    .map(VecSpecification::getIdentification)
+                                    .reduce((x, y) -> x + ", " + y).orElse("None")))  // allows default value
+                    .collect(Collectors.joining(System.lineSeparator()));
+
+            final String specificationsAsString = documentVersions.stream()
+                    .map(VecDocumentVersion::getSpecifications)
+                    .map(specifications -> specifications.stream()
+                            .map(spec -> String.format("\tSpecification Id: %s, Specification class: %s",
+                                    spec.getIdentification(), spec.getClass().getSimpleName()))
+                            .collect(Collectors.toList()))
+                    .flatMap(Collection::stream) // to get rid of unneeded newlines
+                    .collect(Collectors.joining(System.lineSeparator()));
+
+            final List<VecItemHistoryEntry> itemHistoryEntries = rootElement.getItemHistoryEntries();
+            final String items = itemHistoryEntries == null
+                    ? ""
+                    : itemHistoryEntries.stream()
+                    .map(item -> String.format("\tItem XML Id: %s, Item Type: %s," +
+                                    "Predecessor ItemVersion available: %b, Successor ItemVersion available: %b",
+                            item.getXmlId(), item.getType().value(),
+                            item.getPredecessorVersion() != null, item.getSuccessorVersion() != null))
+                    .collect(Collectors.joining(System.lineSeparator()));
+
+            final List<VecPartVersion> partVersions = rootElement.getPartVersions();
+            final String versions = partVersions.stream()
+                    .map(partVersion -> String.format("\tPart Version %s, Part Number: %s, " +
+                                    "Preferred Use Case: %s, Primary Part Type: %s",
+                            partVersion.getPartVersion(), partVersion.getPartNumber(),
+                            partVersion.getPreferredUseCase(), partVersion.getPrimaryPartType().value()))
+                    .collect(Collectors.joining(System.lineSeparator()));
+
+            final List<VecProject> projects = rootElement.getProjects();
+            final String projectAsString = projects == null
+                    ? ""
+                    : projects.stream()
+                    .map(project -> String.format("\tProject Id: %s, Descriptions: %s, Car classification levels: %s",
+                            project.getIdentification(), project.getDescriptions().stream()
+                                    .map(VecAbstractLocalizedString::getValue)
+                                    .collect(Collectors.joining(", ")),
+                            String.format("2: %s, 3: %s, 4: %s",
+                                    project.getCarClassificationLevel2(), project.getCarClassificationLevel3(),
+                                    project.getCarClassificationLevel4())))
+                    .collect(Collectors.joining(System.lineSeparator()));
+
+            final List<VecUnit> units = rootElement.getUnits();
+            final String unitsAsString = units.stream()
+                    .map(unit -> String.format("\tUnit XML id: %s, Exponent: %d, Unit class: %s",
+                            unit.getXmlId(), unit.getExponent(), unit.getClass().getSimpleName()))
+                    .collect(Collectors.joining(System.lineSeparator()));
+
+            final List<VecCustomProperty> customProperties = rootElement.getCustomProperties();
+            final String properties = customProperties.stream()
+                    .map(x -> String.format("\tProperty XML id: %s, Property Type: %s, Property class: %s",
+                            x.getXmlId(), x.getPropertyType(), x.getClass().getSimpleName()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final StringBuilder builder = new StringBuilder()
@@ -136,6 +193,66 @@ public class MyVecReader {
                 builder
                         .append(System.lineSeparator())
                         .append(documentVersionsAsString);
+            }
+            builder.append(System.lineSeparator());
+
+            builder.append("Specifications:");
+            if (specificationsAsString.isEmpty())  {
+                builder.append(" None");
+            }  else {
+                builder
+                        .append(System.lineSeparator())
+                        .append(specificationsAsString);
+            }
+            builder.append(System.lineSeparator());
+
+            builder.append("Item History:");
+            if (items.isEmpty())  {
+                builder.append(" None");
+            }  else {
+                builder
+                        .append(System.lineSeparator())
+                        .append(items);
+            }
+            builder.append(System.lineSeparator());
+
+            builder.append("Part Versions:");
+            if (versions.isEmpty())  {
+                builder.append(" None");
+            }  else {
+                builder
+                        .append(System.lineSeparator())
+                        .append(versions);
+            }
+            builder.append(System.lineSeparator());
+
+            builder.append("Projects:");
+            if (projectAsString.isEmpty())  {
+                builder.append(" None");
+            }  else {
+                builder
+                        .append(System.lineSeparator())
+                        .append(projectAsString);
+            }
+            builder.append(System.lineSeparator());
+
+            builder.append("Units:");
+            if (unitsAsString.isEmpty())  {
+                builder.append(" None");
+            }  else {
+                builder
+                        .append(System.lineSeparator())
+                        .append(unitsAsString);
+            }
+            builder.append(System.lineSeparator());
+
+            builder.append("Custom Properties:");
+            if (properties.isEmpty())  {
+                builder.append(" None");
+            }  else {
+                builder
+                        .append(System.lineSeparator())
+                        .append(properties);
             }
 
             final String output = builder.toString();
