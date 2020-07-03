@@ -44,6 +44,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -115,6 +116,38 @@ public class BasicLoadingTest {
             final DocumentBuilder db = dbf.newDocumentBuilder();
             final Document d = db.parse(new BufferedInputStream(is));
             assertThat(d).isNotNull();
+        }
+    }
+
+    @Test
+    public void testBackReferences() throws IOException, JAXBException {
+        try (final InputStream is = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
+            final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
+                    new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
+                            .withBackReferences()
+                            .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+
+            final JaxbModel<VecContent, Identifiable> model = unmarshaller
+                    .unmarshall(new BufferedInputStream(is));
+
+            final VecContent content = model.getRootElement();
+
+            // VecUnit -> VecValueWithUnit
+            final List<VecUnit> units = content.getUnits();
+            assertThat(units).isNotEmpty();
+            final VecUnit vecUnit = units.get(0);
+            final Set<VecValueWithUnit> refValueWithUnit = vecUnit.getRefValueWithUnit();
+            final VecValueWithUnit vecValueWithUnit = refValueWithUnit.stream().findFirst().orElse(null);
+            assertThat(vecValueWithUnit).isNotNull();
+            final String xmlId = vecValueWithUnit.getXmlId();
+
+            // VecValueWithUnit -> VecUnit
+            final VecValueWithUnit unitWithValue = model.getIdLookup()
+                    .findById(VecValueWithUnit.class, xmlId)
+                    .orElse(null);
+            assertThat(unitWithValue).isEqualTo(vecValueWithUnit);
+            final VecUnit unitComponent = unitWithValue.getUnitComponent();
+            assertThat(unitComponent).isEqualTo(vecUnit);
         }
     }
 
