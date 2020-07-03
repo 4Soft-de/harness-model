@@ -45,8 +45,8 @@ If you want to contribute again, you need to update your fork to our current sta
 ## Making changes
 
 No matter if you do code or documentation changes, the changes have to be consistent. We didn't use special save actions
-or code formatter at all so a vanilla installation of your IDE is fine for it. If you do have them, make sure they
-don't break the format we used so the diffs only contain the real changes.
+or code formatter, so a vanilla installation of your IDE is fine for it. If you do have them, make sure they
+don't break the format, so the diffs only contain the real changes.
 
 #### Rules in general
 - Put curly braces on the same line as the code is, don't put them on a new line (as you would do in C#).

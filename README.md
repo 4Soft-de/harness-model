@@ -5,7 +5,7 @@ JAXB-Models of the VEC, based on the underlying UML model (not only the XSD).
 VEC stands for **V**ehicle **E**lectric **C**ontainer and defines an information model, a data dictionary, and
 an XML schema derived from and compliant to the model.
 
-It can be used to define a vehicle with all of its parts, connections, constraints, etc. 
+It can be used to define a vehicle with all parts, connections, constraints, etc. 
 
 This repository contains two VEC versions, version 1.1.3 and version 1.2.0.
 The version 1.2.0 doesn't provide a backwards compatibility to version 1.1.3.
@@ -222,4 +222,4 @@ public class MyVecWriter {
 ## Contributing
 We appreciate if you like to contribute to our project! Please make sure to base your branch off of our [develop branch](https://github.com/4Soft-de/vec-model/tree/develop) and create your PR into that same branch. We will reject any PRs not following that or if the feature is already worked on.
 
-And please read our detailed [Contribution Guidelines](https://github.com/4Soft-de/vec-model/blob/develop/.github/CONTRIBUTING.md) for more information, for example code style, formatter, etc.
+Please read our detailed [Contribution Guidelines](https://github.com/4Soft-de/vec-model/blob/develop/.github/CONTRIBUTING.md) for more information, for example code style, formatter, etc.
