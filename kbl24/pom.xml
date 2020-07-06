@@ -10,26 +10,48 @@
 	<description>The model for KBL version 2.4</description>
 
 	<dependencies>
+        <!--project-->
+        <dependency>
+            <groupId>com.foursoft.jaxb2</groupId>
+            <artifactId>navigation-extender-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--logging-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.foursoft.jaxb2</groupId>
-			<artifactId>navigation-extender-runtime</artifactId>
-		</dependency>
+
 		<!-- test -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -45,7 +67,8 @@
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>generate</id>
+                        <id>generate-kbl24</id>
+                        <phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -72,39 +95,7 @@
 								<arg>-Xvisitor-package:com.foursoft.kblmodel.kbl24.visitor</arg>
 								<arg>-Xnull-empty-lists</arg>
 							</args>
-
-							<plugins>
-								<plugin>
-									<groupId>org.jvnet.jaxb2_commons</groupId>
-									<artifactId>jaxb2-basics</artifactId>
-									<version>1.11.1</version>
-								</plugin>
-								<plugin>
-									<groupId>org.jvnet.jaxb2_commons</groupId>
-									<artifactId>jaxb2-basics-annotate</artifactId>
-									<version>1.0.4</version>
-								</plugin>
-								<plugin>
-									<groupId>org.apache.cxf.xjcplugins</groupId>
-									<artifactId>cxf-xjc-javadoc</artifactId>
-									<version>3.2.1</version>
-								</plugin>
-								<plugin>
-									<groupId>net.codesup.util</groupId>
-									<artifactId>jaxb-delegate-plugin</artifactId>
-									<version>2.1.0</version>
-								</plugin>
-								<plugin>
-									<groupId>com.massfords</groupId>
-									<artifactId>jaxb-visitor</artifactId>
-									<version>2.8</version>
-								</plugin>
-								<plugin>
-									<groupId>com.foursoft.jaxb2</groupId>
-									<artifactId>navigation-extender</artifactId>
-									<version>${navigation-extender.version}</version>
-								</plugin>
-							</plugins>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-vec120</generateDirectory>
 						</configuration>
 					</execution>
 				</executions>

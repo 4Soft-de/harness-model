@@ -25,6 +25,8 @@
  */
 package com.foursoft.kblmodel.kbl24;
 
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.StringWriter;
@@ -35,8 +37,6 @@ import javax.xml.bind.Marshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
-
-import org.testng.annotations.Test;
 
 public class BasicWritingTest {
 
