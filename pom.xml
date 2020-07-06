@@ -15,12 +15,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Dependencies -->
         <slf4j.version>1.7.30</slf4j.version>
-        <testng.version>7.1.0</testng.version>
+        <junit.jupiter.version>5.6.2</junit.jupiter.version>
         <jaxb2-basics.version>1.11.1</jaxb2-basics.version>
         <assertj-core.version>3.16.1</assertj-core.version>
         <logback-classic.version>1.2.3</logback-classic.version>
         <navigation-extender.version>1.0.1</navigation-extender.version>
-        <maven-jaxb2-plugin-testing.version>0.14.0</maven-jaxb2-plugin-testing.version>
+        <jaxb.version>2.3.0.1</jaxb.version>
 
         <!-- Plugins -->
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
@@ -84,14 +84,23 @@
 
     <dependencyManagement>
         <dependencies>
+
             <!--general-->
+            
             <dependency>
                 <groupId>com.foursoft.jaxb2</groupId>
                 <artifactId>navigation-extender-runtime</artifactId>
                 <version>${navigation-extender.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-core</artifactId>
+                <scope>provided</scope>
+                <version>${jaxb.version}</version>
+            </dependency>
 
             <!--logging-->
+
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -99,16 +108,11 @@
             </dependency>
 
             <!--test-->
+
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback-classic.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>${testng.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -127,6 +131,18 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
                 <version>${slf4j.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
