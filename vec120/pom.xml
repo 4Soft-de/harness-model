@@ -75,6 +75,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <encoding>UTF-8</encoding>
                             <schemaIncludes>
                                 <include>vec120/vec_1.2.1.RC-SNAPSHOT.xsd</include>
                             </schemaIncludes>

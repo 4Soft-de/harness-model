@@ -75,6 +75,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <encoding>UTF-8</encoding>
                             <schemaIncludes>
                                 <include>vec113/vec_1.1.3.xsd</include>
                             </schemaIncludes>
