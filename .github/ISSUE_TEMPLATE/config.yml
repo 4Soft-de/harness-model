@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: News on our Website
+    url: https://www.4soft.de/news/#87105ad169a215022422b6b63e58db88
+    about: You can get a very brief overview about the navigator and what it can be used for on our website (German only).
+  - name: Blogpost about it
+    url: https://www.4soft.de/blog/2018/navigation-on-large-xml-structures/
+    about: Detailed information about the navigator can be found in our blog (English).
+  - name: Releases
+    url: https://mvnrepository.com/artifact/com.foursoft.jaxb2
+    about: You can find the latest releases on Maven Central.
