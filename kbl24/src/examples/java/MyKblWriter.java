@@ -1,55 +1,81 @@
-import com.foursoft.kblmodel.kbl24.KBLContainer;
-import com.foursoft.kblmodel.kbl24.KblConnectorHousing;
-import com.foursoft.kblmodel.kbl24.KblConnectorOccurrence;
-import com.foursoft.kblmodel.kbl24.KblHarness;
-import com.foursoft.xml.ExtendedUnmarshaller;
-import com.foursoft.xml.JaxbModel;
-import com.foursoft.xml.model.Identifiable;
+import com.foursoft.kblmodel.kbl24.*;
 
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import java.io.BufferedInputStream;
+import javax.xml.bind.Marshaller;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collections;
-import java.util.Set;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class MyKblWriter {
-    public void readKblFile(String pathToFile) throws JAXBException, IOException {
-        try (final InputStream is = MyKblWriter.class.getResourceAsStream(pathToFile)) {
-            final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller =
-                    new ExtendedUnmarshaller<KBLContainer, Identifiable>(
-                        KBLContainer.class).withBackReferences()
-                        .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+    public void writeKblFile(final String target) throws JAXBException, TransformerFactoryConfigurationError, IOException {
+        final JAXBContext jc = JAXBContext.newInstance(KBLContainer.class);
+        final KBLContainer root = new KBLContainer();
+        final KblHarness harness = new KblHarness();
 
-            final JaxbModel<KBLContainer, Identifiable> model = unmarshaller
-                    .unmarshall(new BufferedInputStream(is));
+        root.setHarness(harness);
 
-            final KblConnectorOccurrence occurrence = model.getIdLookup()
-                    .findById(KblConnectorOccurrence.class, "I1616")
-                    .orElse(null);
+        final KblConnectorOccurrence connectorOccurrence = new KblConnectorOccurrence();
+        final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
+        terminalOccurrence.setXmlId("id_4711");
+        final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
+        terminalOccurrence2.setXmlId("id_4711");
 
-            final KblConnectorHousing part = model.getIdLookup()
-                    .findById(KblConnectorHousing.class, "ch_part")
-                    .orElse(null);
+        harness.getConnectorOccurrences()
+                .add(connectorOccurrence);
+        harness.getTerminalOccurrences()
+                .add(terminalOccurrence);
+        harness.getTerminalOccurrences()
+                .add(terminalOccurrence2);
 
-            if (occurrence == null || part == null)  {
-                return;
+        final KblContactPoint contactPoint = new KblContactPoint();
+        connectorOccurrence.getContactPoints()
+                .add(contactPoint);
+
+        contactPoint.setId("SCHNUPSI");
+        contactPoint.setXmlId("id_1234");
+        contactPoint.getAssociatedParts()
+                .add(terminalOccurrence);
+
+        final KblContactPoint contactPoint2 = new KblContactPoint();
+        connectorOccurrence.getContactPoints()
+                .add(contactPoint2);
+
+        contactPoint2.setId("SCHNUPSI");
+        contactPoint2.setXmlId("id_1235");
+
+        // Access to getter = Lazy Init to of List = EmptyList =
+        // <AssociatedParts></AssociatedParts>
+        contactPoint2.getAssociatedParts();
+
+        final KblContactPoint contactPoint3 = new KblContactPoint();
+        connectorOccurrence.getContactPoints()
+                .add(contactPoint3);
+
+        contactPoint3.setId("SCHNUPSI");
+        contactPoint3.setXmlId("id_1236");
+
+        final Marshaller marshaller = jc.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        final StringWriter stringWriter = new StringWriter();
+
+        marshaller.marshal(root, stringWriter);
+
+        final String result = stringWriter.toString();
+
+        final Path outPath = Paths.get(target).toAbsolutePath();
+        if (Files.notExists(outPath))  {
+            final Path parentFolder = outPath.getParent();
+            if (parentFolder != null) {
+                Files.createDirectory(parentFolder);
             }
-
-            final boolean equalsPart = occurrence.getPart().equals(part);
-            System.out.println("Part via. lookup identical to getter call? " + (equalsPart));
-
-            final KblHarness parentHarness = occurrence.getParentHarness();
-            final KblHarness harnessOfRootElement = model.getRootElement().getHarness();
-
-            final boolean equalsHarness = harnessOfRootElement.equals(parentHarness);
-            System.out.println("Harness of root element identical to parent harness of occurrence? " + (equalsHarness));
-
-            final Set<KblConnectorOccurrence> singleton = Collections.singleton(occurrence);
-            final Set<KblConnectorOccurrence> refConnectorOccurrence = part.getRefConnectorOccurrence();
-
-            final boolean equalsOccurrence = refConnectorOccurrence.equals(singleton);
-            System.out.println("Occurrence being equals to the referenced connector of the part? " + (equalsOccurrence));
+            Files.createFile(outPath);
         }
+
+        Files.write(outPath, result.getBytes(StandardCharsets.UTF_8));
     }
 }
