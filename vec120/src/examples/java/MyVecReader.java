@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class MyVecReader {
 
-    public void readVecFile(String pathToFile) throws JAXBException, IOException {
+    public void readVecFile(final String pathToFile) throws JAXBException, IOException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
             final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
                     new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
@@ -39,7 +39,7 @@ public class MyVecReader {
         }
     }
 
-    public void readFullVecFile(String pathToFile) throws IOException, JAXBException {
+    public void readFullVecFile(final String pathToFile) throws IOException, JAXBException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
             final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
                     new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
@@ -62,7 +62,7 @@ public class MyVecReader {
                     : standardCopyright.getCopyrightNotes().stream()
                     .map(VecAbstractLocalizedString::getValue)
                     .collect(Collectors.joining(", "));
-            String standardCopyrightInformationAsString = copyrightNotesAsString.isEmpty()
+            final String standardCopyrightInformationAsString = copyrightNotesAsString.isEmpty()
                     ? "None"
                     : String.format("Copyright Notes: %s", copyrightNotesAsString);
 
@@ -166,11 +166,12 @@ public class MyVecReader {
         }
     }
 
-    private void addDataToBuilder(StringBuilder builder, String name, String data) {
+    private void addDataToBuilder(final StringBuilder builder, final String name, final String data) {
         addDataToBuilder(builder, name, data, true);
     }
 
-    private void addDataToBuilder(StringBuilder builder, String name, String data, boolean newLine)  {
+    private void addDataToBuilder(final StringBuilder builder, final String name,
+                                  final String data, final boolean newLine)  {
         builder.append(name).append(":");
         if (data.isEmpty())  {
             builder.append(" None");
@@ -184,7 +185,7 @@ public class MyVecReader {
         }
     }
 
-    public void getBackReferences(String pathToFile) throws IOException, JAXBException {
+    public void getBackReferences(final String pathToFile) throws IOException, JAXBException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
             final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
                     new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)

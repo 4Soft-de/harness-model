@@ -114,7 +114,7 @@ More examples can be found in the examples of each module:
 #### Java file
 ```java
 public class MyVecReader {
-    public void readVecFile(String pathToFile) throws JAXBException, IOException  {
+    public void readVecFile(final String pathToFile) throws JAXBException, IOException  {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
             final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
                 new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
