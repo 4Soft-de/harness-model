@@ -25,14 +25,14 @@
  */
 package com.foursoft.xml.cache;
 
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.testng.annotations.Test;
-
-public class SimpleCacheTest {
+class SimpleCacheTest {
 
     @Test
-    public void testCacheIsWorking() {
+    void testCacheIsWorking() {
         final SimpleCache<String, Object> sut = new SimpleCache<>((final String s) -> new Object());
 
         final Object a1 = sut.get("A");
