@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 public class MyKblReader {
-    public void readKblFile(String pathToFile) throws JAXBException, IOException {
+    public void readKblFile(final String pathToFile) throws JAXBException, IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
             final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller =
                     new ExtendedUnmarshaller<KBLContainer, Identifiable>(

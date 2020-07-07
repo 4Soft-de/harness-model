@@ -93,7 +93,7 @@ More examples can be found [in the examples](https://github.com/4Soft-de/kbl-mod
 #### Java file
 ```java
 public class MyKblReader {
-    public void readKblFile(String pathToFile) throws JAXBException, IOException {
+    public void readKblFile(final String pathToFile) throws JAXBException, IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
             final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller =
                     new ExtendedUnmarshaller<KBLContainer, Identifiable>(
