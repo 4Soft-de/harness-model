@@ -11,6 +11,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 public class MyKblReader {
@@ -50,6 +51,54 @@ public class MyKblReader {
 
             final boolean equalsOccurrence = refConnectorOccurrence.equals(singleton);
             System.out.println("Occurrence being equals to the referenced connector of the part? " + (equalsOccurrence));
+        }
+    }
+
+    public void getBackReferences(final String pathToFile) throws IOException, JAXBException {
+        try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
+            final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller =
+                    new ExtendedUnmarshaller<KBLContainer, Identifiable>(KBLContainer.class)
+                            .withBackReferences()
+                            .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+
+            final JaxbModel<KBLContainer, Identifiable> model = unmarshaller
+                    .unmarshall(new BufferedInputStream(is));
+
+            final KBLContainer container = model.getRootElement();
+
+            final List<KblConnectorHousing> connectorHousings = container.getConnectorHousings();
+            if (connectorHousings.isEmpty()) {
+                return;
+            }
+            final KblConnectorHousing kblConnectorHousing = connectorHousings.get(0);
+
+            final Set<KblConnectorOccurrence> refConnectorOccurrence = kblConnectorHousing.getRefConnectorOccurrence();
+            final KblConnectorOccurrence kblConnectorOccurrence = refConnectorOccurrence.stream().findFirst().orElse(null);
+            if (kblConnectorOccurrence == null) {
+                return;
+            }
+
+            // KblConnectorOccurrence -> KblHarness
+            final KblHarness parentHarness = kblConnectorOccurrence.getParentHarness();
+            // KblHarness -> KblConnectorOccurrence
+            final KblConnectorOccurrence occurrenceByHarness = parentHarness.getConnectorOccurrences().stream()
+                    .findFirst()
+                    .orElse(null);
+            if (occurrenceByHarness == null) {
+                return;
+            }
+            System.out.println("KblConnectorOccurrence from KblContainer = KKblConnectorOccurrence from KblHarness? " +
+                    (kblConnectorOccurrence.equals(occurrenceByHarness)));
+
+            final String xmlId = kblConnectorOccurrence.getXmlId();
+            final KblConnectorOccurrence occurrenceByLookup = model.getIdLookup()
+                    .findById(KblConnectorOccurrence.class, xmlId)
+                    .orElse(null);
+            if (occurrenceByLookup == null) {
+                return;
+            }
+            System.out.println("KblConnectorOccurrence from KblContainer = KblConnectorOccurrence by id lookup? " +
+                    (kblConnectorOccurrence.equals(occurrenceByLookup)));
         }
     }
 }

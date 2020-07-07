@@ -47,6 +47,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -130,6 +132,52 @@ public class BasicLoadingTest {
                 }
             });
             final Document d = db.parse(new BufferedInputStream(is));
+        }
+    }
+
+    @Test
+    public void getBackReferences() throws IOException, JAXBException {
+        try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
+            assertThat(is)
+                    .isNotNull();
+            final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller =
+                    new ExtendedUnmarshaller<KBLContainer, Identifiable>(KBLContainer.class)
+                            .withBackReferences()
+                            .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+
+            final JaxbModel<KBLContainer, Identifiable> model = unmarshaller
+                    .unmarshall(new BufferedInputStream(is));
+
+            final KBLContainer container = model.getRootElement();
+
+            // KblConnectorHousing -> KblConnectorOccurrence
+            final List<KblConnectorHousing> connectorHousings = container.getConnectorHousings();
+            assertThat(connectorHousings)
+                    .isNotEmpty();
+            final KblConnectorHousing kblConnectorHousing = connectorHousings.get(0);
+
+            final Set<KblConnectorOccurrence> refConnectorOccurrence = kblConnectorHousing.getRefConnectorOccurrence();
+            final KblConnectorOccurrence kblConnectorOccurrence = refConnectorOccurrence.stream().findFirst().orElse(null);
+            assertThat(kblConnectorOccurrence)
+                    .isNotNull();
+
+            // KblConnectorOccurrence -> KblHarness
+            final KblHarness parentHarness = kblConnectorOccurrence.getParentHarness();
+            // KblHarness -> KblConnectorOccurrence
+            final KblConnectorOccurrence occurrenceByHarness = parentHarness.getConnectorOccurrences().stream()
+                    .findFirst()
+                    .orElse(null);
+            assertThat(occurrenceByHarness)
+                    .isNotNull()
+                    .isEqualTo(kblConnectorOccurrence);
+
+            final String xmlId = kblConnectorOccurrence.getXmlId();
+            final KblConnectorOccurrence occurrenceByLookup = model.getIdLookup()
+                    .findById(KblConnectorOccurrence.class, xmlId)
+                    .orElse(null);
+            assertThat(occurrenceByLookup)
+                    .isNotNull()
+                    .isEqualTo(kblConnectorOccurrence);
         }
     }
 }
