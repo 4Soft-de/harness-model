@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -48,17 +48,14 @@ import java.util.function.Function;
  * <li>Registration and execution of custom {@link ModelPostProcessor}.</li>
  * </ul>
  * This is a wrapper arround an {@link Unmarshaller}.
- *
+ * <p>
  * The {@link ExtendedUnmarshaller} is required in order to correctly integrate
  * the two phase model post processing (see {@link ModelPostProcessor} into the
  * unmarshalling process.
  *
+ * @param <R> Type of the root element to unmarshall.
+ * @param <I> Type of elements that are identifiable.
  * @author becker
- *
- * @param <R>
- *            Type of the root element to unmarshall.
- * @param <I>
- *            Type of elements that are identifiable.
  */
 public class ExtendedUnmarshaller<R, I> {
 
@@ -69,9 +66,8 @@ public class ExtendedUnmarshaller<R, I> {
 
     public ExtendedUnmarshaller(final Class<R> rootElement) throws JAXBException {
         this.rootElement = rootElement;
-        final String packageName = rootElement.getPackage()
-                .getName();
-        final JAXBContext context = JAXBContextFactory.initializeContext(packageName);
+        final String packageName = rootElement.getPackage().getName();
+        final JAXBContext context = JaxbContextFactory.initializeContext(packageName);
         postProcessorRegistry = new ModelPostProcessorRegistry(packageName);
         unmarshaller = context.createUnmarshaller();
     }
@@ -81,7 +77,7 @@ public class ExtendedUnmarshaller<R, I> {
      * backreferences.
      *
      * @return Returns <tt>this</tt> for method chaining / fluent
-     *         initialization.
+     * initialization.
      */
     public ExtendedUnmarshaller<R, I> withBackReferences() {
         postProcessorRegistry.withFactory(ReflectiveAssociationPostProcessor::new);
@@ -101,11 +97,13 @@ public class ExtendedUnmarshaller<R, I> {
 
     /**
      * The jaxb unmarshaller has an event handler which is intercepted to provide the event for the consumer
+     *
      * @param eventConsumer the consumer for the jaxb validation event
      * @return this for fluent API
      * @throws JAXBException if the unmarshalling goes wrong
      */
-    public ExtendedUnmarshaller<R, I> withEventLogging(final Consumer<ValidationEvent> eventConsumer) throws JAXBException {
+    public ExtendedUnmarshaller<R, I> withEventLogging(final Consumer<ValidationEvent> eventConsumer)
+            throws JAXBException {
         final ValidationEventHandler eventHandler = unmarshaller.getEventHandler();
         unmarshaller.setEventHandler(event -> {
             eventConsumer.accept(event);
@@ -127,13 +125,12 @@ public class ExtendedUnmarshaller<R, I> {
      * the handling of all classes during the unmarshalling, even if the do not
      * have a shared superclass or interface.
      *
-     *
      * @param classOfIdentifiableElements the class of the identifiable element
-     * @param idMapper the mapper function to get the id of each element
+     * @param idMapper                    the mapper function to get the id of each element
      * @return this for fluent API
      */
     public ExtendedUnmarshaller<R, I> withIdMapper(final Class<I> classOfIdentifiableElements,
-            final Function<I, String> idMapper) {
+                                                   final Function<I, String> idMapper) {
         final IdLookupGeneratorPostProcessor<I> idLookupGenerator = new IdLookupGeneratorPostProcessor<>(
                 classOfIdentifiableElements, idMapper);
 
@@ -164,6 +161,7 @@ public class ExtendedUnmarshaller<R, I> {
 
     /**
      * Provides access to the internal jax-b unmarshaller for further configuration. Use with caution.
+     *
      * @return the internal jax-b unmarshaller
      */
     public Unmarshaller getUnmarshaller() {

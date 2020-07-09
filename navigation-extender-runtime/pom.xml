@@ -19,6 +19,11 @@
             <artifactId>jaxb-core</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.foursoft.vecmodel</groupId>
+            <artifactId>vec113</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!-- test -->
         <dependency>
             <groupId>ch.qos.logback</groupId>

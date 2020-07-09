@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,9 +25,9 @@
  */
 package com.foursoft.xml.postprocessing;
 
-import java.lang.reflect.Field;
-
 import com.foursoft.xml.annotations.XmlParent;
+
+import java.lang.reflect.Field;
 
 public class ParentPropertyHandler {
 
@@ -52,7 +52,7 @@ public class ParentPropertyHandler {
     public void handleParentProperty(final Object target, final Object parent) {
         try {
             field.set(target, parent);
-        } catch (IllegalArgumentException | IllegalAccessException e) {
+        } catch (final IllegalArgumentException | IllegalAccessException e) {
             throw new ModelPostProcessorException("Can not set parent property value.", e);
         }
     }
