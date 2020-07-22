@@ -185,7 +185,7 @@ public class MyVecWriter {
         final Path outPath = Paths.get(target).toAbsolutePath();
         if (Files.notExists(outPath))  {
             final Path parentFolder = outPath.getParent();
-            if (parentFolder != null) {
+            if (parentFolder != null && Files.notExists(parentFolder)) {
                 Files.createDirectory(parentFolder);
             }
             Files.createFile(outPath);
