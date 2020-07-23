@@ -1,7 +1,5 @@
-package com.volkswagenag.daem.converter.vec.c2v.vecwrite;
+package com.foursoft.xml.io.validation;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -15,7 +13,7 @@ import java.util.List;
 
 public class LogValidator {
     private final Validator validator;
-    private final List<Pair<Integer, String>> errorLines;
+    private final List<ErrorLocation> errorLines;
     private boolean isValid;
 
     public LogValidator(final Validator validator) {
@@ -25,25 +23,25 @@ public class LogValidator {
         validator.setErrorHandler(new ErrorHandler() {
             @Override
             public void warning(final SAXParseException exception) {
-                errorLines.add(ImmutablePair.of(exception.getLineNumber(), exception.getMessage()));
+                errorLines.add(new ErrorLocation(exception.getLineNumber(), exception.getMessage()));
                 isValid = false;
             }
 
             @Override
             public void fatalError(final SAXParseException exception) {
-                errorLines.add(ImmutablePair.of(exception.getLineNumber(), exception.getMessage()));
+                errorLines.add(new ErrorLocation(exception.getLineNumber(), exception.getMessage()));
                 isValid = false;
             }
 
             @Override
             public void error(final SAXParseException exception) {
-                errorLines.add(ImmutablePair.of(exception.getLineNumber(), exception.getMessage()));
+                errorLines.add(new ErrorLocation(exception.getLineNumber(), exception.getMessage()));
                 isValid = false;
             }
         });
     }
 
-    public Collection<Pair<Integer, String>> getErrorLines() {
+    public Collection<ErrorLocation> getErrorLines() {
         return errorLines;
     }
 
@@ -51,5 +49,22 @@ public class LogValidator {
         assert isValid;
         validator.validate(source);
         return isValid;
+    }
+
+    public static class ErrorLocation {
+        public final int line;
+        public final String message;
+
+        public ErrorLocation(final int line, final String message) {
+            this.line = line;
+            this.message = message;
+        }
+
+        @Override public String toString() {
+            return "ErrorLocation{" +
+                    "line=" + line +
+                    ", message='" + message + '\'' +
+                    '}';
+        }
     }
 }

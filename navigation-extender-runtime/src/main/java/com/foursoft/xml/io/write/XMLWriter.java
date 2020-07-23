@@ -21,8 +21,8 @@ public class XMLWriter<T> {
     private final Class<T> baseType;
     private final Marshaller marshaller;
 
-    XMLWriter(final Class<T> baseType,
-              final Consumer<ValidationEvent> validationEventConsumer) {
+    public XMLWriter(final Class<T> baseType,
+                     final Consumer<ValidationEvent> validationEventConsumer) {
         this.baseType = baseType;
         try {
             final JAXBContext jaxbContext = JAXBContext.newInstance(this.baseType);
@@ -64,14 +64,11 @@ public class XMLWriter<T> {
 
     }
 
-    //TODO Validation
     private void write(final T container, final Comments comments, final Writer output) {
         final XMLOutputFactory xof = XMLOutputFactory.newFactory();
         try {
             final CommentAwareXMLStreamWriter xsw = new CommentAwareXMLStreamWriter(xof.createXMLStreamWriter(output));
-
             marshaller.setListener(new CommentAdderListener(xsw, comments));
-
             marshaller.marshal(container, xsw);
             xsw.close();
         } catch (final XMLStreamException | JAXBException e) {
