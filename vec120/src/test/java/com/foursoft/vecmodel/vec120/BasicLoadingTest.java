@@ -29,7 +29,7 @@ import com.foursoft.xml.model.Identifiable;
 import com.foursoft.vecmodel.vec120.common.EventConsumer;
 import com.foursoft.xml.ExtendedUnmarshaller;
 import com.foursoft.xml.JaxbModel;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 import javax.xml.XMLConstants;

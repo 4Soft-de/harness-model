@@ -25,7 +25,7 @@
  */
 package com.foursoft.vecmodel.vec120;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

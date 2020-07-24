@@ -25,6 +25,8 @@
  */
 package com.foursoft.vecmodel.vec113;
 
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.StringWriter;
@@ -33,8 +35,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.TransformerFactoryConfigurationError;
-
-import org.testng.annotations.Test;
 
 public class BasicWritingTest {
 
