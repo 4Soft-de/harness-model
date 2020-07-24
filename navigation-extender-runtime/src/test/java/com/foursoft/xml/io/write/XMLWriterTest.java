@@ -30,9 +30,11 @@ import com.foursoft.test.model.ChildB;
 import com.foursoft.test.model.Root;
 import com.foursoft.xml.io.TestData;
 import com.foursoft.xml.io.utils.ValidationEventCollector;
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -85,11 +87,11 @@ class XMLWriterTest {
     }
 
     @Test
-    void writeToOutputStream() {
+    void writeToOutputStream() throws IOException {
         final Root root = TestData.readBasicTest();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
-        try (final ByteOutputStream byteOutputStream = new ByteOutputStream()) {
+        try (final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()) {
             xmlWriter.write(root, byteOutputStream);
             final String result = byteOutputStream.toString();
             assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
@@ -98,14 +100,14 @@ class XMLWriterTest {
     }
 
     @Test
-    void writeToOutputStreamWithComments() {
+    void writeToOutputStreamWithComments() throws IOException {
         final Root root = TestData.readBasicTest();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         final Comments comments = new Comments();
         final String expectedComment = "Blafasel";
         comments.put(root.getChildA().get(0), expectedComment);
-        try (final ByteOutputStream byteOutputStream = new ByteOutputStream()) {
+        try (final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()) {
             xmlWriter.write(root, comments, byteOutputStream);
             final String result = byteOutputStream.toString();
             assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
