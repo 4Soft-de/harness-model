@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,9 +31,7 @@ import com.foursoft.xml.io.utils.XMLIOException;
 import javax.xml.bind.*;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
 import java.util.function.Consumer;
 
 /**
@@ -65,6 +63,34 @@ public class XMLWriter<T> {
         }
     }
 
+    /**
+     * write the JAXB model to an output stream
+     *
+     * @param container    the jaxb model to deserialize into the given stream
+     * @param outputStream the output to write to
+     */
+    public void write(final T container, final OutputStream outputStream) {
+        write(container, new OutputStreamWriter(outputStream));
+    }
+
+    /**
+     * write the JAXB model to an output stream
+     *
+     * @param container    the jaxb model to deserialize into the given stream
+     * @param outputStream the output to write to
+     * @param comments     additional comments which should be added to output {@link Comments}
+     */
+    public void write(final T container, final Comments comments, final OutputStream outputStream) {
+        write(container, comments, new OutputStreamWriter(outputStream));
+    }
+
+    /**
+     * write the JAXB model to a string
+     *
+     * @param container the jaxb model to deserialize into the given stream
+     * @param comments  additional comments which should be added to output {@link Comments}
+     * @return the model as xml string
+     */
     public String writeToString(final T container, final Comments comments) {
         try (final StringWriter stringWriter = new StringWriter()) {
             write(container, comments, stringWriter);
@@ -74,6 +100,12 @@ public class XMLWriter<T> {
         }
     }
 
+    /**
+     * write the JAXB model to a string
+     *
+     * @param container the jaxb model to deserialize into the given stream
+     * @return the model as xml string
+     */
     public String writeToString(final T container) {
         try (final StringWriter stringWriter = new StringWriter()) {
             write(container, stringWriter);

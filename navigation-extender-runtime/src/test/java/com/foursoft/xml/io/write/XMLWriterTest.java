@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,6 +30,7 @@ import com.foursoft.test.model.ChildB;
 import com.foursoft.test.model.Root;
 import com.foursoft.xml.io.TestData;
 import com.foursoft.xml.io.utils.ValidationEventCollector;
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +50,7 @@ class XMLWriterTest {
     }
 
     @Test
-    void testWriteToString() {
+    void writeToStringWithComments() {
         final Root root = TestData.readBasicTest();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
@@ -82,4 +83,34 @@ class XMLWriterTest {
                      "Jaxb throws a nullpointer exception if the model is invalid");
 
     }
+
+    @Test
+    void writeToOutputStream() {
+        final Root root = TestData.readBasicTest();
+        final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
+        final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
+        try (final ByteOutputStream byteOutputStream = new ByteOutputStream()) {
+            xmlWriter.write(root, byteOutputStream);
+            final String result = byteOutputStream.toString();
+            assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
+            Assertions.assertThat(result).contains("anotherAttribute").contains("\"Some Information\"");
+        }
+    }
+
+    @Test
+    void writeToOutputStreamWithComments() {
+        final Root root = TestData.readBasicTest();
+        final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
+        final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
+        final Comments comments = new Comments();
+        final String expectedComment = "Blafasel";
+        comments.put(root.getChildA().get(0), expectedComment);
+        try (final ByteOutputStream byteOutputStream = new ByteOutputStream()) {
+            xmlWriter.write(root, comments, byteOutputStream);
+            final String result = byteOutputStream.toString();
+            assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
+            Assertions.assertThat(result).contains(expectedComment);
+        }
+    }
+
 }

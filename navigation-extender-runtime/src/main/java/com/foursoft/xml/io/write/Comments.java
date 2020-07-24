@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,6 +30,19 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
+ * and added directly before the xml-element.
+ * e.g. if a Root-class exists which is serialized to &lt;Root&gt;&lt;/Root&gt;
+ * the following code:
+ * Root root = new Root();
+ * Comments comments = new Comments();
+ * comments.put(root, "TestComment");
+ * VecWriter::write(root, comments);
+ * would result in:
+ * &lt;!-- TestComment --&gt;
+ * &lt;Root&gt;&lt;/Root&gt;
+ */
 public class Comments {
     private final Map<Object, String> map = new HashMap<>();
 
