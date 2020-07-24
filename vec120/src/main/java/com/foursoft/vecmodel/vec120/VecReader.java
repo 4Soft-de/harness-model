@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,81 +25,25 @@
  */
 package com.foursoft.vecmodel.vec120;
 
+import com.foursoft.xml.io.read.XMLReader;
 import com.foursoft.xml.model.Identifiable;
-import com.foursoft.vecmodel.vec120.common.EventConsumer;
-import com.foursoft.xml.ExtendedUnmarshaller;
-import com.foursoft.xml.JaxbModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.DataBindingException;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.ValidationEvent;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.function.Consumer;
+/**
+ * a default implementation for a thread local stored VEC 120 reader. Validation events are logged to slf4j.
+ */
+public final class VecReader extends XMLReader<VecContent, Identifiable> {
 
-
-public final class VecReader {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(VecReader.class);
+    private static final ThreadLocal<VecReader> localReader = ThreadLocal.withInitial(
+            VecReader::new);
 
     private VecReader() {
-
+        super(VecContent.class, Identifiable.class, Identifiable::getXmlId);
     }
 
     /**
-     * Builds the complete JAXB tree structure of a Vec xml file.
-     *
-     * @param filename the path name of the VEC file.
-     * @return the JAXB object structure representing the KBL.
-     * @throws DataBindingException in case of an IOException
+     * @return a thread local VecReader object
      */
-    public static VecContent read(final String filename) {
-        try (final InputStream is = new BufferedInputStream(Files.newInputStream(Paths.get(filename)))) {
-            return read(is);
-        } catch (final IOException e) {
-            throw new DataBindingException(e);
-        }
-    }
-
-    /**
-     * Builds the complete JAXB tree structure of a Vec xml file.
-     *
-     * @return the JAXB object structure representing the VEC.
-     * @throws DataBindingException in case of a JAXBException
-     */
-    public static VecContent read(final InputStream inputStream) {
-        return readModel(inputStream).getRootElement();
-    }
-
-
-    public static VecContent read(final InputStream inputStream, final Consumer<ValidationEvent> eventConsumer) {
-        return readModel(inputStream, eventConsumer).getRootElement();
-    }
-
-    public static JaxbModel<VecContent, Identifiable> readModel(final InputStream inputStream,
-                                                                final Consumer<ValidationEvent> eventConsumer) {
-        try {
-            final long start = System.currentTimeMillis();
-            LOGGER.info("Start loading VEC file.");
-            final JaxbModel<VecContent, Identifiable> result = new ExtendedUnmarshaller<VecContent, Identifiable>(
-                    VecContent.class).withBackReferences()
-                    .withIdMapper(Identifiable.class, Identifiable::getXmlId)
-                    .withEventLogging(eventConsumer)
-                    .unmarshall(inputStream);
-            LOGGER.info("Finished loading VEC file. Took {} ms", System.currentTimeMillis() - start);
-            return result;
-        } catch (final JAXBException e) {
-            // Behaviour consistent to JAXB.unmarshall();
-            throw new DataBindingException(e);
-        }
-    }
-
-    public static JaxbModel<VecContent, Identifiable> readModel(final InputStream inputStream) {
-        return readModel(inputStream, new EventConsumer());
+    public static VecReader getLocalReader() {
+        return localReader.get();
     }
 }

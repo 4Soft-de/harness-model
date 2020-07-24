@@ -25,10 +25,10 @@
  */
 package com.foursoft.vecmodel.vec120;
 
-import com.foursoft.xml.model.Identifiable;
-import com.foursoft.vecmodel.vec120.common.EventConsumer;
 import com.foursoft.xml.ExtendedUnmarshaller;
 import com.foursoft.xml.JaxbModel;
+import com.foursoft.xml.io.utils.ValidationEventLogger;
+import com.foursoft.xml.model.Identifiable;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
@@ -55,7 +55,7 @@ public class BasicLoadingTest {
         final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
                 new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
                         .withBackReferences()
-                        .withEventLogging(new EventConsumer())
+                        .withEventLogging(new ValidationEventLogger())
                         .withIdMapper(Identifiable.class, Identifiable::getXmlId);
 
         try (final InputStream inputStream = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
@@ -154,7 +154,7 @@ public class BasicLoadingTest {
     @Test
     public void testWithLogging() throws IOException {
         try (final InputStream inputStream = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
-            final VecContent content = VecReader.read(inputStream);
+            final VecContent content = VecReader.getLocalReader().read(inputStream);
             assertThat(content).isNotNull();
         }
     }

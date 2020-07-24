@@ -14,14 +14,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        
+
         <!-- Dependencies -->
         <slf4j.version>1.7.30</slf4j.version>
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
         <jaxb2-basics.version>1.11.1</jaxb2-basics.version>
         <assertj-core.version>3.16.1</assertj-core.version>
         <logback-classic.version>1.2.3</logback-classic.version>
-        <navigation-extender.version>1.0.1</navigation-extender.version>
+        <navigation-extender.version>1.0.2</navigation-extender.version>
         <jaxb.version>2.3.0.1</jaxb.version>
 
         <!-- Plugins -->
@@ -88,7 +88,7 @@
         <dependencies>
 
             <!--general-->
-            
+
             <dependency>
                 <groupId>com.foursoft.jaxb2</groupId>
                 <artifactId>navigation-extender-runtime</artifactId>
