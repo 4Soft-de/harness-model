@@ -23,24 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.utils;
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-/**
- * with comments the formatting doesn't work, this adds the formatting back.
- */
-public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
+import javax.xml.bind.ValidationEvent;
 
-    CommentAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
-        super(xmlStreamWriter);
+class LogEventTest {
+
+    @Test
+    void getLocationAndMessage() {
+        final ValidationEvent e = EventHelper.createEvent();
+        final String location = LogEvent.getLocationAndMessage(e);
+        Assertions.assertThat(location).contains("3").contains("4").contains("message");
+
     }
 
-    @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+    @Test
+    void getLocation() {
+        final ValidationEvent e = EventHelper.createEvent();
+        final String location = LogEvent.getLocation(e.getLocator());
+        Assertions.assertThat(location).contains("3").contains("4");
     }
+
+    @Test
+    void log() {
+        final ValidationEvent e = EventHelper.createEvent();
+        LogEvent.log(e);
+    }
+
 }

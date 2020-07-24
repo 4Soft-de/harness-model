@@ -23,24 +23,36 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.utils;
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-/**
- * with comments the formatting doesn't work, this adds the formatting back.
- */
-public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
+import javax.xml.bind.ValidationEvent;
 
-    CommentAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
-        super(xmlStreamWriter);
+class ValidationEventCollectorTest {
+
+    @Test
+    void accept() {
+        final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
+        final ValidationEvent e = EventHelper.createEvent();
+        validationEventCollector.accept(e);
     }
 
-    @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+    @Test
+    void logEvents() {
+        final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
+        final ValidationEvent e = EventHelper.createEvent();
+        validationEventCollector.accept(e);
+        validationEventCollector.logEvents();
+    }
+
+    @Test
+    void hasEvents() {
+        final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
+        final ValidationEvent e = EventHelper.createEvent();
+        Assertions.assertFalse(validationEventCollector.hasEvents());
+        validationEventCollector.accept(e);
+        Assertions.assertTrue(validationEventCollector.hasEvents());
     }
 }

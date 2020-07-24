@@ -27,8 +27,8 @@ package com.foursoft.xml.io.read;
 
 import com.foursoft.xml.ExtendedUnmarshaller;
 import com.foursoft.xml.JaxbModel;
-import com.foursoft.xml.io.ValidationEventLogger;
-import com.foursoft.xml.io.XMLIOException;
+import com.foursoft.xml.io.utils.ValidationEventLogger;
+import com.foursoft.xml.io.utils.XMLIOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,9 +57,10 @@ public class XMLReader<T, I> {
     /**
      * It will log warnings, errors and fatal validation events to the slf4j, see @{@link ValidationEventLogger}
      *
-     * @param rootTypeClass
-     * @param identifiableClass
-     * @param idMapper
+     * @param rootTypeClass     the root class of the jaxb model
+     * @param identifiableClass the class of the identifiable element
+     * @param idMapper          the mapper function to get the id of each element
+     * @see ExtendedUnmarshaller
      */
     public XMLReader(final Class<T> rootTypeClass,
                      final Class<I> identifiableClass,
@@ -68,10 +69,11 @@ public class XMLReader<T, I> {
     }
 
     /**
-     * @param rootTypeClass
-     * @param identifiableClass
-     * @param idMapper
-     * @param validationEventConsumer
+     * @param rootTypeClass           the root class of the jaxb model
+     * @param identifiableClass       the class of the identifiable element
+     * @param idMapper                the mapper function to get the id of each element
+     * @param validationEventConsumer a consumer for validation events
+     * @see ExtendedUnmarshaller
      */
     public XMLReader(final Class<T> rootTypeClass,
                      final Class<I> identifiableClass,

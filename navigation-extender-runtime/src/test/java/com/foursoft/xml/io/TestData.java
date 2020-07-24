@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,24 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io;
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import com.foursoft.test.model.AbstractBase;
+import com.foursoft.test.model.Root;
+import com.foursoft.xml.io.read.XMLReader;
 
-/**
- * with comments the formatting doesn't work, this adds the formatting back.
- */
-public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-    CommentAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
-        super(xmlStreamWriter);
+public final class TestData {
+    public static final String BASIC_TEST_XML = "basic-test.xml";
+    public static final String ERROR_TEST_XML = "error-test.xml";
+    public static final Path BASIC_BASE_PATH = Paths.get("src", "test", "resources", "basic");
+    public static final Path VALIDATE_BASE_PATH = Paths.get("src", "test", "resources", "validate");
+
+    private TestData() {
     }
 
-    @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+    public static Root readBasicTest() {
+        final XMLReader<Root, AbstractBase> reader = new XMLReader<>(Root.class,
+                                                                     AbstractBase.class,
+                                                                     AbstractBase::getXmlId);
+        final InputStream inputStream = TestData.class.getResourceAsStream("/basic/" + BASIC_TEST_XML);
+        return reader.read(inputStream);
     }
 }
+

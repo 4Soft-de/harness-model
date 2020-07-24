@@ -27,37 +27,39 @@ package com.foursoft.xml.io.read;
 
 import com.foursoft.test.model.AbstractBase;
 import com.foursoft.test.model.Root;
-import com.foursoft.xml.io.XMLIOException;
+import com.foursoft.xml.io.TestData;
+import com.foursoft.xml.io.utils.XMLIOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.ValidationEvent;
 import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+
+import static com.foursoft.xml.io.TestData.BASIC_TEST_XML;
 
 class XMLReaderTest {
 
     @Test
     void readInputStream() {
         final TestXMLReader reader = new TestXMLReader();
-        final InputStream inputStream = getClass().getResourceAsStream("/basic-test.xml");
+        final InputStream inputStream = getClass().getResourceAsStream("/basic/" + BASIC_TEST_XML);
         final Root read = reader.read(inputStream);
         Assertions.assertNotNull(read, "read must be not null");
     }
 
     @Test
     void testReadWrongFile() {
-        final String fileName = Paths.get("src", "test", "resources", "unknown-test.xml").toAbsolutePath().toString();
+        final String fileName = TestData.BASIC_BASE_PATH.resolve("unknown-test.xml").toAbsolutePath().toString();
         final TestXMLReader reader = new TestXMLReader();
         Assertions.assertThrows(XMLIOException.class, () -> reader.read(fileName));
     }
 
     @Test
     void testReadFile() {
-        final String fileName = Paths.get("src", "test", "resources", "basic-test.xml").toAbsolutePath().toString();
+        final String fileName = TestData.BASIC_BASE_PATH.resolve(BASIC_TEST_XML).toAbsolutePath().toString();
         final TestXMLReader reader = new TestXMLReader();
         final Root read = reader.read(fileName);
         Assertions.assertNotNull(read, "read must be not null");
@@ -68,7 +70,7 @@ class XMLReaderTest {
         final List<ValidationEvent> events = new ArrayList<>();
         final Consumer<ValidationEvent> myConsumer = events::add;
         final TestXMLReader reader = new TestXMLReader(myConsumer);
-        final InputStream inputStream = getClass().getResourceAsStream("/basic-test.xml");
+        final InputStream inputStream = getClass().getResourceAsStream("/basic/" + BASIC_TEST_XML);
         final Root read = reader.read(inputStream);
         Assertions.assertNotNull(read, "read must be not null");
         Assertions.assertEquals(0, events.size(), "There should be no validation events");
@@ -79,7 +81,7 @@ class XMLReaderTest {
         final List<ValidationEvent> events = new ArrayList<>();
         final Consumer<ValidationEvent> myConsumer = events::add;
         final TestXMLReader reader = new TestXMLReader(myConsumer);
-        final InputStream inputStream = getClass().getResourceAsStream("/error-test.xml");
+        final InputStream inputStream = getClass().getResourceAsStream("/basic/" + "error-test.xml");
 
         final Root read = reader.read(inputStream);
         Assertions.assertNotNull(read, "read must be not null");

@@ -25,22 +25,36 @@
  */
 package com.foursoft.xml.io.write;
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import org.junit.jupiter.api.Test;
 
-/**
- * with comments the formatting doesn't work, this adds the formatting back.
- */
-public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
+import java.util.Optional;
 
-    CommentAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
-        super(xmlStreamWriter);
+import static org.junit.jupiter.api.Assertions.*;
+
+class CommentsTest {
+
+    @Test
+    void containsKey() {
+        final Comments comments = new Comments();
+        comments.put("a", "b");
+        assertTrue(comments.containsKey("a"));
+        assertFalse(comments.containsKey("b"));
     }
 
-    @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+    @Test
+    void get() {
+        final Comments comments = new Comments();
+        comments.put("a", "b");
+        final Optional<String> actual = comments.get("a");
+        assertTrue(actual.isPresent());
+        assertEquals("b", actual.get());
+    }
+
+    @Test
+    void getMissing() {
+        final Comments comments = new Comments();
+        comments.put("a", "b");
+        final Optional<String> actual = comments.get("b");
+        assertFalse(actual.isPresent());
     }
 }

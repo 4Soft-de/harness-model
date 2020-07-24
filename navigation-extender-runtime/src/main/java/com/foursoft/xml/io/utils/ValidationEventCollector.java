@@ -23,24 +23,37 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.utils;
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import javax.xml.bind.ValidationEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
- * with comments the formatting doesn't work, this adds the formatting back.
+ * a simple collector, which collects all events and logs them all by calling logEvents
  */
-public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
-
-    CommentAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
-        super(xmlStreamWriter);
-    }
+public class ValidationEventCollector implements Consumer<ValidationEvent> {
+    private final List<ValidationEvent> events = new ArrayList<>();
 
     @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+    public void accept(final ValidationEvent t) {
+        events.add(t);
+    }
+
+    /**
+     * logs all collected messages
+     */
+    public void logEvents() {
+        if (events.isEmpty()) {
+            return;
+        }
+        for (final ValidationEvent event : events) {
+            LogEvent.log(event);
+        }
+    }
+
+    public boolean hasEvents() {
+        return !events.isEmpty();
     }
 }

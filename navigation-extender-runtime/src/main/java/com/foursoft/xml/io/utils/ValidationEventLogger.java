@@ -23,56 +23,17 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.w3c.dom.Node;
+package com.foursoft.xml.io.utils;
 
 import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationEventLocator;
 import java.util.function.Consumer;
 
 /**
  * A simple logger for JAXB validation events to slf4j
  */
 public class ValidationEventLogger implements Consumer<ValidationEvent> {
-    private static final int INIT_CAPACITY = 128;
-    private static final Logger LOGGER = LoggerFactory.getLogger(ValidationEventLogger.class);
-
     @Override
     public void accept(final ValidationEvent t) {
-        handleLog(t, t.getSeverity() == ValidationEvent.WARNING);
+        LogEvent.log(t);
     }
-
-    private static String getLocation(final ValidationEventLocator locator) {
-        final Node node = locator.getNode();
-        if (node == null) {
-            return "";
-        }
-        final Node id = node.getAttributes().getNamedItem("id");
-
-        final StringBuilder b = new StringBuilder(INIT_CAPACITY);
-        b.append(locator.getLineNumber())
-                .append(':')
-                .append(locator.getColumnNumber());
-        if (id != null) {
-            b.append(" (").append(id).append(')');
-        }
-        return b.toString();
-    }
-
-    private static void handleLog(final ValidationEvent e, final boolean warning) {
-        final String locationAndMessage = getLocationAndMessage(e);
-        if (warning) {
-            LOGGER.warn(locationAndMessage, e.getLinkedException());
-        } else {
-            LOGGER.error(locationAndMessage, e.getLinkedException());
-        }
-    }
-
-    private static String getLocationAndMessage(final ValidationEvent e) {
-        return getLocation(e.getLocator()) + ": " + e.getMessage();
-    }
-
 }

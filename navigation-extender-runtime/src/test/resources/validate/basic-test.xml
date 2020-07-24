@@ -1,5 +1,6 @@
-<Root id="id_1">
-    <attribute>Some Information</attribute>
+<?xml version="1.0" ?>
+<tes:Root xmlns:tes="http://www.4soft.de/xjc-plugins/navigations/tests" id="id_1">
+    <attribute>"Some Information"</attribute>
     <ChildA id="id_2">
         <anotherAttribute>some value</anotherAttribute>
         <ReferencedChildB>id_6 id_7</ReferencedChildB>
@@ -12,12 +13,12 @@
         <xyz>another value</xyz>
     </ChildB>
     <ChildB id="id_7">
-        <xyz> value</xyz>        
+        <xyz>value</xyz>
     </ChildB>
     <ChildB id="id_8">
-        <xyz> value</xyz>     
+        <xyz>value</xyz>
     </ChildB>
-    <ChildB id="id_8">
-        <xyz> value</xyz>        
+    <ChildB id="id_9">
+        <xyz>value</xyz>
     </ChildB>
-</Root>
+</tes:Root>

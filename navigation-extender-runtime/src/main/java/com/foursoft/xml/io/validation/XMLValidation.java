@@ -1,37 +1,53 @@
+/*-
+ * ========================LICENSE_START=================================
+ * navigation-extender-runtime
+ * %%
+ * Copyright (C) 2019 - 2020 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
 package com.foursoft.xml.io.validation;
 
-import com.foursoft.xml.io.XMLIOException;
+import com.foursoft.xml.io.utils.XMLIOException;
 import com.foursoft.xml.io.validation.LogValidator.ErrorLocation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xml.sax.SAXException;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.Validator;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ *
+ */
 public final class XMLValidation {
-    private static final Logger LOGGER = LoggerFactory.getLogger(XMLValidation.class);
     private final Schema schema;
 
     /**
-     * Creating a schema with the following lines
-     * final InputStream xsdFile = getInputStream("schema.xsd");
-     * final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-     * schema = schemaFactory.newSchema(new StreamSource(xsdFile));
-     * <p>
-     * The validator can use a lot of memory, because it holds the xmlContent 3 times in memory!
+     * The validator can use a lot of memory, because it holds the xmlContent multiple times in memory!
      *
-     * @param schema
+     * @param schema the schema to validate against
      */
     public XMLValidation(final Schema schema) {
         this.schema = schema;
@@ -49,54 +65,13 @@ public final class XMLValidation {
             } else {
                 return validator.getErrorLines();
             }
-        } catch (final SAXException | IOException e) {
+        } catch (final XMLIOException e) {
             throw new XMLIOException("XML contains fatal errors, cannot read it:", e);
         }
     }
 
-    public static void logXmlString(final String xmlContent, final Collection<ErrorLocation> errorLines) {
-
-        final Map<Integer, String> errorMap = prepareErrors(errorLines);
-
-        final String[] lines = xmlContent.split("\\r?\\n");
-        final StringBuilder enhanced = new StringBuilder(xmlContent.length() * 2);
-        for (int i = 1; i <= lines.length; i++) {
-
-            enhanced.append(i);
-            enhanced.append(": ");
-            if (errorMap.containsKey(i)) {
-                enhanced.append("ERROR ");
-            } else {
-                enhanced.append("      ");
-            }
-            enhanced.append(lines[i - 1]);
-            if (errorMap.containsKey(i)) {
-                enhanced.append(' ');
-                enhanced.append(errorMap.get(i));
-            }
-            enhanced.append('\n');
-        }
-        LOGGER.info(enhanced.toString());
-
-    }
-
     private static InputStream toInputStream(final String input, final Charset charset) {
         return new ByteArrayInputStream(input.getBytes(charset));
-    }
-
-    private static Map<Integer, String> prepareErrors(final Collection<ErrorLocation> errorLines) {
-        final Map<Integer, String> errorMap = new HashMap<>();
-
-        for (final ErrorLocation errorLine : errorLines) {
-            final int line = errorLine.line;
-            final String error = errorLine.message;
-            if (errorMap.containsKey(line)) {
-                errorMap.put(line, errorMap.get(line) + "/" + error);
-            } else {
-                errorMap.put(line, error);
-            }
-        }
-        return errorMap;
     }
 
     private LogValidator createValidator() {

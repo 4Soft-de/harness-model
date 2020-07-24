@@ -23,24 +23,21 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
-
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+package com.foursoft.xml.io.utils;
 
 /**
- * with comments the formatting doesn't work, this adds the formatting back.
+ * a generic checked exception for all fatal events during the XML processing
  */
-public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
+public class XMLIOException extends RuntimeException {
 
-    CommentAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
-        super(xmlStreamWriter);
+    private static final long serialVersionUID = -3029716128777857369L;
+
+    public XMLIOException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 
-    @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+    public XMLIOException(final String message) {
+        super(message);
     }
+
 }

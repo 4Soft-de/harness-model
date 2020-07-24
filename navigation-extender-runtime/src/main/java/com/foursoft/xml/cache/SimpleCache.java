@@ -47,12 +47,18 @@ public class SimpleCache<K, V> {
         this.cacheLoader = cacheLoader;
     }
 
-    public V get(final K t) {
-        if (cachedResults.containsKey(t)) {
-            return cachedResults.get(t);
+    /**
+     * get the value for a given key
+     *
+     * @param key the key
+     * @return the value, maybe Null
+     */
+    public V get(final K key) {
+        if (cachedResults.containsKey(key)) {
+            return cachedResults.get(key);
         }
-        final V result = cacheLoader.load(t);
-        cachedResults.put(t, result);
+        final V result = cacheLoader.load(key);
+        cachedResults.put(key, result);
         return result;
     }
 

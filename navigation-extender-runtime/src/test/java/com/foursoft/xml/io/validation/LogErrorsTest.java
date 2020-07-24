@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,24 +23,32 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.validation;
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import com.foursoft.xml.io.TestData;
+import com.foursoft.xml.io.validation.LogValidator.ErrorLocation;
+import org.junit.jupiter.api.Test;
 
-/**
- * with comments the formatting doesn't work, this adds the formatting back.
- */
-public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.Collection;
 
-    CommentAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
-        super(xmlStreamWriter);
-    }
+import static com.foursoft.xml.io.validation.XMLValidationTest.getXmlValidation;
+import static org.assertj.core.api.Assertions.assertThat;
 
-    @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+class LogErrorsTest {
+
+    @Test
+    void logXmlString() throws Exception {
+        final XMLValidation xmlValidation = getXmlValidation();
+
+        final String content = new String(
+                Files.readAllBytes(TestData.VALIDATE_BASE_PATH.resolve(TestData.ERROR_TEST_XML)));
+
+        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
+                                                                           StandardCharsets.UTF_8);
+        final String errorString = LogErrors.annotateXMLContent(content, errors);
+        // line 21 contains a duplicate key
+        assertThat(errorString).contains("21: ERROR     <ChildB id=\"id_8\">");
     }
 }
