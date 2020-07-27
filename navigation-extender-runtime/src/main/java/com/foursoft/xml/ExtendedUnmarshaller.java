@@ -33,6 +33,7 @@ import javax.xml.bind.*;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -67,7 +68,7 @@ public class ExtendedUnmarshaller<R, I> {
     public ExtendedUnmarshaller(final Class<R> rootElement) throws JAXBException {
         this.rootElement = rootElement;
         final String packageName = rootElement.getPackage().getName();
-        final JAXBContext context = JAXBContextFactory.initializeContext(packageName);
+        final JAXBContext context = JaxbContextFactory.initializeContext(packageName);
         postProcessorRegistry = new ModelPostProcessorRegistry(packageName);
         unmarshaller = context.createUnmarshaller();
     }
@@ -105,13 +106,13 @@ public class ExtendedUnmarshaller<R, I> {
      */
     public ExtendedUnmarshaller<R, I> withEventLogging(final Consumer<ValidationEvent> eventConsumer)
             throws JAXBException {
-        unmarshaller.setEventHandler(null);
 
         final ValidationEventHandler eventHandler = unmarshaller.getEventHandler();
-        unmarshaller.setEventHandler(event -> {
-            eventConsumer.accept(event);
-            return eventHandler.handleEvent(event);
-        });
+        if (eventHandler instanceof InterceptEventHandler) {
+            ((InterceptEventHandler) eventHandler).setEventConsumer(eventConsumer);
+        } else {
+            unmarshaller.setEventHandler(new InterceptEventHandler(eventConsumer, eventHandler));
+        }
 
         return this;
     }
@@ -175,6 +176,29 @@ public class ExtendedUnmarshaller<R, I> {
         // Allow garbage collection.
         unmarshaller.setListener(null);
         postProcessorRegistry.clearStateOfPostProcessors();
+    }
+
+    public static class InterceptEventHandler implements ValidationEventHandler {
+        private final ValidationEventHandler originalEventHandler;
+        private Consumer<ValidationEvent> eventConsumer;
+
+        public InterceptEventHandler(final Consumer<ValidationEvent> eventConsumer,
+                                     final ValidationEventHandler originalEventHandler) {
+            Objects.requireNonNull(originalEventHandler);
+            Objects.requireNonNull(eventConsumer);
+            this.originalEventHandler = originalEventHandler;
+            this.eventConsumer = eventConsumer;
+        }
+
+        @Override public boolean handleEvent(final ValidationEvent event) {
+            eventConsumer.accept(event);
+            return originalEventHandler.handleEvent(event);
+        }
+
+        public void setEventConsumer(final Consumer<ValidationEvent> eventConsumer) {
+            Objects.requireNonNull(eventConsumer);
+            this.eventConsumer = eventConsumer;
+        }
     }
 
 }
