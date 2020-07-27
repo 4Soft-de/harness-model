@@ -67,7 +67,7 @@ public class ExtendedUnmarshaller<R, I> {
     public ExtendedUnmarshaller(final Class<R> rootElement) throws JAXBException {
         this.rootElement = rootElement;
         final String packageName = rootElement.getPackage().getName();
-        final JAXBContext context = JaxbContextFactory.initializeContext(packageName);
+        final JAXBContext context = JAXBContextFactory.initializeContext(packageName);
         postProcessorRegistry = new ModelPostProcessorRegistry(packageName);
         unmarshaller = context.createUnmarshaller();
     }
@@ -96,7 +96,8 @@ public class ExtendedUnmarshaller<R, I> {
     }
 
     /**
-     * The jaxb unmarshaller has an event handler which is intercepted to provide the event for the consumer
+     * The jaxb unmarshaller has an event handler which is intercepted to provide the event for the consumer.
+     * This will reset the handler first to the default handler, and then add the given consumer to it
      *
      * @param eventConsumer the consumer for the jaxb validation event
      * @return this for fluent API
@@ -104,6 +105,8 @@ public class ExtendedUnmarshaller<R, I> {
      */
     public ExtendedUnmarshaller<R, I> withEventLogging(final Consumer<ValidationEvent> eventConsumer)
             throws JAXBException {
+        unmarshaller.setEventHandler(null);
+
         final ValidationEventHandler eventHandler = unmarshaller.getEventHandler();
         unmarshaller.setEventHandler(event -> {
             eventConsumer.accept(event);

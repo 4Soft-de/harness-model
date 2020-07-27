@@ -29,13 +29,105 @@ import com.foursoft.test.model.AbstractBase;
 import com.foursoft.test.model.ChildA;
 import com.foursoft.test.model.ChildB;
 import com.foursoft.test.model.Root;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEventLocator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExtendedUnmarshallerTest {
+
+    @Test
+    public void consumerTest() throws JAXBException {
+        final List<ValidationEvent> result1 = new ArrayList<>();
+        final Consumer<ValidationEvent> consumer1 = o -> {
+            result1.add(o);
+        };
+
+        final ExtendedUnmarshaller<Root, AbstractBase> extUnmarshaller =
+                new ExtendedUnmarshaller<Root, AbstractBase>(Root.class)
+                        .withBackReferences()
+                        .withIdMapper(AbstractBase.class, AbstractBase::getXmlId)
+                        .withEventLogging(consumer1);
+
+        final Unmarshaller unmarshaller = extUnmarshaller.getUnmarshaller();
+        final ValidationEvent event = new ValidationEvent() {
+            @Override public int getSeverity() {
+                return 0;
+            }
+
+            @Override public String getMessage() {
+                return null;
+            }
+
+            @Override public Throwable getLinkedException() {
+                return null;
+            }
+
+            @Override public ValidationEventLocator getLocator() {
+                return null;
+            }
+        };
+        unmarshaller.getEventHandler().handleEvent(event);
+        Assertions.assertEquals(1, result1.size());
+
+    }
+
+    /**
+     * if ExtendedUnmarshaller is reused and withEventLogging called multiple times,the old
+     * event consumer were not deleted!
+     *
+     * @throws JAXBException
+     */
+    @Test
+    public void multipleConsumerTest() throws JAXBException {
+        final List<ValidationEvent> result1 = new ArrayList<>();
+        final Consumer<ValidationEvent> consumer1 = o -> {
+            result1.add(o);
+        };
+        final List<ValidationEvent> result2 = new ArrayList<>();
+        final Consumer<ValidationEvent> consumer2 = o -> {
+            result2.add(o);
+        };
+        final ExtendedUnmarshaller<Root, AbstractBase> extUnmarshaller1 =
+                new ExtendedUnmarshaller<Root, AbstractBase>(Root.class)
+                        .withBackReferences()
+                        .withIdMapper(AbstractBase.class, AbstractBase::getXmlId)
+                        .withEventLogging(consumer1);
+        extUnmarshaller1.withEventLogging(consumer2);
+
+        final Unmarshaller unmarshaller = extUnmarshaller1.getUnmarshaller();
+        final ValidationEvent event = new ValidationEvent() {
+            @Override public int getSeverity() {
+                return 0;
+            }
+
+            @Override public String getMessage() {
+                return null;
+            }
+
+            @Override public Throwable getLinkedException() {
+                return null;
+            }
+
+            @Override public ValidationEventLocator getLocator() {
+                return null;
+            }
+        };
+        unmarshaller.getEventHandler().handleEvent(event);
+        Assertions.assertEquals(0, result1.size());
+        Assertions.assertEquals(1, result2.size());
+
+    }
 
     @Test
     public void unmarshallTest() throws JAXBException {
