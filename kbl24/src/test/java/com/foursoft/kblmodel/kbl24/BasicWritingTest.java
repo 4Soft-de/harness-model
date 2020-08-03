@@ -25,18 +25,15 @@
  */
 package com.foursoft.kblmodel.kbl24;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.StringWriter;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
+import java.io.StringWriter;
 
-import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasicWritingTest {
 
@@ -103,17 +100,26 @@ public class BasicWritingTest {
         System.out.println(result);
         assertThat(result)
                 .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n"
-                        + "<kbl:KBL_container xmlns:kbl=\"http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema\">\r\n"
-                        + "    <Harness>\r\n" + "        <Connector_occurrence>\r\n"
-                        + "            <Contact_points id=\"id_1234\">\r\n" + "                <Id>SCHNUPSI</Id>\r\n"
-                        + "                <Associated_parts>id_4711</Associated_parts>\r\n"
-                        + "            </Contact_points>\r\n" + "            <Contact_points id=\"id_1235\">\r\n"
-                        + "                <Id>SCHNUPSI</Id>\r\n" + "            </Contact_points>\r\n"
-                        + "            <Contact_points id=\"id_1236\">\r\n" + "                <Id>SCHNUPSI</Id>\r\n"
-                        + "            </Contact_points>\r\n" + "        </Connector_occurrence>\r\n"
-                        + "        <Terminal_occurrence id=\"id_4711\"/>\r\n"
-                        + "        <Terminal_occurrence id=\"id_4711\"/>\r\n" + "    </Harness>\r\n"
-                        + "</kbl:KBL_container>");
+                                                     +
+                                                     "<kbl:KBL_container xmlns:kbl=\"http://www.prostep" +
+                                                     ".org/Car_electric_container/KBL2.3/KBLSchema\">\r\n"
+                                                     + "    <Harness>\r\n" + "        <Connector_occurrence>\r\n"
+                                                     + "            <Contact_points id=\"id_1234\">\r\n" +
+                                                     "                <Id>SCHNUPSI</Id>\r\n"
+                                                     +
+                                                     "                <Associated_parts>id_4711</Associated_parts>\r\n"
+                                                     + "            </Contact_points>\r\n" +
+                                                     "            <Contact_points id=\"id_1235\">\r\n"
+                                                     + "                <Id>SCHNUPSI</Id>\r\n" +
+                                                     "            </Contact_points>\r\n"
+                                                     + "            <Contact_points id=\"id_1236\">\r\n" +
+                                                     "                <Id>SCHNUPSI</Id>\r\n"
+                                                     + "            </Contact_points>\r\n" +
+                                                     "        </Connector_occurrence>\r\n"
+                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\r\n"
+                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\r\n" +
+                                                     "    </Harness>\r\n"
+                                                     + "</kbl:KBL_container>");
 
     }
 
