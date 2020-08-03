@@ -17,6 +17,16 @@
             <groupId>com.foursoft.jaxb2</groupId>
             <artifactId>navigation-extender-runtime</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <!--logging-->
         <dependency>
@@ -31,8 +41,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -65,6 +75,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <encoding>UTF-8</encoding>
                             <schemaIncludes>
                                 <include>vec120/vec_1.2.1.RC-SNAPSHOT.xsd</include>
                             </schemaIncludes>

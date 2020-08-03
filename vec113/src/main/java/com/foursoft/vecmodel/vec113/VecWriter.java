@@ -25,72 +25,30 @@
  */
 package com.foursoft.vecmodel.vec113;
 
-import java.io.*;
+import com.foursoft.xml.io.utils.ValidationEventLogger;
+import com.foursoft.xml.io.write.XMLWriter;
 
-import javax.xml.bind.DataBindingException;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import javax.xml.bind.ValidationEvent;
+import java.util.function.Consumer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+/**
+ * a default implementation for a vec 113 writer
+ */
+public final class VecWriter extends XMLWriter<VecContent> {
 
-public final class VecWriter {
     /**
-     * Logger for this class
+     * create a default VecWriter with a default validation events logger {@link ValidationEventLogger}
      */
-    private static final Logger logger = LoggerFactory.getLogger(VecWriter.class.getName());
-
-    private VecWriter() {
-    }
-
-    public static boolean writeVec(final String fileName, final VecContent container) {
-        final File file = new File(fileName);
-        return writeVec(file, container);
-    }
-
-    public static boolean writeVec(final File file, final VecContent container) {
-        try {
-            final OutputStream os = new FileOutputStream(file);
-            writeVec(container, os);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
+    public VecWriter() {
+        super(VecContent.class, new ValidationEventLogger());
     }
 
     /**
-     * Returns the VecContent as a XML string.
+     * create a default VecWriter with a custom validation events logger
      *
-     * @param container VecContainer used as the jaxbElement to marshal its content tree into a Writer
-     * @return Never null String containing the content tree of the given container
-     * @throws DataBindingException in case of a JAXBException
+     * @param validationEventConsumer a custom validation events consumer
      */
-    public static String writeVec(final VecContent container) {
-        final StringWriter sw = new StringWriter();
-        return writeVec(container, sw);
+    public VecWriter(final Consumer<ValidationEvent> validationEventConsumer) {
+        super(VecContent.class, validationEventConsumer);
     }
-
-    public static void writeVec(final VecContent container, final OutputStream os) {
-        Writer wr = new OutputStreamWriter(os);
-        writeVec(container, wr);
-    }
-
-    private static String writeVec(final VecContent container, final Writer wr)  {
-        try {
-            final JAXBContext jc = JAXBContext.newInstance(VecContent.class);
-            final Marshaller mc = jc.createMarshaller();
-            mc.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            mc.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-
-            mc.marshal(container, wr);
-        } catch (final JAXBException me) {
-            logger.error("Error writing Vec.", me);
-            throw new DataBindingException(me);
-        }
-        return wr.toString();
-    }
-
 }
