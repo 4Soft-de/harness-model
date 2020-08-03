@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,31 +25,29 @@
  */
 package com.foursoft.xml.postprocessing;
 
+import com.foursoft.xml.cache.SimpleCache;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.foursoft.xml.cache.SimpleCache;
-
 public class ModelPostProcessorRegistry {
 
+    private final List<ModelPostProcessor> defaultPostProcessor = new LinkedList<>();
+    private final String contextPath;
     private SimpleCache<Class<?>, ModelPostProcessor> cachedModelPostProcessorFactory;
-
     private final SimpleCache<Class<?>, List<ModelPostProcessor>> modelPostProcessors = new SimpleCache<>(
             this::createProcessorList);
-
-    private final List<ModelPostProcessor> defaultPostProcessor = new LinkedList<>();
-
-    private final String contextPath;
 
     public ModelPostProcessorRegistry(final String contextPath) {
         this.contextPath = contextPath;
     }
 
     /**
-     *  Adds a default post processor. It will be used if no special postprocessor is specified.
+     * Adds a default post processor. It will be used if no special postprocessor is specified.
+     *
      * @param postProcessor the post processor
      * @return this for fluent API
      */
@@ -64,20 +62,20 @@ public class ModelPostProcessorRegistry {
      * The {@link ModelPostProcessor} shall handle the necessary aspects of the
      * given class only, for inherited aspects of super classes an individual
      * {@link ModelPostProcessor} is created.
-     * 
+     *
      * @param modelPostProcessorFactory a function providing a special post processor per class
      * @return this for fluent API
      */
     public ModelPostProcessorRegistry withFactory(
             final Function<Class<?>, ModelPostProcessor> modelPostProcessorFactory) {
-        this.cachedModelPostProcessorFactory = new SimpleCache<>(modelPostProcessorFactory::apply);
+        cachedModelPostProcessorFactory = new SimpleCache<>(modelPostProcessorFactory::apply);
         return this;
     }
 
     /**
      * Clear the state of all {@link ModelPostProcessor} currently registered,
      * to allow garbage collection and reuse during multiple unmarshallings.
-     * 
+     *
      * @see ModelPostProcessor#clearState()
      */
     public void clearStateOfPostProcessors() {
@@ -90,9 +88,9 @@ public class ModelPostProcessorRegistry {
     /**
      * Finds all registered default {@link ModelPostProcessor}s that are an
      * instance of <tt>postProcessorType</tt>.
-     * 
+     *
      * @param postProcessorType the class of the post processors to find
-     * @param <T> the type of processors to look for
+     * @param <T>               the type of processors to look for
      * @return the list of processor of the given type. Can be empty - never null.
      */
     public <T extends ModelPostProcessor> List<T> findModelPostProcessors(final Class<T> postProcessorType) {
@@ -106,10 +104,11 @@ public class ModelPostProcessorRegistry {
      * Retrieves a list of all {@link ModelPostProcessor} that are registered in
      * this registry and that are applicable for <tt>classToHandle</tt>.
      * <p>
-     * Applicable {@link ModelPostProcessor}s are basically all that satisfy the interface and can handle the given class.
-     * 
+     * Applicable {@link ModelPostProcessor}s are basically all that satisfy the interface and can handle the given
+     * class.
+     *
      * <tt>{@link ModelPostProcessor#getClassToHandle()}.isAssignableFrom(classToHandle)</tt>.
-     * 
+     *
      * @param classToHandle the class to processor
      * @return the list of post processors found for the given class.
      */

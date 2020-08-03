@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tes="http://www.4soft.de/xjc-plugins/navigations/tests" elementFormDefault="qualified" targetNamespace="http://www.4soft.de/xjc-plugins/navigations/tests">
+    <xs:element name="Root">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="attribute" form="unqualified" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="ChildA" form="unqualified">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="anotherAttribute" form="unqualified" type="xs:string"/>
+                            <xs:element name="ReferencedChildB" form="unqualified" type="xs:string"/>
+                        </xs:sequence>
+                        <xs:attribute name="id" use="required" type="xs:NCName"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" name="ChildB" form="unqualified">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="xyz" form="unqualified" type="xs:string"/>
+                        </xs:sequence>
+                        <xs:attribute name="id" use="required" type="xs:ID"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

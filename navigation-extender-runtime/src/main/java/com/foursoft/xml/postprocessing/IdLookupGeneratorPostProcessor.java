@@ -25,10 +25,10 @@
  */
 package com.foursoft.xml.postprocessing;
 
+import com.foursoft.xml.IdLookupProvider;
+
 import java.util.HashMap;
 import java.util.function.Function;
-
-import com.foursoft.xml.IdLookupProvider;
 
 /**
  * {@link ModelPostProcessor} to generate a {@link IdLookupProvider} during the unmarshalling Process.

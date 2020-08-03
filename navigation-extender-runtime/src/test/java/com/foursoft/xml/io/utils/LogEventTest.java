@@ -23,45 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml;
+package com.foursoft.xml.io.utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
+import javax.xml.bind.ValidationEvent;
 
-/**
- * 
- * Caches created JAXBContext instances, because creating JAXBContext is an
- * expensive Operation an shall only be done once.
- * 
- * @see <a href=
- *      "https://javaee.github.io/jaxb-v2/doc/user-guide/ch03.html#other-miscellaneous-topics-performance-and-thread-safety">JAXB
- *      V2 User Guide</a>
- * 
- * @author becker
- *
- */
-public final class JAXBContextFactory {
+class LogEventTest {
 
-	private JAXBContextFactory() {
-		throw new UnsupportedOperationException("JAXBContextFactory shall not be instantiated (static class");
-	}
+    @Test
+    void getLocationAndMessage() {
+        final ValidationEvent e = EventHelper.createEvent();
+        final String location = LogEvent.getLocationAndMessage(e);
+        Assertions.assertThat(location).contains("3").contains("4").contains("message");
 
-	private static final Map<String, JAXBContext> jaxbContextCache = new HashMap<>();
+    }
 
-	public static synchronized JAXBContext initializeContext(final String packageName) throws JAXBException {
-		JAXBContext context = jaxbContextCache.get(packageName);
+    @Test
+    void getLocation() {
+        final ValidationEvent e = EventHelper.createEvent();
+        final String location = LogEvent.getLocation(e.getLocator());
+        Assertions.assertThat(location).contains("3").contains("4");
+    }
 
-		// not implemented with computeIfAbsent because .newInstance throws
-		// JAXBException
-		if (context == null) {
-			context = JAXBContext.newInstance(packageName);
-			jaxbContextCache.put(packageName, context);
-		}
-
-		return context;
-	}
+    @Test
+    void log() {
+        final ValidationEvent e = EventHelper.createEvent();
+        LogEvent.log(e);
+    }
 
 }

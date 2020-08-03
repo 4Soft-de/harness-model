@@ -42,6 +42,8 @@ import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class ExtendedUnmarshallerTest {
 
     @Test
@@ -133,11 +135,8 @@ public class ExtendedUnmarshallerTest {
                 Root.class).withBackReferences()
                 .withIdMapper(AbstractBase.class, AbstractBase::getXmlId);
 
-        final JaxbModel<Root, AbstractBase> unmarshalledResult = unmarshaller.unmarshall(getClass()
-                                                                                                 .getResourceAsStream(
-                                                                                                         "/basic-test" +
-                                                                                                                 ".xml"
-                                                                                                 ));
+        final JaxbModel<Root, AbstractBase> unmarshalledResult = unmarshaller.unmarshall(
+                getClass().getResourceAsStream("/basic" + "/basic-test.xml"));
 
         final Root rootElement = unmarshalledResult.getRootElement();
 

@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xml-runtime
+ * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,40 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.postprocessing;
+package com.foursoft.xml.io.write;
 
-import com.foursoft.xml.annotations.XmlParent;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
-import java.lang.reflect.Field;
+/**
+ * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
+ * and added directly before the xml-element.
+ * e.g. if a Root-class exists which is serialized to &lt;Root&gt;&lt;/Root&gt;
+ * the following code:
+ * Root root = new Root();
+ * Comments comments = new Comments();
+ * comments.put(root, "TestComment");
+ * XMLWriter::write(root, comments);
+ * would result in:
+ * &lt;!-- TestComment --&gt;
+ * &lt;Root&gt;&lt;/Root&gt;
+ */
+public class Comments {
+    private final Map<Object, String> map = new HashMap<>();
 
-public class ParentPropertyHandler {
-
-    private final Field field;
-    private final Class<?> typeOfField;
-
-    public ParentPropertyHandler(final Field field) {
-        if (!field.isAnnotationPresent(XmlParent.class)) {
-            throw new ModelPostProcessorException(
-                    "For the field " + field.getName() + " in " + field.getDeclaringClass()
-                            .getName() + " no parent annotation is present.");
-        }
-        this.field = field;
-        this.field.setAccessible(true);
-        typeOfField = field.getType();
+    public boolean containsKey(final Object key) {
+        return map.containsKey(key);
     }
 
-    public boolean isHandlingParent(final Object parent) {
-        return typeOfField.isInstance(parent);
+    public Optional<String> get(final Object key) {
+        return Optional.ofNullable(map.get(key));
     }
 
-    public void handleParentProperty(final Object target, final Object parent) {
-        try {
-            field.set(target, parent);
-        } catch (final IllegalArgumentException | IllegalAccessException e) {
-            throw new ModelPostProcessorException("Can not set parent property value.", e);
-        }
+    public void put(final Object key, final String comment) {
+        Objects.requireNonNull(key);
+        Objects.requireNonNull(comment);
+        map.put(key, comment);
     }
-
 }

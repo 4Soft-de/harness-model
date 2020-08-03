@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xml-runtime
+ * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,41 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.postprocessing;
+package com.foursoft.xml;
 
-import com.foursoft.xml.annotations.XmlParent;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.lang.reflect.Field;
+/**
+ * Caches created JAXBContext instances, because creating JAXBContext is an
+ * expensive Operation an shall only be done once.
+ *
+ * @author becker
+ * @see <a href=
+ * "https://javaee.github.io/jaxb-v2/doc/user-guide/ch03
+ * .html#other-miscellaneous-topics-performance-and-thread-safety">JAXB
+ * V2 User Guide</a>
+ */
+public final class JaxbContextFactory {
 
-public class ParentPropertyHandler {
+    private static final Map<String, JAXBContext> jaxbContextCache = new HashMap<>();
 
-    private final Field field;
-    private final Class<?> typeOfField;
-
-    public ParentPropertyHandler(final Field field) {
-        if (!field.isAnnotationPresent(XmlParent.class)) {
-            throw new ModelPostProcessorException(
-                    "For the field " + field.getName() + " in " + field.getDeclaringClass()
-                            .getName() + " no parent annotation is present.");
-        }
-        this.field = field;
-        this.field.setAccessible(true);
-        typeOfField = field.getType();
+    private JaxbContextFactory() {
+        throw new UnsupportedOperationException("JAXBContextFactory shall not be instantiated (static class");
     }
 
-    public boolean isHandlingParent(final Object parent) {
-        return typeOfField.isInstance(parent);
-    }
+    public static synchronized JAXBContext initializeContext(final String packageName) throws JAXBException {
+        JAXBContext context = jaxbContextCache.get(packageName);
 
-    public void handleParentProperty(final Object target, final Object parent) {
-        try {
-            field.set(target, parent);
-        } catch (final IllegalArgumentException | IllegalAccessException e) {
-            throw new ModelPostProcessorException("Can not set parent property value.", e);
+        // not implemented with computeIfAbsent because .newInstance throws JAXBException
+        if (context == null) {
+            context = JAXBContext.newInstance(packageName);
+            jaxbContextCache.put(packageName, context);
         }
+
+        return context;
     }
 
 }

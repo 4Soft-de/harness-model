@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,19 +32,19 @@ public class JaxbModel<R, I> {
 
     public JaxbModel(final R rootElement, final IdLookupProvider<I> idLookupProvider) {
         this.rootElement = rootElement;
-        this.idLookup = idLookupProvider;
+        idLookup = idLookupProvider;
     }
 
     /**
      * Copy constructor for use in inheriting classes. This can be used if the
      * {@link JaxbModel} returned by the {@link ExtendedUnmarshaller} shall be
      * extended with its own convenience methods.
-     * 
+     *
      * @param model the jaxModel
      */
     protected JaxbModel(final JaxbModel<R, I> model) {
-        this.rootElement = model.rootElement;
-        this.idLookup = model.idLookup;
+        rootElement = model.rootElement;
+        idLookup = model.idLookup;
     }
 
     public R getRootElement() {
@@ -58,7 +58,7 @@ public class JaxbModel<R, I> {
      * The {@link IdLookupProvider} must be initialized during the unmarshalling
      * process (see
      * {@link ExtendedUnmarshaller#withIdMapper(Class, java.util.function.Function)}).
-     * 
+     *
      * @return the id lookup provider hold by this model
      */
     public IdLookupProvider<I> getIdLookup() {

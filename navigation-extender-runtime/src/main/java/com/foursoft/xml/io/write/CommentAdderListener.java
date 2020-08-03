@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xml-runtime
+ * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,38 +23,38 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.postprocessing;
+package com.foursoft.xml.io.write;
 
-import com.foursoft.xml.annotations.XmlParent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Field;
+import javax.xml.bind.Marshaller.Listener;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import java.util.Optional;
 
-public class ParentPropertyHandler {
+public class CommentAdderListener extends Listener {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommentAdderListener.class);
+    private final XMLStreamWriter xsw;
+    private final Comments comments;
 
-    private final Field field;
-    private final Class<?> typeOfField;
+    /**
+     * @param comments map of xjc objects and comment strings
+     */
+    public CommentAdderListener(final XMLStreamWriter xsw, final Comments comments) {
+        this.xsw = xsw;
+        this.comments = comments;
+    }
 
-    public ParentPropertyHandler(final Field field) {
-        if (!field.isAnnotationPresent(XmlParent.class)) {
-            throw new ModelPostProcessorException(
-                    "For the field " + field.getName() + " in " + field.getDeclaringClass()
-                            .getName() + " no parent annotation is present.");
+    @Override
+    public void beforeMarshal(final Object source) {
+        final Optional<String> comment = comments.get(source);
+        if (comment.isPresent()) {
+            try {
+                xsw.writeComment(comment.get());
+            } catch (final XMLStreamException e) {
+                LOGGER.warn("Ignored Exception while writing comments:", e);
+            }
         }
-        this.field = field;
-        this.field.setAccessible(true);
-        typeOfField = field.getType();
     }
-
-    public boolean isHandlingParent(final Object parent) {
-        return typeOfField.isInstance(parent);
-    }
-
-    public void handleParentProperty(final Object target, final Object parent) {
-        try {
-            field.set(target, parent);
-        } catch (final IllegalArgumentException | IllegalAccessException e) {
-            throw new ModelPostProcessorException("Can not set parent property value.", e);
-        }
-    }
-
 }

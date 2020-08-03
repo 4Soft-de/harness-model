@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xml-runtime
+ * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,17 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.postprocessing;
+package com.foursoft.xml.io.utils;
 
-import com.foursoft.xml.annotations.XmlParent;
+import javax.xml.bind.ValidationEvent;
+import java.util.function.Consumer;
 
-import java.lang.reflect.Field;
-
-public class ParentPropertyHandler {
-
-    private final Field field;
-    private final Class<?> typeOfField;
-
-    public ParentPropertyHandler(final Field field) {
-        if (!field.isAnnotationPresent(XmlParent.class)) {
-            throw new ModelPostProcessorException(
-                    "For the field " + field.getName() + " in " + field.getDeclaringClass()
-                            .getName() + " no parent annotation is present.");
-        }
-        this.field = field;
-        this.field.setAccessible(true);
-        typeOfField = field.getType();
+/**
+ * A simple logger for JAXB validation events to slf4j
+ */
+public class ValidationEventLogger implements Consumer<ValidationEvent> {
+    @Override
+    public void accept(final ValidationEvent t) {
+        LogEvent.log(t);
     }
-
-    public boolean isHandlingParent(final Object parent) {
-        return typeOfField.isInstance(parent);
-    }
-
-    public void handleParentProperty(final Object target, final Object parent) {
-        try {
-            field.set(target, parent);
-        } catch (final IllegalArgumentException | IllegalAccessException e) {
-            throw new ModelPostProcessorException("Can not set parent property value.", e);
-        }
-    }
-
 }

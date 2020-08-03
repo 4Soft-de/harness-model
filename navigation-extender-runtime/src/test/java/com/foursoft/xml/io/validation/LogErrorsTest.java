@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xml-runtime
+ * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,32 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.postprocessing;
+package com.foursoft.xml.io.validation;
 
-import com.foursoft.xml.annotations.XmlParent;
+import com.foursoft.xml.io.TestData;
+import com.foursoft.xml.io.validation.LogValidator.ErrorLocation;
+import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.Collection;
 
-public class ParentPropertyHandler {
+import static com.foursoft.xml.io.validation.XMLValidationTest.getXmlValidation;
+import static org.assertj.core.api.Assertions.assertThat;
 
-    private final Field field;
-    private final Class<?> typeOfField;
+class LogErrorsTest {
 
-    public ParentPropertyHandler(final Field field) {
-        if (!field.isAnnotationPresent(XmlParent.class)) {
-            throw new ModelPostProcessorException(
-                    "For the field " + field.getName() + " in " + field.getDeclaringClass()
-                            .getName() + " no parent annotation is present.");
-        }
-        this.field = field;
-        this.field.setAccessible(true);
-        typeOfField = field.getType();
+    @Test
+    void logXmlString() throws Exception {
+        final XMLValidation xmlValidation = getXmlValidation();
+
+        final String content = new String(
+                Files.readAllBytes(TestData.VALIDATE_BASE_PATH.resolve(TestData.ERROR_TEST_XML)));
+
+        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
+                                                                           StandardCharsets.UTF_8);
+        final String errorString = LogErrors.annotateXMLContent(content, errors);
+        // line 21 contains a duplicate key
+        assertThat(errorString).contains("21: ERROR     <ChildB id=\"id_8\">");
     }
-
-    public boolean isHandlingParent(final Object parent) {
-        return typeOfField.isInstance(parent);
-    }
-
-    public void handleParentProperty(final Object target, final Object parent) {
-        try {
-            field.set(target, parent);
-        } catch (final IllegalArgumentException | IllegalAccessException e) {
-            throw new ModelPostProcessorException("Can not set parent property value.", e);
-        }
-    }
-
 }

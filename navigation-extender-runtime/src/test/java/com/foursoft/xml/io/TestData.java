@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xml-runtime
+ * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.postprocessing;
+package com.foursoft.xml.io;
 
-import com.foursoft.xml.annotations.XmlParent;
+import com.foursoft.test.model.AbstractBase;
+import com.foursoft.test.model.Root;
+import com.foursoft.xml.io.read.XMLReader;
 
-import java.lang.reflect.Field;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class ParentPropertyHandler {
+public final class TestData {
+    public static final String BASIC_TEST_XML = "basic-test.xml";
+    public static final String ERROR_TEST_XML = "error-test.xml";
+    public static final Path BASIC_BASE_PATH = Paths.get("src", "test", "resources", "basic");
+    public static final Path VALIDATE_BASE_PATH = Paths.get("src", "test", "resources", "validate");
 
-    private final Field field;
-    private final Class<?> typeOfField;
-
-    public ParentPropertyHandler(final Field field) {
-        if (!field.isAnnotationPresent(XmlParent.class)) {
-            throw new ModelPostProcessorException(
-                    "For the field " + field.getName() + " in " + field.getDeclaringClass()
-                            .getName() + " no parent annotation is present.");
-        }
-        this.field = field;
-        this.field.setAccessible(true);
-        typeOfField = field.getType();
+    private TestData() {
     }
 
-    public boolean isHandlingParent(final Object parent) {
-        return typeOfField.isInstance(parent);
+    public static Root readBasicTest() {
+        final XMLReader<Root, AbstractBase> reader = new XMLReader<>(Root.class,
+                                                                     AbstractBase.class,
+                                                                     AbstractBase::getXmlId);
+        final InputStream inputStream = TestData.class.getResourceAsStream("/basic/" + BASIC_TEST_XML);
+        return reader.read(inputStream);
     }
-
-    public void handleParentProperty(final Object target, final Object parent) {
-        try {
-            field.set(target, parent);
-        } catch (final IllegalArgumentException | IllegalAccessException e) {
-            throw new ModelPostProcessorException("Can not set parent property value.", e);
-        }
-    }
-
 }
+
