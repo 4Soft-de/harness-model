@@ -35,10 +35,9 @@ import java.io.*;
 import java.util.function.Consumer;
 
 /**
- * extended VEC Writer
- * - Can add comments the xml file
- * - formatted output
- * - logs the created XML with error messages
+ * Serializes a valid JAXB object structure to XML with the following additional features:
+ * - Can add comments to the xml file
+ * - Formats the XML output
  */
 public class XMLWriter<T> {
 
@@ -96,7 +95,7 @@ public class XMLWriter<T> {
             write(container, comments, stringWriter);
             return stringWriter.toString();
         } catch (final Exception e) {
-            throw new XMLIOException("Error serializing VEC File.", e);
+            throw new XMLIOException("Error serializing objects to XML.", e);
         }
     }
 
@@ -111,7 +110,7 @@ public class XMLWriter<T> {
             write(container, stringWriter);
             return stringWriter.toString();
         } catch (final IOException e) {
-            throw new XMLIOException("Error serializing VEC File.", e);
+            throw new XMLIOException("Error serializing objects to XML", e);
         }
     }
 

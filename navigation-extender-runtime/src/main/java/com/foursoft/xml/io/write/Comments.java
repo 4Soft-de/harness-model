@@ -38,7 +38,7 @@ import java.util.Optional;
  * Root root = new Root();
  * Comments comments = new Comments();
  * comments.put(root, "TestComment");
- * VecWriter::write(root, comments);
+ * XMLWriter::write(root, comments);
  * would result in:
  * &lt;!-- TestComment --&gt;
  * &lt;Root&gt;&lt;/Root&gt;

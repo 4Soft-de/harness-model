@@ -93,7 +93,7 @@ public class XMLReader<T, I> {
      * Builds the complete JAXB tree structure of an xml file.
      * Uses the already registered event consumer for validation events
      *
-     * @param filename the path name of the VEC file.
+     * @param filename the path name of the XML file.
      * @return the JAXB object structure representing the xml file
      * @throws XMLIOException in case of an IOException
      */
@@ -136,9 +136,8 @@ public class XMLReader<T, I> {
         Objects.requireNonNull(inputStream);
         try {
             final long start = System.currentTimeMillis();
-            LOGGER.debug("Start loading VEC file.");
             final JaxbModel<T, I> result = unmarshaller.unmarshall(inputStream);
-            LOGGER.debug("Finished loading VEC file. Took {} ms", System.currentTimeMillis() - start);
+            LOGGER.trace("Finished loading XML. Took {} ms", System.currentTimeMillis() - start);
             return result;
         } catch (final JAXBException e) {
             throw new XMLIOException(e.getMessage(), e);
