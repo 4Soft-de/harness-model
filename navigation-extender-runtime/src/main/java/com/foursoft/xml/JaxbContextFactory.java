@@ -35,10 +35,7 @@ import java.util.Map;
  * expensive Operation an shall only be done once.
  *
  * @author becker
- * @see <a href=
- * "https://javaee.github.io/jaxb-v2/doc/user-guide/ch03
- * .html#other-miscellaneous-topics-performance-and-thread-safety">JAXB
- * V2 User Guide</a>
+ * @see <a href="https://javaee.github.io/jaxb-v2/doc/user-guide/ch03.html#other-miscellaneous-topics-performance-and-thread-safety">JAXB V2 User Guide</a>
  */
 public final class JaxbContextFactory {
 

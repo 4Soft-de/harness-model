@@ -117,6 +117,7 @@ public class XMLReader<T, I> {
      * Builds the complete JAXB tree structure of an xml stream.
      * Uses the already registered event consumer for validation events
      *
+     * @param inputStream the input stream to read from
      * @return the JAXB object structure representing the xml file.
      * @throws XMLIOException in case of a JAXBException
      */
@@ -129,6 +130,7 @@ public class XMLReader<T, I> {
      * Builds the complete JAXB tree structure of an xml stream.
      * Uses the already registered event consumer for validation events
      *
+     * @param inputStream the input stream to read from
      * @return the JAXB object structure representing the xml file.
      * @throws XMLIOException in case of a JAXBException
      */

@@ -73,7 +73,7 @@ public final class LogEvent {
     /**
      * logs the event to the slf4j
      *
-     * @param event
+     * @param event the validation event to log
      */
     public static void log(final ValidationEvent event) {
         if (event == null) {

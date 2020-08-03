@@ -39,6 +39,7 @@ public class CommentAdderListener extends Listener {
     private final Comments comments;
 
     /**
+     * @param xsw the xml stream writer
      * @param comments map of xjc objects and comment strings
      */
     public CommentAdderListener(final XMLStreamWriter xsw, final Comments comments) {
