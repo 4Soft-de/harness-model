@@ -32,6 +32,7 @@ import javax.xml.bind.*;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
 
 /**
@@ -69,7 +70,7 @@ public class XMLWriter<T> {
      * @param outputStream the output to write to
      */
     public void write(final T container, final OutputStream outputStream) {
-        write(container, new OutputStreamWriter(outputStream));
+        write(container, new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
     }
 
     /**
@@ -80,7 +81,7 @@ public class XMLWriter<T> {
      * @param comments     additional comments which should be added to output {@link Comments}
      */
     public void write(final T container, final Comments comments, final OutputStream outputStream) {
-        write(container, comments, new OutputStreamWriter(outputStream));
+        write(container, comments, new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
     }
 
     /**
