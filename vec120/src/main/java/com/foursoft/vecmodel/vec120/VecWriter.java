@@ -55,6 +55,9 @@ public final class VecWriter extends XMLWriter<VecContent> {
         super(VecContent.class, validationEventConsumer);
     }
 
+    /**
+     * @return a thread local VecWriter object
+     */
     public static VecWriter getLocalWriter() {
         return localWriter.get();
     }

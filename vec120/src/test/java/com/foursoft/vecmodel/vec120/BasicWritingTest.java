@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,21 +25,21 @@
  */
 package com.foursoft.vecmodel.vec120;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import java.io.StringWriter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BasicWritingTest {
+class BasicWritingTest {
 
     @Test
-    public void testWriteModel() throws JAXBException, TransformerFactoryConfigurationError {
-        final JAXBContext jc = JAXBContext.newInstance(VecContent.class);
+    void testGetLocalWriter() {
+        final VecWriter localWriter = VecWriter.getLocalWriter();
+        Assertions.assertNotNull(localWriter);
+    }
+
+    @Test
+    void testWriteModel() {
 
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
@@ -69,33 +69,34 @@ public class BasicWritingTest {
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
-        final Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        final StringWriter stringWriter = new StringWriter();
+        final VecWriter vecWriter = new VecWriter();
+        final String result = vecWriter.writeToString(root);
 
-        marshaller.marshal(root, stringWriter);
-
-        final String result = stringWriter.toString();
         assertThat(result)
                 .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                        "<ns2:VecContent id=\"id_1000_0\" xmlns:ns2=\"http://www.prostep.org/ecad-if/2011/vec\">\n" +
-                        "    <VecVersion>1.2.0</VecVersion>\n" +
-                        "    <DocumentVersion>\n" +
-                        "        <Approval>\n" +
-                        "            <Status>Approved</Status>\n" +
-                        "            <Permission>\n" +
-                        "                <Permission>Released</Permission>\n" +
-                        "            </Permission>\n" +
-                        "        </Approval>\n" +
-                        "        <DocumentNumber>123_456_789</DocumentNumber>\n" +
-                        "        <Specification xsi:type=\"ns2:ConnectorHousingCapSpecification\" id=\"id_2000_0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                        "            <Identification>Ccs-123_456_789-1</Identification>\n" +
-                        "        </Specification>\n" +
-                        "    </DocumentVersion>\n" +
-                        "    <PartVersion id=\"id_1001_0\">\n" +
-                        "        <PartNumber>123_456_789</PartNumber>\n" +
-                        "    </PartVersion>\n" +
-                        "</ns2:VecContent>");
+                                                     "<ns2:VecContent id=\"id_1000_0\" xmlns:ns2=\"http://www.prostep" +
+                                                     ".org/ecad-if/2011/vec\">\n" +
+                                                     "    <VecVersion>1.2.0</VecVersion>\n" +
+                                                     "    <DocumentVersion>\n" +
+                                                     "        <Approval>\n" +
+                                                     "            <Status>Approved</Status>\n" +
+                                                     "            <Permission>\n" +
+                                                     "                <Permission>Released</Permission>\n" +
+                                                     "            </Permission>\n" +
+                                                     "        </Approval>\n" +
+                                                     "        <DocumentNumber>123_456_789</DocumentNumber>\n" +
+                                                     "        <Specification " +
+                                                     "xsi:type=\"ns2:ConnectorHousingCapSpecification\" " +
+                                                     "id=\"id_2000_0\" xmlns:xsi=\"http://www.w3" +
+                                                     ".org/2001/XMLSchema-instance\">\n" +
+                                                     "            <Identification>Ccs-123_456_789-1</Identification" +
+                                                     ">\n" +
+                                                     "        </Specification>\n" +
+                                                     "    </DocumentVersion>\n" +
+                                                     "    <PartVersion id=\"id_1001_0\">\n" +
+                                                     "        <PartNumber>123_456_789</PartNumber>\n" +
+                                                     "    </PartVersion>\n" +
+                                                     "</ns2:VecContent>");
     }
 
 }

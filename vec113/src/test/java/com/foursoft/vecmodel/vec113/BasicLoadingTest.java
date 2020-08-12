@@ -27,13 +27,11 @@ package com.foursoft.vecmodel.vec113;
 
 import com.foursoft.xml.ExtendedUnmarshaller;
 import com.foursoft.xml.JaxbModel;
-import com.foursoft.xml.io.utils.ValidationEventLogger;
 import com.foursoft.xml.model.Identifiable;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 import javax.xml.XMLConstants;
-import javax.xml.bind.JAXBException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Source;
@@ -48,25 +46,17 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BasicLoadingTest {
+class BasicLoadingTest {
 
     @Test
-    public void testLoadModel() throws IOException, JAXBException {
-        final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
-                new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
-                        .withBackReferences()
-                        .withEventLogging(new ValidationEventLogger())
-                        .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+    void testLoadModel() throws Exception {
+        final VecContent vecContent = new VecReader().read(TestFiles.getInputStream(TestFiles.SAMPLE_VEC));
+        assertThat(vecContent).isNotNull();
 
-        try (final InputStream inputStream = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
-            final JaxbModel<VecContent, Identifiable> model = unmarshaller
-                    .unmarshall(new BufferedInputStream(inputStream));
-            assertThat(model).isNotNull();
-        }
     }
 
     @Test
-    public void testSelectorInheritance() throws JAXBException, IOException {
+    void testSelectorInheritance() throws Exception {
         try (final InputStream is = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
             final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
                     new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
@@ -100,7 +90,7 @@ public class BasicLoadingTest {
     }
 
     @Test
-    public void validationTest() throws Exception {
+    void validationTest() throws Exception {
         try (final InputStream is = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
             final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
@@ -120,7 +110,7 @@ public class BasicLoadingTest {
     }
 
     @Test
-    public void testBackReferences() throws IOException, JAXBException {
+    void testBackReferences() throws Exception {
         try (final InputStream is = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
             final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
                     new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
@@ -152,11 +142,16 @@ public class BasicLoadingTest {
     }
 
     @Test
-    public void testWithLogging() throws IOException {
+    void testGetLocalWriter() {
+        final VecReader localReader = VecReader.getLocalReader();
+        assertThat(localReader).isNotNull();
+    }
+
+    @Test
+    void testWithLocalReader() throws IOException {
         try (final InputStream inputStream = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
             final VecContent content = VecReader.getLocalReader().read(inputStream);
             assertThat(content).isNotNull();
         }
     }
-
 }
