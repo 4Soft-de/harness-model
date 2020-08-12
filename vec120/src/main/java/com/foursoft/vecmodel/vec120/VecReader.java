@@ -30,6 +30,7 @@ import com.foursoft.xml.model.Identifiable;
 
 /**
  * a default implementation for a thread local stored VEC 120 reader. Validation events are logged to slf4j.
+ * Please implement an own implementation of XMLReader, if a custom event consumer is needed (see @{@link XMLReader}).
  */
 public final class VecReader extends XMLReader<VecContent, Identifiable> {
 
