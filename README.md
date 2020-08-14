@@ -116,13 +116,8 @@ More examples can be found in the examples of each module:
 public class MyVecReader {
     public void readVecFile(final String pathToFile) throws JAXBException, IOException  {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
-                new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
-                    .withBackReferences()
-                    .withIdMapper(Identifiable.class, Identifiable::getXmlId);
-    
-            final JaxbModel<VecContent, Identifiable> model = unmarshaller
-                    .unmarshall(new BufferedInputStream(is));
+            final VecReader localReader = VecReader.getLocalReader();
+            final JaxbModel<VecContent, Identifiable> model = localReader.readModel(is);
     
             final VecApproval approval = model.getIdLookup()
                     .findById(VecApproval.class, "id_2014_0")
@@ -175,23 +170,11 @@ public class MyVecWriter {
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
-        final Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        final VecWriter localWriter = VecWriter.getLocalWriter();
 
-        final StringWriter stringWriter = new StringWriter();
-        marshaller.marshal(root, stringWriter);
-        final String result = stringWriter.toString();
-
-        final Path outPath = Paths.get(target).toAbsolutePath();
-        if (Files.notExists(outPath))  {
-            final Path parentFolder = outPath.getParent();
-            if (parentFolder != null && Files.notExists(parentFolder)) {
-                Files.createDirectory(parentFolder);
-            }
-            Files.createFile(outPath);
+        try (final FileOutputStream outputStream = new FileOutputStream(target)) {
+            localWriter.write(root, outputStream);
         }
-
-        Files.write(outPath, result.getBytes(StandardCharsets.UTF_8));
     }
 }
 ```
