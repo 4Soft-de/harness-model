@@ -36,6 +36,9 @@ import java.util.function.Consumer;
  */
 public final class KblWriter extends XMLWriter<KBLContainer> {
 
+    private static final ThreadLocal<KblWriter> localWriter = ThreadLocal.withInitial(
+            KblWriter::new);
+
     /**
      * create a default KblWriter with a default validation events logger {@link ValidationEventLogger}
      */
@@ -50,6 +53,14 @@ public final class KblWriter extends XMLWriter<KBLContainer> {
      */
     public KblWriter(final Consumer<ValidationEvent> validationEventConsumer) {
         super(KBLContainer.class, validationEventConsumer);
+
+    }
+
+    /**
+     * @return a thread local KblWriter object
+     */
+    public static KblWriter getLocalWriter() {
+        return localWriter.get();
     }
 }
 
