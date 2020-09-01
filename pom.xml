@@ -33,6 +33,7 @@
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <gitflow-maven-plugin.version>1.14.0</gitflow-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <assertj-assertions-generator-maven-plugin>2.2.0</assertj-assertions-generator-maven-plugin>
 
         <!-- maven-jaxb2-plugin plugins -->
         <jaxb-visitor.version>2.8</jaxb-visitor.version>
@@ -67,7 +68,9 @@
 
     <modules>
         <module>vec113</module>
+        <module>vec113-assertions</module>
         <module>vec120</module>
+        <module>vec120-assertions</module>
     </modules>
 
     <developers>
@@ -261,6 +264,7 @@
                                 <roots>
                                     <root>src/main/java</root>
                                     <root>src/test/java</root>
+                                    <root>${project.build.directory}/generated-sources/assertj-assertions</root>
                                 </roots>
                             </configuration>
                         </execution>
@@ -335,6 +339,20 @@
                         </plugins>
                     </configuration>
                 </plugin>
+                <plugin>
+					<groupId>org.assertj</groupId>
+					<artifactId>assertj-assertions-generator-maven-plugin</artifactId>
+					<version>${assertj-assertions-generator-maven-plugin}</version>
+					<configuration>
+						<quiet>true</quiet>
+						<cleanTargetDir>true</cleanTargetDir>
+						<generateAssertions>true</generateAssertions>
+						<generateBddAssertions>false</generateBddAssertions>
+						<generateSoftAssertions>true</generateSoftAssertions>
+						<generatedSourcesScope>compile</generatedSourcesScope>
+						<targetDir>${project.build.directory}/generated-sources/assertj-assertions</targetDir>
+					</configuration>
+				</plugin>
             </plugins>
         </pluginManagement>
         <plugins>
