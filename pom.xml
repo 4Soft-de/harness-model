@@ -1,6 +1,6 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://maven.apache.org/POM/4.0.0"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.foursoft.vecmodel</groupId>
     <artifactId>vec-parent</artifactId>
@@ -323,9 +323,6 @@
                                 <artifactId>jaxb-delegate-plugin</artifactId>
                                 <version>${jaxb-delegate-plugin.version}</version>
                             </plugin>
-                            <!-- using a locally patched version due to incorrect handling of IDREF(S)
-                                properties a pull request was published to offical version. If this is merged
-                                an released, the current version can be used. see: https://github.com/massfords/jaxb-visitor/pull/13 -->
                             <plugin>
                                 <groupId>com.massfords</groupId>
                                 <artifactId>jaxb-visitor</artifactId>
@@ -340,19 +337,19 @@
                     </configuration>
                 </plugin>
                 <plugin>
-					<groupId>org.assertj</groupId>
-					<artifactId>assertj-assertions-generator-maven-plugin</artifactId>
-					<version>${assertj-assertions-generator-maven-plugin}</version>
-					<configuration>
-						<quiet>true</quiet>
-						<cleanTargetDir>true</cleanTargetDir>
-						<generateAssertions>true</generateAssertions>
-						<generateBddAssertions>false</generateBddAssertions>
-						<generateSoftAssertions>true</generateSoftAssertions>
-						<generatedSourcesScope>compile</generatedSourcesScope>
-						<targetDir>${project.build.directory}/generated-sources/assertj-assertions</targetDir>
-					</configuration>
-				</plugin>
+                    <groupId>org.assertj</groupId>
+                    <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
+                    <version>${assertj-assertions-generator-maven-plugin}</version>
+                    <configuration>
+                        <quiet>true</quiet>
+                        <cleanTargetDir>true</cleanTargetDir>
+                        <generateAssertions>true</generateAssertions>
+                        <generateBddAssertions>false</generateBddAssertions>
+                        <generateSoftAssertions>true</generateSoftAssertions>
+                        <generatedSourcesScope>compile</generatedSourcesScope>
+                        <targetDir>${project.build.directory}/generated-sources/assertj-assertions</targetDir>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
