@@ -33,6 +33,7 @@ VEC contains data of a multi-harness overall wiring system and includes its sche
 - Universal lifecycle and versioning information
 - Defined mappings to external resources
 - Elements can have back references to other elements (e.g. `VecUnit -> VecValueWithUnit` and `VecValueWithUnit -> VecUnit`)
+- Generated AssertJ assertions in additional jar files to write fluent assertions on VEC objects.
 
 ## Download
 Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.vecmodel).
@@ -50,11 +51,26 @@ Latest Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-centr
     <version>VERSION</version>
 </dependency>
 ```
+and for the assertion library:
+
+```xml
+<dependency>
+    <groupId>com.foursoft.vecmodel</groupId>
+    <artifactId>vec113-assertions</artifactId>
+    <scope>test<scope>
+    <version>VERSION</version>
+</dependency>
+```
 
 #### Gradle
 ```groovy
 implementation group: 'com.foursoft.vecmodel', name: 'vec113', version: 'VERSION'
 ```
+
+```groovy
+testCompile group: 'com.foursoft.vecmodel', name: 'vec113-assertions', version: 'VERSION'
+```
+
 
 ### VEC 1.2.0
 #### Maven
@@ -66,11 +82,26 @@ implementation group: 'com.foursoft.vecmodel', name: 'vec113', version: 'VERSION
 </dependency>
 ```
 
+and for the assertion library:
+
+```xml
+<dependency>
+    <groupId>com.foursoft.vecmodel</groupId>
+    <artifactId>vec120-assertions</artifactId>
+    <scope>test<scope>
+    <version>VERSION</version>
+</dependency>
+```
+
+
 #### Gradle
 ```groovy
 implementation group: 'com.foursoft.vecmodel', name: 'vec120', version: 'VERSION'
 ```
 
+```groovy
+testCompile group: 'com.foursoft.vecmodel', name: 'vec120-assertions', version: 'VERSION'
+```
 ## Code examples
 
 In the codebase, the root of a vec file is the `VecContent` class.
@@ -201,7 +232,46 @@ public class MyVecWriter {
     </PartVersion>
 </ns2:VecContent>
 ```
+### Assertions on VEC files
+For each VEC version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements. The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
 
+Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions. For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
+
+Please not the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html) and the order of `...Assertions.assertThat;`.
+
+```java
+package com.foursoft.vec.test;
+
+import static com.foursoft.vecmodel.vec113.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.atIndex;
+
+import org.junit.jupiter.api.Test;
+
+import com.foursoft.vecmodel.vec113.VecConnectorHousingSpecification;
+import com.foursoft.vecmodel.vec113.VecDocumentVersion;
+import com.foursoft.vecmodel.vec113.VecPartVersion;
+
+
+public class VecSampleTest {
+
+	@Test
+	void doSomeAssertions() {
+		//Find the element to test, maybe with a traversing visitor...
+		VecDocumentVersion partMasterDocument = ...;
+		
+		assertThat(partMasterDocument).hasDocumentType("PartMaster")
+				.hasNoCustomProperties()
+				.satisfies(d -> {
+					assertThat(d.getSpecificationsWithType(VecConnectorHousingSpecification.class)).hasSize(1)
+							.satisfies(chs -> {
+								assertThat(chs).hasIdentification("ABC");
+							}, atIndex(0));
+				});
+	}
+}
+
+```
 ## Contributing
 We appreciate if you like to contribute to our project! Please make sure to base your branch off of our [develop branch](https://github.com/4Soft-de/vec-model/tree/develop) and create your PR into that same branch. We will reject any PRs not following that or if the feature is already worked on.
 

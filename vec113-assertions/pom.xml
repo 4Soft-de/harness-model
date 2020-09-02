@@ -1,0 +1,76 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.foursoft.vecmodel</groupId>
+        <artifactId>vec-parent</artifactId>
+        <version>1.1.2-SNAPSHOT</version>
+    </parent>
+    <artifactId>vec113-assertions</artifactId>
+
+    <description>The Assertions Library for VEC version 1.2.0.</description>
+
+    <dependencies>
+        <!--project -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>vec113</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+					    <?m2e execute onConfiguration?>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-assertions</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <entryPointClassPackage>com.foursoft.vecmodel.vec113.assertions</entryPointClassPackage>
+                    <packages>
+                        <param>com.foursoft.vecmodel.vec113</param>
+                    </packages>
+                    <excludes>
+                        <exclude>com\.foursoft\.vecmodel\.vec113\.visitor.*</exclude>
+                        <exclude>com\.foursoft\.vecmodel\.vec113\.delegate.*</exclude>
+                        <exclude>com\.foursoft\.vecmodel\.vec113\.common.*</exclude>
+                        <exclude>com\.foursoft\.vecmodel\.vec113\.ObjectFactory</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
