@@ -9,7 +9,7 @@
     </parent>
     <artifactId>vec120-assertions</artifactId>
 
-    <description>The model for VEC version 1.2.0.</description>
+    <description>The Assertions Library for VEC version 1.2.0.</description>
 
     <dependencies>
         <!--project -->
