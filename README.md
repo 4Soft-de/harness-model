@@ -95,13 +95,8 @@ More examples can be found [in the examples](https://github.com/4Soft-de/kbl-mod
 public class MyKblReader {
     public void readKblFile(final String pathToFile) throws JAXBException, IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
-            final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller =
-                    new ExtendedUnmarshaller<KBLContainer, Identifiable>(
-                        KBLContainer.class).withBackReferences()
-                        .withIdMapper(Identifiable.class, Identifiable::getXmlId);
-
-            final JaxbModel<KBLContainer, Identifiable> model = unmarshaller
-                    .unmarshall(new BufferedInputStream(is));
+            final KblReader localReader = KblReader.getLocalReader();
+            final JaxbModel<KBLContainer, Identifiable> model = localReader.readModel(is);
 
             final KblConnectorOccurrence occurrence = model.getIdLookup()
                     .findById(KblConnectorOccurrence.class, "I1616")
@@ -180,24 +175,11 @@ public class MyKblWriter {
         contactPoint3.setId("SCHNUPSI");
         contactPoint3.setXmlId("id_1236");
 
-        final Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        final StringWriter stringWriter = new StringWriter();
+        final KblWriter localWriter = KblWriter.getLocalWriter();
 
-        marshaller.marshal(root, stringWriter);
-
-        final String result = stringWriter.toString();
-
-        final Path outPath = Paths.get(target).toAbsolutePath();
-        if (Files.notExists(outPath))  {
-            final Path parentFolder = outPath.getParent();
-            if (parentFolder != null && Files.notExists(parentFolder)) {
-                Files.createDirectory(parentFolder);
-            }
-            Files.createFile(outPath);
+        try (final FileOutputStream outputStream = new FileOutputStream(target)) {
+            localWriter.write(root, outputStream);
         }
-
-        Files.write(outPath, result.getBytes(StandardCharsets.UTF_8));
     }
 }
 ```

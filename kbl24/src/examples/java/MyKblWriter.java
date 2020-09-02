@@ -2,17 +2,13 @@ import com.foursoft.kblmodel.kbl24.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.transform.TransformerFactoryConfigurationError;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class MyKblWriter {
-    public void writeKblFile(final String target) throws JAXBException, TransformerFactoryConfigurationError, IOException {
+    public void writeKblFile(final String target)
+            throws JAXBException, TransformerFactoryConfigurationError, IOException {
         final JAXBContext jc = JAXBContext.newInstance(KBLContainer.class);
         final KBLContainer root = new KBLContainer();
         final KblHarness harness = new KblHarness();
@@ -59,23 +55,10 @@ public class MyKblWriter {
         contactPoint3.setId("SCHNUPSI");
         contactPoint3.setXmlId("id_1236");
 
-        final Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        final StringWriter stringWriter = new StringWriter();
+        final KblWriter localWriter = KblWriter.getLocalWriter();
 
-        marshaller.marshal(root, stringWriter);
-
-        final String result = stringWriter.toString();
-
-        final Path outPath = Paths.get(target).toAbsolutePath();
-        if (Files.notExists(outPath))  {
-            final Path parentFolder = outPath.getParent();
-            if (parentFolder != null && Files.notExists(parentFolder)) {
-                Files.createDirectory(parentFolder);
-            }
-            Files.createFile(outPath);
+        try (final FileOutputStream outputStream = new FileOutputStream(target)) {
+            localWriter.write(root, outputStream);
         }
-
-        Files.write(outPath, result.getBytes(StandardCharsets.UTF_8));
     }
 }
