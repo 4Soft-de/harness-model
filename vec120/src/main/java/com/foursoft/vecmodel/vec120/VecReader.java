@@ -29,14 +29,15 @@ import com.foursoft.xml.io.read.XMLReader;
 import com.foursoft.xml.model.Identifiable;
 
 /**
- * a default implementation for a thread local stored VEC 120 reader. Validation events are logged to slf4j.
+ * A default implementation for a thread local stored VEC 120 reader. Validation events are logged to slf4j.
+ * If a custom event consumer is needed, derive from  @{@link XMLReader}
  */
 public final class VecReader extends XMLReader<VecContent, Identifiable> {
 
     private static final ThreadLocal<VecReader> localReader = ThreadLocal.withInitial(
             VecReader::new);
 
-    private VecReader() {
+    public VecReader() {
         super(VecContent.class, Identifiable.class, Identifiable::getXmlId);
     }
 

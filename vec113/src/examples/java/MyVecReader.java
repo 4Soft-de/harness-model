@@ -1,11 +1,8 @@
 import com.foursoft.vecmodel.vec113.*;
-import com.foursoft.xml.ExtendedUnmarshaller;
 import com.foursoft.xml.JaxbModel;
 import com.foursoft.xml.model.Identifiable;
 
-import javax.xml.bind.JAXBException;
 import javax.xml.datatype.XMLGregorianCalendar;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -15,15 +12,10 @@ import java.util.stream.Collectors;
 
 public class MyVecReader {
 
-    public void readVecFile(final String pathToFile) throws JAXBException, IOException {
+    public static void readVecFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
-                    new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
-                            .withBackReferences()
-                            .withIdMapper(Identifiable.class, Identifiable::getXmlId);
-
-            final JaxbModel<VecContent, Identifiable> model = unmarshaller
-                    .unmarshall(new BufferedInputStream(is));
+            final VecReader localReader = VecReader.getLocalReader();
+            final JaxbModel<VecContent, Identifiable> model = localReader.readModel(is);
 
             final VecApproval approval = model.getIdLookup()
                     .findById(VecApproval.class, "id_2014_0")
@@ -39,17 +31,11 @@ public class MyVecReader {
         }
     }
 
-    public void readFullVecFile(final String pathToFile) throws IOException, JAXBException {
+    public static void readFullVecFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
-                    new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
-                            .withBackReferences()
-                            .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+            final VecReader localReader = VecReader.getLocalReader();
 
-            final JaxbModel<VecContent, Identifiable> model = unmarshaller
-                    .unmarshall(new BufferedInputStream(is));
-
-            final VecContent rootElement = model.getRootElement();
+            final VecContent rootElement = localReader.read(is);
 
             final String vecVersion = rootElement.getVecVersion();
             final String generatingSystemName = rootElement.getGeneratingSystemName();
@@ -69,38 +55,44 @@ public class MyVecReader {
             final List<VecConformanceClass> compliantConformanceClasses = rootElement.getCompliantConformanceClasses();
             final String compliantConformanceClassesAsString = compliantConformanceClasses.stream()
                     .map(conformance -> String.format("\tVecConformance %s: Version: %s, URL: %s",
-                            conformance.getIdentification(), conformance.getVersion(), conformance.getUrl()))
+                                                      conformance.getIdentification(), conformance.getVersion(),
+                                                      conformance.getUrl()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final List<VecContract> contracts = rootElement.getContracts();
             final String contractsAsString = contracts.stream()
                     .map(contract -> String.format("\tCompany: %s, Role: %s, Item Versions: %s",
-                            contract.getCompanyName(), contract.getContractRole(), contract.getRefItemVersion()))
+                                                   contract.getCompanyName(), contract.getContractRole(),
+                                                   contract.getRefItemVersion()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final List<VecCopyrightInformation> copyrightInformation = rootElement.getCopyrightInformations();
             final String copyrightInformationAsString = copyrightInformation.stream()
                     .map(copyright -> String.format("\tCopyright Notes: %s, Item Versions: %s",
-                            copyright.getCopyrightNotes(), copyright.getRefItemVersion()))
+                                                    copyright.getCopyrightNotes(), copyright.getRefItemVersion()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final List<VecDocumentVersion> documentVersions = rootElement.getDocumentVersions();
             final String documentVersionsAsString = documentVersions.stream()
                     .map(document -> String.format("\tDocument Number: %s, Document Version: %s, Document Type: %s, " +
-                                    "Document Location: %s, Linked Document: %s, Amount of sheets: %s, " +
-                                    "Company Name: %s, Specification Ids: %s",
-                            document.getDocumentNumber(), document.getDocumentVersion(), document.getDocumentType(),
-                            document.getLocation(), document.getFileName(), document.getNumberOfSheets(),
-                            document.getCompanyName(), document.getSpecifications().stream()
-                                    .map(VecSpecification::getIdentification)
-                                    .reduce((x, y) -> x + ", " + y).orElse("None")))  // allows default value
+                                                           "Document Location: %s, Linked Document: %s, Amount of " +
+                                                           "sheets: %s, " +
+                                                           "Company Name: %s, Specification Ids: %s",
+                                                   document.getDocumentNumber(), document.getDocumentVersion(),
+                                                   document.getDocumentType(),
+                                                   document.getLocation(), document.getFileName(),
+                                                   document.getNumberOfSheets(),
+                                                   document.getCompanyName(), document.getSpecifications().stream()
+                                                           .map(VecSpecification::getIdentification)
+                                                           .reduce((x, y) -> x + ", " + y)
+                                                           .orElse("None")))  // allows default value
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final String specificationsAsString = documentVersions.stream()
                     .map(VecDocumentVersion::getSpecifications)
                     .map(specifications -> specifications.stream()
                             .map(spec -> String.format("\tSpecification Id: %s, Specification class: %s",
-                                    spec.getIdentification(), spec.getClass().getSimpleName()))
+                                                       spec.getIdentification(), spec.getClass().getSimpleName()))
                             .collect(Collectors.toList()))
                     .flatMap(Collection::stream) // to get rid of unneeded newlines
                     .collect(Collectors.joining(System.lineSeparator()));
@@ -110,17 +102,18 @@ public class MyVecReader {
                     ? ""
                     : itemHistoryEntries.stream()
                     .map(item -> String.format("\tItem XML Id: %s, Item Type: %s," +
-                                    "Predecessor ItemVersion: %s, Successor ItemVersion: %s",
-                            item.getXmlId(), item.getType().value(),
-                            item.getPredecessorVersion(), item.getSuccessorVersion()))
+                                                       "Predecessor ItemVersion: %s, Successor ItemVersion: %s",
+                                               item.getXmlId(), item.getType().value(),
+                                               item.getPredecessorVersion(), item.getSuccessorVersion()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final List<VecPartVersion> partVersions = rootElement.getPartVersions();
             final String versions = partVersions.stream()
                     .map(partVersion -> String.format("\tPart Version %s, Part Number: %s, " +
-                                    "Preferred Use Case: %s, Primary Part Type: %s",
-                            partVersion.getPartVersion(), partVersion.getPartNumber(),
-                            partVersion.getPreferredUseCase(), partVersion.getPrimaryPartType().value()))
+                                                              "Preferred Use Case: %s, Primary Part Type: %s",
+                                                      partVersion.getPartVersion(), partVersion.getPartNumber(),
+                                                      partVersion.getPreferredUseCase(),
+                                                      partVersion.getPrimaryPartType().value()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final List<VecProject> projects = rootElement.getProjects();
@@ -128,24 +121,25 @@ public class MyVecReader {
                     ? ""
                     : projects.stream()
                     .map(project -> String.format("\tProject Id: %s, Descriptions: %s, Car classification levels: %s",
-                            project.getIdentification(), project.getDescriptions().stream()
-                                    .map(VecAbstractLocalizedString::getValue)
-                                    .collect(Collectors.joining(", ")),
-                            String.format("2: %s, 3: %s, 4: %s",
-                                    project.getCarClassificationLevel2(), project.getCarClassificationLevel3(),
-                                    project.getCarClassificationLevel4())))
+                                                  project.getIdentification(), project.getDescriptions().stream()
+                                                          .map(VecAbstractLocalizedString::getValue)
+                                                          .collect(Collectors.joining(", ")),
+                                                  String.format("2: %s, 3: %s, 4: %s",
+                                                                project.getCarClassificationLevel2(),
+                                                                project.getCarClassificationLevel3(),
+                                                                project.getCarClassificationLevel4())))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final List<VecUnit> units = rootElement.getUnits();
             final String unitsAsString = units.stream()
                     .map(unit -> String.format("\tUnit XML id: %s, Exponent: %d, Unit class: %s",
-                            unit.getXmlId(), unit.getExponent(), unit.getClass().getSimpleName()))
+                                               unit.getXmlId(), unit.getExponent(), unit.getClass().getSimpleName()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final List<VecCustomProperty> customProperties = rootElement.getCustomProperties();
             final String properties = customProperties.stream()
                     .map(x -> String.format("\tProperty XML id: %s, Property Type: %s, Property class: %s",
-                            x.getXmlId(), x.getPropertyType(), x.getClass().getSimpleName()))
+                                            x.getXmlId(), x.getPropertyType(), x.getClass().getSimpleName()))
                     .collect(Collectors.joining(System.lineSeparator()));
 
             final StringBuilder builder = new StringBuilder()
@@ -173,16 +167,47 @@ public class MyVecReader {
         }
     }
 
-    private void addDataToBuilder(final StringBuilder builder, final String name, final String data) {
-        addDataToBuilder(builder, name, data, true);
+    public static void getBackReferences(final String pathToFile) throws IOException {
+        try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
+            final VecReader localReader = VecReader.getLocalReader();
+            final JaxbModel<VecContent, Identifiable> model = localReader.readModel(is);
+
+            final VecContent content = model.getRootElement();
+
+            // VecUnit -> VecValueWithUnit
+            final List<VecUnit> units = content.getUnits();
+            if (units.isEmpty()) {
+                return;
+            }
+            final VecUnit vecUnit = units.get(0);
+            final Set<VecValueWithUnit> refValueWithUnit = vecUnit.getRefValueWithUnit();
+            final VecValueWithUnit vecValueWithUnit = refValueWithUnit.stream().findFirst().orElse(null);
+            if (vecValueWithUnit == null) {
+                return;
+            }
+            final String xmlId = vecValueWithUnit.getXmlId();
+
+            // VecValueWithUnit -> VecUnit
+            final VecValueWithUnit unitWithValue = model.getIdLookup()
+                    .findById(VecValueWithUnit.class, xmlId)
+                    .orElse(null);
+            if (unitWithValue == null) {
+                return;
+            }
+            System.out.println("VecValueWithUnit from VecContent = VecValueWithUnit by id lookup? " +
+                                       (vecValueWithUnit.equals(unitWithValue)));
+            final VecUnit unitComponent = unitWithValue.getUnitComponent();
+            System.out.println(
+                    "VecUnit from VecContent = VecUnit by VecUnitByValue? " + (vecUnit.equals(unitComponent)));
+        }
     }
 
-    private void addDataToBuilder(final StringBuilder builder, final String name,
-                                  final String data, final boolean newLine)  {
+    private static void addDataToBuilder(final StringBuilder builder, final String name,
+                                         final String data, final boolean newLine) {
         builder.append(name).append(":");
-        if (data.isEmpty())  {
+        if (data.isEmpty()) {
             builder.append(" None");
-        }  else {
+        } else {
             builder
                     .append(System.lineSeparator())
                     .append(data);
@@ -192,42 +217,7 @@ public class MyVecReader {
         }
     }
 
-    public void getBackReferences(final String pathToFile) throws IOException, JAXBException {
-        try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
-                    new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
-                            .withBackReferences()
-                            .withIdMapper(Identifiable.class, Identifiable::getXmlId);
-
-            final JaxbModel<VecContent, Identifiable> model = unmarshaller
-                    .unmarshall(new BufferedInputStream(is));
-
-            final VecContent content = model.getRootElement();
-
-            // VecUnit -> VecValueWithUnit
-            final List<VecUnit> units = content.getUnits();
-            if (units.isEmpty())  {
-                return;
-            }
-            final VecUnit vecUnit = units.get(0);
-            final Set<VecValueWithUnit> refValueWithUnit = vecUnit.getRefValueWithUnit();
-            final VecValueWithUnit vecValueWithUnit = refValueWithUnit.stream().findFirst().orElse(null);
-            if (vecValueWithUnit == null)  {
-                return;
-            }
-            final String xmlId = vecValueWithUnit.getXmlId();
-
-            // VecValueWithUnit -> VecUnit
-            final VecValueWithUnit unitWithValue = model.getIdLookup()
-                    .findById(VecValueWithUnit.class, xmlId)
-                    .orElse(null);
-            if (unitWithValue == null)  {
-                return;
-            }
-            System.out.println("VecValueWithUnit from VecContent = VecValueWithUnit by id lookup? " +
-                    (vecValueWithUnit.equals(unitWithValue)));
-            final VecUnit unitComponent = unitWithValue.getUnitComponent();
-            System.out.println("VecUnit from VecContent = VecUnit by VecUnitByValue? " + (vecUnit.equals(unitComponent)));
-        }
+    private static void addDataToBuilder(final StringBuilder builder, final String name, final String data) {
+        addDataToBuilder(builder, name, data, true);
     }
 }

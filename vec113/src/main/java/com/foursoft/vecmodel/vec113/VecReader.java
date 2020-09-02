@@ -29,13 +29,18 @@ import com.foursoft.xml.io.read.XMLReader;
 import com.foursoft.xml.model.Identifiable;
 
 /**
- * a default implementation for a thread local stored VEC 113 reader. Validation events are logged to slf4j.
+ * A default implementation for a thread local stored VEC 113 reader. Validation events are logged to slf4j.
+ * If a custom event consumer is needed, derive from  @{@link XMLReader}
  */
 public final class VecReader extends XMLReader<VecContent, Identifiable> {
 
     private static final ThreadLocal<VecReader> localReader = ThreadLocal.withInitial(VecReader::new);
 
-    private VecReader() {
+    /**
+     * The default constructor. Creating an un-marshaller takes a lot of time, it is advised to use a cached version.
+     * Jaxb is not thread safe, so an new marshaller must be created for every thread.
+     */
+    public VecReader() {
         super(VecContent.class, Identifiable.class, Identifiable::getXmlId);
     }
 

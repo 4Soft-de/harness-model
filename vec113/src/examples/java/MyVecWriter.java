@@ -1,20 +1,11 @@
 import com.foursoft.vecmodel.vec113.*;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.transform.TransformerFactoryConfigurationError;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class MyVecWriter {
 
-    public void writeVecFile(final String target) throws JAXBException, TransformerFactoryConfigurationError, IOException {
-        final JAXBContext jc = JAXBContext.newInstance(VecContent.class);
+    public static void writeVecFile(final String target) throws IOException {
 
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
@@ -44,22 +35,10 @@ public class MyVecWriter {
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
-        final Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        final VecWriter localWriter = VecWriter.getLocalWriter();
 
-        final StringWriter stringWriter = new StringWriter();
-        marshaller.marshal(root, stringWriter);
-        final String result = stringWriter.toString();
-
-        final Path outPath = Paths.get(target).toAbsolutePath();
-        if (Files.notExists(outPath))  {
-            final Path parentFolder = outPath.getParent();
-            if (parentFolder != null && Files.notExists(parentFolder)) {
-                Files.createDirectory(parentFolder);
-            }
-            Files.createFile(outPath);
+        try (final FileOutputStream outputStream = new FileOutputStream(target)) {
+            localWriter.write(root, outputStream);
         }
-
-        Files.write(outPath, result.getBytes(StandardCharsets.UTF_8));
     }
 }

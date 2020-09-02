@@ -35,6 +35,8 @@ import java.util.function.Consumer;
  * a default implementation for a vec 113 writer
  */
 public final class VecWriter extends XMLWriter<VecContent> {
+    private static final ThreadLocal<VecWriter> localWriter = ThreadLocal.withInitial(
+            VecWriter::new);
 
     /**
      * create a default VecWriter with a default validation events logger {@link ValidationEventLogger}
@@ -50,5 +52,12 @@ public final class VecWriter extends XMLWriter<VecContent> {
      */
     public VecWriter(final Consumer<ValidationEvent> validationEventConsumer) {
         super(VecContent.class, validationEventConsumer);
+    }
+
+    /**
+     * @return a thread local VecWriter object
+     */
+    public static VecWriter getLocalWriter() {
+        return localWriter.get();
     }
 }
