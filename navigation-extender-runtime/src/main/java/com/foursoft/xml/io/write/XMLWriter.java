@@ -25,6 +25,7 @@
  */
 package com.foursoft.xml.io.write;
 
+import com.foursoft.xml.JaxbContextFactory;
 import com.foursoft.xml.io.utils.ValidationEventLogger;
 import com.foursoft.xml.io.utils.XMLIOException;
 
@@ -55,7 +56,8 @@ public class XMLWriter<T> {
                      final Consumer<ValidationEvent> validationEventConsumer) {
         this.baseType = baseType;
         try {
-            final JAXBContext jaxbContext = JAXBContext.newInstance(this.baseType);
+            final String packageName = this.baseType.getPackage().getName();
+            final JAXBContext jaxbContext = JaxbContextFactory.initializeContext(packageName);
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
