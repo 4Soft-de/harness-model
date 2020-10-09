@@ -1,4 +1,6 @@
 # JAXB enhanced navigation
+![Java CI with Maven](https://github.com/4Soft-de/jaxb-enhanced-navigation/workflows/Java%20CI%20with%20Maven/badge.svg?branch=develop) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=4Soft-de_jaxb-enhanced-navigation&metric=alert_status)](https://sonarcloud.io/dashboard?id=4Soft-de_jaxb-enhanced-navigation) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.jaxb2/navigation-extender-runtime/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.jaxb2)
+
 A library for enhanced navigations for JAXB models. It consists of two parts: An xjc-plugin (compile time) and a runtime component.
 
 ## Key Features are:
