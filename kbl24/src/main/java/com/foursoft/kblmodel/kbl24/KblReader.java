@@ -29,20 +29,38 @@ import com.foursoft.xml.io.read.XMLReader;
 import com.foursoft.xml.model.Identifiable;
 
 /**
- * a default implementation for a thread local stored KBL reader. Validation events are logged to slf4j.
+ * a default implementation for a KBL reader. Validation events are logged to slf4j.
+ * <p>
+ * In the past, this reader had a thread local singleton functionality in order to reuse
+ * the reader for repeated reads. This caused memory leaks in environments with thread
+ * pools (e.g. servlet container) as the JVM default {@link javax.xml.bind.Unmarshaller}
+ * implementation does not clean up internal states properly after unmarshalling is finished.
+ * Therefore the functionality has been dropped.
+ *</p>
+ * <p>
+ * The performance overhead of creating a new reader for each read is about 10% - 15% for
+ * repeated reads. The overhead is independent from the size of unmarshalled file. If this is an
+ * issue, you can manage your own singleton reader (it is <b>not thread-safe</b>, but can be reused).
+ *</p>
  */
 public final class KblReader extends XMLReader<KBLContainer, Identifiable> {
 
-    private static final ThreadLocal<KblReader> localReader = ThreadLocal.withInitial(KblReader::new);
 
-    private KblReader() {
+    /**
+     * Creates a new KBL reader.
+     */
+    public KblReader() {
         super(KBLContainer.class, Identifiable.class, Identifiable::getXmlId);
     }
 
     /**
-     * @return a thread local KblReader object
+     * @return a new KblReader for each call.
+     *
+     * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
+     *    own {@link KblReader} and cache it by yourself if necessary. Will be removed with a future release.
      */
+    @Deprecated
     public static KblReader getLocalReader() {
-        return localReader.get();
+        return new KblReader();
     }
 }

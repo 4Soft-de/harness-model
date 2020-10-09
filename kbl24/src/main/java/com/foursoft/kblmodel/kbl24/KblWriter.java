@@ -36,9 +36,6 @@ import java.util.function.Consumer;
  */
 public final class KblWriter extends XMLWriter<KBLContainer> {
 
-    private static final ThreadLocal<KblWriter> localWriter = ThreadLocal.withInitial(
-            KblWriter::new);
-
     /**
      * create a default KblWriter with a default validation events logger {@link ValidationEventLogger}
      */
@@ -57,10 +54,14 @@ public final class KblWriter extends XMLWriter<KBLContainer> {
     }
 
     /**
-     * @return a thread local KblWriter object
+     * @return a new KblWriter for each call.
+     *
+     * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
+     *    own {@link KblWriter} and cache it by yourself if necessary. Will be removed with a future release.
      */
+    @Deprecated
     public static KblWriter getLocalWriter() {
-        return localWriter.get();
+        return new KblWriter();
     }
 }
 
