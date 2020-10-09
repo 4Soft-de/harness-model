@@ -28,8 +28,17 @@ package com.foursoft.xml;
 import com.foursoft.xml.annotations.XmlBackReference;
 import com.foursoft.xml.annotations.XmlParent;
 import com.foursoft.xml.postprocessing.*;
+import com.sun.xml.bind.v2.util.XmlFactory;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.*;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.sax.SAXSource;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +46,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.logging.Level;
 
 /**
  * Provides extended unmarshalling capabilities for a JAXB model. Capabilities
@@ -64,6 +74,11 @@ public class ExtendedUnmarshaller<R, I> {
     private final List<IdLookupGeneratorPostProcessor<I>> idLookupGenerators = new ArrayList<>();
     private final Unmarshaller unmarshaller;
     private final Class<R> rootElement;
+
+    /**
+     * XMLReader that will be used to parse a document.
+     */
+    private XMLReader reader = null;
 
     public ExtendedUnmarshaller(final Class<R> rootElement) throws JAXBException {
         this.rootElement = rootElement;
@@ -150,7 +165,7 @@ public class ExtendedUnmarshaller<R, I> {
 
         unmarshaller.setListener(modelPostProcessorManager);
 
-        final R root = rootElement.cast(unmarshaller.unmarshal(resource));
+        final R root = rootElement.cast(unmarshaller.unmarshal(new SAXSource(getXMLReader(),new InputSource(resource))));
 
         modelPostProcessorManager.doPostProcessing();
 
@@ -199,6 +214,34 @@ public class ExtendedUnmarshaller<R, I> {
             Objects.requireNonNull(eventConsumer);
             this.eventConsumer = eventConsumer;
         }
+    }
+
+    /**
+     * Obtains a configured XMLReader.
+     *
+     * {@link Unmarshaller} is not re-entrant, so we will
+     * only use one instance of XMLReader.
+     *
+     * Overriden in order to fix potential security issue.
+     * See javax.xml.bind.helpers.AbstractUnmarshallerImpl#getXMLReader()
+     *
+     */
+    protected XMLReader getXMLReader() throws JAXBException {
+        if (reader == null) {
+            try {
+                SAXParserFactory factory = SAXParserFactory.newInstance();
+                factory.setNamespaceAware(true);
+                factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+                factory.setValidating(false);
+                SAXParser parser = factory.newSAXParser();
+                parser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD,"");
+                parser.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA,"");
+                reader = parser.getXMLReader();
+            } catch (ParserConfigurationException|SAXException e) {
+                throw new JAXBException(e);
+            }
+        }
+        return reader;
     }
 
 }
