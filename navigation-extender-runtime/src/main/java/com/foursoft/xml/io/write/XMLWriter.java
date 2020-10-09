@@ -42,6 +42,8 @@ import java.util.function.Consumer;
  */
 public class XMLWriter<T> {
 
+    private static final String NAMESPACE_PREFIX_MAPPER = "com.sun.xml.bind.namespacePrefixMapper";
+
     private final Class<T> baseType;
     private final Marshaller marshaller;
 
@@ -57,6 +59,7 @@ public class XMLWriter<T> {
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+            marshaller.setProperty(NAMESPACE_PREFIX_MAPPER, new NamespacePrefixMapperImpl());
             addEventHandler(marshaller, validationEventConsumer);
         } catch (final Exception e) {
             throw new XMLIOException("Cannot initialize unmarshaller.", e);
