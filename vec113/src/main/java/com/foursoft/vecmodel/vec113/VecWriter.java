@@ -35,8 +35,7 @@ import java.util.function.Consumer;
  * a default implementation for a vec 113 writer
  */
 public final class VecWriter extends XMLWriter<VecContent> {
-    private static final ThreadLocal<VecWriter> localWriter = ThreadLocal.withInitial(
-            VecWriter::new);
+
 
     /**
      * create a default VecWriter with a default validation events logger {@link ValidationEventLogger}
@@ -55,9 +54,13 @@ public final class VecWriter extends XMLWriter<VecContent> {
     }
 
     /**
-     * @return a thread local VecWriter object
+     * @return a new VecWriter for each call.
+     *
+     * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
+     *    own {@link VecWriter} and cache it by yourself if necessary. Will be removed with a future release.
      */
+    @Deprecated
     public static VecWriter getLocalWriter() {
-        return localWriter.get();
+        return new VecWriter();
     }
 }
