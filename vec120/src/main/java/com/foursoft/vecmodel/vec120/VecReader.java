@@ -31,20 +31,33 @@ import com.foursoft.xml.model.Identifiable;
 /**
  * A default implementation for a thread local stored VEC 120 reader. Validation events are logged to slf4j.
  * If a custom event consumer is needed, derive from  @{@link XMLReader}
+ * <p>
+ * In the past, this reader had a thread local singleton functionality in order to reuse
+ * the reader for repeated reads. This caused memory leaks in environments with thread
+ * pools (e.g. servlet container) as the JVM default {@link javax.xml.bind.Unmarshaller}
+ * implementation does not clean up internal states properly after unmarshalling is finished.
+ * Therefore the functionality has been dropped.
+ * </p>
+ * <p>
+ * The performance overhead of creating a new reader for each read is about 10% - 15% for
+ * repeated reads. The overhead is independent from the size of unmarshalled file. If this is an
+ * issue, you can manage your own singleton reader (it is <b>not thread-safe</b>, but can be reused).
+ * </p>
  */
 public final class VecReader extends XMLReader<VecContent, Identifiable> {
-
-    private static final ThreadLocal<VecReader> localReader = ThreadLocal.withInitial(
-            VecReader::new);
 
     public VecReader() {
         super(VecContent.class, Identifiable.class, Identifiable::getXmlId);
     }
 
     /**
-     * @return a thread local VecReader object
+     * @return a new VecReader for each call.
+     *
+     * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
+     *    own {@link VecReader} and cache it by yourself if necessary. Will be removed with a future release.
      */
+    @Deprecated
     public static VecReader getLocalReader() {
-        return localReader.get();
+        return new VecReader();
     }
 }
