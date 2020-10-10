@@ -72,7 +72,7 @@ class BasicWritingTest {
         final String result = vecWriter.writeToString(root);
         assertThat(result)
                 .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                                                     "<ns2:VecContent id=\"id_1000_0\" xmlns:ns2=\"http://www.prostep" +
+                                                     "<vec:VecContent id=\"id_1000_0\" xmlns:vec=\"http://www.prostep" +
                                                      ".org/ecad-if/2011/vec\">\n" +
                                                      "    <VecVersion>1.1.3</VecVersion>\n" +
                                                      "    <DocumentVersion>\n" +
@@ -84,7 +84,7 @@ class BasicWritingTest {
                                                      "        </Approval>\n" +
                                                      "        <DocumentNumber>123_456_789</DocumentNumber>\n" +
                                                      "        <Specification " +
-                                                     "xsi:type=\"ns2:ConnectorHousingCapSpecification\" " +
+                                                     "xsi:type=\"vec:ConnectorHousingCapSpecification\" " +
                                                      "id=\"id_2000_0\" xmlns:xsi=\"http://www.w3" +
                                                      ".org/2001/XMLSchema-instance\">\n" +
                                                      "            <Identification>Ccs-123_456_789-1</Identification" +
@@ -94,7 +94,7 @@ class BasicWritingTest {
                                                      "    <PartVersion id=\"id_1001_0\">\n" +
                                                      "        <PartNumber>123_456_789</PartNumber>\n" +
                                                      "    </PartVersion>\n" +
-                                                     "</ns2:VecContent>");
+                                                     "</vec:VecContent>");
     }
 
 }
