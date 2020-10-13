@@ -1,6 +1,7 @@
 ---
 name: Question
 about: Have a question regarding the VEC?
+labels: "question"
 ---
 
 ## General Troubleshooting
