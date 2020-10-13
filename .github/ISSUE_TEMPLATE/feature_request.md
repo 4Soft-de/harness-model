@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Do you want to request a new feature for our VEC model?
+about: Want to request a new feature for our VEC model?
 ---
 
 ## General Troubleshooting
