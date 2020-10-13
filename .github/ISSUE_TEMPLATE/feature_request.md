@@ -1,4 +1,4 @@
-﻿---
+---
 name: Feature Request
 about: Request a new feature for our VEC model
 ---
