@@ -49,12 +49,15 @@ or code formatter, so a vanilla installation of your IDE is fine for it. If you 
 don't break the format, so the diffs only contain the real changes.
 
 #### Rules in general
+- Use [Semantic Commits](https://www.conventionalcommits.org/).
 - Put curly braces on the same line as the code is, don't put them on a new line (as you would do in C#).
 - Use an indentation of 4 spaces instead of tabs.
 - Variables should be final wherever possible.
 - Follow code conventions when writing code.
 - Only use the lowest visibility modifier (public, protected, package, private) possible. 
 - JavaDoc for public method is required, for the rest its optional.
+
+For your information, we will **squash merge** your pull request into the project to make the commits list as short as possible (linear history).
 
 #### Example
 ##### Bad
