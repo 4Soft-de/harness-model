@@ -1,6 +1,7 @@
 ---
 name: Question
 about: Have a question regarding KBL?
+labels: "question"
 ---
 
 ## General Troubleshooting
