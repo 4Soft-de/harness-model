@@ -1,6 +1,7 @@
 ---
 name: Question
 about: Have a question regarding our enhanced XML navigator?
+labels: "question"
 ---
 
 ## General Troubleshooting
