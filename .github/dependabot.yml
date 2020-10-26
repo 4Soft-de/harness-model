@@ -1,0 +1,16 @@
+version: 2
+updates:
+  # Enable dependency updates for Maven
+  - package-ecosystem: "maven"
+    # Look for the pom.xml in the root folder
+    directory: "/"
+    schedule:
+      # Daily Updates (time can be set via. `time: "02:00"` under `interval`)
+      interval: "daily"
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      
+# Full reference: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/configuration-options-for-dependency-updates#configuration-options-for-dependabotyml
