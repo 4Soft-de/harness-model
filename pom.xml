@@ -22,7 +22,7 @@
         <maven-core.version>3.6.3</maven-core.version>
         <assertj-core.version>3.18.0</assertj-core.version>
         <logback-classic.version>1.2.3</logback-classic.version>
-        <junit.jupiter.version>5.6.2</junit.jupiter.version>
+        <junit.jupiter.version>5.7.0</junit.jupiter.version>
         <jaxb2_commons.version>1.11.1</jaxb2_commons.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb.version>2.3.3</jaxb.version>
