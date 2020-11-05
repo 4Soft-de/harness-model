@@ -24,6 +24,7 @@
         <jaxb-core.version>2.3.0.1</jaxb-core.version>
         <jaxb.version>2.3.3</jaxb.version>
         <javax.annotation.version>1.3.2</javax.annotation.version>
+        <maven-core.version>3.6.3</maven-core.version>
 
         <!-- Plugins -->
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
@@ -122,6 +123,13 @@
             <dependency>
                 <groupId>com.sun.xml.bind</groupId>
                 <artifactId>jaxb-impl</artifactId>
+                <scope>provided</scope>
+                <version>${jaxb.version}</version>
+            </dependency>
+            <!-- JAXB-->
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-xjc</artifactId>
                 <scope>provided</scope>
                 <version>${jaxb.version}</version>
             </dependency>
