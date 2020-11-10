@@ -4,7 +4,7 @@
 
     <groupId>com.foursoft.jaxb2</groupId>
     <artifactId>jaxb-parent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>jaxb-parent-pom</name>
     <description>Parent POM of all 4Soft JAXB / XML Modules</description>
