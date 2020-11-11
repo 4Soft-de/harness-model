@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,17 +23,17 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.write.xmlmeta;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * with comments the formatting doesn't work, this adds the formatting back.
+ * with meta the formatting doesn't work, this adds the formatting back.
  */
-public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
+public class XMLMetaAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
 
-    CommentAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
+    public XMLMetaAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
         super(xmlStreamWriter);
     }
 
@@ -43,4 +43,6 @@ public class CommentAwareXMLStreamWriter extends com.sun.xml.txw2.output.Indenti
         writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
         super.writeComment(data);
     }
+
+
 }

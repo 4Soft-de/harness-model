@@ -28,10 +28,17 @@ package com.foursoft.xml.io.write;
 import com.foursoft.xml.JaxbContextFactory;
 import com.foursoft.xml.io.utils.ValidationEventLogger;
 import com.foursoft.xml.io.utils.XMLIOException;
+import com.foursoft.xml.io.write.xmlmeta.MarshallerListener;
+import com.foursoft.xml.io.write.xmlmeta.XMLMeta;
+import com.foursoft.xml.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
+import com.foursoft.xml.io.write.xmlmeta.comments.CommentAdderListener;
+import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
+import com.foursoft.xml.io.write.xmlmeta.processinginstructions.ProcessingInstructionAdderListener;
 
 import javax.xml.bind.*;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
@@ -68,6 +75,17 @@ public class XMLWriter<T> {
         }
     }
 
+    private static void addEventHandler(final Marshaller marshaller,
+                                        final Consumer<ValidationEvent> validationEventConsumer)
+            throws JAXBException {
+        final ValidationEventHandler eventHandler = marshaller.getEventHandler();
+        marshaller.setEventHandler(event -> {
+            validationEventConsumer.accept(event);
+            return eventHandler.handleEvent(event);
+        });
+
+    }
+
     /**
      * write the JAXB model to an output stream
      *
@@ -83,10 +101,24 @@ public class XMLWriter<T> {
      *
      * @param container    the jaxb model to deserialize into the given stream
      * @param outputStream the output to write to
+     * @param meta         additional meta information which should be added to output {@link XMLMeta}
+     */
+    public void write(final T container, final XMLMeta meta, final OutputStream outputStream) {
+        write(container, meta, new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
+    }
+
+    /**
+     * write the JAXB model to an output stream
+     *
+     * @param container    the jaxb model to deserialize into the given stream
+     * @param outputStream the output to write to
      * @param comments     additional comments which should be added to output {@link Comments}
      */
+    @Deprecated
     public void write(final T container, final Comments comments, final OutputStream outputStream) {
-        write(container, comments, new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
+        final XMLMeta meta = new XMLMeta();
+        meta.setComments(comments);
+        write(container, meta, new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
     }
 
     /**
@@ -96,9 +128,12 @@ public class XMLWriter<T> {
      * @param comments  additional comments which should be added to output {@link Comments}
      * @return the model as xml string
      */
+    @Deprecated
     public String writeToString(final T container, final Comments comments) {
+        final XMLMeta meta = new XMLMeta();
+        meta.setComments(comments);
         try (final StringWriter stringWriter = new StringWriter()) {
-            write(container, comments, stringWriter);
+            write(container, meta, stringWriter);
             return stringWriter.toString();
         } catch (final Exception e) {
             throw new XMLIOException("Error serializing objects to XML.", e);
@@ -120,24 +155,22 @@ public class XMLWriter<T> {
         }
     }
 
-    private static void addEventHandler(final Marshaller marshaller,
-                                        final Consumer<ValidationEvent> validationEventConsumer)
-            throws JAXBException {
-        final ValidationEventHandler eventHandler = marshaller.getEventHandler();
-        marshaller.setEventHandler(event -> {
-            validationEventConsumer.accept(event);
-            return eventHandler.handleEvent(event);
-        });
-
-    }
-
-    private void write(final T container, final Comments comments, final Writer output) {
+    private void write(final T container, final XMLMeta meta, final Writer output) {
         final XMLOutputFactory xof = XMLOutputFactory.newFactory();
         try {
-            final CommentAwareXMLStreamWriter xsw = new CommentAwareXMLStreamWriter(xof.createXMLStreamWriter(output));
-            marshaller.setListener(new CommentAdderListener(xsw, comments));
+            final XMLStreamWriter xmlStreamWriter = xof.createXMLStreamWriter(output);
+            final XMLMetaAwareXMLStreamWriter xsw = new XMLMetaAwareXMLStreamWriter(xmlStreamWriter);
+
+            final MarshallerListener marshallerListener = new MarshallerListener();
+            marshaller.setListener(marshallerListener);
+            meta.getComments().ifPresent(c -> marshallerListener.addListener(new CommentAdderListener(xsw, c)));
+            meta.getProcessingInstructions()
+                    .ifPresent(c -> marshallerListener.addListener(new ProcessingInstructionAdderListener(xmlStreamWriter, c)));
+
             marshaller.marshal(container, xsw);
             xsw.close();
+            marshallerListener.clear();
+
         } catch (final XMLStreamException | JAXBException e) {
             throw new XMLIOException("Error serializing XML file.", e);
         }

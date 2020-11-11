@@ -23,40 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.write.xmlmeta;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
+import com.foursoft.xml.io.write.xmlmeta.processinginstructions.ProcessingInstructions;
+
 import java.util.Optional;
 
 /**
- * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
- * and added directly before the xml-element.
- * e.g. if a Root-class exists which is serialized to &lt;Root&gt;&lt;/Root&gt;
- * the following code:
- * Root root = new Root();
- * Comments comments = new Comments();
- * comments.put(root, "TestComment");
- * XMLWriter::write(root, comments);
- * would result in:
- * &lt;!-- TestComment --&gt;
- * &lt;Root&gt;&lt;/Root&gt;
+ * The meta extends the XML to be written with user-defined processing instructions and comments
  */
-public class Comments {
-    private final Map<Object, String> map = new HashMap<>();
+public class XMLMeta {
 
-    public boolean containsKey(final Object key) {
-        return map.containsKey(key);
+    private Comments comments;
+    private ProcessingInstructions processingInstructions;
+
+    public Optional<Comments> getComments() {
+        return Optional.ofNullable(comments);
     }
 
-    public Optional<String> get(final Object key) {
-        return Optional.ofNullable(map.get(key));
+    public void setComments(final Comments comments) {
+        this.comments = comments;
     }
 
-    public void put(final Object key, final String comment) {
-        Objects.requireNonNull(key);
-        Objects.requireNonNull(comment);
-        map.put(key, comment);
+    public Optional<ProcessingInstructions> getProcessingInstructions() {
+        return Optional.ofNullable(processingInstructions);
+    }
+
+    public void setProcessingInstructions(final ProcessingInstructions processingInstructions) {
+        this.processingInstructions = processingInstructions;
     }
 }

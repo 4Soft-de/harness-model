@@ -23,39 +23,40 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.write.xmlmeta.comments;
 
-import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
-import org.junit.jupiter.api.Test;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+/**
+ * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
+ * and added directly before the xml-element.
+ * e.g. if a Root-class exists which is serialized to &lt;Root&gt;&lt;/Root&gt;
+ * the following code:
+ * Root root = new Root();
+ * Comments comments = new Comments();
+ * comments.put(root, "TestComment");
+ * XMLWriter::write(root, comments);
+ * would result in:
+ * &lt;!-- TestComment --&gt;
+ * &lt;Root&gt;&lt;/Root&gt;
+ */
+public class Comments {
+    private final Map<Object, String> map = new HashMap<>();
 
-class CommentsTest {
-
-    @Test
-    void containsKey() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        assertTrue(comments.containsKey("a"));
-        assertFalse(comments.containsKey("b"));
+    public boolean containsKey(final Object key) {
+        return map.containsKey(key);
     }
 
-    @Test
-    void get() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        final Optional<String> actual = comments.get("a");
-        assertTrue(actual.isPresent());
-        assertEquals("b", actual.get());
+    public Optional<String> get(final Object key) {
+        return Optional.ofNullable(map.get(key));
     }
 
-    @Test
-    void getMissing() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        final Optional<String> actual = comments.get("b");
-        assertFalse(actual.isPresent());
+    public void put(final Object key, final String comment) {
+        Objects.requireNonNull(key);
+        Objects.requireNonNull(comment);
+        map.put(key, comment);
     }
 }

@@ -23,39 +23,36 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.write.xmlmeta.processinginstructions;
 
-import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
-import org.junit.jupiter.api.Test;
+/**
+ * ProcessingInstruction defines an XML processing instruction
+ */
+public class ProcessingInstruction {
 
-import java.util.Optional;
+    private final String data;
+    private String target;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class CommentsTest {
-
-    @Test
-    void containsKey() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        assertTrue(comments.containsKey("a"));
-        assertFalse(comments.containsKey("b"));
+    public ProcessingInstruction(final String target) {
+        this(target, "");
     }
 
-    @Test
-    void get() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        final Optional<String> actual = comments.get("a");
-        assertTrue(actual.isPresent());
-        assertEquals("b", actual.get());
+    public ProcessingInstruction(final String target, final String data) {
+        this.target = target;
+        this.data = data;
     }
 
-    @Test
-    void getMissing() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        final Optional<String> actual = comments.get("b");
-        assertFalse(actual.isPresent());
+    public String getTarget() {
+        return target;
     }
+
+    public void setTarget(final String target) {
+        this.target = target;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+
 }

@@ -23,39 +23,39 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.write.xmlmeta.comments;
 
-import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
-import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.xml.bind.Marshaller.Listener;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class CommentAdderListener extends Listener {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommentAdderListener.class);
+    private final XMLStreamWriter xsw;
+    private final Comments comments;
 
-class CommentsTest {
-
-    @Test
-    void containsKey() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        assertTrue(comments.containsKey("a"));
-        assertFalse(comments.containsKey("b"));
+    /**
+     * @param xsw      the xml stream writer
+     * @param comments map of xjc objects and comment strings
+     */
+    public CommentAdderListener(final XMLStreamWriter xsw, final Comments comments) {
+        this.xsw = xsw;
+        this.comments = comments;
     }
 
-    @Test
-    void get() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        final Optional<String> actual = comments.get("a");
-        assertTrue(actual.isPresent());
-        assertEquals("b", actual.get());
-    }
-
-    @Test
-    void getMissing() {
-        final Comments comments = new Comments();
-        comments.put("a", "b");
-        final Optional<String> actual = comments.get("b");
-        assertFalse(actual.isPresent());
+    @Override
+    public void beforeMarshal(final Object source) {
+        final Optional<String> comment = comments.get(source);
+        if (comment.isPresent()) {
+            try {
+                xsw.writeComment(comment.get());
+            } catch (final XMLStreamException e) {
+                LOGGER.warn("Ignored Exception while writing comments:", e);
+            }
+        }
     }
 }

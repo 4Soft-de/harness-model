@@ -30,6 +30,10 @@ import com.foursoft.test.model.ChildB;
 import com.foursoft.test.model.Root;
 import com.foursoft.xml.io.TestData;
 import com.foursoft.xml.io.utils.ValidationEventCollector;
+import com.foursoft.xml.io.write.xmlmeta.XMLMeta;
+import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
+import com.foursoft.xml.io.write.xmlmeta.processinginstructions.ProcessingInstruction;
+import com.foursoft.xml.io.write.xmlmeta.processinginstructions.ProcessingInstructions;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -82,7 +86,7 @@ class XMLWriterTest {
 
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
         assertThrows(NullPointerException.class, () -> xmlWriter.writeToString(root),
-                     "Jaxb throws a nullpointer exception if the model is invalid");
+                "Jaxb throws a nullpointer exception if the model is invalid");
 
     }
 
@@ -104,14 +108,23 @@ class XMLWriterTest {
         final Root root = TestData.readBasicTest();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
+        final XMLMeta meta = new XMLMeta();
         final Comments comments = new Comments();
+        meta.setComments(comments);
         final String expectedComment = "Blafasel";
         comments.put(root.getChildA().get(0), expectedComment);
+
+        final ProcessingInstructions processingInstructions = new ProcessingInstructions();
+        final ProcessingInstruction processingInstruction = new ProcessingInstruction("pc", "\"checksum=sum\"");
+        processingInstructions.put(root, processingInstruction);
+        meta.setProcessingInstructions(processingInstructions);
+
         try (final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()) {
-            xmlWriter.write(root, comments, byteOutputStream);
+            xmlWriter.write(root, meta, byteOutputStream);
             final String result = byteOutputStream.toString();
             assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
             Assertions.assertThat(result).contains(expectedComment);
+            Assertions.assertThat(result).contains(processingInstruction.getData());
         }
     }
 

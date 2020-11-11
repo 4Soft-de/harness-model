@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,39 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io.write;
+package com.foursoft.xml.io.write.xmlmeta.processinginstructions;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.*;
 
-import javax.xml.bind.Marshaller.Listener;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
-import java.util.Optional;
+/**
+ * ProcessingInstructions allows adding XML-ProcessingInstructions to the output file. The ProcessingInstructions are linked to JAXB elements
+ * and added directly before the xml-element.
+ */
+public class ProcessingInstructions {
 
-public class CommentAdderListener extends Listener {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CommentAdderListener.class);
-    private final XMLStreamWriter xsw;
-    private final Comments comments;
+    private final Map<Object, List<ProcessingInstruction>> map = new HashMap<>();
 
-    /**
-     * @param xsw the xml stream writer
-     * @param comments map of xjc objects and comment strings
-     */
-    public CommentAdderListener(final XMLStreamWriter xsw, final Comments comments) {
-        this.xsw = xsw;
-        this.comments = comments;
+    public boolean containsKey(final Object key) {
+        return map.containsKey(key);
     }
 
-    @Override
-    public void beforeMarshal(final Object source) {
-        final Optional<String> comment = comments.get(source);
-        if (comment.isPresent()) {
-            try {
-                xsw.writeComment(comment.get());
-            } catch (final XMLStreamException e) {
-                LOGGER.warn("Ignored Exception while writing comments:", e);
-            }
-        }
+    public List<ProcessingInstruction> get(final Object key) {
+        return map.getOrDefault(key, Collections.emptyList());
     }
+
+    public void put(final Object key, final List<ProcessingInstruction> processingInstruction) {
+        Objects.requireNonNull(key);
+        map.put(key, processingInstruction);
+    }
+
+    public void put(final Object key, final ProcessingInstruction... processingInstruction) {
+        Objects.requireNonNull(key);
+        map.put(key, Arrays.asList(processingInstruction));
+    }
+
 }

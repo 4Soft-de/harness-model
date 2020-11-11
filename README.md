@@ -17,6 +17,28 @@ The last point was the main driver for this project and has helped us a lot. Wit
 The get a better understanding of this lib please have a look at our blog post about it based on a real project.
 https://www.4soft.de/blog/2018/navigation-on-large-xml-structures/
 
+### Extend files to be written with metadata
+It is possible to extend the xml-file to write with comments or processing instructions
+```java
+final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
+final XMLMeta meta = new XMLMeta();
+
+final Comments comments = new Comments();
+meta.setComments(comments);
+comments.put(root, "Comment");
+
+
+final List<ProcessingInstruction> pis = new ArrayList<>();
+pis.add(new ProcessingInstruction("pc", "checksum=\"12345\""));
+
+final ProcessingInstructions processingInstructions = new ProcessingInstructions();
+processingInstructions.put(root, pis);
+meta.setProcessingInstructions(processingInstructions);
+
+try (final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()) {
+    xmlWriter.write(root, meta, byteOutputStream);
+}
+```
 ## Limitations
 There is one major limitation of this project - it can only be used in read-only usecases! Non of the data structure are updated (parent, back-navigation, id-lookup, etc). 
 
