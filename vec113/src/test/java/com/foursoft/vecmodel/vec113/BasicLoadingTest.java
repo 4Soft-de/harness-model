@@ -27,6 +27,7 @@ package com.foursoft.vecmodel.vec113;
 
 import com.foursoft.xml.ExtendedUnmarshaller;
 import com.foursoft.xml.JaxbModel;
+import com.foursoft.xml.io.utils.ValidationEventLogger;
 import com.foursoft.xml.model.Identifiable;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
@@ -49,10 +50,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BasicLoadingTest {
 
     @Test
-    void testLoadModel() throws Exception {
+    void testLoadModel() {
         final VecContent vecContent = new VecReader().read(TestFiles.getInputStream(TestFiles.SAMPLE_VEC));
         assertThat(vecContent).isNotNull();
+    }
 
+    @Test
+    void testLoadModelWithEventLogger() {
+        final ValidationEventLogger validationEventLogger = new ValidationEventLogger();
+        final VecContent vecContent = new VecReader(validationEventLogger).read(TestFiles.getInputStream(TestFiles.SAMPLE_VEC));
+        assertThat(vecContent).isNotNull();
     }
 
     @Test

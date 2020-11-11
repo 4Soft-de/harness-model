@@ -28,6 +28,9 @@ package com.foursoft.vecmodel.vec113;
 import com.foursoft.xml.io.read.XMLReader;
 import com.foursoft.xml.model.Identifiable;
 
+import javax.xml.bind.ValidationEvent;
+import java.util.function.Consumer;
+
 /**
  * A default implementation for a thread local stored VEC 113 reader. Validation events are logged to slf4j.
  * If a custom event consumer is needed, derive from  @{@link XMLReader}
@@ -46,18 +49,26 @@ import com.foursoft.xml.model.Identifiable;
  */
 public final class VecReader extends XMLReader<VecContent, Identifiable> {
 
-        /**
-     * The default constructor.
+    /**
+     * Creates a new VEC reader.
      */
     public VecReader() {
         super(VecContent.class, Identifiable.class, Identifiable::getXmlId);
     }
 
     /**
-     * @return a new VecReader for each call.
+     * Creates a new VEC reader.
      *
+     * @param validationEventConsumer a consumer for validation events
+     */
+    public VecReader(final Consumer<ValidationEvent> validationEventConsumer) {
+        super(VecContent.class, Identifiable.class, Identifiable::getXmlId, validationEventConsumer);
+    }
+
+    /**
+     * @return a new VecReader for each call.
      * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
-     *    own {@link VecReader} and cache it by yourself if necessary. Will be removed with a future release.
+     * own {@link VecReader} and cache it by yourself if necessary. Will be removed with a future release.
      */
     @Deprecated
     public static VecReader getLocalReader() {
