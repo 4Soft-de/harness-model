@@ -28,6 +28,9 @@ package com.foursoft.kblmodel.kbl24;
 import com.foursoft.xml.io.read.XMLReader;
 import com.foursoft.xml.model.Identifiable;
 
+import javax.xml.bind.ValidationEvent;
+import java.util.function.Consumer;
+
 /**
  * a default implementation for a KBL reader. Validation events are logged to slf4j.
  * <p>
@@ -51,6 +54,15 @@ public final class KblReader extends XMLReader<KBLContainer, Identifiable> {
      */
     public KblReader() {
         super(KBLContainer.class, Identifiable.class, Identifiable::getXmlId);
+    }
+
+    /**
+     * Creates a new KBL reader.
+     *
+     * @param validationEventConsumer a consumer for validation events
+     */
+    public KblReader(final Consumer<ValidationEvent> validationEventConsumer) {
+        super(KBLContainer.class, Identifiable.class, Identifiable::getXmlId, validationEventConsumer);
     }
 
     /**
