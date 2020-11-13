@@ -20,10 +20,17 @@
         <jxb:property name="xmlId"/>
     </jxb:bindings>
 
-    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Identification']]">
-        <inheritance:implements>com.foursoft.vecmodel.vec113.common.HasIdentification</inheritance:implements>
-    </jxb:bindings>
+     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Identification']]">
+         <inheritance:implements>com.foursoft.vecmodel.common.HasIdentification</inheritance:implements>
+     </jxb:bindings>
 
+     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description' and @type='vec:AbstractLocalizedString']]">
+         <inheritance:implements>com.foursoft.vecmodel.common.HasDescription&lt;com.foursoft.vecmodel.vec113.VecAbstractLocalizedString&gt;</inheritance:implements>
+     </jxb:bindings>
+
+     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description' and @type='vec:LocalizedString']]">
+          <inheritance:implements>com.foursoft.vecmodel.common.HasDescription&lt;com.foursoft.vecmodel.vec113.VecLocalizedString&gt;</inheritance:implements>
+     </jxb:bindings>
 
     <jxb:bindings node="//xs:complexType[@name='DocumentVersion']">
         <dg:delegate class="com.foursoft.vecmodel.vec113.delegate.VecDocumentVersionDelegate">

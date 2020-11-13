@@ -64,6 +64,7 @@
         <module>vec113-assertions</module>
         <module>vec120</module>
         <module>vec120-assertions</module>
+        <module>vec-common</module>
     </modules>
 
     <developers>
