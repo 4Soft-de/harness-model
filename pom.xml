@@ -22,7 +22,7 @@
         <java.version>1.8</java.version>
 
         <!-- Dependencies -->
-        <navigation-extender.version>1.1.2</navigation-extender.version>
+        <navigation-extender.version>1.2.0</navigation-extender.version>
 
 
         <!-- Plugins -->
