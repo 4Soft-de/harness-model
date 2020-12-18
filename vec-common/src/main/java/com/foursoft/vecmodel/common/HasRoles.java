@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec120
+ * vec-common
  * %%
  * Copyright (C) 2020 4Soft GmbH
  * %%
@@ -23,18 +23,17 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.delegate;
+package com.foursoft.vecmodel.common;
+
+import com.foursoft.vecmodel.common.util.DelegationUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-class DelegationUtils {
+public interface HasRoles<X> {
 
-    public static <T extends X, X> List<T> getFromListWithType(final List<X> source, final Class<T> type)  {
-        return source.stream()
-                .filter(type::isInstance)
-                .map(type::cast)
-                .collect(Collectors.toList());
+    List<X> getRoles();
+
+    default <T extends X> List<T> getRolesWithType(final Class<T> type) {
+        return DelegationUtils.getFromListWithType(getRoles(), type);
     }
-
 }

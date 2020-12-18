@@ -32,25 +32,12 @@
           <inheritance:implements>com.foursoft.vecmodel.common.HasDescription&lt;com.foursoft.vecmodel.vec120.VecLocalizedString&gt;</inheritance:implements>
      </jxb:bindings>
 
-    <jxb:bindings node="//xs:complexType[@name='DocumentVersion']">
-        <dg:delegate class="com.foursoft.vecmodel.vec120.delegate.VecDocumentVersionDelegate">
-            <dg:method name="getSpecificationsWithType" type="java.util.List&lt;T&gt;"
-                modifiers="public synchronized">
-                <dg:type-param name="T" extends="VecSpecification"/>
-                <dg:param name="type" type="java.lang.Class&lt;T&gt;"/>
-            </dg:method>
-        </dg:delegate>
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Specification' and @type='vec:Specification']]">
+       <inheritance:implements>com.foursoft.vecmodel.common.HasSpecifications&lt;com.foursoft.vecmodel.vec120.VecSpecification&gt;</inheritance:implements>
     </jxb:bindings>
 
-    <jxb:bindings node="//xs:complexType[@name='OccurrenceOrUsage']">
-        <dg:delegate class="com.foursoft.vecmodel.vec120.delegate.VecOccurrenceOrUsageDelegate">
-            <dg:method name="getRolesWithType" type="java.util.List&lt;T&gt;"
-                modifiers="public synchronized">
-                <dg:type-param name="T" extends="VecRole"/>
-                <dg:param name="type" type="java.lang.Class&lt;T&gt;"/>
-            </dg:method>
-        </dg:delegate>
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Role' and @type='vec:Role']]">
+       <inheritance:implements>com.foursoft.vecmodel.common.HasRoles&lt;com.foursoft.vecmodel.vec120.VecRole&gt;</inheritance:implements>
     </jxb:bindings>
-
 
 </jxb:bindings>

@@ -147,7 +147,7 @@ More examples can be found in the examples of each module:
 public class MyVecReader {
     public void readVecFile(final String pathToFile) throws JAXBException, IOException  {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final VecReader localReader = VecReader.getLocalReader();
+            final VecReader localReader = new VecReader();
             final JaxbModel<VecContent, Identifiable> model = localReader.readModel(is);
     
             final VecApproval approval = model.getIdLookup()
@@ -201,7 +201,7 @@ public class MyVecWriter {
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
-        final VecWriter localWriter = VecWriter.getLocalWriter();
+        final VecWriter localWriter = new VecWriter();
 
         try (final FileOutputStream outputStream = new FileOutputStream(target)) {
             localWriter.write(root, outputStream);
