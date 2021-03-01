@@ -113,6 +113,8 @@ public class XMLWriter<T> {
      * @param container    the jaxb model to deserialize into the given stream
      * @param outputStream the output to write to
      * @param comments     additional comments which should be added to output {@link Comments}
+     *
+     * @deprecated Use {@link #write(T, XMLMeta, OutputStream)} and {@link XMLMeta#setComments(Comments)} instead.
      */
     @Deprecated
     public void write(final T container, final Comments comments, final OutputStream outputStream) {
@@ -127,17 +129,14 @@ public class XMLWriter<T> {
      * @param container the jaxb model to deserialize into the given stream
      * @param comments  additional comments which should be added to output {@link Comments}
      * @return the model as xml string
+     *
+     * @deprecated Use {@link #writeToString(T, XMLMeta)} and {@link XMLMeta#setComments(Comments)} instead.
      */
     @Deprecated
     public String writeToString(final T container, final Comments comments) {
         final XMLMeta meta = new XMLMeta();
         meta.setComments(comments);
-        try (final StringWriter stringWriter = new StringWriter()) {
-            write(container, meta, stringWriter);
-            return stringWriter.toString();
-        } catch (final Exception e) {
-            throw new XMLIOException("Error serializing objects to XML.", e);
-        }
+        return writeToString(container, meta);
     }
 
     /**
@@ -147,12 +146,22 @@ public class XMLWriter<T> {
      * @return the model as xml string
      */
     public String writeToString(final T container) {
-        try (final StringWriter stringWriter = new StringWriter()) {
-            write(container, stringWriter);
-            return stringWriter.toString();
-        } catch (final IOException e) {
-            throw new XMLIOException("Error serializing objects to XML", e);
-        }
+        final StringWriter stringWriter = new StringWriter();
+        write(container, stringWriter);
+        return stringWriter.toString();
+    }
+
+    /**
+     * Write the JAXB model to a String. Allows Meta Data as like as comments to be passed with.
+     *
+     * @param container the jaxb model to deserialize into the given stream
+     * @param meta      additional meta information which should be added to output {@link XMLMeta}
+     * @return the model as xml string
+     */
+    public String writeToString(final T container, final XMLMeta meta) {
+        final StringWriter stringWriter = new StringWriter();
+        write(container, meta, stringWriter);
+        return stringWriter.toString();
     }
 
     private void write(final T container, final XMLMeta meta, final Writer output) {

@@ -63,7 +63,9 @@ class XMLWriterTest {
         final Comments comments = new Comments();
         final String expectedComment = "Blafasel";
         comments.put(root.getChildA().get(0), expectedComment);
-        final String result = xmlWriter.writeToString(root, comments);
+        final XMLMeta xmlMeta = new XMLMeta();
+        xmlMeta.setComments(comments);
+        final String result = xmlWriter.writeToString(root, xmlMeta);
         assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
         Assertions.assertThat(result).contains(expectedComment);
     }
