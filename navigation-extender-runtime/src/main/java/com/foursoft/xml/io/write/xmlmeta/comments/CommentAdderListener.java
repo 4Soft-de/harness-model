@@ -25,24 +25,24 @@
  */
 package com.foursoft.xml.io.write.xmlmeta.comments;
 
+import com.foursoft.xml.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.Marshaller.Listener;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
 import java.util.Optional;
 
 public class CommentAdderListener extends Listener {
     private static final Logger LOGGER = LoggerFactory.getLogger(CommentAdderListener.class);
-    private final XMLStreamWriter xsw;
+    private final XMLMetaAwareXMLStreamWriter xsw;
     private final Comments comments;
 
     /**
      * @param xsw      the xml stream writer
      * @param comments map of xjc objects and comment strings
      */
-    public CommentAdderListener(final XMLStreamWriter xsw, final Comments comments) {
+    public CommentAdderListener(final XMLMetaAwareXMLStreamWriter xsw, final Comments comments) {
         this.xsw = xsw;
         this.comments = comments;
     }
@@ -52,7 +52,8 @@ public class CommentAdderListener extends Listener {
         final Optional<String> comment = comments.get(source);
         if (comment.isPresent()) {
             try {
-                xsw.writeComment(comment.get());
+                boolean rootElement = source.getClass().equals(xsw.getBaseType());
+                xsw.writeComment(comment.get(), rootElement);
             } catch (final XMLStreamException e) {
                 LOGGER.warn("Ignored Exception while writing comments:", e);
             }

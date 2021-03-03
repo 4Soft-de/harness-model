@@ -33,21 +33,45 @@ import javax.xml.stream.XMLStreamWriter;
  */
 public class XMLMetaAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
 
-    public XMLMetaAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
+    private final Class<?> baseType;
+
+    public XMLMetaAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter, final Class<?> baseType) {
         super(xmlStreamWriter);
+        this.baseType = baseType;
+    }
+
+    public Class<?> getBaseType() {
+        return baseType;
     }
 
     @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+    public void writeComment(final String data) throws XMLStreamException {
+        writeComment(data, false);
+    }
+
+    public void writeComment(String data, boolean rootElement) throws XMLStreamException {
+        if (rootElement)  {
+            super.writeComment(data);
+            writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+        }  else  {
+            writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+            super.writeComment(data);
+        }
     }
 
     @Override
     public void writeProcessingInstruction(String target, String data) throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeProcessingInstruction(target, data);
+        writeProcessingInstruction(target, data, false);
+    }
+
+    public void writeProcessingInstruction(String target, String data, boolean rootElement) throws XMLStreamException {
+        if (rootElement)  {
+            super.writeProcessingInstruction(target, data);
+            writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+        }  else  {
+            writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+            super.writeProcessingInstruction(target, data);
+        }
     }
 
 }

@@ -168,7 +168,7 @@ public class XMLWriter<T> {
         final XMLOutputFactory xof = XMLOutputFactory.newFactory();
         try {
             final XMLStreamWriter xmlStreamWriter = xof.createXMLStreamWriter(output);
-            final XMLMetaAwareXMLStreamWriter xsw = new XMLMetaAwareXMLStreamWriter(xmlStreamWriter);
+            final XMLMetaAwareXMLStreamWriter xsw = new XMLMetaAwareXMLStreamWriter(xmlStreamWriter, baseType);
 
             final MarshallerListener marshallerListener = new MarshallerListener();
             marshaller.setListener(marshallerListener);
