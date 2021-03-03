@@ -40,16 +40,13 @@ public class XMLMetaAwareXMLStreamWriter extends com.sun.xml.txw2.output.Indenti
         this.baseType = baseType;
     }
 
-    public Class<?> getBaseType() {
-        return baseType;
-    }
-
     @Override
     public void writeComment(final String data) throws XMLStreamException {
-        writeComment(data, false);
+        writeComment(data, null);
     }
 
-    public void writeComment(String data, boolean rootElement) throws XMLStreamException {
+    public void writeComment(String data, Object source) throws XMLStreamException {
+        boolean rootElement = baseType == source.getClass();
         if (rootElement)  {
             super.writeComment(data);
             writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
@@ -61,11 +58,12 @@ public class XMLMetaAwareXMLStreamWriter extends com.sun.xml.txw2.output.Indenti
 
     @Override
     public void writeProcessingInstruction(String target, String data) throws XMLStreamException {
-        writeProcessingInstruction(target, data, false);
+        writeProcessingInstruction(target, data, null);
     }
 
-    public void writeProcessingInstruction(String target, String data, boolean rootElement) throws XMLStreamException {
-        if (rootElement)  {
+    public void writeProcessingInstruction(String target, String data, Object source) throws XMLStreamException {
+        boolean rootElement = baseType == source.getClass();
+        if (rootElement) {
             super.writeProcessingInstruction(target, data);
             writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
         }  else  {

@@ -52,8 +52,7 @@ public class ProcessingInstructionAdderListener extends Listener {
             final String data = processingInstruction.getData();
 
             try {
-                boolean rootElement = source.getClass().equals(xsw.getBaseType());
-                xsw.writeProcessingInstruction(target, data, rootElement);
+                xsw.writeProcessingInstruction(target, data, source);
             } catch (final XMLStreamException e) {
                 LOGGER.warn("Ignored Exception while writing processingInstruction:", e);
             }

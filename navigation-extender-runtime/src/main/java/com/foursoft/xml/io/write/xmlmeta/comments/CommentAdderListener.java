@@ -52,8 +52,7 @@ public class CommentAdderListener extends Listener {
         final Optional<String> comment = comments.get(source);
         if (comment.isPresent()) {
             try {
-                boolean rootElement = source.getClass().equals(xsw.getBaseType());
-                xsw.writeComment(comment.get(), rootElement);
+                xsw.writeComment(comment.get(), source);
             } catch (final XMLStreamException e) {
                 LOGGER.warn("Ignored Exception while writing comments:", e);
             }
