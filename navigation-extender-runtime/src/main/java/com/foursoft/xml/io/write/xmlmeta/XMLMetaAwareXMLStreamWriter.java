@@ -46,12 +46,12 @@ public class XMLMetaAwareXMLStreamWriter extends com.sun.xml.txw2.output.Indenti
     }
 
     public void writeComment(String data, Object source) throws XMLStreamException {
-        boolean rootElement = baseType == source.getClass();
+        boolean rootElement = isRootElement(source);
         if (rootElement)  {
             super.writeComment(data);
-            writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+            writeNewline();
         }  else  {
-            writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+            writeNewline();
             super.writeComment(data);
         }
     }
@@ -62,14 +62,22 @@ public class XMLMetaAwareXMLStreamWriter extends com.sun.xml.txw2.output.Indenti
     }
 
     public void writeProcessingInstruction(String target, String data, Object source) throws XMLStreamException {
-        boolean rootElement = baseType == source.getClass();
+        boolean rootElement = isRootElement(source);
         if (rootElement) {
             super.writeProcessingInstruction(target, data);
-            writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+            writeNewline();
         }  else  {
-            writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+            writeNewline();
             super.writeProcessingInstruction(target, data);
         }
+    }
+
+    private void writeNewline() throws XMLStreamException {
+        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+    }
+
+    private boolean isRootElement(Object source)  {
+        return source != null && baseType == source.getClass();
     }
 
 }
