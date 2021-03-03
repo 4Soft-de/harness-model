@@ -40,8 +40,8 @@ public class XMLMetaAwareXMLStreamWriter extends com.sun.xml.txw2.output.Indenti
     @Override
     public void writeComment(final String data)
             throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
         super.writeComment(data);
+        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
     }
 
 
