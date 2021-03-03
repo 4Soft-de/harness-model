@@ -40,7 +40,7 @@ jobs:
           java-version: 11.0.2
           gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }} # Value of the GPG private key to import
       - name: Cache Maven packages
-        uses: actions/cache@v2.1.3
+        uses: actions/cache@v2.1.4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
