@@ -72,9 +72,9 @@ class XMLWriterTest {
         xmlMeta.setProcessingInstructions(processingInstructions);
         final String result = xmlWriter.writeToString(root, xmlMeta);
         assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
-        Assertions.assertThat(result).contains(expectedComment);
-        // check for correct new lines
         Assertions.assertThat(result)
+                .contains(expectedComment)
+        // check for correct new lines
                 .startsWith("<?xml version=\"1.0\" ?>\n" +
                         "<!--Hello World-->\n" +
                         "<?pc pc test?>\n" +
