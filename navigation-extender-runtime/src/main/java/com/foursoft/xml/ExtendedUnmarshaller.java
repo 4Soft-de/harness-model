@@ -83,7 +83,7 @@ public class ExtendedUnmarshaller<R, I> {
     public ExtendedUnmarshaller(final Class<R> rootElement) throws JAXBException {
         this.rootElement = rootElement;
         final String packageName = rootElement.getPackage().getName();
-        final JAXBContext context = JaxbContextFactory.initializeContext(packageName);
+        final JAXBContext context = JaxbContextFactory.initializeContext(packageName, this.getClass().getClassLoader());
         postProcessorRegistry = new ModelPostProcessorRegistry(packageName);
         unmarshaller = context.createUnmarshaller();
     }

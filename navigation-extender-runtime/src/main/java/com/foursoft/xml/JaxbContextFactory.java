@@ -45,12 +45,12 @@ public final class JaxbContextFactory {
         throw new UnsupportedOperationException("JAXBContextFactory shall not be instantiated (static class");
     }
 
-    public static synchronized JAXBContext initializeContext(final String packageName) throws JAXBException {
+    public static synchronized JAXBContext initializeContext(final String packageName, final ClassLoader classLoader) throws JAXBException {
         JAXBContext context = jaxbContextCache.get(packageName);
 
         // not implemented with computeIfAbsent because .newInstance throws JAXBException
         if (context == null) {
-            context = JAXBContext.newInstance(packageName);
+            context = JAXBContext.newInstance(packageName, classLoader);
             jaxbContextCache.put(packageName, context);
         }
 
