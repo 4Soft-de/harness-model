@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.foursoft.jaxb2</groupId>
         <artifactId>navigation-extender-parent</artifactId>
-        <version>1.2.2</version>
+        <version>1.2.3-SNAPSHOT</version>
     </parent>
     <artifactId>navigation-extender</artifactId>
 
