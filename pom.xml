@@ -215,7 +215,7 @@
                     <artifactId>gitflow-maven-plugin</artifactId>
                     <version>${gitflow-maven-plugin.version}</version>
                     <configuration>
-                        <argLine>-e -X -DskipTests -P release -s .mvn/release.settings.xml</argLine>
+                        <argLine>-DskipTests -P release -s .mvn/release.settings.xml</argLine>
                         <installProject>true</installProject>
                         <skipTestProject>true</skipTestProject>
                         <postReleaseGoals>deploy</postReleaseGoals>
