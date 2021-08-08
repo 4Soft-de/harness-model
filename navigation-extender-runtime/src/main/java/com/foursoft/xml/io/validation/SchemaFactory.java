@@ -37,8 +37,8 @@ public class SchemaFactory {
         // Hide constructor
     }
 
-    public static Schema getSchema(final String fileName) {
-        try (final InputStream xsdFile = getInputStream(fileName)) {
+    public static Schema getSchema(final InputStream inputStream) {
+        try (final InputStream xsdFile = inputStream) {
             final javax.xml.validation.SchemaFactory factory =
                     javax.xml.validation.SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
@@ -48,6 +48,11 @@ public class SchemaFactory {
         } catch (final Exception e) {
             throw new SchemaFactoryException("Cannot initialize schema!", e);
         }
+    }
+
+    public static Schema getSchema(final String fileName) {
+        final InputStream inputStream = getInputStream(fileName);
+        return getSchema(inputStream);
     }
 
     private static InputStream getInputStream(final String fileName) {
