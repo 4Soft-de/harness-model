@@ -39,9 +39,12 @@ public class SchemaFactory {
 
     public static Schema getSchema(final String fileName) {
         try (final InputStream xsdFile = getInputStream(fileName)) {
-            final javax.xml.validation.SchemaFactory schemaFactory =
+            final javax.xml.validation.SchemaFactory factory =
                     javax.xml.validation.SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            return schemaFactory.newSchema(new StreamSource(xsdFile));
+            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+            return factory.newSchema(new StreamSource(xsdFile));
         } catch (final Exception e) {
             throw new SchemaFactoryException("Cannot initialize schema!", e);
         }
