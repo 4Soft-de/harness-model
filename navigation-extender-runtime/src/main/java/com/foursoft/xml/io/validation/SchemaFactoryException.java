@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2021 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,33 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.xml.io;
+package com.foursoft.xml.io.validation;
 
-import com.foursoft.test.model.AbstractBase;
-import com.foursoft.test.model.Root;
-import com.foursoft.xml.io.read.XMLReader;
+public class SchemaFactoryException extends RuntimeException {
 
-import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+    private static final long serialVersionUID = -7253872841914249526L;
 
-public final class TestData {
-    public static final String BASIC_TEST_XML = "basic-test.xml";
-    public static final String ERROR_TEST_XML = "error-test.xml";
-    public static final Path BASIC_BASE_PATH = Paths.get("src", "test", "resources", "basic");
-    public static final Path VALIDATE_BASE_PATH_SRC = Paths.get("src", "test", "resources", "validate");
-    public static final Path VALIDATE_BASE_PATH = Paths.get("validate");
-
-
-    private TestData() {
+    public SchemaFactoryException(final String message, final Throwable cause, final boolean enableSuppression,
+                                  final boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
     }
 
-    public static Root readBasicTest() {
-        final XMLReader<Root, AbstractBase> reader = new XMLReader<>(Root.class,
-                AbstractBase.class,
-                AbstractBase::getXmlId);
-        final InputStream inputStream = TestData.class.getResourceAsStream("/basic/" + BASIC_TEST_XML);
-        return reader.read(inputStream);
+    public SchemaFactoryException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public SchemaFactoryException(final String message) {
+        super(message);
+    }
+
+    public SchemaFactoryException(final Throwable cause) {
+        super(cause);
     }
 }
-

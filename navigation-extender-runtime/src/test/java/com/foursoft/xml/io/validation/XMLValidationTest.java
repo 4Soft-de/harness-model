@@ -29,22 +29,18 @@ import com.foursoft.xml.io.TestData;
 import com.foursoft.xml.io.validation.LogValidator.ErrorLocation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.xml.sax.SAXException;
 
-import javax.xml.XMLConstants;
 import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collection;
 
 class XMLValidationTest {
 
-    public static XMLValidation getXmlValidation() throws SAXException {
-        final File schemaFile = TestData.VALIDATE_BASE_PATH.resolve("basic-test.xsd").toFile();
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        final Schema schema = schemaFactory.newSchema(schemaFile);
+
+    public static XMLValidation getXmlValidation() {
+        final String fileName = TestData.VALIDATE_BASE_PATH.resolve("basic-test.xsd").toString();
+        final Schema schema = SchemaFactory.getSchema(fileName);
         return new XMLValidation(schema);
     }
 
@@ -53,10 +49,10 @@ class XMLValidationTest {
         final XMLValidation xmlValidation = getXmlValidation();
 
         final String content = new String(
-                Files.readAllBytes(TestData.VALIDATE_BASE_PATH.resolve(TestData.BASIC_TEST_XML)));
+                Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.BASIC_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                                                                           StandardCharsets.UTF_8);
+                StandardCharsets.UTF_8);
         Assertions.assertTrue(errors.isEmpty());
     }
 
@@ -65,10 +61,10 @@ class XMLValidationTest {
         final XMLValidation xmlValidation = getXmlValidation();
 
         final String content = new String(
-                Files.readAllBytes(TestData.VALIDATE_BASE_PATH.resolve(TestData.ERROR_TEST_XML)));
+                Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.ERROR_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                                                                           StandardCharsets.UTF_8);
+                StandardCharsets.UTF_8);
         Assertions.assertFalse(errors.isEmpty());
         Assertions.assertEquals(2, errors.size());
 
