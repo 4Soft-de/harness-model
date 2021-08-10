@@ -24,7 +24,6 @@
         <!-- Dependencies -->
         <navigation-extender.version>1.2.4</navigation-extender.version>
 
-
         <!-- Plugins -->
         <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
 
