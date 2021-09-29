@@ -9438,19 +9438,22 @@
             <p>Specification for the definition of TopologyZones.</p>
          </xs:documentation>
       </xs:annotation>
-      <xs:sequence>
-         <xs:element name="Zone"
-                     type="vec:TopologyZone"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
-            <xs:annotation>
-               <xs:documentation xml:lang="en">
-                  <p>Specifies the<i>TopologyZones</i>that are part of the<i>TopologyZoneSpecification</i>.</p>
-               </xs:documentation>
-            </xs:annotation>
-         </xs:element>
-      </xs:sequence>
-      <xs:attribute name="id" type="xs:ID" use="required"/>
+      <xs:complexContent>
+       <xs:extension base="vec:Specification">
+          <xs:sequence>
+             <xs:element name="Zone"
+                         type="vec:TopologyZone"
+                         minOccurs="0"
+                         maxOccurs="unbounded">
+                <xs:annotation>
+                   <xs:documentation xml:lang="en">
+                      <p>Specifies the<i>TopologyZones</i>that are part of the<i>TopologyZoneSpecification</i>.</p>
+                   </xs:documentation>
+                </xs:annotation>
+             </xs:element>
+          </xs:sequence>
+       </xs:extension>
+      </xs:complexContent>
    </xs:complexType>
    <xs:complexType name="Transformation2D">
       <xs:annotation>
