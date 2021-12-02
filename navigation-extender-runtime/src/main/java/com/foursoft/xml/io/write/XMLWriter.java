@@ -80,8 +80,10 @@ public class XMLWriter<T> {
      * Method which can be overridden for further configuration on the marshaller.
      *
      * @param marshaller Marshaller to configure.
+     *
+     * @throws Exception In case something went wrong.
      */
-    protected void configureMarshaller(final Marshaller marshaller) {
+    protected void configureMarshaller(final Marshaller marshaller) throws Exception {
         // default empty impl
     }
 
