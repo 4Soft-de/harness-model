@@ -81,7 +81,7 @@ public class XMLWriter<T> {
      *
      * @param marshaller Marshaller to configure.
      */
-    public void configureMarshaller(Marshaller marshaller) {
+    protected void configureMarshaller(final Marshaller marshaller) {
         // default empty impl
     }
 
