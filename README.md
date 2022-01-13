@@ -111,8 +111,8 @@ More examples can be found [in the examples](https://github.com/4Soft-de/kbl-mod
 public class MyKblReader {
     public void readKblFile(final String pathToFile) throws JAXBException, IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
-            final KblReader localReader = KblReader.getLocalReader();
-            final JaxbModel<KBLContainer, Identifiable> model = localReader.readModel(is);
+            final KblReader kblReader = new KblReader();
+            final JaxbModel<KBLContainer, Identifiable> model = kblReader.readModel(is);
 
             final KblConnectorOccurrence occurrence = model.getIdLookup()
                     .findById(KblConnectorOccurrence.class, "I1616")
@@ -191,10 +191,10 @@ public class MyKblWriter {
         contactPoint3.setId("SCHNUPSI");
         contactPoint3.setXmlId("id_1236");
 
-        final KblWriter localWriter = KblWriter.getLocalWriter();
+        final KblWriter kblWriter = new KblWriter();
 
         try (final FileOutputStream outputStream = new FileOutputStream(target)) {
-            localWriter.write(root, outputStream);
+            kblWriter.write(root, outputStream);
         }
     }
 }
