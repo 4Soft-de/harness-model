@@ -49,10 +49,10 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BasicLoadingTest {
+class BasicLoadingTest {
 
     @Test
-    public void testLoadModel() throws JAXBException, IOException {
+    void testLoadModel() throws JAXBException, IOException {
         try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
             final JaxbModel<KBLContainer, Identifiable> model
                     = new ExtendedUnmarshaller<KBLContainer, Identifiable>(KBLContainer.class)
@@ -65,7 +65,7 @@ public class BasicLoadingTest {
     }
 
     @Test
-    public void testSelectorInheritance() throws JAXBException, IOException {
+    void testSelectorInheritance() throws JAXBException, IOException {
         try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
             final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller = new ExtendedUnmarshaller<KBLContainer, Identifiable>(
                     KBLContainer.class).withBackReferences()
@@ -94,7 +94,7 @@ public class BasicLoadingTest {
     }
 
     @Test
-    public void validationTest() throws Exception {
+    void validationTest() throws Exception {
         try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
             final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
@@ -133,7 +133,7 @@ public class BasicLoadingTest {
     }
 
     @Test
-    public void getBackReferences() throws IOException, JAXBException {
+    void getBackReferences() throws IOException, JAXBException {
         try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
             assertThat(is)
                     .isNotNull();
