@@ -227,15 +227,16 @@ public class MyKblWriter {
 </kbl:KBL_container>
 ```
 ### Assertions on KBL Files
-For each KBL version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements. The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
+For each KBL version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements.
+The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
 
-Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions. For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
+Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions.
+For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
 
-Please not the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html) and the order of `...Assertions.assertThat;`.
+Please note the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html) 
+and the order of `...Assertions.assertThat;`.
 
 ```java
-package com.foursoft.kblmodel.test;
-
 import static com.foursoft.kblmodel.kbl24.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
@@ -246,28 +247,33 @@ import com.foursoft.kblmodel.kbl24.KblGeneralWire;
 import com.foursoft.kblmodel.kbl24.KblSpecialWireOccurrence;
 import com.foursoft.kblmodel.kbl24.KblUnit;
 
-public class KblSampleTest {
+class KblSampleTest {
 
-	@Test
-	public void testWireOccurrenceCreation() {
-		//Find the element to test, maybe with a traversing visitor...
-		final KblUnit unitMM = ... ;
-		final KblGeneralWire wire = ...;
-		final KblSpecialWireOccurrence specialWireOccurrence = ...;
+    @Test
+    void testWireOccurrenceCreation() {
+        //Find the element to test, maybe with a traversing visitor...
+        final KblUnit unitMM = null; // determine kbl unit
+        final KblGeneralWire wire = null; // determine kbl wire
+        final KblSpecialWireOccurrence specialWireOccurrence = null; // determine kbl wire occurrence
 
-		assertThat(specialWireOccurrence).hasSpecialWireId("1111")
-				.hasPart(wire)
-				.satisfies(w -> {
-					assertThat(w.getLengthInformations()).hasSize(1)
-							.satisfies(l -> {
-								assertThat(l).hasLengthType("Production")
-										.satisfies(v -> {
-											assertThat(v.getLengthValue()).hasUnitComponent(unitMM)
-													.hasValueComponent(0.0d);
-										});
-							}, atIndex(0));
-				});
-	}
+        assertThat(specialWireOccurrence)
+            .hasSpecialWireId("1111")
+            .hasPart(wire)
+            .satisfies(w ->
+                assertThat(w.getLengthInformations()).hasSize(1)
+                    .satisfies(
+                        // Consumer
+                        l ->
+                            assertThat(l)
+                                .hasLengthType("Production")
+                                .satisfies(v ->
+                                    assertThat(v.getLengthValue())
+                                        .hasUnitComponent(unitMM)
+                                        .hasValueComponent(0.0d)),
+                        // Index
+                        atIndex(0))
+            );
+    }
 }
 ```
 
