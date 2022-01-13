@@ -57,7 +57,7 @@ and for the assertion library:
 <dependency>
     <groupId>com.foursoft.vecmodel</groupId>
     <artifactId>vec113-assertions</artifactId>
-    <scope>test<scope>
+    <scope>test</scope>
     <version>VERSION</version>
 </dependency>
 ```
@@ -88,7 +88,7 @@ and for the assertion library:
 <dependency>
     <groupId>com.foursoft.vecmodel</groupId>
     <artifactId>vec120-assertions</artifactId>
-    <scope>test<scope>
+    <scope>test</scope>
     <version>VERSION</version>
 </dependency>
 ```
@@ -145,7 +145,7 @@ More examples can be found in the examples of each module:
 #### Java file
 ```java
 public class MyVecReader {
-    public void readVecFile(final String pathToFile) throws JAXBException, IOException  {
+    public void readVecFile(final String pathToFile) throws IOException  {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
             final VecReader localReader = new VecReader();
             final JaxbModel<VecContent, Identifiable> model = localReader.readModel(is);
@@ -170,21 +170,22 @@ public class MyVecReader {
 #### Java file
 ```java
 public class MyVecWriter {
-    public void writeVecFile(final String target) throws JAXBException, TransformerFactoryConfigurationError, IOException {
-        final JAXBContext jc = JAXBContext.newInstance(VecContent.class);
-
+    public void writeExampleVecFile(final String target) throws IOException {
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.1.3");
 
         final VecPermission permission = new VecPermission();
+        permission.setXmlId("id_permission_123");
         permission.setPermission("Released");
 
         final VecApproval approval = new VecApproval();
+        approval.setXmlId("id_approval_123");
         approval.setStatus("Approved");
         approval.getPermissions().add(permission);
 
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
+        documentVersion.setXmlId("id_docu_ver_12345");
         documentVersion.getApprovals().add(approval);
         documentVersion.setDocumentNumber("123_456_789");
 
@@ -201,10 +202,10 @@ public class MyVecWriter {
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
-        final VecWriter localWriter = new VecWriter();
+        final VecWriter vecWriter = new VecWriter();
 
         try (final FileOutputStream outputStream = new FileOutputStream(target)) {
-            localWriter.write(root, outputStream);
+            vecWriter.write(root, outputStream);
         }
     }
 }
@@ -213,24 +214,24 @@ public class MyVecWriter {
 #### Generated VEC file
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:VecContent id="id_1000_0" xmlns:ns2="http://www.prostep.org/ecad-if/2011/vec">
+<vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec">
     <VecVersion>1.1.3</VecVersion>
-    <DocumentVersion>
-        <Approval>
+    <DocumentVersion id="id_docu_ver_12345">
+        <Approval id="id_approval_123">
             <Status>Approved</Status>
-            <Permission>
+            <Permission id="id_permission_123">
                 <Permission>Released</Permission>
             </Permission>
         </Approval>
         <DocumentNumber>123_456_789</DocumentNumber>
-        <Specification xsi:type="ns2:ConnectorHousingCapSpecification" id="id_2000_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Specification xsi:type="vec:ConnectorHousingCapSpecification" id="id_2000_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <Identification>Ccs-123_456_789-1</Identification>
         </Specification>
     </DocumentVersion>
     <PartVersion id="id_1001_0">
         <PartNumber>123_456_789</PartNumber>
     </PartVersion>
-</ns2:VecContent>
+</vec:VecContent>
 ```
 ### Assertions on VEC files
 For each VEC version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements. The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
@@ -258,7 +259,7 @@ public class VecSampleTest {
 	@Test
 	void doSomeAssertions() {
 		//Find the element to test, maybe with a traversing visitor...
-		VecDocumentVersion partMasterDocument = ...;
+		VecDocumentVersion partMasterDocument = null; // determine document version
 		
 		assertThat(partMasterDocument).hasDocumentType("PartMaster")
 				.hasNoCustomProperties()

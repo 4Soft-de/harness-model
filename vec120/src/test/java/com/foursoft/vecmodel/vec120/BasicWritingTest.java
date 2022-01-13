@@ -40,19 +40,21 @@ class BasicWritingTest {
 
     @Test
     void testWriteModel() {
-
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.2.0");
 
         final VecPermission permission = new VecPermission();
+        permission.setXmlId("id_permission_123");
         permission.setPermission("Released");
 
         final VecApproval approval = new VecApproval();
+        approval.setXmlId("id_approval_123");
         approval.setStatus("Approved");
         approval.getPermissions().add(permission);
 
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
+        documentVersion.setXmlId("id_docu_ver_12345");
         documentVersion.getApprovals().add(approval);
         documentVersion.setDocumentNumber("123_456_789");
 
@@ -77,10 +79,10 @@ class BasicWritingTest {
                                                      "<vec:VecContent id=\"id_1000_0\" xmlns:vec=\"http://www.prostep" +
                                                      ".org/ecad-if/2011/vec\">\n" +
                                                      "    <VecVersion>1.2.0</VecVersion>\n" +
-                                                     "    <DocumentVersion>\n" +
-                                                     "        <Approval>\n" +
+                                                     "    <DocumentVersion id=\"id_docu_ver_12345\">\n" +
+                                                     "        <Approval id=\"id_approval_123\">\n" +
                                                      "            <Status>Approved</Status>\n" +
-                                                     "            <Permission>\n" +
+                                                     "            <Permission id=\"id_permission_123\">\n" +
                                                      "                <Permission>Released</Permission>\n" +
                                                      "            </Permission>\n" +
                                                      "        </Approval>\n" +
