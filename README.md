@@ -176,16 +176,16 @@ public class MyVecWriter {
         root.setVecVersion("1.1.3");
 
         final VecPermission permission = new VecPermission();
-        permission.setXmlId("id_permission_123");
+        permission.setXmlId("id_2185_0");
         permission.setPermission("Released");
 
         final VecApproval approval = new VecApproval();
-        approval.setXmlId("id_approval_123");
+        approval.setXmlId("id_2014_0");
         approval.setStatus("Approved");
         approval.getPermissions().add(permission);
 
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
-        documentVersion.setXmlId("id_docu_ver_12345");
+        documentVersion.setXmlId("id_1002_0");
         documentVersion.getApprovals().add(approval);
         documentVersion.setDocumentNumber("123_456_789");
 
@@ -216,10 +216,10 @@ public class MyVecWriter {
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec">
     <VecVersion>1.1.3</VecVersion>
-    <DocumentVersion id="id_docu_ver_12345">
-        <Approval id="id_approval_123">
+    <DocumentVersion id="id_1002_0">
+        <Approval id="id_2014_0">
             <Status>Approved</Status>
-            <Permission id="id_permission_123">
+            <Permission id="id_2185_0">
                 <Permission>Released</Permission>
             </Permission>
         </Approval>
