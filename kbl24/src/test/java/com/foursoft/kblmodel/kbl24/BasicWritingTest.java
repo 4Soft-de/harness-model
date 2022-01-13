@@ -34,12 +34,16 @@ class BasicWritingTest {
     @Test
     void testWriteModel() {
         final KBLContainer root = new KBLContainer();
+        root.setXmlId("ID000");
+        root.setVersionId("version_id0");
 
         final KblHarness harness = new KblHarness();
+        harness.setXmlId("I1397");
 
         root.setHarness(harness);
 
         final KblConnectorOccurrence connectorOccurrence = new KblConnectorOccurrence();
+        connectorOccurrence.setXmlId("I1616");
         final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
         terminalOccurrence.setXmlId("id_4711");
         final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
@@ -88,10 +92,10 @@ class BasicWritingTest {
         System.out.println(result);
         assertThat(result)
                 .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                                                     + "<kbl:KBL_container "
+                                                     + "<kbl:KBL_container id=\"ID000\" version_id=\"version_id0\""
                                                      + " xmlns:kbl=\"http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema\">\n"
-                                                     + "    <Harness>\n"
-                                                     + "        <Connector_occurrence>\n"
+                                                     + "    <Harness id=\"I1397\">\n"
+                                                     + "        <Connector_occurrence id=\"I1616\">\n"
                                                      + "            <Contact_points id=\"id_1234\">\n"
                                                      + "                <Id>SCHNUPSI</Id>\n"
                                                      + "                <Associated_parts>id_4711</Associated_parts>\n"

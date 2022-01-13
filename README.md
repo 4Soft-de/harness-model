@@ -109,10 +109,10 @@ More examples can be found [in the examples](https://github.com/4Soft-de/kbl-mod
 #### Java file
 ```java
 public class MyKblReader {
-    public void readKblFile(final String pathToFile) throws JAXBException, IOException {
+    public void readKblFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
-            final KblReader localReader = KblReader.getLocalReader();
-            final JaxbModel<KBLContainer, Identifiable> model = localReader.readModel(is);
+            final KblReader kblReader = new KblReader();
+            final JaxbModel<KBLContainer, Identifiable> model = kblReader.readModel(is);
 
             final KblConnectorOccurrence occurrence = model.getIdLookup()
                     .findById(KblConnectorOccurrence.class, "I1616")
@@ -144,14 +144,18 @@ public class MyKblReader {
 #### Java file
 ```java
 public class MyKblWriter {
-    public void writeKblFile(final String target) throws JAXBException, TransformerFactoryConfigurationError, IOException {
-        final JAXBContext jc = JAXBContext.newInstance(KBLContainer.class);
+    public void writeExampleKblFile(final String target) throws IOException {
         final KBLContainer root = new KBLContainer();
+        root.setXmlId("ID000");
+        root.setVersionId("version_id0");
+
         final KblHarness harness = new KblHarness();
+        harness.setXmlId("I1397");
 
         root.setHarness(harness);
 
         final KblConnectorOccurrence connectorOccurrence = new KblConnectorOccurrence();
+        connectorOccurrence.setXmlId("I1616");
         final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
         terminalOccurrence.setXmlId("id_4711");
         final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
@@ -191,10 +195,10 @@ public class MyKblWriter {
         contactPoint3.setId("SCHNUPSI");
         contactPoint3.setXmlId("id_1236");
 
-        final KblWriter localWriter = KblWriter.getLocalWriter();
+        final KblWriter kblWriter = new KblWriter();
 
         try (final FileOutputStream outputStream = new FileOutputStream(target)) {
-            localWriter.write(root, outputStream);
+            kblWriter.write(root, outputStream);
         }
     }
 }
@@ -203,9 +207,9 @@ public class MyKblWriter {
 #### Generated KBL file
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema">
-    <Harness>
-        <Connector_occurrence>
+<kbl:KBL_container id="ID000" version_id="version_id0" xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema" >
+    <Harness id="I1397">
+        <Connector_occurrence id="I1616">
             <Contact_points id="id_1234">
                 <Id>SCHNUPSI</Id>
                 <Associated_parts>id_4711</Associated_parts>
