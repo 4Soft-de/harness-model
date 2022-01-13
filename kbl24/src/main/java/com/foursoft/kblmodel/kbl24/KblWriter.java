@@ -53,15 +53,5 @@ public final class KblWriter extends XMLWriter<KBLContainer> {
 
     }
 
-    /**
-     * @return a new KblWriter for each call.
-     *
-     * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
-     *    own {@link KblWriter} and cache it by yourself if necessary. Will be removed with a future release.
-     */
-    @Deprecated
-    public static KblWriter getLocalWriter() {
-        return new KblWriter();
-    }
 }
 
