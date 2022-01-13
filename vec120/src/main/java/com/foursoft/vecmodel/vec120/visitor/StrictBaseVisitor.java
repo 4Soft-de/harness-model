@@ -27,6 +27,10 @@ package com.foursoft.vecmodel.vec120.visitor;
 
 import com.foursoft.vecmodel.vec120.*;
 
+/**
+ * A Visitor implementation which returns {@code null} for each visit method.
+ * @param <R> Return Type of the visit methods.
+ */
 public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     @Override
     public R visitVecAliasIdentification(final VecAliasIdentification aBean) throws RuntimeException {

@@ -31,10 +31,22 @@ import com.foursoft.xml.model.Identifiable;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * A Visitor implementation which returns the value returned by the function invocation for each visit method.
+ * The function has to be non-null.
+ *
+ * @param <I> Input Type of the Function.
+ * @param <O> Output Type of the Function and Return Type of the visit methods.
+ */
 public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, RuntimeException> {
 
     private final Function<I, O> func;
 
+    /**
+     * Instances a new FunctionVisitor with the given function.
+     * @param func Function which will be executed and returned for each visit method.
+     * @throws NullPointerException If the given function is {@code null}.
+     */
     public FunctionVisitor(final Function<I, O> func) {
         this.func = Objects.requireNonNull(func, "Given Function may not be null.");
     }
