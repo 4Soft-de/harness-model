@@ -33,6 +33,7 @@ import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 import javax.xml.XMLConstants;
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Source;
@@ -58,12 +59,13 @@ class BasicLoadingTest {
     @Test
     void testLoadModelWithEventLogger() {
         final ValidationEventLogger validationEventLogger = new ValidationEventLogger();
-        final VecContent vecContent = new VecReader(validationEventLogger).read(TestFiles.getInputStream(TestFiles.SAMPLE_VEC));
+        final VecContent vecContent = new VecReader(validationEventLogger)
+                .read(TestFiles.getInputStream(TestFiles.SAMPLE_VEC));
         assertThat(vecContent).isNotNull();
     }
 
     @Test
-    void testSelectorInheritance() throws Exception {
+    void testSelectorInheritance() throws IOException, JAXBException {
         try (final InputStream is = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
             final ExtendedUnmarshaller<VecContent, Identifiable> unmarshaller =
                     new ExtendedUnmarshaller<VecContent, Identifiable>(VecContent.class)
