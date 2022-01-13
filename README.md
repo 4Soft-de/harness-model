@@ -234,15 +234,16 @@ public class MyVecWriter {
 </vec:VecContent>
 ```
 ### Assertions on VEC files
-For each VEC version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements. The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
+For each VEC version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements.
+The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
 
-Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions. For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
+Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions.
+For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
 
-Please not the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html) and the order of `...Assertions.assertThat;`.
+Please note the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html)
+and the order of `...Assertions.assertThat;`.
 
 ```java
-package com.foursoft.vec.test;
-
 import static com.foursoft.vecmodel.vec113.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
@@ -253,23 +254,24 @@ import com.foursoft.vecmodel.vec113.VecConnectorHousingSpecification;
 import com.foursoft.vecmodel.vec113.VecDocumentVersion;
 import com.foursoft.vecmodel.vec113.VecPartVersion;
 
+class VecSampleTest {
 
-public class VecSampleTest {
+    @Test
+    void doSomeAssertions() {
+        //Find the element to test, maybe with a traversing visitor...
+        VecDocumentVersion partMasterDocument = null; // determine document version
 
-	@Test
-	void doSomeAssertions() {
-		//Find the element to test, maybe with a traversing visitor...
-		VecDocumentVersion partMasterDocument = null; // determine document version
-		
-		assertThat(partMasterDocument).hasDocumentType("PartMaster")
-				.hasNoCustomProperties()
-				.satisfies(d -> {
-					assertThat(d.getSpecificationsWithType(VecConnectorHousingSpecification.class)).hasSize(1)
-							.satisfies(chs -> {
-								assertThat(chs).hasIdentification("ABC");
-							}, atIndex(0));
-				});
-	}
+        assertThat(partMasterDocument)
+            .hasDocumentType("PartMaster")
+            .hasNoCustomProperties()
+            .satisfies(d ->
+                assertThat(d.getSpecificationsWithType(VecConnectorHousingSpecification.class))
+                    .hasSize(1)
+                    .satisfies(
+                         chs -> assertThat(chs).hasIdentification("ABC"), 
+                         atIndex(0))
+            );
+    }
 }
 
 ```
