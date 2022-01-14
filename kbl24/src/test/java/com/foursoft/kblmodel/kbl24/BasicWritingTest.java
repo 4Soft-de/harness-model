@@ -47,7 +47,7 @@ class BasicWritingTest {
         final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
         terminalOccurrence.setXmlId("id_4711");
         final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
-        terminalOccurrence2.setXmlId("id_4711");
+        terminalOccurrence2.setXmlId("id_4712");
 
         harness.getConnectorOccurrences()
                 .add(connectorOccurrence);
@@ -108,7 +108,7 @@ class BasicWritingTest {
                                                      + "            </Contact_points>\n"
                                                      + "        </Connector_occurrence>\n"
                                                      + "        <Terminal_occurrence id=\"id_4711\"/>\n"
-                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\n"
+                                                     + "        <Terminal_occurrence id=\"id_4712\"/>\n"
                                                      + "    </Harness>\n"
                                                      + "</kbl:KBL_container>");
 

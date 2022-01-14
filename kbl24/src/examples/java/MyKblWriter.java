@@ -20,7 +20,7 @@ public class MyKblWriter {
         final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
         terminalOccurrence.setXmlId("id_4711");
         final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
-        terminalOccurrence2.setXmlId("id_4711");
+        terminalOccurrence2.setXmlId("id_4712");
 
         harness.getConnectorOccurrences()
                 .add(connectorOccurrence);

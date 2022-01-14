@@ -159,7 +159,7 @@ public class MyKblWriter {
         final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
         terminalOccurrence.setXmlId("id_4711");
         final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
-        terminalOccurrence2.setXmlId("id_4711");
+        terminalOccurrence2.setXmlId("id_4712");
 
         harness.getConnectorOccurrences()
                 .add(connectorOccurrence);
@@ -222,7 +222,7 @@ public class MyKblWriter {
             </Contact_points>
         </Connector_occurrence>
         <Terminal_occurrence id="id_4711"/>
-        <Terminal_occurrence id="id_4711"/>
+        <Terminal_occurrence id="id_4712"/>
     </Harness>
 </kbl:KBL_container>
 ```
