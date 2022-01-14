@@ -1,21 +1,22 @@
 import com.foursoft.kblmodel.kbl24.*;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MyKblWriter {
-    public void writeKblFile(final String target)
-            throws JAXBException, TransformerFactoryConfigurationError, IOException {
-        final JAXBContext jc = JAXBContext.newInstance(KBLContainer.class);
+
+    public void writeExampleKblFile(final String target) throws IOException {
         final KBLContainer root = new KBLContainer();
+        root.setXmlId("ID000");
+        root.setVersionId("version_id0");
+
         final KblHarness harness = new KblHarness();
+        harness.setXmlId("I1397");
 
         root.setHarness(harness);
 
         final KblConnectorOccurrence connectorOccurrence = new KblConnectorOccurrence();
+        connectorOccurrence.setXmlId("I1616");
         final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
         terminalOccurrence.setXmlId("id_4711");
         final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
