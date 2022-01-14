@@ -72,9 +72,7 @@ More examples can be found [in the examples](https://github.com/4Soft-de/kbl-mod
 #### Example KBL file
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema file:/C:/Users/ganss.SOFT/Projects/GIT/com.foursoft/kbl-model/kbl24/src/main/resources/kbl24/KBL24_SR1.xsd" id="ID000" version_id="version_id0">
+<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema" id="ID000" version_id="version_id0">
     <Connector_housing id="ch_part">
         <Part_number>Part_number14</Part_number>
         <Company_name>Company_name14</Company_name>
