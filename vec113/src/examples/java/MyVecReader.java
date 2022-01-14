@@ -14,8 +14,8 @@ public class MyVecReader {
 
     public static void readVecFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final VecReader localReader = new VecReader();
-            final JaxbModel<VecContent, Identifiable> model = localReader.readModel(is);
+            final VecReader vecReader = new VecReader();
+            final JaxbModel<VecContent, Identifiable> model = vecReader.readModel(is);
 
             final VecApproval approval = model.getIdLookup()
                     .findById(VecApproval.class, "id_2014_0")
@@ -33,9 +33,9 @@ public class MyVecReader {
 
     public static void readFullVecFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final VecReader localReader = new VecReader();
+            final VecReader vecReader = new VecReader();
 
-            final VecContent rootElement = localReader.read(is);
+            final VecContent rootElement = vecReader.read(is);
 
             final String vecVersion = rootElement.getVecVersion();
             final String generatingSystemName = rootElement.getGeneratingSystemName();
@@ -169,8 +169,8 @@ public class MyVecReader {
 
     public static void getBackReferences(final String pathToFile) throws IOException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final VecReader localReader = VecReader.getLocalReader();
-            final JaxbModel<VecContent, Identifiable> model = localReader.readModel(is);
+            final VecReader vecReader = new VecReader();
+            final JaxbModel<VecContent, Identifiable> model = vecReader.readModel(is);
 
             final VecContent content = model.getRootElement();
 
