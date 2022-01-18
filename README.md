@@ -72,9 +72,7 @@ More examples can be found [in the examples](https://github.com/4Soft-de/kbl-mod
 #### Example KBL file
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema file:/C:/Users/ganss.SOFT/Projects/GIT/com.foursoft/kbl-model/kbl24/src/main/resources/kbl24/KBL24_SR1.xsd" id="ID000" version_id="version_id0">
+<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema" id="ID000" version_id="version_id0">
     <Connector_housing id="ch_part">
         <Part_number>Part_number14</Part_number>
         <Company_name>Company_name14</Company_name>
@@ -109,7 +107,7 @@ More examples can be found [in the examples](https://github.com/4Soft-de/kbl-mod
 #### Java file
 ```java
 public class MyKblReader {
-    public void readKblFile(final String pathToFile) throws JAXBException, IOException {
+    public void readKblFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
             final KblReader localReader = KblReader.getLocalReader();
             final JaxbModel<KBLContainer, Identifiable> model = localReader.readModel(is);
@@ -144,18 +142,22 @@ public class MyKblReader {
 #### Java file
 ```java
 public class MyKblWriter {
-    public void writeKblFile(final String target) throws JAXBException, TransformerFactoryConfigurationError, IOException {
-        final JAXBContext jc = JAXBContext.newInstance(KBLContainer.class);
+    public void writeExampleKblFile(final String target) throws IOException {
         final KBLContainer root = new KBLContainer();
+        root.setXmlId("ID000");
+        root.setVersionId("version_id0");
+
         final KblHarness harness = new KblHarness();
+        harness.setXmlId("I1397");
 
         root.setHarness(harness);
 
         final KblConnectorOccurrence connectorOccurrence = new KblConnectorOccurrence();
+        connectorOccurrence.setXmlId("I1616");
         final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
         terminalOccurrence.setXmlId("id_4711");
         final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
-        terminalOccurrence2.setXmlId("id_4711");
+        terminalOccurrence2.setXmlId("id_4712");
 
         harness.getConnectorOccurrences()
                 .add(connectorOccurrence);
@@ -203,9 +205,9 @@ public class MyKblWriter {
 #### Generated KBL file
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema">
-    <Harness>
-        <Connector_occurrence>
+<kbl:KBL_container id="ID000" version_id="version_id0" xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema" >
+    <Harness id="I1397">
+        <Connector_occurrence id="I1616">
             <Contact_points id="id_1234">
                 <Id>SCHNUPSI</Id>
                 <Associated_parts>id_4711</Associated_parts>
@@ -218,20 +220,21 @@ public class MyKblWriter {
             </Contact_points>
         </Connector_occurrence>
         <Terminal_occurrence id="id_4711"/>
-        <Terminal_occurrence id="id_4711"/>
+        <Terminal_occurrence id="id_4712"/>
     </Harness>
 </kbl:KBL_container>
 ```
 ### Assertions on KBL Files
-For each KBL version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements. The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
+For each KBL version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements.
+The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
 
-Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions. For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
+Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions.
+For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
 
-Please not the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html) and the order of `...Assertions.assertThat;`.
+Please note the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html) 
+and the order of `...Assertions.assertThat;`.
 
 ```java
-package com.foursoft.kblmodel.test;
-
 import static com.foursoft.kblmodel.kbl24.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
@@ -242,28 +245,33 @@ import com.foursoft.kblmodel.kbl24.KblGeneralWire;
 import com.foursoft.kblmodel.kbl24.KblSpecialWireOccurrence;
 import com.foursoft.kblmodel.kbl24.KblUnit;
 
-public class KblSampleTest {
+class KblSampleTest {
 
-	@Test
-	public void testWireOccurrenceCreation() {
-		//Find the element to test, maybe with a traversing visitor...
-		final KblUnit unitMM = ... ;
-		final KblGeneralWire wire = ...;
-		final KblSpecialWireOccurrence specialWireOccurrence = ...;
+    @Test
+    void testWireOccurrenceCreation() {
+        //Find the element to test, maybe with a traversing visitor...
+        final KblUnit unitMM = null; // determine kbl unit
+        final KblGeneralWire wire = null; // determine kbl wire
+        final KblSpecialWireOccurrence specialWireOccurrence = null; // determine kbl wire occurrence
 
-		assertThat(specialWireOccurrence).hasSpecialWireId("1111")
-				.hasPart(wire)
-				.satisfies(w -> {
-					assertThat(w.getLengthInformations()).hasSize(1)
-							.satisfies(l -> {
-								assertThat(l).hasLengthType("Production")
-										.satisfies(v -> {
-											assertThat(v.getLengthValue()).hasUnitComponent(unitMM)
-													.hasValueComponent(0.0d);
-										});
-							}, atIndex(0));
-				});
-	}
+        assertThat(specialWireOccurrence)
+            .hasSpecialWireId("1111")
+            .hasPart(wire)
+            .satisfies(w ->
+                assertThat(w.getLengthInformations()).hasSize(1)
+                    .satisfies(
+                        // Consumer
+                        l ->
+                            assertThat(l)
+                                .hasLengthType("Production")
+                                .satisfies(v ->
+                                    assertThat(v.getLengthValue())
+                                        .hasUnitComponent(unitMM)
+                                        .hasValueComponent(0.0d)),
+                        // Index
+                        atIndex(0))
+            );
+    }
 }
 ```
 

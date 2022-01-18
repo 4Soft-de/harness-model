@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public class MyKblReader {
+
     public static void readKblFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
             final KblReader localReader = KblReader.getLocalReader();

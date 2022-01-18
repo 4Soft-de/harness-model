@@ -27,31 +27,27 @@ package com.foursoft.kblmodel.kbl24;
 
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import java.io.StringWriter;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BasicWritingTest {
+class BasicWritingTest {
 
     @Test
-    public void testWriteModel() throws JAXBException, TransformerFactoryConfigurationError {
-        final JAXBContext jc = JAXBContext.newInstance(KBLContainer.class);
-
+    void testWriteModel() {
         final KBLContainer root = new KBLContainer();
+        root.setXmlId("ID000");
+        root.setVersionId("version_id0");
 
         final KblHarness harness = new KblHarness();
+        harness.setXmlId("I1397");
 
         root.setHarness(harness);
 
         final KblConnectorOccurrence connectorOccurrence = new KblConnectorOccurrence();
+        connectorOccurrence.setXmlId("I1616");
         final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
         terminalOccurrence.setXmlId("id_4711");
         final KblTerminalOccurrence terminalOccurrence2 = new KblTerminalOccurrence();
-        terminalOccurrence2.setXmlId("id_4711");
+        terminalOccurrence2.setXmlId("id_4712");
 
         harness.getConnectorOccurrences()
                 .add(connectorOccurrence);
@@ -90,35 +86,30 @@ public class BasicWritingTest {
         contactPoint3.setId("SCHNUPSI");
         contactPoint3.setXmlId("id_1236");
 
-        final Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        final StringWriter stringWriter = new StringWriter();
+        final KblWriter kblWriter = new KblWriter();
+        final String result = kblWriter.writeToString(root);
 
-        marshaller.marshal(root, stringWriter);
-
-        final String result = stringWriter.toString();
         System.out.println(result);
         assertThat(result)
-                .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n"
-                                                     +
-                                                     "<kbl:KBL_container xmlns:kbl=\"http://www.prostep" +
-                                                     ".org/Car_electric_container/KBL2.3/KBLSchema\">\r\n"
-                                                     + "    <Harness>\r\n" + "        <Connector_occurrence>\r\n"
-                                                     + "            <Contact_points id=\"id_1234\">\r\n" +
-                                                     "                <Id>SCHNUPSI</Id>\r\n"
-                                                     +
-                                                     "                <Associated_parts>id_4711</Associated_parts>\r\n"
-                                                     + "            </Contact_points>\r\n" +
-                                                     "            <Contact_points id=\"id_1235\">\r\n"
-                                                     + "                <Id>SCHNUPSI</Id>\r\n" +
-                                                     "            </Contact_points>\r\n"
-                                                     + "            <Contact_points id=\"id_1236\">\r\n" +
-                                                     "                <Id>SCHNUPSI</Id>\r\n"
-                                                     + "            </Contact_points>\r\n" +
-                                                     "        </Connector_occurrence>\r\n"
-                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\r\n"
-                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\r\n" +
-                                                     "    </Harness>\r\n"
+                .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+                                                     + "<kbl:KBL_container id=\"ID000\" version_id=\"version_id0\""
+                                                     + " xmlns:kbl=\"http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema\">\n"
+                                                     + "    <Harness id=\"I1397\">\n"
+                                                     + "        <Connector_occurrence id=\"I1616\">\n"
+                                                     + "            <Contact_points id=\"id_1234\">\n"
+                                                     + "                <Id>SCHNUPSI</Id>\n"
+                                                     + "                <Associated_parts>id_4711</Associated_parts>\n"
+                                                     + "            </Contact_points>\n"
+                                                     + "            <Contact_points id=\"id_1235\">\n"
+                                                     + "                <Id>SCHNUPSI</Id>\n"
+                                                     + "            </Contact_points>\n"
+                                                     + "            <Contact_points id=\"id_1236\">\n"
+                                                     + "                <Id>SCHNUPSI</Id>\n"
+                                                     + "            </Contact_points>\n"
+                                                     + "        </Connector_occurrence>\n"
+                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\n"
+                                                     + "        <Terminal_occurrence id=\"id_4712\"/>\n"
+                                                     + "    </Harness>\n"
                                                      + "</kbl:KBL_container>");
 
     }
