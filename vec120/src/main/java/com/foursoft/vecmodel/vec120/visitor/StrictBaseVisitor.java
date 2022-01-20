@@ -33,9 +33,8 @@ import com.foursoft.vecmodel.vec120.*;
  * encounters a class that is not handled explicitly, by overriding the
  * corresponding methods.
  *
- * @author Johannes Becker
- *
  * @param <R> Class of the visitor
+ * @author Johannes Becker
  */
 public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
 
@@ -49,7 +48,7 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     protected String getErrorMessage(final Object aBean) {
         return "Encountered unhandled class '" + aBean.getClass().getName()
                 + "' in visitor implementation: "
-                + this.getClass().getName();
+                + getClass().getName();
     }
 
     @Override
@@ -574,6 +573,16 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
 
     @Override
     public R visitVecFunctionalRequirement(final VecFunctionalRequirement aBean) throws RuntimeException {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitVecFunctionalStructureNode(final VecFunctionalStructureNode aBean) throws RuntimeException {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitVecFunctionalStructureSpecification(final VecFunctionalStructureSpecification aBean) throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
