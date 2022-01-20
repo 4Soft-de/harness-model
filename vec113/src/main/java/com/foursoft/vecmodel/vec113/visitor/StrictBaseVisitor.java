@@ -43,14 +43,13 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
      * Default implementation for creating an error message in case of visiting
      * classes that are not explicitly handled.
      *
-     * @param abean Object to get class name from
+     * @param aBean Object to get class name from
      * @return Never null String containing the error message for the given object
      */
-    protected String getErrorMessage(final Object abean) {
-        return "Encountered unhandled class '" + abean.getClass()
-                .getName() + "' in visitor implementation: "
-                + this.getClass()
-                        .getName();
+    protected String getErrorMessage(final Object aBean) {
+        return "Encountered unhandled class '" + aBean.getClass().getName()
+                + "' in visitor implementation: "
+                + this.getClass().getName();
     }
 
     @Override
