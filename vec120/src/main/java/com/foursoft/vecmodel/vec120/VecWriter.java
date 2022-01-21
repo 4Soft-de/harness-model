@@ -52,14 +52,4 @@ public final class VecWriter extends XMLWriter<VecContent> {
         super(VecContent.class, validationEventConsumer);
     }
 
-    /**
-     * @return a new VecWriter for each call.
-     *
-     * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
-     *    own {@link VecWriter} and cache it by yourself if necessary. Will be removed with a future release.
-     */
-    @Deprecated
-    public static VecWriter getLocalWriter() {
-        return new VecWriter();
-    }
 }

@@ -65,13 +65,4 @@ public final class VecReader extends XMLReader<VecContent, Identifiable> {
         super(VecContent.class, Identifiable.class, Identifiable::getXmlId, validationEventConsumer);
     }
 
-    /**
-     * @return a new VecReader for each call.
-     * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
-     * own {@link VecReader} and cache it by yourself if necessary. Will be removed with a future release.
-     */
-    @Deprecated
-    public static VecReader getLocalReader() {
-        return new VecReader();
-    }
 }

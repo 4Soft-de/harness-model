@@ -147,8 +147,8 @@ More examples can be found in the examples of each module:
 public class MyVecReader {
     public void readVecFile(final String pathToFile) throws IOException  {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
-            final VecReader localReader = new VecReader();
-            final JaxbModel<VecContent, Identifiable> model = localReader.readModel(is);
+            final VecReader vecReader = new VecReader();
+            final JaxbModel<VecContent, Identifiable> model = vecReader.readModel(is);
     
             final VecApproval approval = model.getIdLookup()
                     .findById(VecApproval.class, "id_2014_0")

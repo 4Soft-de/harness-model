@@ -37,10 +37,10 @@ public class MyVecWriter {
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
-        final VecWriter localWriter = new VecWriter();
+        final VecWriter vecWriter = new VecWriter();
 
         try (final FileOutputStream outputStream = new FileOutputStream(target)) {
-            localWriter.write(root, outputStream);
+            vecWriter.write(root, outputStream);
         }
     }
 }

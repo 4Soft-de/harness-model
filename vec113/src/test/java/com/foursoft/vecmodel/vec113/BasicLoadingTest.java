@@ -150,17 +150,4 @@ class BasicLoadingTest {
         }
     }
 
-    @Test
-    void testGetLocalWriter() {
-        final VecReader localReader = VecReader.getLocalReader();
-        assertThat(localReader).isNotNull();
-    }
-
-    @Test
-    void testWithLocalReader() throws IOException {
-        try (final InputStream inputStream = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
-            final VecContent content = VecReader.getLocalReader().read(inputStream);
-            assertThat(content).isNotNull();
-        }
-    }
 }
