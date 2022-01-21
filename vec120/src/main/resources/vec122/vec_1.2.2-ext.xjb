@@ -5,7 +5,7 @@
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
         extensionBindingPrefixes="xjc dg"
         jxb:extensionBindingPrefixes="xjc annox xhtml"
-        node="/xs:schema" schemaLocation="vec_1.2.1.RC-SNAPSHOT.xsd" version="2.1">
+        node="/xs:schema" schemaLocation="vec_1.2.2.xsd" version="2.1">
 
 
     <jxb:bindings multiple="true" node="//xs:complexType[xs:attribute[@name='id']]">
