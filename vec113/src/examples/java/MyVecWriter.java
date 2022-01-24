@@ -5,20 +5,22 @@ import java.io.IOException;
 
 public class MyVecWriter {
 
-    public static void writeVecFile(final String target) throws IOException {
-
+    public static void writeExampleVecFile(final String target) throws IOException {
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.1.3");
 
         final VecPermission permission = new VecPermission();
+        permission.setXmlId("id_2185_0");
         permission.setPermission("Released");
 
         final VecApproval approval = new VecApproval();
+        approval.setXmlId("id_2014_0");
         approval.setStatus("Approved");
         approval.getPermissions().add(permission);
 
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
+        documentVersion.setXmlId("id_1002_0");
         documentVersion.getApprovals().add(approval);
         documentVersion.setDocumentNumber("123_456_789");
 
@@ -35,10 +37,10 @@ public class MyVecWriter {
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
-        final VecWriter localWriter = new VecWriter();
+        final VecWriter vecWriter = new VecWriter();
 
         try (final FileOutputStream outputStream = new FileOutputStream(target)) {
-            localWriter.write(root, outputStream);
+            vecWriter.write(root, outputStream);
         }
     }
 }

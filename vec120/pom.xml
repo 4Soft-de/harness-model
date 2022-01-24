@@ -90,10 +90,10 @@
                         <configuration>
                             <encoding>UTF-8</encoding>
                             <schemaIncludes>
-                                <include>vec120/vec_1.2.1.RC-SNAPSHOT.xsd</include>
+                                <include>vec122/vec_1.2.2.xsd</include>
                             </schemaIncludes>
                             <bindingIncludes>
-                                <include>vec120/*.xjb</include>
+                                <include>vec122/*.xjb</include>
                             </bindingIncludes>
                             <args>
                                 <arg>-Xannotate</arg>

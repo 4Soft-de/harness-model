@@ -25,7 +25,6 @@
  */
 package com.foursoft.vecmodel.vec120;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,26 +32,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BasicWritingTest {
 
     @Test
-    void testGetLocalWriter() {
-        final VecWriter localWriter = VecWriter.getLocalWriter();
-        Assertions.assertNotNull(localWriter);
-    }
-
-    @Test
     void testWriteModel() {
-
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.2.0");
 
         final VecPermission permission = new VecPermission();
+        permission.setXmlId("id_2185_0");
         permission.setPermission("Released");
 
         final VecApproval approval = new VecApproval();
+        approval.setXmlId("id_2014_0");
         approval.setStatus("Approved");
         approval.getPermissions().add(permission);
 
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
+        documentVersion.setXmlId("id_1002_0");
         documentVersion.getApprovals().add(approval);
         documentVersion.setDocumentNumber("123_456_789");
 
@@ -77,10 +72,10 @@ class BasicWritingTest {
                                                      "<vec:VecContent id=\"id_1000_0\" xmlns:vec=\"http://www.prostep" +
                                                      ".org/ecad-if/2011/vec\">\n" +
                                                      "    <VecVersion>1.2.0</VecVersion>\n" +
-                                                     "    <DocumentVersion>\n" +
-                                                     "        <Approval>\n" +
+                                                     "    <DocumentVersion id=\"id_1002_0\">\n" +
+                                                     "        <Approval id=\"id_2014_0\">\n" +
                                                      "            <Status>Approved</Status>\n" +
-                                                     "            <Permission>\n" +
+                                                     "            <Permission id=\"id_2185_0\">\n" +
                                                      "                <Permission>Released</Permission>\n" +
                                                      "            </Permission>\n" +
                                                      "        </Approval>\n" +
@@ -89,8 +84,7 @@ class BasicWritingTest {
                                                      "xsi:type=\"vec:ConnectorHousingCapSpecification\" " +
                                                      "id=\"id_2000_0\" xmlns:xsi=\"http://www.w3" +
                                                      ".org/2001/XMLSchema-instance\">\n" +
-                                                     "            <Identification>Ccs-123_456_789-1</Identification" +
-                                                     ">\n" +
+                                                     "            <Identification>Ccs-123_456_789-1</Identification>\n" +
                                                      "        </Specification>\n" +
                                                      "    </DocumentVersion>\n" +
                                                      "    <PartVersion id=\"id_1001_0\">\n" +

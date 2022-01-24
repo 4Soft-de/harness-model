@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,8 +29,8 @@ import javax.xml.validation.Schema;
 
 public class SchemaFactory {
 
-    private static final String SCHEMA_PATH = "vec120/vec_1.2.1.RC-SNAPSHOT.xsd";
-    private static final String STRICT_SCHEMA_PATH = "vec120/vec_1.2.0-strict.xsd";
+    private static final String SCHEMA_PATH = "vec122/vec_1.2.2.xsd";
+    private static final String STRICT_SCHEMA_PATH = "vec122/vec_1.2.2-strict.xsd";
 
     private SchemaFactory() {
         // Hide constructor
