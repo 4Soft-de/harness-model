@@ -577,6 +577,16 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
+    public O visitVecFunctionalStructureNode(final VecFunctionalStructureNode aBean) {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecFunctionalStructureSpecification(final VecFunctionalStructureSpecification aBean) {
+        return apply(aBean);
+    }
+
+    @Override
     public O visitVecFuseComponent(final VecFuseComponent aBean) {
         return apply(aBean);
     }
