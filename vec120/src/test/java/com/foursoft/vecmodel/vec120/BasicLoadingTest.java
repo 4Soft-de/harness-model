@@ -39,7 +39,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,11 +100,7 @@ class BasicLoadingTest {
     @Test
     void validationTest() throws Exception {
         try (final InputStream is = TestFiles.getInputStream(TestFiles.SAMPLE_VEC)) {
-            final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-
-            final Source source = new StreamSource(getClass().getResourceAsStream("/vec120/vec_1.2.0-strict.xsd"));
-
-            final Schema schema = schemaFactory.newSchema(source);
+            final Schema schema = SchemaFactory.getStrictSchema();
 
             final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
