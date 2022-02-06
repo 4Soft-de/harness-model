@@ -45,4 +45,8 @@
         <inheritance:implements>com.foursoft.vecmodel.vec113.HasOccurrenceOrUsage</inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='CustomProperty' and @type='vec:CustomProperty']]">
+        <inheritance:implements>com.foursoft.vecmodel.vec113.HasCustomProperties</inheritance:implements>
+    </jxb:bindings>
+
 </jxb:bindings>
