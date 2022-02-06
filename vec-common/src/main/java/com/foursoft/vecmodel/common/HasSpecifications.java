@@ -28,12 +28,27 @@ package com.foursoft.vecmodel.common;
 import com.foursoft.vecmodel.common.util.DelegationUtils;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface HasSpecifications<X> {
+public interface HasSpecifications<X extends HasIdentification> {
 
     List<X> getSpecifications();
 
     default <T extends X> List<T> getSpecificationsWithType(final Class<T> type) {
         return DelegationUtils.getFromListWithType(getSpecifications(), type);
+    }
+
+    /**
+     * Filters the list of Specifications by type and identification.
+     *
+     * @param type           derived classifiers
+     * @param identification specifies a unique identification of the specification.
+     * @return the first specification with the given type and identification.
+     */
+    default <T extends X> Optional<T> getSpecification(final Class<T> type, final String identification) {
+        return DelegationUtils.getFromListWithTypeAsStream(getSpecifications(), type)
+                .filter(c -> c.getIdentification().equals(identification))
+                //TODO add stream utils
+                .findFirst();
     }
 }
