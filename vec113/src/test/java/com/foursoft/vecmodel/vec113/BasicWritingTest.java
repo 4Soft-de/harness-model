@@ -67,29 +67,30 @@ class BasicWritingTest {
         final VecWriter vecWriter = new VecWriter();
         final String result = vecWriter.writeToString(root);
         assertThat(result)
-                .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                                                     "<vec:VecContent id=\"id_1000_0\" xmlns:vec=\"http://www.prostep" +
-                                                     ".org/ecad-if/2011/vec\">\n" +
-                                                     "    <VecVersion>1.1.3</VecVersion>\n" +
-                                                     "    <DocumentVersion id=\"id_1002_0\">\n" +
-                                                     "        <Approval id=\"id_2014_0\">\n" +
-                                                     "            <Status>Approved</Status>\n" +
-                                                     "            <Permission id=\"id_2185_0\">\n" +
-                                                     "                <Permission>Released</Permission>\n" +
-                                                     "            </Permission>\n" +
-                                                     "        </Approval>\n" +
-                                                     "        <DocumentNumber>123_456_789</DocumentNumber>\n" +
-                                                     "        <Specification " +
-                                                     "xsi:type=\"vec:ConnectorHousingCapSpecification\" " +
-                                                     "id=\"id_2000_0\" xmlns:xsi=\"http://www.w3" +
-                                                     ".org/2001/XMLSchema-instance\">\n" +
-                                                     "            <Identification>Ccs-123_456_789-1</Identification>\n" +
-                                                     "        </Specification>\n" +
-                                                     "    </DocumentVersion>\n" +
-                                                     "    <PartVersion id=\"id_1001_0\">\n" +
-                                                     "        <PartNumber>123_456_789</PartNumber>\n" +
-                                                     "    </PartVersion>\n" +
-                                                     "</vec:VecContent>");
+                .isEqualToIgnoringWhitespace(
+                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+                                "<vec:VecContent id=\"id_1000_0\" xmlns:vec=\"http://www.prostep" +
+                                ".org/ecad-if/2011/vec\">\n" +
+                                "    <VecVersion>1.1.3</VecVersion>\n" +
+                                "    <DocumentVersion id=\"id_1002_0\">\n" +
+                                "        <Approval id=\"id_2014_0\">\n" +
+                                "            <Status>Approved</Status>\n" +
+                                "            <Permission id=\"id_2185_0\">\n" +
+                                "                <Permission>Released</Permission>\n" +
+                                "            </Permission>\n" +
+                                "        </Approval>\n" +
+                                "        <DocumentNumber>123_456_789</DocumentNumber>\n" +
+                                "        <Specification " +
+                                "xsi:type=\"vec:ConnectorHousingCapSpecification\" " +
+                                "id=\"id_2000_0\" xmlns:xsi=\"http://www.w3" +
+                                ".org/2001/XMLSchema-instance\">\n" +
+                                "            <Identification>Ccs-123_456_789-1</Identification>\n" +
+                                "        </Specification>\n" +
+                                "    </DocumentVersion>\n" +
+                                "    <PartVersion id=\"id_1001_0\">\n" +
+                                "        <PartNumber>123_456_789</PartNumber>\n" +
+                                "    </PartVersion>\n" +
+                                "</vec:VecContent>");
     }
 
 }

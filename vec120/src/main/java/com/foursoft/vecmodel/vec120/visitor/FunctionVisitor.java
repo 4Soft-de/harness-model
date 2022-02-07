@@ -44,6 +44,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
 
     /**
      * Instances a new FunctionVisitor with the given function.
+     *
      * @param func Function which will be executed and returned for each visit method.
      * @throws NullPointerException If the given function is {@code null}.
      */
