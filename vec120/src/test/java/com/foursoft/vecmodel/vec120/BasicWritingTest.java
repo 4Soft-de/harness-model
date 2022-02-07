@@ -70,8 +70,8 @@ class BasicWritingTest {
         assertThat(result)
                 .isEqualToIgnoringWhitespace(
                         "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                                "<vec:VecContent id=\"id_1000_0\" xmlns:vec=\"http://www.prostep" +
-                                ".org/ecad-if/2011/vec\">\n" +
+                                "<vec:VecContent id=\"id_1000_0\" " +
+                                "xmlns:vec=\"http://www.prostep.org/ecad-if/2011/vec\">\n" +
                                 "    <VecVersion>1.2.0</VecVersion>\n" +
                                 "    <DocumentVersion id=\"id_1002_0\">\n" +
                                 "        <Approval id=\"id_2014_0\">\n" +
@@ -83,8 +83,7 @@ class BasicWritingTest {
                                 "        <DocumentNumber>123_456_789</DocumentNumber>\n" +
                                 "        <Specification " +
                                 "xsi:type=\"vec:ConnectorHousingCapSpecification\" " +
-                                "id=\"id_2000_0\" xmlns:xsi=\"http://www.w3" +
-                                ".org/2001/XMLSchema-instance\">\n" +
+                                "id=\"id_2000_0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
                                 "            <Identification>Ccs-123_456_789-1</Identification>\n" +
                                 "        </Specification>\n" +
                                 "    </DocumentVersion>\n" +
