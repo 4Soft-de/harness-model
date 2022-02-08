@@ -73,9 +73,21 @@ public class XMLWriter<T> {
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
             marshaller.setProperty(NAMESPACE_PREFIX_MAPPER, new NamespacePrefixMapperImpl());
             addEventHandler(marshaller, validationEventConsumer);
+            configureMarshaller(marshaller);
         } catch (final Exception e) {
-            throw new XMLIOException("Cannot initialize unmarshaller.", e);
+            throw new XMLIOException("Cannot initialize marshaller.", e);
         }
+    }
+
+    /**
+     * Method which can be overridden for further configuration on the marshaller.
+     *
+     * @param marshaller Marshaller to configure.
+     *
+     * @throws Exception In case something went wrong.
+     */
+    protected void configureMarshaller(final Marshaller marshaller) throws Exception {
+        // default empty impl
     }
 
     private static void addEventHandler(final Marshaller marshaller,
