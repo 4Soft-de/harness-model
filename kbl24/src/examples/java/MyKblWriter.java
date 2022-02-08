@@ -56,10 +56,10 @@ public class MyKblWriter {
         contactPoint3.setId("SCHNUPSI");
         contactPoint3.setXmlId("id_1236");
 
-        final KblWriter localWriter = KblWriter.getLocalWriter();
+        final KblWriter kblWriter = new KblWriter();
 
         try (final FileOutputStream outputStream = new FileOutputStream(target)) {
-            localWriter.write(root, outputStream);
+            kblWriter.write(root, outputStream);
         }
     }
 }

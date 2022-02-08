@@ -65,14 +65,4 @@ public final class KblReader extends XMLReader<KBLContainer, Identifiable> {
         super(KBLContainer.class, Identifiable.class, Identifiable::getXmlId, validationEventConsumer);
     }
 
-    /**
-     * @return a new KblReader for each call.
-     *
-     * @deprecated the thread local caching has been removed due to memory leaking issues. Create your
-     *    own {@link KblReader} and cache it by yourself if necessary. Will be removed with a future release.
-     */
-    @Deprecated
-    public static KblReader getLocalReader() {
-        return new KblReader();
-    }
 }

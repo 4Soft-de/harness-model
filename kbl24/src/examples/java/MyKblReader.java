@@ -12,8 +12,8 @@ public class MyKblReader {
 
     public static void readKblFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
-            final KblReader localReader = KblReader.getLocalReader();
-            final JaxbModel<KBLContainer, Identifiable> model = localReader.readModel(is);
+            final KblReader kblReader = new KblReader();
+            final JaxbModel<KBLContainer, Identifiable> model = kblReader.readModel(is);
 
             final KblConnectorOccurrence occurrence = model.getIdLookup()
                     .findById(KblConnectorOccurrence.class, "I1616")
@@ -47,8 +47,8 @@ public class MyKblReader {
 
     public static void getBackReferences(final String pathToFile) throws IOException {
         try (final InputStream is = MyKblReader.class.getResourceAsStream(pathToFile)) {
-            final KblReader localReader = KblReader.getLocalReader();
-            final JaxbModel<KBLContainer, Identifiable> model = localReader.readModel(is);
+            final KblReader kblReader = new KblReader();
+            final JaxbModel<KBLContainer, Identifiable> model = kblReader.readModel(is);
             final KBLContainer container = model.getRootElement();
 
             final List<KblConnectorHousing> connectorHousings = container.getConnectorHousings();
