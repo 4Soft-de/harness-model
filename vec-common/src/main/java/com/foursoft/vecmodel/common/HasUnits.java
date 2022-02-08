@@ -25,11 +25,17 @@
  */
 package com.foursoft.vecmodel.common;
 
+import com.foursoft.vecmodel.common.util.DelegationUtils;
+
 import java.util.List;
 
 @FunctionalInterface
-public interface HasDescription<T> {
+public interface HasUnits<X> {
 
-    List<T> getDescriptions();
+    List<X> getUnits();
+
+    default <T extends X> List<T> getUnitsWithType(final Class<T> type) {
+        return DelegationUtils.getFromListWithType(getUnits(), type);
+    }
 
 }
