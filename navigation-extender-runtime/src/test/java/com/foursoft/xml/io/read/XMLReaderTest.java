@@ -25,14 +25,14 @@
  */
 package com.foursoft.xml.io.read;
 
-import com.foursoft.test.model.AbstractBase;
-import com.foursoft.test.model.Root;
 import com.foursoft.xml.io.TestData;
 import com.foursoft.xml.io.utils.XMLIOException;
+import com.foursoft.xml.model.AbstractBase;
+import com.foursoft.xml.model.Root;
+import jakarta.xml.bind.ValidationEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.ValidationEvent;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;

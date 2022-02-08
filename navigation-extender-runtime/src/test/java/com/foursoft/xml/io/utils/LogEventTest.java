@@ -28,7 +28,7 @@ package com.foursoft.xml.io.utils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.ValidationEvent;
+import jakarta.xml.bind.ValidationEvent;
 
 class LogEventTest {
 

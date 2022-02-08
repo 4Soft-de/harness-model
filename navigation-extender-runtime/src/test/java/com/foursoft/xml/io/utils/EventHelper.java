@@ -27,8 +27,8 @@ package com.foursoft.xml.io.utils;
 
 import org.w3c.dom.Node;
 
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationEventLocator;
+import jakarta.xml.bind.ValidationEvent;
+import jakarta.xml.bind.ValidationEventLocator;
 import java.net.MalformedURLException;
 import java.net.URL;
 

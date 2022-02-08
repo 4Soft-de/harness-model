@@ -25,15 +25,15 @@
  */
 package com.foursoft.xml.io.write;
 
-import com.foursoft.test.model.ChildA;
-import com.foursoft.test.model.ChildB;
-import com.foursoft.test.model.Root;
 import com.foursoft.xml.io.TestData;
 import com.foursoft.xml.io.utils.ValidationEventCollector;
 import com.foursoft.xml.io.write.xmlmeta.XMLMeta;
 import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
 import com.foursoft.xml.io.write.xmlmeta.processinginstructions.ProcessingInstruction;
 import com.foursoft.xml.io.write.xmlmeta.processinginstructions.ProcessingInstructions;
+import com.foursoft.xml.model.ChildA;
+import com.foursoft.xml.model.ChildB;
+import com.foursoft.xml.model.Root;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

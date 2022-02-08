@@ -25,24 +25,23 @@
  */
 package com.foursoft.xml;
 
-import com.foursoft.test.model.AbstractBase;
-import com.foursoft.test.model.ChildA;
-import com.foursoft.test.model.ChildB;
-import com.foursoft.test.model.Root;
+import com.foursoft.xml.model.AbstractBase;
+import com.foursoft.xml.model.ChildA;
+import com.foursoft.xml.model.ChildB;
+import com.foursoft.xml.model.Root;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.ValidationEvent;
+import jakarta.xml.bind.ValidationEventLocator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationEventLocator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExtendedUnmarshallerTest {
 
@@ -61,19 +60,23 @@ public class ExtendedUnmarshallerTest {
 
         final Unmarshaller unmarshaller = extUnmarshaller.getUnmarshaller();
         final ValidationEvent event = new ValidationEvent() {
-            @Override public int getSeverity() {
+            @Override
+            public int getSeverity() {
                 return 0;
             }
 
-            @Override public String getMessage() {
+            @Override
+            public String getMessage() {
                 return null;
             }
 
-            @Override public Throwable getLinkedException() {
+            @Override
+            public Throwable getLinkedException() {
                 return null;
             }
 
-            @Override public ValidationEventLocator getLocator() {
+            @Override
+            public ValidationEventLocator getLocator() {
                 return null;
             }
         };
@@ -107,19 +110,23 @@ public class ExtendedUnmarshallerTest {
 
         final Unmarshaller unmarshaller = extUnmarshaller1.getUnmarshaller();
         final ValidationEvent event = new ValidationEvent() {
-            @Override public int getSeverity() {
+            @Override
+            public int getSeverity() {
                 return 0;
             }
 
-            @Override public String getMessage() {
+            @Override
+            public String getMessage() {
                 return null;
             }
 
-            @Override public Throwable getLinkedException() {
+            @Override
+            public Throwable getLinkedException() {
                 return null;
             }
 
-            @Override public ValidationEventLocator getLocator() {
+            @Override
+            public ValidationEventLocator getLocator() {
                 return null;
             }
         };
@@ -144,7 +151,7 @@ public class ExtendedUnmarshallerTest {
 
         // Check Id Lookup initialized & parent associations
         assertThat(unmarshalledResult.getIdLookup()
-                           .findById(ChildB.class, "id_6")).isNotNull()
+                .findById(ChildB.class, "id_6")).isNotNull()
                 .isNotEmpty()
                 .get()
                 .returns("id_6", ChildB::getXmlId)
@@ -157,19 +164,19 @@ public class ExtendedUnmarshallerTest {
                 .get(1);
         // Check Backref is working
         assertThat(unmarshalledResult.getIdLookup()
-                           .findById(ChildB.class, "id_6")
-                           .get()
-                           .getReverseChildA()).containsExactlyInAnyOrder(childAone);
+                .findById(ChildB.class, "id_6")
+                .get()
+                .getReverseChildA()).containsExactlyInAnyOrder(childAone);
 
         assertThat(unmarshalledResult.getIdLookup()
-                           .findById(ChildB.class, "id_7")
-                           .get()
-                           .getReverseChildA()).containsExactlyInAnyOrder(childAone, childATwo);
+                .findById(ChildB.class, "id_7")
+                .get()
+                .getReverseChildA()).containsExactlyInAnyOrder(childAone, childATwo);
 
         assertThat(unmarshalledResult.getIdLookup()
-                           .findById(ChildB.class, "id_8")
-                           .get()
-                           .getReverseChildA()).containsExactlyInAnyOrder(childATwo);
+                .findById(ChildB.class, "id_8")
+                .get()
+                .getReverseChildA()).containsExactlyInAnyOrder(childATwo);
 
     }
 

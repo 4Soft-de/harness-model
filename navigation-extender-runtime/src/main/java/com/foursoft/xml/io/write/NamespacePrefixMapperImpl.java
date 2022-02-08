@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -65,58 +65,57 @@ package com.foursoft.xml.io.write;
  * holder.
  */
 
-import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
+import org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper;
 
 class NamespacePrefixMapperImpl extends NamespacePrefixMapper {
 
     /**
      * Returns a preferred prefix for the given namespace URI.
-     *
+     * <p>
      * This method is intended to be overrided by a derived class.
      *
-     * @param namespaceUri
-     *      The namespace URI for which the prefix needs to be found.
-     *      Never be null. "" is used to denote the default namespace.
-     * @param suggestion
-     *      When the content tree has a suggestion for the prefix
-     *      to the given namespaceUri, that suggestion is passed as a
-     *      parameter. Typicall this value comes from the QName.getPrefix
-     *      to show the preference of the content tree. This parameter
-     *      may be null, and this parameter may represent an already
-     *      occupied prefix.
-     * @param requirePrefix
-     *      If this method is expected to return non-empty prefix.
-     *      When this flag is true, it means that the given namespace URI
-     *      cannot be set as the default namespace.
-     *
-     * @return
-     *      null if there's no prefered prefix for the namespace URI.
-     *      In this case, the system will generate a prefix for you.
-     *
-     *      Otherwise the system will try to use the returned prefix,
-     *      but generally there's no guarantee if the prefix will be
-     *      actually used or not.
-     *
-     *      return "" to map this namespace URI to the default namespace.
-     *      Again, there's no guarantee that this preference will be
-     *      honored.
-     *
-     *      If this method returns "" when requirePrefix=true, the return
-     *      value will be ignored and the system will generate one.
+     * @param namespaceUri  The namespace URI for which the prefix needs to be found.
+     *                      Never be null. "" is used to denote the default namespace.
+     * @param suggestion    When the content tree has a suggestion for the prefix
+     *                      to the given namespaceUri, that suggestion is passed as a
+     *                      parameter. Typicall this value comes from the QName.getPrefix
+     *                      to show the preference of the content tree. This parameter
+     *                      may be null, and this parameter may represent an already
+     *                      occupied prefix.
+     * @param requirePrefix If this method is expected to return non-empty prefix.
+     *                      When this flag is true, it means that the given namespace URI
+     *                      cannot be set as the default namespace.
+     * @return null if there's no prefered prefix for the namespace URI.
+     * In this case, the system will generate a prefix for you.
+     * <p>
+     * Otherwise the system will try to use the returned prefix,
+     * but generally there's no guarantee if the prefix will be
+     * actually used or not.
+     * <p>
+     * return "" to map this namespace URI to the default namespace.
+     * Again, there's no guarantee that this preference will be
+     * honored.
+     * <p>
+     * If this method returns "" when requirePrefix=true, the return
+     * value will be ignored and the system will generate one.
      */
-    public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix) {
+    @Override
+    public String getPreferredPrefix(final String namespaceUri, final String suggestion, final boolean requirePrefix) {
         // I want this namespace to be mapped to "xsi"
-        if( "http://www.w3.org/2001/XMLSchema-instance".equals(namespaceUri) )
+        if ("http://www.w3.org/2001/XMLSchema-instance".equals(namespaceUri)) {
             return "xsi";
+        }
 
         // I want this namespace to be mapped to "kbl"
-        if( "http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema".equals(namespaceUri) )
+        if ("http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema".equals(namespaceUri)) {
             return "kbl";
+        }
 
         // I want this namespace to be mapped to "vec"
-        if( "http://www.prostep.org/ecad-if/2011/vec".equals(namespaceUri) )
+        if ("http://www.prostep.org/ecad-if/2011/vec".equals(namespaceUri)) {
             return "vec";
+        }
 
         // otherwise I don't care. Just use the default suggestion, whatever it may be.
         return suggestion;

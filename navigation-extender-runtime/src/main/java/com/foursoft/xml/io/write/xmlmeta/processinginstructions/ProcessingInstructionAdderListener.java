@@ -27,7 +27,8 @@ package com.foursoft.xml.io.write.xmlmeta.processinginstructions;/*-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.Marshaller.Listener;
+import jakarta.xml.bind.Marshaller.Listener;
+
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 

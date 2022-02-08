@@ -25,9 +25,9 @@
  */
 package com.foursoft.xml.io;
 
-import com.foursoft.test.model.AbstractBase;
-import com.foursoft.test.model.Root;
 import com.foursoft.xml.io.read.XMLReader;
+import com.foursoft.xml.model.AbstractBase;
+import com.foursoft.xml.model.Root;
 
 import java.io.InputStream;
 import java.nio.file.Path;

@@ -34,12 +34,15 @@ import com.foursoft.xml.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
 import com.foursoft.xml.io.write.xmlmeta.comments.CommentAdderListener;
 import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
 import com.foursoft.xml.io.write.xmlmeta.processinginstructions.ProcessingInstructionAdderListener;
+import jakarta.xml.bind.*;
 
-import javax.xml.bind.*;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.io.*;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
 
@@ -50,7 +53,7 @@ import java.util.function.Consumer;
  */
 public class XMLWriter<T> {
 
-    private static final String NAMESPACE_PREFIX_MAPPER = "com.sun.xml.bind.namespacePrefixMapper";
+    private static final String NAMESPACE_PREFIX_MAPPER = "org.glassfish.jaxb.namespacePrefixMapper";
 
     private final Class<T> baseType;
     private final Marshaller marshaller;
@@ -113,7 +116,6 @@ public class XMLWriter<T> {
      * @param container    the jaxb model to deserialize into the given stream
      * @param outputStream the output to write to
      * @param comments     additional comments which should be added to output {@link Comments}
-     *
      * @deprecated Use {@link #write(T, XMLMeta, OutputStream)} and {@link XMLMeta#setComments(Comments)} instead.
      */
     @Deprecated
@@ -129,7 +131,6 @@ public class XMLWriter<T> {
      * @param container the jaxb model to deserialize into the given stream
      * @param comments  additional comments which should be added to output {@link Comments}
      * @return the model as xml string
-     *
      * @deprecated Use {@link #writeToString(T, XMLMeta)} and {@link XMLMeta#setComments(Comments)} instead.
      */
     @Deprecated
