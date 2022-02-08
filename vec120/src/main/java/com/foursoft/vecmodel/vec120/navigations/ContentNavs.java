@@ -28,14 +28,12 @@ package com.foursoft.vecmodel.vec120.navigations;
 import com.foursoft.vecmodel.vec120.VecContent;
 import com.foursoft.vecmodel.vec120.VecDocumentVersion;
 import com.foursoft.vecmodel.vec120.VecSpecification;
-import com.foursoft.vecmodel.vec120.VecUnit;
 import com.foursoft.vecmodel.vec120.utils.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Navigation methods for the {@link VecContent}.
@@ -58,11 +56,6 @@ public final class ContentNavs {
         return content -> content.getDocumentVersions().stream()
                 .filter(documentVersion -> documentVersion.getDocumentNumber().equals(documentNumber))
                 .collect(StreamUtils.findOneOrNone());
-    }
-
-    // TODO Do this similar to HasRoles#getRolesWithType
-    public static <T extends VecUnit> Function<VecContent, Stream<T>> allUnitsOf(final Class<T> clazz) {
-        return content -> StreamUtils.checkAndCast(content.getUnits(), clazz);
     }
 
 }
