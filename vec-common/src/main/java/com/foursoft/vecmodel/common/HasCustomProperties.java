@@ -35,7 +35,7 @@ public interface HasCustomProperties<X extends HasPropertyType> {
 
     List<X> getCustomProperties();
 
-    default <T extends X> List<T> getCustomProperties(final Class<T> type) {
+    default <T extends X> List<T> getCustomPropertiesWithType(final Class<T> type) {
         return DelegationUtils.getFromListWithType(getCustomProperties(), type);
     }
 
