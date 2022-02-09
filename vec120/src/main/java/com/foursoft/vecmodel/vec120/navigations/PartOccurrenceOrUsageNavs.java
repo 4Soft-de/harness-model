@@ -124,8 +124,7 @@ public final class PartOccurrenceOrUsageNavs {
     // VecOccurrenceOrUsage
 
     public static BiFunction<VecOccurrenceOrUsage, VecDocumentVersion, Optional<VecTopologyNode>> findNodeOfComponent() {
-        return (component, documentVersion) -> component.getRolesWithType(VecPlaceableElementRole.class).stream()
-                .findFirst()  // there should be at most one such role
+        return (component, documentVersion) -> component.getRoleWithType(VecPlaceableElementRole.class)
                 .flatMap(placedElement -> DocumentVersionNavs
                         .nodeLocationsBy(placedElement)
                         .apply(documentVersion)

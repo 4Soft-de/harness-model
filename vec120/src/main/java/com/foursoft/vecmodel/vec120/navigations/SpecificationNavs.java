@@ -27,11 +27,9 @@ package com.foursoft.vecmodel.vec120.navigations;
 
 import com.foursoft.vecmodel.common.HasSpecifications;
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
-import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.vec120.*;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -44,28 +42,6 @@ public final class SpecificationNavs {
         // hide default constructor
     }
 
-    /**
-     * Gets the first specification with the given type.
-     * <b>Warning: There might be multiple specifications with the given type.
-     * Only use this method if you are sure there will just be one element!</b>
-     *
-     * @param type Class of T.
-     * @param <T>  Type of Specification to filter for.
-     * @return The first specification with the given type if found, else an empty optional.
-     */
-    public static <T extends VecSpecification> Function<HasSpecifications<VecSpecification>, Optional<T>> specificationOf(
-            final Class<T> type) {
-        return hasSpecification -> hasSpecification.getSpecificationsWithType(type)
-                .stream().collect(StreamUtils.findOneOrNone());
-    }
-
-    public static <T extends VecSpecification> Function<HasSpecifications<VecSpecification>, Optional<T>> specificationOf(
-            final Class<T> type, final String specificationType) {
-        return hasSpecification -> hasSpecification.getSpecificationsWithType(type)
-                .stream()
-                .filter(spec -> specificationType.equals(spec.getIdentification()))
-                .collect(StreamUtils.findOneOrNone());
-    }
 
     @RequiresBackReferences
     public static Function<VecSpecification, String> parentDocumentNumber() {

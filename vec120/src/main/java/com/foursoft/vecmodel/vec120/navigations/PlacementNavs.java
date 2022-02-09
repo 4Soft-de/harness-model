@@ -56,34 +56,16 @@ public final class PlacementNavs {
     }
 
     /**
-     * Returns the locations from a {@link VecOccurrenceOrUsageViewItem3D}.
+     * Returns the locations from a {@link HasOccurrenceOrUsages}.
      *
      * @param placement Placement Navigation method.
-     * @return A function to get the locations from a VecOccurrenceOrUsageViewItem3D.
+     * @return A function to get the locations from a HasOccurrenceOrUsages.
      * @see #onWayPlacement()
      * @see #onPointPlacement()
      */
-    public static Function<VecOccurrenceOrUsageViewItem3D, List<VecLocation>> locationsBy3DOf(
+    public static Function<HasOccurrenceOrUsages, List<VecLocation>> locationsOf(
             final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
-        return viewItem3D -> locationsOf(placement).apply(viewItem3D.getOccurrenceOrUsage());
-    }
-
-    /**
-     * Returns the locations from a {@link VecOccurrenceOrUsageViewItem2D}.
-     *
-     * @param placement Placement Navigation method.
-     * @return A function to get the locations from a VecOccurrenceOrUsageViewItem2D.
-     * @see #onWayPlacement()
-     * @see #onPointPlacement()
-     */
-    public static Function<VecOccurrenceOrUsageViewItem2D, List<VecLocation>> locationsBy2DOf(
-            final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
-        return viewItem2D -> locationsOf(placement).apply(viewItem2D.getOccurrenceOrUsage());
-    }
-
-    private static Function<List<VecOccurrenceOrUsage>, List<VecLocation>> locationsOf(
-            final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
-        return occurrenceOrUsages -> occurrenceOrUsages.stream()
+        return viewItem -> viewItem.getOccurrenceOrUsage().stream()
                 .filter(VecPartOccurrence.class::isInstance)
                 .map(VecPartOccurrence.class::cast)
                 .flatMap(StreamUtils.toStream(c -> c.getRolesWithType(VecPlaceableElementRole.class)))
@@ -94,5 +76,4 @@ public final class PlacementNavs {
                         .collect(Collectors.toList()))
                 .orElseGet(Collections::emptyList);
     }
-
 }

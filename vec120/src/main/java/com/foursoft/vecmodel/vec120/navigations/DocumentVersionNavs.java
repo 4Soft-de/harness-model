@@ -66,9 +66,7 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, List<VecOccurrenceOrUsageViewItem3D>> viewItems3DBy(
             final VecOccurrenceOrUsage occurrence) {
-        return documentVersion -> SpecificationNavs
-                .specificationOf(VecBuildingBlockSpecification3D.class)
-                .apply(documentVersion)
+        return documentVersion -> documentVersion.getSpecificationWithType(VecBuildingBlockSpecification3D.class)
                 .map(specification -> specification
                         .getPlacedElementViewItem3Ds().stream()
                         .filter(viewItem -> viewItem.getOccurrenceOrUsage().contains(occurrence))

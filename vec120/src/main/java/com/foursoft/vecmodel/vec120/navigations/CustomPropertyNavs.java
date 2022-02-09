@@ -25,11 +25,9 @@
  */
 package com.foursoft.vecmodel.vec120.navigations;
 
-import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.vec120.*;
 
 import java.math.BigInteger;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -46,53 +44,39 @@ public final class CustomPropertyNavs {
 
     public static Function<VecExtendableElement, Optional<String>> customPropertyValueStringOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecSimpleValueProperty.class, VecSimpleValueProperty::getValue);
+        return element -> element.getCustomProperty(VecSimpleValueProperty.class, customProperty)
+                .map(VecSimpleValueProperty::getValue);
     }
 
     public static Function<VecExtendableElement, Optional<BigInteger>> customPropertyValueIntegerOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecIntegerValueProperty.class, VecIntegerValueProperty::getValue);
+        return element -> element.getCustomProperty(VecIntegerValueProperty.class, customProperty)
+                .map(VecIntegerValueProperty::getValue);
     }
 
     public static Function<VecExtendableElement, List<String>> customPropertyValueStringsOf(
             final String customProperty) {
-        return customPropertyValuesOf(customProperty, VecSimpleValueProperty.class, VecSimpleValueProperty::getValue);
+        return element -> element.getCustomProperties(VecSimpleValueProperty.class).stream()
+                .filter(c -> c.getPropertyType().equals(customProperty))
+                .map(VecSimpleValueProperty::getValue)
+                .collect(Collectors.toList());
     }
 
     public static Function<VecExtendableElement, Optional<Double>> customPropertyValueDoubleOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecDoubleValueProperty.class, VecDoubleValueProperty::getValue);
+        return element -> element.getCustomProperty(VecDoubleValueProperty.class, customProperty)
+                .map(VecDoubleValueProperty::getValue);
     }
 
     public static Function<VecExtendableElement, Optional<VecValueRange>> customPropertyValueRangeOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecValueRangeProperty.class, VecValueRangeProperty::getValue);
+        return element -> element.getCustomProperty(VecValueRangeProperty.class, customProperty)
+                .map(VecValueRangeProperty::getValue);
     }
 
     public static Function<VecExtendableElement, Optional<Boolean>> customPropertyValueBooleanOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecBooleanValueProperty.class, VecBooleanValueProperty::isValue);
+        return element -> element.getCustomProperty(VecBooleanValueProperty.class, customProperty)
+                .map(VecBooleanValueProperty::isValue);
     }
-
-    private static <P extends VecCustomProperty, T> Function<VecExtendableElement, Optional<T>> customPropertyValueOf(
-            final String customProperty, final Class<P> targetClass, final Function<P, T> converter) {
-        return element -> customPropertyValuesOf(customProperty, targetClass, converter)
-                .apply(element)
-                .stream()
-                .collect(StreamUtils.findOneOrNone());
-    }
-
-    private static <P extends VecCustomProperty, T> Function<VecExtendableElement, List<T>> customPropertyValuesOf(
-            final String customProperty, final Class<P> targetClass, final Function<P, T> converter) {
-        return element -> element == null
-                ? Collections.emptyList()
-                :
-                element.getCustomProperties()
-                        .stream()
-                        .flatMap(StreamUtils.ofClass(targetClass))
-                        .filter(property -> property.getPropertyType().equals(customProperty))
-                        .map(converter)
-                        .collect(Collectors.toList());
-    }
-
 }

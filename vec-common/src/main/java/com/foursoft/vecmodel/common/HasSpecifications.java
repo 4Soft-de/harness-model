@@ -40,6 +40,20 @@ public interface HasSpecifications<X extends HasIdentification> {
     }
 
     /**
+     * Gets the first specification with the given type.
+     * <b>Warning: There might be multiple specifications with the given type.
+     * Only use this method if you are sure there will just be one element!</b>
+     *
+     * @param type Class of T.
+     * @param <T>  Type of Specification to filter for.
+     * @return The first specification with the given type if found, else an empty optional.
+     */
+    default <T extends X> Optional<T> getSpecificationWithType(final Class<T> type) {
+        return DelegationUtils.getFromListWithTypeAsStream(getSpecifications(), type)
+                .collect(StreamUtils.findOneOrNone());
+    }
+
+    /**
      * Filters the list of Specifications by type and identification.
      *
      * @param type           derived classifiers
@@ -51,4 +65,5 @@ public interface HasSpecifications<X extends HasIdentification> {
                 .filter(c -> c.getIdentification().equals(identification))
                 .collect(StreamUtils.findOneOrNone());
     }
+
 }
