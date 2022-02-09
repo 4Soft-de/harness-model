@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120;
+package com.foursoft.vecmodel.common;
 
 import com.foursoft.vecmodel.common.util.DelegationUtils;
 import com.foursoft.vecmodel.common.util.StreamUtils;
@@ -31,11 +31,11 @@ import com.foursoft.vecmodel.common.util.StreamUtils;
 import java.util.List;
 import java.util.Optional;
 
-public interface HasCustomProperties {
+public interface HasCustomProperties<X extends HasPropertyType> {
 
-    List<VecCustomProperty> getCustomProperties();
+    List<X> getCustomProperties();
 
-    default <T extends VecCustomProperty> List<T> getCustomProperties(final Class<T> type) {
+    default <T extends X> List<T> getCustomProperties(final Class<T> type) {
         return DelegationUtils.getFromListWithType(getCustomProperties(), type);
     }
 
@@ -46,7 +46,7 @@ public interface HasCustomProperties {
      * @param propertyType defines the meaning of the value.
      * @return the first property with the given type and key.
      */
-    default <T extends VecCustomProperty> Optional<T> getCustomProperty(final Class<T> type, final String propertyType) {
+    default <T extends X> Optional<T> getCustomProperty(final Class<T> type, final String propertyType) {
         return DelegationUtils.getFromListWithTypeAsStream(getCustomProperties(), type)
                 .filter(c -> c.getPropertyType().equals(propertyType))
                 .collect(StreamUtils.findOneOrNone());

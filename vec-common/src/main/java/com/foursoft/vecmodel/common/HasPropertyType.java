@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec113
+ * vec-common
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -23,32 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec113;
+package com.foursoft.vecmodel.common;
 
-import com.foursoft.vecmodel.common.util.DelegationUtils;
-import com.foursoft.vecmodel.common.util.StreamUtils;
+@FunctionalInterface
+public interface HasPropertyType {
 
-import java.util.List;
-import java.util.Optional;
-
-public interface HasCustomProperties {
-
-    List<VecCustomProperty> getCustomProperties();
-
-    default <T extends VecCustomProperty> List<T> getCustomProperties(final Class<T> type) {
-        return DelegationUtils.getFromListWithType(getCustomProperties(), type);
-    }
-
-    /**
-     * Filters the list of CustomProperties by type and key.
-     *
-     * @param type         derived classifiers
-     * @param propertyType defines the meaning of the value.
-     * @return the first property with the given type and key.
-     */
-    default <T extends VecCustomProperty> Optional<T> getCustomProperty(final Class<T> type, final String propertyType) {
-        return DelegationUtils.getFromListWithTypeAsStream(getCustomProperties(), type)
-                .filter(c -> c.getPropertyType().equals(propertyType))
-                .collect(StreamUtils.findOneOrNone());
-    }
+    String getPropertyType();
 }
