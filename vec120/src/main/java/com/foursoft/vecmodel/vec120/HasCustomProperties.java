@@ -26,6 +26,7 @@
 package com.foursoft.vecmodel.vec120;
 
 import com.foursoft.vecmodel.common.util.DelegationUtils;
+import com.foursoft.vecmodel.common.util.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +49,6 @@ public interface HasCustomProperties {
     default <T extends VecCustomProperty> Optional<T> getCustomProperty(final Class<T> type, final String propertyType) {
         return DelegationUtils.getFromListWithTypeAsStream(getCustomProperties(), type)
                 .filter(c -> c.getPropertyType().equals(propertyType))
-                //TODO add stream utils
-                .findFirst();
+                .collect(StreamUtils.findOneOrNone());
     }
 }

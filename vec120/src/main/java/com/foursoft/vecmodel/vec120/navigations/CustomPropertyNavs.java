@@ -25,8 +25,8 @@
  */
 package com.foursoft.vecmodel.vec120.navigations;
 
+import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.vec120.*;
-import com.foursoft.vecmodel.vec120.utils.StreamUtils;
 
 import java.math.BigInteger;
 import java.util.Collections;

@@ -27,8 +27,8 @@ package com.foursoft.vecmodel.vec120.navigations;
 
 import com.foursoft.vecmodel.common.HasSpecifications;
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
+import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.vec120.*;
-import com.foursoft.vecmodel.vec120.utils.StreamUtils;
 
 import java.util.Collection;
 import java.util.Optional;

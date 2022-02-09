@@ -26,8 +26,8 @@
 package com.foursoft.vecmodel.vec120.predicates;
 
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
+import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.vec120.*;
-import com.foursoft.vecmodel.vec120.utils.StreamUtils;
 
 import java.util.Objects;
 import java.util.function.Predicate;

@@ -26,12 +26,12 @@
 package com.foursoft.vecmodel.vec120.navigations;
 
 import com.foursoft.vecmodel.common.HasDescription;
+import com.foursoft.vecmodel.common.util.StreamUtils;
+import com.foursoft.vecmodel.common.util.StringUtils;
 import com.foursoft.vecmodel.vec120.VecAbstractLocalizedString;
 import com.foursoft.vecmodel.vec120.VecLanguageCode;
 import com.foursoft.vecmodel.vec120.VecLocalizedTypedString;
 import com.foursoft.vecmodel.vec120.predicates.VecPredicates;
-import com.foursoft.vecmodel.vec120.utils.StreamUtils;
-import com.foursoft.vecmodel.vec120.utils.StringUtils;
 
 import java.util.List;
 import java.util.Optional;

@@ -25,10 +25,10 @@
  */
 package com.foursoft.vecmodel.vec120.navigations;
 
+import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.vec120.VecContent;
 import com.foursoft.vecmodel.vec120.VecDocumentVersion;
 import com.foursoft.vecmodel.vec120.VecSpecification;
-import com.foursoft.vecmodel.vec120.utils.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;

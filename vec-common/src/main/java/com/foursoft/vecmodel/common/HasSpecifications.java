@@ -26,6 +26,7 @@
 package com.foursoft.vecmodel.common;
 
 import com.foursoft.vecmodel.common.util.DelegationUtils;
+import com.foursoft.vecmodel.common.util.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +49,6 @@ public interface HasSpecifications<X extends HasIdentification> {
     default <T extends X> Optional<T> getSpecification(final Class<T> type, final String identification) {
         return DelegationUtils.getFromListWithTypeAsStream(getSpecifications(), type)
                 .filter(c -> c.getIdentification().equals(identification))
-                //TODO add stream utils
-                .findFirst();
+                .collect(StreamUtils.findOneOrNone());
     }
 }
