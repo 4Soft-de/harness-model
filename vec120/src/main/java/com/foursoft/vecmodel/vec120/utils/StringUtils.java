@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec-common
+ * vec120
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,13 +23,28 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.vecmodel.vec120.utils;
 
-import java.util.List;
+import java.util.regex.Pattern;
 
-@FunctionalInterface
-public interface HasDescription<T> {
+public final class StringUtils {
 
-    List<T> getDescriptions();
+    private static final Pattern WHITE_SPACE_REGEX = Pattern.compile("\\s+");
+
+    private StringUtils() {
+        // hide default constructor
+    }
+
+    public static boolean isEmpty(final String s) {
+        return s == null || s.isEmpty();
+    }
+
+    public static boolean isNotEmpty(final String s) {
+        return !isEmpty(s);
+    }
+
+    public static String collapseMultipleWhitespaces(final String in) {
+        return in == null ? null : WHITE_SPACE_REGEX.matcher(in).replaceAll(" ").trim();
+    }
 
 }

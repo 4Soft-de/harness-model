@@ -41,6 +41,10 @@
         <inheritance:implements>com.foursoft.vecmodel.common.HasRoles&lt;com.foursoft.vecmodel.vec120.VecRole&gt;</inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Unit' and @type='vec:Unit']]">
+        <inheritance:implements>com.foursoft.vecmodel.common.HasUnits&lt;com.foursoft.vecmodel.vec120.VecUnit&gt;</inheritance:implements>
+    </jxb:bindings>
+    
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='OccurrenceOrUsage' and @type='xs:IDREFS']]">
         <inheritance:implements>com.foursoft.vecmodel.vec120.HasOccurrenceOrUsages</inheritance:implements>
     </jxb:bindings>
@@ -48,5 +52,7 @@
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='CustomProperty' and @type='vec:CustomProperty']]">
         <inheritance:implements>com.foursoft.vecmodel.vec120.HasCustomProperties</inheritance:implements>
     </jxb:bindings>
+
+
 
 </jxb:bindings>

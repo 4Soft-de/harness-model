@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * vec113
  * %%
- * Copyright (C) 2020 4Soft GmbH
+ * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,12 +32,9 @@ import com.foursoft.xml.model.Identifiable;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
-import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import java.io.BufferedInputStream;
 import java.io.IOException;

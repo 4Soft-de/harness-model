@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,1327 +53,1327 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecAbrasionResistanceClass(VecAbrasionResistanceClass aBean) throws RuntimeException {
+    public O visitVecAbrasionResistanceClass(final VecAbrasionResistanceClass aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecAliasIdentification(VecAliasIdentification aBean) throws RuntimeException {
+    public O visitVecAliasIdentification(final VecAliasIdentification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecAntennaSpecification(VecAntennaSpecification aBean) throws RuntimeException {
+    public O visitVecAntennaSpecification(final VecAntennaSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecApproval(VecApproval aBean) throws RuntimeException {
+    public O visitVecApproval(final VecApproval aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBSplineCurve(VecBSplineCurve aBean) throws RuntimeException {
+    public O visitVecBSplineCurve(final VecBSplineCurve aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBatterySpecification(VecBatterySpecification aBean) throws RuntimeException {
+    public O visitVecBatterySpecification(final VecBatterySpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBoltMountedFixingSpecification(VecBoltMountedFixingSpecification aBean) throws RuntimeException {
+    public O visitVecBoltMountedFixingSpecification(final VecBoltMountedFixingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBooleanValueProperty(VecBooleanValueProperty aBean) throws RuntimeException {
+    public O visitVecBooleanValueProperty(final VecBooleanValueProperty aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBoundingBox(VecBoundingBox aBean) throws RuntimeException {
+    public O visitVecBoundingBox(final VecBoundingBox aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBuildingBlockPositioning2D(VecBuildingBlockPositioning2D aBean) throws RuntimeException {
+    public O visitVecBuildingBlockPositioning2D(final VecBuildingBlockPositioning2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBuildingBlockPositioning3D(VecBuildingBlockPositioning3D aBean) throws RuntimeException {
+    public O visitVecBuildingBlockPositioning3D(final VecBuildingBlockPositioning3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBuildingBlockSpecification2D(VecBuildingBlockSpecification2D aBean) throws RuntimeException {
+    public O visitVecBuildingBlockSpecification2D(final VecBuildingBlockSpecification2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecBuildingBlockSpecification3D(VecBuildingBlockSpecification3D aBean) throws RuntimeException {
+    public O visitVecBuildingBlockSpecification3D(final VecBuildingBlockSpecification3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCableDuctOutlet(VecCableDuctOutlet aBean) throws RuntimeException {
+    public O visitVecCableDuctOutlet(final VecCableDuctOutlet aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCableDuctRole(VecCableDuctRole aBean) throws RuntimeException {
+    public O visitVecCableDuctRole(final VecCableDuctRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCableDuctSpecification(VecCableDuctSpecification aBean) throws RuntimeException {
+    public O visitVecCableDuctSpecification(final VecCableDuctSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCableLeadThrough(VecCableLeadThrough aBean) throws RuntimeException {
+    public O visitVecCableLeadThrough(final VecCableLeadThrough aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCableTieRole(VecCableTieRole aBean) throws RuntimeException {
+    public O visitVecCableTieRole(final VecCableTieRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCableTieSpecification(VecCableTieSpecification aBean) throws RuntimeException {
+    public O visitVecCableTieSpecification(final VecCableTieSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCartesianDimension(VecCartesianDimension aBean) throws RuntimeException {
+    public O visitVecCartesianDimension(final VecCartesianDimension aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCartesianPoint2D(VecCartesianPoint2D aBean) throws RuntimeException {
+    public O visitVecCartesianPoint2D(final VecCartesianPoint2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCartesianPoint3D(VecCartesianPoint3D aBean) throws RuntimeException {
+    public O visitVecCartesianPoint3D(final VecCartesianPoint3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCartesianVector2D(VecCartesianVector2D aBean) throws RuntimeException {
+    public O visitVecCartesianVector2D(final VecCartesianVector2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCartesianVector3D(VecCartesianVector3D aBean) throws RuntimeException {
+    public O visitVecCartesianVector3D(final VecCartesianVector3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavity(VecCavity aBean) throws RuntimeException {
+    public O visitVecCavity(final VecCavity aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityAccessoryRole(VecCavityAccessoryRole aBean) throws RuntimeException {
+    public O visitVecCavityAccessoryRole(final VecCavityAccessoryRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityAccessorySpecification(VecCavityAccessorySpecification aBean) throws RuntimeException {
+    public O visitVecCavityAccessorySpecification(final VecCavityAccessorySpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityAddOn(VecCavityAddOn aBean) throws RuntimeException {
+    public O visitVecCavityAddOn(final VecCavityAddOn aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityCoupling(VecCavityCoupling aBean) throws RuntimeException {
+    public O visitVecCavityCoupling(final VecCavityCoupling aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityMapping(VecCavityMapping aBean) throws RuntimeException {
+    public O visitVecCavityMapping(final VecCavityMapping aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityMounting(VecCavityMounting aBean) throws RuntimeException {
+    public O visitVecCavityMounting(final VecCavityMounting aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityMountingDetail(VecCavityMountingDetail aBean) throws RuntimeException {
+    public O visitVecCavityMountingDetail(final VecCavityMountingDetail aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityPlugRole(VecCavityPlugRole aBean) throws RuntimeException {
+    public O visitVecCavityPlugRole(final VecCavityPlugRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityPlugSpecification(VecCavityPlugSpecification aBean) throws RuntimeException {
+    public O visitVecCavityPlugSpecification(final VecCavityPlugSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavityReference(VecCavityReference aBean) throws RuntimeException {
+    public O visitVecCavityReference(final VecCavityReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavitySealRole(VecCavitySealRole aBean) throws RuntimeException {
+    public O visitVecCavitySealRole(final VecCavitySealRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavitySealSpecification(VecCavitySealSpecification aBean) throws RuntimeException {
+    public O visitVecCavitySealSpecification(final VecCavitySealSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCavitySpecification(VecCavitySpecification aBean) throws RuntimeException {
+    public O visitVecCavitySpecification(final VecCavitySpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecChangeDescription(VecChangeDescription aBean) throws RuntimeException {
+    public O visitVecChangeDescription(final VecChangeDescription aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCoding(VecCoding aBean) throws RuntimeException {
+    public O visitVecCoding(final VecCoding aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecColor(VecColor aBean) throws RuntimeException {
+    public O visitVecColor(final VecColor aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCompatibilitySpecification(VecCompatibilitySpecification aBean) throws RuntimeException {
+    public O visitVecCompatibilitySpecification(final VecCompatibilitySpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCompatibilityStatement(VecCompatibilityStatement aBean) throws RuntimeException {
+    public O visitVecCompatibilityStatement(final VecCompatibilityStatement aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecComponentConnector(VecComponentConnector aBean) throws RuntimeException {
+    public O visitVecComponentConnector(final VecComponentConnector aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecComponentNode(VecComponentNode aBean) throws RuntimeException {
+    public O visitVecComponentNode(final VecComponentNode aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecComponentPort(VecComponentPort aBean) throws RuntimeException {
+    public O visitVecComponentPort(final VecComponentPort aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCompositeUnit(VecCompositeUnit aBean) throws RuntimeException {
+    public O visitVecCompositeUnit(final VecCompositeUnit aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCompositionSpecification(VecCompositionSpecification aBean) throws RuntimeException {
+    public O visitVecCompositionSpecification(final VecCompositionSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConductorCurrentInformation(VecConductorCurrentInformation aBean) throws RuntimeException {
+    public O visitVecConductorCurrentInformation(final VecConductorCurrentInformation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConductorMaterial(VecConductorMaterial aBean) throws RuntimeException {
+    public O visitVecConductorMaterial(final VecConductorMaterial aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConformanceClass(VecConformanceClass aBean) throws RuntimeException {
+    public O visitVecConformanceClass(final VecConformanceClass aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConnection(VecConnection aBean) throws RuntimeException {
+    public O visitVecConnection(final VecConnection aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConnectionEnd(VecConnectionEnd aBean) throws RuntimeException {
+    public O visitVecConnectionEnd(final VecConnectionEnd aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConnectionGroup(VecConnectionGroup aBean) throws RuntimeException {
+    public O visitVecConnectionGroup(final VecConnectionGroup aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConnectionSpecification(VecConnectionSpecification aBean) throws RuntimeException {
+    public O visitVecConnectionSpecification(final VecConnectionSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConnectorHousingCapRole(VecConnectorHousingCapRole aBean) throws RuntimeException {
+    public O visitVecConnectorHousingCapRole(final VecConnectorHousingCapRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConnectorHousingCapSpecification(VecConnectorHousingCapSpecification aBean) throws RuntimeException {
+    public O visitVecConnectorHousingCapSpecification(final VecConnectorHousingCapSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConnectorHousingRole(VecConnectorHousingRole aBean) throws RuntimeException {
+    public O visitVecConnectorHousingRole(final VecConnectorHousingRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecConnectorHousingSpecification(VecConnectorHousingSpecification aBean) throws RuntimeException {
+    public O visitVecConnectorHousingSpecification(final VecConnectorHousingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecContactPoint(VecContactPoint aBean) throws RuntimeException {
+    public O visitVecContactPoint(final VecContactPoint aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecContactSystem(VecContactSystem aBean) throws RuntimeException {
+    public O visitVecContactSystem(final VecContactSystem aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecContactSystemSpecification(VecContactSystemSpecification aBean) throws RuntimeException {
+    public O visitVecContactSystemSpecification(final VecContactSystemSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecContactingSpecification(VecContactingSpecification aBean) throws RuntimeException {
+    public O visitVecContactingSpecification(final VecContactingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecContent(VecContent aBean) throws RuntimeException {
+    public O visitVecContent(final VecContent aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecContract(VecContract aBean) throws RuntimeException {
+    public O visitVecContract(final VecContract aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCopyrightInformation(VecCopyrightInformation aBean) throws RuntimeException {
+    public O visitVecCopyrightInformation(final VecCopyrightInformation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCoreSpecification(VecCoreSpecification aBean) throws RuntimeException {
+    public O visitVecCoreSpecification(final VecCoreSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCorrugatedPipeSpecification(VecCorrugatedPipeSpecification aBean) throws RuntimeException {
+    public O visitVecCorrugatedPipeSpecification(final VecCorrugatedPipeSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCouplingPoint(VecCouplingPoint aBean) throws RuntimeException {
+    public O visitVecCouplingPoint(final VecCouplingPoint aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCouplingSpecification(VecCouplingSpecification aBean) throws RuntimeException {
+    public O visitVecCouplingSpecification(final VecCouplingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCreation(VecCreation aBean) throws RuntimeException {
+    public O visitVecCreation(final VecCreation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecCustomUnit(VecCustomUnit aBean) throws RuntimeException {
+    public O visitVecCustomUnit(final VecCustomUnit aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecDateValueProperty(VecDateValueProperty aBean) throws RuntimeException {
+    public O visitVecDateValueProperty(final VecDateValueProperty aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecDefaultDimension(VecDefaultDimension aBean) throws RuntimeException {
+    public O visitVecDefaultDimension(final VecDefaultDimension aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecDefaultDimensionSpecification(VecDefaultDimensionSpecification aBean) throws RuntimeException {
+    public O visitVecDefaultDimensionSpecification(final VecDefaultDimensionSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecDimension(VecDimension aBean) throws RuntimeException {
+    public O visitVecDimension(final VecDimension aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecDocumentBasedInstruction(VecDocumentBasedInstruction aBean) throws RuntimeException {
+    public O visitVecDocumentBasedInstruction(final VecDocumentBasedInstruction aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecDocumentVersion(VecDocumentVersion aBean) throws RuntimeException {
+    public O visitVecDocumentVersion(final VecDocumentVersion aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecDoubleValueProperty(VecDoubleValueProperty aBean) throws RuntimeException {
+    public O visitVecDoubleValueProperty(final VecDoubleValueProperty aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecEEComponentRole(VecEEComponentRole aBean) throws RuntimeException {
+    public O visitVecEEComponentRole(final VecEEComponentRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecEEComponentSpecification(VecEEComponentSpecification aBean) throws RuntimeException {
+    public O visitVecEEComponentSpecification(final VecEEComponentSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecEdgeMountedFixingSpecification(VecEdgeMountedFixingSpecification aBean) throws RuntimeException {
+    public O visitVecEdgeMountedFixingSpecification(final VecEdgeMountedFixingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecExtensionSlot(VecExtensionSlot aBean) throws RuntimeException {
+    public O visitVecExtensionSlot(final VecExtensionSlot aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecExtensionSlotReference(VecExtensionSlotReference aBean) throws RuntimeException {
+    public O visitVecExtensionSlotReference(final VecExtensionSlotReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecExternalMapping(VecExternalMapping aBean) throws RuntimeException {
+    public O visitVecExternalMapping(final VecExternalMapping aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecExternalMappingSpecification(VecExternalMappingSpecification aBean) throws RuntimeException {
+    public O visitVecExternalMappingSpecification(final VecExternalMappingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFileBasedInstruction(VecFileBasedInstruction aBean) throws RuntimeException {
+    public O visitVecFileBasedInstruction(final VecFileBasedInstruction aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFillerSpecification(VecFillerSpecification aBean) throws RuntimeException {
+    public O visitVecFillerSpecification(final VecFillerSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFittingOutlet(VecFittingOutlet aBean) throws RuntimeException {
+    public O visitVecFittingOutlet(final VecFittingOutlet aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFittingSpecification(VecFittingSpecification aBean) throws RuntimeException {
+    public O visitVecFittingSpecification(final VecFittingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFixingRole(VecFixingRole aBean) throws RuntimeException {
+    public O visitVecFixingRole(final VecFixingRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFixingSpecification(VecFixingSpecification aBean) throws RuntimeException {
+    public O visitVecFixingSpecification(final VecFixingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFlatCoreSpecification(VecFlatCoreSpecification aBean) throws RuntimeException {
+    public O visitVecFlatCoreSpecification(final VecFlatCoreSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFuseComponent(VecFuseComponent aBean) throws RuntimeException {
+    public O visitVecFuseComponent(final VecFuseComponent aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecFuseSpecification(VecFuseSpecification aBean) throws RuntimeException {
+    public O visitVecFuseSpecification(final VecFuseSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecGeneralTechnicalPartSpecification(VecGeneralTechnicalPartSpecification aBean) throws RuntimeException {
+    public O visitVecGeneralTechnicalPartSpecification(final VecGeneralTechnicalPartSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecGeometryNode2D(VecGeometryNode2D aBean) throws RuntimeException {
+    public O visitVecGeometryNode2D(final VecGeometryNode2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecGeometryNode3D(VecGeometryNode3D aBean) throws RuntimeException {
+    public O visitVecGeometryNode3D(final VecGeometryNode3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecGeometrySegment2D(VecGeometrySegment2D aBean) throws RuntimeException {
+    public O visitVecGeometrySegment2D(final VecGeometrySegment2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecGeometrySegment3D(VecGeometrySegment3D aBean) throws RuntimeException {
+    public O visitVecGeometrySegment3D(final VecGeometrySegment3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecGrommetRole(VecGrommetRole aBean) throws RuntimeException {
+    public O visitVecGrommetRole(final VecGrommetRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecGrommetSpecification(VecGrommetSpecification aBean) throws RuntimeException {
+    public O visitVecGrommetSpecification(final VecGrommetSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecHarnessDrawingSpecification2D(VecHarnessDrawingSpecification2D aBean) throws RuntimeException {
+    public O visitVecHarnessDrawingSpecification2D(final VecHarnessDrawingSpecification2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecHarnessGeometrySpecification3D(VecHarnessGeometrySpecification3D aBean) throws RuntimeException {
+    public O visitVecHarnessGeometrySpecification3D(final VecHarnessGeometrySpecification3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecHoleMountedFixingSpecification(VecHoleMountedFixingSpecification aBean) throws RuntimeException {
+    public O visitVecHoleMountedFixingSpecification(final VecHoleMountedFixingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecHousingComponent(VecHousingComponent aBean) throws RuntimeException {
+    public O visitVecHousingComponent(final VecHousingComponent aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecHousingComponentReference(VecHousingComponentReference aBean) throws RuntimeException {
+    public O visitVecHousingComponentReference(final VecHousingComponentReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecIECUnit(VecIECUnit aBean) throws RuntimeException {
+    public O visitVecIECUnit(final VecIECUnit aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecImperialUnit(VecImperialUnit aBean) throws RuntimeException {
+    public O visitVecImperialUnit(final VecImperialUnit aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecInsulationSpecification(VecInsulationSpecification aBean) throws RuntimeException {
+    public O visitVecInsulationSpecification(final VecInsulationSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecIntegerValueProperty(VecIntegerValueProperty aBean) throws RuntimeException {
+    public O visitVecIntegerValueProperty(final VecIntegerValueProperty aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecInternalComponentConnection(VecInternalComponentConnection aBean) throws RuntimeException {
+    public O visitVecInternalComponentConnection(final VecInternalComponentConnection aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecInternalTerminalConnection(VecInternalTerminalConnection aBean) throws RuntimeException {
+    public O visitVecInternalTerminalConnection(final VecInternalTerminalConnection aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecItemEquivalence(VecItemEquivalence aBean) throws RuntimeException {
+    public O visitVecItemEquivalence(final VecItemEquivalence aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecItemHistoryEntry(VecItemHistoryEntry aBean) throws RuntimeException {
+    public O visitVecItemHistoryEntry(final VecItemHistoryEntry aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecLocalizedString(VecLocalizedString aBean) throws RuntimeException {
+    public O visitVecLocalizedString(final VecLocalizedString aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecLocalizedStringProperty(VecLocalizedStringProperty aBean) throws RuntimeException {
+    public O visitVecLocalizedStringProperty(final VecLocalizedStringProperty aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecLocalizedTypedString(VecLocalizedTypedString aBean) throws RuntimeException {
+    public O visitVecLocalizedTypedString(final VecLocalizedTypedString aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMapping(VecMapping aBean) throws RuntimeException {
+    public O visitVecMapping(final VecMapping aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMappingSpecification(VecMappingSpecification aBean) throws RuntimeException {
+    public O visitVecMappingSpecification(final VecMappingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMassInformation(VecMassInformation aBean) throws RuntimeException {
+    public O visitVecMassInformation(final VecMassInformation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMaterial(VecMaterial aBean) throws RuntimeException {
+    public O visitVecMaterial(final VecMaterial aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMatingDetail(VecMatingDetail aBean) throws RuntimeException {
+    public O visitVecMatingDetail(final VecMatingDetail aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMatingPoint(VecMatingPoint aBean) throws RuntimeException {
+    public O visitVecMatingPoint(final VecMatingPoint aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMeasurementPoint(VecMeasurementPoint aBean) throws RuntimeException {
+    public O visitVecMeasurementPoint(final VecMeasurementPoint aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMeasurementPointReference(VecMeasurementPointReference aBean) throws RuntimeException {
+    public O visitVecMeasurementPointReference(final VecMeasurementPointReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecModularSlot(VecModularSlot aBean) throws RuntimeException {
+    public O visitVecModularSlot(final VecModularSlot aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecModularSlotAddOn(VecModularSlotAddOn aBean) throws RuntimeException {
+    public O visitVecModularSlotAddOn(final VecModularSlotAddOn aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecModularSlotReference(VecModularSlotReference aBean) throws RuntimeException {
+    public O visitVecModularSlotReference(final VecModularSlotReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecModuleFamily(VecModuleFamily aBean) throws RuntimeException {
+    public O visitVecModuleFamily(final VecModuleFamily aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecModuleFamilySpecification(VecModuleFamilySpecification aBean) throws RuntimeException {
+    public O visitVecModuleFamilySpecification(final VecModuleFamilySpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecModuleList(VecModuleList aBean) throws RuntimeException {
+    public O visitVecModuleList(final VecModuleList aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecModuleListSpecification(VecModuleListSpecification aBean) throws RuntimeException {
+    public O visitVecModuleListSpecification(final VecModuleListSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMultiCavityPlugSpecification(VecMultiCavityPlugSpecification aBean) throws RuntimeException {
+    public O visitVecMultiCavityPlugSpecification(final VecMultiCavityPlugSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMultiCavitySealSpecification(VecMultiCavitySealSpecification aBean) throws RuntimeException {
+    public O visitVecMultiCavitySealSpecification(final VecMultiCavitySealSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecMultiFuseSpecification(VecMultiFuseSpecification aBean) throws RuntimeException {
+    public O visitVecMultiFuseSpecification(final VecMultiFuseSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNet(VecNet aBean) throws RuntimeException {
+    public O visitVecNet(final VecNet aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNetGroup(VecNetGroup aBean) throws RuntimeException {
+    public O visitVecNetGroup(final VecNetGroup aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNetSpecification(VecNetSpecification aBean) throws RuntimeException {
+    public O visitVecNetSpecification(final VecNetSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNetType(VecNetType aBean) throws RuntimeException {
+    public O visitVecNetType(final VecNetType aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNetworkNode(VecNetworkNode aBean) throws RuntimeException {
+    public O visitVecNetworkNode(final VecNetworkNode aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNetworkPort(VecNetworkPort aBean) throws RuntimeException {
+    public O visitVecNetworkPort(final VecNetworkPort aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNodeLocation(VecNodeLocation aBean) throws RuntimeException {
+    public O visitVecNodeLocation(final VecNodeLocation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNumericalValue(VecNumericalValue aBean) throws RuntimeException {
+    public O visitVecNumericalValue(final VecNumericalValue aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecNumericalValueProperty(VecNumericalValueProperty aBean) throws RuntimeException {
+    public O visitVecNumericalValueProperty(final VecNumericalValueProperty aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecOccurrenceOrUsageViewItem2D(VecOccurrenceOrUsageViewItem2D aBean) throws RuntimeException {
+    public O visitVecOccurrenceOrUsageViewItem2D(final VecOccurrenceOrUsageViewItem2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecOccurrenceOrUsageViewItem3D(VecOccurrenceOrUsageViewItem3D aBean) throws RuntimeException {
+    public O visitVecOccurrenceOrUsageViewItem3D(final VecOccurrenceOrUsageViewItem3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecOnPointPlacement(VecOnPointPlacement aBean) throws RuntimeException {
+    public O visitVecOnPointPlacement(final VecOnPointPlacement aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecOnWayPlacement(VecOnWayPlacement aBean) throws RuntimeException {
+    public O visitVecOnWayPlacement(final VecOnWayPlacement aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecOpenCavitiesAssignment(VecOpenCavitiesAssignment aBean) throws RuntimeException {
+    public O visitVecOpenCavitiesAssignment(final VecOpenCavitiesAssignment aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecOtherUnit(VecOtherUnit aBean) throws RuntimeException {
+    public O visitVecOtherUnit(final VecOtherUnit aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartOccurrence(VecPartOccurrence aBean) throws RuntimeException {
+    public O visitVecPartOccurrence(final VecPartOccurrence aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartOrUsageRelatedSpecification(VecPartOrUsageRelatedSpecification aBean) throws RuntimeException {
+    public O visitVecPartOrUsageRelatedSpecification(final VecPartOrUsageRelatedSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartRelation(VecPartRelation aBean) throws RuntimeException {
+    public O visitVecPartRelation(final VecPartRelation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartStructureSpecification(VecPartStructureSpecification aBean) throws RuntimeException {
+    public O visitVecPartStructureSpecification(final VecPartStructureSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartSubstitutionSpecification(VecPartSubstitutionSpecification aBean) throws RuntimeException {
+    public O visitVecPartSubstitutionSpecification(final VecPartSubstitutionSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartUsage(VecPartUsage aBean) throws RuntimeException {
+    public O visitVecPartUsage(final VecPartUsage aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartUsageSpecification(VecPartUsageSpecification aBean) throws RuntimeException {
+    public O visitVecPartUsageSpecification(final VecPartUsageSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartVersion(VecPartVersion aBean) throws RuntimeException {
+    public O visitVecPartVersion(final VecPartVersion aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPartWithSubComponentsRole(VecPartWithSubComponentsRole aBean) throws RuntimeException {
+    public O visitVecPartWithSubComponentsRole(final VecPartWithSubComponentsRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPath(VecPath aBean) throws RuntimeException {
+    public O visitVecPath(final VecPath aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPathSegment(VecPathSegment aBean) throws RuntimeException {
+    public O visitVecPathSegment(final VecPathSegment aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPermission(VecPermission aBean) throws RuntimeException {
+    public O visitVecPermission(final VecPermission aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPerson(VecPerson aBean) throws RuntimeException {
+    public O visitVecPerson(final VecPerson aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPinComponent(VecPinComponent aBean) throws RuntimeException {
+    public O visitVecPinComponent(final VecPinComponent aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPinComponentBehavior(VecPinComponentBehavior aBean) throws RuntimeException {
+    public O visitVecPinComponentBehavior(final VecPinComponentBehavior aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPinComponentReference(VecPinComponentReference aBean) throws RuntimeException {
+    public O visitVecPinComponentReference(final VecPinComponentReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPinCurrentInformation(VecPinCurrentInformation aBean) throws RuntimeException {
+    public O visitVecPinCurrentInformation(final VecPinCurrentInformation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPinOpticalInformation(VecPinOpticalInformation aBean) throws RuntimeException {
+    public O visitVecPinOpticalInformation(final VecPinOpticalInformation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPinTiming(VecPinTiming aBean) throws RuntimeException {
+    public O visitVecPinTiming(final VecPinTiming aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPinVoltageInformation(VecPinVoltageInformation aBean) throws RuntimeException {
+    public O visitVecPinVoltageInformation(final VecPinVoltageInformation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPlaceableElementRole(VecPlaceableElementRole aBean) throws RuntimeException {
+    public O visitVecPlaceableElementRole(final VecPlaceableElementRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPlaceableElementSpecification(VecPlaceableElementSpecification aBean) throws RuntimeException {
+    public O visitVecPlaceableElementSpecification(final VecPlaceableElementSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPlacementPoint(VecPlacementPoint aBean) throws RuntimeException {
+    public O visitVecPlacementPoint(final VecPlacementPoint aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPlacementPointReference(VecPlacementPointReference aBean) throws RuntimeException {
+    public O visitVecPlacementPointReference(final VecPlacementPointReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPlacementSpecification(VecPlacementSpecification aBean) throws RuntimeException {
+    public O visitVecPlacementSpecification(final VecPlacementSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPluggableTerminalRole(VecPluggableTerminalRole aBean) throws RuntimeException {
+    public O visitVecPluggableTerminalRole(final VecPluggableTerminalRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPluggableTerminalSpecification(VecPluggableTerminalSpecification aBean) throws RuntimeException {
+    public O visitVecPluggableTerminalSpecification(final VecPluggableTerminalSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPotentialDistributorSpecification(VecPotentialDistributorSpecification aBean) throws RuntimeException {
+    public O visitVecPotentialDistributorSpecification(final VecPotentialDistributorSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecPowerConsumption(VecPowerConsumption aBean) throws RuntimeException {
+    public O visitVecPowerConsumption(final VecPowerConsumption aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecProject(VecProject aBean) throws RuntimeException {
+    public O visitVecProject(final VecProject aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecRelaySpecification(VecRelaySpecification aBean) throws RuntimeException {
+    public O visitVecRelaySpecification(final VecRelaySpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecRingTerminalRole(VecRingTerminalRole aBean) throws RuntimeException {
+    public O visitVecRingTerminalRole(final VecRingTerminalRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecRingTerminalSpecification(VecRingTerminalSpecification aBean) throws RuntimeException {
+    public O visitVecRingTerminalSpecification(final VecRingTerminalSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecRobustnessProperties(VecRobustnessProperties aBean) throws RuntimeException {
+    public O visitVecRobustnessProperties(final VecRobustnessProperties aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecRouting(VecRouting aBean) throws RuntimeException {
+    public O visitVecRouting(final VecRouting aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecRoutingSpecification(VecRoutingSpecification aBean) throws RuntimeException {
+    public O visitVecRoutingSpecification(final VecRoutingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSIUnit(VecSIUnit aBean) throws RuntimeException {
+    public O visitVecSIUnit(final VecSIUnit aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSealedCavitiesAssignment(VecSealedCavitiesAssignment aBean) throws RuntimeException {
+    public O visitVecSealedCavitiesAssignment(final VecSealedCavitiesAssignment aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSealingClass(VecSealingClass aBean) throws RuntimeException {
+    public O visitVecSealingClass(final VecSealingClass aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSegmentConnectionPoint(VecSegmentConnectionPoint aBean) throws RuntimeException {
+    public O visitVecSegmentConnectionPoint(final VecSegmentConnectionPoint aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSegmentCrossSectionArea(VecSegmentCrossSectionArea aBean) throws RuntimeException {
+    public O visitVecSegmentCrossSectionArea(final VecSegmentCrossSectionArea aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSegmentLength(VecSegmentLength aBean) throws RuntimeException {
+    public O visitVecSegmentLength(final VecSegmentLength aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSegmentLocation(VecSegmentLocation aBean) throws RuntimeException {
+    public O visitVecSegmentLocation(final VecSegmentLocation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSheetOrChapter(VecSheetOrChapter aBean) throws RuntimeException {
+    public O visitVecSheetOrChapter(final VecSheetOrChapter aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecShieldSpecification(VecShieldSpecification aBean) throws RuntimeException {
+    public O visitVecShieldSpecification(final VecShieldSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecShrinkableTubeSpecification(VecShrinkableTubeSpecification aBean) throws RuntimeException {
+    public O visitVecShrinkableTubeSpecification(final VecShrinkableTubeSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSignal(VecSignal aBean) throws RuntimeException {
+    public O visitVecSignal(final VecSignal aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSignalSpecification(VecSignalSpecification aBean) throws RuntimeException {
+    public O visitVecSignalSpecification(final VecSignalSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSimpleValueProperty(VecSimpleValueProperty aBean) throws RuntimeException {
+    public O visitVecSimpleValueProperty(final VecSimpleValueProperty aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSize(VecSize aBean) throws RuntimeException {
+    public O visitVecSize(final VecSize aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSlot(VecSlot aBean) throws RuntimeException {
+    public O visitVecSlot(final VecSlot aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSlotCoupling(VecSlotCoupling aBean) throws RuntimeException {
+    public O visitVecSlotCoupling(final VecSlotCoupling aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSlotLayout(VecSlotLayout aBean) throws RuntimeException {
+    public O visitVecSlotLayout(final VecSlotLayout aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSlotMapping(VecSlotMapping aBean) throws RuntimeException {
+    public O visitVecSlotMapping(final VecSlotMapping aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSlotReference(VecSlotReference aBean) throws RuntimeException {
+    public O visitVecSlotReference(final VecSlotReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSlotSpecification(VecSlotSpecification aBean) throws RuntimeException {
+    public O visitVecSlotSpecification(final VecSlotSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSoundDampingClass(VecSoundDampingClass aBean) throws RuntimeException {
+    public O visitVecSoundDampingClass(final VecSoundDampingClass aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSpecificRole(VecSpecificRole aBean) throws RuntimeException {
+    public O visitVecSpecificRole(final VecSpecificRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSpliceTerminalRole(VecSpliceTerminalRole aBean) throws RuntimeException {
+    public O visitVecSpliceTerminalRole(final VecSpliceTerminalRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSpliceTerminalSpecification(VecSpliceTerminalSpecification aBean) throws RuntimeException {
+    public O visitVecSpliceTerminalSpecification(final VecSpliceTerminalSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecStripeSpecification(VecStripeSpecification aBean) throws RuntimeException {
+    public O visitVecStripeSpecification(final VecStripeSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSwitchingState(VecSwitchingState aBean) throws RuntimeException {
+    public O visitVecSwitchingState(final VecSwitchingState aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTapeSpecification(VecTapeSpecification aBean) throws RuntimeException {
+    public O visitVecTapeSpecification(final VecTapeSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTemperatureInformation(VecTemperatureInformation aBean) throws RuntimeException {
+    public O visitVecTemperatureInformation(final VecTemperatureInformation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTerminalCurrentInformation(VecTerminalCurrentInformation aBean) throws RuntimeException {
+    public O visitVecTerminalCurrentInformation(final VecTerminalCurrentInformation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTerminalReception(VecTerminalReception aBean) throws RuntimeException {
+    public O visitVecTerminalReception(final VecTerminalReception aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTerminalReceptionReference(VecTerminalReceptionReference aBean) throws RuntimeException {
+    public O visitVecTerminalReceptionReference(final VecTerminalReceptionReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTerminalReceptionSpecification(VecTerminalReceptionSpecification aBean) throws RuntimeException {
+    public O visitVecTerminalReceptionSpecification(final VecTerminalReceptionSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTerminalRole(VecTerminalRole aBean) throws RuntimeException {
+    public O visitVecTerminalRole(final VecTerminalRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTerminalSpecification(VecTerminalSpecification aBean) throws RuntimeException {
+    public O visitVecTerminalSpecification(final VecTerminalSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTerminalType(VecTerminalType aBean) throws RuntimeException {
+    public O visitVecTerminalType(final VecTerminalType aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTextBasedInstruction(VecTextBasedInstruction aBean) throws RuntimeException {
+    public O visitVecTextBasedInstruction(final VecTextBasedInstruction aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTolerance(VecTolerance aBean) throws RuntimeException {
+    public O visitVecTolerance(final VecTolerance aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTopologyGroupSpecification(VecTopologyGroupSpecification aBean) throws RuntimeException {
+    public O visitVecTopologyGroupSpecification(final VecTopologyGroupSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTopologyNode(VecTopologyNode aBean) throws RuntimeException {
+    public O visitVecTopologyNode(final VecTopologyNode aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTopologySegment(VecTopologySegment aBean) throws RuntimeException {
+    public O visitVecTopologySegment(final VecTopologySegment aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTopologySpecification(VecTopologySpecification aBean) throws RuntimeException {
+    public O visitVecTopologySpecification(final VecTopologySpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTransformation2D(VecTransformation2D aBean) throws RuntimeException {
+    public O visitVecTransformation2D(final VecTransformation2D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTransformation3D(VecTransformation3D aBean) throws RuntimeException {
+    public O visitVecTransformation3D(final VecTransformation3D aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecTubeSpecification(VecTubeSpecification aBean) throws RuntimeException {
+    public O visitVecTubeSpecification(final VecTubeSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecUSUnit(VecUSUnit aBean) throws RuntimeException {
+    public O visitVecUSUnit(final VecUSUnit aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecUsageConstraint(VecUsageConstraint aBean) throws RuntimeException {
+    public O visitVecUsageConstraint(final VecUsageConstraint aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecUsageConstraintSpecification(VecUsageConstraintSpecification aBean) throws RuntimeException {
+    public O visitVecUsageConstraintSpecification(final VecUsageConstraintSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecUsageNode(VecUsageNode aBean) throws RuntimeException {
+    public O visitVecUsageNode(final VecUsageNode aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecUsageNodeSpecification(VecUsageNodeSpecification aBean) throws RuntimeException {
+    public O visitVecUsageNodeSpecification(final VecUsageNodeSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecValueRange(VecValueRange aBean) throws RuntimeException {
+    public O visitVecValueRange(final VecValueRange aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecValueRangeProperty(VecValueRangeProperty aBean) throws RuntimeException {
+    public O visitVecValueRangeProperty(final VecValueRangeProperty aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecVariantCode(VecVariantCode aBean) throws RuntimeException {
+    public O visitVecVariantCode(final VecVariantCode aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecVariantCodeSpecification(VecVariantCodeSpecification aBean) throws RuntimeException {
+    public O visitVecVariantCodeSpecification(final VecVariantCodeSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecVariantConfiguration(VecVariantConfiguration aBean) throws RuntimeException {
+    public O visitVecVariantConfiguration(final VecVariantConfiguration aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecVariantConfigurationSpecification(VecVariantConfigurationSpecification aBean) throws RuntimeException {
+    public O visitVecVariantConfigurationSpecification(final VecVariantConfigurationSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecVariantGroup(VecVariantGroup aBean) throws RuntimeException {
+    public O visitVecVariantGroup(final VecVariantGroup aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecVariantGroupSpecification(VecVariantGroupSpecification aBean) throws RuntimeException {
+    public O visitVecVariantGroupSpecification(final VecVariantGroupSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireElement(VecWireElement aBean) throws RuntimeException {
+    public O visitVecWireElement(final VecWireElement aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireElementReference(VecWireElementReference aBean) throws RuntimeException {
+    public O visitVecWireElementReference(final VecWireElementReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireElementSpecification(VecWireElementSpecification aBean) throws RuntimeException {
+    public O visitVecWireElementSpecification(final VecWireElementSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireEnd(VecWireEnd aBean) throws RuntimeException {
+    public O visitVecWireEnd(final VecWireEnd aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireEndAccessoryRole(VecWireEndAccessoryRole aBean) throws RuntimeException {
+    public O visitVecWireEndAccessoryRole(final VecWireEndAccessoryRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireEndAccessorySpecification(VecWireEndAccessorySpecification aBean) throws RuntimeException {
+    public O visitVecWireEndAccessorySpecification(final VecWireEndAccessorySpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireGroupSpecification(VecWireGroupSpecification aBean) throws RuntimeException {
+    public O visitVecWireGroupSpecification(final VecWireGroupSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireGrouping(VecWireGrouping aBean) throws RuntimeException {
+    public O visitVecWireGrouping(final VecWireGrouping aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireGroupingSpecification(VecWireGroupingSpecification aBean) throws RuntimeException {
+    public O visitVecWireGroupingSpecification(final VecWireGroupingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireLength(VecWireLength aBean) throws RuntimeException {
+    public O visitVecWireLength(final VecWireLength aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireMounting(VecWireMounting aBean) throws RuntimeException {
+    public O visitVecWireMounting(final VecWireMounting aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireMountingDetail(VecWireMountingDetail aBean) throws RuntimeException {
+    public O visitVecWireMountingDetail(final VecWireMountingDetail aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireProtectionRole(VecWireProtectionRole aBean) throws RuntimeException {
+    public O visitVecWireProtectionRole(final VecWireProtectionRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireProtectionSpecification(VecWireProtectionSpecification aBean) throws RuntimeException {
+    public O visitVecWireProtectionSpecification(final VecWireProtectionSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireReception(VecWireReception aBean) throws RuntimeException {
+    public O visitVecWireReception(final VecWireReception aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireReceptionReference(VecWireReceptionReference aBean) throws RuntimeException {
+    public O visitVecWireReceptionReference(final VecWireReceptionReference aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireReceptionSpecification(VecWireReceptionSpecification aBean) throws RuntimeException {
+    public O visitVecWireReceptionSpecification(final VecWireReceptionSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireRole(VecWireRole aBean) throws RuntimeException {
+    public O visitVecWireRole(final VecWireRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireSpecification(VecWireSpecification aBean) throws RuntimeException {
+    public O visitVecWireSpecification(final VecWireSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireType(VecWireType aBean) throws RuntimeException {
+    public O visitVecWireType(final VecWireType aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecZone(VecZone aBean) throws RuntimeException {
+    public O visitVecZone(final VecZone aBean) throws RuntimeException {
         return apply(aBean);
     }
 

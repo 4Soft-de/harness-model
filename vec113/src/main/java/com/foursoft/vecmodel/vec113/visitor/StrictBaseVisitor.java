@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * vec113
  * %%
- * Copyright (C) 2020 4Soft GmbH
+ * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,9 +33,8 @@ import com.foursoft.vecmodel.vec113.*;
  * encounters a class that is not handled explicitly, by overriding the
  * corresponding methods.
  *
- * @author Johannes Becker
- *
  * @param <R> Class of the visitor
+ * @author Johannes Becker
  */
 public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
 
@@ -47,9 +46,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
      * @return Never null String containing the error message for the given object
      */
     protected String getErrorMessage(final Object aBean) {
-        return "Encountered unhandled class '" + aBean.getClass().getName()
-                + "' in visitor implementation: "
-                + this.getClass().getName();
+        return String.format("Encountered unhandled class '%s' in visitor implementation: %s",
+                aBean.getClass().getName(), getClass().getName());
     }
 
     @Override

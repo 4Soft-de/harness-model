@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec-common
+ * vec120
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -23,13 +23,39 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.vecmodel.vec120.navigations;
+
+import com.foursoft.vecmodel.vec120.VecContent;
+import com.foursoft.vecmodel.vec120.VecDocumentVersion;
+import com.foursoft.vecmodel.vec120.VecSpecification;
+import com.foursoft.vecmodel.vec120.utils.StreamUtils;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-@FunctionalInterface
-public interface HasDescription<T> {
+/**
+ * Navigation methods for the {@link VecContent}.
+ */
+public final class ContentNavs {
 
-    List<T> getDescriptions();
+    private ContentNavs() {
+        // hide default constructor
+    }
+
+    public static <T extends VecSpecification> Function<VecContent, List<T>> allSpecificationsOf(final Class<T> clazz) {
+        return vecContent -> vecContent.getDocumentVersions()
+                .stream()
+                .flatMap(StreamUtils.toStream(dv -> dv.getSpecificationsWithType(clazz)))
+                .collect(Collectors.toList());
+    }
+
+    public static Function<VecContent, Optional<VecDocumentVersion>> documentVersionBy(
+            final String documentNumber) {
+        return content -> content.getDocumentVersions().stream()
+                .filter(documentVersion -> documentVersion.getDocumentNumber().equals(documentNumber))
+                .collect(StreamUtils.findOneOrNone());
+    }
 
 }

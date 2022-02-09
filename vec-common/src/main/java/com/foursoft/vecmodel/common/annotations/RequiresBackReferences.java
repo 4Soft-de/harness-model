@@ -23,13 +23,21 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.vecmodel.common.annotations;
 
-import java.util.List;
+import java.lang.annotation.*;
 
-@FunctionalInterface
-public interface HasDescription<T> {
-
-    List<T> getDescriptions();
-
+/**
+ * If a method is annotated with this annotation it means that it uses the back references feature of the VEC model.
+ * <p>
+ * Back references are only set for {@code VecContent}s which have been read / imported, <b>not
+ * for manually created VecContents</b>. If the annotated method is used on a VecContent without back references, then
+ * exceptions ({@link NullPointerException}s) are likely to be raised.
+ * <p>
+ * Export and re-import a manually created VecContent to use that method.
+ */
+@Documented
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface RequiresBackReferences {
 }

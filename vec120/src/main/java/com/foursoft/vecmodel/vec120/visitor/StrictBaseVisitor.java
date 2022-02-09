@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * vec120
  * %%
- * Copyright (C) 2020 4Soft GmbH
+ * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,9 +46,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
      * @return Never null String containing the error message for the given object
      */
     protected String getErrorMessage(final Object aBean) {
-        return "Encountered unhandled class '" + aBean.getClass().getName()
-                + "' in visitor implementation: "
-                + getClass().getName();
+        return String.format("Encountered unhandled class '%s' in visitor implementation: %s",
+                aBean.getClass().getName(), getClass().getName());
     }
 
     @Override

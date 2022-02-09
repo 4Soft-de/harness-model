@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec-common
+ * vec120
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,13 +23,28 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.vecmodel.vec120.visitor;
 
-import java.util.List;
+import com.foursoft.vecmodel.vec120.*;
 
-@FunctionalInterface
-public interface HasDescription<T> {
+public class ReferencedNodeLocationVisitor extends StrictBaseVisitor<VecTopologyNode> {
 
-    List<T> getDescriptions();
+    @Override
+    public VecTopologyNode visitVecNodeLocation(final VecNodeLocation aBean) {
+        return aBean.getReferencedNode();
+    }
+
+    @Override
+    public VecTopologyNode visitVecSegmentLocation(final VecSegmentLocation aBean) {
+        final VecAnchorType anchor = aBean.getAnchor();
+        if (anchor == null) {
+            return null;
+        }
+
+        final VecTopologySegment referencedSegment = aBean.getReferencedSegment();
+        return VecAnchorType.FROM_START_NODE == anchor
+                ? referencedSegment.getStartNode()
+                : referencedSegment.getEndNode();
+    }
 
 }
