@@ -26,7 +26,6 @@
 package com.foursoft.vecmodel.vec120.predicates;
 
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
-import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.vec120.*;
 
 import java.util.Objects;
@@ -119,13 +118,6 @@ public final class VecPredicates {
     @RequiresBackReferences
     public static Predicate<VecWireElementReference> isSingleWireElementReference() {
         return reference -> reference.getParentWireRole().getWireElementReferences().size() == 1;
-    }
-
-    // TODO Use enum for SpecialPartType when available
-    public static Predicate<VecDocumentVersion> isAssembly() {
-        return doc -> doc.getSpecifications().stream()
-                .flatMap(StreamUtils.ofClass(VecPartStructureSpecification.class))
-                .anyMatch(spec -> "Assembly".equals(spec.getSpecialPartType()));
     }
 
     /**
