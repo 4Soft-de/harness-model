@@ -27,6 +27,7 @@ package com.foursoft.vecmodel.vec120;
 
 import java.util.List;
 
+@FunctionalInterface
 public interface HasOccurrenceOrUsages {
 
     List<VecOccurrenceOrUsage> getOccurrenceOrUsage();

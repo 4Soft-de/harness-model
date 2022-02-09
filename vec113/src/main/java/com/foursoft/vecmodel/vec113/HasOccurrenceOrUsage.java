@@ -25,6 +25,7 @@
  */
 package com.foursoft.vecmodel.vec113;
 
+@FunctionalInterface
 public interface HasOccurrenceOrUsage {
 
     VecOccurrenceOrUsage getOccurrenceOrUsage();

@@ -39,12 +39,12 @@
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Role' and @type='vec:Role']]">
         <inheritance:implements>com.foursoft.vecmodel.common.HasRoles&lt;com.foursoft.vecmodel.vec113.VecRole&gt;</inheritance:implements>
+    </jxb:bindings>
 
-        </jxb:bindings>
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Unit' and @type='vec:Unit']]">
         <inheritance:implements>com.foursoft.vecmodel.common.HasUnits&lt;com.foursoft.vecmodel.vec113.VecUnit&gt;</inheritance:implements>
     </jxb:bindings>
-    
+
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='OccurrenceOrUsage' and @type='xs:IDREF']]">
         <inheritance:implements>com.foursoft.vecmodel.vec113.HasOccurrenceOrUsage</inheritance:implements>
     </jxb:bindings>
@@ -52,7 +52,5 @@
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='CustomProperty' and @type='vec:CustomProperty']]">
         <inheritance:implements>com.foursoft.vecmodel.vec113.HasCustomProperties</inheritance:implements>
     </jxb:bindings>
-
-
 
 </jxb:bindings>
