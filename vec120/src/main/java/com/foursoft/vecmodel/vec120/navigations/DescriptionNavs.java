@@ -58,19 +58,19 @@ public final class DescriptionNavs {
             final VecLanguageCode vecLanguageCode) {
         return descHolder -> {
             final List<? extends VecAbstractLocalizedString> localizedStrings = descHolder.getDescriptions();
-            return languageStringIn(vecLanguageCode).apply(localizedStrings);
+            return stringIn(vecLanguageCode).apply(localizedStrings);
         };
     }
 
-    public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> germanLanguageString() {
-        return languageStringIn(VecLanguageCode.DE);
+    public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> germanString() {
+        return stringIn(VecLanguageCode.DE);
     }
 
-    public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> englishLanguageString() {
-        return languageStringIn(VecLanguageCode.EN);
+    public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> englishString() {
+        return stringIn(VecLanguageCode.EN);
     }
 
-    public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> languageStringIn(
+    public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> stringIn(
             final VecLanguageCode vecLanguageCode) {
         return localizedStrings -> {
             if (localizedStrings.isEmpty()) {
@@ -93,17 +93,17 @@ public final class DescriptionNavs {
         };
     }
 
-    public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> germanTypedLanguageStringBy(
+    public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> germanTypedStringBy(
             final String descriptionType) {
-        return typedLanguageStringBy(descriptionType, VecLanguageCode.DE);
+        return typedStringBy(descriptionType, VecLanguageCode.DE);
     }
 
-    public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> englishTypedLanguageStringBy(
+    public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> englishTypedStringBy(
             final String descriptionType) {
-        return typedLanguageStringBy(descriptionType, VecLanguageCode.EN);
+        return typedStringBy(descriptionType, VecLanguageCode.EN);
     }
 
-    public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> typedLanguageStringBy(
+    public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> typedStringBy(
             final String descriptionType, final VecLanguageCode vecLanguageCode) {
         return hasDescription -> hasDescription.getDescriptions().stream()
                 .filter(VecPredicates.isLanguageCode(vecLanguageCode))
