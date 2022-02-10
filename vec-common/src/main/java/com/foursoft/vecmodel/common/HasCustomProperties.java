@@ -31,6 +31,7 @@ import com.foursoft.vecmodel.common.util.StreamUtils;
 import java.util.List;
 import java.util.Optional;
 
+@FunctionalInterface
 public interface HasCustomProperties<X extends HasPropertyType> {
 
     List<X> getCustomProperties();
@@ -51,4 +52,5 @@ public interface HasCustomProperties<X extends HasPropertyType> {
                 .filter(c -> c.getPropertyType().equals(propertyType))
                 .collect(StreamUtils.findOneOrNone());
     }
+
 }

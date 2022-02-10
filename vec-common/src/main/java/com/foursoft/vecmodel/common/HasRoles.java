@@ -31,6 +31,7 @@ import com.foursoft.vecmodel.common.util.StreamUtils;
 import java.util.List;
 import java.util.Optional;
 
+@FunctionalInterface
 public interface HasRoles<X> {
 
     List<X> getRoles();
@@ -52,4 +53,5 @@ public interface HasRoles<X> {
         return DelegationUtils.getFromListWithTypeAsStream(getRoles(), type)
                 .collect(StreamUtils.findOneOrNone());
     }
+
 }

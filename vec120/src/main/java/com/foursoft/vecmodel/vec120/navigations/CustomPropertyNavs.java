@@ -88,4 +88,5 @@ public final class CustomPropertyNavs {
                 .map(VecComplexProperty::getCustomProperties)
                 .orElseGet(Collections::emptyList);
     }
+
 }

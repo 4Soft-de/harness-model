@@ -31,6 +31,7 @@ import com.foursoft.vecmodel.common.util.StreamUtils;
 import java.util.List;
 import java.util.Optional;
 
+@FunctionalInterface
 public interface HasSpecifications<X extends HasIdentification> {
 
     List<X> getSpecifications();

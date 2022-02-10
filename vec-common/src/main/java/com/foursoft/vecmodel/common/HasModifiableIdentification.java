@@ -28,4 +28,5 @@ package com.foursoft.vecmodel.common;
 public interface HasModifiableIdentification extends HasIdentification {
 
     void setIdentification(String identification);
+
 }
