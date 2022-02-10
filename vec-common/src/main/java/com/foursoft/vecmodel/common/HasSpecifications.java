@@ -61,7 +61,7 @@ public interface HasSpecifications<X extends HasIdentification> {
      * @param identification specifies a unique identification of the specification.
      * @return the first specification with the given type and identification.
      */
-    default <T extends X> Optional<T> getSpecification(final Class<T> type, final String identification) {
+    default <T extends X> Optional<T> getSpecificationWith(final Class<T> type, final String identification) {
         return DelegationUtils.getFromListWithTypeAsStream(getSpecifications(), type)
                 .filter(c -> c.getIdentification().equals(identification))
                 .collect(StreamUtils.findOneOrNone());
