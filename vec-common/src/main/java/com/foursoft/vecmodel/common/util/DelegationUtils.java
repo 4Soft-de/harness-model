@@ -32,9 +32,7 @@ import java.util.stream.Stream;
 public class DelegationUtils {
 
     public static <T extends X, X> List<T> getFromListWithType(final List<X> source, final Class<T> type) {
-        return source.stream()
-                .filter(type::isInstance)
-                .map(type::cast)
+        return getFromListWithTypeAsStream(source, type)
                 .collect(Collectors.toList());
     }
 
