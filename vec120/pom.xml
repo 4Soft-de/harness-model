@@ -23,8 +23,8 @@
             <artifactId>navigation-extender-runtime</artifactId>
         </dependency>
         <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
