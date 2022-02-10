@@ -31,4 +31,5 @@ import java.util.List;
 public interface HasOccurrenceOrUsages {
 
     List<VecOccurrenceOrUsage> getOccurrenceOrUsage();
+
 }
