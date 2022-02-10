@@ -45,4 +45,16 @@
         <inheritance:implements>com.foursoft.vecmodel.common.HasUnits&lt;com.foursoft.vecmodel.vec113.VecUnit&gt;</inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='OccurrenceOrUsage' and @type='xs:IDREF']]">
+        <inheritance:implements>com.foursoft.vecmodel.vec113.HasOccurrenceOrUsage</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='CustomProperty' and @type='vec:CustomProperty']]">
+        <inheritance:implements>com.foursoft.vecmodel.common.HasCustomProperties&lt;com.foursoft.vecmodel.vec113.VecCustomProperty&gt;</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='PropertyType']]">
+        <inheritance:implements>com.foursoft.vecmodel.common.HasPropertyType</inheritance:implements>
+    </jxb:bindings>
+
 </jxb:bindings>

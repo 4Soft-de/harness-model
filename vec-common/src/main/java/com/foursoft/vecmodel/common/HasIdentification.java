@@ -29,4 +29,5 @@ package com.foursoft.vecmodel.common;
 public interface HasIdentification {
 
     String getIdentification();
+
 }

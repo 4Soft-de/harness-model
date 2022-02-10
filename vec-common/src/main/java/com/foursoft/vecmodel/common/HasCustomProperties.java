@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec120
+ * vec-common
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -23,38 +23,33 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.navigations;
+package com.foursoft.vecmodel.common;
 
+import com.foursoft.vecmodel.common.util.DelegationUtils;
 import com.foursoft.vecmodel.common.util.StreamUtils;
-import com.foursoft.vecmodel.vec120.VecContent;
-import com.foursoft.vecmodel.vec120.VecDocumentVersion;
-import com.foursoft.vecmodel.vec120.VecSpecification;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-/**
- * Navigation methods for the {@link VecContent}.
- */
-public final class ContentNavs {
+@FunctionalInterface
+public interface HasCustomProperties<X extends HasPropertyType> {
 
-    private ContentNavs() {
-        // hide default constructor
+    List<X> getCustomProperties();
+
+    default <T extends X> List<T> getCustomPropertiesWithType(final Class<T> type) {
+        return DelegationUtils.getFromListWithType(getCustomProperties(), type);
     }
 
-    public static <T extends VecSpecification> Function<VecContent, List<T>> allSpecificationsOf(final Class<T> clazz) {
-        return vecContent -> vecContent.getDocumentVersions()
-                .stream()
-                .flatMap(StreamUtils.toStream(dv -> dv.getSpecificationsWithType(clazz)))
-                .collect(Collectors.toList());
-    }
-
-    public static Function<VecContent, Optional<VecDocumentVersion>> documentVersionBy(
-            final String documentNumber) {
-        return content -> content.getDocumentVersions().stream()
-                .filter(documentVersion -> documentVersion.getDocumentNumber().equals(documentNumber))
+    /**
+     * Filters the list of CustomProperties by type and key.
+     *
+     * @param type         derived classifiers
+     * @param propertyType defines the meaning of the value.
+     * @return the first property with the given type and key.
+     */
+    default <T extends X> Optional<T> getCustomProperty(final Class<T> type, final String propertyType) {
+        return DelegationUtils.getFromListWithTypeAsStream(getCustomProperties(), type)
+                .filter(c -> c.getPropertyType().equals(propertyType))
                 .collect(StreamUtils.findOneOrNone());
     }
 

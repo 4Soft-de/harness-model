@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec120
+ * vec-common
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -23,39 +23,28 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.navigations;
+package com.foursoft.vecmodel.common.util;
 
-import com.foursoft.vecmodel.common.util.StreamUtils;
-import com.foursoft.vecmodel.vec120.VecContent;
-import com.foursoft.vecmodel.vec120.VecDocumentVersion;
-import com.foursoft.vecmodel.vec120.VecSpecification;
+import java.util.regex.Pattern;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+public final class StringUtils {
 
-/**
- * Navigation methods for the {@link VecContent}.
- */
-public final class ContentNavs {
+    private static final Pattern WHITE_SPACE_REGEX = Pattern.compile("\\s+");
 
-    private ContentNavs() {
+    private StringUtils() {
         // hide default constructor
     }
 
-    public static <T extends VecSpecification> Function<VecContent, List<T>> allSpecificationsOf(final Class<T> clazz) {
-        return vecContent -> vecContent.getDocumentVersions()
-                .stream()
-                .flatMap(StreamUtils.toStream(dv -> dv.getSpecificationsWithType(clazz)))
-                .collect(Collectors.toList());
+    public static boolean isEmpty(final String s) {
+        return s == null || s.isEmpty();
     }
 
-    public static Function<VecContent, Optional<VecDocumentVersion>> documentVersionBy(
-            final String documentNumber) {
-        return content -> content.getDocumentVersions().stream()
-                .filter(documentVersion -> documentVersion.getDocumentNumber().equals(documentNumber))
-                .collect(StreamUtils.findOneOrNone());
+    public static boolean isNotEmpty(final String s) {
+        return !isEmpty(s);
+    }
+
+    public static String collapseMultipleWhitespaces(final String in) {
+        return in == null ? null : WHITE_SPACE_REGEX.matcher(in).replaceAll(" ").trim();
     }
 
 }

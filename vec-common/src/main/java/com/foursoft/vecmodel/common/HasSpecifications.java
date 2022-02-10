@@ -26,14 +26,45 @@
 package com.foursoft.vecmodel.common;
 
 import com.foursoft.vecmodel.common.util.DelegationUtils;
+import com.foursoft.vecmodel.common.util.StreamUtils;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface HasSpecifications<X> {
+@FunctionalInterface
+public interface HasSpecifications<X extends HasIdentification> {
 
     List<X> getSpecifications();
 
     default <T extends X> List<T> getSpecificationsWithType(final Class<T> type) {
         return DelegationUtils.getFromListWithType(getSpecifications(), type);
     }
+
+    /**
+     * Gets the first specification with the given type.
+     * <b>Warning: There might be multiple specifications with the given type.
+     * Only use this method if you are sure there will just be one element!</b>
+     *
+     * @param type Class of T.
+     * @param <T>  Type of Specification to filter for.
+     * @return The first specification with the given type if found, else an empty optional.
+     */
+    default <T extends X> Optional<T> getSpecificationWithType(final Class<T> type) {
+        return DelegationUtils.getFromListWithTypeAsStream(getSpecifications(), type)
+                .collect(StreamUtils.findOneOrNone());
+    }
+
+    /**
+     * Filters the list of Specifications by type and identification.
+     *
+     * @param type           derived classifiers
+     * @param identification specifies a unique identification of the specification.
+     * @return the first specification with the given type and identification.
+     */
+    default <T extends X> Optional<T> getSpecificationWith(final Class<T> type, final String identification) {
+        return DelegationUtils.getFromListWithTypeAsStream(getSpecifications(), type)
+                .filter(c -> c.getIdentification().equals(identification))
+                .collect(StreamUtils.findOneOrNone());
+    }
+
 }
