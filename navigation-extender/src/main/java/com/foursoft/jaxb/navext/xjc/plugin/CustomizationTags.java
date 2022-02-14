@@ -23,61 +23,37 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.jaxb.navext.runtime.xjc.plugin;
+package com.foursoft.jaxb.navext.xjc.plugin;
 
-import org.assertj.core.api.Assertions;
-import org.jvnet.jaxb2.maven2.AbstractXJC2Mojo;
+import com.sun.tools.xjc.model.CPluginCustomization;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
-public class PluginTest extends AbstractPluginTest {
+public enum CustomizationTags {
 
-    @Override
-    protected String getTestName() {
-        return "basic";
+    EXT_REFERENCE("ext-reference"), PARENT("parent"), SELECTOR("selector");
+
+    public static final String NS = "http://www.4soft.de/xjc-plugins/navigations";
+
+    private final String tagName;
+
+    CustomizationTags(final String tagName) {
+        this.tagName = tagName;
     }
 
-    @Override
-    protected void configureMojo(final AbstractXJC2Mojo mojo) {
-        super.configureMojo(mojo);
-
-        mojo.setForceRegenerate(true);
-
-        mojo.setBindingIncludes(new String[]{"basic.xjb"});
-
-        mojo.setExtension(true);
-
+    public static Optional<CustomizationTags> of(final String nsUri, final String localName) {
+        if (!NS.equals(nsUri)) {
+            return Optional.empty();
+        }
+        return Stream.of(values())
+                .filter(p -> p.tagName.equals(localName))
+                .findAny();
     }
 
-    @Override
-    public List<String> getArgs() {
-
-        final List<String> args = new ArrayList<>(super.getArgs());
-
-        args.add("-Xext-navs");
-
-        return args;
-
-    }
-
-    @Override
-    public void testExecute() throws Exception {
-        super.testExecute();
-
-        assertTypeSafeIDREF();
-
-    }
-
-    private void assertTypeSafeIDREF() throws Exception {
-        final Class<?> forName = Class.forName("de.foursoft.xml.xjc.test.NavsChildA");
-
-        final Method m = forName.getMethod("getRefBs");
-
-        Assertions.assertThat(m.getGenericReturnType()
-                .getTypeName()).isEqualTo("java.util.List<de.foursoft.xml.xjc.test.NavsChildB>");
-
+    public boolean isCustomization(final CPluginCustomization customization) {
+        return NS.equals(customization.element.getNamespaceURI())
+                && tagName.equals(customization.element.getLocalName());
     }
 
 }

@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.jaxb.navext.runtime.xjc.plugin;
+package com.foursoft.jaxb.navext.xjc.plugin;
 
 import com.sun.tools.xjc.model.CCustomizable;
 import com.sun.tools.xjc.model.CPluginCustomization;

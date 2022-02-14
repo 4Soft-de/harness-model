@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module navigation.extender {
+open module com.foursoft.jaxb.navext.xjc.plugin {
     requires transitive com.foursoft.jaxb.navext.runtime;
     requires org.glassfish.jaxb.xjc;
     requires java.xml.bind;

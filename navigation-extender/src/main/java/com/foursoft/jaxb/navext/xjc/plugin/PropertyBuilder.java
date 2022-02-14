@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,19 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.jaxb.navext.runtime.xjc.plugin;
+package com.foursoft.jaxb.navext.xjc.plugin;
+
+import com.sun.codemodel.*;
 
 import javax.xml.bind.annotation.XmlTransient;
-
-import com.sun.codemodel.JCodeModel;
-import com.sun.codemodel.JDefinedClass;
-import com.sun.codemodel.JDocComment;
-import com.sun.codemodel.JExpr;
-import com.sun.codemodel.JExpression;
-import com.sun.codemodel.JFieldVar;
-import com.sun.codemodel.JMethod;
-import com.sun.codemodel.JMod;
-import com.sun.codemodel.JType;
 
 public class PropertyBuilder {
 
@@ -91,7 +83,7 @@ public class PropertyBuilder {
     }
 
     public void buildAbstract(final JDefinedClass targetClass) {
-        if (targetClass.getMethod(getterName, new JType[] {}) != null) {
+        if (targetClass.getMethod(getterName, new JType[]{}) != null) {
             return;
         }
         final JMethod getter = targetClass.method(JMod.PUBLIC, baseType, getterName);
@@ -109,7 +101,7 @@ public class PropertyBuilder {
     }
 
     public PropertyBuilder withGetterJavadoc(final JDocComment comment) {
-        this.getterJavadoc = comment;
+        getterJavadoc = comment;
         return this;
     }
 }

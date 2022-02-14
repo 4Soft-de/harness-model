@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,37 +23,21 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.jaxb.navext.runtime.xjc.plugin;
+package com.foursoft.jaxb.navext.xjc.plugin;
 
-import java.util.Optional;
-import java.util.stream.Stream;
-
-import com.sun.tools.xjc.model.CPluginCustomization;
-
-public enum CustomizationTags {
-
-    EXT_REFERENCE("ext-reference"), PARENT("parent"), SELECTOR("selector");
+public final class Consts {
 
     public static final String NS = "http://www.4soft.de/xjc-plugins/navigations";
 
-    private final String tagName;
+    public static final String ATTR_SCHEMA_TYPE = "schema-type";
 
-    CustomizationTags(final String tagName) {
-        this.tagName = tagName;
-    }
+    public static final String ATTR_SELECTOR_TYPE = "selector";
 
-    public boolean isCustomization(final CPluginCustomization customization) {
-        return NS.equals(customization.element.getNamespaceURI())
-                && tagName.equals(customization.element.getLocalName());
-    }
+    public static final String ATTR_INVERSE = "inverse";
 
-    public static Optional<CustomizationTags> of(final String nsUri, final String localName) {
-        if (!NS.equals(nsUri)) {
-            return Optional.empty();
-        }
-        return Stream.of(values())
-                .filter(p -> p.tagName.equals(localName))
-                .findAny();
-    }
+    public static final String ATTR_NAME = "name";
 
+    public static final String ATTR_IMPLEMENTS = "implements";
+
+    public static final String ATTR_TYPE = "type";
 }

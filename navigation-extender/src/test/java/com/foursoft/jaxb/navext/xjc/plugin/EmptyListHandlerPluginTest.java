@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,51 +23,62 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.jaxb.navext.runtime.xjc.plugin;
+package com.foursoft.jaxb.navext.xjc.plugin;
 
-import java.util.Collections;
+import org.assertj.core.api.Assertions;
+import org.jvnet.jaxb2.maven2.AbstractXJC2Mojo;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.SAXException;
-
-import com.sun.tools.xjc.Options;
-import com.sun.tools.xjc.Plugin;
-import com.sun.tools.xjc.outline.Outline;
-
-public class NavigationsPlugin extends Plugin {
-
-    private final AbstractCustomizationHandler[] handlers = new AbstractCustomizationHandler[] {
-            new SelectorCustomizationHandler(), new ExtReferenceCustomizationHandler(),
-            new ParentCustomizationHandler() };
+public class EmptyListHandlerPluginTest extends AbstractPluginTest {
 
     @Override
-    public List<String> getCustomizationURIs() {
-        return Collections.singletonList(CustomizationTags.NS);
+    protected String getTestName() {
+        return "emptylist";
     }
 
     @Override
-    public boolean isCustomizationTagName(final String nsUri, final String localName) {
-        return CustomizationTags.of(nsUri, localName)
-                .isPresent();
+    protected void configureMojo(final AbstractXJC2Mojo mojo) {
+        super.configureMojo(mojo);
+
+        mojo.setForceRegenerate(true);
+
+        mojo.setBindingIncludes(new String[]{"basic.xjb"});
+
+        mojo.setExtension(true);
+
     }
 
     @Override
-    public String getOptionName() {
-        return "Xext-navs";
+    public List<String> getArgs() {
+
+        final List<String> args = new ArrayList<>(super.getArgs());
+
+        args.add("-Xext-navs");
+        args.add("-Xnull-empty-lists");
+
+        return args;
+
     }
 
     @Override
-    public String getUsage() {
-        return "Usage!";
+    public void testExecute() throws Exception {
+        super.testExecute();
+
+        assertTypeSafeIDREF();
+
     }
 
-    @Override
-    public boolean run(final Outline outline, final Options opt, final ErrorHandler errorHandler) throws SAXException {
-        for (final AbstractCustomizationHandler h : handlers) {
-            h.traverseModel(outline);
-        }
+    private void assertTypeSafeIDREF() throws Exception {
+        final Class<?> forName = Class.forName("de.foursoft.xml.xjc.test.NavsChildA");
 
-        return true;
+        final Method m = forName.getMethod("getRefBs");
+
+        Assertions.assertThat(m.getGenericReturnType()
+                .getTypeName()).isEqualTo("java.util.List<de.foursoft.xml.xjc.test.NavsChildB>");
+
     }
+
 }

@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.jaxb.navext.runtime.xjc.plugin;
+package com.foursoft.jaxb.navext.xjc.plugin;
 
 import junit.framework.Assert;
 import org.jvnet.jaxb2.maven2.test.RunXJC2Mojo;
