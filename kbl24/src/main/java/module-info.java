@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * kbl24
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +23,15 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-//
-// Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.3.0 generiert
-// Siehe <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a>
-// Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren.
-// Generiert: 2018.10.29 um 11:15:39 AM CET
-//
+open module kbl24 {
+    requires navigation.extender.runtime;
+    requires com.sun.xml.txw2;
+    requires org.glassfish.jaxb.xjc;
+    requires org.glassfish.jaxb.runtime;
+    requires com.sun.istack.runtime;
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema", xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "kbl", namespaceURI = "http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema"))
-package com.foursoft.kblmodel.kbl24;
+    requires java.xml;
+    requires java.xml.bind;
+    requires java.annotation;
+
+}
