@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.foursoft.jaxb.navext</groupId>
-    <artifactId>navigation-extender-parent</artifactId>
+    <artifactId>navext-parent</artifactId>
     <version>1.2.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
