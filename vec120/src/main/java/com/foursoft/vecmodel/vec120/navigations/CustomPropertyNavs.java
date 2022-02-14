@@ -25,8 +25,8 @@
  */
 package com.foursoft.vecmodel.vec120.navigations;
 
+import com.foursoft.vecmodel.common.HasCustomProperties;
 import com.foursoft.vecmodel.vec120.*;
-import com.foursoft.vecmodel.vec120.utils.StreamUtils;
 
 import java.math.BigInteger;
 import java.util.Collections;
@@ -44,55 +44,49 @@ public final class CustomPropertyNavs {
         // hide default constructor
     }
 
-    public static Function<VecExtendableElement, Optional<String>> customPropertyValueStringOf(
+    public static Function<HasCustomProperties<VecCustomProperty>, Optional<String>> customPropertyValueStringOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecSimpleValueProperty.class, VecSimpleValueProperty::getValue);
+        return element -> element.getCustomProperty(VecSimpleValueProperty.class, customProperty)
+                .map(VecSimpleValueProperty::getValue);
     }
 
-    public static Function<VecExtendableElement, Optional<BigInteger>> customPropertyValueIntegerOf(
+    public static Function<HasCustomProperties<VecCustomProperty>, Optional<BigInteger>> customPropertyValueIntegerOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecIntegerValueProperty.class, VecIntegerValueProperty::getValue);
+        return element -> element.getCustomProperty(VecIntegerValueProperty.class, customProperty)
+                .map(VecIntegerValueProperty::getValue);
     }
 
-    public static Function<VecExtendableElement, List<String>> customPropertyValueStringsOf(
+    public static Function<HasCustomProperties<VecCustomProperty>, List<String>> customPropertyValueStringsOf(
             final String customProperty) {
-        return customPropertyValuesOf(customProperty, VecSimpleValueProperty.class, VecSimpleValueProperty::getValue);
+        return element -> element.getCustomPropertiesWithType(VecSimpleValueProperty.class).stream()
+                .filter(c -> c.getPropertyType().equals(customProperty))
+                .map(VecSimpleValueProperty::getValue)
+                .collect(Collectors.toList());
     }
 
-    public static Function<VecExtendableElement, Optional<Double>> customPropertyValueDoubleOf(
+    public static Function<HasCustomProperties<VecCustomProperty>, Optional<Double>> customPropertyValueDoubleOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecDoubleValueProperty.class, VecDoubleValueProperty::getValue);
+        return element -> element.getCustomProperty(VecDoubleValueProperty.class, customProperty)
+                .map(VecDoubleValueProperty::getValue);
     }
 
-    public static Function<VecExtendableElement, Optional<VecValueRange>> customPropertyValueRangeOf(
+    public static Function<HasCustomProperties<VecCustomProperty>, Optional<VecValueRange>> customPropertyValueRangeOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecValueRangeProperty.class, VecValueRangeProperty::getValue);
+        return element -> element.getCustomProperty(VecValueRangeProperty.class, customProperty)
+                .map(VecValueRangeProperty::getValue);
     }
 
-    public static Function<VecExtendableElement, Optional<Boolean>> customPropertyValueBooleanOf(
+    public static Function<HasCustomProperties<VecCustomProperty>, Optional<Boolean>> customPropertyValueBooleanOf(
             final String customProperty) {
-        return customPropertyValueOf(customProperty, VecBooleanValueProperty.class, VecBooleanValueProperty::isValue);
+        return element -> element.getCustomProperty(VecBooleanValueProperty.class, customProperty)
+                .map(VecBooleanValueProperty::isValue);
     }
 
-    private static <P extends VecCustomProperty, T> Function<VecExtendableElement, Optional<T>> customPropertyValueOf(
-            final String customProperty, final Class<P> targetClass, final Function<P, T> converter) {
-        return element -> customPropertyValuesOf(customProperty, targetClass, converter)
-                .apply(element)
-                .stream()
-                .collect(StreamUtils.findOneOrNone());
-    }
-
-    private static <P extends VecCustomProperty, T> Function<VecExtendableElement, List<T>> customPropertyValuesOf(
-            final String customProperty, final Class<P> targetClass, final Function<P, T> converter) {
-        return element -> element == null
-                ? Collections.emptyList()
-                :
-                element.getCustomProperties()
-                        .stream()
-                        .flatMap(StreamUtils.ofClass(targetClass))
-                        .filter(property -> property.getPropertyType().equals(customProperty))
-                        .map(converter)
-                        .collect(Collectors.toList());
+    public static Function<HasCustomProperties<VecCustomProperty>, List<VecCustomProperty>> customPropertyValuesOf(
+            final String customProperty) {
+        return element -> element.getCustomProperty(VecComplexProperty.class, customProperty)
+                .map(VecComplexProperty::getCustomProperties)
+                .orElseGet(Collections::emptyList);
     }
 
 }

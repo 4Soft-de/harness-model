@@ -26,11 +26,11 @@
 package com.foursoft.vecmodel.vec120.navigations;
 
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
+import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.vec120.VecNumericalValue;
 import com.foursoft.vecmodel.vec120.VecSegmentCrossSectionArea;
 import com.foursoft.vecmodel.vec120.VecSegmentLength;
 import com.foursoft.vecmodel.vec120.VecTopologySegment;
-import com.foursoft.vecmodel.vec120.utils.StreamUtils;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -50,7 +50,6 @@ public final class SegmentNavs {
         return segment -> segment.getParentTopologySpecification().getParentDocumentVersion().getDocumentNumber();
     }
 
-    // TODO Make the segmentLengthClassification an Open Enumeration
     public static Function<VecTopologySegment, Optional<Double>> lengthBy(final String segmentLengthClassification) {
         return segment -> StreamUtils.nonNullStream(segment.getLengthInformations())
                 .filter(segmentLength -> segmentLength.getClassification().equals(segmentLengthClassification))
