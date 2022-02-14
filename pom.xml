@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.foursoft.jaxb2</groupId>
+        <groupId>com.foursoft.jaxb</groupId>
         <artifactId>jaxb-parent</artifactId>
         <version>0.0.10-SNAPSHOT</version>
     </parent>
