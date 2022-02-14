@@ -57,7 +57,7 @@
         <inheritance:implements>com.foursoft.vecmodel.common.HasPropertyType</inheritance:implements>
     </jxb:bindings>
 
-    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='ReferenceSystem' and @type='xs:string']]">
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='ReferenceSystem']]">
         <inheritance:implements>com.foursoft.vecmodel.common.HasReferenceSystem</inheritance:implements>
     </jxb:bindings>
 
