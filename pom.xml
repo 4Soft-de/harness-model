@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
 
         <!-- Dependencies -->
         <slf4j.version>1.7.35</slf4j.version>
@@ -20,9 +20,10 @@
         <jaxb2-basics.version>0.12.0</jaxb2-basics.version>
         <assertj-core.version>3.22.0</assertj-core.version>
         <logback-classic.version>1.2.10</logback-classic.version>
-        <jaxb-api.version>3.0.1</jaxb-api.version>
-        <jaxb-core.version>3.0.2</jaxb-core.version>
-        <jaxb.version>3.0.2</jaxb.version>
+        <jaxb-api.version>2.3.3</jaxb-api.version>
+        <jaxb-core.version>2.3.0.1</jaxb-core.version>
+        <jaxb.version>2.3.6</jaxb.version>
+        <jaxb-xjc.version>2.3.6</jaxb-xjc.version>
         <javax.annotation.version>1.3.2</javax.annotation.version>
         <maven-core.version>3.8.4</maven-core.version>
 
@@ -106,34 +107,46 @@
                 <version>${jaxb2_commons.version}</version>
             </dependency>
 
+            <!-- JAXB-->
             <dependency>
                 <groupId>jakarta.xml.bind</groupId>
                 <artifactId>jakarta.xml.bind-api</artifactId>
                 <version>${jaxb-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-core</artifactId>
-                <scope>provided</scope>
-                <version>${jaxb-core.version}</version>
-            </dependency>
-
-            <!-- JAXB-->
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-impl</artifactId>
-                <scope>provided</scope>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
                 <version>${jaxb.version}</version>
             </dependency>
-            <!-- JAXB-->
             <dependency>
-                <groupId>com.sun.xml.bind</groupId>
+                <groupId>org.glassfish.jaxb</groupId>
                 <artifactId>jaxb-xjc</artifactId>
-                <scope>provided</scope>
-                <version>${jaxb.version}</version>
+                <version>${jaxb-xjc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-core</artifactId>
+                <version>${jaxb-core.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.istack</groupId>
+                <artifactId>istack-commons-runtime</artifactId>
+                <version>3.0.12</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>txw2</artifactId>
+                <version>2.3.6</version>
             </dependency>
 
             <!--VEC KBL-->
+
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>
@@ -188,7 +201,6 @@
                 <version>${maven-core.version}</version>
                 <scope>test</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -340,6 +352,7 @@
                         <trimStackTrace>false</trimStackTrace>
                         <argLine>${test.argLine}</argLine>
                         <skipTests>${skipUTs}</skipTests>
+                        <useModulePath>false</useModulePath>
                     </configuration>
                 </plugin>
                 <plugin>
