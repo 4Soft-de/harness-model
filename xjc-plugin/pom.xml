@@ -2,17 +2,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.foursoft.jaxb.navext</groupId>
-        <artifactId>navigation-extender-parent</artifactId>
+        <artifactId>navext-parent</artifactId>
         <version>1.2.5-SNAPSHOT</version>
     </parent>
-    <artifactId>navigation-extender</artifactId>
+    <artifactId>navext-xjc</artifactId>
 
     <description>XJC Plugin for efficient XML handling / JAXB parsing.</description>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>navigation-extender-runtime</artifactId>
+            <artifactId>navext-runtime</artifactId>
             <version>${project.version}</version>
         </dependency>
 
