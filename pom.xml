@@ -57,7 +57,7 @@
 
     <modules>
         <module>navigation-extender</module>
-        <module>navigation-extender-runtime</module>
+        <module>runtime</module>
     </modules>
 
     <developers>
