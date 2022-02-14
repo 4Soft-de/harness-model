@@ -53,9 +53,9 @@
         <inheritance:implements>com.foursoft.vecmodel.common.HasCustomProperties&lt;com.foursoft.vecmodel.vec120.VecCustomProperty&gt;</inheritance:implements>
     </jxb:bindings>
 
-   <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='PropertyType']]">
-       <inheritance:implements>com.foursoft.vecmodel.common.HasPropertyType</inheritance:implements>
-   </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='PropertyType']]">
+        <inheritance:implements>com.foursoft.vecmodel.common.HasPropertyType</inheritance:implements>
+    </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='ReferenceSystem' and @type='xs:string']]">
         <inheritance:implements>com.foursoft.vecmodel.common.HasReferenceSystem</inheritance:implements>
