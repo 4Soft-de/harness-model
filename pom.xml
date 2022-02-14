@@ -56,7 +56,7 @@
     </scm>
 
     <modules>
-        <module>navigation-extender</module>
+        <module>xjc-plugin</module>
         <module>runtime</module>
     </modules>
 
