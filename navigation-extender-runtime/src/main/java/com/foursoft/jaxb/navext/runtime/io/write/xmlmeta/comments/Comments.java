@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,40 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.comments;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+/**
+ * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
+ * and added directly before the xml-element.
+ * e.g. if a Root-class exists which is serialized to &lt;Root&gt;&lt;/Root&gt;
+ * the following code:
+ * Root root = new Root();
+ * Comments comments = new Comments();
+ * comments.put(root, "TestComment");
+ * XMLWriter::write(root, comments);
+ * would result in:
+ * &lt;!-- TestComment --&gt;
+ * &lt;Root&gt;&lt;/Root&gt;
+ */
+public class Comments {
+    private final Map<Object, String> map = new HashMap<>();
+
+    public boolean containsKey(final Object key) {
+        return map.containsKey(key);
+    }
+
+    public Optional<String> get(final Object key) {
+        return Optional.ofNullable(map.get(key));
+    }
+
+    public void put(final Object key, final String comment) {
+        Objects.requireNonNull(key);
+        Objects.requireNonNull(comment);
+        map.put(key, comment);
+    }
 }

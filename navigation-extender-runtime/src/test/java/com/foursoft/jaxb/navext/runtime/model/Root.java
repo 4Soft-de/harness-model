@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,48 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.model;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Root", propOrder = {"attribute", "childA", "childB"})
+@XmlRootElement(name = "Root")
+public class Root extends AbstractBase implements Serializable {
+
+    private final static long serialVersionUID = 1L;
+
+    @XmlElement(name = "attribute", required = true)
+    protected String attribute;
+
+    @XmlElement(name = "ChildA")
+    protected List<ChildA> childA;
+    @XmlElement(name = "ChildB")
+    protected List<ChildB> childB;
+
+    public String getAttributeA() {
+        return attribute;
+    }
+
+    public void setAttribute(final String attribute) {
+        this.attribute = attribute;
+    }
+
+    public List<ChildA> getChildA() {
+        if (childA == null) {
+            childA = new ArrayList<>();
+        }
+        return childA;
+    }
+
+    public List<ChildB> getChildB() {
+        if (childB == null) {
+            childB = new ArrayList<>();
+        }
+        return childB;
+    }
+
 }

@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.io.write.xmlmeta;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.comments.Comments;
+import com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.processinginstructions.ProcessingInstructions;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+import java.util.Optional;
+
+/**
+ * The meta extends the XML to be written with user-defined processing instructions and comments
+ */
+public class XMLMeta {
+
+    private Comments comments;
+    private ProcessingInstructions processingInstructions;
+
+    public Optional<Comments> getComments() {
+        return Optional.ofNullable(comments);
+    }
+
+    public void setComments(final Comments comments) {
+        this.comments = comments;
+    }
+
+    public Optional<ProcessingInstructions> getProcessingInstructions() {
+        return Optional.ofNullable(processingInstructions);
+    }
+
+    public void setProcessingInstructions(final ProcessingInstructions processingInstructions) {
+        this.processingInstructions = processingInstructions;
+    }
 }

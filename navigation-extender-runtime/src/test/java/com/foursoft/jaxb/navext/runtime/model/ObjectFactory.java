@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,33 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.model;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import javax.xml.bind.annotation.XmlRegistry;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+/**
+ * An ObjectFactory allows you to programatically construct new instances of the
+ * Java representation for XML content. The Java representation of XML content
+ * can consist of schema derived interfaces and classes representing the binding
+ * of schema type definitions, element declarations and model groups. Factory
+ * methods for each of these are provided in this class.
+ */
+@XmlRegistry
+public class ObjectFactory {
+
+    public ObjectFactory() {
+    }
+
+    public Root createRoot() {
+        return new Root();
+    }
+
+    public ChildA createChildA() {
+        return new ChildA();
+    }
+
+    public ChildB createChildB() {
+        return new ChildB();
+    }
+
 }

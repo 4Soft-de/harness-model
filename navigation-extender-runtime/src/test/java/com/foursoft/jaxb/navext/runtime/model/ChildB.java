@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,41 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.model;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import com.foursoft.jaxb.navext.runtime.annotations.XmlParent;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ChildB", propOrder = {"xyz",})
+public class ChildB extends AbstractBase implements Serializable {
+
+    private final static long serialVersionUID = 1L;
+    @XmlTransient
+    private final Set<ChildA> reverseChildA = new HashSet<>();
+    @XmlElement(name = "xyz", required = true)
+    protected String xyz;
+    @XmlTransient
+    @XmlParent
+    private Root root;
+
+    public String getXyz() {
+        return xyz;
+    }
+
+    public void setXyz(final String xyz) {
+        this.xyz = xyz;
+    }
+
+    public Root getRoot() {
+        return root;
+    }
+
+    public Set<ChildA> getReverseChildA() {
+        return reverseChildA;
+    }
 }

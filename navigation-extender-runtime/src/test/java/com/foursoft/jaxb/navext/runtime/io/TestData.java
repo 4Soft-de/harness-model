@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,33 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.io;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import com.foursoft.jaxb.navext.runtime.io.read.XMLReader;
+import com.foursoft.jaxb.navext.runtime.model.AbstractBase;
+import com.foursoft.jaxb.navext.runtime.model.Root;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public final class TestData {
+    public static final String BASIC_TEST_XML = "basic-test.xml";
+    public static final String ERROR_TEST_XML = "error-test.xml";
+    public static final Path BASIC_BASE_PATH = Paths.get("src", "test", "resources", "basic");
+    public static final Path VALIDATE_BASE_PATH_SRC = Paths.get("src", "test", "resources", "validate");
+    public static final Path VALIDATE_BASE_PATH = Paths.get("validate");
+
+
+    private TestData() {
+    }
+
+    public static Root readBasicTest() {
+        final XMLReader<Root, AbstractBase> reader = new XMLReader<>(Root.class,
+                AbstractBase.class,
+                AbstractBase::getXmlId);
+        final InputStream inputStream = TestData.class.getResourceAsStream("/basic/" + BASIC_TEST_XML);
+        return reader.read(inputStream);
+    }
 }
+

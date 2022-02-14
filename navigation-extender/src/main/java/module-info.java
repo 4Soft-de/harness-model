@@ -24,7 +24,7 @@
  * =========================LICENSE_END==================================
  */
 open module navigation.extender {
-    requires transitive navigation.extender.runtime;
+    requires transitive com.foursoft.jaxb.navext.runtime;
     requires org.glassfish.jaxb.xjc;
     requires java.xml.bind;
 }

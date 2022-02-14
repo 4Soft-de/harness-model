@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,30 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.io.validation;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import com.foursoft.jaxb.navext.runtime.io.TestData;
+import com.foursoft.jaxb.navext.runtime.io.validation.LogValidator.ErrorLocation;
+import org.junit.jupiter.api.Test;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.Collection;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class LogErrorsTest {
+
+    @Test
+    void logXmlString() throws Exception {
+        final XMLValidation xmlValidation = XMLValidationTest.getXmlValidation();
+
+        final String content = new String(
+                Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.ERROR_TEST_XML)));
+        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
+                StandardCharsets.UTF_8);
+        final String errorString = LogErrors.annotateXMLContent(content, errors);
+        // line 21 contains a duplicate key
+        assertThat(errorString).contains("21: ERROR     <ChildB id=\"id_8\">");
+    }
 }

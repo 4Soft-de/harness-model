@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * navigation-extender-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2020 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.io.utils;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+import javax.xml.bind.ValidationEvent;
+
+class LogEventTest {
+
+    @Test
+    void getLocationAndMessage() {
+        final ValidationEvent e = EventHelper.createEvent();
+        final String location = LogEvent.getLocationAndMessage(e);
+        Assertions.assertThat(location).contains("3").contains("4").contains("message");
+
+    }
+
+    @Test
+    void getLocation() {
+        final ValidationEvent e = EventHelper.createEvent();
+        final String location = LogEvent.getLocation(e.getLocator());
+        Assertions.assertThat(location).contains("3").contains("4");
+    }
+
+    @Test
+    void log() {
+        final ValidationEvent e = EventHelper.createEvent();
+        LogEvent.log(e);
+    }
+
 }

@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * xml-runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
-    requires org.slf4j;
-    requires java.xml.bind;
-    requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
+package com.foursoft.jaxb.navext.runtime.cache;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
+import org.junit.jupiter.api.Test;
 
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.model;
+import static org.assertj.core.api.Assertions.assertThat;
+
+class SimpleCacheTest {
+
+    @Test
+    void testCacheIsWorking() {
+        final SimpleCache<String, Object> sut = new SimpleCache<>((final String s) -> new Object());
+
+        final Object a1 = sut.get("A");
+        final Object b1 = sut.get("B");
+        final Object a2 = sut.get("A");
+
+        assertThat(a1).isSameAs(a2)
+                .isNotSameAs(b1)
+                .isNotNull();
+    }
 }
