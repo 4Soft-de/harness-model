@@ -26,8 +26,8 @@
 open module vec113 {
     requires transitive vec.common;
     requires navigation.extender.runtime;
-    requires com.sun.xml.txw2; // required by navigation.extender.runtime
-    requires org.glassfish.jaxb.xjc; //  required by navigation.extender.runtime
+    requires com.sun.xml.txw2;
+    requires org.glassfish.jaxb.xjc;
     requires org.glassfish.jaxb.runtime;
     requires com.sun.istack.runtime;
 

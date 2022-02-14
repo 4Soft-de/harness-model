@@ -23,13 +23,17 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-module vec120 {
+open module vec120 {
     requires transitive vec.common;
     requires navigation.extender.runtime;
+    requires com.sun.xml.txw2;
+    requires org.glassfish.jaxb.xjc;
+    requires org.glassfish.jaxb.runtime;
+    requires com.sun.istack.runtime;
+
+    requires java.xml;
     requires java.xml.bind;
     requires java.annotation;
-    requires org.jvnet.staxex;
-    requires jakarta.activation;
 
 
 }
