@@ -34,8 +34,8 @@ import com.foursoft.xml.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
 import com.foursoft.xml.io.write.xmlmeta.comments.CommentAdderListener;
 import com.foursoft.xml.io.write.xmlmeta.comments.Comments;
 import com.foursoft.xml.io.write.xmlmeta.processinginstructions.ProcessingInstructionAdderListener;
-import jakarta.xml.bind.*;
 
+import javax.xml.bind.*;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -53,7 +53,7 @@ import java.util.function.Consumer;
  */
 public class XMLWriter<T> {
 
-    private static final String NAMESPACE_PREFIX_MAPPER = "org.glassfish.jaxb.namespacePrefixMapper";
+    private static final String NAMESPACE_PREFIX_MAPPER = "com.sun.xml.bind.namespacePrefixMapper";
 
     private final Class<T> baseType;
     private final Marshaller marshaller;
@@ -79,17 +79,6 @@ public class XMLWriter<T> {
         }
     }
 
-    /**
-     * Method which can be overridden for further configuration on the marshaller.
-     *
-     * @param marshaller Marshaller to configure.
-     *
-     * @throws Exception In case something went wrong.
-     */
-    protected void configureMarshaller(final Marshaller marshaller) throws Exception {
-        // default empty impl
-    }
-
     private static void addEventHandler(final Marshaller marshaller,
                                         final Consumer<ValidationEvent> validationEventConsumer)
             throws JAXBException {
@@ -99,6 +88,16 @@ public class XMLWriter<T> {
             return eventHandler.handleEvent(event);
         });
 
+    }
+
+    /**
+     * Method which can be overridden for further configuration on the marshaller.
+     *
+     * @param marshaller Marshaller to configure.
+     * @throws Exception In case something went wrong.
+     */
+    protected void configureMarshaller(final Marshaller marshaller) throws Exception {
+        // default empty impl
     }
 
     /**
@@ -181,6 +180,8 @@ public class XMLWriter<T> {
         final XMLOutputFactory xof = XMLOutputFactory.newFactory();
         try {
             final XMLStreamWriter xmlStreamWriter = xof.createXMLStreamWriter(output);
+
+
             final XMLMetaAwareXMLStreamWriter xsw = new XMLMetaAwareXMLStreamWriter(xmlStreamWriter);
 
             final MarshallerListener marshallerListener = new MarshallerListener();

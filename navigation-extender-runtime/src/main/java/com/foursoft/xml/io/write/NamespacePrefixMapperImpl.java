@@ -66,7 +66,7 @@ package com.foursoft.xml.io.write;
  */
 
 
-import org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper;
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
 class NamespacePrefixMapperImpl extends NamespacePrefixMapper {
 

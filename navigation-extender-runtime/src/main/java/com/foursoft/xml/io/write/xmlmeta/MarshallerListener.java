@@ -25,7 +25,7 @@
  */
 package com.foursoft.xml.io.write.xmlmeta;
 
-import jakarta.xml.bind.Marshaller.Listener;
+import javax.xml.bind.Marshaller.Listener;
 
 import java.util.*;
 

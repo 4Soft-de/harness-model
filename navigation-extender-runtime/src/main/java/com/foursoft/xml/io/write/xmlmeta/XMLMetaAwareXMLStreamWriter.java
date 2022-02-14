@@ -25,13 +25,15 @@
  */
 package com.foursoft.xml.io.write.xmlmeta;
 
+import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
+
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
  * with meta the formatting doesn't work, this adds the formatting back.
  */
-public class XMLMetaAwareXMLStreamWriter extends com.sun.xml.txw2.output.IndentingXMLStreamWriter {
+public class XMLMetaAwareXMLStreamWriter extends IndentingXMLStreamWriter {
 
     public XMLMetaAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
         super(xmlStreamWriter);

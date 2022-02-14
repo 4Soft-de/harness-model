@@ -25,7 +25,7 @@
  */
 package com.foursoft.xml.model;
 
-import jakarta.xml.bind.annotation.*;
+import javax.xml.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;

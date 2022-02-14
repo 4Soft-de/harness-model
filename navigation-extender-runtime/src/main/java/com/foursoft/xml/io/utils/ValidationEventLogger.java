@@ -25,7 +25,7 @@
  */
 package com.foursoft.xml.io.utils;
 
-import jakarta.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEvent;
 
 import java.util.function.Consumer;
 

@@ -36,7 +36,7 @@ import java.util.Spliterators;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import jakarta.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElement;
 
 import com.sun.codemodel.JAnnotationUse;
 import com.sun.codemodel.JClass;

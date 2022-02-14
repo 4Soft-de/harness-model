@@ -29,7 +29,7 @@ import com.foursoft.xml.io.TestData;
 import com.foursoft.xml.io.utils.XMLIOException;
 import com.foursoft.xml.model.AbstractBase;
 import com.foursoft.xml.model.Root;
-import jakarta.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

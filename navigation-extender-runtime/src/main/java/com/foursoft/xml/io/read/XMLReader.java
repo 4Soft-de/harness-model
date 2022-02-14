@@ -29,8 +29,10 @@ import com.foursoft.xml.ExtendedUnmarshaller;
 import com.foursoft.xml.JaxbModel;
 import com.foursoft.xml.io.utils.ValidationEventLogger;
 import com.foursoft.xml.io.utils.XMLIOException;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.ValidationEvent;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.ValidationEvent;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

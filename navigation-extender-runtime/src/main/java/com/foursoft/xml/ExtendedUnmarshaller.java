@@ -28,7 +28,9 @@ package com.foursoft.xml;
 import com.foursoft.xml.annotations.XmlBackReference;
 import com.foursoft.xml.annotations.XmlParent;
 import com.foursoft.xml.postprocessing.*;
-import jakarta.xml.bind.*;
+
+import javax.xml.bind.*;
+
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;

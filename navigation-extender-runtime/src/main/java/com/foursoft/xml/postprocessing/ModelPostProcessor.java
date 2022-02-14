@@ -25,7 +25,7 @@
  */
 package com.foursoft.xml.postprocessing;
 
-import jakarta.xml.bind.Unmarshaller;
+import javax.xml.bind.Unmarshaller;
 
 public interface ModelPostProcessor {
 

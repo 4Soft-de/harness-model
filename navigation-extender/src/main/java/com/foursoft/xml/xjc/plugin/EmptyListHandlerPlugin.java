@@ -25,7 +25,7 @@
  */
 package com.foursoft.xml.xjc.plugin;
 
-import jakarta.xml.bind.Marshaller;
+import javax.xml.bind.Marshaller;
 
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;

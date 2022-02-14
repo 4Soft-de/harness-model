@@ -29,10 +29,12 @@ import com.foursoft.xml.model.AbstractBase;
 import com.foursoft.xml.model.ChildA;
 import com.foursoft.xml.model.ChildB;
 import com.foursoft.xml.model.Root;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
-import jakarta.xml.bind.ValidationEvent;
-import jakarta.xml.bind.ValidationEventLocator;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEventLocator;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

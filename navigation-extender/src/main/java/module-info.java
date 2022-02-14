@@ -23,7 +23,8 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-module navigation.extender {
-    requires com.sun.tools.xjc;
+open module navigation.extender {
     requires transitive navigation.extender.runtime;
+    requires org.glassfish.jaxb.xjc;
+    requires java.xml.bind;
 }

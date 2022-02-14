@@ -28,7 +28,7 @@ package com.foursoft.xml.io.utils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import jakarta.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEvent;
 
 class ValidationEventCollectorTest {
 

@@ -23,20 +23,21 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-module navigation.extender.runtime {
-    requires jakarta.xml.bind;
+open module navigation.extender.runtime {
     requires org.slf4j;
-    requires com.sun.xml.bind;
+    requires java.xml.bind;
+    requires org.glassfish.jaxb.runtime;
+    requires org.glassfish.jaxb.xjc;
 
     exports com.foursoft.xml;
     exports com.foursoft.xml.annotations;
+    requires com.sun.xml.txw2;
 
-    opens com.foursoft.xml.cache;
-    opens com.foursoft.xml.io.read;
-    opens com.foursoft.xml.io.utils;
-    opens com.foursoft.xml.io.write;
-    opens com.foursoft.xml.io.validation;
-    opens com.foursoft.xml.postprocessing;
-    opens com.foursoft.xml.model;
-
+    exports com.foursoft.xml.cache;
+    exports com.foursoft.xml.io.read;
+    exports com.foursoft.xml.io.utils;
+    exports com.foursoft.xml.io.write;
+    exports com.foursoft.xml.io.validation;
+    exports com.foursoft.xml.postprocessing;
+    exports com.foursoft.xml.model;
 }
