@@ -36,5 +36,5 @@ open module vec113 {
     requires java.annotation;
 
     exports com.foursoft.vecmodel.vec113;
-
+    exports com.foursoft.vecmodel.vec113.visitor;
 }

@@ -35,5 +35,8 @@ open module vec120 {
     requires java.xml.bind;
     requires java.annotation;
 
-
+    exports com.foursoft.vecmodel.vec120;
+    exports com.foursoft.vecmodel.vec120.navigations;
+    exports com.foursoft.vecmodel.vec120.predicates;
+    exports com.foursoft.vecmodel.vec120.visitor;
 }
