@@ -27,16 +27,16 @@ KBL contains data of a single harness and includes the physical bordnet only. It
 
 
 ## Download
-Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.kblmodel).
+Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.harness.kbl).
 
-Latest Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.kblmodel/kbl-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.kblmodel)
+Latest Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.kbl/kbl-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.kbl)
 
 **Make sure to replace the `VERSION` below with a real version as the one shown above!**
 
 ### Maven
 ```xml
 <dependency>
-    <groupId>com.foursoft.kblmodel</groupId>
+    <groupId>com.foursoft.harness.kbl</groupId>
     <artifactId>kbl24</artifactId>
     <version>VERSION</version>
 </dependency>
@@ -46,7 +46,7 @@ and for the assertion library:
 
 ```xml
 <dependency>
-    <groupId>com.foursoft.kblmodel</groupId>
+    <groupId>com.foursoft.harness.kbl</groupId>
     <artifactId>kbl24-assertions</artifactId>
     <version>VERSION</version>
     <scope>test</scope>
@@ -55,11 +55,11 @@ and for the assertion library:
 
 ### Gradle
 ```groovy
-implementation group: 'com.foursoft.kblmodel', name: 'kbl24', version: 'VERSION'
+implementation group: 'com.foursoft.harness.kbl', name: 'kbl24', version: 'VERSION'
 ```
 
 ```groovy
-testCompile group: 'com.foursoft.kblmodel', name: 'kbl24-assertions', version: 'VERSION'
+testCompile group: 'com.foursoft.harness.kbl', name: 'kbl24-assertions', version: 'VERSION'
 ```
 
 ## Code examples
@@ -235,15 +235,15 @@ Please note the static imports of the [assertions entry point](https://joel-cost
 and the order of `...Assertions.assertThat;`.
 
 ```java
-import static com.foursoft.kblmodel.kbl24.assertions.Assertions.assertThat;
+import static com.foursoft.harness.kbl.kbl24.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
 
 import org.junit.jupiter.api.Test;
 
-import com.foursoft.kblmodel.kbl24.KblGeneralWire;
-import com.foursoft.kblmodel.kbl24.KblSpecialWireOccurrence;
-import com.foursoft.kblmodel.kbl24.KblUnit;
+import com.foursoft.harness.kbl.kbl24.KblGeneralWire;
+import com.foursoft.harness.kbl.kbl24.KblSpecialWireOccurrence;
+import com.foursoft.harness.kbl.kbl24.KblUnit;
 
 class KblSampleTest {
 
