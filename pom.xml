@@ -84,8 +84,8 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.foursoft.jaxb2</groupId>
-                <artifactId>navigation-extender-runtime</artifactId>
+                <groupId>com.foursoft.jaxb.navext</groupId>
+                <artifactId>navext-runtime</artifactId>
                 <version>${navigation-extender.version}</version>
             </dependency>
         </dependencies>
@@ -130,8 +130,8 @@
                                 <version>${jaxb-visitor.version}</version>
                             </plugin>
                             <plugin>
-                                <groupId>com.foursoft.jaxb2</groupId>
-                                <artifactId>navigation-extender</artifactId>
+                                <groupId>com.foursoft.jaxb.navext</groupId>
+                                <artifactId>navext-xjc</artifactId>
                                 <version>${navigation-extender.version}</version>
                             </plugin>
                         </plugins>

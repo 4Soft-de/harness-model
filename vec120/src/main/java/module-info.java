@@ -25,7 +25,7 @@
  */
 open module com.foursoft.harness.vec.v12x {
     requires transitive com.foursoft.harness.vec.common;
-    requires navigation.extender.runtime;
+    requires com.foursoft.jaxb.navext.runtime;
     requires com.sun.xml.txw2;
     requires org.glassfish.jaxb.xjc;
     requires org.glassfish.jaxb.runtime;

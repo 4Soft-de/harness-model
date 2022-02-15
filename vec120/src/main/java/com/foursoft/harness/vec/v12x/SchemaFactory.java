@@ -37,10 +37,10 @@ public class SchemaFactory {
     }
 
     public static Schema getStrictSchema() {
-        return com.foursoft.xml.io.validation.SchemaFactory.getSchema(STRICT_SCHEMA_PATH);
+        return com.foursoft.jaxb.navext.runtime.io.validation.SchemaFactory.getSchema(STRICT_SCHEMA_PATH);
     }
 
     public static Schema getSchema() {
-        return com.foursoft.xml.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
+        return com.foursoft.jaxb.navext.runtime.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
     }
 }

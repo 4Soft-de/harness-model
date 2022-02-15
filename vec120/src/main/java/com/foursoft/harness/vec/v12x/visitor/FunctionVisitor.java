@@ -26,7 +26,7 @@
 package com.foursoft.harness.vec.v12x.visitor;
 
 import com.foursoft.harness.vec.v12x.*;
-import com.foursoft.xml.model.Identifiable;
+import com.foursoft.jaxb.navext.runtime.model.Identifiable;
 
 import java.util.Objects;
 import java.util.function.Function;

@@ -1,6 +1,6 @@
 import com.foursoft.vecmodel.vec113.*;
-import com.foursoft.xml.JaxbModel;
-import com.foursoft.xml.model.Identifiable;
+import com.foursoft.jaxb.navext.runtime.JaxbModel;
+import com.foursoft.jaxb.navext.runtime.model.Identifiable;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.io.IOException;

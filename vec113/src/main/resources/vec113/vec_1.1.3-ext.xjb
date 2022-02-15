@@ -9,8 +9,8 @@
 
 
     <jxb:bindings multiple="true" node="//xs:complexType[xs:attribute[@name='id']]">
-        <inheritance:implements>com.foursoft.xml.model.Identifiable</inheritance:implements>
-        <inheritance:implements>com.foursoft.xml.model.ModifiableIdentifiable</inheritance:implements>
+        <inheritance:implements>com.foursoft.jaxb.navext.runtime.model.Identifiable</inheritance:implements>
+        <inheritance:implements>com.foursoft.jaxb.navext.runtime.model.ModifiableIdentifiable</inheritance:implements>
         <ci:code>@Override public String toString() { return this.getClass().getSimpleName() + "["
             + this.getXmlId() + "]"; }
         </ci:code>

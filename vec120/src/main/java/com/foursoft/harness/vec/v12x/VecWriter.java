@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.v12x;
 
-import com.foursoft.xml.io.utils.ValidationEventLogger;
-import com.foursoft.xml.io.write.XMLWriter;
+import com.foursoft.jaxb.navext.runtime.io.utils.ValidationEventLogger;
+import com.foursoft.jaxb.navext.runtime.io.write.XMLWriter;
 
 import javax.xml.bind.ValidationEvent;
 import java.util.function.Consumer;

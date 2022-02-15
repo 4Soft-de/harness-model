@@ -46,8 +46,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.foursoft.jaxb2</groupId>
-            <artifactId>navigation-extender-runtime</artifactId>
+            <groupId>com.foursoft.jaxb.navext</groupId>
+            <artifactId>navext-runtime</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>

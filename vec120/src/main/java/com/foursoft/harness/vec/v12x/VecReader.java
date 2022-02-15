@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.v12x;
 
-import com.foursoft.xml.io.read.XMLReader;
-import com.foursoft.xml.model.Identifiable;
+import com.foursoft.jaxb.navext.runtime.io.read.XMLReader;
+import com.foursoft.jaxb.navext.runtime.model.Identifiable;
 
 import javax.xml.bind.ValidationEvent;
 import java.util.function.Consumer;

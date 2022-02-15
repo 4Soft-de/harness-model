@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.v113;
 
-import com.foursoft.xml.io.validation.LogValidator;
-import com.foursoft.xml.io.validation.XMLValidation;
+import com.foursoft.jaxb.navext.runtime.io.validation.LogValidator;
+import com.foursoft.jaxb.navext.runtime.io.validation.XMLValidation;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.validation.Schema;
