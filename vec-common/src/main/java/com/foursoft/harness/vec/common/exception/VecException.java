@@ -23,35 +23,22 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.harness.vec.common.exception;
 
-import com.foursoft.vecmodel.common.util.DelegationUtils;
-import com.foursoft.vecmodel.common.util.StreamUtils;
+public class VecException extends RuntimeException {
 
-import java.util.List;
-import java.util.Optional;
+    private static final long serialVersionUID = -2971175765070712256L;
 
-@FunctionalInterface
-public interface HasRoles<X> {
-
-    List<X> getRoles();
-
-    default <T extends X> List<T> getRolesWithType(final Class<T> type) {
-        return DelegationUtils.getFromListWithType(getRoles(), type);
+    public VecException(final String message) {
+        super(message);
     }
 
-    /**
-     * Gets the first role with the given type.
-     * <b>Warning: There might be multiple roles with the given type.
-     * Only use this method if you are sure there will just be one element!</b>
-     *
-     * @param type Class of T.
-     * @param <T>  Type of role to filter for.
-     * @return The first role with the given type if found, else an empty optional.
-     */
-    default <T extends X> Optional<T> getRoleWithType(final Class<T> type) {
-        return DelegationUtils.getFromListWithTypeAsStream(getRoles(), type)
-                .collect(StreamUtils.findOneOrNone());
+    public VecException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public VecException(final Throwable cause) {
+        super(cause);
     }
 
 }

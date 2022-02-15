@@ -29,9 +29,9 @@ import com.foursoft.harness.vec.v12x.VecAbstractLocalizedString;
 import com.foursoft.harness.vec.v12x.VecLanguageCode;
 import com.foursoft.harness.vec.v12x.VecLocalizedTypedString;
 import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
-import com.foursoft.vecmodel.common.HasDescription;
-import com.foursoft.vecmodel.common.util.StreamUtils;
-import com.foursoft.vecmodel.common.util.StringUtils;
+import com.foursoft.harness.vec.common.HasDescription;
+import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.common.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;

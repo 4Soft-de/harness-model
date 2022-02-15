@@ -23,10 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.harness.vec.common;
 
-import com.foursoft.vecmodel.common.util.DelegationUtils;
-import com.foursoft.vecmodel.common.util.StreamUtils;
+import com.foursoft.harness.vec.common.util.DelegationUtils;
+import com.foursoft.harness.vec.common.util.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;

@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.harness.vec.common;
 
 @FunctionalInterface
 public interface HasPropertyType {

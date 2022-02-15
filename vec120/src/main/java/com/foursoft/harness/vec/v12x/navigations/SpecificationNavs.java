@@ -26,8 +26,8 @@
 package com.foursoft.harness.vec.v12x.navigations;
 
 import com.foursoft.harness.vec.v12x.*;
-import com.foursoft.vecmodel.common.HasSpecifications;
-import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
+import com.foursoft.harness.vec.common.HasSpecifications;
+import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
 
 import java.util.Collection;
 import java.util.function.Function;

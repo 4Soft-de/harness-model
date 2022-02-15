@@ -26,7 +26,7 @@
 package com.foursoft.harness.vec.v12x.navigations;
 
 import com.foursoft.harness.vec.v12x.*;
-import com.foursoft.vecmodel.common.HasCustomProperties;
+import com.foursoft.harness.vec.common.HasCustomProperties;
 
 import java.math.BigInteger;
 import java.util.Collections;

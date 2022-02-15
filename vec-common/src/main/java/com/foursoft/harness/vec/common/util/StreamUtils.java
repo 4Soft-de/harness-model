@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common.util;
+package com.foursoft.harness.vec.common.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

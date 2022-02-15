@@ -23,10 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.harness.vec.common.util;
 
-public interface HasModifiableIdentification extends HasIdentification {
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-    void setIdentification(String identification);
+public class DelegationUtils {
+
+    public static <T extends X, X> List<T> getFromListWithType(final List<X> source, final Class<T> type) {
+        return getFromListWithTypeAsStream(source, type)
+                .collect(Collectors.toList());
+    }
+
+    public static <T extends X, X> Stream<T> getFromListWithTypeAsStream(final List<X> source, final Class<T> type) {
+        return source.stream()
+                .filter(type::isInstance)
+                .map(type::cast);
+    }
 
 }

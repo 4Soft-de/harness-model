@@ -29,8 +29,8 @@ import com.foursoft.harness.vec.v12x.VecNumericalValue;
 import com.foursoft.harness.vec.v12x.VecSegmentCrossSectionArea;
 import com.foursoft.harness.vec.v12x.VecSegmentLength;
 import com.foursoft.harness.vec.v12x.VecTopologySegment;
-import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
-import com.foursoft.vecmodel.common.util.StreamUtils;
+import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
+import com.foursoft.harness.vec.common.util.StreamUtils;
 
 import java.util.Objects;
 import java.util.Optional;

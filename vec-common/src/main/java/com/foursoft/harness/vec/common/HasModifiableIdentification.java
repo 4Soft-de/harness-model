@@ -23,11 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.harness.vec.common;
 
-@FunctionalInterface
-public interface HasIdentification {
+public interface HasModifiableIdentification extends HasIdentification {
 
-    String getIdentification();
+    void setIdentification(String identification);
 
 }

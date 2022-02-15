@@ -23,21 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common.annotations;
+package com.foursoft.harness.vec.common;
 
-import java.lang.annotation.*;
+import com.foursoft.harness.vec.common.util.DelegationUtils;
+import com.foursoft.harness.vec.common.util.StreamUtils;
 
-/**
- * If a method is annotated with this annotation it means that it uses the back references feature of the VEC model.
- * <p>
- * Back references are only set for {@code VecContent}s which have been read / imported, <b>not
- * for manually created VecContents</b>. If the annotated method is used on a VecContent without back references, then
- * exceptions ({@link NullPointerException}s) are likely to be raised.
- * <p>
- * Export and re-import a manually created VecContent to use that method.
- */
-@Documented
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface RequiresBackReferences {
+import java.util.List;
+import java.util.Optional;
+
+@FunctionalInterface
+public interface HasCustomProperties<X extends HasPropertyType> {
+
+    List<X> getCustomProperties();
+
+    default <T extends X> List<T> getCustomPropertiesWithType(final Class<T> type) {
+        return DelegationUtils.getFromListWithType(getCustomProperties(), type);
+    }
+
+    /**
+     * Filters the list of CustomProperties by type and key.
+     *
+     * @param type         derived classifiers
+     * @param propertyType defines the meaning of the value.
+     * @return the first property with the given type and key.
+     */
+    default <T extends X> Optional<T> getCustomProperty(final Class<T> type, final String propertyType) {
+        return DelegationUtils.getFromListWithTypeAsStream(getCustomProperties(), type)
+                .filter(c -> c.getPropertyType().equals(propertyType))
+                .collect(StreamUtils.findOneOrNone());
+    }
+
 }

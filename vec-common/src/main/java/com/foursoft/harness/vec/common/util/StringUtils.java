@@ -23,19 +23,28 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.common;
+package com.foursoft.harness.vec.common.util;
 
-import com.foursoft.vecmodel.common.util.DelegationUtils;
+import java.util.regex.Pattern;
 
-import java.util.List;
+public final class StringUtils {
 
-@FunctionalInterface
-public interface HasUnits<X> {
+    private static final Pattern WHITE_SPACE_REGEX = Pattern.compile("\\s+");
 
-    List<X> getUnits();
+    private StringUtils() {
+        // hide default constructor
+    }
 
-    default <T extends X> List<T> getUnitsWithType(final Class<T> type) {
-        return DelegationUtils.getFromListWithType(getUnits(), type);
+    public static boolean isEmpty(final String s) {
+        return s == null || s.isEmpty();
+    }
+
+    public static boolean isNotEmpty(final String s) {
+        return !isEmpty(s);
+    }
+
+    public static String collapseMultipleWhitespaces(final String in) {
+        return in == null ? null : WHITE_SPACE_REGEX.matcher(in).replaceAll(" ").trim();
     }
 
 }

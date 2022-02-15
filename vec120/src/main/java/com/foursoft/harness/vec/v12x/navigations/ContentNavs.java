@@ -28,7 +28,7 @@ package com.foursoft.harness.vec.v12x.navigations;
 import com.foursoft.harness.vec.v12x.VecContent;
 import com.foursoft.harness.vec.v12x.VecDocumentVersion;
 import com.foursoft.harness.vec.v12x.VecSpecification;
-import com.foursoft.vecmodel.common.util.StreamUtils;
+import com.foursoft.harness.vec.common.util.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;

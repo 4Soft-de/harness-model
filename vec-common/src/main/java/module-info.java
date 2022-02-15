@@ -23,10 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-module vec.common {
+module com.foursoft.harness.vec.common {
     requires org.slf4j;
-    exports com.foursoft.vecmodel.common;
-    exports com.foursoft.vecmodel.common.annotations;
-    exports com.foursoft.vecmodel.common.exception;
-    exports com.foursoft.vecmodel.common.util;
+    exports com.foursoft.harness.vec.common;
+    exports com.foursoft.harness.vec.common.annotations;
+    exports com.foursoft.harness.vec.common.exception;
+    exports com.foursoft.harness.vec.common.util;
 }

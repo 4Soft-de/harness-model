@@ -24,7 +24,7 @@
  * =========================LICENSE_END==================================
  */
 open module com.foursoft.harness.vec.v12x {
-    requires transitive vec.common;
+    requires transitive com.foursoft.harness.vec.common;
     requires navigation.extender.runtime;
     requires com.sun.xml.txw2;
     requires org.glassfish.jaxb.xjc;
