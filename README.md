@@ -1,15 +1,19 @@
-﻿# VEC model
+﻿[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
+
+# VEC model
+
 JAXB-Models of the VEC, based on the underlying UML model (not only the XSD).
 
 ## Introduction
-VEC stands for **V**ehicle **E**lectric **C**ontainer and defines an information model, a data dictionary, and
-an XML schema derived from and compliant to the model.
 
-It can be used to define a vehicle with all parts, connections, constraints, etc. 
+VEC stands for **V**ehicle **E**lectric **C**ontainer and defines an information model, a data dictionary, and an XML
+schema derived from and compliant to the model.
 
-This repository contains two VEC versions, version 1.1.3 and version 1.2.0.
-The version 1.2.0 doesn't provide a backwards compatibility to version 1.1.3.
-If you have trouble converting from VEC 1.1.3 to VEC 1.2.0, feel free to
+It can be used to define a vehicle with all parts, connections, constraints, etc.
+
+This repository contains two VEC versions, version 1.1.3 and version 1.2.0. The version 1.2.0 doesn't provide a
+backwards compatibility to version 1.1.3. If you have trouble converting from VEC 1.1.3 to VEC 1.2.0, feel free to
 contact our colleague [Johannes Becker](mailto:becker@4soft.de?subject=VEC%20Compatibility%20layer).
 
 For an optimized performance, the XML is parsed by our
@@ -18,6 +22,7 @@ For an optimized performance, the XML is parsed by our
 More information about VEC can be found in the [ECAD wiki](https://ecad-wiki.prostep.org/specifications/vec).
 
 ## Key Features
+
 VEC contains data of a multi-harness overall wiring system and includes its schematic information. Its key features are:
 
 - Multiple 3D harness geometries (including variant configurations)
@@ -32,28 +37,36 @@ VEC contains data of a multi-harness overall wiring system and includes its sche
 - Comprehensive master data information
 - Universal lifecycle and versioning information
 - Defined mappings to external resources
-- Elements can have back references to other elements (e.g. `VecUnit -> VecValueWithUnit` and `VecValueWithUnit -> VecUnit`)
+- Elements can have back references to other elements (e.g. `VecUnit -> VecValueWithUnit`
+  and `VecValueWithUnit -> VecUnit`)
 - Generated AssertJ assertions in additional jar files to write fluent assertions on VEC objects.
 
 ## Download
+
 Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.vecmodel).
 
-Latest Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.vecmodel/vec-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.vecmodel)
+Latest
+Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.vecmodel/vec-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.vecmodel)
 
 **Make sure to replace the `VERSION` below with a real version as the one shown above!**
 
 ### VEC 1.1.3
+
 #### Maven
+
 ```xml
+
 <dependency>
     <groupId>com.foursoft.vecmodel</groupId>
     <artifactId>vec113</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
+
 and for the assertion library:
 
 ```xml
+
 <dependency>
     <groupId>com.foursoft.vecmodel</groupId>
     <artifactId>vec113-assertions</artifactId>
@@ -63,6 +76,7 @@ and for the assertion library:
 ```
 
 #### Gradle
+
 ```groovy
 implementation group: 'com.foursoft.vecmodel', name: 'vec113', version: 'VERSION'
 ```
@@ -71,10 +85,12 @@ implementation group: 'com.foursoft.vecmodel', name: 'vec113', version: 'VERSION
 testCompile group: 'com.foursoft.vecmodel', name: 'vec113-assertions', version: 'VERSION'
 ```
 
-
 ### VEC 1.2.0
+
 #### Maven
+
 ```xml
+
 <dependency>
     <groupId>com.foursoft.vecmodel</groupId>
     <artifactId>vec120</artifactId>
@@ -85,6 +101,7 @@ testCompile group: 'com.foursoft.vecmodel', name: 'vec113-assertions', version: 
 and for the assertion library:
 
 ```xml
+
 <dependency>
     <groupId>com.foursoft.vecmodel</groupId>
     <artifactId>vec120-assertions</artifactId>
@@ -93,8 +110,8 @@ and for the assertion library:
 </dependency>
 ```
 
-
 #### Gradle
+
 ```groovy
 implementation group: 'com.foursoft.vecmodel', name: 'vec120', version: 'VERSION'
 ```
@@ -102,16 +119,20 @@ implementation group: 'com.foursoft.vecmodel', name: 'vec120', version: 'VERSION
 ```groovy
 testCompile group: 'com.foursoft.vecmodel', name: 'vec120-assertions', version: 'VERSION'
 ```
+
 ## Code examples
 
 In the codebase, the root of a vec file is the `VecContent` class.
 
 More examples can be found in the examples of each module:
+
 - [VEC 1.1.3 examples](https://github.com/4Soft-de/vec-model/tree/develop/vec113/src/examples/)
 - [VEC 1.2.0 examples](https://github.com/4Soft-de/vec-model/tree/develop/vec120/src/examples/)
 
 ### Reading a VEC file
+
 #### Example VEC file
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <?cs checksum="2764192431"?>
@@ -143,22 +164,23 @@ More examples can be found in the examples of each module:
 ```
 
 #### Java file
+
 ```java
 public class MyVecReader {
-    public void readVecFile(final String pathToFile) throws IOException  {
+    public void readVecFile(final String pathToFile) throws IOException {
         try (final InputStream is = MyVecReader.class.getResourceAsStream(pathToFile)) {
             final VecReader vecReader = new VecReader();
             final JaxbModel<VecContent, Identifiable> model = vecReader.readModel(is);
-    
+
             final VecApproval approval = model.getIdLookup()
                     .findById(VecApproval.class, "id_2014_0")
                     .orElse(null);
-    
+
             // get a specific permission
             final VecPermission vecPermission = model.getIdLookup()
                     .findById(VecPermission.class, "id_2185_0")
                     .orElse(null);
-    
+
             // get all permissions of an approval (in oop style)
             final List<VecPermission> permissions = approval.getPermissions();
         }
@@ -167,7 +189,9 @@ public class MyVecReader {
 ```
 
 ### Writing a VEC file
+
 #### Java file
+
 ```java
 public class MyVecWriter {
     public void writeExampleVecFile(final String target) throws IOException {
@@ -212,6 +236,7 @@ public class MyVecWriter {
 ```
 
 #### Generated VEC file
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec">
@@ -233,14 +258,22 @@ public class MyVecWriter {
     </PartVersion>
 </vec:VecContent>
 ```
+
 ### Assertions on VEC files
-For each VEC version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements.
-The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
 
-Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions.
-For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
+!! The assertions are deprecated and will be removed without replacement in the next
+releases. [AssertJ Issue](https://github.com/assertj/assertj-assertions-generator/issues/197)
 
-Please note the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html)
+For each VEC version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on
+VEC elements. The assertions are generated with
+the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html)
+.
+
+Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions. For detailed
+information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
+
+Please note the static imports of
+the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html)
 and the order of `...Assertions.assertThat;`.
 
 ```java
@@ -262,20 +295,26 @@ class VecSampleTest {
         VecDocumentVersion partMasterDocument = null; // determine document version
 
         assertThat(partMasterDocument)
-            .hasDocumentType("PartMaster")
-            .hasNoCustomProperties()
-            .satisfies(d ->
-                assertThat(d.getSpecificationsWithType(VecConnectorHousingSpecification.class))
-                    .hasSize(1)
-                    .satisfies(
-                         chs -> assertThat(chs).hasIdentification("ABC"), 
-                         atIndex(0))
-            );
+                .hasDocumentType("PartMaster")
+                .hasNoCustomProperties()
+                .satisfies(d ->
+                        assertThat(d.getSpecificationsWithType(VecConnectorHousingSpecification.class))
+                                .hasSize(1)
+                                .satisfies(
+                                        chs -> assertThat(chs).hasIdentification("ABC"),
+                                        atIndex(0))
+                );
     }
 }
 
 ```
-## Contributing
-We appreciate if you like to contribute to our project! Please make sure to base your branch off of our [develop branch](https://github.com/4Soft-de/vec-model/tree/develop) and create your PR into that same branch. We will reject any PRs not following that or if this is already worked on.
 
-Please read our detailed [Contribution Guidelines](https://github.com/4Soft-de/vec-model/blob/develop/.github/CONTRIBUTING.md) for more information, for example code style, formatter, etc.
+## Contributing
+
+We appreciate if you like to contribute to our project! Please make sure to base your branch off of
+our [develop branch](https://github.com/4Soft-de/vec-model/tree/develop) and create your PR into that same branch. We
+will reject any PRs not following that or if this is already worked on.
+
+Please read our
+detailed [Contribution Guidelines](https://github.com/4Soft-de/vec-model/blob/develop/.github/CONTRIBUTING.md) for more
+information, for example code style, formatter, etc.
