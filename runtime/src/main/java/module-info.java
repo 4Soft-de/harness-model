@@ -36,6 +36,9 @@ open module com.foursoft.jaxb.navext.runtime {
     exports com.foursoft.jaxb.navext.runtime.io.read;
     exports com.foursoft.jaxb.navext.runtime.io.utils;
     exports com.foursoft.jaxb.navext.runtime.io.write;
+    exports com.foursoft.jaxb.navext.runtime.io.write.xmlmeta;
+    exports com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.comments;
+    exports com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.processinginstructions;
     exports com.foursoft.jaxb.navext.runtime.io.validation;
     exports com.foursoft.jaxb.navext.runtime.model;
     exports com.foursoft.jaxb.navext.runtime.postprocessing;
