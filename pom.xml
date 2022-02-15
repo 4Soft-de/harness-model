@@ -63,7 +63,7 @@
         <module>vec113-assertions</module>
         <module>v12x</module>
         <module>vec120-assertions</module>
-        <module>vec-common</module>
+        <module>common</module>
     </modules>
 
     <developers>
