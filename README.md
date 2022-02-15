@@ -1,6 +1,7 @@
 # JAXB enhanced navigation
 
-![Java CI with Maven](https://github.com/4Soft-de/jaxb-enhanced-navigation/workflows/Java%20CI%20with%20Maven/badge.svg?branch=develop) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=4Soft-de_jaxb-enhanced-navigation&metric=alert_status)](https://sonarcloud.io/dashboard?id=4Soft-de_jaxb-enhanced-navigation) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.jaxb2/navigation-extender-runtime/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.jaxb2)
+![Java CI with Maven](https://github.com/4Soft-de/jaxb-enhanced-navigation/workflows/Java%20CI%20with%20Maven/badge.svg?branch=develop) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=4Soft-de_jaxb-enhanced-navigation&metric=alert_status)](https://sonarcloud.io/dashboard?id=4Soft-de_jaxb-enhanced-navigation) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.jaxb.navext/navext-runtime/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.jaxb.navext) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
 
 A library for enhanced navigations for JAXB models. It consists of two parts: An xjc-plugin (compile time) and a runtime
 component.
@@ -25,24 +26,24 @@ https://www.4soft.de/blog/2018/navigation-on-large-xml-structures/
 It is possible to extend the xml-file to write with comments or processing instructions
 
 ```java
-final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
-final XMLMeta meta = new XMLMeta();
+final XMLWriter<Root> xmlWriter=new XMLWriter<>(Root.class);
+final XMLMeta meta=new XMLMeta();
 
-final Comments comments = new Comments();
-meta.setComments(comments);
-comments.put(root, "Comment");
+final Comments comments=new Comments();
+        meta.setComments(comments);
+        comments.put(root,"Comment");
 
 
-final List<ProcessingInstruction> pis = new ArrayList<>();
-pis.add(new ProcessingInstruction("pc", "checksum=\"12345\""));
+final List<ProcessingInstruction> pis=new ArrayList<>();
+        pis.add(new ProcessingInstruction("pc","checksum=\"12345\""));
 
-final ProcessingInstructions processingInstructions = new ProcessingInstructions();
-processingInstructions.put(root, pis);
-meta.setProcessingInstructions(processingInstructions);
+final ProcessingInstructions processingInstructions=new ProcessingInstructions();
+        processingInstructions.put(root,pis);
+        meta.setProcessingInstructions(processingInstructions);
 
-try (final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()) {
-    xmlWriter.write(root, meta, byteOutputStream);
-}
+        try(final ByteArrayOutputStream byteOutputStream=new ByteArrayOutputStream()){
+        xmlWriter.write(root,meta,byteOutputStream);
+        }
 ```
 
 ## Limitations
@@ -52,10 +53,10 @@ updated (parent, back-navigation, id-lookup, etc).
 
 ## Download
 
-Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.jaxb2).
+Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.jaxb.navext).
 
 Latest
-Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.jaxb2/navigation-extender-runtime/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.jaxb2)
+Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.jaxb.navext/navext-runtime/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.jaxb.navext)
 
 **Make sure to replace the `VERSION` below with a real version as the one shown above!**
 
@@ -64,9 +65,10 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 #### Maven
 
 ```xml
+
 <dependency>
     <groupId>com.foursoft.jaxb.navext</groupId>
-    <artifactId>navigation-extender</artifactId>
+    <artifactId>navext-runtime</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -74,7 +76,7 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 #### Gradle
 
 ```groovy
-compile group: 'com.foursoft.jaxb2', name: 'navigation-extender', version: 'VERSION'
+compile group: 'com.foursoft.jaxb.navext', name: 'navext-runtime', version: 'VERSION'
 ```
 
 ### Navigation Extender Runtime
@@ -82,9 +84,10 @@ compile group: 'com.foursoft.jaxb2', name: 'navigation-extender', version: 'VERS
 #### Maven
 
 ```xml
+
 <dependency>
     <groupId>com.foursoft.jaxb.navext</groupId>
-    <artifactId>navigation-extender-runtime</artifactId>
+    <artifactId>navext-runtime</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -92,7 +95,7 @@ compile group: 'com.foursoft.jaxb2', name: 'navigation-extender', version: 'VERS
 #### Gradle
 
 ```groovy
-compile group: 'com.foursoft.jaxb2', name: 'navigation-extender-runtime', version: 'VERSION'
+compile group: 'com.foursoft.jaxb.navext', name: 'navext-runtime', version: 'VERSION'
 ```
 
 ## Contributing
