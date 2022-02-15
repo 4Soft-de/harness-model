@@ -25,9 +25,9 @@
  */
 package com.foursoft.kblmodel.kbl24;
 
-import com.foursoft.xml.ExtendedUnmarshaller;
-import com.foursoft.xml.JaxbModel;
-import com.foursoft.xml.model.Identifiable;
+import  com.foursoft.jaxb.navext.runtime.ExtendedUnmarshaller;
+import  com.foursoft.jaxb.navext.runtime.JaxbModel;
+import  com.foursoft.jaxb.navext.runtime.model.Identifiable;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;

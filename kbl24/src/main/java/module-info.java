@@ -24,7 +24,7 @@
  * =========================LICENSE_END==================================
  */
 open module kbl24 {
-    requires navigation.extender.runtime;
+    requires com.foursoft.jaxb.navext.runtime;
     requires com.sun.xml.txw2;
     requires org.glassfish.jaxb.xjc;
     requires org.glassfish.jaxb.runtime;

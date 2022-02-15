@@ -1,6 +1,6 @@
 import com.foursoft.kblmodel.kbl24.*;
-import com.foursoft.xml.JaxbModel;
-import com.foursoft.xml.model.Identifiable;
+import  com.foursoft.jaxb.navext.runtime.JaxbModel;
+import  com.foursoft.jaxb.navext.runtime.model.Identifiable;
 
 import java.io.IOException;
 import java.io.InputStream;
