@@ -23,12 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.kblmodel.kbl24;
+package com.foursoft.harness.kbl.v24;
 
-import java.util.List;
+public interface HasDescription {
 
-public interface HasProcessingInformation {
-
-    List<KblProcessingInstruction> getProcessingInformations();
-
+    String getDescription();
 }

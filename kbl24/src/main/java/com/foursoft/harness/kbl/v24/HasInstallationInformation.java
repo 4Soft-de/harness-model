@@ -23,10 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.kblmodel.kbl24;
+package com.foursoft.harness.kbl.v24;
 
-public interface HasPart {
+import java.util.List;
 
-    KblPart getPart();
+public interface HasInstallationInformation {
 
+    List<KblInstallationInstruction> getInstallationInformations();
 }

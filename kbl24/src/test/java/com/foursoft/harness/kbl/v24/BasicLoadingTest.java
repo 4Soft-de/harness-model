@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.kblmodel.kbl24;
+package com.foursoft.harness.kbl.v24;
 
 import  com.foursoft.jaxb.navext.runtime.ExtendedUnmarshaller;
 import  com.foursoft.jaxb.navext.runtime.JaxbModel;

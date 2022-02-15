@@ -23,9 +23,19 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.kblmodel.kbl24;
+package com.foursoft.harness.kbl.v24;
 
-public interface HasDescription {
+import javax.xml.validation.Schema;
 
-    String getDescription();
+public class SchemaFactory {
+
+    private static final String SCHEMA_PATH = "kbl24/KBL24_SR1.xsd";
+
+    private SchemaFactory() {
+        // Hide constructor
+    }
+
+    public static Schema getSchema() {
+        return  com.foursoft.jaxb.navext.runtime.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
+    }
 }

@@ -23,12 +23,12 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.kblmodel.kbl24;
+package com.foursoft.harness.kbl.v24;
 
 import java.util.List;
 
-public interface HasReferenceElement {
+public interface HasProcessingInformation {
 
-    List<ReferenceElement> getReferenceElement();
+    List<KblProcessingInstruction> getProcessingInformations();
 
 }

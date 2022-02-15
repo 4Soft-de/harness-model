@@ -13,33 +13,33 @@
 		<jxb:serializable uid="1" />
 	</jxb:globalBindings>
 	<jxb:schemaBindings>
-		<jxb:package name="com.foursoft.kblmodel.kbl24" />
+		<jxb:package name="com.foursoft.harness.kbl.v24" />
 		<jxb:nameXmlTransform>
 			<jxb:typeName prefix="Kbl" />
 		</jxb:nameXmlTransform>
 	</jxb:schemaBindings>
 	<nav:selector name="ConnectionOrOccurrence"
-				  implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+				  implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="ConnectionOrOccurrence"
 				  implements=" com.foursoft.jaxb.navext.runtime.model.Identifiable" />
 	<nav:selector name="CompatibleConnector"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="MountingElement"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="PartUsageSelect"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="ReferenceElement"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="WireOrCoreOccurrence"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="FixedComponent"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="LocatedComponent"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="PlacedElement"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="ChangedElement"
-		implements="com.foursoft.kblmodel.kbl24.visitor.Visitable" />
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<jxb:bindings node="//xs:complexType[@name='Harness']">
 		<nav:parent name="parentKBLContainer"
 			schema-type="KBL_container" />

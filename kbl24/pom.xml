@@ -118,7 +118,7 @@
                                 <arg>-Xvisitor</arg>
                                 <arg>-Xvisitor-noIdrefTraversal</arg>
                                 <arg>-Xvisitor-includeType</arg>
-                                <arg>-Xvisitor-package:com.foursoft.kblmodel.kbl24.visitor</arg>
+                                <arg>-Xvisitor-package:com.foursoft.harness.kbl.v24.visitor</arg>
                                 <arg>-Xnull-empty-lists</arg>
                             </args>
                             <generateDirectory>${project.build.directory}/generated-sources/xjc-vec120</generateDirectory>
