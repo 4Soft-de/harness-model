@@ -39,7 +39,6 @@ VEC contains data of a multi-harness overall wiring system and includes its sche
 - Defined mappings to external resources
 - Elements can have back references to other elements (e.g. `VecUnit -> VecValueWithUnit`
   and `VecValueWithUnit -> VecUnit`)
-- Generated AssertJ assertions in additional jar files to write fluent assertions on VEC objects.
 
 ## Download
 
