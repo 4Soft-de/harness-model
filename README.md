@@ -93,7 +93,7 @@ testCompile group: 'com.foursoft.harness.vec', name: 'vec113-assertions', versio
 
 <dependency>
     <groupId>com.foursoft.harness.vec</groupId>
-    <artifactId>v120</artifactId>
+    <artifactId>v12x</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -113,7 +113,7 @@ and for the assertion library:
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.harness.vec', name: 'v120', version: 'VERSION'
+implementation group: 'com.foursoft.harness.vec', name: 'v12x', version: 'VERSION'
 ```
 
 ```groovy
@@ -127,7 +127,7 @@ In the codebase, the root of a vec file is the `VecContent` class.
 More examples can be found in the examples of each module:
 
 - [VEC 1.1.3 examples](https://github.com/4Soft-de/vec-model/tree/develop/v113/src/examples/)
-- [VEC 1.2.0 examples](https://github.com/4Soft-de/vec-model/tree/develop/v120/src/examples/)
+- [VEC 1.2.0 examples](https://github.com/4Soft-de/vec-model/tree/develop/v12x/src/examples/)
 
 ### Reading a VEC file
 
