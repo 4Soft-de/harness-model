@@ -1,7 +1,8 @@
-﻿[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
+﻿# VEC model
 
-# VEC model
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.vec/vec-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.vec)
 
 JAXB-Models of the VEC, based on the underlying UML model (not only the XSD).
 
@@ -42,10 +43,10 @@ VEC contains data of a multi-harness overall wiring system and includes its sche
 
 ## Download
 
-Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.vecmodel).
+Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.harness.vec).
 
 Latest
-Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.vecmodel/vecmodel-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.vecmodel)
+Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.vec/vec-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.vec)
 
 **Make sure to replace the `VERSION` below with a real version as the one shown above!**
 
@@ -57,7 +58,7 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 
 <dependency>
     <groupId>com.foursoft.harness.vec</groupId>
-    <artifactId>vec113</artifactId>
+    <artifactId>v113</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -77,11 +78,11 @@ and for the assertion library:
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.vecmodel', name: 'vec113', version: 'VERSION'
+implementation group: 'com.foursoft.harness.vec', name: 'v113', version: 'VERSION'
 ```
 
 ```groovy
-testCompile group: 'com.foursoft.vecmodel', name: 'vec113-assertions', version: 'VERSION'
+testCompile group: 'com.foursoft.harness.vec', name: 'vec113-assertions', version: 'VERSION'
 ```
 
 ### VEC 1.2.0
@@ -92,7 +93,7 @@ testCompile group: 'com.foursoft.vecmodel', name: 'vec113-assertions', version: 
 
 <dependency>
     <groupId>com.foursoft.harness.vec</groupId>
-    <artifactId>vec120</artifactId>
+    <artifactId>v120</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -112,11 +113,11 @@ and for the assertion library:
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.vecmodel', name: 'vec120', version: 'VERSION'
+implementation group: 'com.foursoft.harness.vec', name: 'v120', version: 'VERSION'
 ```
 
 ```groovy
-testCompile group: 'com.foursoft.vecmodel', name: 'vec120-assertions', version: 'VERSION'
+testCompile group: 'com.foursoft.harness.vec', name: 'vec120-assertions', version: 'VERSION'
 ```
 
 ## Code examples
@@ -125,8 +126,8 @@ In the codebase, the root of a vec file is the `VecContent` class.
 
 More examples can be found in the examples of each module:
 
-- [VEC 1.1.3 examples](https://github.com/4Soft-de/vec-model/tree/develop/vec113/src/examples/)
-- [VEC 1.2.0 examples](https://github.com/4Soft-de/vec-model/tree/develop/vec120/src/examples/)
+- [VEC 1.1.3 examples](https://github.com/4Soft-de/vec-model/tree/develop/v113/src/examples/)
+- [VEC 1.2.0 examples](https://github.com/4Soft-de/vec-model/tree/develop/v120/src/examples/)
 
 ### Reading a VEC file
 
@@ -193,44 +194,44 @@ public class MyVecReader {
 
 ```java
 public class MyVecWriter {
-  public void writeExampleVecFile(final String target) throws IOException {
-    final VecContent root = new VecContent();
-    root.setXmlId("id_1000_0");
-    root.setVecVersion("1.1.3");
+    public void writeExampleVecFile(final String target) throws IOException {
+        final VecContent root = new VecContent();
+        root.setXmlId("id_1000_0");
+        root.setVecVersion("1.1.3");
 
-    final VecPermission permission = new VecPermission();
-    permission.setXmlId("id_2185_0");
-    permission.setPermission("Released");
+        final VecPermission permission = new VecPermission();
+        permission.setXmlId("id_2185_0");
+        permission.setPermission("Released");
 
-    final VecApproval approval = new VecApproval();
-    approval.setXmlId("id_2014_0");
-    approval.setStatus("Approved");
-    approval.getPermissions().add(permission);
+        final VecApproval approval = new VecApproval();
+        approval.setXmlId("id_2014_0");
+        approval.setStatus("Approved");
+        approval.getPermissions().add(permission);
 
-    final VecDocumentVersion documentVersion = new VecDocumentVersion();
-    documentVersion.setXmlId("id_1002_0");
-    documentVersion.getApprovals().add(approval);
-    documentVersion.setDocumentNumber("123_456_789");
+        final VecDocumentVersion documentVersion = new VecDocumentVersion();
+        documentVersion.setXmlId("id_1002_0");
+        documentVersion.getApprovals().add(approval);
+        documentVersion.setDocumentNumber("123_456_789");
 
-    final VecSpecification specification = new VecConnectorHousingCapSpecification();
-    specification.setXmlId("id_2000_0");
-    specification.setIdentification("Ccs-123_456_789-1");
+        final VecSpecification specification = new VecConnectorHousingCapSpecification();
+        specification.setXmlId("id_2000_0");
+        specification.setIdentification("Ccs-123_456_789-1");
 
-    documentVersion.getSpecifications().add(specification);
+        documentVersion.getSpecifications().add(specification);
 
-    final VecPartVersion partVersion = new VecPartVersion();
-    partVersion.setXmlId("id_1001_0");
-    partVersion.setPartNumber("123_456_789");
+        final VecPartVersion partVersion = new VecPartVersion();
+        partVersion.setXmlId("id_1001_0");
+        partVersion.setPartNumber("123_456_789");
 
-    root.getDocumentVersions().add(documentVersion);
-    root.getPartVersions().add(partVersion);
+        root.getDocumentVersions().add(documentVersion);
+        root.getPartVersions().add(partVersion);
 
-    final VecWriter vecWriter = new VecWriter();
+        final VecWriter vecWriter = new VecWriter();
 
-    try (final FileOutputStream outputStream = new FileOutputStream(target)) {
-      vecWriter.write(root, outputStream);
+        try (final FileOutputStream outputStream = new FileOutputStream(target)) {
+            vecWriter.write(root, outputStream);
+        }
     }
-  }
 }
 ```
 
@@ -276,15 +277,15 @@ the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-
 and the order of `...Assertions.assertThat;`.
 
 ```java
-import static com.foursoft.vecmodel.vec113.assertions.Assertions.assertThat;
+import static com.foursoft.harness.vec.v113.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
 
 import org.junit.jupiter.api.Test;
 
-import com.foursoft.vecmodel.vec113.VecConnectorHousingSpecification;
-import com.foursoft.vecmodel.vec113.VecDocumentVersion;
-import com.foursoft.vecmodel.vec113.VecPartVersion;
+import com.foursoft.harness.vec.v113.VecConnectorHousingSpecification;
+import com.foursoft.harness.vec.v113.VecDocumentVersion;
+import com.foursoft.harness.vec.v113.VecPartVersion;
 
 class VecSampleTest {
 
