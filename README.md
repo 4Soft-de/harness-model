@@ -1,4 +1,9 @@
 ﻿# KBL model
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.kbl/kbl-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.kbl)
+
+
 JAXB-Model of the KBL, based on the underlying UML-model (not only the XSD).
 
 ## Introduction
@@ -37,7 +42,7 @@ Latest Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-centr
 ```xml
 <dependency>
     <groupId>com.foursoft.harness.kbl</groupId>
-    <artifactId>kbl24</artifactId>
+    <artifactId>kbl-v24</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -55,7 +60,7 @@ and for the assertion library:
 
 ### Gradle
 ```groovy
-implementation group: 'com.foursoft.harness.kbl', name: 'kbl24', version: 'VERSION'
+implementation group: 'com.foursoft.harness.kbl', name: 'kbl-v24', version: 'VERSION'
 ```
 
 ```groovy
@@ -66,7 +71,7 @@ testCompile group: 'com.foursoft.harness.kbl', name: 'kbl24-assertions', version
 
 In the codebase, the root of a kbl file is the `KBLContainer` class.
 
-More examples can be found [in the examples](https://github.com/4Soft-de/kbl-model/tree/develop/kbl24/src/examples/).
+More examples can be found [in the examples](https://github.com/4Soft-de/kbl-model/tree/develop/v24/src/examples/).
 
 ### Reading a KBL file
 #### Example KBL file
@@ -225,6 +230,9 @@ public class MyKblWriter {
 </kbl:KBL_container>
 ```
 ### Assertions on KBL Files
+:warning: The assertions are deprecated and will be removed without replacement in the next
+releases. [AssertJ Issue](https://github.com/assertj/assertj-assertions-generator/issues/197)
+
 For each KBL version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements.
 The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
 
@@ -235,15 +243,15 @@ Please note the static imports of the [assertions entry point](https://joel-cost
 and the order of `...Assertions.assertThat;`.
 
 ```java
-import static com.foursoft.harness.kbl.kbl24.assertions.Assertions.assertThat;
+import static com.foursoft.harness.kbl.kbl-v24.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
 
 import org.junit.jupiter.api.Test;
 
-import com.foursoft.harness.kbl.kbl24.KblGeneralWire;
-import com.foursoft.harness.kbl.kbl24.KblSpecialWireOccurrence;
-import com.foursoft.harness.kbl.kbl24.KblUnit;
+import com.foursoft.harness.kbl.v24.KblGeneralWire;
+import com.foursoft.harness.kbl.v24.KblSpecialWireOccurrence;
+import com.foursoft.harness.kbl.v24.KblUnit;
 
 class KblSampleTest {
 
