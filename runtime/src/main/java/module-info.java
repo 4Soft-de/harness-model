@@ -28,16 +28,15 @@ open module com.foursoft.jaxb.navext.runtime {
     requires java.xml.bind;
     requires org.glassfish.jaxb.runtime;
     requires org.glassfish.jaxb.xjc;
+    requires com.sun.xml.txw2;
 
     exports com.foursoft.jaxb.navext.runtime;
     exports com.foursoft.jaxb.navext.runtime.annotations;
-    requires com.sun.xml.txw2;
-
     exports com.foursoft.jaxb.navext.runtime.cache;
     exports com.foursoft.jaxb.navext.runtime.io.read;
     exports com.foursoft.jaxb.navext.runtime.io.utils;
     exports com.foursoft.jaxb.navext.runtime.io.write;
     exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
     exports com.foursoft.jaxb.navext.runtime.model;
+    exports com.foursoft.jaxb.navext.runtime.postprocessing;
 }
