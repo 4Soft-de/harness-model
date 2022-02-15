@@ -68,7 +68,7 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 
 <dependency>
     <groupId>com.foursoft.jaxb.navext</groupId>
-    <artifactId>navext-runtime</artifactId>
+    <artifactId>navext-xjc</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -76,7 +76,7 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 #### Gradle
 
 ```groovy
-compile group: 'com.foursoft.jaxb.navext', name: 'navext-runtime', version: 'VERSION'
+compile group: 'com.foursoft.jaxb.navext', name: 'navext-xjc', version: 'VERSION'
 ```
 
 ### Navigation Extender Runtime
