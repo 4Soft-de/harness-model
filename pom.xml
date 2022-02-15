@@ -59,7 +59,7 @@
     </scm>
 
     <modules>
-        <module>vec113</module>
+        <module>v113</module>
         <module>vec113-assertions</module>
         <module>v12x</module>
         <module>vec120-assertions</module>
