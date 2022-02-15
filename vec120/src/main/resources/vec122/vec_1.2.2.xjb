@@ -12,7 +12,7 @@
         <jxb:serializable uid="1"/>
     </jxb:globalBindings>
     <jxb:schemaBindings>
-        <jxb:package name="com.foursoft.vecmodel.vec120"/>
+        <jxb:package name="com.foursoft.harness.vec.v12x"/>
         <jxb:nameXmlTransform>
             <jxb:typeName prefix="Vec"/>
         </jxb:nameXmlTransform>

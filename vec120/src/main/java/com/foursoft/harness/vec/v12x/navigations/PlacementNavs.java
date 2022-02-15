@@ -23,10 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.navigations;
+package com.foursoft.harness.vec.v12x.navigations;
 
+import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.vecmodel.common.util.StreamUtils;
-import com.foursoft.vecmodel.vec120.*;
 
 import java.util.Collections;
 import java.util.List;

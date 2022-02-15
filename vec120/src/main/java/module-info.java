@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module vec120 {
+open module com.foursoft.harness.vec.v12x {
     requires transitive vec.common;
     requires navigation.extender.runtime;
     requires com.sun.xml.txw2;
@@ -35,8 +35,8 @@ open module vec120 {
     requires java.xml.bind;
     requires java.annotation;
 
-    exports com.foursoft.vecmodel.vec120;
-    exports com.foursoft.vecmodel.vec120.navigations;
-    exports com.foursoft.vecmodel.vec120.predicates;
-    exports com.foursoft.vecmodel.vec120.visitor;
+    exports com.foursoft.harness.vec.v12x;
+    exports com.foursoft.harness.vec.v12x.navigations;
+    exports com.foursoft.harness.vec.v12x.predicates;
+    exports com.foursoft.harness.vec.v12x.visitor;
 }

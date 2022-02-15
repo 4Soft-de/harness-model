@@ -23,39 +23,42 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.navigations;
+package com.foursoft.harness.vec.v12x.navigations;
 
-import com.foursoft.vecmodel.common.util.StreamUtils;
-import com.foursoft.vecmodel.vec120.VecContent;
-import com.foursoft.vecmodel.vec120.VecDocumentVersion;
-import com.foursoft.vecmodel.vec120.VecSpecification;
+import com.foursoft.harness.vec.v12x.*;
+import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Navigation methods for the {@link VecContent}.
+ * Navigation methods which don't fit into a special category.
  */
-public final class ContentNavs {
+public final class VecNavs {
 
-    private ContentNavs() {
+    private VecNavs() {
         // hide default constructor
     }
 
-    public static <T extends VecSpecification> Function<VecContent, List<T>> allSpecificationsOf(final Class<T> clazz) {
-        return vecContent -> vecContent.getDocumentVersions()
-                .stream()
-                .flatMap(StreamUtils.toStream(dv -> dv.getSpecificationsWithType(clazz)))
+    public static Function<VecExtendableElement, List<String>> externalDocumentNumbers() {
+        return element -> element.getReferencedExternalDocuments().stream()
+                .map(VecDocumentVersion::getDocumentNumber)
                 .collect(Collectors.toList());
     }
 
-    public static Function<VecContent, Optional<VecDocumentVersion>> documentVersionBy(
-            final String documentNumber) {
-        return content -> content.getDocumentVersions().stream()
-                .filter(documentVersion -> documentVersion.getDocumentNumber().equals(documentNumber))
-                .collect(StreamUtils.findOneOrNone());
+    @RequiresBackReferences
+    public static Function<VecRole, VecDocumentVersion> parentDocumentVersion() {
+        return role -> {
+            final VecOccurrenceOrUsage parentOccurrenceOrUsage = role.getParentOccurrenceOrUsage();
+            if (parentOccurrenceOrUsage instanceof VecPartOccurrence) {
+                return PartOccurrenceOrUsageNavs.parentDocumentVersion().apply((VecPartOccurrence) parentOccurrenceOrUsage);
+            } else {
+                final VecPartUsageSpecification parentPartUsageSpecification =
+                        ((VecPartUsage) parentOccurrenceOrUsage).getParentPartUsageSpecification();
+                return SpecificationNavs.parentDocumentVersion().apply(parentPartUsageSpecification);
+            }
+        };
     }
 
 }

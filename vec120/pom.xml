@@ -123,7 +123,7 @@
                                 <arg>-Xvisitor</arg>
                                 <arg>-Xvisitor-includeType</arg>
                                 <arg>-Xvisitor-noIdrefTraversal</arg>
-                                <arg>-Xvisitor-package:com.foursoft.vecmodel.vec120.visitor</arg>
+                                <arg>-Xvisitor-package:com.foursoft.harness.vec.v12x.visitor</arg>
                             </args>
                             <generateDirectory>${project.build.directory}/generated-sources/xjc-vec120</generateDirectory>
                         </configuration>

@@ -23,14 +23,14 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.navigations;
+package com.foursoft.harness.vec.v12x.navigations;
 
+import com.foursoft.harness.vec.v12x.VecNumericalValue;
+import com.foursoft.harness.vec.v12x.VecSegmentCrossSectionArea;
+import com.foursoft.harness.vec.v12x.VecSegmentLength;
+import com.foursoft.harness.vec.v12x.VecTopologySegment;
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
 import com.foursoft.vecmodel.common.util.StreamUtils;
-import com.foursoft.vecmodel.vec120.VecNumericalValue;
-import com.foursoft.vecmodel.vec120.VecSegmentCrossSectionArea;
-import com.foursoft.vecmodel.vec120.VecSegmentLength;
-import com.foursoft.vecmodel.vec120.VecTopologySegment;
 
 import java.util.Objects;
 import java.util.Optional;

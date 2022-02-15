@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120;
+package com.foursoft.harness.vec.v12x;
 
 import org.junit.jupiter.api.Test;
 

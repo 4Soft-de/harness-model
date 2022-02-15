@@ -23,10 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.predicates;
+package com.foursoft.harness.vec.v12x.predicates;
 
+import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
-import com.foursoft.vecmodel.vec120.*;
 
 import java.util.Objects;
 import java.util.function.Predicate;

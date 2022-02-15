@@ -23,9 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.visitor;
+package com.foursoft.harness.vec.v12x.visitor;
 
-import com.foursoft.vecmodel.vec120.*;
+import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.xml.model.Identifiable;
 
 import java.util.Objects;

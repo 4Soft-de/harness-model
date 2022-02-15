@@ -23,24 +23,20 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120;
+package com.foursoft.harness.vec.v12x;
 
-import javax.xml.validation.Schema;
+import java.io.InputStream;
 
-public class SchemaFactory {
+public final class TestFiles {
 
-    private static final String SCHEMA_PATH = "vec122/vec_1.2.2.xsd";
-    private static final String STRICT_SCHEMA_PATH = "vec122/vec_1.2.2-strict.xsd";
+    public static final String SAMPLE_VEC = "/VEC120_sample.vec";
 
-    private SchemaFactory() {
-        // Hide constructor
+    private TestFiles() {
+        // hide constructor
     }
 
-    public static Schema getStrictSchema() {
-        return com.foursoft.xml.io.validation.SchemaFactory.getSchema(STRICT_SCHEMA_PATH);
+    public static InputStream getInputStream(final String path) {
+        return TestFiles.class.getResourceAsStream(path);
     }
 
-    public static Schema getSchema() {
-        return com.foursoft.xml.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
-    }
 }

@@ -23,13 +23,13 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.navigations;
+package com.foursoft.harness.vec.v12x.navigations;
 
+import com.foursoft.harness.vec.v12x.*;
+import com.foursoft.harness.vec.v12x.visitor.ReferencedNodeLocationVisitor;
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
 import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.common.util.StringUtils;
-import com.foursoft.vecmodel.vec120.*;
-import com.foursoft.vecmodel.vec120.visitor.ReferencedNodeLocationVisitor;
 
 import java.util.Collection;
 import java.util.Optional;

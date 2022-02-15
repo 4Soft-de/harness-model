@@ -23,12 +23,13 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120;
+package com.foursoft.harness.vec.v12x;
 
 import com.foursoft.xml.ExtendedUnmarshaller;
 import com.foursoft.xml.JaxbModel;
 import com.foursoft.xml.io.utils.ValidationEventLogger;
 import com.foursoft.xml.model.Identifiable;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
@@ -125,7 +126,7 @@ class BasicLoadingTest {
 
             // VecUnit -> VecValueWithUnit
             final List<VecUnit> units = content.getUnits();
-            assertThat(units).isNotEmpty();
+            Assertions.assertThat(units).isNotEmpty();
             final VecUnit vecUnit = units.get(0);
             final Set<VecValueWithUnit> refValueWithUnit = vecUnit.getRefValueWithUnit();
             final VecValueWithUnit vecValueWithUnit = refValueWithUnit.stream().findFirst().orElse(null);

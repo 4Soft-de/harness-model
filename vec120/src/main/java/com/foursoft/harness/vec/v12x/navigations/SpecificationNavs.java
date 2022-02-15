@@ -23,11 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.navigations;
+package com.foursoft.harness.vec.v12x.navigations;
 
+import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.vecmodel.common.HasSpecifications;
 import com.foursoft.vecmodel.common.annotations.RequiresBackReferences;
-import com.foursoft.vecmodel.vec120.*;
 
 import java.util.Collection;
 import java.util.function.Function;

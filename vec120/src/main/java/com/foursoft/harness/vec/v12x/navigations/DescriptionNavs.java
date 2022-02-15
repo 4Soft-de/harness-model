@@ -23,15 +23,15 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec120.navigations;
+package com.foursoft.harness.vec.v12x.navigations;
 
+import com.foursoft.harness.vec.v12x.VecAbstractLocalizedString;
+import com.foursoft.harness.vec.v12x.VecLanguageCode;
+import com.foursoft.harness.vec.v12x.VecLocalizedTypedString;
+import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
 import com.foursoft.vecmodel.common.HasDescription;
 import com.foursoft.vecmodel.common.util.StreamUtils;
 import com.foursoft.vecmodel.common.util.StringUtils;
-import com.foursoft.vecmodel.vec120.VecAbstractLocalizedString;
-import com.foursoft.vecmodel.vec120.VecLanguageCode;
-import com.foursoft.vecmodel.vec120.VecLocalizedTypedString;
-import com.foursoft.vecmodel.vec120.predicates.VecPredicates;
 
 import java.util.List;
 import java.util.Optional;
