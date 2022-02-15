@@ -29,6 +29,10 @@
             <artifactId>assertj-core</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -51,15 +55,15 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <entryPointClassPackage>com.foursoft.vecmodel.vec113.assertions</entryPointClassPackage>
+                    <entryPointClassPackage>com.foursoft.harness.vec.v113.assertions</entryPointClassPackage>
                     <packages>
-                        <param>com.foursoft.vecmodel.vec113</param>
+                        <param>com.foursoft.harness.vec.v113</param>
                     </packages>
                     <excludes>
-                        <exclude>com\.foursoft\.vecmodel\.vec113\.visitor.*</exclude>
-                        <exclude>com\.foursoft\.vecmodel\.vec113\.delegate.*</exclude>
-                        <exclude>com\.foursoft\.vecmodel\.vec113\.common.*</exclude>
-                        <exclude>com\.foursoft\.vecmodel\.vec113\.ObjectFactory</exclude>
+                        <exclude>com\.foursoft\.harness\.vec\.v113\.visitor.*</exclude>
+                        <exclude>com\.foursoft\.harness\.vec\.v113\.delegate.*</exclude>
+                        <exclude>com\.foursoft\.harness\.vec\.v113\.common.*</exclude>
+                        <exclude>com\.foursoft\.harness\.vec\.v113\.ObjectFactory</exclude>
                     </excludes>
                 </configuration>
             </plugin>

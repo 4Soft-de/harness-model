@@ -23,20 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec113;
+package com.foursoft.harness.vec.v113;
 
-import java.io.InputStream;
+public final class Version {
+    public static final String VERSION = "1.1.3";
 
-public final class TestFiles {
-
-    public static final String SAMPLE_VEC = "/VEC113_sample.vec";
-
-    private TestFiles() {
-        // hide constructor
+    private Version() {
     }
-
-    public static InputStream getInputStream(final String path) {
-        return TestFiles.class.getResourceAsStream(path);
-    }
-
 }

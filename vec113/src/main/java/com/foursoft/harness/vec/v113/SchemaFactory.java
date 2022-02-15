@@ -23,11 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec113;
+package com.foursoft.harness.vec.v113;
 
-public final class Version {
-    public static final String VERSION = "1.1.3";
+import javax.xml.validation.Schema;
 
-    private Version() {
+public class SchemaFactory {
+
+    private static final String SCHEMA_PATH = "vec113/vec_1.1.3.xsd";
+    private static final String STRICT_SCHEMA_PATH = "vec113/vec_1.1.3-strict.xsd";
+
+    private SchemaFactory() {
+        // Hide constructor
+    }
+
+    public static Schema getStrictSchema() {
+        return com.foursoft.xml.io.validation.SchemaFactory.getSchema(STRICT_SCHEMA_PATH);
+    }
+
+    public static Schema getSchema() {
+        return com.foursoft.xml.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
     }
 }

@@ -23,9 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec113.visitor;
+package com.foursoft.harness.vec.v113.visitor;
 
-import com.foursoft.vecmodel.vec113.*;
+import com.foursoft.harness.vec.v113.*;
 
 /**
  * Base implementation for a strict {@link Visitor}. Strict means, that the

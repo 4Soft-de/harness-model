@@ -23,24 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec113;
+package com.foursoft.harness.vec.v113;
 
-import javax.xml.validation.Schema;
+import com.foursoft.xml.io.utils.ValidationEventLogger;
+import com.foursoft.xml.io.write.XMLWriter;
 
-public class SchemaFactory {
+import javax.xml.bind.ValidationEvent;
+import java.util.function.Consumer;
 
-    private static final String SCHEMA_PATH = "vec113/vec_1.1.3.xsd";
-    private static final String STRICT_SCHEMA_PATH = "vec113/vec_1.1.3-strict.xsd";
+/**
+ * a default implementation for a vec 113 writer
+ */
+public final class VecWriter extends XMLWriter<VecContent> {
 
-    private SchemaFactory() {
-        // Hide constructor
+
+    /**
+     * create a default VecWriter with a default validation events logger {@link ValidationEventLogger}
+     */
+    public VecWriter() {
+        super(VecContent.class, new ValidationEventLogger());
     }
 
-    public static Schema getStrictSchema() {
-        return com.foursoft.xml.io.validation.SchemaFactory.getSchema(STRICT_SCHEMA_PATH);
+    /**
+     * create a default VecWriter with a custom validation events logger
+     *
+     * @param validationEventConsumer a custom validation events consumer
+     */
+    public VecWriter(final Consumer<ValidationEvent> validationEventConsumer) {
+        super(VecContent.class, validationEventConsumer);
     }
 
-    public static Schema getSchema() {
-        return com.foursoft.xml.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
-    }
 }

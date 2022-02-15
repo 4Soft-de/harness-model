@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module vec113 {
+open module com.foursoft.harness.vec.v113 {
     requires transitive vec.common;
     requires navigation.extender.runtime;
     requires com.sun.xml.txw2;
@@ -35,6 +35,6 @@ open module vec113 {
     requires java.xml.bind;
     requires java.annotation;
 
-    exports com.foursoft.vecmodel.vec113;
-    exports com.foursoft.vecmodel.vec113.visitor;
+    exports com.foursoft.harness.vec.v113;
+    exports com.foursoft.harness.vec.v113.visitor;
 }

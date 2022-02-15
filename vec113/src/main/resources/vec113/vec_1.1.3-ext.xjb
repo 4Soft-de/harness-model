@@ -26,31 +26,31 @@
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description' and @type='vec:AbstractLocalizedString']]">
-        <inheritance:implements>com.foursoft.vecmodel.common.HasDescription&lt;com.foursoft.vecmodel.vec113.VecAbstractLocalizedString&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.vecmodel.common.HasDescription&lt;com.foursoft.harness.vec.v113.VecAbstractLocalizedString&gt;</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description' and @type='vec:LocalizedString']]">
-        <inheritance:implements>com.foursoft.vecmodel.common.HasDescription&lt;com.foursoft.vecmodel.vec113.VecLocalizedString&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.vecmodel.common.HasDescription&lt;com.foursoft.harness.vec.v113.VecLocalizedString&gt;</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Specification' and @type='vec:Specification']]">
-        <inheritance:implements>com.foursoft.vecmodel.common.HasSpecifications&lt;com.foursoft.vecmodel.vec113.VecSpecification&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.vecmodel.common.HasSpecifications&lt;com.foursoft.harness.vec.v113.VecSpecification&gt;</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Role' and @type='vec:Role']]">
-        <inheritance:implements>com.foursoft.vecmodel.common.HasRoles&lt;com.foursoft.vecmodel.vec113.VecRole&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.vecmodel.common.HasRoles&lt;com.foursoft.harness.vec.v113.VecRole&gt;</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Unit' and @type='vec:Unit']]">
-        <inheritance:implements>com.foursoft.vecmodel.common.HasUnits&lt;com.foursoft.vecmodel.vec113.VecUnit&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.vecmodel.common.HasUnits&lt;com.foursoft.harness.vec.v113.VecUnit&gt;</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='OccurrenceOrUsage' and @type='xs:IDREF']]">
-        <inheritance:implements>com.foursoft.vecmodel.vec113.HasOccurrenceOrUsage</inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.vec.v113.HasOccurrenceOrUsage</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='CustomProperty' and @type='vec:CustomProperty']]">
-        <inheritance:implements>com.foursoft.vecmodel.common.HasCustomProperties&lt;com.foursoft.vecmodel.vec113.VecCustomProperty&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.vecmodel.common.HasCustomProperties&lt;com.foursoft.harness.vec.v113.VecCustomProperty&gt;</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='PropertyType']]">

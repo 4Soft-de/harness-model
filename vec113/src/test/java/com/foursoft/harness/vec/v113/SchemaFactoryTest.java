@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec113;
+package com.foursoft.harness.vec.v113;
 
 import com.foursoft.xml.io.validation.LogValidator;
 import com.foursoft.xml.io.validation.XMLValidation;

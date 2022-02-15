@@ -23,34 +23,20 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.vecmodel.vec113;
+package com.foursoft.harness.vec.v113;
 
-import com.foursoft.xml.io.utils.ValidationEventLogger;
-import com.foursoft.xml.io.write.XMLWriter;
+import java.io.InputStream;
 
-import javax.xml.bind.ValidationEvent;
-import java.util.function.Consumer;
+public final class TestFiles {
 
-/**
- * a default implementation for a vec 113 writer
- */
-public final class VecWriter extends XMLWriter<VecContent> {
+    public static final String SAMPLE_VEC = "/VEC113_sample.vec";
 
-
-    /**
-     * create a default VecWriter with a default validation events logger {@link ValidationEventLogger}
-     */
-    public VecWriter() {
-        super(VecContent.class, new ValidationEventLogger());
+    private TestFiles() {
+        // hide constructor
     }
 
-    /**
-     * create a default VecWriter with a custom validation events logger
-     *
-     * @param validationEventConsumer a custom validation events consumer
-     */
-    public VecWriter(final Consumer<ValidationEvent> validationEventConsumer) {
-        super(VecContent.class, validationEventConsumer);
+    public static InputStream getInputStream(final String path) {
+        return TestFiles.class.getResourceAsStream(path);
     }
 
 }
