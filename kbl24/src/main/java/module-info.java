@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module kbl24 {
+open module com.foursoft.harness.kbl.v24 {
     requires com.foursoft.jaxb.navext.runtime;
     requires com.sun.xml.txw2;
     requires org.glassfish.jaxb.xjc;
