@@ -261,7 +261,7 @@ public class MyVecWriter {
 
 ### Assertions on VEC files
 
-!! The assertions are deprecated and will be removed without replacement in the next
+:warning: The assertions are deprecated and will be removed without replacement in the next
 releases. [AssertJ Issue](https://github.com/assertj/assertj-assertions-generator/issues/197)
 
 For each VEC version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on
