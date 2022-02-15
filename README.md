@@ -28,8 +28,6 @@ KBL contains data of a single harness and includes the physical bordnet only. It
 - Rudimentary master data information
 - Simple change and approval meta-data
 - Simple external references
-- Generated AssertJ assertions in additional jar files to write fluent assertions on KBL objects.
-
 
 ## Download
 Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.harness.kbl).
