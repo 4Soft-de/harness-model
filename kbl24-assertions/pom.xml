@@ -51,15 +51,15 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <entryPointClassPackage>com.foursoft.kblmodel.kbl24.assertions</entryPointClassPackage>
+                    <entryPointClassPackage>com.foursoft.harness.kbl.v24.assertions</entryPointClassPackage>
                     <packages>
-                        <param>com.foursoft.kblmodel.kbl24</param>
+                        <param>com.foursoft.harness.kbl.v24</param>
                     </packages>
                     <excludes>
-                        <exclude>com\.foursoft\.kblmodel\.kbl24\.visitor.*</exclude>
-                        <exclude>com\.foursoft\.kblmodel\.kbl24\.delegate.*</exclude>
-                        <exclude>com\.foursoft\.kblmodel\.kbl24\.common.*</exclude>
-                        <exclude>com\.foursoft\.kblmodel\.kbl24\.ObjectFactory</exclude>
+                        <exclude>com\.foursoft\.harness\.kbl\.v24\.visitor.*</exclude>
+                        <exclude>com\.foursoft\.harness\.kbl\.v24\.delegate.*</exclude>
+                        <exclude>com\.foursoft\.harness\.kbl\.v24\.common.*</exclude>
+                        <exclude>com\.foursoft\.harness\.kbl\.v24\.ObjectFactory</exclude>
                     </excludes>
                 </configuration>
             </plugin>
