@@ -106,8 +106,6 @@
                 <artifactId>jaxb2-basics</artifactId>
                 <version>${jaxb2_commons.version}</version>
             </dependency>
-
-            <!-- JAXB-->
             <dependency>
                 <groupId>jakarta.xml.bind</groupId>
                 <artifactId>jakarta.xml.bind-api</artifactId>
