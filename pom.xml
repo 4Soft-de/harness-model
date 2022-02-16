@@ -42,7 +42,7 @@
 
         <!-- Release Plugins -->
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.11</nexus-staging-maven-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 
         <!-- build and release properties -->
         <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
