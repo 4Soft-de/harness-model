@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.foursoft.jaxb</groupId>
         <artifactId>jaxb-parent</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.foursoft.jaxb.navext</groupId>
