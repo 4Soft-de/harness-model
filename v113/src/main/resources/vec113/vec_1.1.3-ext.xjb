@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+        xmlns:ci="http://jaxb.dev.java.net/plugin/code-injector"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        extensionBindingPrefixes="xjc dg"
+        jxb:extensionBindingPrefixes="xjc annox xhtml"
+        node="/xs:schema" schemaLocation="vec_1.1.3.xsd" version="2.1">
+
+
+    <jxb:bindings multiple="true" node="//xs:complexType[xs:attribute[@name='id']]">
+        <inheritance:implements>com.foursoft.jaxb.navext.runtime.model.Identifiable</inheritance:implements>
+        <inheritance:implements>com.foursoft.jaxb.navext.runtime.model.ModifiableIdentifiable</inheritance:implements>
+        <ci:code>@Override public String toString() { return this.getClass().getSimpleName() + "["
+            + this.getXmlId() + "]"; }
+        </ci:code>
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:attribute[@name='id']" multiple="true">
+        <jxb:property name="xmlId"/>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Identification']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasIdentification</inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.vec.common.HasModifiableIdentification</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description' and @type='vec:AbstractLocalizedString']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasDescription&lt;com.foursoft.harness.vec.v113.VecAbstractLocalizedString&gt;</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description' and @type='vec:LocalizedString']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasDescription&lt;com.foursoft.harness.vec.v113.VecLocalizedString&gt;</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Specification' and @type='vec:Specification']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasSpecifications&lt;com.foursoft.harness.vec.v113.VecSpecification&gt;</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Role' and @type='vec:Role']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasRoles&lt;com.foursoft.harness.vec.v113.VecRole&gt;</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Unit' and @type='vec:Unit']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasUnits&lt;com.foursoft.harness.vec.v113.VecUnit&gt;</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='OccurrenceOrUsage' and @type='xs:IDREF']]">
+        <inheritance:implements>com.foursoft.harness.vec.v113.HasOccurrenceOrUsage</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='CustomProperty' and @type='vec:CustomProperty']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasCustomProperties&lt;com.foursoft.harness.vec.v113.VecCustomProperty&gt;</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='PropertyType']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasPropertyType</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='ReferenceSystem']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasReferenceSystem</inheritance:implements>
+    </jxb:bindings>
+
+</jxb:bindings>
