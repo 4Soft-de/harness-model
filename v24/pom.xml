@@ -5,7 +5,7 @@
         <artifactId>kbl-parent</artifactId>
         <version>1.4.2-SNAPSHOT</version>
     </parent>
-    <artifactId>kbl24</artifactId>
+    <artifactId>kbl-v24</artifactId>
 
     <description>The model for KBL version 2.4</description>
 
