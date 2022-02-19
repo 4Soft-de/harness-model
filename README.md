@@ -1,14 +1,15 @@
 ﻿# KBL model
+
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.kbl/kbl-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.kbl)
 
-
 JAXB-Model of the KBL, based on the underlying UML-model (not only the XSD).
 
 ## Introduction
-KBL is German and stands for **K**abel**b**aum**l**iste (engl. Harness Description List) and defines an information model, a data dictionary, and
-an XML schema derived from and compliant to the model.
+
+KBL is German and stands for **K**abel**b**aum**l**iste (engl. Harness Description List) and defines an information
+model, a data dictionary, and an XML schema derived from and compliant to the model.
 
 It can be used to define a single harness with all parts, connections, constraints, etc.
 
@@ -18,7 +19,9 @@ For an optimized performance, the XML is parsed by our
 More information about KBL can be found in the [ECAD wiki](https://ecad-wiki.prostep.org/specifications/kbl).
 
 ## Key Features
+
 KBL contains data of a single harness and includes the physical bordnet only. Its key features are:
+
 - 3D harness geometry (XOR 2D single sheet drawing information)
 - Harness topology and wire routing
 - Electrical wiring and connectivity
@@ -30,14 +33,18 @@ KBL contains data of a single harness and includes the physical bordnet only. It
 - Simple external references
 
 ## Download
+
 Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.harness.kbl).
 
-Latest Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.kbl/kbl-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.kbl)
+Latest
+Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.kbl/kbl-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.kbl)
 
 **Make sure to replace the `VERSION` below with a real version as the one shown above!**
 
 ### Maven
+
 ```xml
+
 <dependency>
     <groupId>com.foursoft.harness.kbl</groupId>
     <artifactId>kbl-v24</artifactId>
@@ -48,6 +55,7 @@ Latest Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-centr
 and for the assertion library:
 
 ```xml
+
 <dependency>
     <groupId>com.foursoft.harness.kbl</groupId>
     <artifactId>kbl24-assertions</artifactId>
@@ -57,6 +65,7 @@ and for the assertion library:
 ```
 
 ### Gradle
+
 ```groovy
 implementation group: 'com.foursoft.harness.kbl', name: 'kbl-v24', version: 'VERSION'
 ```
@@ -72,10 +81,13 @@ In the codebase, the root of a kbl file is the `KBLContainer` class.
 More examples can be found [in the examples](https://github.com/4Soft-de/kbl-model/tree/develop/v24/src/examples/).
 
 ### Reading a KBL file
+
 #### Example KBL file
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema" id="ID000" version_id="version_id0">
+<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema" id="ID000"
+                   version_id="version_id0">
     <Connector_housing id="ch_part">
         <Part_number>Part_number14</Part_number>
         <Company_name>Company_name14</Company_name>
@@ -108,6 +120,7 @@ More examples can be found [in the examples](https://github.com/4Soft-de/kbl-mod
 ```
 
 #### Java file
+
 ```java
 public class MyKblReader {
     public void readKblFile(final String pathToFile) throws IOException {
@@ -142,7 +155,9 @@ public class MyKblReader {
 ```
 
 ### Writing a KBL file
+
 #### Java file
+
 ```java
 public class MyKblWriter {
     public void writeExampleKblFile(final String target) throws IOException {
@@ -206,9 +221,11 @@ public class MyKblWriter {
 ```
 
 #### Generated KBL file
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<kbl:KBL_container id="ID000" version_id="version_id0" xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema" >
+<kbl:KBL_container id="ID000" version_id="version_id0"
+                   xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema">
     <Harness id="I1397">
         <Connector_occurrence id="I1616">
             <Contact_points id="id_1234">
@@ -227,21 +244,26 @@ public class MyKblWriter {
     </Harness>
 </kbl:KBL_container>
 ```
+
 ### Assertions on KBL Files
+
 :warning: The assertions are deprecated and will be removed without replacement in the next
 releases. [AssertJ Issue](https://github.com/assertj/assertj-assertions-generator/issues/197)
 
-For each KBL version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on VEC elements.
-The assertions are generated with the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html). 
+For each KBL version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on
+VEC elements. The assertions are generated with
+the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html)
+.
 
-Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions.
-For detailed information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
+Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions. For detailed
+information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
 
-Please note the static imports of the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html) 
+Please note the static imports of
+the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html)
 and the order of `...Assertions.assertThat;`.
 
 ```java
-import static com.foursoft.harness.kbl.kbl-v24.assertions.Assertions.assertThat;
+import static com.foursoft.harness.kbl.v24.assertions.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
 
@@ -261,27 +283,32 @@ class KblSampleTest {
         final KblSpecialWireOccurrence specialWireOccurrence = null; // determine kbl wire occurrence
 
         assertThat(specialWireOccurrence)
-            .hasSpecialWireId("1111")
-            .hasPart(wire)
-            .satisfies(w ->
-                assertThat(w.getLengthInformations()).hasSize(1)
-                    .satisfies(
-                        // Consumer
-                        l ->
-                            assertThat(l)
-                                .hasLengthType("Production")
-                                .satisfies(v ->
-                                    assertThat(v.getLengthValue())
-                                        .hasUnitComponent(unitMM)
-                                        .hasValueComponent(0.0d)),
-                        // Index
-                        atIndex(0))
-            );
+                .hasSpecialWireId("1111")
+                .hasPart(wire)
+                .satisfies(w ->
+                        assertThat(w.getLengthInformations()).hasSize(1)
+                                .satisfies(
+                                        // Consumer
+                                        l ->
+                                                assertThat(l)
+                                                        .hasLengthType("Production")
+                                                        .satisfies(v ->
+                                                                assertThat(v.getLengthValue())
+                                                                        .hasUnitComponent(unitMM)
+                                                                        .hasValueComponent(0.0d)),
+                                        // Index
+                                        atIndex(0))
+                );
     }
 }
 ```
 
 ## Contributing
-We appreciate if you like to contribute to our project! Please make sure to base your branch off of our [develop branch](https://github.com/4Soft-de/kbl-model/tree/develop) and create your PR into that same branch. We will reject any PRs not following that or if this is already worked on.
 
-Please read our detailed [Contribution Guidelines](https://github.com/4Soft-de/kbl-model/blob/develop/.github/CONTRIBUTING.md) for more information, for example code style, formatter, etc.
+We appreciate if you like to contribute to our project! Please make sure to base your branch off of
+our [develop branch](https://github.com/4Soft-de/kbl-model/tree/develop) and create your PR into that same branch. We
+will reject any PRs not following that or if this is already worked on.
+
+Please read our
+detailed [Contribution Guidelines](https://github.com/4Soft-de/kbl-model/blob/develop/.github/CONTRIBUTING.md) for more
+information, for example code style, formatter, etc.

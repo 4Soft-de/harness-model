@@ -54,11 +54,9 @@
 		<inheritance:implements>com.foursoft.harness.kbl.v24.HasReferenceElement</inheritance:implements>
 	</jxb:bindings>
 
-
 	<jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description']]">
 		<inheritance:implements>com.foursoft.harness.kbl.v24.HasDescription</inheritance:implements>
 	</jxb:bindings>
-
 
 	<jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Placement']]">
 		<inheritance:implements>com.foursoft.harness.kbl.v24.HasPlacement</inheritance:implements>
@@ -67,8 +65,5 @@
 	<jxb:bindings node="//xs:attribute[@name='id']" multiple="true">
 		<jxb:property name="xmlId"/> 
 	</jxb:bindings>
-	
-
-
 
 </jxb:bindings>
