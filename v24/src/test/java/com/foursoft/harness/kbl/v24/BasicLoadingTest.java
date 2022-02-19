@@ -25,9 +25,9 @@
  */
 package com.foursoft.harness.kbl.v24;
 
-import  com.foursoft.jaxb.navext.runtime.ExtendedUnmarshaller;
-import  com.foursoft.jaxb.navext.runtime.JaxbModel;
-import  com.foursoft.jaxb.navext.runtime.model.Identifiable;
+import com.foursoft.jaxb.navext.runtime.ExtendedUnmarshaller;
+import com.foursoft.jaxb.navext.runtime.JaxbModel;
+import com.foursoft.jaxb.navext.runtime.model.Identifiable;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
@@ -42,7 +42,9 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;

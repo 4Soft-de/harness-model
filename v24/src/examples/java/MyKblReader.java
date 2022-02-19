@@ -1,6 +1,6 @@
-import com.foursoft.kblmodel.kbl24.*;
-import  com.foursoft.jaxb.navext.runtime.JaxbModel;
-import  com.foursoft.jaxb.navext.runtime.model.Identifiable;
+import com.foursoft.harness.kbl.v24.*;
+import com.foursoft.jaxb.navext.runtime.JaxbModel;
+import com.foursoft.jaxb.navext.runtime.model.Identifiable;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -74,7 +74,7 @@ public class MyKblReader {
                 return;
             }
             System.out.println("KblConnectorOccurrence from KblContainer = KKblConnectorOccurrence from KblHarness? " +
-                                       (kblConnectorOccurrence.equals(occurrenceByHarness)));
+                    (kblConnectorOccurrence.equals(occurrenceByHarness)));
 
             final String xmlId = kblConnectorOccurrence.getXmlId();
             final KblConnectorOccurrence occurrenceByLookup = model.getIdLookup()
@@ -84,7 +84,7 @@ public class MyKblReader {
                 return;
             }
             System.out.println("KblConnectorOccurrence from KblContainer = KblConnectorOccurrence by id lookup? " +
-                                       (kblConnectorOccurrence.equals(occurrenceByLookup)));
+                    (kblConnectorOccurrence.equals(occurrenceByLookup)));
         }
     }
 }

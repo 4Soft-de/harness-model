@@ -1,4 +1,4 @@
-import com.foursoft.kblmodel.kbl24.*;
+import com.foursoft.harness.kbl.v24.*;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
