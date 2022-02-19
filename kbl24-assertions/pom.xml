@@ -1,6 +1,6 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.foursoft.harness.kbl</groupId>
@@ -15,7 +15,7 @@
         <!--project -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>kbl24</artifactId>
+            <artifactId>kbl-v24</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -43,7 +43,7 @@
                 <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
                 <executions>
                     <execution>
-					    <?m2e execute onConfiguration?>
+                        <?m2e execute onConfiguration?>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate-assertions</goal>
