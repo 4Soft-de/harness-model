@@ -21,7 +21,7 @@
 	<nav:selector name="ConnectionOrOccurrence"
 				  implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="ConnectionOrOccurrence"
-				  implements=" com.foursoft.jaxb.navext.runtime.model.Identifiable" />
+				  implements="com.foursoft.jaxb.navext.runtime.model.Identifiable" />
 	<nav:selector name="CompatibleConnector"
 		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
 	<nav:selector name="MountingElement"
