@@ -34,4 +34,7 @@ open module com.foursoft.harness.kbl.v24 {
     requires java.xml.bind;
     requires java.annotation;
 
+    exports com.foursoft.harness.kbl.v24;
+    exports com.foursoft.harness.kbl.v24.visitor;
+
 }
