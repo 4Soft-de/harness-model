@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.foursoft.jaxb2</groupId>
+        <groupId>com.foursoft.jaxb</groupId>
         <artifactId>jaxb-parent</artifactId>
-        <version>0.0.9</version>
+        <version>1.0.0</version>
     </parent>
 
-    <groupId>com.foursoft.kblmodel</groupId>
+    <groupId>com.foursoft.harness.kbl</groupId>
     <artifactId>kbl-parent</artifactId>
     <version>1.4.2-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -20,10 +20,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
 
         <!-- Dependencies -->
-        <navigation-extender.version>1.2.4</navigation-extender.version>
+        <navigation-extender.version>2.0.0</navigation-extender.version>
 
         <!-- Plugins -->
         <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
@@ -60,7 +60,7 @@
     </scm>
 
     <modules>
-        <module>kbl24</module>
+        <module>v24</module>
         <module>kbl24-assertions</module>
     </modules>
 
@@ -81,15 +81,11 @@
 
     <dependencyManagement>
         <dependencies>
-
-            <!--general-->
-
             <dependency>
-                <groupId>com.foursoft.jaxb2</groupId>
-                <artifactId>navigation-extender-runtime</artifactId>
+                <groupId>com.foursoft.jaxb.navext</groupId>
+                <artifactId>navext-runtime</artifactId>
                 <version>${navigation-extender.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -135,8 +131,8 @@
                                 <version>${jaxb-visitor.version}</version>
                             </plugin>
                             <plugin>
-                                <groupId>com.foursoft.jaxb2</groupId>
-                                <artifactId>navigation-extender</artifactId>
+                                <groupId>com.foursoft.jaxb.navext</groupId>
+                                <artifactId>navext-xjc</artifactId>
                                 <version>${navigation-extender.version}</version>
                             </plugin>
                         </plugins>
