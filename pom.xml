@@ -22,7 +22,7 @@
         <java.version>11</java.version>
 
         <!-- Dependencies -->
-        <navigation-extender.version>2.0.1-SNAPSHOT</navigation-extender.version>
+        <navigation-extender.version>2.0.1</navigation-extender.version>
 
         <!-- Plugins -->
         <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
