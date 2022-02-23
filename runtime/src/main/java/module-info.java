@@ -27,8 +27,6 @@ open module com.foursoft.jaxb.navext.runtime {
     requires org.slf4j;
     requires java.xml.bind;
     requires org.glassfish.jaxb.runtime;
-    requires org.glassfish.jaxb.xjc;
-    requires com.sun.xml.txw2;
 
     exports com.foursoft.jaxb.navext.runtime;
     exports com.foursoft.jaxb.navext.runtime.annotations;
