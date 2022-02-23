@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.foursoft.harness.kbl</groupId>
         <artifactId>kbl-parent</artifactId>
-        <version>2.0.1-SNAPSHOT</version>
+        <version>2.0.2-SNAPSHOT</version>
     </parent>
     <artifactId>kbl-v24</artifactId>
 
