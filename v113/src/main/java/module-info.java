@@ -26,10 +26,6 @@
 open module com.foursoft.harness.vec.v113 {
     requires transitive com.foursoft.harness.vec.common;
     requires com.foursoft.jaxb.navext.runtime;
-    requires com.sun.xml.txw2;
-    requires org.glassfish.jaxb.xjc;
-    requires org.glassfish.jaxb.runtime;
-    requires com.sun.istack.runtime;
 
     requires java.xml;
     requires java.xml.bind;

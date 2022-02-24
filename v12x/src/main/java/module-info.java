@@ -26,17 +26,13 @@
 open module com.foursoft.harness.vec.v12x {
     requires transitive com.foursoft.harness.vec.common;
     requires com.foursoft.jaxb.navext.runtime;
-    requires com.sun.xml.txw2;
-    requires org.glassfish.jaxb.xjc;
-    requires org.glassfish.jaxb.runtime;
-    requires com.sun.istack.runtime;
 
     requires java.xml;
     requires java.xml.bind;
     requires java.annotation;
 
     exports com.foursoft.harness.vec.v12x;
+    exports com.foursoft.harness.vec.v12x.visitor;
     exports com.foursoft.harness.vec.v12x.navigations;
     exports com.foursoft.harness.vec.v12x.predicates;
-    exports com.foursoft.harness.vec.v12x.visitor;
 }
