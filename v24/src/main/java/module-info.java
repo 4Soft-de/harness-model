@@ -25,13 +25,12 @@
  */
 open module com.foursoft.harness.kbl.v24 {
     requires com.foursoft.jaxb.navext.runtime;
-    requires com.sun.xml.txw2;
-    requires org.glassfish.jaxb.xjc;
-    requires org.glassfish.jaxb.runtime;
-    requires com.sun.istack.runtime;
 
     requires java.xml;
     requires java.xml.bind;
     requires java.annotation;
+
+    exports com.foursoft.harness.kbl.v24;
+    exports com.foursoft.harness.kbl.v24.visitor;
 
 }
