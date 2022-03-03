@@ -52,26 +52,10 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 </dependency>
 ```
 
-and for the assertion library:
-
-```xml
-
-<dependency>
-    <groupId>com.foursoft.harness.kbl</groupId>
-    <artifactId>kbl24-assertions</artifactId>
-    <version>VERSION</version>
-    <scope>test</scope>
-</dependency>
-```
-
 ### Gradle
 
 ```groovy
 implementation group: 'com.foursoft.harness.kbl', name: 'kbl-v24', version: 'VERSION'
-```
-
-```groovy
-testCompile group: 'com.foursoft.harness.kbl', name: 'kbl24-assertions', version: 'VERSION'
 ```
 
 ## Code examples
@@ -243,64 +227,6 @@ public class MyKblWriter {
         <Terminal_occurrence id="id_4712"/>
     </Harness>
 </kbl:KBL_container>
-```
-
-### Assertions on KBL Files
-
-:warning: The assertions are deprecated and will be removed without replacement in the next
-releases. [AssertJ Issue](https://github.com/assertj/assertj-assertions-generator/issues/197)
-
-For each KBL version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on
-VEC elements. The assertions are generated with
-the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html)
-.
-
-Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions. For detailed
-information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
-
-Please note the static imports of
-the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html)
-and the order of `...Assertions.assertThat;`.
-
-```java
-import static com.foursoft.harness.kbl.v24.assertions.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.atIndex;
-
-import org.junit.jupiter.api.Test;
-
-import com.foursoft.harness.kbl.v24.KblGeneralWire;
-import com.foursoft.harness.kbl.v24.KblSpecialWireOccurrence;
-import com.foursoft.harness.kbl.v24.KblUnit;
-
-class KblSampleTest {
-
-    @Test
-    void testWireOccurrenceCreation() {
-        //Find the element to test, maybe with a traversing visitor...
-        final KblUnit unitMM = null; // determine kbl unit
-        final KblGeneralWire wire = null; // determine kbl wire
-        final KblSpecialWireOccurrence specialWireOccurrence = null; // determine kbl wire occurrence
-
-        assertThat(specialWireOccurrence)
-                .hasSpecialWireId("1111")
-                .hasPart(wire)
-                .satisfies(w ->
-                        assertThat(w.getLengthInformations()).hasSize(1)
-                                .satisfies(
-                                        // Consumer
-                                        l ->
-                                                assertThat(l)
-                                                        .hasLengthType("Production")
-                                                        .satisfies(v ->
-                                                                assertThat(v.getLengthValue())
-                                                                        .hasUnitComponent(unitMM)
-                                                                        .hasValueComponent(0.0d)),
-                                        // Index
-                                        atIndex(0))
-                );
-    }
-}
 ```
 
 ## Contributing
