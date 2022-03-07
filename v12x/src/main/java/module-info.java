@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec120
+ * vec-v12x
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,17 +26,13 @@
 open module com.foursoft.harness.vec.v12x {
     requires transitive com.foursoft.harness.vec.common;
     requires com.foursoft.jaxb.navext.runtime;
-    requires com.sun.xml.txw2;
-    requires org.glassfish.jaxb.xjc;
-    requires org.glassfish.jaxb.runtime;
-    requires com.sun.istack.runtime;
 
     requires java.xml;
     requires java.xml.bind;
     requires java.annotation;
 
     exports com.foursoft.harness.vec.v12x;
+    exports com.foursoft.harness.vec.v12x.visitor;
     exports com.foursoft.harness.vec.v12x.navigations;
     exports com.foursoft.harness.vec.v12x.predicates;
-    exports com.foursoft.harness.vec.v12x.visitor;
 }

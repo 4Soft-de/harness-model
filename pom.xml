@@ -10,7 +10,7 @@
 
     <groupId>com.foursoft.harness.vec</groupId>
     <artifactId>vec-parent</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
 
@@ -22,7 +22,7 @@
         <java.version>11</java.version>
 
         <!-- Dependencies -->
-        <navigation-extender.version>2.0.0</navigation-extender.version>
+        <navigation-extender.version>2.0.1</navigation-extender.version>
 
         <!-- Plugins -->
         <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
