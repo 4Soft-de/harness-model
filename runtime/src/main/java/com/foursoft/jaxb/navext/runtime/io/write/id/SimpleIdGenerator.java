@@ -30,7 +30,7 @@ public class SimpleIdGenerator implements IdGenerator {
     public static final class Builder {
         private int prefixCount = 0;
         private String delimiter = "_";
-        
+
         /**
          * Some class names have a prefix like "Kbl" or "Vec". These can be removed if necessary.
          *

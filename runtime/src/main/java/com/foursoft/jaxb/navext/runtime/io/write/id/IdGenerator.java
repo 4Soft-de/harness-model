@@ -2,6 +2,7 @@ package com.foursoft.jaxb.navext.runtime.io.write.id;
 
 import com.foursoft.jaxb.navext.runtime.model.ModifiableIdentifiable;
 
+@FunctionalInterface
 public interface IdGenerator {
 
     /**
