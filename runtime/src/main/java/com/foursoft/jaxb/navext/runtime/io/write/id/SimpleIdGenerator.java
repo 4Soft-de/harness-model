@@ -28,7 +28,7 @@ public class SimpleIdGenerator implements IdGenerator {
 
 
     public static final class Builder {
-        private int prefixCount = 3;
+        private int prefixCount = 0;
         private String delimiter = "_";
 
         public Builder() {
