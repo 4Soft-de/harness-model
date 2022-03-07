@@ -61,4 +61,8 @@
         <inheritance:implements>com.foursoft.harness.vec.common.HasReferenceSystem</inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Location' and @type='vec:Location']]">
+        <inheritance:implements>com.foursoft.harness.vec.common.HasLocations&lt;com.foursoft.harness.vec.v113.VecLocation&gt;</inheritance:implements>
+    </jxb:bindings>
+
 </jxb:bindings>
