@@ -40,4 +40,5 @@ open module com.foursoft.jaxb.navext.runtime {
     exports com.foursoft.jaxb.navext.runtime.io.validation;
     exports com.foursoft.jaxb.navext.runtime.model;
     exports com.foursoft.jaxb.navext.runtime.postprocessing;
+    exports com.foursoft.jaxb.navext.runtime.io.write.id;
 }

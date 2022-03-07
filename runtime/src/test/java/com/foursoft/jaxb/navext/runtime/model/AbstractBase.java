@@ -33,7 +33,7 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AbstractBase", propOrder = {})
 @XmlSeeAlso({Root.class, ChildA.class, ChildB.class})
-public abstract class AbstractBase implements Serializable {
+public abstract class AbstractBase implements Serializable, Identifiable, ModifiableIdentifiable {
 
     private final static long serialVersionUID = 1L;
     @XmlAttribute(name = "id", required = true)
@@ -47,11 +47,13 @@ public abstract class AbstractBase implements Serializable {
      *
      * @return possible object is {@link String }
      */
+    @Override
     public String getXmlId() {
         return xmlId;
     }
 
 
+    @Override
     public void setXmlId(final String value) {
         xmlId = value;
     }
