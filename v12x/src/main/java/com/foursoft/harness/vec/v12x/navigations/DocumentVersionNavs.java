@@ -167,7 +167,7 @@ public final class DocumentVersionNavs {
         return dv -> dv.getSpecificationsWithType(VecHarnessDrawingSpecification2D.class).stream()
                 .map(VecHarnessDrawingSpecification2D::getBuildingBlockPositionings)
                 .flatMap(Collection::stream)
-                .filter(positioning -> positioning.getReferenced2DBuildingBlock() == buildingBlock)
+                .filter(positioning -> buildingBlock.equals(positioning.getReferenced2DBuildingBlock()))
                 .collect(StreamUtils.findOneOrNone());
     }
 
@@ -176,7 +176,7 @@ public final class DocumentVersionNavs {
         return dv -> dv.getSpecificationsWithType(VecHarnessGeometrySpecification3D.class).stream()
                 .map(VecHarnessGeometrySpecification3D::getBuildingBlockPositionings)
                 .flatMap(Collection::stream)
-                .filter(positioning -> positioning.getReferenced3DBuildingBlock() == buildingBlock)
+                .filter(positioning -> buildingBlock.equals(positioning.getReferenced3DBuildingBlock()))
                 .collect(StreamUtils.findOneOrNone());
     }
 
@@ -194,7 +194,7 @@ public final class DocumentVersionNavs {
                         .collect(StreamUtils.findOne())
                         .getIdentification()
                         .equals(occurrenceOrUsageId))
-                .findAny();
+                .collect(StreamUtils.findOneOrNone());
     }
 
 }
