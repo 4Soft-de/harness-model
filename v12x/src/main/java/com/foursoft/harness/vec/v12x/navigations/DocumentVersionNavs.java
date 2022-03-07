@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.v12x.navigations;
 
-import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.v12x.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -107,6 +107,78 @@ public final class DocumentVersionNavs {
                 .filter(VecNodeLocation.class::isInstance)
                 .map(VecNodeLocation.class::cast)
                 .collect(Collectors.toList());
+    }
+
+    public static Function<VecDocumentVersion, VecGeometryNode2D> geometryNode2DBy(final VecNodeLocation location) {
+        return dv -> dv.getSpecificationWithType(VecBuildingBlockSpecification2D.class)
+                .map(VecBuildingBlockSpecification2D::getGeometryNodes).orElseGet(Collections::emptyList)
+                .stream()
+                .filter(n -> n.getReferenceNode().equals(location.getReferencedNode()))
+                .collect(StreamUtils.findOne());
+    }
+
+    public static Function<VecDocumentVersion, VecGeometryNode3D> geometryNode3DBy(final VecNodeLocation location) {
+        return dv -> dv.getSpecificationWithType(VecBuildingBlockSpecification3D.class)
+                .map(VecBuildingBlockSpecification3D::getGeometryNodes).orElseGet(Collections::emptyList)
+                .stream()
+                .filter(n -> n.getReferenceNode().equals(location.getReferencedNode()))
+                .collect(StreamUtils.findOne());
+    }
+
+    public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem2D>> viewItem2DBy(
+            final String occurrenceOrUsageId) {
+        return dv -> dv.getSpecificationsWithType(VecBuildingBlockSpecification2D.class).stream()
+                .map(VecBuildingBlockSpecification2D::getPlacedElementViewItems)
+                .flatMap(Collection::stream)
+                .filter(item -> item.getOccurrenceOrUsage().stream()
+                        .collect(StreamUtils.findOne())
+                        .getIdentification()
+                        .equals(occurrenceOrUsageId))
+                .findAny();
+    }
+
+    public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem3D>> viewItem3DBy(
+            final String occurrenceOrUsageId) {
+        return dv -> dv.getSpecificationsWithType(VecBuildingBlockSpecification3D.class).stream()
+                .map(VecBuildingBlockSpecification3D::getPlacedElementViewItem3Ds)
+                .flatMap(Collection::stream)
+                .filter(item -> item.getOccurrenceOrUsage().stream()
+                        .collect(StreamUtils.findOne())
+                        .getIdentification()
+                        .equals(occurrenceOrUsageId))
+                .findAny();
+    }
+
+    public static Function<VecDocumentVersion, VecBuildingBlockSpecification2D> buildingBlockSpecification2DBy(
+            final String specificationId) {
+        return dv -> dv.getSpecificationsWithType(VecBuildingBlockSpecification2D.class).stream()
+                .filter(specification -> specification.getIdentification().equals(specificationId))
+                .collect(StreamUtils.findOne());
+    }
+
+    public static Function<VecDocumentVersion, VecBuildingBlockSpecification3D> buildingBlockSpecification3DBy(
+            final String specificationId) {
+        return dv -> dv.getSpecificationsWithType(VecBuildingBlockSpecification3D.class).stream()
+                .filter(specification -> specification.getIdentification().equals(specificationId))
+                .collect(StreamUtils.findOne());
+    }
+
+    public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning2D>> positioning2DWith(
+            final VecBuildingBlockSpecification2D buildingBlock) {
+        return dv -> dv.getSpecificationsWithType(VecHarnessDrawingSpecification2D.class).stream()
+                .map(VecHarnessDrawingSpecification2D::getBuildingBlockPositionings)
+                .flatMap(Collection::stream)
+                .filter(positioning -> positioning.getReferenced2DBuildingBlock() == buildingBlock)
+                .collect(StreamUtils.findOneOrNone());
+    }
+
+    public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning3D>> positioning3DWith(
+            final VecBuildingBlockSpecification3D buildingBlock) {
+        return dv -> dv.getSpecificationsWithType(VecHarnessGeometrySpecification3D.class).stream()
+                .map(VecHarnessGeometrySpecification3D::getBuildingBlockPositionings)
+                .flatMap(Collection::stream)
+                .filter(positioning -> positioning.getReferenced3DBuildingBlock() == buildingBlock)
+                .collect(StreamUtils.findOneOrNone());
     }
 
 }

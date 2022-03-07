@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,9 +25,10 @@
  */
 package com.foursoft.harness.vec.v12x.navigations;
 
-import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.harness.vec.common.HasSpecifications;
 import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
+import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.v12x.*;
 
 import java.util.Collection;
 import java.util.function.Function;
@@ -41,7 +42,6 @@ public final class SpecificationNavs {
     private SpecificationNavs() {
         // hide default constructor
     }
-
 
     @RequiresBackReferences
     public static Function<VecSpecification, String> parentDocumentNumber() {
@@ -71,6 +71,32 @@ public final class SpecificationNavs {
                 return sheetOrChapter.getParentDocumentVersion();
             }
         };
+    }
+
+    public static Function<VecBuildingBlockSpecification2D, VecGeometrySegment2D> geometrySegment2DBy(
+            final String segmentId) {
+        return specification -> specification.getGeometrySegments().stream()
+                .filter(segment -> segment.getIdentification().equals(segmentId))
+                .collect(StreamUtils.findOne());
+    }
+
+    public static Function<VecBuildingBlockSpecification3D, VecGeometrySegment3D> geometrySegment3DBy(
+            final String segmentId) {
+        return specification -> specification.getGeometrySegments().stream()
+                .filter(segment -> segment.getIdentification().equals(segmentId))
+                .collect(StreamUtils.findOne());
+    }
+
+    public static Function<VecBuildingBlockSpecification2D, VecGeometryNode2D> geometryNode2DBy(final String nodeId) {
+        return specification -> specification.getGeometryNodes().stream()
+                .filter(node -> node.getIdentification().equals(nodeId))
+                .collect(StreamUtils.findOne());
+    }
+
+    public static Function<VecBuildingBlockSpecification3D, VecGeometryNode3D> geometryNode3DBy(final String nodeId) {
+        return specification -> specification.getGeometryNodes().stream()
+                .filter(node -> node.getIdentification().equals(nodeId))
+                .collect(StreamUtils.findOne());
     }
 
 }
