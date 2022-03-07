@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,19 +23,22 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.v24.validation;
 
-import com.foursoft.jaxb.navext.runtime.io.validation.LogValidator;
-import com.foursoft.jaxb.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.kbl.v24.KBLContainer;
+import com.foursoft.harness.kbl.v24.KblHarness;
+import com.foursoft.harness.kbl.v24.KblHarnessContent;
+import com.foursoft.harness.kbl.v24.KblWriter;
+import com.foursoft.harness.kbl.v24.exception.KblException;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.validation.Schema;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class SchemaFactoryTest {
+class KblValidationTest {
 
     @Test
     void testSchema() {
@@ -57,11 +60,10 @@ class SchemaFactoryTest {
         final KblWriter kblWriter = new KblWriter();
         final String result = kblWriter.writeToString(root);
 
-        final Schema schema = SchemaFactory.getSchema();
-        final Collection<LogValidator.ErrorLocation> errorLocations =
-                new XMLValidation(schema).validateXML(result, StandardCharsets.UTF_8);
+        final Collection<String> errors = new ArrayList<>();
+        KblValidation.validateXML(result, errors::add, true);
 
-        assertThat(errorLocations).isEmpty();
+        assertThat(errors).isEmpty();
     }
 
     @Test
@@ -75,10 +77,10 @@ class SchemaFactoryTest {
         final KblWriter kblWriter = new KblWriter();
         final String result = kblWriter.writeToString(root);
 
-        final Schema schema = SchemaFactory.getSchema();
-        final Collection<LogValidator.ErrorLocation> errorLocations =
-                new XMLValidation(schema).validateXML(result, StandardCharsets.UTF_8);
-
-        assertThat(errorLocations).isNotEmpty();
+        final Collection<String> errors = new ArrayList<>();
+        assertThatThrownBy(() -> KblValidation.validateXML(result, errors::add, true))
+                .isInstanceOf(KblException.class)
+                .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
+        assertThat(errors).isNotEmpty();
     }
 }

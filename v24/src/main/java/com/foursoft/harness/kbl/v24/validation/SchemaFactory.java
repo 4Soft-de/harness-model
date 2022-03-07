@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.v24.validation;
 
 import javax.xml.validation.Schema;
 
