@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Navigation methods for the {@link VecDocumentVersion}.
@@ -110,57 +111,55 @@ public final class DocumentVersionNavs {
     }
 
     public static Function<VecDocumentVersion, VecGeometryNode2D> geometryNode2DBy(final VecNodeLocation location) {
-        return dv -> dv.getSpecificationWithType(VecBuildingBlockSpecification2D.class)
-                .map(VecBuildingBlockSpecification2D::getGeometryNodes).orElseGet(Collections::emptyList)
-                .stream()
-                .filter(n -> n.getReferenceNode().equals(location.getReferencedNode()))
-                .collect(StreamUtils.findOne());
+        return dv -> {
+            final List<VecGeometryNode2D> nodes = dv.getSpecificationWithType(VecBuildingBlockSpecification2D.class)
+                    .map(VecBuildingBlockSpecification2D::getGeometryNodes)
+                    .orElseGet(Collections::emptyList);
+            return getGeometryNode(nodes, location);
+        };
     }
 
     public static Function<VecDocumentVersion, VecGeometryNode3D> geometryNode3DBy(final VecNodeLocation location) {
-        return dv -> dv.getSpecificationWithType(VecBuildingBlockSpecification3D.class)
-                .map(VecBuildingBlockSpecification3D::getGeometryNodes).orElseGet(Collections::emptyList)
-                .stream()
-                .filter(n -> n.getReferenceNode().equals(location.getReferencedNode()))
-                .collect(StreamUtils.findOne());
+        return dv -> {
+            final List<VecGeometryNode3D> nodes = dv.getSpecificationWithType(VecBuildingBlockSpecification3D.class)
+                    .map(VecBuildingBlockSpecification3D::getGeometryNodes)
+                    .orElseGet(Collections::emptyList);
+            return getGeometryNode(nodes, location);
+        };
     }
 
     public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem2D>> viewItem2DBy(
             final String occurrenceOrUsageId) {
-        return dv -> dv.getSpecificationsWithType(VecBuildingBlockSpecification2D.class).stream()
-                .map(VecBuildingBlockSpecification2D::getPlacedElementViewItems)
-                .flatMap(Collection::stream)
-                .filter(item -> item.getOccurrenceOrUsage().stream()
-                        .collect(StreamUtils.findOne())
-                        .getIdentification()
-                        .equals(occurrenceOrUsageId))
-                .findAny();
+        return dv -> {
+            final Stream<VecOccurrenceOrUsageViewItem2D> stream = dv
+                    .getSpecificationsWithType(VecBuildingBlockSpecification2D.class)
+                    .stream()
+                    .map(VecBuildingBlockSpecification2D::getPlacedElementViewItems)
+                    .flatMap(Collection::stream);
+            return getViewItem(stream, occurrenceOrUsageId);
+        };
     }
 
     public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem3D>> viewItem3DBy(
             final String occurrenceOrUsageId) {
-        return dv -> dv.getSpecificationsWithType(VecBuildingBlockSpecification3D.class).stream()
-                .map(VecBuildingBlockSpecification3D::getPlacedElementViewItem3Ds)
-                .flatMap(Collection::stream)
-                .filter(item -> item.getOccurrenceOrUsage().stream()
-                        .collect(StreamUtils.findOne())
-                        .getIdentification()
-                        .equals(occurrenceOrUsageId))
-                .findAny();
+        return dv -> {
+            final Stream<VecOccurrenceOrUsageViewItem3D> stream = dv
+                    .getSpecificationsWithType(VecBuildingBlockSpecification3D.class)
+                    .stream()
+                    .map(VecBuildingBlockSpecification3D::getPlacedElementViewItem3Ds)
+                    .flatMap(Collection::stream);
+            return getViewItem(stream, occurrenceOrUsageId);
+        };
     }
 
-    public static Function<VecDocumentVersion, VecBuildingBlockSpecification2D> buildingBlockSpecification2DBy(
+    public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification2D>> buildingBlockSpecification2DBy(
             final String specificationId) {
-        return dv -> dv.getSpecificationsWithType(VecBuildingBlockSpecification2D.class).stream()
-                .filter(specification -> specification.getIdentification().equals(specificationId))
-                .collect(StreamUtils.findOne());
+        return dv -> dv.getSpecificationWith(VecBuildingBlockSpecification2D.class, specificationId);
     }
 
-    public static Function<VecDocumentVersion, VecBuildingBlockSpecification3D> buildingBlockSpecification3DBy(
+    public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification3D>> buildingBlockSpecification3DBy(
             final String specificationId) {
-        return dv -> dv.getSpecificationsWithType(VecBuildingBlockSpecification3D.class).stream()
-                .filter(specification -> specification.getIdentification().equals(specificationId))
-                .collect(StreamUtils.findOne());
+        return dv -> dv.getSpecificationWith(VecBuildingBlockSpecification3D.class, specificationId);
     }
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning2D>> positioning2DWith(
@@ -179,6 +178,23 @@ public final class DocumentVersionNavs {
                 .flatMap(Collection::stream)
                 .filter(positioning -> positioning.getReferenced3DBuildingBlock() == buildingBlock)
                 .collect(StreamUtils.findOneOrNone());
+    }
+
+    private static <T extends VecGeometryNode> T getGeometryNode(final List<T> nodes,
+                                                                 final VecNodeLocation location) {
+        return nodes.stream()
+                .filter(node -> node.getReferenceNode().equals(location.getReferencedNode()))
+                .collect(StreamUtils.findOne());
+    }
+
+    private static <T extends HasOccurrenceOrUsages> Optional<T> getViewItem(final Stream<T> stream,
+                                                                             final String occurrenceOrUsageId) {
+        return stream
+                .filter(item -> item.getOccurrenceOrUsage().stream()
+                        .collect(StreamUtils.findOne())
+                        .getIdentification()
+                        .equals(occurrenceOrUsageId))
+                .findAny();
     }
 
 }
