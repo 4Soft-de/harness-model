@@ -63,26 +63,10 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 </dependency>
 ```
 
-and for the assertion library:
-
-```xml
-
-<dependency>
-    <groupId>com.foursoft.harness.vec</groupId>
-    <artifactId>vec113-assertions</artifactId>
-    <scope>test</scope>
-    <version>VERSION</version>
-</dependency>
-```
-
 #### Gradle
 
 ```groovy
 implementation group: 'com.foursoft.harness.vec', name: 'v113', version: 'VERSION'
-```
-
-```groovy
-testCompile group: 'com.foursoft.harness.vec', name: 'vec113-assertions', version: 'VERSION'
 ```
 
 ### VEC 1.2.0
@@ -98,26 +82,10 @@ testCompile group: 'com.foursoft.harness.vec', name: 'vec113-assertions', versio
 </dependency>
 ```
 
-and for the assertion library:
-
-```xml
-
-<dependency>
-    <groupId>com.foursoft.harness.vec</groupId>
-    <artifactId>vec120-assertions</artifactId>
-    <scope>test</scope>
-    <version>VERSION</version>
-</dependency>
-```
-
 #### Gradle
 
 ```groovy
 implementation group: 'com.foursoft.harness.vec', name: 'v12x', version: 'VERSION'
-```
-
-```groovy
-testCompile group: 'com.foursoft.harness.vec', name: 'vec120-assertions', version: 'VERSION'
 ```
 
 ## Code examples
@@ -137,7 +105,8 @@ More examples can be found in the examples of each module:
 <?xml version="1.0" encoding="UTF-8"?>
 <?cs checksum="2764192431"?>
 <?xsd validated="true"?>
-<vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <CustomProperty id="id_1006_2" xsi:type="vec:SimpleValueProperty">
         <PropertyType>ExampleType</PropertyType>
         <Value>CAP</Value>
@@ -249,7 +218,8 @@ public class MyVecWriter {
             </Permission>
         </Approval>
         <DocumentNumber>123_456_789</DocumentNumber>
-        <Specification xsi:type="vec:ConnectorHousingCapSpecification" id="id_2000_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Specification xsi:type="vec:ConnectorHousingCapSpecification" id="id_2000_0"
+                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <Identification>Ccs-123_456_789-1</Identification>
         </Specification>
     </DocumentVersion>
@@ -257,56 +227,6 @@ public class MyVecWriter {
         <PartNumber>123_456_789</PartNumber>
     </PartVersion>
 </vec:VecContent>
-```
-
-### Assertions on VEC files
-
-:warning: The assertions are deprecated and will be removed without replacement in the next
-releases. [AssertJ Issue](https://github.com/assertj/assertj-assertions-generator/issues/197)
-
-For each VEC version we provide an additional jar file with generated AssertJ assertions to write fluent assertions on
-VEC elements. The assertions are generated with
-the [AssertJ assertions generator](https://joel-costigliola.github.io/assertj/assertj-assertions-generator-maven-plugin.html)
-.
-
-Below is a short example for the usage of these assertions in combination with native AssertJ-Assertions. For detailed
-information please refer to the original [AssertJ Documentation](https://assertj.github.io/doc/).
-
-Please note the static imports of
-the [assertions entry point](https://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html)
-and the order of `...Assertions.assertThat;`.
-
-```java
-import static com.foursoft.harness.vec.v113.assertions.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.atIndex;
-
-import org.junit.jupiter.api.Test;
-
-import com.foursoft.harness.vec.v113.VecConnectorHousingSpecification;
-import com.foursoft.harness.vec.v113.VecDocumentVersion;
-import com.foursoft.harness.vec.v113.VecPartVersion;
-
-class VecSampleTest {
-
-    @Test
-    void doSomeAssertions() {
-        //Find the element to test, maybe with a traversing visitor...
-        VecDocumentVersion partMasterDocument = null; // determine document version
-
-        assertThat(partMasterDocument)
-                .hasDocumentType("PartMaster")
-                .hasNoCustomProperties()
-                .satisfies(d ->
-                        assertThat(d.getSpecificationsWithType(VecConnectorHousingSpecification.class))
-                                .hasSize(1)
-                                .satisfies(
-                                        chs -> assertThat(chs).hasIdentification("ABC"),
-                                        atIndex(0))
-                );
-    }
-}
-
 ```
 
 ## Contributing
