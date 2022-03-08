@@ -79,10 +79,8 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, Optional<VecTopologyNode>> topologyNodeBy(
             final String occurrenceIdentification) {
-        return documentVersion -> documentVersion
-                .getSpecificationsWithType(VecCompositionSpecification.class).stream()
-                .map(VecCompositionSpecification::getComponents)
-                .flatMap(Collection::stream)
+        return documentVersion -> SpecificationNavs.components().apply(documentVersion)
+                .stream()
                 .filter(occurrence -> occurrence.getIdentification().equals(occurrenceIdentification))
                 .map(PartOccurrenceOrUsageNavs.topologyNodeByOccurrenceOrUsage())
                 .flatMap(StreamUtils.unwrapOptional())

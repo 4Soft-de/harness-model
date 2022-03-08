@@ -34,6 +34,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -50,16 +51,41 @@ public final class SpecificationNavs {
         return spec -> parentDocumentVersion().apply(spec).getDocumentNumber();
     }
 
+    @RequiresBackReferences
+    public static Function<VecSpecification, VecDocumentVersion> parentDocumentVersion() {
+        return specification -> {
+            final VecSheetOrChapter sheetOrChapter = specification.getParentSheetOrChapter();
+            final VecDocumentVersion documentVersion = specification.getParentDocumentVersion();
+            if (documentVersion != null) {
+                return documentVersion;
+            } else {
+                return sheetOrChapter.getParentDocumentVersion();
+            }
+        };
+    }
+
     public static Function<HasSpecifications<VecSpecification>, Stream<VecOccurrenceOrUsage>> allOccurrenceOrUsages() {
         return hasSpecifications -> Stream.concat(
-                hasSpecifications.getSpecificationsWithType(VecCompositionSpecification.class)
-                        .stream()
-                        .map(VecCompositionSpecification::getComponents)
-                        .flatMap(Collection::stream),
+                components().apply(hasSpecifications).stream(),
                 hasSpecifications.getSpecificationsWithType(VecPartUsageSpecification.class)
                         .stream()
                         .map(VecPartUsageSpecification::getPartUsages)
                         .flatMap(Collection::stream));
+    }
+
+    /**
+     * Gets the {@link VecCompositionSpecification}s and gets
+     * their {@link VecCompositionSpecification#getComponents() components}.
+     *
+     * @return A possibly-empty list of Components.
+     */
+    public static Function<HasSpecifications<VecSpecification>, List<VecPartOccurrence>> components() {
+        return hasSpecifications -> hasSpecifications
+                .getSpecificationsWithType(VecCompositionSpecification.class)
+                .stream()
+                .map(VecCompositionSpecification::getComponents)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -75,19 +101,6 @@ public final class SpecificationNavs {
                 .getSpecificationWith(VecCompositionSpecification.class, specificationValue)
                 .map(VecCompositionSpecification::getComponents)
                 .orElseGet(Collections::emptyList);
-    }
-
-    @RequiresBackReferences
-    public static Function<VecSpecification, VecDocumentVersion> parentDocumentVersion() {
-        return specification -> {
-            final VecSheetOrChapter sheetOrChapter = specification.getParentSheetOrChapter();
-            final VecDocumentVersion documentVersion = specification.getParentDocumentVersion();
-            if (documentVersion != null) {
-                return documentVersion;
-            } else {
-                return sheetOrChapter.getParentDocumentVersion();
-            }
-        };
     }
 
     public static Function<VecBuildingBlockSpecification2D, VecGeometrySegment2D> geometrySegment2DBy(
