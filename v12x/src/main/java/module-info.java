@@ -30,7 +30,6 @@ open module com.foursoft.harness.vec.v12x {
     requires java.xml;
     requires java.xml.bind;
     requires java.annotation;
-    requires org.slf4j;
 
     exports com.foursoft.harness.vec.v12x;
     exports com.foursoft.harness.vec.v12x.visitor;
