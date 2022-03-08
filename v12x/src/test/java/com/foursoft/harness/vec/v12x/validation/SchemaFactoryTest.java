@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,8 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.v12x;
+package com.foursoft.harness.vec.v12x.validation;
 
+import com.foursoft.harness.vec.v12x.VecContent;
+import com.foursoft.harness.vec.v12x.VecPartVersion;
+import com.foursoft.harness.vec.v12x.VecWriter;
 import com.foursoft.jaxb.navext.runtime.io.validation.LogValidator;
 import com.foursoft.jaxb.navext.runtime.io.validation.XMLValidation;
 import org.junit.jupiter.api.Test;
