@@ -112,6 +112,33 @@ public final class DocumentVersionNavs {
                 .collect(Collectors.toList());
     }
 
+    public static Function<VecDocumentVersion, VecPlaceableElementRole> placeableElementRoleBy(
+            final String specificationValue,
+            final String occurrenceOrUsageId) {
+        return dv -> SpecificationNavs.componentsBy(specificationValue).apply(dv)
+                .stream()
+                .filter(c -> c.getIdentification().equals(occurrenceOrUsageId))
+                .map(VecPartOccurrence::getRoles)
+                .flatMap(Collection::stream)
+                .filter(VecPlaceableElementRole.class::isInstance)
+                .map(VecPlaceableElementRole.class::cast)
+                .collect(StreamUtils.findOne());
+    }
+
+    public static Function<VecDocumentVersion, VecPlacement> placementBy(final String specificationValue,
+                                                                         final String occurrenceOrUsageId) {
+        return dv -> {
+            final VecPlaceableElementRole role =
+                    placeableElementRoleBy(specificationValue, occurrenceOrUsageId).apply(dv);
+
+            return dv.getSpecificationsWithType(VecPlacementSpecification.class).stream()
+                    .map(VecPlacementSpecification::getPlacements)
+                    .flatMap(Collection::stream)
+                    .filter(p -> p.getPlacedElement().stream().anyMatch(r -> r.equals(role)))
+                    .collect(StreamUtils.findOne());
+        };
+    }
+
     public static Function<VecDocumentVersion, VecGeometryNode2D> geometryNode2DBy(final VecNodeLocation location) {
         return dv -> {
             final List<VecGeometryNode2D> nodes = dv.getSpecificationWithType(VecBuildingBlockSpecification2D.class)

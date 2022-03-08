@@ -31,6 +31,8 @@ import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v12x.*;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -58,6 +60,21 @@ public final class SpecificationNavs {
                         .stream()
                         .map(VecPartUsageSpecification::getPartUsages)
                         .flatMap(Collection::stream));
+    }
+
+    /**
+     * Gets the {@link VecCompositionSpecification} with the given specification value and
+     * gets their {@link VecCompositionSpecification#getComponents() components}.
+     *
+     * @param specificationValue Value the specification has to have.
+     * @return A possibly-empty list of Components.
+     */
+    public static Function<HasSpecifications<VecSpecification>, List<VecPartOccurrence>> componentsBy(
+            final String specificationValue) {
+        return hasSpecifications -> hasSpecifications
+                .getSpecificationWith(VecCompositionSpecification.class, specificationValue)
+                .map(VecCompositionSpecification::getComponents)
+                .orElseGet(Collections::emptyList);
     }
 
     @RequiresBackReferences
