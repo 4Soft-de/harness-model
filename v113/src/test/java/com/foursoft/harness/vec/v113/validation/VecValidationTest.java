@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * vec-v12x
+ * vec-v113
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,35 +23,36 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.v12x;
+package com.foursoft.harness.vec.v113.validation;
 
-import com.foursoft.jaxb.navext.runtime.io.validation.LogValidator;
-import com.foursoft.jaxb.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.vec.common.exception.VecException;
+import com.foursoft.harness.vec.v113.VecContent;
+import com.foursoft.harness.vec.v113.VecPartVersion;
+import com.foursoft.harness.vec.v113.VecWriter;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.validation.Schema;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class SchemaFactoryTest {
+class VecValidationTest {
 
     @Test
     void testStrictSchema() {
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
-        root.setVecVersion("1.2.0");
+        root.setVecVersion("1.1.3");
 
 
         final VecWriter vecWriter = new VecWriter();
         final String result = vecWriter.writeToString(root);
 
-        final Schema schema = SchemaFactory.getStrictSchema();
-        final Collection<LogValidator.ErrorLocation> errorLocations =
-                new XMLValidation(schema).validateXML(result, StandardCharsets.UTF_8);
+        final Collection<String> errors = new ArrayList<>();
+        VecValidation.validateXML(result, errors::add, true);
 
-        assertThat(errorLocations).isEmpty();
+        assertThat(errors).isEmpty();
 
     }
 
@@ -59,7 +60,7 @@ class SchemaFactoryTest {
     void testInvalidSchema() {
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
-        root.setVecVersion("1.2.0");
+        root.setVecVersion("1.1.3");
 
         final VecPartVersion partVersion = new VecPartVersion();
         partVersion.setXmlId("id_1001_0");
@@ -69,10 +70,10 @@ class SchemaFactoryTest {
         final VecWriter vecWriter = new VecWriter();
         final String result = vecWriter.writeToString(root);
 
-        final Schema schema = SchemaFactory.getSchema();
-        final Collection<LogValidator.ErrorLocation> errorLocations =
-                new XMLValidation(schema).validateXML(result, StandardCharsets.UTF_8);
-
-        assertThat(errorLocations).isNotEmpty();
+        final Collection<String> errors = new ArrayList<>();
+        assertThatThrownBy(() -> VecValidation.validateXML(result, errors::add, true))
+                .isInstanceOf(VecException.class)
+                .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
+        assertThat(errors).isNotEmpty();
     }
 }
