@@ -67,12 +67,14 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, List<VecOccurrenceOrUsageViewItem3D>> viewItems3DBy(
             final VecOccurrenceOrUsage occurrence) {
-        return documentVersion -> documentVersion.getSpecificationWithType(VecBuildingBlockSpecification3D.class)
+        return documentVersion -> documentVersion.getSpecificationsWithType(VecBuildingBlockSpecification3D.class)
+                .stream()
                 .map(specification -> specification
                         .getPlacedElementViewItem3Ds().stream()
                         .filter(viewItem -> viewItem.getOccurrenceOrUsage().contains(occurrence))
                         .collect(Collectors.toList()))
-                .orElse(Collections.emptyList());
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 
     public static Function<VecDocumentVersion, Optional<VecTopologyNode>> topologyNodeBy(
