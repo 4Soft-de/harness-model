@@ -111,9 +111,9 @@ public final class DocumentVersionNavs {
     }
 
     public static Function<VecDocumentVersion, VecPlaceableElementRole> placeableElementRoleBy(
-            final String specificationValue,
+            final String compositionSpecificationId,
             final String occurrenceOrUsageId) {
-        return documentVersion -> SpecificationNavs.componentsBy(specificationValue).apply(documentVersion)
+        return documentVersion -> SpecificationNavs.componentsBy(compositionSpecificationId).apply(documentVersion)
                 .stream()
                 .filter(c -> c.getIdentification().equals(occurrenceOrUsageId))
                 .map(VecPartOccurrence::getRoles)
@@ -123,11 +123,11 @@ public final class DocumentVersionNavs {
                 .collect(StreamUtils.findOne());
     }
 
-    public static Function<VecDocumentVersion, VecPlacement> placementBy(final String specificationValue,
+    public static Function<VecDocumentVersion, VecPlacement> placementBy(final String compositionSpecificationId,
                                                                          final String occurrenceOrUsageId) {
         return documentVersion -> {
             final VecPlaceableElementRole role =
-                    placeableElementRoleBy(specificationValue, occurrenceOrUsageId).apply(documentVersion);
+                    placeableElementRoleBy(compositionSpecificationId, occurrenceOrUsageId).apply(documentVersion);
 
             return documentVersion.getSpecificationsWithType(VecPlacementSpecification.class).stream()
                     .map(VecPlacementSpecification::getPlacements)

@@ -93,13 +93,13 @@ public final class SpecificationNavs {
      * Gets the {@link VecCompositionSpecification} with the given specification value and
      * gets their {@link VecCompositionSpecification#getComponents() components}.
      *
-     * @param specificationValue Value the specification has to have.
+     * @param compositionSpecificationId Id the {@link VecCompositionSpecification} has to have.
      * @return A possibly-empty list of Components.
      */
     public static Function<HasSpecifications<VecSpecification>, List<VecPartOccurrence>> componentsBy(
-            final String specificationValue) {
+            final String compositionSpecificationId) {
         return specifications -> specifications
-                .getSpecificationWith(VecCompositionSpecification.class, specificationValue)
+                .getSpecificationWith(VecCompositionSpecification.class, compositionSpecificationId)
                 .map(VecCompositionSpecification::getComponents)
                 .orElseGet(Collections::emptyList);
     }
