@@ -45,27 +45,27 @@ public final class DocumentVersionNavs {
         // hide default constructor
     }
 
-    public static Function<VecDocumentVersion, List<VecGeometryNode3D>> geometryNodes3DBy(
+    public static Function<VecDocumentVersion, List<VecGeometryNode3D>> geometryNodes3dBy(
             final VecTopologyNode topologyNode) {
         return documentVersion -> documentVersion.getSpecificationsWithType(VecBuildingBlockSpecification3D.class)
                 .stream()
                 .map(VecBuildingBlockSpecification3D::getGeometryNodes)
                 .flatMap(Collection::stream)
-                .filter(node3D -> node3D.getReferenceNode().equals(topologyNode))
+                .filter(node3d -> node3d.getReferenceNode().equals(topologyNode))
                 .collect(Collectors.toList());
     }
 
-    public static Function<VecDocumentVersion, List<VecGeometrySegment3D>> geometrySegments3DBy(
+    public static Function<VecDocumentVersion, List<VecGeometrySegment3D>> geometrySegments3dBy(
             final VecTopologySegment topologySegment) {
         return documentVersion -> documentVersion.getSpecificationsWithType(VecBuildingBlockSpecification3D.class)
                 .stream()
                 .map(VecBuildingBlockSpecification3D::getGeometrySegments)
                 .flatMap(Collection::stream)
-                .filter(segment3D -> segment3D.getReferenceSegment().equals(topologySegment))
+                .filter(segment3d -> segment3d.getReferenceSegment().equals(topologySegment))
                 .collect(Collectors.toList());
     }
 
-    public static Function<VecDocumentVersion, List<VecOccurrenceOrUsageViewItem3D>> viewItems3DBy(
+    public static Function<VecDocumentVersion, List<VecOccurrenceOrUsageViewItem3D>> viewItems3dBy(
             final VecOccurrenceOrUsage occurrence) {
         return documentVersion -> documentVersion.getSpecificationsWithType(VecBuildingBlockSpecification3D.class)
                 .stream()
@@ -137,7 +137,7 @@ public final class DocumentVersionNavs {
         };
     }
 
-    public static Function<VecDocumentVersion, VecGeometryNode2D> geometryNode2DBy(final VecNodeLocation location) {
+    public static Function<VecDocumentVersion, VecGeometryNode2D> geometryNode2dBy(final VecNodeLocation location) {
         return documentVersion -> {
             final List<VecGeometryNode2D> nodes = documentVersion
                     .getSpecificationWithType(VecBuildingBlockSpecification2D.class)
@@ -147,7 +147,7 @@ public final class DocumentVersionNavs {
         };
     }
 
-    public static Function<VecDocumentVersion, VecGeometryNode3D> geometryNode3DBy(final VecNodeLocation location) {
+    public static Function<VecDocumentVersion, VecGeometryNode3D> geometryNode3dBy(final VecNodeLocation location) {
         return documentVersion -> {
             final List<VecGeometryNode3D> nodes = documentVersion
                     .getSpecificationWithType(VecBuildingBlockSpecification3D.class)
@@ -157,7 +157,7 @@ public final class DocumentVersionNavs {
         };
     }
 
-    public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem2D>> viewItem2DBy(
+    public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem2D>> viewItem2dBy(
             final String occurrenceOrUsageId) {
         return documentVersion -> {
             final Stream<VecOccurrenceOrUsageViewItem2D> stream = documentVersion
@@ -169,7 +169,7 @@ public final class DocumentVersionNavs {
         };
     }
 
-    public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem3D>> viewItem3DBy(
+    public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem3D>> viewItem3dBy(
             final String occurrenceOrUsageId) {
         return documentVersion -> {
             final Stream<VecOccurrenceOrUsageViewItem3D> stream = documentVersion
@@ -181,19 +181,19 @@ public final class DocumentVersionNavs {
         };
     }
 
-    public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification2D>> buildingBlockSpecification2DBy(
+    public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification2D>> buildingBlockSpecification2dBy(
             final String specificationId) {
         return documentVersion -> documentVersion
                 .getSpecificationWith(VecBuildingBlockSpecification2D.class, specificationId);
     }
 
-    public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification3D>> buildingBlockSpecification3DBy(
+    public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification3D>> buildingBlockSpecification3dBy(
             final String specificationId) {
         return documentVersion -> documentVersion
                 .getSpecificationWith(VecBuildingBlockSpecification3D.class, specificationId);
     }
 
-    public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning2D>> positioning2DWith(
+    public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning2D>> positioning2dWith(
             final VecBuildingBlockSpecification2D buildingBlock) {
         return documentVersion -> documentVersion
                 .getSpecificationsWithType(VecHarnessDrawingSpecification2D.class).stream()
@@ -203,7 +203,7 @@ public final class DocumentVersionNavs {
                 .collect(StreamUtils.findOneOrNone());
     }
 
-    public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning3D>> positioning3DWith(
+    public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning3D>> positioning3dWith(
             final VecBuildingBlockSpecification3D buildingBlock) {
         return documentVersion -> documentVersion
                 .getSpecificationsWithType(VecHarnessGeometrySpecification3D.class).stream()
