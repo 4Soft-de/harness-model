@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,10 +25,10 @@
  */
 package com.foursoft.harness.vec.v12x.navigations;
 
+import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v12x.VecContent;
 import com.foursoft.harness.vec.v12x.VecDocumentVersion;
 import com.foursoft.harness.vec.v12x.VecSpecification;
-import com.foursoft.harness.vec.common.util.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +47,7 @@ public final class ContentNavs {
     public static <T extends VecSpecification> Function<VecContent, List<T>> allSpecificationsOf(final Class<T> clazz) {
         return vecContent -> vecContent.getDocumentVersions()
                 .stream()
-                .flatMap(StreamUtils.toStream(dv -> dv.getSpecificationsWithType(clazz)))
+                .flatMap(StreamUtils.toStream(documentVersion -> documentVersion.getSpecificationsWithType(clazz)))
                 .collect(Collectors.toList());
     }
 
