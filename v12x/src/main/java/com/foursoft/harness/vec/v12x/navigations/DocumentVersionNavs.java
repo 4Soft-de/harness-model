@@ -139,7 +139,8 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, VecGeometryNode2D> geometryNode2DBy(final VecNodeLocation location) {
         return documentVersion -> {
-            final List<VecGeometryNode2D> nodes = documentVersion.getSpecificationWithType(VecBuildingBlockSpecification2D.class)
+            final List<VecGeometryNode2D> nodes = documentVersion
+                    .getSpecificationWithType(VecBuildingBlockSpecification2D.class)
                     .map(VecBuildingBlockSpecification2D::getGeometryNodes)
                     .orElseGet(Collections::emptyList);
             return getGeometryNode(nodes, location);
@@ -148,7 +149,8 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, VecGeometryNode3D> geometryNode3DBy(final VecNodeLocation location) {
         return documentVersion -> {
-            final List<VecGeometryNode3D> nodes = documentVersion.getSpecificationWithType(VecBuildingBlockSpecification3D.class)
+            final List<VecGeometryNode3D> nodes = documentVersion
+                    .getSpecificationWithType(VecBuildingBlockSpecification3D.class)
                     .map(VecBuildingBlockSpecification3D::getGeometryNodes)
                     .orElseGet(Collections::emptyList);
             return getGeometryNode(nodes, location);
@@ -181,17 +183,20 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification2D>> buildingBlockSpecification2DBy(
             final String specificationId) {
-        return documentVersion -> documentVersion.getSpecificationWith(VecBuildingBlockSpecification2D.class, specificationId);
+        return documentVersion -> documentVersion
+                .getSpecificationWith(VecBuildingBlockSpecification2D.class, specificationId);
     }
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification3D>> buildingBlockSpecification3DBy(
             final String specificationId) {
-        return documentVersion -> documentVersion.getSpecificationWith(VecBuildingBlockSpecification3D.class, specificationId);
+        return documentVersion -> documentVersion
+                .getSpecificationWith(VecBuildingBlockSpecification3D.class, specificationId);
     }
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning2D>> positioning2DWith(
             final VecBuildingBlockSpecification2D buildingBlock) {
-        return documentVersion -> documentVersion.getSpecificationsWithType(VecHarnessDrawingSpecification2D.class).stream()
+        return documentVersion -> documentVersion
+                .getSpecificationsWithType(VecHarnessDrawingSpecification2D.class).stream()
                 .map(VecHarnessDrawingSpecification2D::getBuildingBlockPositionings)
                 .flatMap(Collection::stream)
                 .filter(positioning -> buildingBlock.equals(positioning.getReferenced2DBuildingBlock()))
@@ -200,7 +205,8 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning3D>> positioning3DWith(
             final VecBuildingBlockSpecification3D buildingBlock) {
-        return documentVersion -> documentVersion.getSpecificationsWithType(VecHarnessGeometrySpecification3D.class).stream()
+        return documentVersion -> documentVersion
+                .getSpecificationsWithType(VecHarnessGeometrySpecification3D.class).stream()
                 .map(VecHarnessGeometrySpecification3D::getBuildingBlockPositionings)
                 .flatMap(Collection::stream)
                 .filter(positioning -> buildingBlock.equals(positioning.getReferenced3DBuildingBlock()))
