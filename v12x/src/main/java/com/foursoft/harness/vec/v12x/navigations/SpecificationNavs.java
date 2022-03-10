@@ -64,13 +64,14 @@ public final class SpecificationNavs {
         };
     }
 
-    public static Function<HasSpecifications<VecSpecification>, Stream<VecOccurrenceOrUsage>> allOccurrenceOrUsages() {
+    public static Function<HasSpecifications<VecSpecification>, List<VecOccurrenceOrUsage>> allOccurrenceOrUsages() {
         return specifications -> Stream.concat(
-                components().apply(specifications).stream(),
-                specifications.getSpecificationsWithType(VecPartUsageSpecification.class)
-                        .stream()
-                        .map(VecPartUsageSpecification::getPartUsages)
-                        .flatMap(Collection::stream));
+                        components().apply(specifications).stream(),
+                        specifications.getSpecificationsWithType(VecPartUsageSpecification.class)
+                                .stream()
+                                .map(VecPartUsageSpecification::getPartUsages)
+                                .flatMap(Collection::stream))
+                .collect(Collectors.toList());
     }
 
     /**
