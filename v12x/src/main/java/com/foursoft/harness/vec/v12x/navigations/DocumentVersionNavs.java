@@ -113,7 +113,7 @@ public final class DocumentVersionNavs {
     public static Function<VecDocumentVersion, VecPlaceableElementRole> placeableElementRoleBy(
             final String specificationValue,
             final String occurrenceOrUsageId) {
-        return dv -> SpecificationNavs.componentsBy(specificationValue).apply(dv)
+        return documentVersion -> SpecificationNavs.componentsBy(specificationValue).apply(documentVersion)
                 .stream()
                 .filter(c -> c.getIdentification().equals(occurrenceOrUsageId))
                 .map(VecPartOccurrence::getRoles)
@@ -125,11 +125,11 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, VecPlacement> placementBy(final String specificationValue,
                                                                          final String occurrenceOrUsageId) {
-        return dv -> {
+        return documentVersion -> {
             final VecPlaceableElementRole role =
-                    placeableElementRoleBy(specificationValue, occurrenceOrUsageId).apply(dv);
+                    placeableElementRoleBy(specificationValue, occurrenceOrUsageId).apply(documentVersion);
 
-            return dv.getSpecificationsWithType(VecPlacementSpecification.class).stream()
+            return documentVersion.getSpecificationsWithType(VecPlacementSpecification.class).stream()
                     .map(VecPlacementSpecification::getPlacements)
                     .flatMap(Collection::stream)
                     .filter(p -> p.getPlacedElement().stream().anyMatch(r -> r.equals(role)))
@@ -138,8 +138,8 @@ public final class DocumentVersionNavs {
     }
 
     public static Function<VecDocumentVersion, VecGeometryNode2D> geometryNode2DBy(final VecNodeLocation location) {
-        return dv -> {
-            final List<VecGeometryNode2D> nodes = dv.getSpecificationWithType(VecBuildingBlockSpecification2D.class)
+        return documentVersion -> {
+            final List<VecGeometryNode2D> nodes = documentVersion.getSpecificationWithType(VecBuildingBlockSpecification2D.class)
                     .map(VecBuildingBlockSpecification2D::getGeometryNodes)
                     .orElseGet(Collections::emptyList);
             return getGeometryNode(nodes, location);
@@ -147,8 +147,8 @@ public final class DocumentVersionNavs {
     }
 
     public static Function<VecDocumentVersion, VecGeometryNode3D> geometryNode3DBy(final VecNodeLocation location) {
-        return dv -> {
-            final List<VecGeometryNode3D> nodes = dv.getSpecificationWithType(VecBuildingBlockSpecification3D.class)
+        return documentVersion -> {
+            final List<VecGeometryNode3D> nodes = documentVersion.getSpecificationWithType(VecBuildingBlockSpecification3D.class)
                     .map(VecBuildingBlockSpecification3D::getGeometryNodes)
                     .orElseGet(Collections::emptyList);
             return getGeometryNode(nodes, location);
@@ -157,8 +157,8 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem2D>> viewItem2DBy(
             final String occurrenceOrUsageId) {
-        return dv -> {
-            final Stream<VecOccurrenceOrUsageViewItem2D> stream = dv
+        return documentVersion -> {
+            final Stream<VecOccurrenceOrUsageViewItem2D> stream = documentVersion
                     .getSpecificationsWithType(VecBuildingBlockSpecification2D.class)
                     .stream()
                     .map(VecBuildingBlockSpecification2D::getPlacedElementViewItems)
@@ -169,8 +169,8 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, Optional<VecOccurrenceOrUsageViewItem3D>> viewItem3DBy(
             final String occurrenceOrUsageId) {
-        return dv -> {
-            final Stream<VecOccurrenceOrUsageViewItem3D> stream = dv
+        return documentVersion -> {
+            final Stream<VecOccurrenceOrUsageViewItem3D> stream = documentVersion
                     .getSpecificationsWithType(VecBuildingBlockSpecification3D.class)
                     .stream()
                     .map(VecBuildingBlockSpecification3D::getPlacedElementViewItem3Ds)
@@ -181,17 +181,17 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification2D>> buildingBlockSpecification2DBy(
             final String specificationId) {
-        return dv -> dv.getSpecificationWith(VecBuildingBlockSpecification2D.class, specificationId);
+        return documentVersion -> documentVersion.getSpecificationWith(VecBuildingBlockSpecification2D.class, specificationId);
     }
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockSpecification3D>> buildingBlockSpecification3DBy(
             final String specificationId) {
-        return dv -> dv.getSpecificationWith(VecBuildingBlockSpecification3D.class, specificationId);
+        return documentVersion -> documentVersion.getSpecificationWith(VecBuildingBlockSpecification3D.class, specificationId);
     }
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning2D>> positioning2DWith(
             final VecBuildingBlockSpecification2D buildingBlock) {
-        return dv -> dv.getSpecificationsWithType(VecHarnessDrawingSpecification2D.class).stream()
+        return documentVersion -> documentVersion.getSpecificationsWithType(VecHarnessDrawingSpecification2D.class).stream()
                 .map(VecHarnessDrawingSpecification2D::getBuildingBlockPositionings)
                 .flatMap(Collection::stream)
                 .filter(positioning -> buildingBlock.equals(positioning.getReferenced2DBuildingBlock()))
@@ -200,7 +200,7 @@ public final class DocumentVersionNavs {
 
     public static Function<VecDocumentVersion, Optional<VecBuildingBlockPositioning3D>> positioning3DWith(
             final VecBuildingBlockSpecification3D buildingBlock) {
-        return dv -> dv.getSpecificationsWithType(VecHarnessGeometrySpecification3D.class).stream()
+        return documentVersion -> documentVersion.getSpecificationsWithType(VecHarnessGeometrySpecification3D.class).stream()
                 .map(VecHarnessGeometrySpecification3D::getBuildingBlockPositionings)
                 .flatMap(Collection::stream)
                 .filter(positioning -> buildingBlock.equals(positioning.getReferenced3DBuildingBlock()))
