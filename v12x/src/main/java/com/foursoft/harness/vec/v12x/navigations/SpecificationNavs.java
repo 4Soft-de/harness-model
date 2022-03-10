@@ -65,9 +65,9 @@ public final class SpecificationNavs {
     }
 
     public static Function<HasSpecifications<VecSpecification>, Stream<VecOccurrenceOrUsage>> allOccurrenceOrUsages() {
-        return hasSpecifications -> Stream.concat(
-                components().apply(hasSpecifications).stream(),
-                hasSpecifications.getSpecificationsWithType(VecPartUsageSpecification.class)
+        return specifications -> Stream.concat(
+                components().apply(specifications).stream(),
+                specifications.getSpecificationsWithType(VecPartUsageSpecification.class)
                         .stream()
                         .map(VecPartUsageSpecification::getPartUsages)
                         .flatMap(Collection::stream));
@@ -80,7 +80,7 @@ public final class SpecificationNavs {
      * @return A possibly-empty list of Components.
      */
     public static Function<HasSpecifications<VecSpecification>, List<VecPartOccurrence>> components() {
-        return hasSpecifications -> hasSpecifications
+        return specifications -> specifications
                 .getSpecificationsWithType(VecCompositionSpecification.class)
                 .stream()
                 .map(VecCompositionSpecification::getComponents)
@@ -97,7 +97,7 @@ public final class SpecificationNavs {
      */
     public static Function<HasSpecifications<VecSpecification>, List<VecPartOccurrence>> componentsBy(
             final String specificationValue) {
-        return hasSpecifications -> hasSpecifications
+        return specifications -> specifications
                 .getSpecificationWith(VecCompositionSpecification.class, specificationValue)
                 .map(VecCompositionSpecification::getComponents)
                 .orElseGet(Collections::emptyList);
