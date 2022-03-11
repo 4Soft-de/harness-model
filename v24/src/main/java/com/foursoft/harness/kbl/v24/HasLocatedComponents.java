@@ -59,5 +59,5 @@ public interface HasLocatedComponents {
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
-    
+
 }

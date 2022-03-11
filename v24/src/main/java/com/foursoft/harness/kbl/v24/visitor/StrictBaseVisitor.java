@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,442 +28,514 @@ package com.foursoft.harness.kbl.v24.visitor;
 import com.foursoft.harness.kbl.v24.*;
 
 /**
- * All methods are implemented as default method. Only methods which inherit from LocatedComponent are not overwritten.
+ * Base implementation for a strict {@link Visitor}. Strict means, that the
+ * visitor class will throw an {@link UnsupportedOperationException} if it
+ * encounters a class that is not handled explicitly, by overriding the
+ * corresponding methods.
+ *
+ * @param <R> Class of the visitor
  */
-public interface KblLocatedComponentVisitor<R, E extends Throwable> extends Visitor<R, E> {
+public class StrictBaseVisitor<R, E extends Throwable> implements Visitor<R, E> {
 
+    /**
+     * Default implementation for creating an error message in case of visiting
+     * classes that are not explicitly handled.
+     *
+     * @param aBean Object to get class name from
+     * @return Never null String containing the error message for the given object
+     */
     private String getErrorMessage(final Object aBean) {
         return String.format("Encountered unhandled class '%s' in visitor implementation: %s",
                 aBean.getClass().getName(), getClass().getName());
     }
 
     @Override
-    default R visitKBLContainer(final KBLContainer aBean) throws E {
+    public R visitKBLContainer(final KBLContainer aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblAbstractSlotOccurrence(final KblAbstractSlotOccurrence aBean) throws E {
+    public R visitKblAbstractSlotOccurrence(final KblAbstractSlotOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblAccessory(final KblAccessory aBean) throws E {
+    public R visitKblAccessory(final KblAccessory aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblAliasIdentification(final KblAliasIdentification aBean) throws E {
+    public R visitKblAccessoryOccurrence(final KblAccessoryOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblApproval(final KblApproval aBean) throws E {
+    public R visitKblAliasIdentification(final KblAliasIdentification aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblAssemblyPart(final KblAssemblyPart aBean) throws E {
+    public R visitKblApproval(final KblApproval aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblBSplineCurve(final KblBSplineCurve aBean) throws E {
+    public R visitKblAssemblyPart(final KblAssemblyPart aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCartesianPoint(final KblCartesianPoint aBean) throws E {
+    public R visitKblAssemblyPartOccurrence(final KblAssemblyPartOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCavity(final KblCavity aBean) throws E {
+    public R visitKblBSplineCurve(final KblBSplineCurve aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCavityOccurrence(final KblCavityOccurrence aBean) throws E {
+    public R visitKblCartesianPoint(final KblCartesianPoint aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCavityPlug(final KblCavityPlug aBean) throws E {
+    public R visitKblCavity(final KblCavity aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCavityPlugOccurrence(final KblCavityPlugOccurrence aBean) throws E {
+    public R visitKblCavityOccurrence(final KblCavityOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCavitySeal(final KblCavitySeal aBean) throws E {
+    public R visitKblCavityPlug(final KblCavityPlug aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCavitySealOccurrence(final KblCavitySealOccurrence aBean) throws E {
+    public R visitKblCavityPlugOccurrence(final KblCavityPlugOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblChange(final KblChange aBean) throws E {
+    public R visitKblCavitySeal(final KblCavitySeal aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblChangeDescription(final KblChangeDescription aBean) throws E {
+    public R visitKblCavitySealOccurrence(final KblCavitySealOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCoPackOccurrence(final KblCoPackOccurrence aBean) throws E {
+    public R visitKblChange(final KblChange aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCoPackPart(final KblCoPackPart aBean) throws E {
+    public R visitKblChangeDescription(final KblChangeDescription aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponent(final KblComponent aBean) throws E {
+    public R visitKblCoPackOccurrence(final KblCoPackOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentBox(final KblComponentBox aBean) throws E {
+    public R visitKblCoPackPart(final KblCoPackPart aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentBoxConnection(final KblComponentBoxConnection aBean) throws E {
+    public R visitKblComponent(final KblComponent aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentBoxConnector(final KblComponentBoxConnector aBean) throws E {
+    public R visitKblComponentBox(final KblComponentBox aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentBoxConnectorOccurrence(final KblComponentBoxConnectorOccurrence aBean) throws E {
+    public R visitKblComponentBoxConnection(final KblComponentBoxConnection aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentCavity(final KblComponentCavity aBean) throws E {
+    public R visitKblComponentBoxConnector(final KblComponentBoxConnector aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentCavityOccurrence(final KblComponentCavityOccurrence aBean) throws E {
+    public R visitKblComponentBoxConnectorOccurrence(final KblComponentBoxConnectorOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentOccurrence(final KblComponentOccurrence aBean) throws E {
+    public R visitKblComponentBoxOccurrence(final KblComponentBoxOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentSlot(final KblComponentSlot aBean) throws E {
+    public R visitKblComponentCavity(final KblComponentCavity aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblComponentSlotOccurrence(final KblComponentSlotOccurrence aBean) throws E {
+    public R visitKblComponentCavityOccurrence(final KblComponentCavityOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblConnection(final KblConnection aBean) throws E {
+    public R visitKblComponentOccurrence(final KblComponentOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblConnectorHousing(final KblConnectorHousing aBean) throws E {
+    public R visitKblComponentSlot(final KblComponentSlot aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblConsumers(final KblConsumers aBean) throws E {
+    public R visitKblComponentSlotOccurrence(final KblComponentSlotOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblContactPoint(final KblContactPoint aBean) throws E {
+    public R visitKblConnection(final KblConnection aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCore(final KblCore aBean) throws E {
+    public R visitKblConnectorHousing(final KblConnectorHousing aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCoreOccurrence(final KblCoreOccurrence aBean) throws E {
+    public R visitKblConnectorOccurrence(final KblConnectorOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCreation(final KblCreation aBean) throws E {
+    public R visitKblConsumers(final KblConsumers aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblCrossSectionArea(final KblCrossSectionArea aBean) throws E {
+    public R visitKblContactPoint(final KblContactPoint aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblDefaultDimensionSpecification(final KblDefaultDimensionSpecification aBean) throws E {
+    public R visitKblCore(final KblCore aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblDimensionSpecification(final KblDimensionSpecification aBean) throws E {
+    public R visitKblCoreOccurrence(final KblCoreOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblExternalReference(final KblExternalReference aBean) throws E {
+    public R visitKblCreation(final KblCreation aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblExtremity(final KblExtremity aBean) throws E {
+    public R visitKblCrossSectionArea(final KblCrossSectionArea aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblFixing(final KblFixing aBean) throws E {
+    public R visitKblDefaultDimensionSpecification(final KblDefaultDimensionSpecification aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblFixingAssignment(final KblFixingAssignment aBean) throws E {
+    public R visitKblDimensionSpecification(final KblDimensionSpecification aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblFuse(final KblFuse aBean) throws E {
+    public R visitKblExternalReference(final KblExternalReference aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblFuseOccurrence(final KblFuseOccurrence aBean) throws E {
+    public R visitKblExtremity(final KblExtremity aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblFuseType(final KblFuseType aBean) throws E {
+    public R visitKblFixing(final KblFixing aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblGeneralTerminal(final KblGeneralTerminal aBean) throws E {
+    public R visitKblFixingAssignment(final KblFixingAssignment aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblGeneralWire(final KblGeneralWire aBean) throws E {
+    public R visitKblFixingOccurrence(final KblFixingOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblHarness(final KblHarness aBean) throws E {
+    public R visitKblFuse(final KblFuse aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblHarnessConfiguration(final KblHarnessConfiguration aBean) throws E {
+    public R visitKblFuseOccurrence(final KblFuseOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblInstallationInstruction(final KblInstallationInstruction aBean) throws E {
+    public R visitKblFuseType(final KblFuseType aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblLocalizedString(final KblLocalizedString aBean) throws E {
+    public R visitKblGeneralTerminal(final KblGeneralTerminal aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblMaterial(final KblMaterial aBean) throws E {
+    public R visitKblGeneralWire(final KblGeneralWire aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblModularSlot(final KblModularSlot aBean) throws E {
+    public R visitKblHarness(final KblHarness aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblModularSlotOccurrence(final KblModularSlotOccurrence aBean) throws E {
+    public R visitKblHarnessConfiguration(final KblHarnessConfiguration aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblModule(final KblModule aBean) throws E {
+    public R visitKblInstallationInstruction(final KblInstallationInstruction aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblModuleConfiguration(final KblModuleConfiguration aBean) throws E {
+    public R visitKblLocalizedString(final KblLocalizedString aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblModuleFamily(final KblModuleFamily aBean) throws E {
+    public R visitKblMaterial(final KblMaterial aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblNode(final KblNode aBean) throws E {
+    public R visitKblModularSlot(final KblModularSlot aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblNumericalValue(final KblNumericalValue aBean) throws E {
+    public R visitKblModularSlotOccurrence(final KblModularSlotOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblPartSubstitution(final KblPartSubstitution aBean) throws E {
+    public R visitKblModule(final KblModule aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblProcessingInstruction(final KblProcessingInstruction aBean) throws E {
+    public R visitKblModuleConfiguration(final KblModuleConfiguration aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblProtectionArea(final KblProtectionArea aBean) throws E {
+    public R visitKblModuleFamily(final KblModuleFamily aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblRouting(final KblRouting aBean) throws E {
+    public R visitKblNode(final KblNode aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSchematicConnection(final KblSchematicConnection aBean) throws E {
+    public R visitKblNumericalValue(final KblNumericalValue aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSegment(final KblSegment aBean) throws E {
+    public R visitKblPartSubstitution(final KblPartSubstitution aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSlot(final KblSlot aBean) throws E {
+    public R visitKblProcessingInstruction(final KblProcessingInstruction aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSlotOccurrence(final KblSlotOccurrence aBean) throws E {
+    public R visitKblProtectionArea(final KblProtectionArea aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecialWireOccurrence(final KblSpecialWireOccurrence aBean) throws E {
+    public R visitKblRouting(final KblRouting aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecifiedCavityPlugOccurrence(final KblSpecifiedCavityPlugOccurrence aBean) throws E {
+    public R visitKblSchematicConnection(final KblSchematicConnection aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecifiedCavitySealOccurrence(final KblSpecifiedCavitySealOccurrence aBean) throws E {
+    public R visitKblSegment(final KblSegment aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecifiedCoPackOccurrence(final KblSpecifiedCoPackOccurrence aBean) throws E {
+    public R visitKblSlot(final KblSlot aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecifiedComponentBoxOccurrence(final KblSpecifiedComponentBoxOccurrence aBean) throws E {
+    public R visitKblSlotOccurrence(final KblSlotOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecifiedComponentOccurrence(final KblSpecifiedComponentOccurrence aBean) throws E {
+    public R visitKblSpecialTerminalOccurrence(final KblSpecialTerminalOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecifiedSpecialWireOccurrence(final KblSpecifiedSpecialWireOccurrence aBean) throws E {
+    public R visitKblSpecialWireOccurrence(final KblSpecialWireOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecifiedTerminalOccurrence(final KblSpecifiedTerminalOccurrence aBean) throws E {
+    public R visitKblSpecifiedAccessoryOccurrence(final KblSpecifiedAccessoryOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblSpecifiedWireOccurrence(final KblSpecifiedWireOccurrence aBean) throws E {
+    public R visitKblSpecifiedCavityPlugOccurrence(final KblSpecifiedCavityPlugOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblTerminalOccurrence(final KblTerminalOccurrence aBean) throws E {
+    public R visitKblSpecifiedCavitySealOccurrence(final KblSpecifiedCavitySealOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblTolerance(final KblTolerance aBean) throws E {
+    public R visitKblSpecifiedCoPackOccurrence(final KblSpecifiedCoPackOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblTransformation(final KblTransformation aBean) throws E {
+    public R visitKblSpecifiedComponentBoxOccurrence(final KblSpecifiedComponentBoxOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblUnit(final KblUnit aBean) throws E {
+    public R visitKblSpecifiedComponentOccurrence(final KblSpecifiedComponentOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblValueRange(final KblValueRange aBean) throws E {
+    public R visitKblSpecifiedConnectorOccurrence(final KblSpecifiedConnectorOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblWireColour(final KblWireColour aBean) throws E {
+    public R visitKblSpecifiedFixingOccurrence(final KblSpecifiedFixingOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblWireLength(final KblWireLength aBean) throws E {
+    public R visitKblSpecifiedSpecialTerminalOccurrence(final KblSpecifiedSpecialTerminalOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblWireOccurrence(final KblWireOccurrence aBean) throws E {
+    public R visitKblSpecifiedSpecialWireOccurrence(final KblSpecifiedSpecialWireOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblWireProtection(final KblWireProtection aBean) throws E {
+    public R visitKblSpecifiedTerminalOccurrence(final KblSpecifiedTerminalOccurrence aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    default R visitKblWiringGroup(final KblWiringGroup aBean) throws E {
+    public R visitKblSpecifiedWireOccurrence(final KblSpecifiedWireOccurrence aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblSpecifiedWireProtectionOccurrence(final KblSpecifiedWireProtectionOccurrence aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblTerminalOccurrence(final KblTerminalOccurrence aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblTolerance(final KblTolerance aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblTransformation(final KblTransformation aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblUnit(final KblUnit aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblValueRange(final KblValueRange aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblWireColour(final KblWireColour aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblWireLength(final KblWireLength aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblWireOccurrence(final KblWireOccurrence aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblWireProtection(final KblWireProtection aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblWireProtectionOccurrence(final KblWireProtectionOccurrence aBean) {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override
+    public R visitKblWiringGroup(final KblWiringGroup aBean) {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 }
