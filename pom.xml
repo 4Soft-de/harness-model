@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.foursoft.jaxb2</groupId>
+        <groupId>com.foursoft.jaxb</groupId>
         <artifactId>jaxb-parent</artifactId>
-        <version>0.0.3</version>
+        <version>1.0.0</version>
     </parent>
 
-    <groupId>com.foursoft.jaxb2</groupId>
-    <artifactId>navigation-extender-parent</artifactId>
-    <version>1.2.2-SNAPSHOT</version>
+    <groupId>com.foursoft.jaxb.navext</groupId>
+    <artifactId>navext-parent</artifactId>
+    <version>2.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A lib for enhanced navigation for JAXB models.
@@ -21,7 +21,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
 
         <!-- Dependencies -->
 
@@ -56,8 +56,8 @@
     </scm>
 
     <modules>
-        <module>navigation-extender</module>
-        <module>navigation-extender-runtime</module>
+        <module>xjc-plugin</module>
+        <module>runtime</module>
     </modules>
 
     <developers>
