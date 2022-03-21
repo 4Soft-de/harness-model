@@ -24,7 +24,7 @@ package com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.processinginstructions
  * =========================LICENSE_END==================================
  */
 
-import com.foursoft.xml.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
+import com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
