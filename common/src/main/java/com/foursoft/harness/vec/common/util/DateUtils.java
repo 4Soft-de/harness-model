@@ -31,7 +31,9 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * Utility class for date related operations.
@@ -59,7 +61,18 @@ public final class DateUtils {
     /**
      * Converts the passed {@link LocalDateTime} to an {@link XMLGregorianCalendar}.
      *
-     * @param dateTime The LocalDateTime which should be converted..
+     * @param date The LocalDate which should be converted.
+     * @return A never-null {@link XMLGregorianCalendar} for the given date.
+     * @throws VecException In case the conversion fails.
+     */
+    public static XMLGregorianCalendar toXMLGregorianCalendar(final LocalDate date) {
+        return toXMLGregorianCalendar(date.toString());
+    }
+
+    /**
+     * Converts the passed {@link LocalDateTime} to an {@link XMLGregorianCalendar}.
+     *
+     * @param dateTime The LocalDateTime which should be converted.
      * @return A never-null {@link XMLGregorianCalendar} for the given date.
      * @throws VecException In case the conversion fails.
      */
@@ -79,11 +92,40 @@ public final class DateUtils {
         if (StringUtils.isEmpty(dateTime)) {
             throw new IllegalArgumentException("Given String may not be empty or null.");
         }
+
         try {
             return DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTime);
         } catch (final DatatypeConfigurationException | IllegalArgumentException e) {
             throw new VecException(String.format("Failed to create date calender for datetime %s.", dateTime), e);
         }
+    }
+
+    /**
+     * Converts the passed {@link XMLGregorianCalendar} to a {@link LocalDate}.
+     *
+     * @param calendar The calendar to convert.
+     * @return A never-null {@link LocalDate} for the given calendar.
+     */
+    public static LocalDate toLocalDate(final XMLGregorianCalendar calendar) {
+        return toZonedDateTime(calendar).toLocalDate();
+    }
+
+    /**
+     * Converts the passed {@link XMLGregorianCalendar} to a {@link LocalDateTime}.
+     *
+     * @param calendar The calendar to convert.
+     * @return A never-null {@link LocalDateTime} for the given calendar.
+     */
+    public static LocalDateTime toLocalDateTime(final XMLGregorianCalendar calendar) {
+        return toZonedDateTime(calendar).toLocalDateTime();
+    }
+
+    private static ZonedDateTime toZonedDateTime(final XMLGregorianCalendar calendar) {
+        if (calendar == null) {
+            throw new IllegalArgumentException("Given Calender may not be null.");
+        }
+
+        return calendar.toGregorianCalendar().toZonedDateTime();
     }
 
 }
