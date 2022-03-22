@@ -1,0 +1,89 @@
+/*-
+ * ========================LICENSE_START=================================
+ * vec-common
+ * %%
+ * Copyright (C) 2020 - 2022 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
+package com.foursoft.harness.vec.common.util;
+
+import com.foursoft.harness.vec.common.exception.VecException;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.Instant;
+import java.time.LocalDateTime;
+
+/**
+ * Utility class for date related operations.
+ * <p>
+ * Amongst others, it provides methods to create {@link XMLGregorianCalendar}s which is used
+ * for date fields within the VEC.
+ */
+public final class DateUtils {
+
+    private DateUtils() {
+        // hide default constructor
+    }
+
+    /**
+     * Creates a {@link XMLGregorianCalendar} for the current date.
+     *
+     * @return A never-null {@link XMLGregorianCalendar} for the current date.
+     * @throws VecException In case the conversion fails.
+     */
+    public static XMLGregorianCalendar currentDate() {
+        final Instant date = Instant.now();
+        return toXMLGregorianCalendar(date.toString());
+    }
+
+    /**
+     * Converts the passed {@link LocalDateTime} to an {@link XMLGregorianCalendar}.
+     *
+     * @param dateTime The LocalDateTime which should be converted..
+     * @return A never-null {@link XMLGregorianCalendar} for the given date.
+     * @throws VecException In case the conversion fails.
+     */
+    public static XMLGregorianCalendar toXMLGregorianCalendar(final LocalDateTime dateTime) {
+        return toXMLGregorianCalendar(dateTime.toString());
+    }
+
+    /**
+     * Converts the passed date as string to an {@link XMLGregorianCalendar}.
+     *
+     * @param dateTime The date as string in form {@code yyyyMMdd HH:mm:ss.SSSSSS Z}.
+     * @return A never-null {@link XMLGregorianCalendar} for the given date.
+     * @throws IllegalArgumentException In case the given input is null or an empty String.
+     * @throws VecException             In case the conversion fails.
+     */
+    public static XMLGregorianCalendar toXMLGregorianCalendar(final String dateTime) {
+        if (StringUtils.isEmpty(dateTime)) {
+            throw new IllegalArgumentException("Given String may not be empty or null.");
+        }
+        try {
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTime);
+        } catch (final DatatypeConfigurationException | IllegalArgumentException e) {
+            throw new VecException(String.format("Failed to create date calender for datetime %s.", dateTime), e);
+        }
+    }
+
+}
