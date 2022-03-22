@@ -30,6 +30,7 @@ import com.foursoft.harness.vec.common.exception.VecException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -125,7 +126,18 @@ public final class DateUtils {
             throw new IllegalArgumentException("Given Calender may not be null.");
         }
 
-        return calendar.toGregorianCalendar().toZonedDateTime();
+        ZonedDateTime zonedDateTime = calendar.toGregorianCalendar().toZonedDateTime();
+
+        // The nanos are not respected while converting to the GregorianCalendar.
+        final BigDecimal fractionalSecond = calendar.getFractionalSecond();
+        if (fractionalSecond != null) {
+            final String fractionAsString = fractionalSecond.toString();
+            // Highest possible value: 0.999999999 -> Can always be converted to a String.
+            final int nanos = Integer.parseInt(fractionAsString.substring(2));  // cut of the "0."
+            zonedDateTime = zonedDateTime.withNano(nanos);
+        }
+
+        return zonedDateTime;
     }
 
 }
