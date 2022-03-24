@@ -31,6 +31,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.*;
 
 /**
@@ -113,6 +114,7 @@ public final class DateUtils {
      *
      * @param calendar The calendar to convert.
      * @return A never-null {@link LocalDate} for the given calendar.
+     * @throws IllegalArgumentException If the given calendar is {@code null}.
      */
     public static LocalDate toLocalDate(final XMLGregorianCalendar calendar) {
         return toZonedDateTime(calendar).toLocalDate();
@@ -123,6 +125,7 @@ public final class DateUtils {
      *
      * @param calendar The calendar to convert.
      * @return A never-null {@link LocalDateTime} for the given calendar.
+     * @throws IllegalArgumentException If the given calendar is {@code null}.
      */
     public static LocalDateTime toLocalDateTime(final XMLGregorianCalendar calendar) {
         return toZonedDateTime(calendar).toLocalDateTime();
@@ -138,7 +141,16 @@ public final class DateUtils {
         // The nanos are not respected while converting to the GregorianCalendar.
         final BigDecimal fractionalSecond = calendar.getFractionalSecond();
         if (fractionalSecond != null) {
-            final String fractionAsString = fractionalSecond.toString();
+            // Sometimes issues occur with the nanos of the XMLGregorianCalender.
+            // In LocalTime, the nanos are stored as an int (e.g. 163857000).
+            // The XMLGregorianCalender stores them as a double (e.g. 0.163857).
+            // Sometimes, the scale is set to lower than 9 causing trailing zeros to be removed.
+            // In such a case, the new nano value would be 163857 which is different from the original value.
+            // Setting the scale to 9 will ensure the trailing zeros are present which will lead to correct nanos.
+            // The rounding mode doesn't matter since this is only checked if the new scale is less than the old scale.
+            final BigDecimal fixedScaleDecimal = fractionalSecond.setScale(9, RoundingMode.UNNECESSARY);
+
+            final String fractionAsString = fixedScaleDecimal.toString();
             // Highest possible value: 0.999999999 -> Can always be converted to a String.
             final int nanos = Integer.parseInt(fractionAsString.substring(2));  // cut of the "0."
             zonedDateTime = zonedDateTime.withNano(nanos);
