@@ -31,10 +31,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import java.time.*;
 
 /**
  * Utility class for date related operations.
@@ -60,14 +57,15 @@ public final class DateUtils {
     }
 
     /**
-     * Converts the passed {@link LocalDateTime} to an {@link XMLGregorianCalendar}.
+     * Converts the passed {@link LocalDate} to an {@link XMLGregorianCalendar}.
+     * <b>To work with the VEC, midnight will be set as the time.</b>
      *
      * @param date The LocalDate which should be converted.
      * @return A never-null {@link XMLGregorianCalendar} for the given date.
      * @throws VecException In case the conversion fails.
      */
     public static XMLGregorianCalendar toXMLGregorianCalendar(final LocalDate date) {
-        return toXMLGregorianCalendar(date.toString());
+        return toXMLGregorianCalendar(LocalDateTime.of(date, LocalTime.MIDNIGHT));
     }
 
     /**
@@ -78,7 +76,16 @@ public final class DateUtils {
      * @throws VecException In case the conversion fails.
      */
     public static XMLGregorianCalendar toXMLGregorianCalendar(final LocalDateTime dateTime) {
-        return toXMLGregorianCalendar(dateTime.toString());
+        String validDateTimeString = dateTime.toString();
+
+        // If seconds and nanos are both 0, the String cannot be parsed because the seconds are missing in it.
+        final int nanos = dateTime.getNano();
+        final int seconds = dateTime.getSecond();
+        if (seconds == 0 && nanos == 0) {
+            validDateTimeString += ":00";
+        }
+
+        return toXMLGregorianCalendar(validDateTimeString);
     }
 
     /**
