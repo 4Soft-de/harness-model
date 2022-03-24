@@ -149,15 +149,13 @@ public class XMLWriter<T> {
         final XMLOutputFactory xof = XMLOutputFactory.newFactory();
         try {
             final XMLStreamWriter xmlStreamWriter = xof.createXMLStreamWriter(output);
-
-
-            final XMLMetaAwareXMLStreamWriter xsw = new XMLMetaAwareXMLStreamWriter(xmlStreamWriter);
+            final XMLMetaAwareXMLStreamWriter xsw = new XMLMetaAwareXMLStreamWriter(xmlStreamWriter, baseType);
 
             final MarshallerListener marshallerListener = new MarshallerListener();
             marshaller.setListener(marshallerListener);
             meta.getComments().ifPresent(c -> marshallerListener.addListener(new CommentAdderListener(xsw, c)));
             meta.getProcessingInstructions()
-                    .ifPresent(c -> marshallerListener.addListener(new ProcessingInstructionAdderListener(xmlStreamWriter, c)));
+                    .ifPresent(c -> marshallerListener.addListener(new ProcessingInstructionAdderListener(xsw, c)));
 
             marshaller.marshal(container, xsw);
             xsw.close();

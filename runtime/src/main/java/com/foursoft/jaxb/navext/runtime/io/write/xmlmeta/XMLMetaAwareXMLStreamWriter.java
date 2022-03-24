@@ -35,16 +35,51 @@ import javax.xml.stream.XMLStreamWriter;
  */
 public class XMLMetaAwareXMLStreamWriter extends IndentingXMLStreamWriter {
 
-    public XMLMetaAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter) {
+    private final Class<?> baseType;
+
+    public XMLMetaAwareXMLStreamWriter(final XMLStreamWriter xmlStreamWriter, final Class<?> baseType) {
         super(xmlStreamWriter);
+        this.baseType = baseType;
     }
 
     @Override
-    public void writeComment(final String data)
-            throws XMLStreamException {
-        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
-        super.writeComment(data);
+    public void writeComment(final String data) throws XMLStreamException {
+        writeComment(data, null);
     }
 
+    public void writeComment(String data, Object source) throws XMLStreamException {
+        boolean rootElement = isRootElement(source);
+        if (rootElement)  {
+            super.writeComment(data);
+            writeNewline();
+        }  else  {
+            writeNewline();
+            super.writeComment(data);
+        }
+    }
+
+    @Override
+    public void writeProcessingInstruction(String target, String data) throws XMLStreamException {
+        writeProcessingInstruction(target, data, null);
+    }
+
+    public void writeProcessingInstruction(String target, String data, Object source) throws XMLStreamException {
+        boolean rootElement = isRootElement(source);
+        if (rootElement) {
+            super.writeProcessingInstruction(target, data);
+            writeNewline();
+        }  else  {
+            writeNewline();
+            super.writeProcessingInstruction(target, data);
+        }
+    }
+
+    private void writeNewline() throws XMLStreamException {
+        writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
+    }
+
+    private boolean isRootElement(Object source)  {
+        return source != null && baseType == source.getClass();
+    }
 
 }

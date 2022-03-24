@@ -63,11 +63,26 @@ class XMLWriterTest {
         final Comments comments = new Comments();
         final String expectedComment = "Blafasel";
         comments.put(root.getChildA().get(0), expectedComment);
+        comments.put(root, "Hello World");
         final XMLMeta xmlMeta = new XMLMeta();
         xmlMeta.setComments(comments);
+        final ProcessingInstructions processingInstructions = new ProcessingInstructions();
+        processingInstructions.put(root, new ProcessingInstruction("pc", "pc test"));
+        processingInstructions.put(root.getChildA().get(1), new ProcessingInstruction("pc", "pc test 2"));
+        xmlMeta.setProcessingInstructions(processingInstructions);
         final String result = xmlWriter.writeToString(root, xmlMeta);
         assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
-        Assertions.assertThat(result).contains(expectedComment);
+        Assertions.assertThat(result)
+                .contains(expectedComment)
+                // check for correct new lines
+                .startsWith("<?xml version=\"1.0\" ?>\n" +
+                        "<!--Hello World-->\n" +
+                        "<?pc pc test?>\n" +
+                        "<Root id=\"id_1\">")
+                .contains(">\n" +
+                        "<?pc pc test 2?>\n" +
+                        "  <")
+                .doesNotContain("\n\n");
     }
 
     @Test

@@ -24,23 +24,23 @@ package com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.processinginstructions
  * =========================LICENSE_END==================================
  */
 
+import com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.Marshaller.Listener;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
 
 public class ProcessingInstructionAdderListener extends Listener {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProcessingInstructionAdderListener.class);
-    private final XMLStreamWriter xsw;
+    private final XMLMetaAwareXMLStreamWriter xsw;
     private final ProcessingInstructions processingInstructions;
 
     /**
      * @param xsw                    the xml stream writer
      * @param processingInstructions list of xjc objects and comment strings
      */
-    public ProcessingInstructionAdderListener(final XMLStreamWriter xsw, final ProcessingInstructions processingInstructions) {
+    public ProcessingInstructionAdderListener(final XMLMetaAwareXMLStreamWriter xsw, final ProcessingInstructions processingInstructions) {
         this.xsw = xsw;
         this.processingInstructions = processingInstructions;
     }
@@ -52,7 +52,7 @@ public class ProcessingInstructionAdderListener extends Listener {
             final String data = processingInstruction.getData();
 
             try {
-                xsw.writeProcessingInstruction(target, data);
+                xsw.writeProcessingInstruction(target, data, source);
             } catch (final XMLStreamException e) {
                 LOGGER.warn("Ignored Exception while writing processingInstruction:", e);
             }
