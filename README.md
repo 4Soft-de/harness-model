@@ -164,13 +164,18 @@ public class MyVecReader {
 ```java
 public class MyVecWriter {
     public void writeExampleVecFile(final String target) throws IOException {
+        final LocalDate exampleDate = LocalDate.of(2022, 3, 24);
+        final LocalDateTime exampleDateTime = LocalDateTime.of(exampleDate, LocalTime.NOON);
+
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.1.3");
+        root.setDateOfCreation(DateUtils.toXMLGregorianCalendar(exampleDate));
 
         final VecPermission permission = new VecPermission();
         permission.setXmlId("id_2185_0");
         permission.setPermission("Released");
+        permission.setPermissionDate(DateUtils.toXMLGregorianCalendar(exampleDateTime));
 
         final VecApproval approval = new VecApproval();
         approval.setXmlId("id_2014_0");
@@ -210,11 +215,13 @@ public class MyVecWriter {
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec">
     <VecVersion>1.1.3</VecVersion>
+    <DateOfCreation>2022-03-24T00:00:00</DateOfCreation>
     <DocumentVersion id="id_1002_0">
         <Approval id="id_2014_0">
             <Status>Approved</Status>
             <Permission id="id_2185_0">
                 <Permission>Released</Permission>
+                <PermissionDate>2022-03-24T12:00:00</PermissionDate>
             </Permission>
         </Approval>
         <DocumentNumber>123_456_789</DocumentNumber>
