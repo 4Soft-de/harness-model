@@ -51,7 +51,7 @@ class DateUtilsTest {
         final LocalDate now = LocalDate.now();
         final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(now);
 
-        assertThat(now).hasToString(calenderOfDate.toString());
+        assertThat(calenderOfDate.toString()).startsWith(now.toString());
 
         final LocalDate localDateFromCalendar = DateUtils.toLocalDate(calenderOfDate);
         assertThat(now).isEqualTo(localDateFromCalendar);
