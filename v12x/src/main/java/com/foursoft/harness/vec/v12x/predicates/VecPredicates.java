@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.v12x.predicates;
 
-import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
+import com.foursoft.harness.vec.v12x.*;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -145,6 +145,10 @@ public final class VecPredicates {
 
     public static Predicate<VecPartOccurrence> isPlug() {
         return occ -> !occ.getRolesWithType(VecCavityPlugRole.class).isEmpty();
+    }
+
+    public static Predicate<VecPartOccurrence> isSeal() {
+        return occ -> !occ.getRolesWithType(VecCavitySealRole.class).isEmpty();
     }
 
     public static Predicate<VecPartVersion> isEqualPartVersion(final VecPartVersion comparePartVersion) {
