@@ -55,6 +55,14 @@ public final class PartOccurrenceOrUsageNavs {
         };
     }
 
+    @RequiresBackReferences
+    public static Function<VecPartUsage, VecDocumentVersion> parentDocumentVersionOfUsage() {
+        return usage -> {
+            final VecPartUsageSpecification partUsageSpec = usage.getParentPartUsageSpecification();
+            return SpecificationNavs.parentDocumentVersion().apply(partUsageSpec);
+        };
+    }
+
     // VecPartOccurrence
 
     @RequiresBackReferences
@@ -101,7 +109,7 @@ public final class PartOccurrenceOrUsageNavs {
      * @return The parent VecDocumentVersion of a VecPartOccurrence.
      */
     @RequiresBackReferences
-    public static Function<VecPartOccurrence, VecDocumentVersion> parentDocumentVersion() {
+    public static Function<VecPartOccurrence, VecDocumentVersion> parentDocumentVersionOfOccurrence() {
         return occurrence -> {
 
             final VecCompositionSpecification parentCompositionSpecification =
@@ -140,6 +148,16 @@ public final class PartOccurrenceOrUsageNavs {
                 return parentDocumentNumberOfOccurrence().apply((VecPartOccurrence) occurrenceOrUsage);
             }
             return parentDocumentNumberOfUsage().apply((VecPartUsage) occurrenceOrUsage);
+        };
+    }
+
+    @RequiresBackReferences
+    public static Function<VecOccurrenceOrUsage, VecDocumentVersion> parentDocumentVersion() {
+        return occurrenceOrUsage -> {
+            if (occurrenceOrUsage instanceof VecPartOccurrence) {
+                return parentDocumentVersionOfOccurrence().apply((VecPartOccurrence) occurrenceOrUsage);
+            }
+            return parentDocumentVersionOfUsage().apply((VecPartUsage) occurrenceOrUsage);
         };
     }
 
