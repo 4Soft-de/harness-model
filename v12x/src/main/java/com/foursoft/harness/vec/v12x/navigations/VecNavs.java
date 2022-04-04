@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,8 +25,11 @@
  */
 package com.foursoft.harness.vec.v12x.navigations;
 
-import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
+import com.foursoft.harness.vec.v12x.VecDocumentVersion;
+import com.foursoft.harness.vec.v12x.VecExtendableElement;
+import com.foursoft.harness.vec.v12x.VecOccurrenceOrUsage;
+import com.foursoft.harness.vec.v12x.VecRole;
 
 import java.util.List;
 import java.util.function.Function;
@@ -51,13 +54,7 @@ public final class VecNavs {
     public static Function<VecRole, VecDocumentVersion> parentDocumentVersion() {
         return role -> {
             final VecOccurrenceOrUsage parentOccurrenceOrUsage = role.getParentOccurrenceOrUsage();
-            if (parentOccurrenceOrUsage instanceof VecPartOccurrence) {
-                return PartOccurrenceOrUsageNavs.parentDocumentVersion().apply((VecPartOccurrence) parentOccurrenceOrUsage);
-            } else {
-                final VecPartUsageSpecification parentPartUsageSpecification =
-                        ((VecPartUsage) parentOccurrenceOrUsage).getParentPartUsageSpecification();
-                return SpecificationNavs.parentDocumentVersion().apply(parentPartUsageSpecification);
-            }
+            return PartOccurrenceOrUsageNavs.parentDocumentVersion().apply(parentOccurrenceOrUsage);
         };
     }
 
