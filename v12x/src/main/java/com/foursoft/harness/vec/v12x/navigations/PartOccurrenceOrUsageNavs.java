@@ -49,10 +49,7 @@ public final class PartOccurrenceOrUsageNavs {
 
     @RequiresBackReferences
     public static Function<VecPartUsage, String> parentDocumentNumberOfUsage() {
-        return usage -> {
-            final VecPartUsageSpecification partUsageSpec = usage.getParentPartUsageSpecification();
-            return SpecificationNavs.parentDocumentNumber().apply(partUsageSpec);
-        };
+        return usage -> parentDocumentVersionOfUsage().apply(usage).getDocumentNumber();
     }
 
     @RequiresBackReferences
@@ -67,10 +64,7 @@ public final class PartOccurrenceOrUsageNavs {
 
     @RequiresBackReferences
     public static Function<VecPartOccurrence, String> parentDocumentNumberOfOccurrence() {
-        return occurrence -> {
-            final VecCompositionSpecification compSpec = occurrence.getParentCompositionSpecification();
-            return SpecificationNavs.parentDocumentNumber().apply(compSpec);
-        };
+        return occurrence -> parentDocumentVersionOfOccurrence().apply(occurrence).getDocumentNumber();
     }
 
     public static Function<VecPartOccurrence, Optional<String>> partNumber() {
@@ -143,12 +137,7 @@ public final class PartOccurrenceOrUsageNavs {
 
     @RequiresBackReferences
     public static Function<VecOccurrenceOrUsage, String> parentDocumentNumber() {
-        return occurrenceOrUsage -> {
-            if (occurrenceOrUsage instanceof VecPartOccurrence) {
-                return parentDocumentNumberOfOccurrence().apply((VecPartOccurrence) occurrenceOrUsage);
-            }
-            return parentDocumentNumberOfUsage().apply((VecPartUsage) occurrenceOrUsage);
-        };
+        return occurrenceOrUsage -> parentDocumentVersion().apply(occurrenceOrUsage).getDocumentNumber();
     }
 
     @RequiresBackReferences
