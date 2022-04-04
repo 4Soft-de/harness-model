@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,11 +25,11 @@
  */
 package com.foursoft.harness.vec.v12x.navigations;
 
-import com.foursoft.harness.vec.v12x.*;
-import com.foursoft.harness.vec.v12x.visitor.ReferencedNodeLocationVisitor;
 import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.common.util.StringUtils;
+import com.foursoft.harness.vec.v12x.*;
+import com.foursoft.harness.vec.v12x.visitor.ReferencedNodeLocationVisitor;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -45,10 +45,20 @@ public final class PartOccurrenceOrUsageNavs {
         // hide default constructor
     }
 
+    // VecPartUsage
+
+    @RequiresBackReferences
+    public static Function<VecPartUsage, String> parentDocumentNumberOfUsage() {
+        return usage -> {
+            final VecPartUsageSpecification partUsageSpec = usage.getParentPartUsageSpecification();
+            return SpecificationNavs.parentDocumentNumber().apply(partUsageSpec);
+        };
+    }
+
     // VecPartOccurrence
 
     @RequiresBackReferences
-    public static Function<VecPartOccurrence, String> parentDocumentNumber() {
+    public static Function<VecPartOccurrence, String> parentDocumentNumberOfOccurrence() {
         return occurrence -> {
             final VecCompositionSpecification compSpec = occurrence.getParentCompositionSpecification();
             return SpecificationNavs.parentDocumentNumber().apply(compSpec);
@@ -122,6 +132,16 @@ public final class PartOccurrenceOrUsageNavs {
     }
 
     // VecOccurrenceOrUsage
+
+    @RequiresBackReferences
+    public static Function<VecOccurrenceOrUsage, String> parentDocumentNumber() {
+        return occurrenceOrUsage -> {
+            if (occurrenceOrUsage instanceof VecPartOccurrence) {
+                return parentDocumentNumberOfOccurrence().apply((VecPartOccurrence) occurrenceOrUsage);
+            }
+            return parentDocumentNumberOfUsage().apply((VecPartUsage) occurrenceOrUsage);
+        };
+    }
 
     public static BiFunction<VecOccurrenceOrUsage, VecDocumentVersion, Optional<VecTopologyNode>> findNodeOfComponent() {
         return (component, documentVersion) -> component.getRoleWithType(VecPlaceableElementRole.class)
