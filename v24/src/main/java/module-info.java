@@ -29,6 +29,7 @@ open module com.foursoft.harness.kbl.v24 {
     requires java.xml;
     requires java.xml.bind;
     requires java.annotation;
+    requires org.slf4j;
 
     exports com.foursoft.harness.kbl.v24;
     exports com.foursoft.harness.kbl.v24.exception;

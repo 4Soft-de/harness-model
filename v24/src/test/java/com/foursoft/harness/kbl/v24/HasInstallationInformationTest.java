@@ -26,36 +26,28 @@
 package com.foursoft.harness.kbl.v24;
 
 import com.foursoft.harness.kbl.v24.util.StreamUtils;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
-import java.util.function.Predicate;
 
-public interface HasInstallationInformation {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    List<KblInstallationInstruction> getInstallationInformations();
+class HasInstallationInformationTest {
 
-    /**
-     * Filters the list of {@link KblInstallationInstruction} key.
-     *
-     * @param instructionType defines the meaning of the value
-     * @return the first value with the given type.
-     */
-    default Optional<String> getInstallationInstructionValue(final String instructionType) {
-        return getInstallationInstructionValue(c -> c.getInstructionType().equals(instructionType));
-    }
+    @Test
+    void installationInstructionTest() throws IOException {
+        try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
+            final KBLContainer kblContainer = new KblReader().read(is);
 
-    /**
-     * Filters the list of {@link KblInstallationInstruction} key.
-     *
-     * @param matches defines the meaning of the value
-     * @return the first value with the given type.
-     */
-    default Optional<String> getInstallationInstructionValue(final Predicate<KblInstallationInstruction> matches) {
-        return getInstallationInformations()
-                .stream()
-                .filter(matches)
-                .map(KblInstallationInstruction::getInstructionValue)
-                .collect(StreamUtils.findOneOrNone());
+            final KblConnectorOccurrence occurrence = kblContainer.getHarness().getConnectorOccurrences()
+                    .stream()
+                    .filter(c -> c.getId().equals("Id184"))
+                    .collect(StreamUtils.findOne());
+
+            assertThat(occurrence)
+                    .returns(Optional.of("Instruction_value391"), c -> c.getInstallationInstructionValue("Instruction_type391"));
+        }
     }
 }
