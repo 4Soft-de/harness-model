@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl.v24.util.StreamUtils;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public interface HasInstallationInformation {
 
@@ -57,5 +58,29 @@ public interface HasInstallationInformation {
                 .filter(matches)
                 .map(KblInstallationInstruction::getInstructionValue)
                 .collect(StreamUtils.findOneOrNone());
+    }
+
+    /**
+     * Filters the list of {@link KblInstallationInstruction} key.
+     *
+     * @param instructionType defines the meaning of the value
+     * @return a list with all instruction values for the given type.
+     */
+    default List<String> getInstallationInstructionValues(final String instructionType) {
+        return getInstallationInstructionValues(c -> c.getInstructionType().equals(instructionType));
+    }
+
+    /**
+     * Filters the list of {@link KblInstallationInstruction} key.
+     *
+     * @param matches defines the meaning of the value
+     * @return a list with all instruction values for the given type.
+     */
+    default List<String> getInstallationInstructionValues(final Predicate<KblInstallationInstruction> matches) {
+        return getInstallationInformations()
+                .stream()
+                .filter(matches)
+                .map(KblInstallationInstruction::getInstructionValue)
+                .collect(Collectors.toList());
     }
 }
