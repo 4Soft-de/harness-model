@@ -64,7 +64,7 @@ public interface HasInstallationInformation {
      * @return a stream with all instruction values for the given type.
      */
     default Stream<String> getInstallationInstructionValues(final String instructionType) {
-        return getInstallationInstructionValues(c -> c.getInstructionType().equals(instructionType));
+        return getInstallationInstructionValues(c -> c.getInstructionType().equalsIgnoreCase(instructionType));
     }
 
     /**

@@ -64,7 +64,7 @@ public interface HasProcessingInformation {
      * @return a stream with all instruction values for the given type.
      */
     default Stream<String> getProcessingInstructionValues(final String instructionType) {
-        return getProcessingInstructionValues(c -> c.getInstructionType().equals(instructionType));
+        return getProcessingInstructionValues(c -> c.getInstructionType().equalsIgnoreCase(instructionType));
     }
 
     /**
