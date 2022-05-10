@@ -30,7 +30,7 @@ import com.foursoft.harness.kbl.v24.util.StreamUtils;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public interface HasProcessingInformation {
 
@@ -64,9 +64,9 @@ public interface HasProcessingInformation {
      * Filters the list of {@link KblProcessingInstruction} key.
      *
      * @param instructionType defines the meaning of the value
-     * @return a list with all instruction values for the given type.
+     * @return a stream with all instruction values for the given type.
      */
-    default List<String> getProcessingInstructionValues(final String instructionType) {
+    default Stream<String> getProcessingInstructionValues(final String instructionType) {
         return getProcessingInstructionValues(c -> c.getInstructionType().equals(instructionType));
     }
 
@@ -74,13 +74,12 @@ public interface HasProcessingInformation {
      * Filters the list of {@link KblProcessingInstruction} key.
      *
      * @param matches defines the meaning of the value
-     * @return a list with all instruction values for the given type.
+     * @return a stream with all instruction values for the given type.
      */
-    default List<String> getProcessingInstructionValues(final Predicate<KblProcessingInstruction> matches) {
+    default Stream<String> getProcessingInstructionValues(final Predicate<KblProcessingInstruction> matches) {
         return getProcessingInformations()
                 .stream()
                 .filter(matches)
-                .map(KblProcessingInstruction::getInstructionValue)
-                .collect(Collectors.toList());
+                .map(KblProcessingInstruction::getInstructionValue);
     }
 }

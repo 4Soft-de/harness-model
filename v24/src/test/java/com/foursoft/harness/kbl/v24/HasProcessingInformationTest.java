@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +25,8 @@ class HasProcessingInformationTest {
 
             assertThat(occurrence)
                     .returns(Optional.of("Instruction_value396"), c -> c.getProcessingInstructionValue("Instruction_type396"))
-                    .returns(List.of("Instruction_value396"), c -> c.getProcessingInstructionValues("Instruction_type396"));
+                    .returns(List.of("Instruction_value396"), c -> c.getProcessingInstructionValues("Instruction_type396")
+                            .collect(Collectors.toList()));
         }
 
     }

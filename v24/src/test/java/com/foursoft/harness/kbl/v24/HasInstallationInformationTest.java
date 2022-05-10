@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,7 +50,8 @@ class HasInstallationInformationTest {
 
             assertThat(occurrence)
                     .returns(Optional.of("Instruction_value391"), c -> c.getInstallationInstructionValue("Instruction_type391"))
-                    .returns(List.of("Instruction_value391"), c -> c.getInstallationInstructionValues("Instruction_type391"));
+                    .returns(List.of("Instruction_value391"), c -> c.getInstallationInstructionValues("Instruction_type391")
+                            .collect(Collectors.toList()));
         }
     }
 }
