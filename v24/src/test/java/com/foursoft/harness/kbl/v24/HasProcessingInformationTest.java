@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,17 +23,37 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.harness.kbl.v24 {
-    requires com.foursoft.jaxb.navext.runtime;
+package com.foursoft.harness.kbl.v24;
 
-    requires java.xml;
-    requires java.xml.bind;
-    requires java.annotation;
-    requires org.slf4j;
+import org.junit.jupiter.api.Test;
 
-    exports com.foursoft.harness.kbl.v24;
-    exports com.foursoft.harness.kbl.v24.exception;
-    exports com.foursoft.harness.kbl.v24.visitor;
-    exports com.foursoft.harness.kbl.v24.validation;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class HasProcessingInformationTest {
+
+    @Test
+    void processingInformationTest() throws IOException {
+        try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
+            final KBLContainer kblContainer = new KblReader().read(is);
+
+            final KblSlotOccurrence occurrence = kblContainer.getHarness().getConnectorOccurrences()
+                    .stream()
+                    .filter(c -> c.getId().equals("Id184"))
+                    .flatMap(c -> c.getSlots().stream())
+                    .findFirst().orElse(null);
+
+            assertThat(occurrence)
+                    .returns(Optional.of("Instruction_value396"), c -> c.getProcessingInstructionValue("Instruction_type396"))
+                    .returns(List.of("Instruction_value396"), c -> c.getProcessingInstructionValues("Instruction_type396")
+                            .collect(Collectors.toList()));
+        }
+
+    }
 
 }
