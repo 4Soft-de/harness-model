@@ -38,6 +38,8 @@ public interface HasProcessingInformation {
 
     /**
      * Filters the list of {@link KblProcessingInstruction} key.
+     * At most one element of the specified type is expected here. If more are found, the first one will be returned and a warning will be logged.
+     * If multiple values of the specified type are valid, then please use the other {@link #getProcessingInstructionValues(Predicate)} or {@link #getProcessingInstructionValues(String)} method.
      *
      * @param instructionType defines the meaning of the value
      * @return the first value with the given type.
@@ -48,6 +50,8 @@ public interface HasProcessingInformation {
 
     /**
      * Filters the list of {@link KblProcessingInstruction} key.
+     * At most one element of the specified type is expected here. If more are found, the first one will be returned and a warning will be logged.
+     * If multiple values of the specified type are valid, then please use the other {@link #getProcessingInstructionValues(Predicate)} or {@link #getProcessingInstructionValues(String)} method.
      *
      * @param matches defines the meaning of the value
      * @return the first value with the given type.
