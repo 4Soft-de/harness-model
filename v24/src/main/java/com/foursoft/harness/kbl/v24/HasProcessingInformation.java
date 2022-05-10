@@ -52,11 +52,8 @@ public interface HasProcessingInformation {
      * @param matches defines the meaning of the value
      * @return the first value with the given type.
      */
-    default Optional<String> getProcessingInstructionValue(final Predicate<KblProcessingInstruction> matches) {
-        return getProcessingInformations()
-                .stream()
-                .filter(matches)
-                .map(KblProcessingInstruction::getInstructionValue)
+    default Optional<String> getProcessingInstructionValue(final Predicate<HasInstruction> matches) {
+        return getProcessingInstructionValues(matches)
                 .collect(StreamUtils.findOneOrNone());
     }
 
@@ -76,7 +73,7 @@ public interface HasProcessingInformation {
      * @param matches defines the meaning of the value
      * @return a stream with all instruction values for the given type.
      */
-    default Stream<String> getProcessingInstructionValues(final Predicate<KblProcessingInstruction> matches) {
+    default Stream<String> getProcessingInstructionValues(final Predicate<HasInstruction> matches) {
         return getProcessingInformations()
                 .stream()
                 .filter(matches)

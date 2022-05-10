@@ -52,11 +52,8 @@ public interface HasInstallationInformation {
      * @param matches defines the meaning of the value
      * @return the first value with the given type.
      */
-    default Optional<String> getInstallationInstructionValue(final Predicate<KblInstallationInstruction> matches) {
-        return getInstallationInformations()
-                .stream()
-                .filter(matches)
-                .map(KblInstallationInstruction::getInstructionValue)
+    default Optional<String> getInstallationInstructionValue(final Predicate<HasInstruction> matches) {
+        return getInstallationInstructionValues(matches)
                 .collect(StreamUtils.findOneOrNone());
     }
 
@@ -76,7 +73,7 @@ public interface HasInstallationInformation {
      * @param matches defines the meaning of the value
      * @return a stream with all instruction values for the given type.
      */
-    default Stream<String> getInstallationInstructionValues(final Predicate<KblInstallationInstruction> matches) {
+    default Stream<String> getInstallationInstructionValues(final Predicate<HasInstruction> matches) {
         return getInstallationInformations()
                 .stream()
                 .filter(matches)
