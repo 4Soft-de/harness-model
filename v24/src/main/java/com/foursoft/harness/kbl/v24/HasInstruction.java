@@ -29,5 +29,10 @@ public interface HasInstruction {
 
     String getInstructionType();
 
+    void setInstructionType(String value);
+
     String getInstructionValue();
+
+    void setInstructionValue(String value);
+
 }

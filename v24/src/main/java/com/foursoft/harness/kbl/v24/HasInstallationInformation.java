@@ -39,7 +39,7 @@ public interface HasInstallationInformation {
     /**
      * Filters the list of {@link KblInstallationInstruction} key.
      * At most one element of the specified type is expected here. If more are found, the first one will be returned and a warning will be logged.
-     * If multiple values of the specified type are valid, then please use the other {@link #getInstallationInstructionValues(Predicate)} or {@link #getInstallationInstructionValues(String)} method.
+     * If multiple values of the specified type are valid, then please use the other {@link #installationInstructionValues(Predicate)} or {@link #installationInstructionValues(String)} method.
      *
      * @param instructionType defines the meaning of the value
      * @return the first value with the given type.
@@ -51,13 +51,13 @@ public interface HasInstallationInformation {
     /**
      * Filters the list of {@link KblInstallationInstruction} key.
      * At most one element of the specified type is expected here. If more are found, the first one will be returned and a warning will be logged.
-     * If multiple values of the specified type are valid, then please use the other {@link #getInstallationInstructionValues(Predicate)} or {@link #getInstallationInstructionValues(String)} method.
+     * If multiple values of the specified type are valid, then please use the other {@link #installationInstructionValues(Predicate)} or {@link #installationInstructionValues(String)} method.
      *
      * @param matches defines the meaning of the value
      * @return the first value with the given type.
      */
     default Optional<String> getInstallationInstructionValue(final Predicate<HasInstruction> matches) {
-        return getInstallationInstructionValues(matches)
+        return installationInstructionValues(matches)
                 .collect(StreamUtils.findOneOrNone());
     }
 
@@ -67,8 +67,8 @@ public interface HasInstallationInformation {
      * @param instructionType defines the meaning of the value
      * @return a stream with all instruction values for the given type.
      */
-    default Stream<String> getInstallationInstructionValues(final String instructionType) {
-        return getInstallationInstructionValues(c -> c.getInstructionType().equalsIgnoreCase(instructionType));
+    default Stream<String> installationInstructionValues(final String instructionType) {
+        return installationInstructionValues(c -> c.getInstructionType().equalsIgnoreCase(instructionType));
     }
 
     /**
@@ -77,7 +77,7 @@ public interface HasInstallationInformation {
      * @param matches defines the meaning of the value
      * @return a stream with all instruction values for the given type.
      */
-    default Stream<String> getInstallationInstructionValues(final Predicate<HasInstruction> matches) {
+    default Stream<String> installationInstructionValues(final Predicate<HasInstruction> matches) {
         return getInstallationInformations()
                 .stream()
                 .filter(matches)
