@@ -108,26 +108,26 @@ public final class SpecificationNavs {
             final String segmentId) {
         return specification -> specification.getGeometrySegments().stream()
                 .filter(segment -> segment.getIdentification().equals(segmentId))
-                .collect(StreamUtils.findOne());
+                .collect(StreamUtils.findOneOrNone()).orElse(null);
     }
 
     public static Function<VecBuildingBlockSpecification3D, VecGeometrySegment3D> geometrySegment3dBy(
             final String segmentId) {
         return specification -> specification.getGeometrySegments().stream()
                 .filter(segment -> segment.getIdentification().equals(segmentId))
-                .collect(StreamUtils.findOne());
+                .collect(StreamUtils.findOneOrNone()).orElse(null);
     }
 
     public static Function<VecBuildingBlockSpecification2D, VecGeometryNode2D> geometryNode2dBy(final String nodeId) {
         return specification -> specification.getGeometryNodes().stream()
                 .filter(node -> node.getIdentification().equals(nodeId))
-                .collect(StreamUtils.findOne());
+                .collect(StreamUtils.findOneOrNone()).orElse(null);
     }
 
     public static Function<VecBuildingBlockSpecification3D, VecGeometryNode3D> geometryNode3dBy(final String nodeId) {
         return specification -> specification.getGeometryNodes().stream()
                 .filter(node -> node.getIdentification().equals(nodeId))
-                .collect(StreamUtils.findOne());
+                .collect(StreamUtils.findOneOrNone()).orElse(null);
     }
 
 }
