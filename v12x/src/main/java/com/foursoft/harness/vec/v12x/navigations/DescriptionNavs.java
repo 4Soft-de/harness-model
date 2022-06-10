@@ -82,7 +82,7 @@ public final class DescriptionNavs {
                         !StringUtils.isEmpty(((VecLocalizedTypedString) localizedString).getType())) {
                     return Optional.empty();
                 }
-                return Optional.of(localizedString.getValue());
+                return Optional.ofNullable(localizedString).map(VecAbstractLocalizedString::getValue);
             }
 
             return localizedStrings.stream()
