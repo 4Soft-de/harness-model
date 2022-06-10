@@ -120,7 +120,7 @@ public final class DocumentVersionNavs {
                 .flatMap(Collection::stream)
                 .filter(VecPlaceableElementRole.class::isInstance)
                 .map(VecPlaceableElementRole.class::cast)
-                .collect(StreamUtils.findOne());
+                .collect(StreamUtils.findOneOrNone()).orElse(null);
     }
 
     public static Function<VecDocumentVersion, VecPlacement> placementBy(final String compositionSpecificationId,
@@ -133,7 +133,7 @@ public final class DocumentVersionNavs {
                     .map(VecPlacementSpecification::getPlacements)
                     .flatMap(Collection::stream)
                     .filter(p -> p.getPlacedElement().stream().anyMatch(r -> r.equals(role)))
-                    .collect(StreamUtils.findOne());
+                    .collect(StreamUtils.findOneOrNone()).orElse(null);
         };
     }
 
@@ -217,16 +217,17 @@ public final class DocumentVersionNavs {
                                                                  final VecNodeLocation location) {
         return nodes.stream()
                 .filter(node -> node.getReferenceNode().equals(location.getReferencedNode()))
-                .collect(StreamUtils.findOne());
+                .collect(StreamUtils.findOneOrNone()).orElse(null);
     }
 
     private static <T extends HasOccurrenceOrUsages> Optional<T> getViewItem(final Stream<T> stream,
                                                                              final String occurrenceOrUsageId) {
         return stream
                 .filter(item -> item.getOccurrenceOrUsage().stream()
-                        .collect(StreamUtils.findOne())
-                        .getIdentification()
-                        .equals(occurrenceOrUsageId))
+                        .collect(StreamUtils.findOneOrNone())
+                        .map(VecOccurrenceOrUsage::getIdentification)
+                        .map(id -> id.equals(occurrenceOrUsageId))
+                        .orElse(false))
                 .collect(StreamUtils.findOneOrNone());
     }
 

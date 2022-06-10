@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.v12x.navigations;
 
+import com.foursoft.harness.vec.common.HasIdentification;
 import com.foursoft.harness.vec.common.HasSpecifications;
 import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
 import com.foursoft.harness.vec.common.util.StreamUtils;
@@ -106,28 +107,26 @@ public final class SpecificationNavs {
 
     public static Function<VecBuildingBlockSpecification2D, VecGeometrySegment2D> geometrySegment2dBy(
             final String segmentId) {
-        return specification -> specification.getGeometrySegments().stream()
-                .filter(segment -> segment.getIdentification().equals(segmentId))
-                .collect(StreamUtils.findOne());
+        return specification -> findElementById(specification.getGeometrySegments(), segmentId);
     }
 
     public static Function<VecBuildingBlockSpecification3D, VecGeometrySegment3D> geometrySegment3dBy(
             final String segmentId) {
-        return specification -> specification.getGeometrySegments().stream()
-                .filter(segment -> segment.getIdentification().equals(segmentId))
-                .collect(StreamUtils.findOne());
+        return specification -> findElementById(specification.getGeometrySegments(), segmentId);
     }
 
     public static Function<VecBuildingBlockSpecification2D, VecGeometryNode2D> geometryNode2dBy(final String nodeId) {
-        return specification -> specification.getGeometryNodes().stream()
-                .filter(node -> node.getIdentification().equals(nodeId))
-                .collect(StreamUtils.findOne());
+        return specification -> findElementById(specification.getGeometryNodes(), nodeId);
     }
 
     public static Function<VecBuildingBlockSpecification3D, VecGeometryNode3D> geometryNode3dBy(final String nodeId) {
-        return specification -> specification.getGeometryNodes().stream()
-                .filter(node -> node.getIdentification().equals(nodeId))
-                .collect(StreamUtils.findOne());
+        return specification -> findElementById(specification.getGeometryNodes(), nodeId);
+    }
+
+    private static <T extends HasIdentification> T findElementById(final List<T> elements, final String id) {
+        return elements.stream()
+                .filter(element -> element.getIdentification().equals(id))
+                .collect(StreamUtils.findOneOrNone()).orElse(null);
     }
 
 }
