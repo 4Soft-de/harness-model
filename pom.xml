@@ -335,20 +335,6 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>org.assertj</groupId>
-                    <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
-                    <version>${assertj-assertions-generator-maven-plugin}</version>
-                    <configuration>
-                        <quiet>true</quiet>
-                        <cleanTargetDir>true</cleanTargetDir>
-                        <generateAssertions>true</generateAssertions>
-                        <generateBddAssertions>false</generateBddAssertions>
-                        <generateSoftAssertions>true</generateSoftAssertions>
-                        <generatedSourcesScope>compile</generatedSourcesScope>
-                        <targetDir>${project.build.directory}/generated-sources/assertj-assertions</targetDir>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
