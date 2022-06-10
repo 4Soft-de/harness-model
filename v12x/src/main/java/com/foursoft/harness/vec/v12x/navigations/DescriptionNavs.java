@@ -34,6 +34,7 @@ import com.foursoft.harness.vec.v12x.VecLocalizedTypedString;
 import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -86,9 +87,11 @@ public final class DescriptionNavs {
             }
 
             return localizedStrings.stream()
+                    .filter(Objects::nonNull)
                     .filter(d -> !(d instanceof VecLocalizedTypedString))
                     .filter(VecPredicates.isLanguageCode(vecLanguageCode))
                     .map(VecAbstractLocalizedString::getValue)
+                    .filter(Objects::nonNull)
                     .collect(StreamUtils.findOneOrNone());
         };
     }
