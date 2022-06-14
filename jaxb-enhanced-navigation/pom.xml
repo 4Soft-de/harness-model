@@ -17,7 +17,7 @@
     <description>A lib for enhanced navigation for JAXB models.
         It consists of two parts: An xjc-plugin (compile time) and a runtime component.
     </description>
-    <url>https://github.com/4Soft-de/jaxb-enhanced-navigation</url>
+    <url>https://github.com/4Soft-de/harness-model/jaxb-enhanced-navigation</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,10 +29,6 @@
         <!-- Plugins -->
 
         <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
-
-        <!-- build & release properties -->
-        <sonar.projectKey>4Soft-de_jaxb-enhanced-navigation</sonar.projectKey>
-
     </properties>
 
     <inceptionYear>2019</inceptionYear>
@@ -48,12 +44,6 @@
             <url>http://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
-
-    <scm>
-        <connection>scm:git:https://github.com/4Soft-de/jaxb-enhanced-navigation.git</connection>
-        <developerConnection>scm:git:https://git@github.com/4Soft-de/jaxb-enhanced-navigation.git</developerConnection>
-        <url>https://github.com/4Soft-de/jaxb-enhanced-navigation/tree/master</url>
-    </scm>
 
     <modules>
         <module>xjc-plugin</module>
