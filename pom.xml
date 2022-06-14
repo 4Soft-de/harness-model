@@ -58,9 +58,11 @@
         <skipITs>${skipTests}</skipITs>
         <skipUTs>${skipTests}</skipUTs>
 
+        <!-- build and release properties -->
+        <sonar.projectKey>4Soft-de_harness-model</sonar.projectKey>
     </properties>
 
-    <inceptionYear>2020</inceptionYear>
+    <inceptionYear>2022</inceptionYear>
 
     <organization>
         <name>4Soft GmbH</name>
@@ -75,9 +77,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:https://github.com/4Soft-de/jaxb-parent-pom.git</connection>
-        <developerConnection>scm:git:https://github.com/4Soft-de/jaxb-parent-pom.git</developerConnection>
-        <url>https://github.com/4Soft-de/jaxb-parent-pom/tree/main</url>
+        <connection>scm:git:https://github.com/4Soft-de/harness-model.git</connection>
+        <developerConnection>scm:git:https://github.com/4Soft-de/harness-model.git</developerConnection>
+        <url>https://github.com/4Soft-de/harness-model/tree/main</url>
     </scm>
 
     <developers>
