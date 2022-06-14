@@ -1,6 +1,6 @@
 ---
 name: Question
-about: Have a question regarding our enhanced XML navigator?
+about: You have a question regarding one of our projects?
 ---
 
 ## General Troubleshooting
