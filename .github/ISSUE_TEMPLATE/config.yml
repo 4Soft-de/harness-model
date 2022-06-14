@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
-  - name: News on our Website
-    url: https://www.4soft.de/news/#87105ad169a215022422b6b63e58db88
-    about: You can get a very brief overview about the navigator and what it can be used for on our website (German only).
-  - name: Blogpost about it
-    url: https://www.4soft.de/blog/2018/navigation-on-large-xml-structures/
-    about: Detailed information about the navigator can be found in our blog (English).
+  - name: Article about the KBL and the VEC
+    url: https://www.4soft.de/en/services/bordnetzentwicklung/
+    about: You can get a very brief overview about the KBL and VEC on our website (English and German).
+  - name: Blogpost about the navigator using the VEC as an example
+    url: https://www.4soft.de/en/blog/2018/navigation-on-large-xml-structures/
+    about: More information about the navigator can be found on our website (English and German).
   - name: Releases
-    url: https://mvnrepository.com/artifact/com.foursoft.jaxb2
+    url: https://mvnrepository.com/artifact/com.foursoft
     about: You can find the latest releases on Maven Central.
