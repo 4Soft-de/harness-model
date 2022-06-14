@@ -22,13 +22,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
-
-        <!-- Dependencies -->
-
-
-        <!-- Plugins -->
-
-        <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
     </properties>
 
     <inceptionYear>2019</inceptionYear>
@@ -65,20 +58,8 @@
         </developer>
     </developers>
 
-    <dependencyManagement>
-        <dependencies>
-
-        </dependencies>
-    </dependencyManagement>
-
     <build>
         <defaultGoal>install</defaultGoal>
-        <pluginManagement>
-
-        </pluginManagement>
-        <plugins>
-        </plugins>
     </build>
-
 
 </project>
