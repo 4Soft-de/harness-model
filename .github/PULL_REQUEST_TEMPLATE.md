@@ -1,7 +1,7 @@
 ## Pull Request
 
 - [ ] I have checked for similar PRs.
-- [ ] I have read the [contributing guidelines](https://github.com/4Soft-de/jaxb-parent-pom/blob/develop/.github/CONTRIBUTING.md).
+- [ ] I have read the [contributing guidelines](https://github.com/4Soft-de/harness-model/blob/develop/.github/CONTRIBUTING.md).
 
 ### Changes
 

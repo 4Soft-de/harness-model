@@ -4,12 +4,12 @@
 
 1. Fork this repository, clone the fork and navigate into it.
 2. Add an upstream to the original repository to keep a reference to it.<br />
-   `git remote add upstream https://github.com/4Soft-de/jaxb-parent-pom`
+   `git remote add upstream https://github.com/4Soft-de/harness-model`
 3. Checkout a new branch.<br />
    `git checkout -b feature/your_feature`
 4. Business as usual, commit and push to your own repository.
 5. When done, go to either your repository or to our repository and create a Pull Request.
-6. Pay attention to our [Pull Request Template](https://github.com/4Soft-de/jaxb-parent-pom/blob/develop/.github/PULL_REQUEST_TEMPLATE.md).
+6. Pay attention to our [Pull Request Template](https://github.com/4Soft-de/harness-model/blob/develop/.github/PULL_REQUEST_TEMPLATE.md).
 7. Allow edits from maintainers.
 8. Submit the pull request.
 
