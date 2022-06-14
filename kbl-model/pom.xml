@@ -16,7 +16,7 @@
     <name>${project.groupId}:${project.artifactId}</name>
 
     <description>JAXB-Model of the KBL based on the underlying UML-model (not only the XSD)</description>
-    <url>https://github.com/4Soft-de/kbl-model</url>
+    <url>https://github.com/4Soft-de/harness-model/kbl-model</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,9 +34,6 @@
         <jaxb-delegate-plugin.version>2.4.0</jaxb-delegate-plugin.version>
         <jaxb2-basics-annotate.version>1.1.0</jaxb2-basics-annotate.version>
 
-        <!-- build & release properties -->
-        <sonar.projectKey>4Soft-de_kbl-model</sonar.projectKey>
-
     </properties>
 
     <inceptionYear>2020</inceptionYear>
@@ -52,12 +49,6 @@
             <url>http://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
-
-    <scm>
-        <connection>scm:git:https://github.com/4Soft-de/kbl-model.git</connection>
-        <developerConnection>scm:git:https://github.com/4Soft-de/kbl-model.git</developerConnection>
-        <url>https://github.com/4Soft-de/kbl-model/tree/master</url>
-    </scm>
 
     <modules>
         <module>v24</module>
