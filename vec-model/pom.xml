@@ -32,7 +32,6 @@
         <cxf-xjc-javadoc.version>3.3.1</cxf-xjc-javadoc.version>
         <jaxb-delegate-plugin.version>2.4.0</jaxb-delegate-plugin.version>
         <jaxb2-basics-annotate.version>1.1.0</jaxb2-basics-annotate.version>
-
     </properties>
 
     <inceptionYear>2020</inceptionYear>
@@ -91,7 +90,6 @@
                     <configuration>
                         <encoding>UTF-8</encoding>
                         <extension>true</extension>
-
                         <plugins>
                             <plugin>
                                 <groupId>org.jvnet.jaxb2_commons</groupId>
