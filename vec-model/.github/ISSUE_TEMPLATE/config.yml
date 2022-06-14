@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Website
+    url: https://www.4soft.de/services/bordnetzentwicklung/
+    about: You can get a brief overview about VEC on our website (German only).
+  - name: Wiki
+    url: https://ecad-wiki.prostep.org/specifications/vec/
+    about: Detailed information can be found in the ECAD Wiki (English).
+  - name: Releases
+    url: https://mvnrepository.com/artifact/com.foursoft.vecmodel
+    about: You can find the latest releases on Maven Central.
