@@ -1,0 +1,62 @@
+name: Bug Report
+description: Found a bug that needs to be fixed?
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: General Troubleshooting
+      options:
+        - label: I have checked for similar issues or PRs fixing it.
+          required: true
+        - label: I have updated to the [latest version](https://mvnrepository.com/artifact/com.foursoft) of the project.
+          required: true
+  - type: dropdown
+    id: project
+    attributes:
+      label: Which project does the bug apply to?
+      options:
+        - KBL
+        - VEC
+        - Navigator
+        - Compatibility Library
+    validations:
+      required: true
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: Bug Description
+      description: What bug did you encounter?
+    validations:
+      required: true
+  - type: textarea
+    id: stacktrace
+    attributes:
+      label: Error / Exception
+      description: If available, please provide the stacktrace.
+      render: bash
+    validations:
+      required: false
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: If there was no error, please describe what you expected to happen.
+    validations:
+      required: false
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Example
+      description: Please share the code which is responsible for the bug.
+      render: Java
+    validations:
+      required: false
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: Reproduction Steps
+      description: Please share the steps to reproduce the error.
+    validations:
+      required: false
