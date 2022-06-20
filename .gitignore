@@ -55,3 +55,6 @@ buildNumber.properties
 # VS Code / Eclipse
 .settings/
 /*/target/
+
+# Git Merge Conflict Files
+*.orig
