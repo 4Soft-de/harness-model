@@ -62,7 +62,7 @@ implementation group: 'com.foursoft.harness.kbl', name: 'kbl-v24', version: 'VER
 
 In the codebase, the root of a kbl file is the `KBLContainer` class.
 
-More examples can be found [in the examples](https://github.com/4Soft-de/kbl-model/tree/develop/v24/src/examples/).
+More examples can be found [in the examples](https://github.com/4Soft-de/harness-model/tree/develop/kbl-model/v24/src/examples/).
 
 ### Reading a KBL file
 
@@ -232,9 +232,9 @@ public class MyKblWriter {
 ## Contributing
 
 We appreciate if you like to contribute to our project! Please make sure to base your branch off of
-our [develop branch](https://github.com/4Soft-de/kbl-model/tree/develop) and create your PR into that same branch. We
+our [develop branch](https://github.com/4Soft-de/harness-model/tree/develop) and create your PR into that same branch. We
 will reject any PRs not following that or if this is already worked on.
 
 Please read our
-detailed [Contribution Guidelines](https://github.com/4Soft-de/kbl-model/blob/develop/.github/CONTRIBUTING.md) for more
+detailed [Contribution Guidelines](https://github.com/4Soft-de/harness-model/blob/develop/.github/CONTRIBUTING.md) for more
 information, for example code style, formatter, etc.
