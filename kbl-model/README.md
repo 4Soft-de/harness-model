@@ -6,6 +6,8 @@
 
 JAXB-Model of the KBL, based on the underlying UML-model (not only the XSD).
 
+**Important notice: This project is not compatible with Java 17 yet! Instead, Java 8 or Java 11 has to be used.**
+
 ## Introduction
 
 KBL is German and stands for **K**abel**b**aum**l**iste (engl. Harness Description List) and defines an information
