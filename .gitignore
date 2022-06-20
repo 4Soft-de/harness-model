@@ -53,7 +53,5 @@ buildNumber.properties
 *.iml
 
 # VS Code / Eclipse
-.project
 .settings/
-.classpath
 /*/target/
