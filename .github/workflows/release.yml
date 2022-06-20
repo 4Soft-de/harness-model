@@ -6,7 +6,7 @@ on:
       release_version:
         description: 'The Version of the Release (e.g. 0.1.0)'
         required: false
-        default: ''  
+        default: ''
       github_user:
         description: 'The GitHub user to release with (Owner of the PAT)'
         required: true
@@ -34,12 +34,12 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Set up JDK 11.0.2
+      - name: Set up JDK 11
         uses: actions/setup-java@v2.5.0
         with:
           distribution: 'adopt'
           java-version: '11'
-          check-latest: true        
+          check-latest: true
           gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }} # Value of the GPG private key to import
       - name: Cache Maven packages
         uses: actions/cache@v2.1.7
