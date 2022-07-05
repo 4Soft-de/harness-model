@@ -66,6 +66,7 @@
 
     <jxb:bindings multiple="true" node="//xs:complexType[@name='Harness']">
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasLocatedComponents</inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasConnectionOrOccurrences</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings node="//xs:attribute[@name='id']" multiple="true">
@@ -78,6 +79,10 @@
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Instruction_value']]">
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasInstruction</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Related_assembly']]">
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasRelatedAssembly</inheritance:implements>
     </jxb:bindings>
 
 </jxb:bindings>

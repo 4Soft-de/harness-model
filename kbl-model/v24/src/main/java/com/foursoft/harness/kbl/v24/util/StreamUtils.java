@@ -28,7 +28,9 @@ package com.foursoft.harness.kbl.v24.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collector;
+import java.util.stream.Stream;
 
 /**
  * Utility class that contains aggregation functions that are reused throughout
@@ -86,6 +88,15 @@ public final class StreamUtils {
             }
             return list.get(0);
         });
+    }
+
+    public static <E, T> Function<E, Stream<T>> ofClass(final Class<T> classOfT) {
+        return t -> {
+            if (t == null || !classOfT.isAssignableFrom(t.getClass())) {
+                return Stream.empty();
+            }
+            return Stream.of(classOfT.cast(t));
+        };
     }
 
 }
