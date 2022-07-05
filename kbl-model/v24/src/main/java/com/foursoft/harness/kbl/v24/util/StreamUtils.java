@@ -90,6 +90,24 @@ public final class StreamUtils {
         });
     }
 
+    /**
+     * Returns a Function which returns a Stream of elements of the given class.
+     * <p>
+     * Can be used together with {@link Stream#flatMap(Function)} to filter the stream.
+     * <pre>
+     * {@code
+     * List&lt;Developer&gt; developers = streamOfPeople
+     *   .flatMap(StreamUtils.ofClass(Developer.class))
+     *   .collect(Collectors.toList());
+     * }
+     * </pre>
+     *
+     * @param classOfT Class an element must have to stay in the stream.
+     * @param <E>      Input type of the function.
+     * @param <T>      Type of the class which the stream should have.
+     * @return A stream with the input cast to the given class if applicable.
+     * If this is not the case, an empty stream will be returned.
+     */
     public static <E, T> Function<E, Stream<T>> ofClass(final Class<T> classOfT) {
         return t -> {
             if (t == null || !classOfT.isAssignableFrom(t.getClass())) {
