@@ -29,7 +29,6 @@ import com.foursoft.harness.kbl.v24.util.StreamUtils;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -86,19 +85,19 @@ public interface HasConnectionOrOccurrences {
     }
 
     default List<HasRelatedAssembly> getHasRelatedAssemblyOccurrences() {
-        return Stream.of(getAccessoryOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getCavityPlugOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getCavitySealOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getCoPackOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getComponentBoxOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getComponentOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getConnectorOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getFixingOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getSpecialTerminalOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getGeneralWireOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getTerminalOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)),
-                        getWireProtectionOccurrences().stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)))
-                .flatMap(Function.identity())
+        return Stream.of(getAccessoryOccurrences(),
+                        getCavityPlugOccurrences(),
+                        getCavitySealOccurrences(),
+                        getCoPackOccurrences(),
+                        getComponentBoxOccurrences(),
+                        getComponentOccurrences(),
+                        getConnectorOccurrences(),
+                        getFixingOccurrences(),
+                        getSpecialTerminalOccurrences(),
+                        getGeneralWireOccurrences(),
+                        getTerminalOccurrences(),
+                        getWireProtectionOccurrences())
+                .flatMap(l -> l.stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)))
                 .collect(Collectors.toList());
     }
 
