@@ -28,4 +28,7 @@ package com.foursoft.harness.kbl.v24;
 public interface HasDescription {
 
     String getDescription();
+
+    void setDescription(String value);
+
 }
