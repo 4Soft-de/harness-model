@@ -25,8 +25,10 @@
  */
 package com.foursoft.harness.kbl.v24;
 
-public interface HasPart {
+public interface HasPart<T extends KblPart> {
 
-    KblPart getPart();
+    T getPart();
+
+    void setPart(T value);
 
 }
