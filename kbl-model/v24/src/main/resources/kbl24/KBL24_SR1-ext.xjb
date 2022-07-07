@@ -26,53 +26,9 @@
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasIdentification</inheritance:implements>
     </jxb:bindings>
 
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Accessory_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblAccessory&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Assembly_part_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblAssemblyPart&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Cavity_plug_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblCavityPlug&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Cavity_seal_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblCavitySeal&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Co_pack_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblCoPackPart&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Component_box_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblComponentBox&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Component_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblComponent&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Connector_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblConnectorHousing&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Fixing_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblFixing&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='General_wire_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblGeneralWire&gt;</inheritance:implements>
-    </jxb:bindings>
-
     <jxb:bindings multiple="true"
-                  node="//xs:complexType[@name='Special_terminal_occurrence' or @name='Terminal_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblGeneralTerminal&gt;</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[@name='Wire_protection_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart&lt;com.foursoft.harness.kbl.v24.KblWireProtection&gt;</inheritance:implements>
+                  node="//xs:complexType[@name='Accessory_occurrence' or @name='Assembly_part_occurrence' or @name='Cavity_plug_occurrence' or @name='Cavity_seal_occurrence' or @name='Co_pack_occurrence' or @name='Component_box_occurrence' or @name='Component_occurrence'  or @name='Connector_occurrence' or @name='Fixing_occurrence' or @name='General_wire_occurrence' or @name='Special_terminal_occurrence' or @name='Terminal_occurrence' or @name='Wire_protection_occurrence']">
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true"
