@@ -28,4 +28,7 @@ package com.foursoft.harness.kbl.v24;
 public interface HasRelatedAssembly {
 
     KblAssemblyPartOccurrence getRelatedAssembly();
+
+    void setRelatedAssembly(KblAssemblyPartOccurrence value);
+
 }
