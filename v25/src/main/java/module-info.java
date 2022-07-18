@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.harness.kbl.v24 {
+open module com.foursoft.harness.kbl.v25 {
     requires transitive com.foursoft.harness.kbl.common;
     requires com.foursoft.jaxb.navext.runtime;
 
@@ -32,8 +32,8 @@ open module com.foursoft.harness.kbl.v24 {
     requires java.annotation;
     requires org.slf4j;
 
-    exports com.foursoft.harness.kbl.v24;
-    exports com.foursoft.harness.kbl.v24.visitor;
-    exports com.foursoft.harness.kbl.v24.validation;
+    exports com.foursoft.harness.kbl.v25;
+    exports com.foursoft.harness.kbl.v25.visitor;
+    exports com.foursoft.harness.kbl.v25.validation;
 
 }

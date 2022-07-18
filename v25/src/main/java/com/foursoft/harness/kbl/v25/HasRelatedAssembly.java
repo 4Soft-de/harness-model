@@ -23,12 +23,12 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.v25;
+
+import java.util.List;
 
 public interface HasRelatedAssembly {
 
-    KblAssemblyPartOccurrence getRelatedAssembly();
-
-    void setRelatedAssembly(KblAssemblyPartOccurrence value);
+    List<KblAssemblyPartOccurrence> getRelatedAssembly();
 
 }
