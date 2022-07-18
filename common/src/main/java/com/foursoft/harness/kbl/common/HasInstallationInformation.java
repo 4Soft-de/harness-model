@@ -23,18 +23,18 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.common;
 
-import com.foursoft.harness.kbl.v24.util.StreamUtils;
+import com.foursoft.harness.kbl.common.util.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public interface HasInstallationInformation {
+public interface HasInstallationInformation<X extends HasInstruction> {
 
-    List<KblInstallationInstruction> getInstallationInformations();
+    List<X> getInstallationInformations();
 
     /**
      * Filters the list of {@link KblInstallationInstruction} key.
@@ -81,6 +81,6 @@ public interface HasInstallationInformation {
         return getInstallationInformations()
                 .stream()
                 .filter(matches)
-                .map(KblInstallationInstruction::getInstructionValue);
+                .map(HasInstruction::getInstructionValue);
     }
 }

@@ -23,35 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.common;
 
-import com.foursoft.harness.kbl.common.util.StreamUtils;
-import org.junit.jupiter.api.Test;
+public interface HasIdentification {
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+    String getId();
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class HasInstallationInformationTest {
-
-    @Test
-    void installationInstructionTest() throws IOException {
-        try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
-            final KBLContainer kblContainer = new KblReader().read(is);
-
-            final KblConnectorOccurrence occurrence = kblContainer.getHarness().getConnectorOccurrences()
-                    .stream()
-                    .filter(c -> c.getId().equals("Id184"))
-                    .collect(StreamUtils.findOne());
-
-            assertThat(occurrence)
-                    .returns(Optional.of("Instruction_value391"), c -> c.getInstallationInstructionValue("Instruction_type391"))
-                    .returns(List.of("Instruction_value391"), c -> c.installationInstructionValues("Instruction_type391")
-                            .collect(Collectors.toList()));
-        }
-    }
+    void setId(String id);
 }

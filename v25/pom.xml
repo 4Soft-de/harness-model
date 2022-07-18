@@ -6,17 +6,12 @@
         <artifactId>kbl-parent</artifactId>
         <version>2.1.5-SNAPSHOT</version>
     </parent>
-    <artifactId>kbl-v24</artifactId>
+    <artifactId>kbl-v25</artifactId>
 
-    <description>The model for KBL version 2.4</description>
+    <description>The model for KBL version 2.5</description>
 
     <dependencies>
         <!--project-->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kbl-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
@@ -83,7 +78,7 @@
                 <artifactId>maven-jaxb2-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>generate-kbl24</id>
+                        <id>generate-kbl25</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
@@ -108,10 +103,10 @@
                                 <arg>-Xvisitor</arg>
                                 <arg>-Xvisitor-noIdrefTraversal</arg>
                                 <arg>-Xvisitor-includeType</arg>
-                                <arg>-Xvisitor-package:com.foursoft.harness.kbl.v24.visitor</arg>
+                                <arg>-Xvisitor-package:com.foursoft.harness.kbl.v25.visitor</arg>
                                 <arg>-Xnull-empty-lists</arg>
                             </args>
-                            <generateDirectory>${project.build.directory}/generated-sources/xjc-vec120
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-kbl25
                             </generateDirectory>
                         </configuration>
                     </execution>

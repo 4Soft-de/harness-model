@@ -23,18 +23,18 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.common;
 
-import com.foursoft.harness.kbl.v24.util.StreamUtils;
+import com.foursoft.harness.kbl.common.util.StreamUtils;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public interface HasProcessingInformation {
+public interface HasProcessingInformation<X extends HasInstruction> {
 
-    List<KblProcessingInstruction> getProcessingInformations();
+    List<X> getProcessingInformations();
 
     /**
      * Filters the list of {@link KblProcessingInstruction} key.
@@ -81,6 +81,6 @@ public interface HasProcessingInformation {
         return getProcessingInformations()
                 .stream()
                 .filter(matches)
-                .map(KblProcessingInstruction::getInstructionValue);
+                .map(HasInstruction::getInstructionValue);
     }
 }

@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24.util;
+package com.foursoft.harness.kbl.common.util;
 
 import java.util.ArrayList;
 import java.util.List;

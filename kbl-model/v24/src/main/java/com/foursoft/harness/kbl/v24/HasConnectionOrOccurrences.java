@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.kbl.v24;
 
-import com.foursoft.harness.kbl.v24.util.StreamUtils;
+import com.foursoft.harness.kbl.common.util.StreamUtils;
 
 import java.util.Collection;
 import java.util.List;

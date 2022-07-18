@@ -23,16 +23,12 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.common;
 
-public interface HasInstruction {
+public interface HasDescription {
 
-    String getInstructionType();
+    String getDescription();
 
-    void setInstructionType(String value);
-
-    String getInstructionValue();
-
-    void setInstructionValue(String value);
+    void setDescription(String value);
 
 }

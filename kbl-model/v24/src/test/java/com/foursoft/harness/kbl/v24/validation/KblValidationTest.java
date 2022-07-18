@@ -25,11 +25,11 @@
  */
 package com.foursoft.harness.kbl.v24.validation;
 
+import com.foursoft.harness.kbl.common.exception.KblException;
 import com.foursoft.harness.kbl.v24.KBLContainer;
 import com.foursoft.harness.kbl.v24.KblHarness;
 import com.foursoft.harness.kbl.v24.KblHarnessContent;
 import com.foursoft.harness.kbl.v24.KblWriter;
-import com.foursoft.harness.kbl.v24.exception.KblException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
