@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kbl:KBL_container xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema" id="ID000" version_id="version_id0">
+    <Connector_housing id="ch_part">
+        <Part_number>Part_number14</Part_number>
+        <Company_name>Company_name14</Company_name>
+        <Alias_id id="I1132">
+            <Alias_id>Alias_id100</Alias_id>
+            <Scope>Scope100</Scope>
+            <Description>Description184</Description>
+            <Localized_description id="I1134">
+                <Language_code>Aa</Language_code>
+                <Value>Value369</Value>
+            </Localized_description>
+        </Alias_id>
+        <Version>Version14</Version>
+        <Abbreviation>Abbreviation14</Abbreviation>
+        <Description>Description186</Description>
+        <Localized_description id="I1139">
+            <Language_code>Aa</Language_code>
+            <Value>Value373</Value>
+        </Localized_description>
+        <Degree_of_maturity>Degree_of_maturity14</Degree_of_maturity>
+        <Slots id="I1150">
+            <Id>Id132</Id>
+            <Number_of_cavities>0</Number_of_cavities>
+            <Cavities id="I1151">
+                <Cavity_number>1_number8</Cavity_number>
+                <Processing_information id="I1153">
+                    <Instruction_type>Instruction_type279</Instruction_type>
+                    <Instruction_value>Instruction_value279</Instruction_value>
+                </Processing_information>
+            </Cavities>
+            <Processing_information id="I1158">
+                <Instruction_type>Instruction_type283</Instruction_type>
+                <Instruction_value>Instruction_value283</Instruction_value>
+            </Processing_information>
+        </Slots>
+    </Connector_housing>
+    <Harness id="I1397">
+        <Part_number>Part_number22</Part_number>
+        <Company_name>Company_name22</Company_name>
+        <Version>Version22</Version>
+        <Abbreviation>Abbreviation22</Abbreviation>
+        <Description>Description226</Description>
+        <Predecessor_part_number>Predecessor_part_number22</Predecessor_part_number>
+        <Degree_of_maturity>Degree_of_maturity22</Degree_of_maturity>
+        <Copyright_note>Copyright_note22</Copyright_note>
+        <Project_number>Project_number0</Project_number>
+        <Car_classification_level_2>asdf</Car_classification_level_2>
+        <Model_year>Model_year0</Model_year>
+        <Content>harness complete set</Content>
+        <Connector_occurrence id="I1616">
+            <Id>Id184</Id>
+            <Description>Description265</Description>
+            <Part>ch_part</Part>
+            <Installation_information id="I1632">
+                <Instruction_type>Instruction_type390</Instruction_type>
+                <Instruction_value>Instruction_value390</Instruction_value>
+            </Installation_information>
+            <Installation_information id="I1633">
+                <Instruction_type>Instruction_type391</Instruction_type>
+                <Instruction_value>Instruction_value391</Instruction_value>
+            </Installation_information>
+            <Slots id="I1634">
+                <Part>I1150</Part>
+                <Cavities id="I1635">
+                    <Part>I1151</Part>
+                    <Processing_information id="I1636">
+                        <Instruction_type>Instruction_type392</Instruction_type>
+                        <Instruction_value>Instruction_value392</Instruction_value>
+                    </Processing_information>
+                    <Processing_information id="I1637">
+                        <Instruction_type>Instruction_type393</Instruction_type>
+                        <Instruction_value>Instruction_value393</Instruction_value>
+                    </Processing_information>
+                </Cavities>
+                <Processing_information id="I1641">
+                    <Instruction_type>Instruction_type396</Instruction_type>
+                    <Instruction_value>Instruction_value396</Instruction_value>
+                </Processing_information>
+                <Processing_information id="I1642">
+                    <Instruction_type>Instruction_type397</Instruction_type>
+                    <Instruction_value>Instruction_value397</Instruction_value>
+                </Processing_information>
+            </Slots>
+        </Connector_occurrence>
+        <Module id="I1886">
+            <Part_number>Part_number26</Part_number>
+            <Company_name>Company_name26</Company_name>
+            <Version>Version26</Version>
+            <Abbreviation>Abbreviation26</Abbreviation>
+            <Description>Description304</Description>
+            <Project_number>Project_number4</Project_number>
+            <Car_classification_level_2>Car_classification_level_24</Car_classification_level_2>
+            <Car_classification_level_3>Car_classification_level_34</Car_classification_level_3>
+            <Car_classification_level_4>Car_classification_level_44</Car_classification_level_4>
+            <Model_year>Model_year4</Model_year>
+            <Content>module</Content>
+            <Of_family>I1919</Of_family>
+            <Module_configuration id="I1905">
+                <Logistic_control_information>Logistic_control_information3</Logistic_control_information>
+                <Configuration_type>option code</Configuration_type>
+                <Controlled_components>I1616</Controlled_components>
+            </Module_configuration>
+        </Module>
+        <Module_families id="I1919">
+            <Id>Id209</Id>
+            <Description>Description308</Description>
+        </Module_families>
+    </Harness>
+</kbl:KBL_container>
