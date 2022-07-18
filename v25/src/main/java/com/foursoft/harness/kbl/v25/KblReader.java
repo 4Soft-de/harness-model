@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.v25;
 
 import com.foursoft.jaxb.navext.runtime.io.read.XMLReader;
 import com.foursoft.jaxb.navext.runtime.model.Identifiable;
@@ -39,12 +39,12 @@ import java.util.function.Consumer;
  * pools (e.g. servlet container) as the JVM default {@link javax.xml.bind.Unmarshaller}
  * implementation does not clean up internal states properly after unmarshalling is finished.
  * Therefore the functionality has been dropped.
- *</p>
+ * </p>
  * <p>
  * The performance overhead of creating a new reader for each read is about 10% - 15% for
  * repeated reads. The overhead is independent from the size of unmarshalled file. If this is an
  * issue, you can manage your own singleton reader (it is <b>not thread-safe</b>, but can be reused).
- *</p>
+ * </p>
  */
 public final class KblReader extends XMLReader<KBLContainer, Identifiable> {
 
