@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24.validation;
+package com.foursoft.harness.kbl.v25.validation;
 
 import com.foursoft.harness.kbl.common.exception.KblException;
 import com.foursoft.jaxb.navext.runtime.io.validation.LogErrors;

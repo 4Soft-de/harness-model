@@ -23,13 +23,13 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24.validation;
+package com.foursoft.harness.kbl.v25.validation;
 
 import javax.xml.validation.Schema;
 
 public class SchemaFactory {
 
-    private static final String SCHEMA_PATH = "kbl24/KBL24_SR1.xsd";
+    private static final String SCHEMA_PATH = "kbl25/KBL25_SR1.xsd";
 
     private SchemaFactory() {
         // Hide constructor
