@@ -65,6 +65,14 @@
         <inheritance:implements>com.foursoft.harness.kbl.common.HasPlacement&lt;com.foursoft.harness.kbl.v24.KblTransformation&gt;</inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Instruction_type']]">
+        <inheritance:implements>com.foursoft.harness.kbl.common.HasInstruction</inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Instruction_value']]">
+        <inheritance:implements>com.foursoft.harness.kbl.common.HasInstruction</inheritance:implements>
+    </jxb:bindings>
+
     <jxb:bindings multiple="true" node="//xs:complexType[@name='KBL_container']">
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasParts</inheritance:implements>
     </jxb:bindings>
@@ -72,14 +80,6 @@
     <jxb:bindings multiple="true" node="//xs:complexType[@name='Harness']">
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasLocatedComponents</inheritance:implements>
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasConnectionOrOccurrences</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Instruction_type']]">
-        <inheritance:implements>com.foursoft.harness.kbl.common.HasInstruction</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Instruction_value']]">
-        <inheritance:implements>com.foursoft.harness.kbl.common.HasInstruction</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Related_assembly']]">
