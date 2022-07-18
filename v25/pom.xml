@@ -12,6 +12,12 @@
 
     <dependencies>
         <!--project-->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>kbl-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
@@ -87,10 +93,10 @@
                             <encoding>UTF-8</encoding>
                             <packageLevelAnnotations>false</packageLevelAnnotations>
                             <schemaIncludes>
-                                <include>kbl24/KBL24_SR1.xsd</include>
+                                <include>kbl25/KBL25_SR1.xsd</include>
                             </schemaIncludes>
                             <bindingIncludes>
-                                <include>kbl24/*.xjb</include>
+                                <include>kbl25/*.xjb</include>
                             </bindingIncludes>
                             <extension>true</extension>
                             <args>
