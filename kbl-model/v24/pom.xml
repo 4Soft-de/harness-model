@@ -111,7 +111,7 @@
                                 <arg>-Xvisitor-package:com.foursoft.harness.kbl.v24.visitor</arg>
                                 <arg>-Xnull-empty-lists</arg>
                             </args>
-                            <generateDirectory>${project.build.directory}/generated-sources/xjc-vec120
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-kbl24
                             </generateDirectory>
                         </configuration>
                     </execution>
