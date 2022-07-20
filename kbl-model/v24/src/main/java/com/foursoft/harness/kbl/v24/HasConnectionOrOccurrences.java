@@ -29,6 +29,7 @@ import com.foursoft.harness.kbl.common.util.StreamUtils;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -66,9 +67,10 @@ public interface HasConnectionOrOccurrences {
 
     default List<ConnectionOrOccurrence> getConnectionOrOccurrences() {
         return Stream.of(getOccurrences(),
-                        getAssemblyPartOccurrences(),
-                        getConnections(),
-                        getWiringGroups())
+                        getAssemblyPartOccurrences().stream(),
+                        getConnections().stream(),
+                        getWiringGroups().stream())
+                .flatMap(Function.identity())
                 .flatMap(StreamUtils.ofClass(ConnectionOrOccurrence.class))
                 .collect(Collectors.toList());
     }
