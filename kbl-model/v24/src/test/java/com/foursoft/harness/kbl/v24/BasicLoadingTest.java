@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,19 +29,8 @@ import com.foursoft.jaxb.navext.runtime.ExtendedUnmarshaller;
 import com.foursoft.jaxb.navext.runtime.JaxbModel;
 import com.foursoft.jaxb.navext.runtime.model.Identifiable;
 import org.junit.jupiter.api.Test;
-import org.w3c.dom.Document;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
-import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -92,45 +81,6 @@ class BasicLoadingTest {
 
             assertThat(part).isNotNull()
                     .returns(Collections.singleton(occurrence), KblConnectorHousing::getRefConnectorOccurrence);
-        }
-    }
-
-    @Test
-    void validationTest() throws Exception {
-        try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
-            final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-
-            final Source source = new StreamSource(getClass().getResourceAsStream("/kbl24/KBL24_SR1.xsd"));
-
-            final Schema schema = schemaFactory.newSchema(source);
-
-            final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
-            dbf.setNamespaceAware(true);
-            dbf.setSchema(schema);
-
-            final DocumentBuilder db = dbf.newDocumentBuilder();
-            db.setErrorHandler(new ErrorHandler() {
-
-                @Override
-                public void warning(final SAXParseException exception) throws SAXException {
-                    // TODO Auto-generated method stub
-                    throw new UnsupportedOperationException(exception);
-                }
-
-                @Override
-                public void fatalError(final SAXParseException exception) throws SAXException {
-                    // TODO Auto-generated method stub
-                    throw new UnsupportedOperationException(exception);
-                }
-
-                @Override
-                public void error(final SAXParseException exception) throws SAXException {
-                    // TODO Auto-generated method stub
-                    throw new UnsupportedOperationException(exception);
-                }
-            });
-            final Document d = db.parse(new BufferedInputStream(is));
         }
     }
 

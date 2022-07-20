@@ -65,26 +65,21 @@ public interface HasConnectionOrOccurrences {
     List<KblWiringGroup> getWiringGroups();
 
     default List<ConnectionOrOccurrence> getConnectionOrOccurrences() {
-        return Stream.of(getAccessoryOccurrences(),
+        return Stream.of(getOccurrences(),
                         getAssemblyPartOccurrences(),
-                        getCavityPlugOccurrences(),
-                        getCavitySealOccurrences(),
-                        getCoPackOccurrences(),
-                        getComponentBoxOccurrences(),
-                        getComponentOccurrences(),
                         getConnections(),
-                        getConnectorOccurrences(),
-                        getFixingOccurrences(),
-                        getGeneralWireOccurrences(),
-                        getSpecialTerminalOccurrences(),
-                        getTerminalOccurrences(),
-                        getWireProtectionOccurrences(),
                         getWiringGroups())
-                .flatMap(Collection::stream)
+                .flatMap(StreamUtils.ofClass(ConnectionOrOccurrence.class))
                 .collect(Collectors.toList());
     }
 
     default List<HasRelatedAssembly> getHasRelatedAssemblyOccurrences() {
+        return getOccurrences()
+                .flatMap(StreamUtils.ofClass(HasRelatedAssembly.class))
+                .collect(Collectors.toList());
+    }
+
+    private Stream<?> getOccurrences() {
         return Stream.of(getAccessoryOccurrences(),
                         getCavityPlugOccurrences(),
                         getCavitySealOccurrences(),
@@ -93,12 +88,11 @@ public interface HasConnectionOrOccurrences {
                         getComponentOccurrences(),
                         getConnectorOccurrences(),
                         getFixingOccurrences(),
-                        getSpecialTerminalOccurrences(),
                         getGeneralWireOccurrences(),
+                        getSpecialTerminalOccurrences(),
                         getTerminalOccurrences(),
                         getWireProtectionOccurrences())
-                .flatMap(l -> l.stream().flatMap(StreamUtils.ofClass(HasRelatedAssembly.class)))
-                .collect(Collectors.toList());
+                .flatMap(Collection::stream);
     }
 
 }

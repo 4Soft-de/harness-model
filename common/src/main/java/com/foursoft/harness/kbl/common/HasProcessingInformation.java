@@ -37,7 +37,7 @@ public interface HasProcessingInformation<X extends HasInstruction> {
     List<X> getProcessingInformations();
 
     /**
-     * Filters the list of {@link KblProcessingInstruction} key.
+     * Filters the list of {@link HasInstruction} key.
      * At most one element of the specified type is expected here. If more are found, the first one will be returned and a warning will be logged.
      * If multiple values of the specified type are valid, then please use the other {@link #processingInstructionValues(Predicate)} or {@link #processingInstructionValues(String)} method.
      *
@@ -49,7 +49,7 @@ public interface HasProcessingInformation<X extends HasInstruction> {
     }
 
     /**
-     * Filters the list of {@link KblProcessingInstruction} key.
+     * Filters the list of {@link HasInstruction} key.
      * At most one element of the specified type is expected here. If more are found, the first one will be returned and a warning will be logged.
      * If multiple values of the specified type are valid, then please use the other {@link #processingInstructionValues(Predicate)} or {@link #processingInstructionValues(String)} method.
      *
@@ -62,7 +62,7 @@ public interface HasProcessingInformation<X extends HasInstruction> {
     }
 
     /**
-     * Filters the list of {@link KblProcessingInstruction} key.
+     * Filters the list of {@link HasInstruction} key.
      *
      * @param instructionType defines the meaning of the value
      * @return a stream with all instruction values for the given type.
@@ -72,7 +72,7 @@ public interface HasProcessingInformation<X extends HasInstruction> {
     }
 
     /**
-     * Filters the list of {@link KblProcessingInstruction} key.
+     * Filters the list of {@link HasInstruction} key.
      *
      * @param matches defines the meaning of the value
      * @return a stream with all instruction values for the given type.

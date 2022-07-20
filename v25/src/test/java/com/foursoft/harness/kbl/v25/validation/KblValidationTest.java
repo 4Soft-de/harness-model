@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,6 +26,7 @@
 package com.foursoft.harness.kbl.v25.validation;
 
 import com.foursoft.harness.kbl.common.exception.KblException;
+import com.foursoft.harness.kbl.common.validation.KblValidation;
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblHarnessContent;
@@ -60,7 +61,7 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        KblValidation.validateXML(result, errors::add, true);
+        KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
 
         assertThat(errors).isEmpty();
     }
@@ -77,7 +78,7 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        assertThatThrownBy(() -> KblValidation.validateXML(result, errors::add, true))
+        assertThatThrownBy(() -> KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true))
                 .isInstanceOf(KblException.class)
                 .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
         assertThat(errors).isNotEmpty();

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -89,28 +89,27 @@ class BasicWritingTest {
         final KblWriter kblWriter = new KblWriter();
         final String result = kblWriter.writeToString(root);
 
-        System.out.println(result);
         assertThat(result)
                 .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                                                     + "<kbl:KBL_container id=\"ID000\" version_id=\"version_id0\""
-                                                     + " xmlns:kbl=\"http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema\">\n"
-                                                     + "    <Harness id=\"I1397\">\n"
-                                                     + "        <Connector_occurrence id=\"I1616\">\n"
-                                                     + "            <Contact_points id=\"id_1234\">\n"
-                                                     + "                <Id>SCHNUPSI</Id>\n"
-                                                     + "                <Associated_parts>id_4711</Associated_parts>\n"
-                                                     + "            </Contact_points>\n"
-                                                     + "            <Contact_points id=\"id_1235\">\n"
-                                                     + "                <Id>SCHNUPSI</Id>\n"
-                                                     + "            </Contact_points>\n"
-                                                     + "            <Contact_points id=\"id_1236\">\n"
-                                                     + "                <Id>SCHNUPSI</Id>\n"
-                                                     + "            </Contact_points>\n"
-                                                     + "        </Connector_occurrence>\n"
-                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\n"
-                                                     + "        <Terminal_occurrence id=\"id_4712\"/>\n"
-                                                     + "    </Harness>\n"
-                                                     + "</kbl:KBL_container>");
+                        + "<kbl:KBL_container id=\"ID000\" version_id=\"version_id0\""
+                        + " xmlns:kbl=\"http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema\">\n"
+                        + "    <Harness id=\"I1397\">\n"
+                        + "        <Connector_occurrence id=\"I1616\">\n"
+                        + "            <Contact_points id=\"id_1234\">\n"
+                        + "                <Id>SCHNUPSI</Id>\n"
+                        + "                <Associated_parts>id_4711</Associated_parts>\n"
+                        + "            </Contact_points>\n"
+                        + "            <Contact_points id=\"id_1235\">\n"
+                        + "                <Id>SCHNUPSI</Id>\n"
+                        + "            </Contact_points>\n"
+                        + "            <Contact_points id=\"id_1236\">\n"
+                        + "                <Id>SCHNUPSI</Id>\n"
+                        + "            </Contact_points>\n"
+                        + "        </Connector_occurrence>\n"
+                        + "        <Terminal_occurrence id=\"id_4711\"/>\n"
+                        + "        <Terminal_occurrence id=\"id_4712\"/>\n"
+                        + "    </Harness>\n"
+                        + "</kbl:KBL_container>");
 
     }
 

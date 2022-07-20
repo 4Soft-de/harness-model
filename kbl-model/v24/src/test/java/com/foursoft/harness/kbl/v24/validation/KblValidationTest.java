@@ -26,6 +26,7 @@
 package com.foursoft.harness.kbl.v24.validation;
 
 import com.foursoft.harness.kbl.common.exception.KblException;
+import com.foursoft.harness.kbl.common.validation.KblValidation;
 import com.foursoft.harness.kbl.v24.KBLContainer;
 import com.foursoft.harness.kbl.v24.KblHarness;
 import com.foursoft.harness.kbl.v24.KblHarnessContent;
@@ -61,7 +62,7 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        KblValidation.validateXML(result, errors::add, true);
+        KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
 
         assertThat(errors).isEmpty();
     }
@@ -78,7 +79,7 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        assertThatThrownBy(() -> KblValidation.validateXML(result, errors::add, true))
+        assertThatThrownBy(() -> KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true))
                 .isInstanceOf(KblException.class)
                 .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
         assertThat(errors).isNotEmpty();
