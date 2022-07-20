@@ -31,7 +31,10 @@ import com.foursoft.jaxb.navext.runtime.io.validation.LogValidator;
 import com.foursoft.jaxb.navext.runtime.io.validation.XMLValidation;
 
 import javax.xml.validation.Schema;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -49,7 +52,25 @@ public class KblValidation {
     /**
      * validates a xml string against the kbl schema
      *
-     * @param schema
+     * @param schema      the kbl schema
+     * @param kblPath     path to kbl
+     * @param consumer    to display scheme violations.
+     * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
+     */
+    public static void validateXML(final Schema schema, final Path kblPath, final Consumer<String> consumer, final boolean detailedLog) {
+        try {
+            final String xmlContent = Files.readString(kblPath);
+            validateXML(schema, xmlContent, consumer, detailedLog);
+        } catch (final IOException e) {
+            throw new KblException("Schema validation failed! Could not read Path: " + kblPath, e);
+        }
+    }
+
+
+    /**
+     * validates a xml string against the kbl schema
+     *
+     * @param schema      the kbl schema
      * @param xmlContent  the xml content
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
