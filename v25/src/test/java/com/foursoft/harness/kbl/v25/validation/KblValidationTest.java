@@ -31,6 +31,7 @@ import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblHarnessContent;
 import com.foursoft.harness.kbl.v25.KblWriter;
+import com.foursoft.jaxb.navext.runtime.io.utils.ValidationEventLogger;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ class KblValidationTest {
         harness.setContent(KblHarnessContent.HARNESS_COMPLETE_SET);
         root.setHarness(harness);
 
-        final KblWriter kblWriter = new KblWriter();
+        final KblWriter kblWriter = new KblWriter(new ValidationEventLogger());
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
