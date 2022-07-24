@@ -37,6 +37,27 @@
     </jxb:bindings>
 
     <jxb:bindings multiple="true"
+                  node="//xs:complexType[@name='Accessory_occurrence'
+                  or @name='Assembly_part_occurrence'
+                  or @name='Cavity_plug_occurrence'
+                  or @name='Cavity_seal_occurrence'
+                  or @name='Co_pack_occurrence'
+                  or @name='Component_box_occurrence'
+                  or @name='Component_occurrence'
+                  or @name='Connector_occurrence'
+                  or @name='Fixing_occurrence'
+                  or @name='General_wire_occurrence'
+                  or @name='Special_terminal_occurrence'
+                  or @name='Terminal_occurrence'
+                  or @name='Wiring_group'
+                  or @name='Accessory_occurrence'
+                  or @name='Connection'
+                  or @name='Wire_protection_occurrence']">
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasParentAssemblyPart
+        </inheritance:implements>
+    </jxb:bindings>
+
+    <jxb:bindings multiple="true"
                   node="//xs:complexType[@name!='Alias_identification' and .//xs:element[@name='Alias_id']]">
         <inheritance:implements>com.foursoft.harness.kbl.common.HasAliasId&lt;com.foursoft.harness.kbl.v24.KblAliasIdentification&gt;</inheritance:implements>
     </jxb:bindings>

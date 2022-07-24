@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * kbl-v25
  * %%
  * Copyright (C) 2020 - 2022 4Soft GmbH
  * %%
@@ -23,12 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.v25;
 
-import com.foursoft.harness.kbl.common.HasIdentification;
+public interface HasParentAssemblyPart {
 
-public interface HasRelatedOccurrence {
-
-    <X extends HasRelatedAssembly & HasIdentification & HasParentAssemblyPart> X getRelatedOccurrence();
-
+    KblAssemblyPart getParentAssemblyPart();
 }

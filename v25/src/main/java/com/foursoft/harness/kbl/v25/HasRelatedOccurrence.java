@@ -25,9 +25,12 @@
  */
 package com.foursoft.harness.kbl.v25;
 
+import com.foursoft.harness.kbl.common.HasIdentification;
+
 import java.util.List;
 
 public interface HasRelatedOccurrence {
 
-    <X> List<X> getRelatedOccurrence();
+    <X extends HasRelatedAssembly & HasIdentification & HasParentAssemblyPart> List<X> getRelatedOccurrence();
+
 }
