@@ -86,5 +86,9 @@
         <inheritance:implements>com.foursoft.harness.kbl.v25.HasRelatedAssembly</inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Related_occurrence']]">
+        <inheritance:implements>com.foursoft.harness.kbl.v25.HasRelatedOccurrence</inheritance:implements>
+    </jxb:bindings>
+
 
 </jxb:bindings>
