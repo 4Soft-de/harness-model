@@ -25,10 +25,10 @@
  */
 package com.foursoft.harness.kbl.v24;
 
-import com.foursoft.harness.kbl.common.HasIdentification;
+import com.foursoft.jaxb.navext.runtime.model.Identifiable;
 
 public interface HasRelatedOccurrence {
 
-    <X extends HasRelatedAssembly & HasIdentification & HasParentAssemblyPart> X getRelatedOccurrence();
+    <X extends Identifiable & ReferenceElement & ConnectionOrOccurrence> X getRelatedOccurrence();
 
 }
