@@ -84,8 +84,6 @@
         <url>https://github.com/4Soft-de/harness-model/tree/main</url>
     </scm>
 
-        <module>common</module>
-        <module>v25</module>
     <developers>
         <developer>
             <name>Rainer Ganß</name>
