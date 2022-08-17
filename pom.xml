@@ -29,7 +29,7 @@
 
         <!-- Plugins -->
         <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-        <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
+        <maven-jaxb2-plugin.version>0.15.1</maven-jaxb2-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <license-maven-plugin.version>2.0.0</license-maven-plugin.version>
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
