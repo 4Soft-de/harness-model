@@ -37,7 +37,7 @@
         <maven-compiler-plugin.version>3.10.0</maven-compiler-plugin.version>
         <assertj-assertions-generator-maven-plugin>2.2.0</assertj-assertions-generator-maven-plugin>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
 
 
         <!-- Release Plugins -->
