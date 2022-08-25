@@ -158,7 +158,6 @@
             </dependency>
 
             <!--VEC KBL-->
-
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>
@@ -166,7 +165,6 @@
             </dependency>
 
             <!--logging-->
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -174,7 +172,6 @@
             </dependency>
 
             <!--test-->
-
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
