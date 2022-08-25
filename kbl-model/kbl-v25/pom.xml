@@ -6,9 +6,10 @@
         <artifactId>harness-kbl-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>kbl-v25</artifactId>
 
-    <description>The model for KBL version 2.5</description>
+    <name>KBL 2.5</name>
+    <artifactId>kbl-v25</artifactId>
+    <description>The model for KBL version 2.5.</description>
 
     <dependencies>
         <!--project-->

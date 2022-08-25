@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <name>KBL Common</name>
     <artifactId>kbl-common</artifactId>
+    <description>Common code for the KBL Model.</description>
 
     <dependencies>
         <!--logging-->
