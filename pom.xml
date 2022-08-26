@@ -8,7 +8,7 @@
     <artifactId>harness-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Harness Model (Parent)</name>
+    <name>Harness Parent</name>
     <description>Parent POM of all 4Soft Harness Projects.</description>
     <url>https://github.com/4Soft-de/harness-model</url>
 

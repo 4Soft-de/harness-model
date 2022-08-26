@@ -10,7 +10,7 @@
     </parent>
     <artifactId>harness-kbl-parent</artifactId>
     <packaging>pom</packaging>
-    <name>${project.groupId}:${project.artifactId}</name>
+    <name>KBL Parent</name>
 
     <properties>
         <!-- Dependencies -->
