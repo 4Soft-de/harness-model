@@ -78,6 +78,10 @@
         </license>
     </licenses>
 
+    <modules>
+        <module>kbl-model</module>
+    </modules>
+
     <scm>
         <connection>scm:git:https://github.com/4Soft-de/harness-model.git</connection>
         <developerConnection>scm:git:https://github.com/4Soft-de/harness-model.git</developerConnection>
