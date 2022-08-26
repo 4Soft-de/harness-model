@@ -29,9 +29,9 @@
     <inceptionYear>2020</inceptionYear>
 
     <modules>
-        <module>common</module>
-        <module>v24</module>
-        <module>v25</module>
+        <module>kbl-common</module>
+        <module>kbl-v24</module>
+        <module>kbl-v25</module>
     </modules>
 
     <dependencyManagement>
