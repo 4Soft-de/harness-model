@@ -79,7 +79,7 @@
     </licenses>
 
     <modules>
-        <module>kbl-model</module>
+        <module>kbl</module>
     </modules>
 
     <scm>
