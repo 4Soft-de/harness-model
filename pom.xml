@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.foursoft.harness</groupId>
     <artifactId>harness-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Harness Model</name>
+    <name>Harness Parent</name>
     <description>Parent POM of all 4Soft Harness Projects.</description>
     <url>https://github.com/4Soft-de/harness-model</url>
 
@@ -75,6 +77,10 @@
             <url>http://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
+
+    <modules>
+        <module>kbl</module>
+    </modules>
 
     <scm>
         <connection>scm:git:https://github.com/4Soft-de/harness-model.git</connection>
@@ -152,7 +158,6 @@
             </dependency>
 
             <!--VEC KBL-->
-
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>
@@ -160,7 +165,6 @@
             </dependency>
 
             <!--logging-->
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -168,7 +172,6 @@
             </dependency>
 
             <!--test-->
-
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>

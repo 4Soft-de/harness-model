@@ -10,7 +10,7 @@ body:
       options:
         - label: I have checked for similar issues or PRs fixing it.
           required: true
-        - label: I have updated to the [latest version](https://mvnrepository.com/artifact/com.foursoft) of the project.
+        - label: I have updated to the [latest version](https://mvnrepository.com/artifact/com.foursoft.harness) of the project.
           required: true
   - type: dropdown
     id: project
