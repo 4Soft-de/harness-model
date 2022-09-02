@@ -51,6 +51,7 @@
     <modules>
         <module>v113</module>
         <module>v12x</module>
+        <module>v2x</module>
         <module>common</module>
     </modules>
 
