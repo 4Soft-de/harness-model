@@ -111,8 +111,7 @@
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasRelatedOccurrence</inheritance:implements>
     </jxb:bindings>
 
-    <jxb:bindings multiple="true"
-                  node="//xs:complexType[.//xs:element[@name='Wire_number' ]]">
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Wire_number' ]]">
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasWireNumber</inheritance:implements>
     </jxb:bindings>
 
