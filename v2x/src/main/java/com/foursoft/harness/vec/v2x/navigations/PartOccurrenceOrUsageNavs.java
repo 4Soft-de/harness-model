@@ -81,7 +81,7 @@ public final class PartOccurrenceOrUsageNavs {
                 .map(StringUtils::collapseMultipleWhitespaces);
     }
 
-    public static Function<VecPartOccurrence, VecPrimaryPartType> primaryPartType() {
+    public static Function<VecPartOccurrence, VecPrimaryPartType> primaryPartTypeOfOccurrence() {
         return occurrence -> {
             final VecPartVersion partVersion = occurrence.getPart();
             return partVersion != null
@@ -171,6 +171,15 @@ public final class PartOccurrenceOrUsageNavs {
                 .flatMap(Collection::stream)
                 .map(location -> location.accept(visitor))
                 .collect(StreamUtils.findOneOrNone());
+    }
+
+    public static Function<VecOccurrenceOrUsage, VecPrimaryPartType> primaryPartType() {
+        return occurrenceOrUsage -> {
+            if (occurrenceOrUsage instanceof VecPartOccurrence) {
+                return primaryPartTypeOfOccurrence().apply((VecPartOccurrence) occurrenceOrUsage);
+            }
+            return ((VecPartUsage) occurrenceOrUsage).getPrimaryPartUsageType();
+        };
     }
 
     public static Function<VecOccurrenceOrUsage, Optional<VecPartOccurrence>> occurrence() {
