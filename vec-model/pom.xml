@@ -2,25 +2,17 @@
         xmlns="http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.foursoft.harness</groupId>
         <artifactId>harness-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-
-    <groupId>com.foursoft.harness.vec</groupId>
-    <artifactId>vec-parent</artifactId>
-    <version>2.2.1-SNAPSHOT</version>
+    <artifactId>harness-vec-parent</artifactId>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
 
-    <description>JAXB-Models of the VEC based on the underlying UML-model (not only the XSD)</description>
-    <url>https://github.com/4Soft-de/harness-model/vec-model</url>
-
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
-
         <!-- Dependencies -->
         <navigation-extender.version>2.1.0</navigation-extender.version>
 
@@ -36,39 +28,12 @@
 
     <inceptionYear>2020</inceptionYear>
 
-    <organization>
-        <name>4Soft GmbH</name>
-        <url>https://www.4soft.de</url>
-    </organization>
-
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>http://www.opensource.org/licenses/mit-license.php</url>
-        </license>
-    </licenses>
-
     <modules>
         <module>v113</module>
         <module>v12x</module>
         <module>v2x</module>
         <module>common</module>
     </modules>
-
-    <developers>
-        <developer>
-            <name>Rainer Ganß</name>
-            <email>ganss@4soft.de</email>
-            <organization>4Soft GmbH</organization>
-            <organizationUrl>https://www.4soft.de</organizationUrl>
-        </developer>
-        <developer>
-            <name>Johannes Becker</name>
-            <email>becker@4soft.de</email>
-            <organization>4Soft GmbH</organization>
-            <organizationUrl>https://www.4soft.de</organizationUrl>
-        </developer>
-    </developers>
 
     <dependencyManagement>
         <dependencies>
