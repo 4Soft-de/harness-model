@@ -12,5 +12,5 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      
+
 # Full reference: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/configuration-options-for-dependency-updates#configuration-options-for-dependabotyml
