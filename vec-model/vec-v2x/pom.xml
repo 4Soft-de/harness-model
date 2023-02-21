@@ -6,9 +6,10 @@
         <artifactId>harness-vec-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>vec-v2x</artifactId>
 
-    <description>The model for VEC version 2</description>
+    <name>VEC 2.X</name>
+    <artifactId>vec-v2x</artifactId>
+    <description>The model for VEC version 2.</description>
 
     <dependencies>
         <!--project-->

@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <name>VEC Common</name>
     <artifactId>vec-common</artifactId>
+    <description>Common code for the VEC Model.</description>
 
     <dependencies>
         <!--logging-->
