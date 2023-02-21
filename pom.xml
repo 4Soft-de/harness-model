@@ -80,7 +80,7 @@
 
     <modules>
         <module>kbl</module>
-        <module>vec-model</module>
+        <module>vec</module>
     </modules>
 
     <scm>
