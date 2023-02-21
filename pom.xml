@@ -244,6 +244,10 @@
                     <configuration>
                         <doclint>none</doclint>
                         <verbose>false</verbose>
+                        <show>protected</show>
+                        <sourceFileExcludes>
+                            <sourceFileExclude>**/module-info.java</sourceFileExclude>
+                        </sourceFileExcludes>
                     </configuration>
                     <executions>
                         <execution>
