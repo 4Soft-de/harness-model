@@ -1,0 +1,47 @@
+name: Feature Request
+description: You want to request a new feature for one of our projects?
+title: "[Feature Request] "
+labels: [enhancement]
+body:
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: General Troubleshooting
+      options:
+        - label: I have checked for similar requests / issues.
+          required: true
+        - label: I have updated to the [latest version](https://mvnrepository.com/artifact/com.foursoft.harness) of the project.
+          required: true
+  - type: dropdown
+    id: project
+    attributes:
+      label: Which project does the feature request target?
+      options:
+        - KBL
+        - VEC
+        - Navigator
+        - Compatibility Library
+    validations:
+      required: true
+  - type: textarea
+    id: fr_description
+    attributes:
+      label: Feature Request
+      description: Describe the feature you want to be included.
+    validations:
+      required: true
+  - type: textarea
+    id: fr_use_case
+    attributes:
+      label: Example for a Use Case
+      description: Explain the use case of that feature.
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Example Code
+      description: Feel free to add some code for a better understanding.
+      render: Java
+    validations:
+      required: false
