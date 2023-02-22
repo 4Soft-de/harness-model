@@ -1,8 +1,8 @@
 ﻿# KBL model
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.kbl/kbl-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.kbl)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Java11](https://img.shields.io/badge/java-11-blue)
 
 JAXB-Model of the KBL, based on the underlying UML-model (not only the XSD).
 
@@ -16,7 +16,7 @@ model, a data dictionary, and an XML schema derived from and compliant to the mo
 It can be used to define a single harness with all parts, connections, constraints, etc.
 
 For an optimized performance, the XML is parsed by our
-[enhanced xml navigation library](https://github.com/4Soft-de/jaxb-enhanced-navigation) which builds on top of JAXB.
+[enhanced xml navigation library](https://github.com/4Soft-de/harness-model/tree/develop/navext) which builds on top of JAXB.
 
 More information about KBL can be found in the [ECAD wiki](https://ecad-wiki.prostep.org/specifications/kbl).
 
@@ -46,10 +46,18 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 ### Maven
 
 ```xml
-
+<!-- KBL v2.4 -->
 <dependency>
     <groupId>com.foursoft.harness.kbl</groupId>
     <artifactId>kbl-v24</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+```xml
+<!-- KBL v2.5 -->
+<dependency>
+    <groupId>com.foursoft.harness.kbl</groupId>
+    <artifactId>kbl-v25</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -57,14 +65,19 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 ### Gradle
 
 ```groovy
+// KBL v2.4
 implementation group: 'com.foursoft.harness.kbl', name: 'kbl-v24', version: 'VERSION'
+// KBL v2.5
+implementation group: 'com.foursoft.harness.kbl', name: 'kbl-v25', version: 'VERSION'
 ```
 
 ## Code examples
 
 In the codebase, the root of a kbl file is the `KBLContainer` class.
 
-More examples can be found [in the examples](https://github.com/4Soft-de/harness-model/tree/develop/kbl-model/v24/src/examples/).
+More examples can be found in the examples of each module:
+- [KBL 2.4 examples](https://github.com/4Soft-de/harness-model/tree/develop/kbl/kbl-v24/src/examples/).
+- [KBL 2.5 examples](https://github.com/4Soft-de/harness-model/tree/develop/kbl/kbl-v25/src/examples/).
 
 ### Reading a KBL file
 
@@ -233,10 +246,4 @@ public class MyKblWriter {
 
 ## Contributing
 
-We appreciate if you like to contribute to our project! Please make sure to base your branch off of
-our [develop branch](https://github.com/4Soft-de/harness-model/tree/develop) and create your PR into that same branch. We
-will reject any PRs not following that or if this is already worked on.
-
-Please read our
-detailed [Contribution Guidelines](https://github.com/4Soft-de/harness-model/blob/develop/.github/CONTRIBUTING.md) for more
-information, for example code style, formatter, etc.
+See [parent ReadMe](https://github.com/4Soft-de/harness-model/blob/develop/README.md#contributing).
