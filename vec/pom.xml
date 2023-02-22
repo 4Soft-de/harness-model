@@ -1,0 +1,96 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.foursoft.harness</groupId>
+        <artifactId>harness-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>harness-vec-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>VEC Parent</name>
+
+    <properties>
+        <!-- Dependencies -->
+        <navigation-extender.version>2.1.0</navigation-extender.version>
+
+        <!-- Plugins -->
+        <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
+
+        <!-- maven-jaxb2-plugin plugins -->
+        <jaxb-visitor.version>2.8</jaxb-visitor.version>
+        <cxf-xjc-javadoc.version>3.3.1</cxf-xjc-javadoc.version>
+        <jaxb-delegate-plugin.version>2.4.0</jaxb-delegate-plugin.version>
+        <jaxb2-basics-annotate.version>1.1.0</jaxb2-basics-annotate.version>
+    </properties>
+
+    <inceptionYear>2020</inceptionYear>
+
+    <modules>
+        <module>vec-common</module>
+        <module>vec-v113</module>
+        <module>vec-v12x</module>
+        <module>vec-v2x</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.foursoft.jaxb.navext</groupId>
+                <artifactId>navext-runtime</artifactId>
+                <version>${navigation-extender.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jvnet.jaxb2.maven2</groupId>
+                    <artifactId>maven-jaxb2-plugin</artifactId>
+                    <version>${maven-jaxb2-plugin.version}</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <extension>true</extension>
+                        <plugins>
+                            <plugin>
+                                <groupId>org.jvnet.jaxb2_commons</groupId>
+                                <artifactId>jaxb2-basics</artifactId>
+                                <version>${jaxb2-basics.version}</version>
+                            </plugin>
+                            <plugin>
+                                <groupId>org.jvnet.jaxb2_commons</groupId>
+                                <artifactId>jaxb2-basics-annotate</artifactId>
+                                <version>${jaxb2-basics-annotate.version}</version>
+                            </plugin>
+                            <plugin>
+                                <groupId>org.apache.cxf.xjcplugins</groupId>
+                                <artifactId>cxf-xjc-javadoc</artifactId>
+                                <version>${cxf-xjc-javadoc.version}</version>
+                            </plugin>
+                            <plugin>
+                                <groupId>net.codesup.util</groupId>
+                                <artifactId>jaxb-delegate-plugin</artifactId>
+                                <version>${jaxb-delegate-plugin.version}</version>
+                            </plugin>
+                            <plugin>
+                                <groupId>com.massfords</groupId>
+                                <artifactId>jaxb-visitor</artifactId>
+                                <version>${jaxb-visitor.version}</version>
+                            </plugin>
+                            <plugin>
+                                <groupId>com.foursoft.jaxb.navext</groupId>
+                                <artifactId>navext-xjc</artifactId>
+                                <version>${navigation-extender.version}</version>
+                            </plugin>
+                        </plugins>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
