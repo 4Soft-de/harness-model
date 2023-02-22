@@ -26,9 +26,9 @@
 package com.foursoft.harness.kbl.common.validation;
 
 import com.foursoft.harness.kbl.common.exception.KblException;
-import com.foursoft.jaxb.navext.runtime.io.validation.LogErrors;
-import com.foursoft.jaxb.navext.runtime.io.validation.LogValidator;
-import com.foursoft.jaxb.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.navext.runtime.io.validation.LogErrors;
+import com.foursoft.harness.navext.runtime.io.validation.LogValidator;
+import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 
 import javax.xml.validation.Schema;
 import java.io.IOException;

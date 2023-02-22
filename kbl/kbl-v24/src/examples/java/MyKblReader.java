@@ -24,8 +24,8 @@
  * =========================LICENSE_END==================================
  */
 import com.foursoft.harness.kbl.v24.*;
-import com.foursoft.jaxb.navext.runtime.JaxbModel;
-import com.foursoft.jaxb.navext.runtime.model.Identifiable;
+import com.foursoft.harness.navext.runtime.JaxbModel;
+import com.foursoft.harness.navext.runtime.model.Identifiable;
 
 import java.io.IOException;
 import java.io.InputStream;

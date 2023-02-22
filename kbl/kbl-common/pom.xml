@@ -20,7 +20,7 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.foursoft.jaxb.navext</groupId>
+            <groupId>com.foursoft.harness.navext</groupId>
             <artifactId>navext-runtime</artifactId>
         </dependency>
 

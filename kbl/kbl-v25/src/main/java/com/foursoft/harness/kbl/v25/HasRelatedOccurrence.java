@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.kbl.v25;
 
-import com.foursoft.jaxb.navext.runtime.model.Identifiable;
+import com.foursoft.harness.navext.runtime.model.Identifiable;
 
 import java.util.List;
 

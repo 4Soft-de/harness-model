@@ -28,8 +28,8 @@ package com.foursoft.harness.kbl.v24.visitor;
 
 import com.foursoft.harness.kbl.v24.KBLContainer;
 import com.foursoft.harness.kbl.v24.KblReader;
-import com.foursoft.jaxb.navext.runtime.model.Identifiable;
-import com.foursoft.jaxb.navext.runtime.model.ModifiableIdentifiable;
+import com.foursoft.harness.navext.runtime.model.Identifiable;
+import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

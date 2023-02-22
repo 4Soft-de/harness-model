@@ -31,7 +31,7 @@ import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblHarnessContent;
 import com.foursoft.harness.kbl.v25.KblWriter;
-import com.foursoft.jaxb.navext.runtime.io.utils.ValidationEventLogger;
+import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

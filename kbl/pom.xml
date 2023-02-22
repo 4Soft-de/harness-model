@@ -35,7 +35,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.foursoft.jaxb.navext</groupId>
+                <groupId>com.foursoft.harness.navext</groupId>
                 <artifactId>navext-runtime</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -83,7 +83,7 @@
                                 <version>${jaxb-visitor.version}</version>
                             </plugin>
                             <plugin>
-                                <groupId>com.foursoft.jaxb.navext</groupId>
+                                <groupId>com.foursoft.harness.navext</groupId>
                                 <artifactId>navext-xjc-plugin</artifactId>
                                 <version>${project.version}</version>
                             </plugin>

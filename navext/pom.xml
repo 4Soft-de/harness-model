@@ -8,7 +8,7 @@
         <artifactId>harness-parent</artifactId>
         <version>4.0.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.foursoft.jaxb.navext</groupId>
+    <groupId>com.foursoft.harness.navext</groupId>
     <artifactId>navext-parent</artifactId>
     <packaging>pom</packaging>
     <name>NavExt Parent</name>

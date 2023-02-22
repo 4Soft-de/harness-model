@@ -1,6 +1,6 @@
 # JAXB enhanced navigation
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.jaxb.navext/navext-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.jaxb.navext)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.navext/navext-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.navext)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Java11](https://img.shields.io/badge/java-11-blue)
 
@@ -56,10 +56,10 @@ None of the data structure are updated (parent, back-navigation, id-lookup, etc)
 
 ## Download
 
-Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.jaxb.navext).
+Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.harness.navext).
 
 Latest
-Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.jaxb.navext/navext-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.jaxb.navext)
+Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.navext/navext-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.navext)
 
 **Make sure to replace the `VERSION` below with a real version as the one shown above!**
 
@@ -69,7 +69,7 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 
 ```xml
 <dependency>
-    <groupId>com.foursoft.jaxb.navext</groupId>
+    <groupId>com.foursoft.harness.navext</groupId>
     <artifactId>navext-xjc-plugin</artifactId>
     <version>VERSION</version>
 </dependency>
@@ -78,7 +78,7 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.jaxb.navext', name: 'navext-xjc-plugin', version: 'VERSION'
+implementation group: 'com.foursoft.harness.navext', name: 'navext-xjc-plugin', version: 'VERSION'
 ```
 
 ### Navigation Extender Runtime
@@ -87,7 +87,7 @@ implementation group: 'com.foursoft.jaxb.navext', name: 'navext-xjc-plugin', ver
 
 ```xml
 <dependency>
-    <groupId>com.foursoft.jaxb.navext</groupId>
+    <groupId>com.foursoft.harness.navext</groupId>
     <artifactId>navext-runtime</artifactId>
     <version>VERSION</version>
 </dependency>
@@ -96,7 +96,7 @@ implementation group: 'com.foursoft.jaxb.navext', name: 'navext-xjc-plugin', ver
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.jaxb.navext', name: 'navext-runtime', version: 'VERSION'
+implementation group: 'com.foursoft.harness.navext', name: 'navext-runtime', version: 'VERSION'
 ```
 
 ## Contributing
