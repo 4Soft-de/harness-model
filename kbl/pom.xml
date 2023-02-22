@@ -14,9 +14,6 @@
     <name>KBL Parent</name>
 
     <properties>
-        <!-- Dependencies -->
-        <navigation-extender.version>2.1.0</navigation-extender.version>
-
         <!-- Plugins -->
         <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
 
@@ -40,7 +37,7 @@
             <dependency>
                 <groupId>com.foursoft.jaxb.navext</groupId>
                 <artifactId>navext-runtime</artifactId>
-                <version>${navigation-extender.version}</version>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -87,8 +84,8 @@
                             </plugin>
                             <plugin>
                                 <groupId>com.foursoft.jaxb.navext</groupId>
-                                <artifactId>navext-xjc</artifactId>
-                                <version>${navigation-extender.version}</version>
+                                <artifactId>navext-xjc-plugin</artifactId>
+                                <version>${project.version}</version>
                             </plugin>
                         </plugins>
                     </configuration>
