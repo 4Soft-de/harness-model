@@ -79,6 +79,7 @@
     </licenses>
 
     <modules>
+        <module>jaxb-enhanced-navigation</module>
         <module>kbl</module>
         <module>vec</module>
     </modules>
