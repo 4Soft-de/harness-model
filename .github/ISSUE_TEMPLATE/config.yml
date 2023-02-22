@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Article about the KBL and the VEC
+    url: https://www.4soft.de/en/services/bordnetzentwicklung/
+    about: You can get a very brief overview about the KBL and VEC on our website (English and German).
+  - name: Blogpost about the navigator using the VEC as an example
+    url: https://www.4soft.de/en/blog/2018/navigation-on-large-xml-structures/
+    about: More information about the navigator can be found on our website (English and German).
+  - name: Wiki for the KBL / VEC
+    url: https://ecad-wiki.prostep.org/specifications/
+    about: Detailed information / Specifications of the KBL and VEC can be found in the ECAD Wiki (English).
+  - name: Releases
+    url: https://mvnrepository.com/artifact/com.foursoft.harness
+    about: You can find the latest releases on Maven Central.

@@ -1,0 +1,38 @@
+name: Question
+description: You have a question regarding one of our projects?
+title: "[Question] "
+labels: [question]
+body:
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: General Troubleshooting
+      options:
+        - label: I have checked for similar questions / issues.
+          required: true
+  - type: dropdown
+    id: project
+    attributes:
+      label: Which project does the question belong to?
+      options:
+        - KBL
+        - VEC
+        - Navigator
+        - Compatibility Library
+    validations:
+      required: true
+  - type: textarea
+    id: question_description
+    attributes:
+      label: Question
+      description: What do you want to know?
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Example Code
+      description: If you want, you can provide us code for a better understanding.
+      render: Java
+    validations:
+      required: false

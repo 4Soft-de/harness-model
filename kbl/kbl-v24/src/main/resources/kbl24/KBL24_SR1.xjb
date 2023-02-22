@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+	xmlns:ci="http://jaxb.dev.java.net/plugin/code-injector"
+	xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:nav="http://www.4soft.de/xjc-plugins/navigations"
+	node="/xs:schema" schemaLocation="KBL24_SR1.xsd" version="2.1"
+	extensionBindingPrefixes="xjc">
+	<jxb:globalBindings>
+		<xjc:simple />
+		<jxb:serializable uid="1" />
+	</jxb:globalBindings>
+	<jxb:schemaBindings>
+		<jxb:package name="com.foursoft.harness.kbl.v24" />
+		<jxb:nameXmlTransform>
+			<jxb:typeName prefix="Kbl" />
+		</jxb:nameXmlTransform>
+	</jxb:schemaBindings>
+	<nav:selector name="ConnectionOrOccurrence"
+				  implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="ConnectionOrOccurrence"
+				  implements="com.foursoft.jaxb.navext.runtime.model.Identifiable" />
+	<nav:selector name="CompatibleConnector"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="MountingElement"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="PartUsageSelect"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="ReferenceElement"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="WireOrCoreOccurrence"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="FixedComponent"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="LocatedComponent"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="PlacedElement"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<nav:selector name="ChangedElement"
+		implements="com.foursoft.harness.kbl.v24.visitor.Visitable" />
+	<jxb:bindings node="//xs:complexType[@name='Harness']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Harness_configuration']">
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<jxb:bindings node=".//xs:element[@name='Modules']">
+			<nav:ext-reference schema-type="Module"
+				inverse="refHarnessConfiguration" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Module']">
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<jxb:bindings node=".//xs:element[@name='Of_family']">
+			<nav:ext-reference schema-type="Module_family"
+				inverse="refModule" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Module_configuration']">
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentModule" schema-type="Module" />
+		<jxb:bindings
+			node=".//xs:element[@name='Controlled_components']">
+			<nav:ext-reference
+				selector="ConnectionOrOccurrence" inverse="refModuleConfiguration" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Module_family']">
+		<nav:parent name="parentHarness" schema-type="Harness" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Accessory']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Assembly_part']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Cavity']">
+		<nav:parent name="parentSlot" schema-type="Slot" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Cavity_plug']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Cavity_seal']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Co_pack_part']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Component']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Connector_housing']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<nav:selector name="CompatibleConnector"/>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Core']">
+		<nav:parent name="parentGeneralWire"
+			schema-type="General_wire" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Fixing']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='General_terminal']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='General_wire']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Part']">
+		<jxb:bindings
+			node=".//xs:element[@name='External_references']">
+			<nav:ext-reference schema-type="External_reference"
+				inverse="refPart" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Slot']">
+		<nav:parent name="parentConnectorHousing"
+			schema-type="Connector_housing" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Wire_protection']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_box']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<nav:selector name="CompatibleConnector"/>			
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_slot']">
+		<nav:parent name="parentComponentBox"
+			schema-type="Component_box" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_cavity']">
+		<nav:parent name="parentComponentSlot"
+			schema-type="Component_slot" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_box_connector']">
+		<nav:parent name="parentComponentBox"
+			schema-type="Component_box" />
+		<jxb:bindings
+			node=".//xs:element[@name='Compatible_housings']">
+			<nav:ext-reference selector="CompatibleConnector"
+				inverse="refComponentBoxConnector" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_box_connection']">
+		<nav:parent name="parentComponentBox"
+			schema-type="Component_box" />
+		<jxb:bindings
+			node=".//xs:element[@name='Component_cavities']">
+			<nav:ext-reference schema-type="Component_cavity"
+				inverse="refComponentBoxConnection" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Cavities']">
+			<nav:ext-reference schema-type="Cavity"
+				inverse="refComponentBoxConnection" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Abstract_slot']">
+		<nav:parent name="parentComponentBoxConnector"
+			schema-type="Component_box_connector" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Modular_slot']">
+		<jxb:bindings
+			node=".//xs:element[@name='Allowed_inserts']">
+			<nav:ext-reference schema-type="Component_box"
+				inverse="refModularSlot" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Modular_slot_occurrence']">
+		<jxb:bindings node=".//xs:element[@name='Used_insets']">
+			<nav:ext-reference
+				schema-type="Component_box_occurrence"
+				inverse="refModularSlotOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Modular_slot"
+				inverse="refModularSlotOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Abstract_slot_occurrence']">
+		<nav:parent name="parentComponentBoxConnectorOccurrence"
+			schema-type="Component_box_connector_occurrence" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Accessory_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="FixedComponent" />
+		<nav:selector name="LocatedComponent" />
+		<nav:selector name="PlacedElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings
+			node=".//xs:element[@name='Reference_element']">
+			<nav:ext-reference selector="ReferenceElement"
+				inverse="refAccessoryOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Accessory"
+				inverse="refAccessoryOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Assembly_part_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="LocatedComponent" />
+		<nav:selector name="PlacedElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Assembly_part"
+				inverse="refAssemblyPartOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Cavity_plug_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Cavity_plug"
+				inverse="refCavityPlugOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Cavity_seal_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="PartUsageSelect" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Cavity_seal"
+				inverse="refCavitySealOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Co_pack_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Co_pack_part"
+				inverse="refCoPackOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Mounting']">
+			<nav:ext-reference selector="MountingElement"
+				inverse="refComponentOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Component"
+				inverse="refComponentOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Connector_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="MountingElement" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="LocatedComponent" />
+		<nav:selector name="PlacedElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings
+			node=".//xs:element[@name='Reference_element']">
+			<nav:ext-reference selector="ReferenceElement"
+				inverse="refConnectorOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Connector_housing"
+				inverse="refConnectorOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Core_occurrence']">
+		<nav:selector name="WireOrCoreOccurrence" />
+		<nav:parent name="parentSpecialWireOccurrence"
+			schema-type="Special_wire_occurrence" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Core"
+				inverse="refCoreOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Fixing_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="FixedComponent" />
+		<nav:selector name="LocatedComponent" />
+		<nav:selector name="PlacedElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Fixing"
+				inverse="refFixingOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='General_wire_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="General_wire"
+				inverse="refGeneralWireOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Part_substitution']">
+		<nav:parent name="parentPartUsageSelect"
+			selector="PartUsageSelect" />
+		<jxb:bindings node=".//xs:element[@name='Replaced']">
+			<nav:ext-reference
+				schema-type="Cavity_plug_occurrence" inverse="refPartSubstitution" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Special_terminal_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="PartUsageSelect" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="LocatedComponent" />
+		<nav:selector name="PlacedElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="General_terminal"
+				inverse="refSpecialTerminalOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_accessory_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Accessory_occurrence"
+				inverse="refSpecifiedAccessoryOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedAccessoryOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_cavity_plug_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Cavity_plug_occurrence"
+				inverse="refSpecifiedCavityPlugOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedCavityPlugOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_cavity_seal_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Cavity_seal_occurrence"
+				inverse="refSpecifiedCavitySealOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedCavitySealOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_co_pack_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedCoPackOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference schema-type="Co_pack_occurrence"
+				inverse="refSpecifiedCoPackOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_component_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedComponentOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Component_occurrence"
+				inverse="refSpecifiedComponentOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_connector_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Connector_occurrence"
+				inverse="refSpecifiedConnectorOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedConnectorOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_fixing_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference schema-type="Fixing_occurrence"
+				inverse="refSpecifiedFixingOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedFixingOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_special_terminal_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Special_terminal_occurrence"
+				inverse="refSpecifiedSpecialTerminalOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedSpecialTerminalOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_special_wire_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Special_wire_occurrence"
+				inverse="refSpecifiedSpecialWireOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedSpecialWireOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_terminal_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedTerminalOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Terminal_occurrence"
+				inverse="refSpecifiedTerminalOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_wire_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedWireOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference schema-type="Wire_occurrence"
+				inverse="refSpecifiedWireOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_wire_protection_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedWireProtectionOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Wire_protection_occurrence"
+				inverse="refSpecifiedWireProtectionOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Terminal_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="PartUsageSelect" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="General_terminal"
+				inverse="refTerminalOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Wire_occurrence']">
+		<nav:selector name="WireOrCoreOccurrence" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Wire_protection_occurrence']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="LocatedComponent" />
+		<nav:selector name="PlacedElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Wire_protection"
+				inverse="refWireProtectionOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_slot_occurrence']">
+		<nav:selector name="MountingElement" />
+		<nav:parent name="parentComponentBoxOccurrence"
+			schema-type="Component_box_occurrence" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Component_slot"
+				inverse="refComponentSlotOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_cavity_occurrence']">
+		<nav:selector name="MountingElement" />
+		<nav:parent name="parentComponentSlotOccurrence"
+			schema-type="Component_slot_occurrence" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Component_cavity"
+				inverse="refComponentCavityOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Specified_component_box_occurrence']">
+		<jxb:bindings
+			node=".//xs:element[@name='Related_occurrence']">
+			<nav:ext-reference
+				schema-type="Component_box_occurrence"
+				inverse="refSpecifiedComponentBoxOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Related_assembly']">
+			<nav:ext-reference
+				schema-type="Assembly_part_occurrence"
+				inverse="refSpecifiedComponentBoxOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_box_occurrence']">
+		<nav:selector name="MountingElement" />
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ReferenceElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Component_box"
+				inverse="refComponentBoxOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Reference_element']">
+			<nav:ext-reference selector="ReferenceElement"
+				inverse="refComponentBoxOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Component_box_connector_occurrence']">
+		<nav:selector name="LocatedComponent" />
+		<nav:selector name="PlacedElement" />
+		<nav:parent name="parentComponentBoxOccurrence"
+			schema-type="Component_box_occurrence" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference
+				schema-type="Component_box_connector"
+				inverse="refComponentBoxConnectorOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Consumers']">
+		<nav:parent name="parentFuseOccurrence"
+			schema-type="Fuse_occurrence" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Cavity_occurrence']">
+		<nav:selector name="MountingElement" />
+		<nav:parent name="parentSlotOccurrence"
+			schema-type="Slot_occurrence" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Cavity"
+				inverse="refCavityOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Associated_plug']">
+			<nav:ext-reference
+				schema-type="Cavity_plug_occurrence" inverse="refCavityOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Mated_cavities']">
+			<nav:ext-reference schema-type="Cavity_occurrence"
+				inverse="refCavityOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Connection']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Wire']">
+			<nav:ext-reference selector="WireOrCoreOccurrence"
+				inverse="refConnection" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='External_references']">
+			<nav:ext-reference schema-type="External_reference"
+				inverse="refConnection" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Realized_schematic_connection']">
+			<nav:ext-reference
+				schema-type="Schematic_connection" inverse="refConnection" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Contact_point']">
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentConnectorOccurrence"
+			schema-type="Connector_occurrence" />
+		<nav:parent name="parentComponentBoxOccurrence"
+			schema-type="Component_box_occurrence" />
+		<jxb:bindings
+			node=".//xs:element[@name='Contacted_cavity']">
+			<nav:ext-reference schema-type="Cavity_occurrence"
+				inverse="refContactPoint" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Associated_parts']">
+			<nav:ext-reference selector="PartUsageSelect"
+				inverse="refContactPoint" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Extremity']">
+		<nav:parent name="parentConnection"
+			schema-type="Connection" />
+		<jxb:bindings node=".//xs:element[@name='Contact_point']">
+			<nav:ext-reference schema-type="Contact_point"
+				inverse="refExtremity" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Slot_occurrence']">
+		<nav:selector name="MountingElement" />
+		<nav:parent name="parentConnectorOccurrence"
+			schema-type="Connector_occurrence" />
+		<jxb:bindings node=".//xs:element[@name='Part']">
+			<nav:ext-reference schema-type="Slot"
+				inverse="refSlotOccurrence" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Mated_slots']">
+			<nav:ext-reference schema-type="Slot_occurrence"
+				inverse="refSlotOccurrence" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Wiring_group']">
+		<nav:selector name="ConnectionOrOccurrence" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<nav:parent name="parentAssemblyPart"
+			schema-type="Assembly_part" />
+		<jxb:bindings node=".//xs:element[@name='Assigned_wire']">
+			<nav:ext-reference selector="WireOrCoreOccurrence"
+				inverse="refWiringGroup" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Schematic_connection']">
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentHarness" schema-type="Harness" />
+		<jxb:bindings node=".//xs:element[@name='Cavities']">
+			<nav:ext-reference schema-type="Cavity_occurrence"
+				inverse="refSchematicConnection" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Dimension_specification']">
+		<nav:selector name="PlacedElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<jxb:bindings node=".//xs:element[@name='Origin']">
+			<nav:ext-reference selector="PlacedElement"
+				inverse="refDimensionSpecification" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Target']">
+			<nav:ext-reference selector="PlacedElement"
+				inverse="refDimensionSpecification" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Segments']">
+			<nav:ext-reference schema-type="Segment"
+				inverse="refDimensionSpecification" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Fixing_assignment']">
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentSegment" schema-type="Segment" />
+		<jxb:bindings node=".//xs:element[@name='Fixing']">
+			<nav:ext-reference selector="FixedComponent"
+				inverse="refFixingAssignment" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Node']">
+		<nav:selector name="PlacedElement" />
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<jxb:bindings
+			node=".//xs:element[@name='Cartesian_point']">
+			<nav:ext-reference schema-type="Cartesian_point"
+				inverse="refNode" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Referenced_components']">
+			<nav:ext-reference selector="LocatedComponent"
+				inverse="refNode" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Referenced_cavities']">
+			<nav:ext-reference schema-type="Cavity_occurrence"
+				inverse="refNode" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Protection_area']">
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentSegment" schema-type="Segment" />
+		<jxb:bindings
+			node=".//xs:element[@name='Associated_protection']">
+			<nav:ext-reference
+				schema-type="Wire_protection_occurrence" inverse="refProtectionArea" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Routing']">
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<jxb:bindings node=".//xs:element[@name='Routed_wire']">
+			<nav:ext-reference schema-type="Connection"
+				inverse="refRouting" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Segments']">
+			<nav:ext-reference schema-type="Segment"
+				inverse="refRouting" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Segment']">
+		<nav:selector name="ChangedElement" />
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<jxb:bindings node=".//xs:element[@name='End_node']">
+			<nav:ext-reference schema-type="Node"
+				inverse="refSegment" />
+		</jxb:bindings>
+		<jxb:bindings node=".//xs:element[@name='Start_node']">
+			<nav:ext-reference schema-type="Node"
+				inverse="refSegment" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Tolerance']">
+		<nav:parent name="parentDimensionSpecification"
+			schema-type="Dimension_specification" />
+		<nav:parent name="parentDefaultDimensionSpecification"
+			schema-type="Default_dimension_specification" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Default_dimension_specification']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<jxb:bindings
+			node=".//xs:element[@name='External_references']">
+			<nav:ext-reference schema-type="External_reference"
+				inverse="refDefaultDimensionSpecification" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Approval']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<jxb:bindings node=".//xs:element[@name='Is_applied_to']">
+			<nav:ext-reference
+				schema-type="Part_with_title_block" inverse="refApproval" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='B_spline_curve']">
+		<nav:parent name="parentSegment" schema-type="Segment" />
+		<jxb:bindings
+			node=".//xs:element[@name='Control_points']">
+			<nav:ext-reference schema-type="Cartesian_point"
+				inverse="refBSplineCurve" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Cartesian_point']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Change']">
+		<nav:parent name="parentPart" schema-type="Part" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Creation']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<jxb:bindings node=".//xs:element[@name='Is_applied_to']">
+			<nav:ext-reference
+				schema-type="Part_with_title_block" inverse="refCreation" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Cross_section_area']">
+		<nav:parent name="parentSegment" schema-type="Segment" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='External_reference']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Installation_instruction']">
+		<nav:parent name="parentAccessoryOccurrence"
+			schema-type="Accessory_occurrence" />
+		<nav:parent name="parentAssemblyPartOccurrence"
+			schema-type="Assembly_part_occurrence" />
+		<nav:parent name="parentCavityPlugOccurrence"
+			schema-type="Cavity_plug_occurrence" />
+		<nav:parent name="parentCavitySealOccurrence"
+			schema-type="Cavity_seal_occurrence" />
+		<nav:parent name="parentCoPackOccurrence"
+			schema-type="Co_pack_occurrence" />
+		<nav:parent name="parentComponentOccurrence"
+			schema-type="Component_occurrence" />
+		<nav:parent name="parentConnectorOccurrence"
+			schema-type="Connector_occurrence" />
+		<nav:parent name="parentCoreOccurrence"
+			schema-type="Core_occurrence" />
+		<nav:parent name="parentFixingOccurrence"
+			schema-type="Fixing_occurrence" />
+		<nav:parent name="parentGeneralWireOccurrence"
+			schema-type="General_wire_occurrence" />
+		<nav:parent name="parentSpecialTerminalOccurrence"
+			schema-type="Special_terminal_occurrence" />
+		<nav:parent name="parentTerminalOccurrence"
+			schema-type="Terminal_occurrence" />
+		<nav:parent name="parentWireProtectionOccurrence"
+			schema-type="Wire_protection_occurrence" />
+		<nav:parent name="parentComponentBoxOccurrence"
+			schema-type="Component_box_occurrence" />
+		<nav:parent name="parentConnection"
+			schema-type="Connection" />
+		<nav:parent name="parentWiringGroup"
+			schema-type="Wiring_group" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Material']">
+		<nav:parent name="parentPart" schema-type="Part" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Processing_instruction']">
+		<nav:parent name="parentModuleConfiguration"
+			schema-type="Module_configuration" />
+		<nav:parent name="parentModuleFamily"
+			schema-type="Module_family" />
+		<nav:parent name="parentCavity" schema-type="Cavity" />
+		<nav:parent name="parentCore" schema-type="Core" />
+		<nav:parent name="parentPart" schema-type="Part" />
+		<nav:parent name="parentSlot" schema-type="Slot" />
+		<nav:parent name="parentCavityOccurrence"
+			schema-type="Cavity_occurrence" />
+		<nav:parent name="parentConnection"
+			schema-type="Connection" />
+		<nav:parent name="parentContactPoint"
+			schema-type="Contact_point" />
+		<nav:parent name="parentExtremity" schema-type="Extremity" />
+		<nav:parent name="parentSlotOccurrence"
+			schema-type="Slot_occurrence" />
+		<nav:parent name="parentWiringGroup"
+			schema-type="Wiring_group" />
+		<nav:parent name="parentDimensionSpecification"
+			schema-type="Dimension_specification" />
+		<nav:parent name="parentFixingAssignment"
+			schema-type="Fixing_assignment" />
+		<nav:parent name="parentNode" schema-type="Node" />
+		<nav:parent name="parentProtectionArea"
+			schema-type="Protection_area" />
+		<nav:parent name="parentRouting" schema-type="Routing" />
+		<nav:parent name="parentSegment" schema-type="Segment" />
+		<nav:parent name="parentExternalReference"
+			schema-type="External_reference" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Transformation']">
+		<jxb:bindings
+			node=".//xs:element[@name='Cartesian_point']">
+			<nav:ext-reference schema-type="Cartesian_point"
+				inverse="refTransformation" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Unit']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Value_with_unit']">
+		<jxb:bindings
+			node=".//xs:element[@name='Unit_component']">
+			<nav:ext-reference schema-type="Unit"
+				inverse="refValueWithUnit" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Wire_colour']">
+		<nav:parent name="parentCore" schema-type="Core" />
+		<nav:parent name="parentGeneralWire"
+			schema-type="General_wire" />
+	</jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='Wire_length']">
+		<nav:parent name="parentCoreOccurrence"
+			schema-type="Core_occurrence" />
+		<nav:parent name="parentGeneralWireOccurrence"
+			schema-type="General_wire_occurrence" />
+	</jxb:bindings>
+	<jxb:bindings
+		node="//xs:complexType[@name='Change_description']">
+		<nav:parent name="parentKBLContainer"
+			schema-type="KBL_container" />
+		<jxb:bindings
+			node=".//xs:element[@name='Related_changes']">
+			<nav:ext-reference schema-type="Change"
+				inverse="refChangeDescription" />
+		</jxb:bindings>
+		<jxb:bindings
+			node=".//xs:element[@name='Changed_elements']">
+			<nav:ext-reference selector="ChangedElement"
+				inverse="refChangeDescription" />
+		</jxb:bindings>
+	</jxb:bindings>
+</jxb:bindings>
