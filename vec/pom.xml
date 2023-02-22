@@ -8,7 +8,7 @@
         <artifactId>harness-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>harness-vec-parent</artifactId>
+    <artifactId>vec-parent</artifactId>
     <packaging>pom</packaging>
     <name>VEC Parent</name>
 

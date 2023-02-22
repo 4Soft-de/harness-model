@@ -8,7 +8,7 @@
         <artifactId>harness-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>harness-kbl-parent</artifactId>
+    <artifactId>kbl-parent</artifactId>
     <packaging>pom</packaging>
     <name>KBL Parent</name>
 

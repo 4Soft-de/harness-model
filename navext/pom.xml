@@ -9,7 +9,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>harness-navext-parent</artifactId>
+    <artifactId>navext-parent</artifactId>
     <packaging>pom</packaging>
     <name>NavExt Parent</name>
 
