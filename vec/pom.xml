@@ -29,10 +29,10 @@
     <inceptionYear>2020</inceptionYear>
 
     <modules>
+        <module>vec-common</module>
         <module>vec-v113</module>
         <module>vec-v12x</module>
         <module>vec-v2x</module>
-        <module>vec-common</module>
     </modules>
 
     <dependencyManagement>
