@@ -16,8 +16,8 @@
     <inceptionYear>2019</inceptionYear>
 
     <modules>
-        <module>xjc-plugin</module>
-        <module>runtime</module>
+        <module>navext-xjc-plugin</module>
+        <module>navext-runtime</module>
     </modules>
 
     <build>
