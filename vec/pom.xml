@@ -6,8 +6,9 @@
     <parent>
         <groupId>com.foursoft.harness</groupId>
         <artifactId>harness-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>4.0.0-SNAPSHOT</version>
     </parent>
+    <groupId>com.foursoft.harness.vec</groupId>
     <artifactId>vec-parent</artifactId>
     <packaging>pom</packaging>
     <name>VEC Parent</name>

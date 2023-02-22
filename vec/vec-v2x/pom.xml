@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.foursoft.harness</groupId>
+        <groupId>com.foursoft.harness.vec</groupId>
         <artifactId>vec-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>4.0.0-SNAPSHOT</version>
     </parent>
 
     <name>VEC 2.X</name>
