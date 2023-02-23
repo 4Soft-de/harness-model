@@ -79,6 +79,7 @@
     </licenses>
 
     <modules>
+        <module>navext</module>
         <module>kbl</module>
         <module>vec</module>
     </modules>

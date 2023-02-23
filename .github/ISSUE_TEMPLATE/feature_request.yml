@@ -19,7 +19,7 @@ body:
       options:
         - KBL
         - VEC
-        - Navigator
+        - Navigation Extender (NavExt)
         - Compatibility Library
     validations:
       required: true
