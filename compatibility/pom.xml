@@ -16,9 +16,9 @@
     <inceptionYear>2020</inceptionYear>
 
     <modules>
-        <module>core</module>
-        <module>vec11To12</module>
-        <module>coverage</module>
+        <module>compatibility-core</module>
+        <module>compatibility-vec11ToVec12</module>
+        <module>compatibility-coverage</module>
     </modules>
 
     <dependencyManagement>
