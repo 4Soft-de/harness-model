@@ -7,8 +7,8 @@
         <artifactId>compatibility-parent</artifactId>
         <version>4.0.0-SNAPSHOT</version>
     </parent>
+    <name>Compatibility VEC 1.1.X To VEC 1.2.X</name>
     <artifactId>compatibility-vec11tovec12</artifactId>
-
     <description>The VEC 1.1.* to 1.2.* layer.</description>
 
     <dependencies>
