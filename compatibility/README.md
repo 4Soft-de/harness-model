@@ -1,0 +1,58 @@
+# Compatibility Library
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.compatibility/compatibility-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.compatibility)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Java11](https://img.shields.io/badge/java-11-blue)
+
+A library for converting different versions of e.g. a VEC.
+
+## Download
+
+Our builds are distributed to [Maven Central](https://mvnrepository.com/artifact/com.foursoft.harness.compatibility).
+
+Latest
+Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.compatibility/compatibility-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.compatibility)
+
+**Make sure to replace the `VERSION` below with a real version as the one shown above!**
+
+### Compatibility Core
+
+#### Maven
+
+```xml
+<dependency>
+    <groupId>com.foursoft.harness.compatibility</groupId>
+    <artifactId>compatibility-core</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+#### Gradle
+
+```groovy
+implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-core', version: 'VERSION'
+```
+
+### Compatibility VEC 1.1.X to VEC 1.2.X
+
+#### Maven
+
+```xml
+<dependency>
+    <groupId>com.foursoft.harness.compatibility</groupId>
+    <artifactId>compatibility-vec11tovec12</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+#### Gradle
+
+```groovy
+implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-vec11tovec12', version: 'VERSION'
+```
+
+## Contributing
+
+See [parent ReadMe](https://github.com/4Soft-de/harness-model/blob/develop/README.md#contributing).
+
+```
