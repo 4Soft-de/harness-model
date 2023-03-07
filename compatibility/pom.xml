@@ -20,42 +20,4 @@
         <module>compatibility-vec11ToVec12</module>
     </modules>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- Project -->
-            <dependency>
-                <groupId>com.foursoft.harness.vec</groupId>
-                <artifactId>vec-v113</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.foursoft.harness.vec</groupId>
-                <artifactId>vec-v12x</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.foursoft.harness.vec</groupId>
-                <artifactId>vec-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <!-- General -->
-            <dependency>
-                <groupId>net.bytebuddy</groupId>
-                <artifactId>byte-buddy</artifactId>
-                <version>1.14.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.reflections</groupId>
-                <artifactId>reflections</artifactId>
-                <version>0.10.2</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
-
 </project>

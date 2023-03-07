@@ -113,9 +113,6 @@
 
     <dependencyManagement>
         <dependencies>
-
-            <!--general-->
-
             <!-- JAXB -->
             <dependency>
                 <groupId>org.jvnet.jaxb2_commons</groupId>
@@ -165,21 +162,31 @@
                 <version>2.3.6</version>
             </dependency>
 
-            <!--VEC KBL-->
-            <dependency>
-                <groupId>javax.annotation</groupId>
-                <artifactId>javax.annotation-api</artifactId>
-                <version>${javax.annotation.version}</version>
-            </dependency>
-
-            <!--logging-->
+            <!-- Logging -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
 
-            <!--test-->
+            <!-- Other -->
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>1.14.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>0.10.2</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${javax.annotation.version}</version>
+            </dependency>
+
+            <!-- Test -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
@@ -204,14 +211,12 @@
                 <version>${maven-jaxb2-plugin.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!--VEC KBL-->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
                 <version>${slf4j.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!--JAXB-->
             <dependency>
                 <groupId>org.apache.maven</groupId>
                 <artifactId>maven-core</artifactId>
