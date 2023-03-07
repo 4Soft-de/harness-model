@@ -18,7 +18,6 @@
     <modules>
         <module>compatibility-core</module>
         <module>compatibility-vec11ToVec12</module>
-        <module>compatibility-coverage</module>
     </modules>
 
     <dependencyManagement>
