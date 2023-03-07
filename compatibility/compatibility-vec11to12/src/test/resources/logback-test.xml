@@ -1,0 +1,20 @@
+<configuration debug="false">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{HH:mm:ss.SSS} - %-10.10thread - %-5level - %-25.25logger{25} - %msg -- at .\(%F:%L\)%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="warn"/>
+
+    <appender name="ASYNCCONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+        <queueSize>1000</queueSize>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <logger name="com.sun.xml.bind.v2" level="warn"/>
+    <logger name="com.sun.xml.internal.bind" level="warn"/>
+</configuration>
