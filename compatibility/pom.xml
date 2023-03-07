@@ -11,7 +11,7 @@
     <groupId>com.foursoft.harness.compatibility</groupId>
     <artifactId>compatibility-parent</artifactId>
     <packaging>pom</packaging>
-    <name>Parent of the Compatibility Library</name>
+    <name>Compatibility Parent</name>
 
     <inceptionYear>2020</inceptionYear>
 
