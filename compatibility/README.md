@@ -40,7 +40,7 @@ implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility
 ```xml
 <dependency>
     <groupId>com.foursoft.harness.compatibility</groupId>
-    <artifactId>compatibility-vec11tovec12</artifactId>
+    <artifactId>compatibility-vec11to12</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -48,7 +48,7 @@ implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-vec11tovec12', version: 'VERSION'
+implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-vec11to12', version: 'VERSION'
 ```
 
 ## Contributing
