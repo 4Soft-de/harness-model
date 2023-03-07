@@ -25,10 +25,10 @@
  */
 package com.foursoft.harness.vec.v113.validation;
 
+import com.foursoft.harness.navext.runtime.io.validation.LogErrors;
+import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
+import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 import com.foursoft.harness.vec.common.exception.VecException;
-import com.foursoft.jaxb.navext.runtime.io.validation.LogErrors;
-import com.foursoft.jaxb.navext.runtime.io.validation.LogValidator.ErrorLocation;
-import com.foursoft.jaxb.navext.runtime.io.validation.XMLValidation;
 
 import javax.xml.validation.Schema;
 import java.nio.charset.StandardCharsets;

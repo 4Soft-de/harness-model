@@ -1,8 +1,8 @@
 ﻿# VEC model
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.vec/vec-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.vec)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Java11](https://img.shields.io/badge/java-11-blue)
 
 JAXB-Models of the VEC, based on the underlying UML model (not only the XSD).
 
@@ -13,12 +13,13 @@ schema derived from and compliant to the model.
 
 It can be used to define a vehicle with all parts, connections, constraints, etc.
 
-This repository contains two VEC versions, version 1.1.3 and version 1.2.0. The version 1.2.0 doesn't provide a
-backwards compatibility to version 1.1.3. If you have trouble converting from VEC 1.1.3 to VEC 1.2.0, feel free to
+This repository contains three VEC versions: Version 1.1.3, Version 1.2.X and version 2.X.X.
+The version 1.2.X doesn't provide a backwards compatibility to version 1.1.3.
+If you have trouble converting from VEC 1.1.3 to VEC 1.2.X, feel free to
 contact our colleague [Johannes Becker](mailto:becker@4soft.de?subject=VEC%20Compatibility%20layer).
 
 For an optimized performance, the XML is parsed by our
-[enhanced xml navigation library](https://github.com/4Soft-de/jaxb-enhanced-navigation) which builds on top of JAXB.
+[enhanced xml navigation library](https://github.com/4Soft-de/harness-model/tree/develop/navext) which builds on top of JAXB.
 
 More information about VEC can be found in the [ECAD wiki](https://ecad-wiki.prostep.org/specifications/vec).
 
@@ -55,10 +56,9 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 #### Maven
 
 ```xml
-
 <dependency>
     <groupId>com.foursoft.harness.vec</groupId>
-    <artifactId>v113</artifactId>
+    <artifactId>vec-v113</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -66,18 +66,17 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.harness.vec', name: 'v113', version: 'VERSION'
+implementation group: 'com.foursoft.harness.vec', name: 'vec-v113', version: 'VERSION'
 ```
 
-### VEC 1.2.0
+### VEC 1.2.X
 
 #### Maven
 
 ```xml
-
 <dependency>
     <groupId>com.foursoft.harness.vec</groupId>
-    <artifactId>v12x</artifactId>
+    <artifactId>vec-v12x</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -85,7 +84,24 @@ implementation group: 'com.foursoft.harness.vec', name: 'v113', version: 'VERSIO
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.harness.vec', name: 'v12x', version: 'VERSION'
+implementation group: 'com.foursoft.harness.vec', name: 'vec-v12x', version: 'VERSION'
+```
+### VEC 2.X.X
+
+#### Maven
+
+```xml
+<dependency>
+    <groupId>com.foursoft.harness.vec</groupId>
+    <artifactId>vec-v2x</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+#### Gradle
+
+```groovy
+implementation group: 'com.foursoft.harness.vec', name: 'vec-v2x', version: 'VERSION'
 ```
 
 ## Code examples
@@ -93,9 +109,9 @@ implementation group: 'com.foursoft.harness.vec', name: 'v12x', version: 'VERSIO
 In the codebase, the root of a vec file is the `VecContent` class.
 
 More examples can be found in the examples of each module:
-
-- [VEC 1.1.3 examples](https://github.com/4Soft-de/vec-model/tree/develop/v113/src/examples/)
-- [VEC 1.2.0 examples](https://github.com/4Soft-de/vec-model/tree/develop/v12x/src/examples/)
+- [VEC 1.1.3 examples](https://github.com/4Soft-de/harness-model/tree/develop/vec/vec-v113/src/examples/)
+- [VEC 1.2.X examples](https://github.com/4Soft-de/harness-model/tree/develop/vec/vec-v12x/src/examples/)
+- [VEC 2.X.X examples](https://github.com/4Soft-de/harness-model/tree/develop/vec/vec-v2x/src/examples/)
 
 ### Reading a VEC file
 
@@ -238,10 +254,4 @@ public class MyVecWriter {
 
 ## Contributing
 
-We appreciate if you like to contribute to our project! Please make sure to base your branch off of
-our [develop branch](https://github.com/4Soft-de/vec-model/tree/develop) and create your PR into that same branch. We
-will reject any PRs not following that or if this is already worked on.
-
-Please read our
-detailed [Contribution Guidelines](https://github.com/4Soft-de/vec-model/blob/develop/.github/CONTRIBUTING.md) for more
-information, for example code style, formatter, etc.
+See [parent ReadMe](https://github.com/4Soft-de/harness-model/blob/develop/README.md#contributing).

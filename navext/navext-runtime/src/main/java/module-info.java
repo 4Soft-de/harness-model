@@ -23,22 +23,22 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-open module com.foursoft.jaxb.navext.runtime {
+open module com.foursoft.harness.navext.runtime {
     requires org.slf4j;
     requires java.xml.bind;
     requires org.glassfish.jaxb.runtime;
 
-    exports com.foursoft.jaxb.navext.runtime;
-    exports com.foursoft.jaxb.navext.runtime.annotations;
-    exports com.foursoft.jaxb.navext.runtime.cache;
-    exports com.foursoft.jaxb.navext.runtime.io.read;
-    exports com.foursoft.jaxb.navext.runtime.io.utils;
-    exports com.foursoft.jaxb.navext.runtime.io.write;
-    exports com.foursoft.jaxb.navext.runtime.io.write.xmlmeta;
-    exports com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.comments;
-    exports com.foursoft.jaxb.navext.runtime.io.write.xmlmeta.processinginstructions;
-    exports com.foursoft.jaxb.navext.runtime.io.validation;
-    exports com.foursoft.jaxb.navext.runtime.model;
-    exports com.foursoft.jaxb.navext.runtime.postprocessing;
-    exports com.foursoft.jaxb.navext.runtime.io.write.id;
+    exports com.foursoft.harness.navext.runtime;
+    exports com.foursoft.harness.navext.runtime.annotations;
+    exports com.foursoft.harness.navext.runtime.cache;
+    exports com.foursoft.harness.navext.runtime.io.read;
+    exports com.foursoft.harness.navext.runtime.io.utils;
+    exports com.foursoft.harness.navext.runtime.io.write;
+    exports com.foursoft.harness.navext.runtime.io.write.xmlmeta;
+    exports com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments;
+    exports com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructions;
+    exports com.foursoft.harness.navext.runtime.io.validation;
+    exports com.foursoft.harness.navext.runtime.model;
+    exports com.foursoft.harness.navext.runtime.postprocessing;
+    exports com.foursoft.harness.navext.runtime.io.write.id;
 }

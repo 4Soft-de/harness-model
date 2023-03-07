@@ -36,6 +36,6 @@ public class SchemaFactory {
     }
 
     public static Schema getSchema() {
-        return com.foursoft.jaxb.navext.runtime.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
+        return com.foursoft.harness.navext.runtime.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
     }
 }

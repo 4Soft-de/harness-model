@@ -25,11 +25,11 @@
  */
 package com.foursoft.harness.vec.v2x;
 
+import com.foursoft.harness.navext.runtime.ExtendedUnmarshaller;
+import com.foursoft.harness.navext.runtime.JaxbModel;
+import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
+import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.v2x.validation.SchemaFactory;
-import com.foursoft.jaxb.navext.runtime.ExtendedUnmarshaller;
-import com.foursoft.jaxb.navext.runtime.JaxbModel;
-import com.foursoft.jaxb.navext.runtime.io.utils.ValidationEventLogger;
-import com.foursoft.jaxb.navext.runtime.model.Identifiable;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;

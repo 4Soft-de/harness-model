@@ -1,2 +1,2 @@
-com.foursoft.jaxb.navext.xjc.plugin.NavigationsPlugin
-com.foursoft.jaxb.navext.xjc.plugin.EmptyListHandlerPlugin
+com.foursoft.harness.navext.xjc.plugin.NavigationsPlugin
+com.foursoft.harness.navext.xjc.plugin.EmptyListHandlerPlugin

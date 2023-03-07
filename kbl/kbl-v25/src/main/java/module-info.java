@@ -25,7 +25,7 @@
  */
 open module com.foursoft.harness.kbl.v25 {
     requires transitive com.foursoft.harness.kbl.common;
-    requires com.foursoft.jaxb.navext.runtime;
+    requires com.foursoft.harness.navext.runtime;
 
     requires java.xml;
     requires java.xml.bind;

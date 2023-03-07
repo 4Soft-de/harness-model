@@ -26,7 +26,7 @@
 module com.foursoft.harness.kbl.common {
     requires org.slf4j;
     requires java.xml;
-    requires com.foursoft.jaxb.navext.runtime;
+    requires com.foursoft.harness.navext.runtime;
     exports com.foursoft.harness.kbl.common;
     exports com.foursoft.harness.kbl.common.util;
     exports com.foursoft.harness.kbl.common.exception;

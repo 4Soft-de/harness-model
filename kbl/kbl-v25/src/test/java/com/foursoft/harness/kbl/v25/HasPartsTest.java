@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.kbl.v25;
 
-import com.foursoft.jaxb.navext.runtime.io.utils.ValidationEventLogger;
+import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

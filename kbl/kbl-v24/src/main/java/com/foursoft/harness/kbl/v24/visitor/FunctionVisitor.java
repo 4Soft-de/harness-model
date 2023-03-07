@@ -26,7 +26,7 @@
 package com.foursoft.harness.kbl.v24.visitor;
 
 import com.foursoft.harness.kbl.v24.*;
-import com.foursoft.jaxb.navext.runtime.model.Identifiable;
+import com.foursoft.harness.navext.runtime.model.Identifiable;
 
 import java.util.Objects;
 import java.util.function.Function;
