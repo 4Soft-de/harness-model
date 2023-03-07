@@ -5,10 +5,11 @@
 
 ## Repository Contents
 
-This repository consists of 3 libraries:
+This repository consists of 4 libraries:
 - [KBL](https://github.com/4Soft-de/harness-model/tree/develop/kbl)
 - [VEC](https://github.com/4Soft-de/harness-model/tree/develop/vec)
 - [Navigation Extender](https://github.com/4Soft-de/harness-model/tree/develop/navext)
+- [Compatibility](https://github.com/4Soft-de/harness-model/tree/develop/compatibility)
 
 For detailed information over a project, have a look at its own ReadMe.
 
