@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xml-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,6 @@ package com.foursoft.harness.navext.runtime;
 
 import com.foursoft.harness.navext.runtime.annotations.XmlBackReference;
 import com.foursoft.harness.navext.runtime.annotations.XmlParent;
-import com.foursoft.harness.navext.runtime.postprocessing.*;
 import com.foursoft.harness.navext.runtime.postprocessing.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;

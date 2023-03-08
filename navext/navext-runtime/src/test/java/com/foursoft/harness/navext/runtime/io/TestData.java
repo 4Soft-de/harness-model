@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.navext.runtime.io;
 
-import com.foursoft.harness.navext.runtime.model.AbstractBase;
 import com.foursoft.harness.navext.runtime.io.read.XMLReader;
+import com.foursoft.harness.navext.runtime.model.AbstractBase;
 import com.foursoft.harness.navext.runtime.model.Root;
 
 import java.io.InputStream;
