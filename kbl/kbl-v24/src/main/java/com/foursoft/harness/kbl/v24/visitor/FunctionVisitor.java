@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -159,7 +159,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitKblComponentBoxConnectorOccurrence(final KblComponentBoxConnectorOccurrence aBean) throws RuntimeException {
+    public O visitKblComponentBoxConnectorOccurrence(final KblComponentBoxConnectorOccurrence aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
@@ -239,7 +240,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitKblDefaultDimensionSpecification(final KblDefaultDimensionSpecification aBean) throws RuntimeException {
+    public O visitKblDefaultDimensionSpecification(final KblDefaultDimensionSpecification aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
@@ -414,12 +416,14 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitKblSpecifiedCavityPlugOccurrence(final KblSpecifiedCavityPlugOccurrence aBean) throws RuntimeException {
+    public O visitKblSpecifiedCavityPlugOccurrence(final KblSpecifiedCavityPlugOccurrence aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitKblSpecifiedCavitySealOccurrence(final KblSpecifiedCavitySealOccurrence aBean) throws RuntimeException {
+    public O visitKblSpecifiedCavitySealOccurrence(final KblSpecifiedCavitySealOccurrence aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
@@ -429,7 +433,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitKblSpecifiedComponentBoxOccurrence(final KblSpecifiedComponentBoxOccurrence aBean) throws RuntimeException {
+    public O visitKblSpecifiedComponentBoxOccurrence(final KblSpecifiedComponentBoxOccurrence aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
@@ -449,12 +454,14 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitKblSpecifiedSpecialTerminalOccurrence(final KblSpecifiedSpecialTerminalOccurrence aBean) throws RuntimeException {
+    public O visitKblSpecifiedSpecialTerminalOccurrence(final KblSpecifiedSpecialTerminalOccurrence aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitKblSpecifiedSpecialWireOccurrence(final KblSpecifiedSpecialWireOccurrence aBean) throws RuntimeException {
+    public O visitKblSpecifiedSpecialWireOccurrence(final KblSpecifiedSpecialWireOccurrence aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
@@ -469,7 +476,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitKblSpecifiedWireProtectionOccurrence(final KblSpecifiedWireProtectionOccurrence aBean) throws RuntimeException {
+    public O visitKblSpecifiedWireProtectionOccurrence(final KblSpecifiedWireProtectionOccurrence aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 

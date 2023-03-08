@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,8 @@ class HasProcessingInformationTest {
                     .findFirst().orElse(null);
 
             assertThat(occurrence)
-                    .returns(Optional.of("Instruction_value396"), c -> c.getProcessingInstructionValue("Instruction_type396"))
+                    .returns(Optional.of("Instruction_value396"),
+                             c -> c.getProcessingInstructionValue("Instruction_type396"))
                     .returns(List.of("Instruction_value396"), c -> c.processingInstructionValues("Instruction_type396")
                             .collect(Collectors.toList()));
         }

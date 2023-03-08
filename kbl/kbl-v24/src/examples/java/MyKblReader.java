@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
+
 import com.foursoft.harness.kbl.v24.*;
 import com.foursoft.harness.navext.runtime.JaxbModel;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
@@ -99,7 +100,7 @@ public class MyKblReader {
                 return;
             }
             System.out.println("KblConnectorOccurrence from KblContainer = KKblConnectorOccurrence from KblHarness? " +
-                    (kblConnectorOccurrence.equals(occurrenceByHarness)));
+                                       (kblConnectorOccurrence.equals(occurrenceByHarness)));
 
             final String xmlId = kblConnectorOccurrence.getXmlId();
             final KblConnectorOccurrence occurrenceByLookup = model.getIdLookup()
@@ -109,7 +110,7 @@ public class MyKblReader {
                 return;
             }
             System.out.println("KblConnectorOccurrence from KblContainer = KblConnectorOccurrence by id lookup? " +
-                    (kblConnectorOccurrence.equals(occurrenceByLookup)));
+                                       (kblConnectorOccurrence.equals(occurrenceByLookup)));
         }
     }
 }

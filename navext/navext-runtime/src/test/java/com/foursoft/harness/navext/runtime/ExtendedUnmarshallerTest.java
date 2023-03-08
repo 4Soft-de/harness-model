@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 public class ExtendedUnmarshallerTest {
 
@@ -151,7 +150,8 @@ public class ExtendedUnmarshallerTest {
 
         // Check Id Lookup initialized & parent associations
         assertThat(unmarshalledResult.getIdLookup()
-                .findById(ChildB.class, "id_6")).isNotNull()
+                           .findById(ChildB.class, "id_6"))
+                .isNotNull()
                 .isNotEmpty()
                 .get()
                 .returns("id_6", ChildB::getXmlId)
@@ -164,19 +164,22 @@ public class ExtendedUnmarshallerTest {
                 .get(1);
         // Check Backref is working
         assertThat(unmarshalledResult.getIdLookup()
-                .findById(ChildB.class, "id_6")
-                .get()
-                .getReverseChildA()).containsExactlyInAnyOrder(childAone);
+                           .findById(ChildB.class, "id_6")
+                           .get()
+                           .getReverseChildA())
+                .containsExactlyInAnyOrder(childAone);
 
         assertThat(unmarshalledResult.getIdLookup()
-                .findById(ChildB.class, "id_7")
-                .get()
-                .getReverseChildA()).containsExactlyInAnyOrder(childAone, childATwo);
+                           .findById(ChildB.class, "id_7")
+                           .get()
+                           .getReverseChildA())
+                .containsExactlyInAnyOrder(childAone, childATwo);
 
         assertThat(unmarshalledResult.getIdLookup()
-                .findById(ChildB.class, "id_8")
-                .get()
-                .getReverseChildA()).containsExactlyInAnyOrder(childATwo);
+                           .findById(ChildB.class, "id_8")
+                           .get()
+                           .getReverseChildA())
+                .containsExactlyInAnyOrder(childATwo);
 
     }
 

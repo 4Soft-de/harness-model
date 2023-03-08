@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,17 +58,17 @@ public interface HasParts {
 
     default List<KblPart> getParts() {
         return Stream.of(getAccessories(),
-                        getAssemblyParts(),
-                        getCavityPlugs(),
-                        getCavitySeals(),
-                        getCoPackParts(),
-                        getComponents(),
-                        getComponentBoxes(),
-                        getConnectorHousings(),
-                        getFixings(),
-                        getGeneralTerminals(),
-                        getGeneralWires(),
-                        getWireProtections())
+                         getAssemblyParts(),
+                         getCavityPlugs(),
+                         getCavitySeals(),
+                         getCoPackParts(),
+                         getComponents(),
+                         getComponentBoxes(),
+                         getConnectorHousings(),
+                         getFixings(),
+                         getGeneralTerminals(),
+                         getGeneralWires(),
+                         getWireProtections())
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }

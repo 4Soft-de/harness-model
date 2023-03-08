@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,9 +58,10 @@ class BasicLoadingTest {
     @Test
     void testSelectorInheritance() throws JAXBException, IOException {
         try (final InputStream is = getClass().getClassLoader().getResourceAsStream("sample.kbl")) {
-            final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller = new ExtendedUnmarshaller<KBLContainer, Identifiable>(
-                    KBLContainer.class).withBackReferences()
-                    .withIdMapper(Identifiable.class, Identifiable::getXmlId);
+            final ExtendedUnmarshaller<KBLContainer, Identifiable> unmarshaller =
+                    new ExtendedUnmarshaller<KBLContainer, Identifiable>(
+                            KBLContainer.class).withBackReferences()
+                            .withIdMapper(Identifiable.class, Identifiable::getXmlId);
 
             final JaxbModel<KBLContainer, Identifiable> model = unmarshaller
                     .unmarshall(new BufferedInputStream(is));
@@ -106,7 +107,8 @@ class BasicLoadingTest {
             final KblConnectorHousing kblConnectorHousing = connectorHousings.get(0);
 
             final Set<KblConnectorOccurrence> refConnectorOccurrence = kblConnectorHousing.getRefConnectorOccurrence();
-            final KblConnectorOccurrence kblConnectorOccurrence = refConnectorOccurrence.stream().findFirst().orElse(null);
+            final KblConnectorOccurrence kblConnectorOccurrence = refConnectorOccurrence.stream().findFirst().orElse(
+                    null);
             assertThat(kblConnectorOccurrence)
                     .isNotNull();
 

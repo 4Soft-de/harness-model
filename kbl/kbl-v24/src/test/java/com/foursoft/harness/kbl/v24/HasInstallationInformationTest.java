@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,9 +49,11 @@ class HasInstallationInformationTest {
                     .collect(StreamUtils.findOne());
 
             assertThat(occurrence)
-                    .returns(Optional.of("Instruction_value391"), c -> c.getInstallationInstructionValue("Instruction_type391"))
-                    .returns(List.of("Instruction_value391"), c -> c.installationInstructionValues("Instruction_type391")
-                            .collect(Collectors.toList()));
+                    .returns(Optional.of("Instruction_value391"),
+                             c -> c.getInstallationInstructionValue("Instruction_type391"))
+                    .returns(List.of("Instruction_value391"),
+                             c -> c.installationInstructionValues("Instruction_type391")
+                                     .collect(Collectors.toList()));
         }
     }
 }

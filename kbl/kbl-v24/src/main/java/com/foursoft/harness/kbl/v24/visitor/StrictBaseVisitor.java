@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ public class StrictBaseVisitor<R, E extends Throwable> implements Visitor<R, E> 
      */
     private String getErrorMessage(final Object aBean) {
         return String.format("Encountered unhandled class '%s' in visitor implementation: %s",
-                aBean.getClass().getName(), getClass().getName());
+                             aBean.getClass().getName(), getClass().getName());
     }
 
     @Override

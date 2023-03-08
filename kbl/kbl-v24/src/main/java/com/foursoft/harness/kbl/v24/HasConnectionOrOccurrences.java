@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,9 +67,9 @@ public interface HasConnectionOrOccurrences {
 
     default List<ConnectionOrOccurrence> getConnectionOrOccurrences() {
         return Stream.of(getOccurrences(),
-                        getAssemblyPartOccurrences().stream(),
-                        getConnections().stream(),
-                        getWiringGroups().stream())
+                         getAssemblyPartOccurrences().stream(),
+                         getConnections().stream(),
+                         getWiringGroups().stream())
                 .flatMap(Function.identity())
                 .flatMap(StreamUtils.ofClass(ConnectionOrOccurrence.class))
                 .collect(Collectors.toList());
@@ -83,17 +83,17 @@ public interface HasConnectionOrOccurrences {
 
     private Stream<?> getOccurrences() {
         return Stream.of(getAccessoryOccurrences(),
-                        getCavityPlugOccurrences(),
-                        getCavitySealOccurrences(),
-                        getCoPackOccurrences(),
-                        getComponentBoxOccurrences(),
-                        getComponentOccurrences(),
-                        getConnectorOccurrences(),
-                        getFixingOccurrences(),
-                        getGeneralWireOccurrences(),
-                        getSpecialTerminalOccurrences(),
-                        getTerminalOccurrences(),
-                        getWireProtectionOccurrences())
+                         getCavityPlugOccurrences(),
+                         getCavitySealOccurrences(),
+                         getCoPackOccurrences(),
+                         getComponentBoxOccurrences(),
+                         getComponentOccurrences(),
+                         getConnectorOccurrences(),
+                         getFixingOccurrences(),
+                         getGeneralWireOccurrences(),
+                         getSpecialTerminalOccurrences(),
+                         getTerminalOccurrences(),
+                         getWireProtectionOccurrences())
                 .flatMap(Collection::stream);
     }
 

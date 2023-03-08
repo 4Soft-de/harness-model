@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,7 @@ class LogErrorsTest {
         final String content = new String(
                 Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.ERROR_TEST_XML)));
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                StandardCharsets.UTF_8);
+                                                                           StandardCharsets.UTF_8);
         final String errorString = LogErrors.annotateXMLContent(content, errors);
         // line 21 contains a duplicate key
         assertThat(errorString).contains("21: ERROR     <ChildB id=\"id_8\">");

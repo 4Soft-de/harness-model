@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,6 @@ import java.util.Collection;
 
 class XMLValidationTest {
 
-
     public static XMLValidation getXmlValidation() {
         final String fileName = TestData.VALIDATE_BASE_PATH.resolve("basic-test.xsd").toString();
         final Schema schema = SchemaFactory.getSchema(fileName);
@@ -52,7 +51,7 @@ class XMLValidationTest {
                 Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.BASIC_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                StandardCharsets.UTF_8);
+                                                                           StandardCharsets.UTF_8);
         Assertions.assertTrue(errors.isEmpty());
     }
 
@@ -64,7 +63,7 @@ class XMLValidationTest {
                 Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.ERROR_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                StandardCharsets.UTF_8);
+                                                                           StandardCharsets.UTF_8);
         Assertions.assertFalse(errors.isEmpty());
         Assertions.assertEquals(2, errors.size());
 

@@ -20,8 +20,4 @@
         <module>navext-runtime</module>
     </modules>
 
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
-
 </project>

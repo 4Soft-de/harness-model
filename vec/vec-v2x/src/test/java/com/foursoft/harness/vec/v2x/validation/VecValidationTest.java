@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * vec-v2x
+ * VEC 2.X
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,6 @@ class VecValidationTest {
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.2.0");
-
 
         final VecWriter vecWriter = new VecWriter();
         final String result = vecWriter.writeToString(root);

@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xjc-plugin
+ * NavExt XJC Plugin
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.navext.xjc.plugin;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.jvnet.jaxb2.maven2.test.RunXJC2Mojo;
 
 import javax.tools.*;
@@ -41,16 +41,9 @@ public abstract class AbstractPluginTest extends RunXJC2Mojo {
 
     private final File DEFAULT_CLASSES_DIR = new File(getBaseDir(), "target/test-classes");
 
-    protected abstract String getTestName();
-
     @Override
     public File getSchemaDirectory() {
         return new File(getBaseDir(), "src/test/resources/" + getTestName());
-    }
-
-    @Override
-    protected File getGeneratedDirectory() {
-        return new File(getBaseDir(), "target/gen-src/plugin-test/" + getTestName());
     }
 
     @Override
@@ -66,7 +59,7 @@ public abstract class AbstractPluginTest extends RunXJC2Mojo {
         final DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<>();
 
         final CompilationTask task = compiler.getTask(null, standardFileManager, diagnostics, null, null,
-                standardFileManager.getJavaFileObjects(findSources()));
+                                                      standardFileManager.getJavaFileObjects(findSources()));
 
         final Boolean success = task.call();
 
@@ -85,6 +78,13 @@ public abstract class AbstractPluginTest extends RunXJC2Mojo {
 
             Assert.fail("Compilation failed!");
         }
+    }
+
+    protected abstract String getTestName();
+
+    @Override
+    protected File getGeneratedDirectory() {
+        return new File(getBaseDir(), "target/gen-src/plugin-test/" + getTestName());
     }
 
     private File[] findSources() throws IOException {

@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,9 @@
  */
 package com.foursoft.harness.navext.runtime.io.write;
 
+import com.foursoft.harness.navext.runtime.io.TestData;
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventCollector;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
-import com.foursoft.harness.navext.runtime.io.TestData;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructions.ProcessingInstruction;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructions.ProcessingInstructions;
@@ -76,12 +76,12 @@ class XMLWriterTest {
                 .contains(expectedComment)
                 // check for correct new lines
                 .startsWith("<?xml version=\"1.0\" ?>\n" +
-                        "<!--Hello World-->\n" +
-                        "<?pc pc test?>\n" +
-                        "<Root id=\"id_1\">")
+                                    "<!--Hello World-->\n" +
+                                    "<?pc pc test?>\n" +
+                                    "<Root id=\"id_1\">")
                 .contains(">\n" +
-                        "<?pc pc test 2?>\n" +
-                        "  <")
+                                  "<?pc pc test 2?>\n" +
+                                  "  <")
                 .doesNotContain("\n\n");
     }
 
@@ -103,7 +103,7 @@ class XMLWriterTest {
 
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
         assertThrows(NullPointerException.class, () -> xmlWriter.writeToString(root),
-                "Jaxb throws a nullpointer exception if the model is invalid");
+                     "Jaxb throws a nullpointer exception if the model is invalid");
 
     }
 

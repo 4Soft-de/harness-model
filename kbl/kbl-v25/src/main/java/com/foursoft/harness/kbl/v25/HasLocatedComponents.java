@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v25
+ * KBL 2.5
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,14 +48,14 @@ public interface HasLocatedComponents {
 
     default List<LocatedComponent> getLocatedComponents() {
         return Stream.of(getComponentBoxOccurrences().stream()
-                                .flatMap(c -> c.getComponentBoxConnectors().stream())
-                                .collect(Collectors.toList()),
-                        getConnectorOccurrences(),
-                        getAccessoryOccurrences(),
-                        getAssemblyPartOccurrences(),
-                        getWireProtectionOccurrences(),
-                        getFixingOccurrences(),
-                        getSpecialTerminalOccurrences())
+                                 .flatMap(c -> c.getComponentBoxConnectors().stream())
+                                 .collect(Collectors.toList()),
+                         getConnectorOccurrences(),
+                         getAccessoryOccurrences(),
+                         getAssemblyPartOccurrences(),
+                         getWireProtectionOccurrences(),
+                         getFixingOccurrences(),
+                         getSpecialTerminalOccurrences())
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }

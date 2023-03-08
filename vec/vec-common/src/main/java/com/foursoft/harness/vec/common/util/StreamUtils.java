@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * vec-common
+ * VEC Common
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -69,7 +69,8 @@ public final class StreamUtils {
      *
      * @param inputFunction Function to create a Stream.
      * @param <T>           Input Type of the Function.
-     * @param <R>           Type of the Collection within the given function. Will also determine the type of the Stream.
+     * @param <R>           Type of the Collection within the given function.
+     *                      Will also determine the type of the Stream.
      * @return A stream of the applied Function.
      */
     public static <T, R> Function<T, Stream<R>> toStream(final Function<T, Collection<R>> inputFunction) {

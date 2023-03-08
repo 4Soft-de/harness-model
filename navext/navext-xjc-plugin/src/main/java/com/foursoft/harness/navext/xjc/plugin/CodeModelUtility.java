@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xjc-plugin
+ * NavExt XJC Plugin
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,16 +46,20 @@ public final class CodeModelUtility {
                 return classOutline.implClass;
             }
         }
-        throw new RuntimeException(schemaTypeName
-                + " is not a type in this schema and has no generated class, so no backreference can be set!");
+        throw new RuntimeException(schemaTypeName +
+                                           " is not a type in this schema and has no generated class, so no" +
+                                           " backreference can be set!");
     }
 
     public static JDocComment appendGetterDisclaimer(final JDocComment comment, final JCodeModel codeModel) {
         return comment.append(String.format("%n"))
-                .append("<b>Warning!:</b> This is a readonly property! It has to be initialized during the unmarshalling process by the ")
+                .append("<b>Warning!:</b> This is a readonly property! It has to be initialized during the " +
+                                "unmarshalling process by the ")
                 .append(codeModel.ref(ExtendedUnmarshaller.class))
                 .append(".<br/>")
-                .append("This property is consistent to the state of object model at the time of unmarshalling. It does <b>not</b> reflect any changes done in the object model after the unmarshalling.<br/>")
+                .append("This property is consistent to the state of object model at the time of unmarshalling. " +
+                                "It does <b>not</b> reflect any changes done in the object model " +
+                                "after the unmarshalling.<br/>")
                 .append(String.format("%n"))
                 .append("This property has no effect when the object is marshalled to xml.");
     }

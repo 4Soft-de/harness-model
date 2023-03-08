@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xjc-plugin
+ * NavExt XJC Plugin
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,22 +44,17 @@ public class PluginTest extends AbstractPluginTest {
         super.configureMojo(mojo);
 
         mojo.setForceRegenerate(true);
-
         mojo.setBindingIncludes(new String[]{"basic.xjb"});
-
         mojo.setExtension(true);
-
     }
 
     @Override
     public List<String> getArgs() {
-
         final List<String> args = new ArrayList<>(super.getArgs());
 
         args.add("-Xext-navs");
 
         return args;
-
     }
 
     @Override
@@ -67,7 +62,6 @@ public class PluginTest extends AbstractPluginTest {
         super.testExecute();
 
         assertTypeSafeIDREF();
-
     }
 
     private void assertTypeSafeIDREF() throws Exception {
@@ -75,9 +69,8 @@ public class PluginTest extends AbstractPluginTest {
 
         final Method m = forName.getMethod("getRefBs");
 
-        Assertions.assertThat(m.getGenericReturnType()
-                .getTypeName()).isEqualTo("java.util.List<de.foursoft.xml.xjc.test.NavsChildB>");
-
+        Assertions.assertThat(m.getGenericReturnType().getTypeName())
+                .isEqualTo("java.util.List<de.foursoft.xml.xjc.test.NavsChildB>");
     }
 
 }

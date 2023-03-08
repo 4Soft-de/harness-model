@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-common
+ * KBL Common
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,10 @@ public interface HasInstallationInformation<X extends HasInstruction> {
 
     /**
      * Filters the list of {@link HasInstruction} key.
-     * At most one element of the specified type is expected here. If more are found, the first one will be returned and a warning will be logged.
-     * If multiple values of the specified type are valid, then please use the other {@link #installationInstructionValues(Predicate)} or {@link #installationInstructionValues(String)} method.
+     * At most one element of the specified type is expected here. If more are found, the first one will be returned
+     * and a warning will be logged.
+     * If multiple values of the specified type are valid, then please use the other
+     * {@link #installationInstructionValues(Predicate)} or {@link #installationInstructionValues(String)} method.
      *
      * @param instructionType defines the meaning of the value
      * @return the first value with the given type.
@@ -50,8 +52,10 @@ public interface HasInstallationInformation<X extends HasInstruction> {
 
     /**
      * Filters the list of {@link HasInstruction} key.
-     * At most one element of the specified type is expected here. If more are found, the first one will be returned and a warning will be logged.
-     * If multiple values of the specified type are valid, then please use the other {@link #installationInstructionValues(Predicate)} or {@link #installationInstructionValues(String)} method.
+     * At most one element of the specified type is expected here. If more are found, the first one will be returned
+     * and a warning will be logged.
+     * If multiple values of the specified type are valid, then please use the other
+     * {@link #installationInstructionValues(Predicate)} or {@link #installationInstructionValues(String)} method.
      *
      * @param matches defines the meaning of the value
      * @return the first value with the given type.

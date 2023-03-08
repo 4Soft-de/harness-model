@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.navext.runtime.io;
 
-import com.foursoft.harness.navext.runtime.model.AbstractBase;
 import com.foursoft.harness.navext.runtime.io.read.XMLReader;
+import com.foursoft.harness.navext.runtime.model.AbstractBase;
 import com.foursoft.harness.navext.runtime.model.Root;
 
 import java.io.InputStream;
@@ -40,14 +40,13 @@ public final class TestData {
     public static final Path VALIDATE_BASE_PATH_SRC = Paths.get("src", "test", "resources", "validate");
     public static final Path VALIDATE_BASE_PATH = Paths.get("validate");
 
-
     private TestData() {
     }
 
     public static Root readBasicTest() {
         final XMLReader<Root, AbstractBase> reader = new XMLReader<>(Root.class,
-                AbstractBase.class,
-                AbstractBase::getXmlId);
+                                                                     AbstractBase.class,
+                                                                     AbstractBase::getXmlId);
         final InputStream inputStream = TestData.class.getResourceAsStream("/basic/" + BASIC_TEST_XML);
         return reader.read(inputStream);
     }

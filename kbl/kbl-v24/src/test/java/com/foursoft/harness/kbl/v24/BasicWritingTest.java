@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * kbl-v24
+ * KBL 2.4
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -91,25 +91,27 @@ class BasicWritingTest {
 
         assertThat(result)
                 .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                        + "<kbl:KBL_container id=\"ID000\" version_id=\"version_id0\""
-                        + " xmlns:kbl=\"http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema\">\n"
-                        + "    <Harness id=\"I1397\">\n"
-                        + "        <Connector_occurrence id=\"I1616\">\n"
-                        + "            <Contact_points id=\"id_1234\">\n"
-                        + "                <Id>SCHNUPSI</Id>\n"
-                        + "                <Associated_parts>id_4711</Associated_parts>\n"
-                        + "            </Contact_points>\n"
-                        + "            <Contact_points id=\"id_1235\">\n"
-                        + "                <Id>SCHNUPSI</Id>\n"
-                        + "            </Contact_points>\n"
-                        + "            <Contact_points id=\"id_1236\">\n"
-                        + "                <Id>SCHNUPSI</Id>\n"
-                        + "            </Contact_points>\n"
-                        + "        </Connector_occurrence>\n"
-                        + "        <Terminal_occurrence id=\"id_4711\"/>\n"
-                        + "        <Terminal_occurrence id=\"id_4712\"/>\n"
-                        + "    </Harness>\n"
-                        + "</kbl:KBL_container>");
+                                                     + "<kbl:KBL_container id=\"ID000\" version_id=\"version_id0\""
+                                                     +
+                                                     " xmlns:kbl=\"http://www.prostep.org/Car_electric_container/KBL2" +
+                                                     ".3/KBLSchema\">\n"
+                                                     + "    <Harness id=\"I1397\">\n"
+                                                     + "        <Connector_occurrence id=\"I1616\">\n"
+                                                     + "            <Contact_points id=\"id_1234\">\n"
+                                                     + "                <Id>SCHNUPSI</Id>\n"
+                                                     + "                <Associated_parts>id_4711</Associated_parts>\n"
+                                                     + "            </Contact_points>\n"
+                                                     + "            <Contact_points id=\"id_1235\">\n"
+                                                     + "                <Id>SCHNUPSI</Id>\n"
+                                                     + "            </Contact_points>\n"
+                                                     + "            <Contact_points id=\"id_1236\">\n"
+                                                     + "                <Id>SCHNUPSI</Id>\n"
+                                                     + "            </Contact_points>\n"
+                                                     + "        </Connector_occurrence>\n"
+                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\n"
+                                                     + "        <Terminal_occurrence id=\"id_4712\"/>\n"
+                                                     + "    </Harness>\n"
+                                                     + "</kbl:KBL_container>");
 
     }
 

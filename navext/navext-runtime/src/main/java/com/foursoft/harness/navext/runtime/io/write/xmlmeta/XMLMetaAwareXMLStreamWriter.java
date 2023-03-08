@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,10 +49,10 @@ public class XMLMetaAwareXMLStreamWriter extends IndentingXMLStreamWriter {
 
     public void writeComment(String data, Object source) throws XMLStreamException {
         boolean rootElement = isRootElement(source);
-        if (rootElement)  {
+        if (rootElement) {
             super.writeComment(data);
             writeNewline();
-        }  else  {
+        } else {
             writeNewline();
             super.writeComment(data);
         }
@@ -68,7 +68,7 @@ public class XMLMetaAwareXMLStreamWriter extends IndentingXMLStreamWriter {
         if (rootElement) {
             super.writeProcessingInstruction(target, data);
             writeNewline();
-        }  else  {
+        } else {
             writeNewline();
             super.writeProcessingInstruction(target, data);
         }
@@ -78,7 +78,7 @@ public class XMLMetaAwareXMLStreamWriter extends IndentingXMLStreamWriter {
         writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
     }
 
-    private boolean isRootElement(Object source)  {
+    private boolean isRootElement(Object source) {
         return source != null && baseType == source.getClass();
     }
 

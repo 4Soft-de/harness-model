@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navext-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2022 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,7 +37,6 @@ public class SimpleIdGenerator implements IdGenerator {
     private final int prefixCount;
     private final String delimiter;
 
-
     private SimpleIdGenerator(final Builder builder) {
         prefixCount = builder.prefixCount;
         delimiter = builder.delimiter;
@@ -45,12 +44,12 @@ public class SimpleIdGenerator implements IdGenerator {
 
     @Override
     public synchronized String getNextId(final Object object) {
-        final AtomicInteger counter = count.computeIfAbsent(object.getClass().getSimpleName(), c -> new AtomicInteger(1));
+        final AtomicInteger counter = count.computeIfAbsent(object.getClass().getSimpleName(),
+                                                            c -> new AtomicInteger(1));
         String name = object.getClass().getSimpleName().substring(prefixCount);
         name = name.substring(0, 1).toLowerCase() + name.substring(1);
         return name + delimiter + counter.getAndIncrement();
     }
-
 
     public static final class Builder {
         private int prefixCount = 0;

@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * vec-v2x
+ * VEC 2.X
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -59,7 +59,8 @@ public final class PlacementNavs {
      * Returns the locations from a {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
      *
      * @param placement Placement Navigation method.
-     * @return A function to get the locations from a  {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
+     * @return A function to get the locations from a
+     * {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
      * @see #onWayPlacement()
      * @see #onPointPlacement()
      */

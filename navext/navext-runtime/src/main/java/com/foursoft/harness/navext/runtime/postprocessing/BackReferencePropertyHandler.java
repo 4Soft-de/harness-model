@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * xml-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -62,7 +62,7 @@ public class BackReferencePropertyHandler {
             }
         } catch (final ModelPostProcessorException e) {
             throw new ModelPostProcessorException("An error occurred during the backreference handling of field: "
-                    + sourceField.getName() + " for object: " + source, e);
+                                                          + sourceField.getName() + " for object: " + source, e);
         }
     }
 

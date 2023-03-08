@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * navigation-extender-runtime
+ * NavExt Runtime
  * %%
- * Copyright (C) 2019 - 2020 4Soft GmbH
+ * Copyright (C) 2019 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,8 +28,8 @@ package com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructi
 import java.util.*;
 
 /**
- * ProcessingInstructions allows adding XML-ProcessingInstructions to the output file. The ProcessingInstructions are linked to JAXB elements
- * and added directly before the xml-element.
+ * ProcessingInstructions allows adding XML-ProcessingInstructions to the output file.
+ * The ProcessingInstructions are linked to JAXB elements and added directly before the xml-element.
  */
 public class ProcessingInstructions {
 
