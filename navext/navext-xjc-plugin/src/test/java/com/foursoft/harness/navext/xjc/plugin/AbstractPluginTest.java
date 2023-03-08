@@ -41,16 +41,9 @@ public abstract class AbstractPluginTest extends RunXJC2Mojo {
 
     private final File DEFAULT_CLASSES_DIR = new File(getBaseDir(), "target/test-classes");
 
-    protected abstract String getTestName();
-
     @Override
     public File getSchemaDirectory() {
         return new File(getBaseDir(), "src/test/resources/" + getTestName());
-    }
-
-    @Override
-    protected File getGeneratedDirectory() {
-        return new File(getBaseDir(), "target/gen-src/plugin-test/" + getTestName());
     }
 
     @Override
@@ -66,7 +59,7 @@ public abstract class AbstractPluginTest extends RunXJC2Mojo {
         final DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<>();
 
         final CompilationTask task = compiler.getTask(null, standardFileManager, diagnostics, null, null,
-                standardFileManager.getJavaFileObjects(findSources()));
+                                                      standardFileManager.getJavaFileObjects(findSources()));
 
         final Boolean success = task.call();
 
@@ -85,6 +78,13 @@ public abstract class AbstractPluginTest extends RunXJC2Mojo {
 
             Assert.fail("Compilation failed!");
         }
+    }
+
+    protected abstract String getTestName();
+
+    @Override
+    protected File getGeneratedDirectory() {
+        return new File(getBaseDir(), "target/gen-src/plugin-test/" + getTestName());
     }
 
     private File[] findSources() throws IOException {

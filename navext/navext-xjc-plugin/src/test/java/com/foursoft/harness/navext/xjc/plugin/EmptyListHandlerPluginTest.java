@@ -44,23 +44,18 @@ public class EmptyListHandlerPluginTest extends AbstractPluginTest {
         super.configureMojo(mojo);
 
         mojo.setForceRegenerate(true);
-
         mojo.setBindingIncludes(new String[]{"basic.xjb"});
-
         mojo.setExtension(true);
-
     }
 
     @Override
     public List<String> getArgs() {
-
         final List<String> args = new ArrayList<>(super.getArgs());
 
         args.add("-Xext-navs");
         args.add("-Xnull-empty-lists");
 
         return args;
-
     }
 
     @Override
@@ -68,7 +63,6 @@ public class EmptyListHandlerPluginTest extends AbstractPluginTest {
         super.testExecute();
 
         assertTypeSafeIDREF();
-
     }
 
     private void assertTypeSafeIDREF() throws Exception {
@@ -76,9 +70,8 @@ public class EmptyListHandlerPluginTest extends AbstractPluginTest {
 
         final Method m = forName.getMethod("getRefBs");
 
-        Assertions.assertThat(m.getGenericReturnType()
-                .getTypeName()).isEqualTo("java.util.List<de.foursoft.xml.xjc.test.NavsChildB>");
-
+        Assertions.assertThat(m.getGenericReturnType().getTypeName())
+                .isEqualTo("java.util.List<de.foursoft.xml.xjc.test.NavsChildB>");
     }
 
 }

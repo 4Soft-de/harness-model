@@ -48,7 +48,6 @@ import java.util.function.Consumer;
  */
 public final class KblReader extends XMLReader<KBLContainer, Identifiable> {
 
-
     /**
      * Creates a new KBL reader.
      */

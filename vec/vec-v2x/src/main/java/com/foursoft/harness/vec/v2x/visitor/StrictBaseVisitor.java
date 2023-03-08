@@ -47,7 +47,7 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
      */
     protected String getErrorMessage(final Object aBean) {
         return String.format("Encountered unhandled class '%s' in visitor implementation: %s",
-                aBean.getClass().getName(), getClass().getName());
+                             aBean.getClass().getName(), getClass().getName());
     }
 
     @Override
@@ -66,7 +66,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecApplicationConstraintSpecification(final VecApplicationConstraintSpecification aBean) throws RuntimeException {
+    public R visitVecApplicationConstraintSpecification(final VecApplicationConstraintSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -96,7 +97,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecBoltMountedFixingSpecification(final VecBoltMountedFixingSpecification aBean) throws RuntimeException {
+    public R visitVecBoltMountedFixingSpecification(final VecBoltMountedFixingSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -181,7 +183,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecCableLeadThroughSpecification(final VecCableLeadThroughSpecification aBean) throws RuntimeException {
+    public R visitVecCableLeadThroughSpecification(final VecCableLeadThroughSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -401,7 +404,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecConnectorHousingCapSpecification(final VecConnectorHousingCapSpecification aBean) throws RuntimeException {
+    public R visitVecConnectorHousingCapSpecification(final VecConnectorHousingCapSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -411,7 +415,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecConnectorHousingSpecification(final VecConnectorHousingSpecification aBean) throws RuntimeException {
+    public R visitVecConnectorHousingSpecification(final VecConnectorHousingSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -481,7 +486,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecDefaultDimensionSpecification(final VecDefaultDimensionSpecification aBean) throws RuntimeException {
+    public R visitVecDefaultDimensionSpecification(final VecDefaultDimensionSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -501,7 +507,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecDocumentRelatedAssignmentGroup(final VecDocumentRelatedAssignmentGroup aBean) throws RuntimeException {
+    public R visitVecDocumentRelatedAssignmentGroup(final VecDocumentRelatedAssignmentGroup aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -526,7 +533,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecEdgeMountedFixingSpecification(final VecEdgeMountedFixingSpecification aBean) throws RuntimeException {
+    public R visitVecEdgeMountedFixingSpecification(final VecEdgeMountedFixingSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -611,7 +619,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecFunctionalStructureSpecification(final VecFunctionalStructureSpecification aBean) throws RuntimeException {
+    public R visitVecFunctionalStructureSpecification(final VecFunctionalStructureSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -626,7 +635,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecGeneralTechnicalPartSpecification(final VecGeneralTechnicalPartSpecification aBean) throws RuntimeException {
+    public R visitVecGeneralTechnicalPartSpecification(final VecGeneralTechnicalPartSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -661,17 +671,20 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecHarnessDrawingSpecification2D(final VecHarnessDrawingSpecification2D aBean) throws RuntimeException {
+    public R visitVecHarnessDrawingSpecification2D(final VecHarnessDrawingSpecification2D aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    public R visitVecHarnessGeometrySpecification3D(final VecHarnessGeometrySpecification3D aBean) throws RuntimeException {
+    public R visitVecHarnessGeometrySpecification3D(final VecHarnessGeometrySpecification3D aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    public R visitVecHoleMountedFixingSpecification(final VecHoleMountedFixingSpecification aBean) throws RuntimeException {
+    public R visitVecHoleMountedFixingSpecification(final VecHoleMountedFixingSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -956,7 +969,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecOpenWireEndTerminalSpecification(final VecOpenWireEndTerminalSpecification aBean) throws RuntimeException {
+    public R visitVecOpenWireEndTerminalSpecification(final VecOpenWireEndTerminalSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -971,7 +985,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecPartOrUsageRelatedSpecification(final VecPartOrUsageRelatedSpecification aBean) throws RuntimeException {
+    public R visitVecPartOrUsageRelatedSpecification(final VecPartOrUsageRelatedSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -986,7 +1001,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecPartSubstitutionSpecification(final VecPartSubstitutionSpecification aBean) throws RuntimeException {
+    public R visitVecPartSubstitutionSpecification(final VecPartSubstitutionSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1081,7 +1097,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecPlaceableElementSpecification(final VecPlaceableElementSpecification aBean) throws RuntimeException {
+    public R visitVecPlaceableElementSpecification(final VecPlaceableElementSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1111,12 +1128,14 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecPluggableTerminalSpecification(final VecPluggableTerminalSpecification aBean) throws RuntimeException {
+    public R visitVecPluggableTerminalSpecification(final VecPluggableTerminalSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    public R visitVecPotentialDistributorSpecification(final VecPotentialDistributorSpecification aBean) throws RuntimeException {
+    public R visitVecPotentialDistributorSpecification(final VecPotentialDistributorSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1141,12 +1160,14 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecRequirementsConformanceSpecification(final VecRequirementsConformanceSpecification aBean) throws RuntimeException {
+    public R visitVecRequirementsConformanceSpecification(final VecRequirementsConformanceSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
     @Override
-    public R visitVecRequirementsConformanceStatement(final VecRequirementsConformanceStatement aBean) throws RuntimeException {
+    public R visitVecRequirementsConformanceStatement(final VecRequirementsConformanceStatement aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1351,7 +1372,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecTerminalReceptionSpecification(final VecTerminalReceptionSpecification aBean) throws RuntimeException {
+    public R visitVecTerminalReceptionSpecification(final VecTerminalReceptionSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1386,7 +1408,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecTopologyBendingRestrictionSpecification(final VecTopologyBendingRestrictionSpecification aBean) throws RuntimeException {
+    public R visitVecTopologyBendingRestrictionSpecification(final VecTopologyBendingRestrictionSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1491,7 +1514,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecVariantConfigurationSpecification(final VecVariantConfigurationSpecification aBean) throws RuntimeException {
+    public R visitVecVariantConfigurationSpecification(final VecVariantConfigurationSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1511,7 +1535,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecVariantStructureSpecification(final VecVariantStructureSpecification aBean) throws RuntimeException {
+    public R visitVecVariantStructureSpecification(final VecVariantStructureSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1541,7 +1566,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecWireEndAccessorySpecification(final VecWireEndAccessorySpecification aBean) throws RuntimeException {
+    public R visitVecWireEndAccessorySpecification(final VecWireEndAccessorySpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
@@ -1626,7 +1652,8 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
     }
 
     @Override
-    public R visitVecWireTupleTerminationSpecification(VecWireTupleTerminationSpecification aBean) throws RuntimeException {
+    public R visitVecWireTupleTerminationSpecification(VecWireTupleTerminationSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 

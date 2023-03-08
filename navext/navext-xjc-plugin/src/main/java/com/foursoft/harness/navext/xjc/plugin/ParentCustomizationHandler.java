@@ -38,6 +38,20 @@ import org.w3c.dom.Element;
 
 public class ParentCustomizationHandler extends AbstractCustomizationHandler {
 
+    public JDefinedClass findBaseType(final ClassOutline classOutline, final Element customizationElement) {
+        if (customizationElement.hasAttribute(Consts.ATTR_SCHEMA_TYPE)) {
+            final String typeName = customizationElement.getAttribute(Consts.ATTR_SCHEMA_TYPE);
+            return CodeModelUtility.findSchemaType(classOutline.parent(), typeName);
+        }
+        if (customizationElement.hasAttribute(Consts.ATTR_SELECTOR_TYPE)) {
+            return findSelectorType(classOutline.implClass,
+                                    customizationElement.getAttribute(Consts.ATTR_SELECTOR_TYPE));
+        }
+        throw new RuntimeException("Either attribute '" + Consts.ATTR_SCHEMA_TYPE + "' or '" + Consts.ATTR_SELECTOR_TYPE
+                                           + "' must be set for tag:" + CustomizationTags.PARENT.name());
+
+    }
+
     @Override
     protected CustomizationTags handledTag() {
         return CustomizationTags.PARENT;
@@ -80,20 +94,6 @@ public class ParentCustomizationHandler extends AbstractCustomizationHandler {
 
     }
 
-    public JDefinedClass findBaseType(final ClassOutline classOutline, final Element customizationElement) {
-        if (customizationElement.hasAttribute(Consts.ATTR_SCHEMA_TYPE)) {
-            final String typeName = customizationElement.getAttribute(Consts.ATTR_SCHEMA_TYPE);
-            return CodeModelUtility.findSchemaType(classOutline.parent(), typeName);
-        }
-        if (customizationElement.hasAttribute(Consts.ATTR_SELECTOR_TYPE)) {
-            return findSelectorType(classOutline.implClass,
-                    customizationElement.getAttribute(Consts.ATTR_SELECTOR_TYPE));
-        }
-        throw new RuntimeException("Either attribute '" + Consts.ATTR_SCHEMA_TYPE + "' or '" + Consts.ATTR_SELECTOR_TYPE
-                + "' must be set for tag:" + CustomizationTags.PARENT.name());
-
-    }
-
     private JDefinedClass findSelectorType(final JDefinedClass targetClass, final String selectorName) {
         final JDefinedClass target = targetClass.getPackage()
                 ._getClass(selectorName);
@@ -108,9 +108,10 @@ public class ParentCustomizationHandler extends AbstractCustomizationHandler {
             throws ClassNotFoundException {
         final JDocComment comment = new JDocComment(codeModel)
                 .append("Gets a reference to the parent of this object in the XML DOM Tree. ")
-                .append("If this class can have different parents in DOM, this property is initialized with the parent, if the parent is a ")
+                .append("If this class can have different parents in DOM, this property is " +
+                                "initialized with the parent, if the parent is a ")
                 .append(baseType)
-                .append(" otherwise it will be <tt>null</tt><br/>");
+                .append(" otherwise it will be <tt>null</tt>.<br/>");
 
         return CodeModelUtility.appendGetterDisclaimer(comment, codeModel);
     }

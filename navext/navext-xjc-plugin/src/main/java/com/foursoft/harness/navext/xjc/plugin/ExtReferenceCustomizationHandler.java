@@ -82,9 +82,9 @@ public class ExtReferenceCustomizationHandler extends AbstractCustomizationHandl
         final PropertyBuilder propertyBuilder = new PropertyBuilder(codeModel);
         propertyBuilder.withName(inversePropertyName)
                 .withBaseType(codeModel.ref(Set.class)
-                        .narrow(sourceClass))
+                                      .narrow(sourceClass))
                 .withInit(JExpr._new(codeModel.ref(HashSet.class)
-                        .narrow(sourceClass)))
+                                             .narrow(sourceClass)))
                 .withGetterJavadoc(createGetterJavadoc(codeModel, sourceClass));
 
         findImplementationClasses(context, targetClass).filter(c -> !c.fields()
@@ -103,7 +103,7 @@ public class ExtReferenceCustomizationHandler extends AbstractCustomizationHandl
                                                             final JDefinedClass targetClass) {
         if (targetClass.isInterface()) {
             return toStream(context.getCodeModel()
-                    .packages()).flatMap(p -> toStream(p.classes()))
+                                    .packages()).flatMap(p -> toStream(p.classes()))
                     .filter(c -> {
                         return toStream(c._implements()).anyMatch(iface -> iface == targetClass);
                     });
@@ -145,7 +145,7 @@ public class ExtReferenceCustomizationHandler extends AbstractCustomizationHandl
                 ._if(sourceField.eq(JExpr._null()))
                 ._then()
                 .assign(sourceField, JExpr._new(codeModel.ref(ArrayList.class)
-                        .narrow(context.getTargetClass())));
+                                                        .narrow(context.getTargetClass())));
 
         newMethod.body()
                 ._return(JExpr.refthis(sourceField.name()));

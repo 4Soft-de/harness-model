@@ -69,7 +69,8 @@ public final class StreamUtils {
      *
      * @param inputFunction Function to create a Stream.
      * @param <T>           Input Type of the Function.
-     * @param <R>           Type of the Collection within the given function. Will also determine the type of the Stream.
+     * @param <R>           Type of the Collection within the given function.
+     *                      Will also determine the type of the Stream.
      * @return A stream of the applied Function.
      */
     public static <T, R> Function<T, Stream<R>> toStream(final Function<T, Collection<R>> inputFunction) {

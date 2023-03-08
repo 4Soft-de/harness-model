@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
+
 import com.foursoft.harness.kbl.v24.*;
 import com.foursoft.harness.navext.runtime.JaxbModel;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
@@ -99,7 +100,7 @@ public class MyKblReader {
                 return;
             }
             System.out.println("KblConnectorOccurrence from KblContainer = KKblConnectorOccurrence from KblHarness? " +
-                    (kblConnectorOccurrence.equals(occurrenceByHarness)));
+                                       (kblConnectorOccurrence.equals(occurrenceByHarness)));
 
             final String xmlId = kblConnectorOccurrence.getXmlId();
             final KblConnectorOccurrence occurrenceByLookup = model.getIdLookup()
@@ -109,7 +110,7 @@ public class MyKblReader {
                 return;
             }
             System.out.println("KblConnectorOccurrence from KblContainer = KblConnectorOccurrence by id lookup? " +
-                    (kblConnectorOccurrence.equals(occurrenceByLookup)));
+                                       (kblConnectorOccurrence.equals(occurrenceByLookup)));
         }
     }
 }

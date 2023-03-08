@@ -37,7 +37,6 @@ public class SimpleIdGenerator implements IdGenerator {
     private final int prefixCount;
     private final String delimiter;
 
-
     private SimpleIdGenerator(final Builder builder) {
         prefixCount = builder.prefixCount;
         delimiter = builder.delimiter;
@@ -45,12 +44,12 @@ public class SimpleIdGenerator implements IdGenerator {
 
     @Override
     public synchronized String getNextId(final Object object) {
-        final AtomicInteger counter = count.computeIfAbsent(object.getClass().getSimpleName(), c -> new AtomicInteger(1));
+        final AtomicInteger counter = count.computeIfAbsent(object.getClass().getSimpleName(),
+                                                            c -> new AtomicInteger(1));
         String name = object.getClass().getSimpleName().substring(prefixCount);
         name = name.substring(0, 1).toLowerCase() + name.substring(1);
         return name + delimiter + counter.getAndIncrement();
     }
-
 
     public static final class Builder {
         private int prefixCount = 0;

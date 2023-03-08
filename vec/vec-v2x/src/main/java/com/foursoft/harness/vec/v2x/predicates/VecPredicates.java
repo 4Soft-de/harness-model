@@ -84,7 +84,7 @@ public final class VecPredicates {
     public static Predicate<VecOccurrenceOrUsage> isFuse() {
         return occ -> occ.getRolesWithType(VecEEComponentRole.class).stream()
                 .anyMatch(isEEComponentOfSpecificType(VecFuseSpecification.class)
-                        .or(isEEComponentOfSpecificType(VecMultiFuseSpecification.class)));
+                                  .or(isEEComponentOfSpecificType(VecMultiFuseSpecification.class)));
     }
 
     /**

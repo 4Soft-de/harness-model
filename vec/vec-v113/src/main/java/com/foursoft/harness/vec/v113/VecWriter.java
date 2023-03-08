@@ -36,7 +36,6 @@ import java.util.function.Consumer;
  */
 public final class VecWriter extends XMLWriter<VecContent> {
 
-
     /**
      * create a default VecWriter with a default validation events logger {@link ValidationEventLogger}
      */

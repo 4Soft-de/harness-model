@@ -66,7 +66,8 @@ public class XMLWriter<T> {
         this.baseType = baseType;
         try {
             final String packageName = this.baseType.getPackage().getName();
-            final JAXBContext jaxbContext = JaxbContextFactory.initializeContext(packageName, NamespacePrefixMapperImpl.class.getClassLoader());
+            final JAXBContext jaxbContext = JaxbContextFactory.initializeContext(packageName,
+                                                                                 NamespacePrefixMapperImpl.class.getClassLoader());
             marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");

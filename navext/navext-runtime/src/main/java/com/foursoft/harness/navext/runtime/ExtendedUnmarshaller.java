@@ -163,7 +163,8 @@ public class ExtendedUnmarshaller<R, I> {
 
         unmarshaller.setListener(modelPostProcessorManager);
 
-        final R root = rootElement.cast(unmarshaller.unmarshal(new SAXSource(getXMLReader(), new InputSource(resource))));
+        final R root = rootElement.cast(
+                unmarshaller.unmarshal(new SAXSource(getXMLReader(), new InputSource(resource))));
 
         modelPostProcessorManager.doPostProcessing();
 

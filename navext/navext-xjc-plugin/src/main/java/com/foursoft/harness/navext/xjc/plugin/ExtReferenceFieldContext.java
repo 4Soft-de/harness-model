@@ -58,7 +58,7 @@ public class ExtReferenceFieldContext {
     public JFieldVar getSourceField() {
         return getSourceClass().fields()
                 .get(fieldOutline.getPropertyInfo()
-                        .getName(false));
+                             .getName(false));
     }
 
     public boolean isCollection() {

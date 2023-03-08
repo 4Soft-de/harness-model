@@ -37,7 +37,6 @@ import java.util.Collection;
 
 class XMLValidationTest {
 
-
     public static XMLValidation getXmlValidation() {
         final String fileName = TestData.VALIDATE_BASE_PATH.resolve("basic-test.xsd").toString();
         final Schema schema = SchemaFactory.getSchema(fileName);
@@ -52,7 +51,7 @@ class XMLValidationTest {
                 Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.BASIC_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                StandardCharsets.UTF_8);
+                                                                           StandardCharsets.UTF_8);
         Assertions.assertTrue(errors.isEmpty());
     }
 
@@ -64,7 +63,7 @@ class XMLValidationTest {
                 Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.ERROR_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                StandardCharsets.UTF_8);
+                                                                           StandardCharsets.UTF_8);
         Assertions.assertFalse(errors.isEmpty());
         Assertions.assertEquals(2, errors.size());
 

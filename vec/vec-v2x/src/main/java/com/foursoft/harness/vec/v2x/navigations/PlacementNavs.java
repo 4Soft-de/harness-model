@@ -59,7 +59,8 @@ public final class PlacementNavs {
      * Returns the locations from a {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
      *
      * @param placement Placement Navigation method.
-     * @return A function to get the locations from a  {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
+     * @return A function to get the locations from a
+     * {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
      * @see #onWayPlacement()
      * @see #onPointPlacement()
      */

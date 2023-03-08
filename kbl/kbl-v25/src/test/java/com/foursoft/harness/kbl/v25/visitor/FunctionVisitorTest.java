@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.kbl.v25.visitor;
 
-
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblReader;
 import com.foursoft.harness.navext.runtime.model.Identifiable;

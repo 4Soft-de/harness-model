@@ -49,11 +49,11 @@ public class SelectorCustomizationHandler extends AbstractCustomizationHandler {
         final String selectorName = customization.element.getAttribute(Consts.ATTR_NAME);
 
         final JDefinedClass selectorInterface = selectorInterface(generator.getUsedPackages(Aspect.IMPLEMENTATION)[0],
-                selectorName);
+                                                                  selectorName);
 
         if (customization.element.hasAttribute(Consts.ATTR_IMPLEMENTS)) {
             selectorInterface._implements(outline.getCodeModel()
-                    .ref(customization.element.getAttribute(Consts.ATTR_IMPLEMENTS)));
+                                                  .ref(customization.element.getAttribute(Consts.ATTR_IMPLEMENTS)));
         }
 
         customization.markAsAcknowledged();
@@ -85,7 +85,8 @@ public class SelectorCustomizationHandler extends AbstractCustomizationHandler {
         try {
             final JDefinedClass iface = parentPackage._interface(selectorName);
             iface.javadoc()
-                    .append("This is a selector interface for IDREF associations the reference a group of types, that have no shared inheritance hierarchy.");
+                    .append("This is a selector interface for IDREF associations the reference a group of types, that" +
+                                    " have no shared inheritance hierarchy.");
             return iface;
         } catch (final JClassAlreadyExistsException e) {
             throw new RuntimeException("This should never happen.!");

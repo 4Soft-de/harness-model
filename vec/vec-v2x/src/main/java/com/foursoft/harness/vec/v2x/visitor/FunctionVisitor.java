@@ -1628,7 +1628,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecWireTupleTerminationSpecification(VecWireTupleTerminationSpecification aBean) throws RuntimeException {
+    public O visitVecWireTupleTerminationSpecification(VecWireTupleTerminationSpecification aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 

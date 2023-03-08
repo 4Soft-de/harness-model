@@ -44,7 +44,7 @@ class LogErrorsTest {
         final String content = new String(
                 Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.ERROR_TEST_XML)));
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                StandardCharsets.UTF_8);
+                                                                           StandardCharsets.UTF_8);
         final String errorString = LogErrors.annotateXMLContent(content, errors);
         // line 21 contains a duplicate key
         assertThat(errorString).contains("21: ERROR     <ChildB id=\"id_8\">");

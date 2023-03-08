@@ -46,7 +46,7 @@ public class StrictBaseVisitor<R, E extends Throwable> implements Visitor<R, E> 
      */
     private String getErrorMessage(final Object aBean) {
         return String.format("Encountered unhandled class '%s' in visitor implementation: %s",
-                aBean.getClass().getName(), getClass().getName());
+                             aBean.getClass().getName(), getClass().getName());
     }
 
     @Override

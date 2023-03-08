@@ -57,7 +57,8 @@ public class KblValidation {
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
      */
-    public static void validateXML(final Schema schema, final Path kblPath, final Consumer<String> consumer, final boolean detailedLog) {
+    public static void validateXML(final Schema schema, final Path kblPath, final Consumer<String> consumer,
+                                   final boolean detailedLog) {
         try {
             final String xmlContent = Files.readString(kblPath);
             validateXML(schema, xmlContent, consumer, detailedLog);
@@ -65,7 +66,6 @@ public class KblValidation {
             throw new KblException("Schema validation failed! Could not read Path: " + kblPath, e);
         }
     }
-
 
     /**
      * validates a xml string against the kbl schema
@@ -75,11 +75,12 @@ public class KblValidation {
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
      */
-    public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer, final boolean detailedLog) {
+    public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer,
+                                   final boolean detailedLog) {
         Objects.requireNonNull(xmlContent);
         final XMLValidation xmlValidation = new XMLValidation(schema);
         final Collection<LogValidator.ErrorLocation> errorLocations = xmlValidation.validateXML(xmlContent,
-                StandardCharsets.UTF_8);
+                                                                                                StandardCharsets.UTF_8);
         if (detailedLog && !errorLocations.isEmpty()) {
             // TODO use  https://github.com/4Soft-de/jaxb-enhanced-navigation/pull/7 scoped!
             final String annotateXMLContent = LogErrors.annotateXMLContent(xmlContent, errorLocations);

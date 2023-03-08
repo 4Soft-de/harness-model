@@ -49,7 +49,8 @@ class HasProcessingInformationTest {
                     .findFirst().orElse(null);
 
             assertThat(occurrence)
-                    .returns(Optional.of("Instruction_value396"), c -> c.getProcessingInstructionValue("Instruction_type396"))
+                    .returns(Optional.of("Instruction_value396"),
+                             c -> c.getProcessingInstructionValue("Instruction_type396"))
                     .returns(List.of("Instruction_value396"), c -> c.processingInstructionValues("Instruction_type396")
                             .collect(Collectors.toList()));
         }

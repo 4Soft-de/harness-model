@@ -41,7 +41,8 @@ public class ProcessingInstructionAdderListener extends Listener {
      * @param xsw                    the xml stream writer
      * @param processingInstructions list of xjc objects and comment strings
      */
-    public ProcessingInstructionAdderListener(final XMLMetaAwareXMLStreamWriter xsw, final ProcessingInstructions processingInstructions) {
+    public ProcessingInstructionAdderListener(final XMLMetaAwareXMLStreamWriter xsw,
+                                              final ProcessingInstructions processingInstructions) {
         this.xsw = xsw;
         this.processingInstructions = processingInstructions;
     }

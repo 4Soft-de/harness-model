@@ -49,10 +49,10 @@ public class XMLMetaAwareXMLStreamWriter extends IndentingXMLStreamWriter {
 
     public void writeComment(String data, Object source) throws XMLStreamException {
         boolean rootElement = isRootElement(source);
-        if (rootElement)  {
+        if (rootElement) {
             super.writeComment(data);
             writeNewline();
-        }  else  {
+        } else {
             writeNewline();
             super.writeComment(data);
         }
@@ -68,7 +68,7 @@ public class XMLMetaAwareXMLStreamWriter extends IndentingXMLStreamWriter {
         if (rootElement) {
             super.writeProcessingInstruction(target, data);
             writeNewline();
-        }  else  {
+        } else {
             writeNewline();
             super.writeProcessingInstruction(target, data);
         }
@@ -78,7 +78,7 @@ public class XMLMetaAwareXMLStreamWriter extends IndentingXMLStreamWriter {
         writeCharacters("\n"); // IndentingXMLStreamWriter uses \n
     }
 
-    private boolean isRootElement(Object source)  {
+    private boolean isRootElement(Object source) {
         return source != null && baseType == source.getClass();
     }
 

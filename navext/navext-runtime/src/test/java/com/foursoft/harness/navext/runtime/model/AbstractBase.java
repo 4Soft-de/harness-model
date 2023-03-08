@@ -52,7 +52,6 @@ public abstract class AbstractBase implements Serializable, Identifiable, Modifi
         return xmlId;
     }
 
-
     @Override
     public void setXmlId(final String value) {
         xmlId = value;

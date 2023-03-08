@@ -58,17 +58,17 @@ public interface HasParts {
 
     default List<KblPart> getParts() {
         return Stream.of(getAccessories(),
-                        getAssemblyParts(),
-                        getCavityPlugs(),
-                        getCavitySeals(),
-                        getCoPackParts(),
-                        getComponents(),
-                        getComponentBoxes(),
-                        getConnectorHousings(),
-                        getFixings(),
-                        getGeneralTerminals(),
-                        getGeneralWires(),
-                        getWireProtections())
+                         getAssemblyParts(),
+                         getCavityPlugs(),
+                         getCavitySeals(),
+                         getCoPackParts(),
+                         getComponents(),
+                         getComponentBoxes(),
+                         getConnectorHousings(),
+                         getFixings(),
+                         getGeneralTerminals(),
+                         getGeneralWires(),
+                         getWireProtections())
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }

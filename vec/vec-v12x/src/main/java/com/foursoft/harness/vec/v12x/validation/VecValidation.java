@@ -53,7 +53,8 @@ public final class VecValidation {
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
      */
-    public static void validateXML(final String xmlContent, final Consumer<String> consumer, final boolean detailedLog) {
+    public static void validateXML(final String xmlContent, final Consumer<String> consumer,
+                                   final boolean detailedLog) {
         Objects.requireNonNull(xmlContent);
 
         final XMLValidation xmlValidation = new XMLValidation(schema);

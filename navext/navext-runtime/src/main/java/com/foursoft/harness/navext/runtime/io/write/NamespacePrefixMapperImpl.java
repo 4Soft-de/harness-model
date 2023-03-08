@@ -65,7 +65,6 @@ package com.foursoft.harness.navext.runtime.io.write;
  * holder.
  */
 
-
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
 class NamespacePrefixMapperImpl extends NamespacePrefixMapper {

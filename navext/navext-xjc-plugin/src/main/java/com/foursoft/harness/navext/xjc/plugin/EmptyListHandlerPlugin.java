@@ -84,7 +84,7 @@ public class EmptyListHandlerPlugin extends Plugin {
         if (propertyInfo.isCollection()) {
             final JFieldRef fieldRef = JExpr.ref(propertyInfo.getName(false));
             final JBlock conditional = body._if(fieldRef.ne(JExpr._null())
-                    .cand(fieldRef.invoke("isEmpty")))
+                                                        .cand(fieldRef.invoke("isEmpty")))
                     ._then();
             conditional.assign(fieldRef, JExpr._null());
         }

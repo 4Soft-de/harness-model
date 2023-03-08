@@ -32,6 +32,7 @@ public interface HasVecVersion {
 
     /**
      * Gets the VEC Version.
+     *
      * @return The VEC Version.
      */
     String getVecVersion();

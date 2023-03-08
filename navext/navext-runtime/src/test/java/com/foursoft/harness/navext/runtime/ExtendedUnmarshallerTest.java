@@ -42,7 +42,6 @@ import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class ExtendedUnmarshallerTest {
 
     @Test
@@ -151,7 +150,8 @@ public class ExtendedUnmarshallerTest {
 
         // Check Id Lookup initialized & parent associations
         assertThat(unmarshalledResult.getIdLookup()
-                .findById(ChildB.class, "id_6")).isNotNull()
+                           .findById(ChildB.class, "id_6"))
+                .isNotNull()
                 .isNotEmpty()
                 .get()
                 .returns("id_6", ChildB::getXmlId)
@@ -164,19 +164,22 @@ public class ExtendedUnmarshallerTest {
                 .get(1);
         // Check Backref is working
         assertThat(unmarshalledResult.getIdLookup()
-                .findById(ChildB.class, "id_6")
-                .get()
-                .getReverseChildA()).containsExactlyInAnyOrder(childAone);
+                           .findById(ChildB.class, "id_6")
+                           .get()
+                           .getReverseChildA())
+                .containsExactlyInAnyOrder(childAone);
 
         assertThat(unmarshalledResult.getIdLookup()
-                .findById(ChildB.class, "id_7")
-                .get()
-                .getReverseChildA()).containsExactlyInAnyOrder(childAone, childATwo);
+                           .findById(ChildB.class, "id_7")
+                           .get()
+                           .getReverseChildA())
+                .containsExactlyInAnyOrder(childAone, childATwo);
 
         assertThat(unmarshalledResult.getIdLookup()
-                .findById(ChildB.class, "id_8")
-                .get()
-                .getReverseChildA()).containsExactlyInAnyOrder(childATwo);
+                           .findById(ChildB.class, "id_8")
+                           .get()
+                           .getReverseChildA())
+                .containsExactlyInAnyOrder(childATwo);
 
     }
 

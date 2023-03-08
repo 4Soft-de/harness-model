@@ -28,8 +28,8 @@ package com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructi
 import java.util.*;
 
 /**
- * ProcessingInstructions allows adding XML-ProcessingInstructions to the output file. The ProcessingInstructions are linked to JAXB elements
- * and added directly before the xml-element.
+ * ProcessingInstructions allows adding XML-ProcessingInstructions to the output file.
+ * The ProcessingInstructions are linked to JAXB elements and added directly before the xml-element.
  */
 public class ProcessingInstructions {
 

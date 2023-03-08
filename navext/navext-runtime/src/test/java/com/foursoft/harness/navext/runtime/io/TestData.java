@@ -40,14 +40,13 @@ public final class TestData {
     public static final Path VALIDATE_BASE_PATH_SRC = Paths.get("src", "test", "resources", "validate");
     public static final Path VALIDATE_BASE_PATH = Paths.get("validate");
 
-
     private TestData() {
     }
 
     public static Root readBasicTest() {
         final XMLReader<Root, AbstractBase> reader = new XMLReader<>(Root.class,
-                AbstractBase.class,
-                AbstractBase::getXmlId);
+                                                                     AbstractBase.class,
+                                                                     AbstractBase::getXmlId);
         final InputStream inputStream = TestData.class.getResourceAsStream("/basic/" + BASIC_TEST_XML);
         return reader.read(inputStream);
     }

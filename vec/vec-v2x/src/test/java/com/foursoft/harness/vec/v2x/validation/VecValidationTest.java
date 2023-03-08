@@ -45,7 +45,6 @@ class VecValidationTest {
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.2.0");
 
-
         final VecWriter vecWriter = new VecWriter();
         final String result = vecWriter.writeToString(root);
 

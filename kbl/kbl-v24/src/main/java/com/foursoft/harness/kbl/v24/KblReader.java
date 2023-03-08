@@ -39,15 +39,14 @@ import java.util.function.Consumer;
  * pools (e.g. servlet container) as the JVM default {@link javax.xml.bind.Unmarshaller}
  * implementation does not clean up internal states properly after unmarshalling is finished.
  * Therefore the functionality has been dropped.
- *</p>
+ * </p>
  * <p>
  * The performance overhead of creating a new reader for each read is about 10% - 15% for
  * repeated reads. The overhead is independent from the size of unmarshalled file. If this is an
  * issue, you can manage your own singleton reader (it is <b>not thread-safe</b>, but can be reused).
- *</p>
+ * </p>
  */
 public final class KblReader extends XMLReader<KBLContainer, Identifiable> {
-
 
     /**
      * Creates a new KBL reader.
