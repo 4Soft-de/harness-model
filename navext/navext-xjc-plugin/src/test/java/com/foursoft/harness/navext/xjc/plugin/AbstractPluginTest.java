@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.navext.xjc.plugin;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.jvnet.jaxb2.maven2.test.RunXJC2Mojo;
 
 import javax.tools.*;
