@@ -32,6 +32,7 @@
         <dependency>
             <groupId>com.foursoft.harness.navext</groupId>
             <artifactId>navext-runtime</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
