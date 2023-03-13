@@ -74,7 +74,7 @@ public final class PlacementNavs {
                 .map(role -> placement.apply(role)
                         .map(VecOnPointPlacement::getLocations)
                         .flatMap(List::stream)
-                        .collect(Collectors.toList()))
+                        .toList())
                 .orElseGet(Collections::emptyList);
     }
 
@@ -82,7 +82,7 @@ public final class PlacementNavs {
             final Class<T> locationType) {
         return placement ->
                 getLocationsByType(Stream.of(placement.getStartLocation(), placement.getEndLocation()), locationType)
-                        .collect(Collectors.toList());
+                        .toList();
     }
 
     private static <T extends VecLocation> Stream<T> getLocationsByType(final Stream<VecLocation> locations,

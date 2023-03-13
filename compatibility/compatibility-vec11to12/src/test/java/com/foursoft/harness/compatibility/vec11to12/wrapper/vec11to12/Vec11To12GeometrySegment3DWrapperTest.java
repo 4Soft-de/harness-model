@@ -54,7 +54,7 @@ class Vec11To12GeometrySegment3DWrapperTest extends AbstractBaseWrapperTest {
                     .flatMap(Collection::stream)
                     .map(VecBuildingBlockSpecification3D::getGeometrySegments)
                     .flatMap(List::stream)
-                    .collect(Collectors.toList());
+                    .toList();
 
             final String xmlId113 = vecGeometrySegments113.get(0).getXmlId();
 

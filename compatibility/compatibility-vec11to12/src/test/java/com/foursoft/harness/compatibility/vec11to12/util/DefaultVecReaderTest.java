@@ -54,7 +54,7 @@ class DefaultVecReaderTest {
             final List<VecCreation> creations = vecContent.getDocumentVersions().stream()
                     .map(VecItemVersion::getCreation)
                     .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+                    .toList();
             assertThat(creations).isNotEmpty();
         }
     }

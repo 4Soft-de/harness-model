@@ -112,7 +112,7 @@ public class MyVecReader {
                     .map(specifications -> specifications.stream()
                             .map(spec -> String.format("\tSpecification Id: %s, Specification class: %s",
                                                        spec.getIdentification(), spec.getClass().getSimpleName()))
-                            .collect(Collectors.toList()))
+                            .toList())
                     .flatMap(Collection::stream) // to get rid of unneeded newlines
                     .collect(Collectors.joining(System.lineSeparator()));
 

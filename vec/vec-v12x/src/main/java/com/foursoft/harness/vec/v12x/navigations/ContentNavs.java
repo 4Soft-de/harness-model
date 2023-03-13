@@ -48,7 +48,7 @@ public final class ContentNavs {
         return vecContent -> vecContent.getDocumentVersions()
                 .stream()
                 .flatMap(StreamUtils.toStream(documentVersion -> documentVersion.getSpecificationsWithType(clazz)))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static Function<VecContent, Optional<VecDocumentVersion>> documentVersionBy(

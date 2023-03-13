@@ -97,7 +97,7 @@ public class ModelPostProcessorRegistry {
         return defaultPostProcessor.stream()
                 .filter(postProcessorType::isInstance)
                 .map(postProcessorType::cast)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
