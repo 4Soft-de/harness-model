@@ -25,11 +25,14 @@
  */
 package com.foursoft.harness.navext.runtime.io.utils;
 
+import java.io.Serial;
+
 /**
  * a generic checked exception for all fatal events during the XML processing
  */
 public class XMLIOException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -3029716128777857369L;
 
     public XMLIOException(final String message, final Throwable cause) {

@@ -26,6 +26,7 @@
 package com.foursoft.harness.navext.runtime.model;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ import java.util.List;
 @XmlRootElement(name = "Root")
 public class Root extends AbstractBase implements Serializable {
 
+    @Serial
     private final static long serialVersionUID = 1L;
 
     @XmlElement(name = "attribute", required = true)

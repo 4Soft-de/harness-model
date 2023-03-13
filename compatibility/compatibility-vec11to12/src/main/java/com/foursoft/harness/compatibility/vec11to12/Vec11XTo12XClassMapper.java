@@ -33,6 +33,7 @@ import com.foursoft.harness.vec.v113.VecBSplineCurve;
 import com.foursoft.harness.vec.v113.VecZone;
 import com.foursoft.harness.vec.v12x.*;
 
+import java.io.Serial;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -126,6 +127,7 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper {
     private static class UnsupportedVec11XToVec12XMethods extends HashSet<MethodIdentifier>
             implements HasUnsupportedMethods {
 
+        @Serial
         private static final long serialVersionUID = 6377405392358586968L;
 
         @Override

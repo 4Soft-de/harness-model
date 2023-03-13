@@ -25,8 +25,11 @@
  */
 package com.foursoft.harness.vec.common.exception;
 
+import java.io.Serial;
+
 public class VecException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -2971175765070712256L;
 
     public VecException(final String message) {

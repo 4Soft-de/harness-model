@@ -29,6 +29,7 @@ import com.foursoft.harness.navext.runtime.annotations.XmlBackReference;
 import com.foursoft.harness.navext.runtime.annotations.XmlParent;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ import java.util.List;
 @XmlType(name = "ChildA", propOrder = {"anotherAttribute", "referencedChildB"})
 public class ChildA extends AbstractBase implements Serializable {
 
+    @Serial
     private final static long serialVersionUID = 1L;
 
     @XmlElement(name = "anotherAttribute", required = true)
