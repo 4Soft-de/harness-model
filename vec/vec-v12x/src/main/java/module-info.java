@@ -28,7 +28,7 @@ open module com.foursoft.harness.vec.v12x {
     requires com.foursoft.harness.navext.runtime;
 
     requires java.xml;
-    requires java.xml.bind;
+    requires jakarta.xml.bind;
     requires java.annotation;
 
     exports com.foursoft.harness.vec.v12x;

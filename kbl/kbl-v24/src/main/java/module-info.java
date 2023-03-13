@@ -28,7 +28,7 @@ open module com.foursoft.harness.kbl.v24 {
     requires com.foursoft.harness.navext.runtime;
 
     requires java.xml;
-    requires java.xml.bind;
+    requires jakarta.xml.bind;
     requires java.annotation;
     requires org.slf4j;
 

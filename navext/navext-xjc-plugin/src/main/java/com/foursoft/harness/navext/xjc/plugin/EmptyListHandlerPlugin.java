@@ -32,10 +32,9 @@ import com.sun.tools.xjc.model.CPropertyInfo;
 import com.sun.tools.xjc.outline.ClassOutline;
 import com.sun.tools.xjc.outline.FieldOutline;
 import com.sun.tools.xjc.outline.Outline;
+import jakarta.xml.bind.Marshaller;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
-
-import javax.xml.bind.Marshaller;
 
 public class EmptyListHandlerPlugin extends Plugin {
 

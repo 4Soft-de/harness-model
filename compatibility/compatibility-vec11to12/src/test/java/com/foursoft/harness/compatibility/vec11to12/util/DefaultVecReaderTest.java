@@ -30,9 +30,9 @@ import com.foursoft.harness.vec.v12x.VecContent;
 import com.foursoft.harness.vec.v12x.VecCreation;
 import com.foursoft.harness.vec.v12x.VecItemVersion;
 import com.foursoft.harness.vec.v12x.Version;
+import jakarta.xml.bind.ValidationEvent;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.ValidationEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;

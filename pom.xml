@@ -115,11 +115,6 @@
         <dependencies>
             <!-- JAXB -->
             <dependency>
-                <groupId>org.jvnet.jaxb2_commons</groupId>
-                <artifactId>jaxb2-basics</artifactId>
-                <version>${jaxb2_commons.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>jakarta.xml.bind</groupId>
                 <artifactId>jakarta.xml.bind-api</artifactId>
                 <version>${jaxb-api.version}</version>

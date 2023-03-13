@@ -26,7 +26,7 @@
 module com.foursoft.harness.compatibility.core {
     requires net.bytebuddy;
     requires org.slf4j;
-    requires java.xml.bind;
+    requires jakarta.xml.bind;
     requires org.reflections;
 
     exports com.foursoft.harness.compatibility.core;

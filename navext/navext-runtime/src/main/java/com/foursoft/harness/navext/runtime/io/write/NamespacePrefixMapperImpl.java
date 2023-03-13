@@ -65,7 +65,7 @@ package com.foursoft.harness.navext.runtime.io.write;
  * holder.
  */
 
-import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
+import org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper;
 
 class NamespacePrefixMapperImpl extends NamespacePrefixMapper {
 

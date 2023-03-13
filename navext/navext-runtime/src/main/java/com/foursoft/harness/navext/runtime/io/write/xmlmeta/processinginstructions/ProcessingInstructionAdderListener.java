@@ -26,13 +26,13 @@
 package com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructions;
 
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
+import jakarta.xml.bind.Marshaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.Marshaller.Listener;
 import javax.xml.stream.XMLStreamException;
 
-public class ProcessingInstructionAdderListener extends Listener {
+public class ProcessingInstructionAdderListener extends Marshaller.Listener {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProcessingInstructionAdderListener.class);
     private final XMLMetaAwareXMLStreamWriter xsw;
     private final ProcessingInstructions processingInstructions;

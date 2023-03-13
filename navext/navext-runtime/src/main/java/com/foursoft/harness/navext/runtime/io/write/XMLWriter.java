@@ -33,8 +33,8 @@ import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.CommentAdderListener;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructions.ProcessingInstructionAdderListener;
+import jakarta.xml.bind.*;
 
-import javax.xml.bind.*;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -77,27 +77,6 @@ public class XMLWriter<T> {
         } catch (final Exception e) {
             throw new XMLIOException("Cannot initialize marshaller.", e);
         }
-    }
-
-    private static void addEventHandler(final Marshaller marshaller,
-                                        final Consumer<ValidationEvent> validationEventConsumer)
-            throws JAXBException {
-        final ValidationEventHandler eventHandler = marshaller.getEventHandler();
-        marshaller.setEventHandler(event -> {
-            validationEventConsumer.accept(event);
-            return eventHandler.handleEvent(event);
-        });
-
-    }
-
-    /**
-     * Method which can be overridden for further configuration on the marshaller.
-     *
-     * @param marshaller Marshaller to configure.
-     * @throws Exception In case something went wrong.
-     */
-    protected void configureMarshaller(final Marshaller marshaller) throws Exception {
-        // default empty impl
     }
 
     /**
@@ -144,6 +123,27 @@ public class XMLWriter<T> {
         final StringWriter stringWriter = new StringWriter();
         write(container, meta, stringWriter);
         return stringWriter.toString();
+    }
+
+    private static void addEventHandler(final Marshaller marshaller,
+                                        final Consumer<ValidationEvent> validationEventConsumer)
+            throws JAXBException {
+        final ValidationEventHandler eventHandler = marshaller.getEventHandler();
+        marshaller.setEventHandler(event -> {
+            validationEventConsumer.accept(event);
+            return eventHandler.handleEvent(event);
+        });
+
+    }
+
+    /**
+     * Method which can be overridden for further configuration on the marshaller.
+     *
+     * @param marshaller Marshaller to configure.
+     * @throws Exception In case something went wrong.
+     */
+    protected void configureMarshaller(final Marshaller marshaller) throws Exception {
+        // default empty impl
     }
 
     private void write(final T container, final XMLMeta meta, final Writer output) {
