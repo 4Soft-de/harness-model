@@ -1,8 +1,6 @@
 # JAXB enhanced navigation
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.navext/navext-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.navext)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![Java11](https://img.shields.io/badge/java-11-blue)
 
 A library for enhanced navigation methods for JAXB models.
 It consists of two parts: An xjc-plugin (compile time) and a runtime component.

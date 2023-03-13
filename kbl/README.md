@@ -1,12 +1,8 @@
 ﻿# KBL model
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.kbl/kbl-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.kbl)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![Java11](https://img.shields.io/badge/java-11-blue)
 
 JAXB-Model of the KBL, based on the underlying UML-model (not only the XSD).
-
-**Important notice: This project is not compatible with Java 17 yet! Instead, Java 8 or Java 11 has to be used.**
 
 ## Introduction
 
