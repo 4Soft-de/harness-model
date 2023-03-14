@@ -61,7 +61,7 @@ public final class CustomPropertyNavs {
         return element -> element.getCustomPropertiesWithType(VecSimpleValueProperty.class).stream()
                 .filter(c -> c.getPropertyType().equals(customProperty))
                 .map(VecSimpleValueProperty::getValue)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static Function<HasCustomProperties<VecCustomProperty>, Optional<Double>> customPropertyValueDoubleOf(

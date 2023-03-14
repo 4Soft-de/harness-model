@@ -47,7 +47,7 @@ public final class VecNavs {
     public static Function<VecExtendableElement, List<String>> externalDocumentNumbers() {
         return element -> element.getReferencedExternalDocuments().stream()
                 .map(VecDocumentVersion::getDocumentNumber)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @RequiresBackReferences

@@ -28,6 +28,7 @@ package com.foursoft.harness.navext.runtime.model;
 import com.foursoft.harness.navext.runtime.annotations.XmlParent;
 
 import javax.xml.bind.annotation.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,7 +37,9 @@ import java.util.Set;
 @XmlType(name = "ChildB", propOrder = {"xyz",})
 public class ChildB extends AbstractBase implements Serializable {
 
+    @Serial
     private final static long serialVersionUID = 1L;
+
     @XmlTransient
     private final Set<ChildA> reverseChildA = new HashSet<>();
     @XmlElement(name = "xyz", required = true)

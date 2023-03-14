@@ -52,7 +52,7 @@ public final class DocumentVersionNavs {
                 .map(VecBuildingBlockSpecification3D::getGeometryNodes)
                 .flatMap(Collection::stream)
                 .filter(node3d -> node3d.getReferenceNode().equals(topologyNode))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static Function<VecDocumentVersion, List<VecGeometrySegment3D>> geometrySegments3dBy(
@@ -62,7 +62,7 @@ public final class DocumentVersionNavs {
                 .map(VecBuildingBlockSpecification3D::getGeometrySegments)
                 .flatMap(Collection::stream)
                 .filter(segment3d -> segment3d.getReferenceSegment().equals(topologySegment))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static Function<VecDocumentVersion, List<VecOccurrenceOrUsageViewItem3D>> viewItems3dBy(
@@ -72,9 +72,9 @@ public final class DocumentVersionNavs {
                 .map(specification -> specification
                         .getPlacedElementViewItem3Ds().stream()
                         .filter(viewItem -> viewItem.getOccurrenceOrUsage().contains(occurrence))
-                        .collect(Collectors.toList()))
+                        .toList())
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static Function<VecDocumentVersion, Optional<VecTopologyNode>> topologyNodeBy(
@@ -107,7 +107,7 @@ public final class DocumentVersionNavs {
                 .flatMap(Collection::stream)
                 .filter(VecNodeLocation.class::isInstance)
                 .map(VecNodeLocation.class::cast)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static Function<VecDocumentVersion, VecPlaceableElementRole> placeableElementRoleBy(

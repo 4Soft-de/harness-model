@@ -25,11 +25,14 @@
  */
 package com.foursoft.harness.compatibility.core.exception;
 
+import java.io.Serial;
+
 /**
  * Exception class for wrapping-related errors.
  */
 public class WrapperException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -2613188879924314781L;
 
     public WrapperException(final String message) {

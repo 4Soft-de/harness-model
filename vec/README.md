@@ -1,8 +1,6 @@
 ﻿# VEC model
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.vec/vec-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.vec)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![Java11](https://img.shields.io/badge/java-11-blue)
 
 JAXB-Models of the VEC, based on the underlying UML model (not only the XSD).
 

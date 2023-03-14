@@ -61,7 +61,7 @@ class Vec11To12OccurrenceOrUsageWrapperTest extends AbstractBaseWrapperTest {
                             .map(partOccurrence -> partOccurrence
                                     .getRolesWithType(com.foursoft.harness.vec.v113.VecEEComponentRole.class))
                             .flatMap(Collection::stream)
-                            .collect(Collectors.toList());
+                            .toList();
             assertThat(components113)
                     .isNotNull()
                     .isNotEmpty();
@@ -79,7 +79,7 @@ class Vec11To12OccurrenceOrUsageWrapperTest extends AbstractBaseWrapperTest {
                     .map(partOccurrence -> partOccurrence
                             .getRolesWithType(VecEEComponentRole.class))
                     .flatMap(Collection::stream)
-                    .collect(Collectors.toList());
+                    .toList();
             assertThat(components120)
                     .isNotNull()
                     .isNotEmpty();

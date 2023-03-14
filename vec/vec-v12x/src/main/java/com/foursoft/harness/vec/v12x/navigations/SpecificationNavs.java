@@ -72,7 +72,7 @@ public final class SpecificationNavs {
                                 .stream()
                                 .map(VecPartUsageSpecification::getPartUsages)
                                 .flatMap(Collection::stream))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
@@ -87,7 +87,7 @@ public final class SpecificationNavs {
                 .stream()
                 .map(VecCompositionSpecification::getComponents)
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**

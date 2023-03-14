@@ -49,7 +49,7 @@ public interface HasLocatedComponents {
     default List<LocatedComponent> getLocatedComponents() {
         return Stream.of(getComponentBoxOccurrences().stream()
                                  .flatMap(c -> c.getComponentBoxConnectors().stream())
-                                 .collect(Collectors.toList()),
+                                 .toList(),
                          getConnectorOccurrences(),
                          getAccessoryOccurrences(),
                          getAssemblyPartOccurrences(),

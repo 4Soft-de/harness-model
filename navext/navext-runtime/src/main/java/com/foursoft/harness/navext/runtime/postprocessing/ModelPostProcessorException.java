@@ -25,8 +25,11 @@
  */
 package com.foursoft.harness.navext.runtime.postprocessing;
 
+import java.io.Serial;
+
 public class ModelPostProcessorException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -2319340169335393345L;
 
     public ModelPostProcessorException() {

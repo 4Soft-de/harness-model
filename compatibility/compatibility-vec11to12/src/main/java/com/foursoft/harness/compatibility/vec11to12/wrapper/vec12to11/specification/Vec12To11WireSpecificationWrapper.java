@@ -73,7 +73,7 @@ public class Vec12To11WireSpecificationWrapper extends ReflectionBasedWrapper {
                 wireElements.addAll(subWireElements.stream()
                                             .map(getContext().getWrapperProxyFactory()::createProxy)
                                             .map(com.foursoft.harness.vec.v113.VecWireElement.class::cast)
-                                            .collect(Collectors.toList()));
+                                            .toList());
             }
 
             return wireElements;

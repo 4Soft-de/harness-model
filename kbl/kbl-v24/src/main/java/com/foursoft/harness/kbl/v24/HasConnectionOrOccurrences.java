@@ -72,13 +72,13 @@ public interface HasConnectionOrOccurrences {
                          getWiringGroups().stream())
                 .flatMap(Function.identity())
                 .flatMap(StreamUtils.ofClass(ConnectionOrOccurrence.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     default List<HasRelatedAssembly> getHasRelatedAssemblyOccurrences() {
         return getOccurrences()
                 .flatMap(StreamUtils.ofClass(HasRelatedAssembly.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private Stream<?> getOccurrences() {

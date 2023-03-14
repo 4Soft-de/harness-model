@@ -63,7 +63,7 @@ class Vec11To12CavitySpecificationWrapperTest extends AbstractBaseWrapperTest {
                             .flatMap(Collection::stream)
                             .filter(VecCavitySpecification.class::isInstance)
                             .map(VecCavitySpecification.class::cast)
-                            .collect(Collectors.toList());
+                            .toList();
             assertThat(vecCavitySpecifications113).isNotEmpty();
 
             final VecCavitySpecification vecCavitySpecification113 = vecCavitySpecifications113.get(0);

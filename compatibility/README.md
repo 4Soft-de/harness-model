@@ -1,8 +1,6 @@
 # Compatibility Library
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.foursoft.harness.compatibility/compatibility-parent/badge.svg)](https://mvnrepository.com/artifact/com.foursoft.harness.compatibility)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![Java11](https://img.shields.io/badge/java-11-blue)
 
 A library for converting different versions of e.g. a VEC.
 

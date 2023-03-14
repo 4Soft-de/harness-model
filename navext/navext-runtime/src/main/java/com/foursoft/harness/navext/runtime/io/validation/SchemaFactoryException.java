@@ -25,8 +25,11 @@
  */
 package com.foursoft.harness.navext.runtime.io.validation;
 
+import java.io.Serial;
+
 public class SchemaFactoryException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = -7253872841914249526L;
 
     public SchemaFactoryException(final String message, final Throwable cause, final boolean enableSuppression,

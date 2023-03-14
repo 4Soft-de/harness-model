@@ -67,7 +67,7 @@ class Vec11To12WireSpecificationWrapperTest extends AbstractBaseWrapperTest {
                     .map(documentVersion -> documentVersion.getSpecificationsWithType(VecWireSpecification.class))
                     .flatMap(Collection::stream)
                     .map(VecWireSpecification::getWireElement)
-                    .collect(Collectors.toList());
+                    .toList();
 
             assertThat(components)
                     .isNotNull()

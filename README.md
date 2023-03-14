@@ -2,6 +2,8 @@
 
 ![Java CI with Maven](https://github.com/4Soft-de/harness-model/workflows/Java%20CI%20with%20Maven/badge.svg?branch=develop)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=4Soft-de_harness-model&metric=alert_status)](https://sonarcloud.io/dashboard?id=4Soft-de_harness-model)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Java17](https://img.shields.io/badge/java-17-blue)
 
 ## Repository Contents
 

@@ -52,7 +52,7 @@ class HasProcessingInformationTest {
                     .returns(Optional.of("Instruction_value396"),
                              c -> c.getProcessingInstructionValue("Instruction_type396"))
                     .returns(List.of("Instruction_value396"), c -> c.processingInstructionValues("Instruction_type396")
-                            .collect(Collectors.toList()));
+                            .toList());
         }
 
     }

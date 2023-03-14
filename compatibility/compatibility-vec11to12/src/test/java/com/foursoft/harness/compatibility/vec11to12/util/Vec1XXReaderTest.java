@@ -57,7 +57,7 @@ class Vec1XXReaderTest extends AbstractBaseWrapperTest {
             final List<VecCreation> creations = vec11x.getDocumentVersions().stream()
                     .map(VecItemVersion::getCreation)
                     .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+                    .toList();
             assertThat(creations).isNotEmpty();
         }
     }
@@ -75,7 +75,7 @@ class Vec1XXReaderTest extends AbstractBaseWrapperTest {
                     .flatMap(Collection::stream)
                     .map(com.foursoft.harness.vec.v12x.VecSpecification::getIdentification)
                     .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+                    .toList();
             assertThat(specificationIds).isNotEmpty();
         }
     }

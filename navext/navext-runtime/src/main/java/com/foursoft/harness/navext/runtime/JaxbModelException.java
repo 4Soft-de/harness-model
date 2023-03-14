@@ -25,8 +25,11 @@
  */
 package com.foursoft.harness.navext.runtime;
 
+import java.io.Serial;
+
 public class JaxbModelException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 4813744866871637902L;
 
     public JaxbModelException() {

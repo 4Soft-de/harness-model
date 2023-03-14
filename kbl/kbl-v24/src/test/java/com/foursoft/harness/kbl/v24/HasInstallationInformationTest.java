@@ -53,7 +53,7 @@ class HasInstallationInformationTest {
                              c -> c.getInstallationInstructionValue("Instruction_type391"))
                     .returns(List.of("Instruction_value391"),
                              c -> c.installationInstructionValues("Instruction_type391")
-                                     .collect(Collectors.toList()));
+                                     .toList());
         }
     }
 }

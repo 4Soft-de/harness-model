@@ -33,7 +33,7 @@ public class DelegationUtils {
 
     public static <T extends X, X> List<T> getFromListWithType(final List<X> source, final Class<T> type) {
         return getFromListWithTypeAsStream(source, type)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static <T extends X, X> Stream<T> getFromListWithTypeAsStream(final List<X> source, final Class<T> type) {

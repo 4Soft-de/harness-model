@@ -28,6 +28,7 @@ package com.foursoft.harness.navext.runtime.model;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serial;
 import java.io.Serializable;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -35,7 +36,9 @@ import java.io.Serializable;
 @XmlSeeAlso({Root.class, ChildA.class, ChildB.class})
 public abstract class AbstractBase implements Serializable, Identifiable, ModifiableIdentifiable {
 
+    @Serial
     private final static long serialVersionUID = 1L;
+
     @XmlAttribute(name = "id", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID

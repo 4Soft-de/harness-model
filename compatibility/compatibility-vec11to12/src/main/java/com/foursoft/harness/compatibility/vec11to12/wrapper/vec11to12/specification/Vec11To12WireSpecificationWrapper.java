@@ -94,7 +94,7 @@ public class Vec11To12WireSpecificationWrapper extends ReflectionBasedWrapper {
                     .filter(c -> !sameId(c.getWireElementSpecification(), wireElementSpecification))
                     .map(getContext().getWrapperProxyFactory()::createProxy)
                     .map(VecWireElement.class::cast)
-                    .collect(Collectors.toList());
+                    .toList();
 
             vecWireElement.getSubWireElements().addAll(subWireElements);
 
