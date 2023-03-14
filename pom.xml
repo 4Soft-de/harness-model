@@ -16,21 +16,30 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
 
+        <!-- JAXB Dependencies -->
+        <jaxb-api.version>4.0.0</jaxb-api.version>
+        <jaxb-core.version>4.0.2</jaxb-core.version>
+        <jaxb-runtime.version>4.0.2</jaxb-runtime.version>
+        <jaxb-xjc.version>4.0.2</jaxb-xjc.version>
+
+        <cxf-xjc-javadoc.version>4.0.0</cxf-xjc-javadoc.version>
+        <jaxb-visitor.version>3.0.0</jaxb-visitor.version>
+
+        <jaxb2-basics.version>1.11.1</jaxb2-basics.version>
+        <jaxb2-basics-annotate.version>1.1.0</jaxb2-basics-annotate.version>
+
+        <maven-jaxb2-plugin.version>0.15.2</maven-jaxb2-plugin.version>
+        <jaxb-delegate-plugin.version>2.5.1</jaxb-delegate-plugin.version>
+
         <!-- Dependencies -->
         <slf4j.version>1.7.36</slf4j.version>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
-        <jaxb2-basics.version>1.11.1</jaxb2-basics.version>
         <assertj-core.version>3.23.1</assertj-core.version>
         <logback-classic.version>1.2.10</logback-classic.version>
-        <jaxb-api.version>4.0.0</jaxb-api.version>
-        <jaxb-core.version>4.0.2</jaxb-core.version>
-        <jaxb.version>4.0.2</jaxb.version>
-        <jaxb-xjc.version>4.0.2</jaxb-xjc.version>
         <maven-core.version>3.8.6</maven-core.version>
 
         <!-- Plugins -->
         <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-        <maven-jaxb2-plugin.version>0.15.2</maven-jaxb2-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <license-maven-plugin.version>2.0.0</license-maven-plugin.version>
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
@@ -39,12 +48,6 @@
         <assertj-assertions-generator-maven-plugin>2.2.0</assertj-assertions-generator-maven-plugin>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
-
-        <!-- maven-jaxb2-plugin plugins -->
-        <jaxb-visitor.version>3.0.0</jaxb-visitor.version>
-        <cxf-xjc-javadoc.version>4.0.0</cxf-xjc-javadoc.version>
-        <jaxb-delegate-plugin.version>2.5.1</jaxb-delegate-plugin.version>
-        <jaxb2-basics-annotate.version>1.1.0</jaxb2-basics-annotate.version>
 
         <!-- Release Plugins -->
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
@@ -127,7 +130,7 @@
                         <artifactId>jakarta.activation</artifactId>
                     </exclusion>
                 </exclusions>
-                <version>${jaxb.version}</version>
+                <version>${jaxb-runtime.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.jaxb</groupId>
