@@ -29,7 +29,6 @@ open module com.foursoft.harness.vec.v2x {
 
     requires java.xml;
     requires jakarta.xml.bind;
-    requires java.annotation;
 
     exports com.foursoft.harness.vec.v2x;
     exports com.foursoft.harness.vec.v2x.visitor;

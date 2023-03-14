@@ -33,10 +33,6 @@
             <groupId>com.foursoft.harness.navext</groupId>
             <artifactId>navext-runtime</artifactId>
         </dependency>
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-        </dependency>
 
         <!--logging-->
         <dependency>
