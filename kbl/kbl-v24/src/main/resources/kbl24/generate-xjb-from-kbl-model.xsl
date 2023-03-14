@@ -3,11 +3,11 @@
         xmlns:uml="http://www.omg.org/spec/UML/20131001"
         xmlns:xmi="http://www.omg.org/spec/XMI/20131001"
         xmlns:Stereotypes="http://www.magicdraw.com/schemas/Stereotypes.xmi"
-        xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
         xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
         xmlns:nav="http://www.4soft.de/xjc-plugins/navigations"
-        exclude-result-prefixes="uml xmi Stereotypes" version="2.0">
+        exclude-result-prefixes="uml xmi Stereotypes" version="3.0">
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>

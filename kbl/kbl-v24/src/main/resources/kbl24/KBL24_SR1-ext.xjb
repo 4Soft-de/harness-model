@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+<jxb:bindings xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
               xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
               xmlns:ci="http://jaxb.dev.java.net/plugin/code-injector"
               xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -7,7 +7,7 @@
               jxb:extensionBindingPrefixes="xjc annox xhtml"
               node="/xs:schema"
               schemaLocation="KBL24_SR1.xsd"
-              version="2.1">
+              version="3.0">
 
 
     <jxb:bindings multiple="true"
