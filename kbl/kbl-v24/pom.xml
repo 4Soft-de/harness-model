@@ -76,43 +76,45 @@
                 <artifactId>maven-jar-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>generate-kbl24</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>generate</goal>
+                            <goal>xjc</goal>
                         </goals>
                         <configuration>
                             <encoding>UTF-8</encoding>
-                            <packageLevelAnnotations>false</packageLevelAnnotations>
-                            <schemaIncludes>
-                                <include>kbl24/KBL24_SR1.xsd</include>
-                            </schemaIncludes>
-                            <bindingIncludes>
-                                <include>kbl24/*.xjb</include>
-                            </bindingIncludes>
+                            <noPackageLevelAnnotations>true</noPackageLevelAnnotations>
                             <extension>true</extension>
-                            <args>
-                                <arg>-Xannotate</arg>
-                                <arg>-Xdelegate</arg>
-                                <arg>-Xext-navs</arg>
-                                <arg>-Xjavadoc</arg>
-                                <arg>-Xinheritance</arg>
-                                <arg>-Xinject-code</arg>
-                                <arg>-Xvisitor</arg>
-                                <arg>-Xvisitor-noIdrefTraversal</arg>
-                                <arg>-Xvisitor-includeType</arg>
-                                <arg>-Xvisitor-package:com.foursoft.harness.kbl.v24.visitor</arg>
-                                <arg>-Xnull-empty-lists</arg>
-                            </args>
-                            <generateDirectory>${project.build.directory}/generated-sources/xjc-kbl24
-                            </generateDirectory>
+                            <arguments>
+                                <!--                                <argument>-Xannotate</argument>-->
+                                <!--                                <argument>-Xdelegate</argument>-->
+                                <!--                                <argument>-Xext-navs</argument>-->
+                                <!--                                <argument>-Xjavadoc</argument>-->
+                                <!--                                <argument>-Xinheritance</argument>-->
+                                <!--                                <argument>-Xinject-code</argument>-->
+                                <!--                                <argument>-Xvisitor</argument>-->
+                                <!--                                <argument>-Xvisitor-noIdrefTraversal</argument>-->
+                                <!--                                <argument>-Xvisitor-includeType</argument>-->
+                                <!--                                <argument>-Xvisitor-package:com.foursoft.harness.kbl.v24.visitor</argument>-->
+                                <!--                                <argument>-Xnull-empty-lists</argument>-->
+                            </arguments>
+                            <outputDirectory>${project.build.directory}/generated-sources/xjc-kbl24</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <xjbSources>
+                        <xjbSource>src/main/resources/kbl24/*.xjb</xjbSource>
+                    </xjbSources>
+                    <sources>
+                        <source>src/main/resources/kbl24/KBL24_SR1.xsd</source>
+                    </sources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
