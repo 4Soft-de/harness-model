@@ -90,6 +90,7 @@
         <module>kbl</module>
         <module>vec</module>
         <module>compatibility</module>
+        <module>tst</module>
     </modules>
 
     <scm>

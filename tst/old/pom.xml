@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>harness-parent</artifactId>
+        <groupId>com.foursoft.harness</groupId>
+        <version>4.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>old</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.15.2</version>
+                <executions>
+                    <execution>
+                        <id>generate-kbl24</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <packageLevelAnnotations>false</packageLevelAnnotations>
+                            <schemaDirectory>src/main/resources</schemaDirectory>
+                            <extension>true</extension>
+                            <args>
+                                <arg>-Xannotate</arg>
+                                <arg>-Xdelegate</arg>
+                                <arg>-Xext-navs</arg>
+                                <arg>-Xjavadoc</arg>
+                                <arg>-Xinheritance</arg>
+                                <arg>-Xinject-code</arg>
+                                <arg>-Xvisitor</arg>
+                                <arg>-Xvisitor-noIdrefTraversal</arg>
+                                <arg>-Xvisitor-includeType</arg>
+                                <arg>-Xnull-empty-lists</arg>
+                            </args>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-kbl24
+                            </generateDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
