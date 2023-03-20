@@ -109,7 +109,8 @@
                 </executions>
                 <configuration>
                     <xjbSources>
-                        <xjbSource>src/main/resources/kbl24/*.xjb</xjbSource>
+                        <xjbSource>src/main/resources/kbl24/KBL24_SR1.xjb</xjbSource>
+                        <xjbSource>src/main/resources/kbl24/KBL24_SR1-ext.xjb</xjbSource>
                     </xjbSources>
                     <sources>
                         <source>src/main/resources/kbl24/KBL24_SR1.xsd</source>
