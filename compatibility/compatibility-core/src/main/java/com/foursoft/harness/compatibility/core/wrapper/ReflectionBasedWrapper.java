@@ -32,6 +32,8 @@ import com.foursoft.harness.compatibility.core.MethodIdentifier;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.util.ClassUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationHandler;
@@ -44,6 +46,8 @@ import java.util.stream.Collectors;
  * A {@link CompatibilityWrapper} implementation which uses reflection.
  */
 public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityWrapper {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionBasedWrapper.class);
 
     private final Map<Object, Object> collectionsByMethod = new HashMap<>();
 
@@ -217,8 +221,8 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
 
         final Class<T> mappedClass = (Class<T>) context.getClassMapper().map(enumClass);
         if (mappedClass == null) {
-            final String errorMsg = String.format("Could not determine target enum class for %s.", enumClassName);
-            throw new WrapperException(errorMsg);
+            LOGGER.error("Could not determine enum class for {}.", enumClassName);
+            return null;
         }
 
         final String enumName = enumObject.name();
@@ -226,9 +230,8 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         try {
             return Enum.valueOf(mappedClass, enumName);
         } catch (final IllegalArgumentException e) {
-            final String errorMsg = String.format("Could not find enum for %s#%s.",
-                                                  mappedClass.getName(), enumName);
-            throw new WrapperException(errorMsg);
+            LOGGER.error("Could not find enum for {}#{}.", mappedClass.getName(), enumName, e);
+            return null;
         }
     }
 
