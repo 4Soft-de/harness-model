@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.foursoft.harness.navext</groupId>
         <artifactId>navext-parent</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
+        <version>4.0.0</version>
     </parent>
     <name>NavExt Runtime</name>
     <artifactId>navext-runtime</artifactId>
