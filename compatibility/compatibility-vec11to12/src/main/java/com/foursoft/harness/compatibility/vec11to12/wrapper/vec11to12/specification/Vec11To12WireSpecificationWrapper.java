@@ -27,7 +27,6 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.vec.common.exception.VecException;
 import com.foursoft.harness.vec.v113.VecExtendableElement;
 import com.foursoft.harness.vec.v12x.VecWireElement;
 import com.foursoft.harness.vec.v12x.VecWireElementSpecification;
@@ -37,7 +36,6 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecWireSpecification}
@@ -84,10 +82,9 @@ public class Vec11To12WireSpecificationWrapper extends ReflectionBasedWrapper {
                     .map(VecWireElement.class::cast)
                     .findFirst().orElse(null);
             if (vecWireElement == null) {
-                final String errorMsg =
-                        String.format("WireElementSpecification with XML-id %s has no referenced WireElements.",
-                                      wireElementSpecification.getXmlId());
-                throw new VecException(errorMsg);
+                LOGGER.error("The WireElementSpecification {} has no referenced WireElement.",
+                             wireElementSpecification);
+                return null;
             }
 
             final List<VecWireElement> subWireElements = wireElements.stream()
