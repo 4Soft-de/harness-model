@@ -30,7 +30,7 @@ import com.foursoft.harness.navext.runtime.JaxbModel;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;

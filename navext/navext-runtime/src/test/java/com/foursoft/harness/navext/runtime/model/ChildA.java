@@ -28,7 +28,7 @@ package com.foursoft.harness.navext.runtime.model;
 import com.foursoft.harness.navext.runtime.annotations.XmlBackReference;
 import com.foursoft.harness.navext.runtime.annotations.XmlParent;
 
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;

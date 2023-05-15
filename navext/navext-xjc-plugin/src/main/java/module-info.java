@@ -25,6 +25,6 @@
  */
 open module com.foursoft.harness.navext.xjc.plugin {
     requires transitive com.foursoft.harness.navext.runtime;
+    requires jakarta.xml.bind;
     requires org.glassfish.jaxb.xjc;
-    requires java.xml.bind;
 }

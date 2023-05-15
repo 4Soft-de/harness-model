@@ -30,8 +30,8 @@ import com.foursoft.harness.compatibility.core.util.ReflectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlID;
 import java.lang.reflect.*;
 import java.util.Collection;
 import java.util.HashMap;

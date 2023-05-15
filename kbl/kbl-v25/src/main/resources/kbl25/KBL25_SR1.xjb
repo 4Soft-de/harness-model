@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+<jxb:bindings xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
               xmlns:xs="http://www.w3.org/2001/XMLSchema"
               xmlns:nav="http://www.4soft.de/xjc-plugins/navigations"
               node="/xs:schema"
               schemaLocation="KBL25_SR1.xsd"
-              version="2.1"
+              version="3.0"
               extensionBindingPrefixes="xjc">
     <jxb:globalBindings>
         <xjc:simple/>

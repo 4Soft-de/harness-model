@@ -29,7 +29,7 @@ import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.vec.common.HasVecVersion;
 
-import javax.xml.bind.ValidationEvent;
+import jakarta.xml.bind.ValidationEvent;
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Optional;

@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.navext.runtime.postprocessing;
 
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.Unmarshaller;
 
 public interface ModelPostProcessor {
 

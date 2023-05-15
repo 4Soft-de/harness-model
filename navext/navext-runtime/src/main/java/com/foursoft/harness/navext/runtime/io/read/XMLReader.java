@@ -32,8 +32,8 @@ import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.ValidationEvent;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.ValidationEvent;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;

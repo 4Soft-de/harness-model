@@ -16,26 +16,16 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>kbl-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.foursoft.harness.navext</groupId>
             <artifactId>navext-runtime</artifactId>
         </dependency>
+
+        <!-- jaxb -->
         <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
 
         <!--logging-->
@@ -65,11 +55,6 @@
             <artifactId>jul-to-slf4j</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -80,8 +65,8 @@
                 <artifactId>maven-jar-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
+                <groupId>org.patrodyne.jvnet</groupId>
+                <artifactId>hisrc-higherjaxb-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>generate-kbl25</id>
@@ -90,6 +75,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <locale>en</locale>
                             <encoding>UTF-8</encoding>
                             <packageLevelAnnotations>false</packageLevelAnnotations>
                             <schemaIncludes>
@@ -100,8 +86,6 @@
                             </bindingIncludes>
                             <extension>true</extension>
                             <args>
-                                <arg>-Xannotate</arg>
-                                <arg>-Xdelegate</arg>
                                 <arg>-Xext-navs</arg>
                                 <arg>-Xjavadoc</arg>
                                 <arg>-Xinheritance</arg>
@@ -114,6 +98,28 @@
                             </args>
                             <generateDirectory>${project.build.directory}/generated-sources/xjc-kbl25
                             </generateDirectory>
+                            <plugins>
+                                <plugin>
+                                    <groupId>org.patrodyne.jvnet</groupId>
+                                    <artifactId>hisrc-basicjaxb-plugins</artifactId>
+                                    <version>${hisrc-higherjaxb-maven-plugin.version}</version>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.apache.cxf.xjcplugins</groupId>
+                                    <artifactId>cxf-xjc-javadoc</artifactId>
+                                    <version>${cxf-xjc-javadoc.version}</version>
+                                </plugin>
+                                <plugin>
+                                    <groupId>com.massfords</groupId>
+                                    <artifactId>jaxb-visitor</artifactId>
+                                    <version>${jaxb-visitor.version}</version>
+                                </plugin>
+                                <plugin>
+                                    <groupId>com.foursoft.harness.navext</groupId>
+                                    <artifactId>navext-xjc-plugin</artifactId>
+                                    <version>${project.version}</version>
+                                </plugin>
+                            </plugins>
                         </configuration>
                     </execution>
                 </executions>

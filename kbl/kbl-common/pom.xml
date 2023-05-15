@@ -14,14 +14,16 @@
     <description>Common code for the KBL Model.</description>
 
     <dependencies>
+        <!-- project -->
+        <dependency>
+            <groupId>com.foursoft.harness.navext</groupId>
+            <artifactId>navext-runtime</artifactId>
+        </dependency>
+
         <!--logging-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.foursoft.harness.navext</groupId>
-            <artifactId>navext-runtime</artifactId>
         </dependency>
 
         <!-- test -->

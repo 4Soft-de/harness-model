@@ -34,7 +34,7 @@ import com.foursoft.harness.vec.v12x.VecReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.ValidationEvent;
+import jakarta.xml.bind.ValidationEvent;
 import java.io.InputStream;
 import java.util.function.Consumer;
 

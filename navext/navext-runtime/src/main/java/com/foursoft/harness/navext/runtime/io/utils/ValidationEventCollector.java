@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.navext.runtime.io.utils;
 
-import javax.xml.bind.ValidationEvent;
+import jakarta.xml.bind.ValidationEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;

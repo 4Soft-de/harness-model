@@ -34,7 +34,7 @@ import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMetaAwareXMLStrea
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.CommentAdderListener;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructions.ProcessingInstructionAdderListener;
 
-import javax.xml.bind.*;
+import jakarta.xml.bind.*;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;

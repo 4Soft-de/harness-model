@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.navext.runtime.io.write.xmlmeta;
 
-import javax.xml.bind.Marshaller.Listener;
+import jakarta.xml.bind.Marshaller.Listener;
 import java.util.*;
 
 public class MarshallerListener extends Listener {
