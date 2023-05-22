@@ -22,17 +22,17 @@
         <logback-classic.version>1.4.7</logback-classic.version>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <assertj-core.version>3.24.2</assertj-core.version>
-        <maven-core.version>3.8.6</maven-core.version>
+        <maven-core.version>3.9.2</maven-core.version>
 
         <!-- Plugins -->
-        <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <license-maven-plugin.version>2.0.0</license-maven-plugin.version>
-        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
-        <gitflow-maven-plugin.version>1.18.0</gitflow-maven-plugin.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
+        <license-maven-plugin.version>2.0.1</license-maven-plugin.version>
+        <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
+        <gitflow-maven-plugin.version>1.19.0</gitflow-maven-plugin.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
+        <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
 
         <!-- xjc-maven wrapper -->
         <hisrc-higherjaxb-maven-plugin.version>2.1.0</hisrc-higherjaxb-maven-plugin.version>
@@ -41,7 +41,7 @@
         <cxf-xjc-javadoc.version>4.0.0</cxf-xjc-javadoc.version>
 
         <!-- Release Plugins -->
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 
         <!-- build and release properties -->
@@ -49,14 +49,6 @@
         <sonar.organization>4soft-de</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-
-        <!-- a work around for https://youtrack.jetbrains.com/issue/IDEA-204155 -->
-        <test.args>-Xms6g -Denable.write.protection=true -Ddebug.enabled=false -Dfile.encoding=UTF-8 -Djdk.attach.allowAttachSelf</test.args>
-        <test.argLine>@{jacocoArgLine} ${test.args}</test.argLine>
-        <jacocoArgLine></jacocoArgLine>
-        <skipTests>false</skipTests>
-        <skipITs>${skipTests}</skipITs>
-        <skipUTs>${skipTests}</skipUTs>
 
         <!-- build and release properties -->
         <sonar.projectKey>4Soft-de_harness-model</sonar.projectKey>
@@ -106,7 +98,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <!-- JAXB -->
             <dependency>
                 <groupId>org.glassfish.jaxb</groupId>
@@ -159,24 +150,6 @@
                 <version>${junit.jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.patrodyne.jvnet</groupId>
-                <artifactId>hisrc-basicjaxb-testing</artifactId>
-                <version>${hisrc-basicjaxb.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jul-to-slf4j</artifactId>
-                <version>${slf4j.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-core</artifactId>
-                <version>${maven-core.version}</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -189,11 +162,6 @@
 
         <!-- test -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
@@ -204,8 +172,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -308,7 +276,6 @@
                                 <roots>
                                     <root>src/main/java</root>
                                     <root>src/test/java</root>
-                                    <root>${project.build.directory}/generated-sources/assertj-assertions</root>
                                 </roots>
                             </configuration>
                         </execution>
@@ -350,9 +317,6 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
                     <configuration>
-                        <trimStackTrace>false</trimStackTrace>
-                        <argLine>${test.argLine}</argLine>
-                        <skipTests>${skipUTs}</skipTests>
                         <useModulePath>false</useModulePath>
                     </configuration>
                 </plugin>
@@ -361,7 +325,6 @@
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>${jacoco-maven-plugin.version}</version>
                     <executions>
-                        <!-- set arg line property for surefire -->
                         <execution>
                             <id>before-unit-test-execution</id>
                             <goals>
@@ -375,47 +338,11 @@
                             </goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <propertyName>jacocoArgLine</propertyName>
-                    </configuration>
                 </plugin>
-
-                <!-- mvn hisrc-higherjaxb:help -Ddetail=true -->
-                <!-- mvn hisrc-higherjaxb:generate -->
                 <plugin>
                     <groupId>org.patrodyne.jvnet</groupId>
                     <artifactId>hisrc-higherjaxb-maven-plugin</artifactId>
                     <version>${hisrc-higherjaxb-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <configuration>
-                                <encoding>UTF-8</encoding>
-                                <extension>true</extension>
-                                <plugins>
-                                    <plugin>
-                                        <groupId>org.patrodyne.jvnet</groupId>
-                                        <artifactId>hisrc-basicjaxb-plugins</artifactId>
-                                        <version>${hisrc-basicjaxb.version}</version>
-                                    </plugin>
-                                    <plugin>
-                                        <groupId>org.apache.cxf.xjcplugins</groupId>
-                                        <artifactId>cxf-xjc-javadoc</artifactId>
-                                        <version>${cxf-xjc-javadoc.version}</version>
-                                    </plugin>
-                                    <plugin>
-                                        <groupId>com.massfords</groupId>
-                                        <artifactId>jaxb-visitor</artifactId>
-                                        <version>${jaxb-visitor.version}</version>
-                                    </plugin>
-                                    <plugin>
-                                        <groupId>com.foursoft.harness.navext</groupId>
-                                        <artifactId>navext-xjc-plugin</artifactId>
-                                        <version>${project.version}</version>
-                                    </plugin>
-                                </plugins>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

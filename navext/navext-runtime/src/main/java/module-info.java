@@ -26,7 +26,6 @@
 open module com.foursoft.harness.navext.runtime {
     requires org.slf4j;
     requires jakarta.xml.bind;
-    requires com.sun.xml.txw2; //org.glassfish.jaxb:txw2 contains com.sun.xml.txw2 package for some stupid reason
     requires org.glassfish.jaxb.runtime;
 
     exports com.foursoft.harness.navext.runtime;
