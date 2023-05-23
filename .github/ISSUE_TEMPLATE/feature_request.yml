@@ -15,7 +15,8 @@ body:
   - type: dropdown
     id: project
     attributes:
-      label: Which project does the feature request target?
+      label: For what project(s) is this feature request?
+      multiple: true
       options:
         - KBL
         - VEC

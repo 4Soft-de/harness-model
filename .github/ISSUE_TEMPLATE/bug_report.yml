@@ -15,7 +15,8 @@ body:
   - type: dropdown
     id: project
     attributes:
-      label: Which project does the bug apply to?
+      label: Which project(s) does the bug apply to?
+      multiple: true
       options:
         - KBL
         - VEC
