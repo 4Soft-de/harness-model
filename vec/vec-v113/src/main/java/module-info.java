@@ -28,8 +28,8 @@ open module com.foursoft.harness.vec.v113 {
     requires com.foursoft.harness.navext.runtime;
 
     requires java.xml;
-    requires java.xml.bind;
-    requires java.annotation;
+    requires jakarta.xml.bind;
+    requires jakarta.annotation;
 
     exports com.foursoft.harness.vec.v113;
     exports com.foursoft.harness.vec.v113.visitor;

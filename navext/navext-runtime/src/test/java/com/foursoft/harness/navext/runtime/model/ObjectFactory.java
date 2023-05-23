@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.navext.runtime.model;
 
-import javax.xml.bind.annotation.XmlRegistry;
+import jakarta.xml.bind.annotation.XmlRegistry;
 
 /**
  * An ObjectFactory allows you to programatically construct new instances of the

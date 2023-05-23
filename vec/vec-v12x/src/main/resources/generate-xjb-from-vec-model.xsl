@@ -3,9 +3,9 @@
     xmlns:uml="http://www.omg.org/spec/UML/20131001"
     xmlns:xmi="http://www.omg.org/spec/XMI/20131001"
     xmlns:Stereotypes="http://www.magicdraw.com/schemas/Stereotypes.xmi"
-    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
     xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
-    xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+    xmlns:inheritance="http://jvnet.org/basicjaxb/xjc/inheritance"
     xmlns:ci="http://jaxb.dev.java.net/plugin/code-injector"
     xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"    
@@ -24,7 +24,7 @@
 
     <!-- Header -->
     <xsl:template match="/">
-        <jxb:bindings node="/xs:schema" schemaLocation="{concat('vec_',$VEC_VERSION,'.xsd')}" version="2.1"  extensionBindingPrefixes="xjc">
+        <jxb:bindings node="/xs:schema" schemaLocation="{concat('vec_',$VEC_VERSION,'.xsd')}" version="3.0"  extensionBindingPrefixes="xjc">
             <jxb:globalBindings>
                 <xjc:simple/>
                 <jxb:serializable uid="1" />

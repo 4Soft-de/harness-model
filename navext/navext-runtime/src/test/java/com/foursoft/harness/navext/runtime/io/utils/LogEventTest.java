@@ -25,10 +25,9 @@
  */
 package com.foursoft.harness.navext.runtime.io.utils;
 
+import jakarta.xml.bind.ValidationEvent;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import javax.xml.bind.ValidationEvent;
 
 class LogEventTest {
 

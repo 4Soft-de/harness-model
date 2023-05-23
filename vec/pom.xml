@@ -22,4 +22,14 @@
         <module>vec-v2x</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.foursoft.harness.navext</groupId>
+                <artifactId>navext-runtime</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>

@@ -29,11 +29,11 @@ import com.foursoft.harness.navext.runtime.ExtendedUnmarshaller;
 import com.foursoft.harness.navext.runtime.JaxbModel;
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.ValidationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.ValidationEvent;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;

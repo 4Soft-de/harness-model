@@ -30,11 +30,11 @@ import com.foursoft.harness.navext.runtime.JaxbModel;
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.v2x.validation.SchemaFactory;
+import jakarta.xml.bind.JAXBException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
-import javax.xml.bind.JAXBException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.validation.Schema;

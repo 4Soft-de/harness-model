@@ -29,10 +29,10 @@ import com.foursoft.harness.navext.runtime.io.TestData;
 import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.model.AbstractBase;
 import com.foursoft.harness.navext.runtime.model.Root;
+import jakarta.xml.bind.ValidationEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.ValidationEvent;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;

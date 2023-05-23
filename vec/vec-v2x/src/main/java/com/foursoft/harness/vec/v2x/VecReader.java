@@ -27,8 +27,8 @@ package com.foursoft.harness.vec.v2x;
 
 import com.foursoft.harness.navext.runtime.io.read.XMLReader;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
+import jakarta.xml.bind.ValidationEvent;
 
-import javax.xml.bind.ValidationEvent;
 import java.util.function.Consumer;
 
 /**
@@ -37,7 +37,7 @@ import java.util.function.Consumer;
  * <p>
  * In the past, this reader had a thread local singleton functionality in order to reuse
  * the reader for repeated reads. This caused memory leaks in environments with thread
- * pools (e.g. servlet container) as the JVM default {@link javax.xml.bind.Unmarshaller}
+ * pools (e.g. servlet container) as the JVM default {@link jakarta.xml.bind.Unmarshaller}
  * implementation does not clean up internal states properly after unmarshalling is finished.
  * Therefore the functionality has been dropped.
  * </p>

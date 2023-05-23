@@ -16,7 +16,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>compatibility-core</artifactId>
             <version>${project.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- Project -->
@@ -30,17 +29,6 @@
             <artifactId>vec-v12x</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <!-- XML -->
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-        </dependency>
 
         <!-- General -->
         <dependency>
@@ -50,30 +38,6 @@
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-        </dependency>
-
-        <!--logging-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
-        <!-- test -->
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
         </dependency>
     </dependencies>
 

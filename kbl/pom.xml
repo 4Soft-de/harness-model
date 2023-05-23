@@ -24,6 +24,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>kbl-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.foursoft.harness.navext</groupId>
                 <artifactId>navext-runtime</artifactId>
                 <version>${project.version}</version>
