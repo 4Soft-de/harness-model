@@ -27,8 +27,8 @@ package com.foursoft.harness.vec.v2x;
 
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
-
 import jakarta.xml.bind.ValidationEvent;
+
 import java.util.function.Consumer;
 
 /**

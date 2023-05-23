@@ -26,7 +26,6 @@
 package com.foursoft.harness.navext.xjc.plugin;
 
 import com.sun.codemodel.*;
-
 import jakarta.xml.bind.annotation.XmlTransient;
 
 public class PropertyBuilder {

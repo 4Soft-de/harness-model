@@ -25,10 +25,9 @@
  */
 package com.foursoft.harness.navext.runtime.io.utils;
 
+import jakarta.xml.bind.ValidationEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import jakarta.xml.bind.ValidationEvent;
 
 class ValidationEventCollectorTest {
 

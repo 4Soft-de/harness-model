@@ -31,10 +31,10 @@ import com.foursoft.harness.compatibility.vec11to12.Vec11XTo12XCompatibilityWrap
 import com.foursoft.harness.compatibility.vec11to12.common.VecVersion;
 import com.foursoft.harness.vec.v12x.VecContent;
 import com.foursoft.harness.vec.v12x.VecReader;
+import jakarta.xml.bind.ValidationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.xml.bind.ValidationEvent;
 import java.io.InputStream;
 import java.util.function.Consumer;
 

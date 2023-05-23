@@ -28,9 +28,9 @@ package com.foursoft.harness.kbl.v24;
 import com.foursoft.harness.navext.runtime.ExtendedUnmarshaller;
 import com.foursoft.harness.navext.runtime.JaxbModel;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
+import jakarta.xml.bind.JAXBException;
 import org.junit.jupiter.api.Test;
 
-import jakarta.xml.bind.JAXBException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;

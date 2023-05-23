@@ -26,6 +26,7 @@
 package com.foursoft.harness.navext.runtime.model;
 
 import jakarta.xml.bind.annotation.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;

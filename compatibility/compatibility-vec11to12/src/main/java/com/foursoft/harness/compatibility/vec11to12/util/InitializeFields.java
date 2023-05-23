@@ -27,11 +27,11 @@ package com.foursoft.harness.compatibility.vec11to12.util;
 
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.util.ReflectionUtils;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlID;
 import java.lang.reflect.*;
 import java.util.Collection;
 import java.util.HashMap;

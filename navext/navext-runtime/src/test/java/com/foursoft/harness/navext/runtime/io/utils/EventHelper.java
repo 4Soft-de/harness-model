@@ -25,10 +25,10 @@
  */
 package com.foursoft.harness.navext.runtime.io.utils;
 
-import org.w3c.dom.Node;
-
 import jakarta.xml.bind.ValidationEvent;
 import jakarta.xml.bind.ValidationEventLocator;
+import org.w3c.dom.Node;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 

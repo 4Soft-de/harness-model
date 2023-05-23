@@ -26,10 +26,10 @@
 package com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments;
 
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
+import jakarta.xml.bind.Marshaller.Listener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.xml.bind.Marshaller.Listener;
 import javax.xml.stream.XMLStreamException;
 import java.util.Optional;
 
