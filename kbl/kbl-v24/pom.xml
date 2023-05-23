@@ -100,8 +100,6 @@
                             </bindingIncludes>
                             <extension>true</extension>
                             <args>
-                                <arg>-Xannotate</arg>
-                                <arg>-Xdelegate</arg>
                                 <arg>-Xext-navs</arg>
                                 <arg>-Xjavadoc</arg>
                                 <arg>-Xinheritance</arg>

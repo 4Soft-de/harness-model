@@ -99,8 +99,6 @@
                                 <include>vec2/*.xjb</include>
                             </bindingIncludes>
                             <args>
-                                <arg>-Xannotate</arg>
-                                <arg>-Xdelegate</arg>
                                 <arg>-Xext-navs</arg>
                                 <arg>-Xjavadoc</arg>
                                 <arg>-Xinheritance</arg>
