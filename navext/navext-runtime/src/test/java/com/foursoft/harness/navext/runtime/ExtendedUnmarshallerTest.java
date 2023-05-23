@@ -29,13 +29,13 @@ import com.foursoft.harness.navext.runtime.model.AbstractBase;
 import com.foursoft.harness.navext.runtime.model.ChildA;
 import com.foursoft.harness.navext.runtime.model.ChildB;
 import com.foursoft.harness.navext.runtime.model.Root;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.ValidationEvent;
+import jakarta.xml.bind.ValidationEventLocator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationEventLocator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;

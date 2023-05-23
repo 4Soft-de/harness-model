@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.foursoft.harness.navext</groupId>
         <artifactId>navext-parent</artifactId>
-        <version>4.0.0</version>
+        <version>5.0.0</version>
     </parent>
     <name>NavExt XJC Plugin</name>
     <artifactId>navext-xjc-plugin</artifactId>
@@ -16,52 +16,20 @@
             <version>${project.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
         <!-- JAXB-->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-xjc</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <!-- test -->
         <dependency>
-            <groupId>org.jvnet.jaxb2.maven2</groupId>
-            <artifactId>maven-jaxb2-plugin-testing</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
+            <groupId>org.patrodyne.jvnet</groupId>
+            <artifactId>hisrc-higherjaxb-maven-plugin-testing</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

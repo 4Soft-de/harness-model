@@ -32,8 +32,8 @@ import com.foursoft.harness.compatibility.vec11to12.common.util.VecVersionDetect
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.Vec11To12ContentWrapper;
 import com.foursoft.harness.vec.v12x.VecContent;
 import com.foursoft.harness.vec.v12x.visitor.Visitable;
+import jakarta.xml.bind.ValidationEvent;
 
-import javax.xml.bind.ValidationEvent;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;

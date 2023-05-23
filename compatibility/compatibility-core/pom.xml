@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.foursoft.harness.compatibility</groupId>
         <artifactId>compatibility-parent</artifactId>
-        <version>4.0.0</version>
+        <version>5.0.0</version>
     </parent>
 
     <name>Compatibility Core</name>
@@ -28,12 +28,6 @@
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-        </dependency>
-
-        <!-- Logging -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 </project>

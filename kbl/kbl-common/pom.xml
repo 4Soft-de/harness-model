@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.foursoft.harness.kbl</groupId>
         <artifactId>kbl-parent</artifactId>
-        <version>4.0.0</version>
+        <version>5.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,31 +14,10 @@
     <description>Common code for the KBL Model.</description>
 
     <dependencies>
-        <!--logging-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
+        <!-- project -->
         <dependency>
             <groupId>com.foursoft.harness.navext</groupId>
             <artifactId>navext-runtime</artifactId>
-        </dependency>
-
-        <!-- test -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jxb:bindings 
-	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+	xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
 	xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" 
    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" extensionBindingPrefixes="xjc"
 	xmlns:nav="http://www.4soft.de/xjc-plugins/navigations"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
               node="/xs:schema"
               schemaLocation="basic.xsd"
-              version="2.1">
+              version="3.0">
    <jxb:globalBindings>
       <xjc:simple/>
       <jxb:serializable uid="1"/>

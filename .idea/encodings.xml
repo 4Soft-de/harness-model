@@ -11,8 +11,10 @@
     <file url="file://$PROJECT_DIR$/kbl/kbl-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kbl/kbl-v24/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kbl/kbl-v24/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kbl/kbl-v24/target/generated-sources/xjc-kbl24" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kbl/kbl-v25/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kbl/kbl-v25/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kbl/kbl-v25/target/generated-sources/xjc-kbl25" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kbl/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/kbl/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/navext/navext-runtime/src/main/java" charset="UTF-8" />

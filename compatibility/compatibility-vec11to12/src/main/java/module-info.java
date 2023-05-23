@@ -27,7 +27,7 @@ module com.foursoft.harness.compatibility.vec11to12 {
     requires transitive com.foursoft.harness.compatibility.core;
     requires org.slf4j;
     requires java.xml;
-    requires java.xml.bind;
+    requires jakarta.xml.bind;
     requires com.foursoft.harness.vec.v113;
     requires com.foursoft.harness.vec.v12x;
     requires org.reflections;

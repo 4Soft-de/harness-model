@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.navext.xjc.plugin;
 
-import org.junit.Assert;
-import org.jvnet.jaxb2.maven2.test.RunXJC2Mojo;
+import org.junit.jupiter.api.Assertions;
+import org.jvnet.higherjaxb.mojo.test.RunHigherjaxbMojo;
 
 import javax.tools.*;
 import javax.tools.JavaCompiler.CompilationTask;
@@ -37,7 +37,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Locale;
 
-public abstract class AbstractPluginTest extends RunXJC2Mojo {
+public abstract class AbstractPluginTest extends RunHigherjaxbMojo {
 
     private final File DEFAULT_CLASSES_DIR = new File(getBaseDir(), "target/test-classes");
 
@@ -76,15 +76,14 @@ public abstract class AbstractPluginTest extends RunXJC2Mojo {
                 log.error("Message: " + diagnostic.getMessage(Locale.getDefault()));
             }
 
-            Assert.fail("Compilation failed!");
+            Assertions.fail("Compilation failed!");
         }
     }
 
     protected abstract String getTestName();
 
-    @Override
     protected File getGeneratedDirectory() {
-        return new File(getBaseDir(), "target/gen-src/plugin-test/" + getTestName());
+        return new File(getBaseDir(), "target/generated-test-sources/xjc" + getTestName());
     }
 
     private File[] findSources() throws IOException {
@@ -95,5 +94,4 @@ public abstract class AbstractPluginTest extends RunXJC2Mojo {
                         .endsWith(".java"))
                 .toArray(i -> new File[i]);
     }
-
 }

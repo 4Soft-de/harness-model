@@ -28,8 +28,8 @@ open module com.foursoft.harness.kbl.v24 {
     requires com.foursoft.harness.navext.runtime;
 
     requires java.xml;
-    requires java.xml.bind;
-    requires java.annotation;
+    requires jakarta.xml.bind;
+    requires jakarta.annotation;
     requires org.slf4j;
 
     exports com.foursoft.harness.kbl.v24;

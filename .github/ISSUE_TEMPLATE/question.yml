@@ -13,7 +13,8 @@ body:
   - type: dropdown
     id: project
     attributes:
-      label: Which project does the question belong to?
+      label: Which project(s) does the question belong to?
+      multiple: true
       options:
         - KBL
         - VEC

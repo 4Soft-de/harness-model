@@ -24,3 +24,13 @@ same branch. We will reject any PRs not following that or if this is already wor
 Please read our
 detailed [Contribution Guidelines](https://github.com/4Soft-de/harness-model/blob/develop/.github/CONTRIBUTING.md)
 for more information, for example code style, formatter, etc.
+
+## Moving to Jakarta namespace 
+
+With release 5.x we updated to jaxb 4.0 and moved exclusively to the jakarta namespace with no further for the old javax.xml.bind namespace.
+As an implementation we chose the org.glassfish namespace since it "seems" to be the one that should be used. Indications for that can be found here
+[eclipse-ee4j/jaxb-ri](https://github.com/eclipse-ee4j/jaxb-ri/blob/master/jaxb-ri/boms/bom/pom.xml).
+
+For the XJC part we moved from [jaxb2-basics](https://github.com/highsource/jaxb2-basics) to [hisrc-higherjaxb](https://github.com/patrodyne/hisrc-higherjaxb) since the original one only supports jaxb <= 2.3 
+
+In general we had some troubles moving to jaxb > 2.3. The situation is quite frankly an absolute mess to be honest. We tried to clean up the poms as much as possible to not pollute the dependency tree.
