@@ -333,6 +333,10 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 
+    @Override public R visitVecComponentNodeViewItem(final VecComponentNodeViewItem aBean) throws RuntimeException {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
     @Override
     public R visitVecComponentPort(final VecComponentPort aBean) throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
@@ -365,6 +369,11 @@ public class StrictBaseVisitor<R> implements Visitor<R, RuntimeException> {
 
     @Override
     public R visitVecConfigurationConstraint(VecConfigurationConstraint aBean) throws RuntimeException {
+        throw new UnsupportedOperationException(getErrorMessage(aBean));
+    }
+
+    @Override public R visitVecConfigurationConstraintSpecification(final VecConfigurationConstraintSpecification aBean)
+            throws RuntimeException {
         throw new UnsupportedOperationException(getErrorMessage(aBean));
     }
 

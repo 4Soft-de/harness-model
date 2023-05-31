@@ -46,7 +46,7 @@
                             <locale>en</locale>
                             <encoding>UTF-8</encoding>
                             <schemaIncludes>
-                                <include>vec2/vec_2.0.0.xsd</include>
+                                <include>vec2/vec_2.0.2.xsd</include>
                             </schemaIncludes>
                             <bindingIncludes>
                                 <include>vec2/*.xjb</include>

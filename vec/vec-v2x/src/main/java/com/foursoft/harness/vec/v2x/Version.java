@@ -26,7 +26,7 @@
 package com.foursoft.harness.vec.v2x;
 
 public final class Version {
-    public static final String VERSION = "2.0.0";
+    public static final String VERSION = "2.0.2";
 
     private Version() {
     }

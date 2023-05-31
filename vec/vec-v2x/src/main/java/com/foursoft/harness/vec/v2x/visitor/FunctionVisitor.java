@@ -332,6 +332,10 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
+    @Override public O visitVecComponentNodeViewItem(final VecComponentNodeViewItem aBean) {
+        return apply(aBean);
+    }
+
     @Override
     public O visitVecComponentPort(final VecComponentPort aBean) {
         return apply(aBean);
@@ -364,6 +368,11 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
 
     @Override
     public O visitVecConfigurationConstraint(VecConfigurationConstraint aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecConfigurationConstraintSpecification(final VecConfigurationConstraintSpecification aBean) {
         return apply(aBean);
     }
 
