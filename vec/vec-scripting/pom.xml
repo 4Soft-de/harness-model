@@ -1,0 +1,28 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.foursoft.harness.vec</groupId>
+        <artifactId>vec-parent</artifactId>
+        <version>5.0.1-SNAPSHOT</version>
+    </parent>
+
+    <name>VEC 2.x Scripting API (Experimental)</name>
+    <artifactId>vec-scripting-experimental</artifactId>
+    <description>Fluent Scripting API to create complex VEC files.</description>
+
+    <dependencies>
+        <!--project-->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>vec-v2x</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+        </plugins>
+    </build>
+</project>

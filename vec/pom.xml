@@ -20,6 +20,7 @@
         <module>vec-v113</module>
         <module>vec-v12x</module>
         <module>vec-v2x</module>
+        <module>vec-scripting</module>
     </modules>
 
     <dependencyManagement>
