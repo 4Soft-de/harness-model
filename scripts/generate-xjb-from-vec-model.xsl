@@ -17,7 +17,9 @@
     <xsl:key name="parents" match="ownedAttribute[@xmi:type='uml:Property' and exists(@association) and @aggregation='composite']" use="@type"/>
     <xsl:key name="incoming-refs" match="ownedAttribute[@xmi:type='uml:Property' and exists(@association) and not(@aggregation='composite')]" use="@type"/>
 
-    <xsl:variable name="VEC_VERSION">1.1.3</xsl:variable>
+    <xsl:param name="VEC_VERSION" required="yes"/>
+    <xsl:param name="PACKAGE" required="yes"/>
+    
 
     <!-- Header -->
     <xsl:template match="/">
@@ -27,7 +29,7 @@
                 <jxb:serializable uid="1"/>
             </jxb:globalBindings>
             <jxb:schemaBindings>
-                <jxb:package name="com.foursoft.harness.vec.v113"/>
+                <jxb:package name="{$PACKAGE}"/>
                 <jxb:nameXmlTransform>
                     <jxb:typeName prefix="Vec"/>
                 </jxb:nameXmlTransform>
@@ -42,9 +44,7 @@
         <xsl:variable name="parents" select="key('parents',@xmi:id)/.."/>
         <xsl:if test="$parents or $outgoing-refs">
             <jxb:bindings>
-                <xsl:attribute name="node">//xs:complexType[@name='<xsl:apply-templates select="."
-                        mode="create-name"/>']
-                </xsl:attribute>
+                <xsl:attribute name="node">//xs:complexType[@name='<xsl:apply-templates select="." mode="create-name"/>']</xsl:attribute>
                 <xsl:apply-templates select="$parents" mode="create-parents"/>
                 <xsl:apply-templates select="$outgoing-refs" mode="create-property"/>
             </jxb:bindings>
@@ -53,9 +53,7 @@
 
     <xsl:template match="packagedElement[@xmi:type='uml:Class']" mode="create-parents">
         <nav:parent>
-            <xsl:attribute name="name">parent
-                <xsl:apply-templates select="." mode="create-name"/>
-            </xsl:attribute>
+            <xsl:attribute name="name">parent<xsl:apply-templates select="." mode="create-name"/></xsl:attribute>
             <xsl:attribute name="schema-type">
                 <xsl:apply-templates select="." mode="create-name"/>
             </xsl:attribute>
@@ -67,14 +65,12 @@
         <xsl:if test="not($type/@xmi:type='uml:Enumeration')">
 
             <jxb:bindings>
-                <xsl:attribute name="node">.//xs:element[@name='<xsl:apply-templates select="." mode="create-name"/>']
-                </xsl:attribute>
+                <xsl:attribute name="node">.//xs:element[@name='<xsl:apply-templates select="." mode="create-name"/>']</xsl:attribute>
                 <nav:ext-reference>
                     <xsl:attribute name="schema-type">
                         <xsl:apply-templates select="$type" mode="create-name"/>
                     </xsl:attribute>
-                    <xsl:attribute name="inverse">ref
-                        <xsl:apply-templates select=".." mode="create-name"/>
+                    <xsl:attribute name="inverse">ref<xsl:apply-templates select=".." mode="create-name"/>
                     </xsl:attribute>
                 </nav:ext-reference>
             </jxb:bindings>
@@ -106,10 +102,7 @@
         <xsl:variable name="tempName" select="normalize-space(.)"/>
         <xsl:variable name="name">
             <!-- strip leading '/' -->
-            <xsl:if test="substring($tempName,1,1) != '/'">
-                <xsl:value-of select="translate(substring($tempName,1,1),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-            </xsl:if>
-            <xsl:value-of select="substring($tempName,2,string-length($tempName))"/>
+            <xsl:if test="substring($tempName,1,1) != '/'"><xsl:value-of select="translate(substring($tempName,1,1),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/></xsl:if><xsl:value-of select="substring($tempName,2,string-length($tempName))"/>
         </xsl:variable>
         <xsl:value-of select="$name"/>
     </xsl:template>
