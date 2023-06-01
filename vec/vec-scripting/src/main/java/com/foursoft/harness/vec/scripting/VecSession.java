@@ -27,6 +27,9 @@ package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
+import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGeneratingTraverser;
@@ -38,6 +41,9 @@ import java.io.OutputStream;
 
 public class VecSession {
 
+    private final XMLMeta xmlMeta = new XMLMeta();
+    private final Comments comments = new Comments();
+
     private final XmlIdGenerator xmlIdGenerator = new XmlIdGenerator();
 
     private final VecContent vecContentRoot = VecContentFactory.create();
@@ -46,6 +52,13 @@ public class VecSession {
 
     private VecSIUnit squareMM;
     private VecSIUnit mm;
+    private VecCompositeUnit gramPerMeter;
+    private VecOtherUnit piece;
+    private VecSIUnit newton;
+
+    public VecSession() {
+        xmlMeta.setComments(comments);
+    }
 
     public DefaultValues getDefaultValues() {
         return defaultValues;
@@ -64,18 +77,22 @@ public class VecSession {
         return new HarnessBuilder(this, documentNumber, version);
     }
 
+    public void addXmlComment(Identifiable identifiable, String comment) {
+        comments.put(identifiable, comment);
+    }
+
     public String writeToString() {
         ensureXmlIds();
         final XMLWriter<VecContent> writer = createWriter();
 
-        return writer.writeToString(vecContentRoot);
+        return writer.writeToString(vecContentRoot, xmlMeta);
     }
 
     public void writeToStream(OutputStream stream) {
         ensureXmlIds();
         final XMLWriter<VecContent> writer = createWriter();
 
-        writer.write(vecContentRoot, stream);
+        writer.write(vecContentRoot, xmlMeta, stream);
     }
 
     private static XMLWriter<VecContent> createWriter() {
@@ -93,7 +110,7 @@ public class VecSession {
         vecContentRoot.accept(new XmlIdGeneratingTraverser(xmlIdGenerator));
     }
 
-    VecSIUnit mm() {
+    public VecSIUnit mm() {
         if (this.mm == null) {
             this.mm = SiUnitFactory.mm();
             this.vecContentRoot.getUnits()
@@ -102,7 +119,17 @@ public class VecSession {
         return this.mm;
     }
 
-    VecSIUnit squareMM() {
+    public VecUnit piece() {
+        if (this.piece == null) {
+            this.piece = new VecOtherUnit();
+            this.piece.setOtherUnitName(VecOtherUnitName.PIECE);
+            this.vecContentRoot.getUnits()
+                    .add(this.piece);
+        }
+        return this.piece;
+    }
+
+    public VecSIUnit squareMM() {
         if (this.squareMM == null) {
             this.squareMM = SiUnitFactory.squareMM();
 
@@ -110,6 +137,31 @@ public class VecSession {
                     .add(this.squareMM);
         }
         return this.squareMM;
+    }
+
+    public VecSIUnit newton() {
+        if (this.newton == null) {
+            this.newton = SiUnitFactory.newton();
+
+            this.vecContentRoot.getUnits()
+                    .add(this.newton);
+        }
+        return this.newton;
+    }
+
+    public VecUnit gramPerMeter() {
+        if (this.gramPerMeter == null) {
+            VecSIUnit gram = SiUnitFactory.gram();
+            VecSIUnit perMeter = SiUnitFactory.perMeter();
+            this.gramPerMeter = new VecCompositeUnit();
+            this.gramPerMeter.getFactors().add(gram);
+            this.gramPerMeter.getFactors().add(perMeter);
+
+            this.vecContentRoot.getUnits().add(gram);
+            this.vecContentRoot.getUnits().add(perMeter);
+            this.vecContentRoot.getUnits().add(this.gramPerMeter);
+        }
+        return this.gramPerMeter;
     }
 
     VecPartVersion findPartVersionByPartNumber(final String partNumber) {

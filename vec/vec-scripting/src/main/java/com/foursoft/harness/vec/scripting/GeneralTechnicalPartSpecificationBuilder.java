@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,18 +25,33 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
+import com.foursoft.harness.vec.v2x.*;
+
+import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 
 public class GeneralTechnicalPartSpecificationBuilder extends PartOrUsageRelatedSpecificationBuilder {
 
     private final VecGeneralTechnicalPartSpecification element;
+    private final String partNumber;
 
-    GeneralTechnicalPartSpecificationBuilder(final ComponentMasterDataBuilder parent,
+    GeneralTechnicalPartSpecificationBuilder(final ComponentMasterDataBuilder parent, final String partNumber,
                                              final VecDocumentVersion partMasterDocument) {
         super(parent, partMasterDocument);
+        this.partNumber = partNumber;
 
-        element = this.initializeSpecification(VecGeneralTechnicalPartSpecification.class);
+        element = this.initializeSpecification(VecGeneralTechnicalPartSpecification.class, partNumber);
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withMassInformation(double value, VecUnit unit) {
+
+        VecMassInformation massInformation = new VecMassInformation();
+        massInformation.setValue(value(value, unit));
+        massInformation.setDeterminationType(VecValueDetermination.MEASURED);
+        massInformation.setValueSource("Series");
+
+        element.getMassInformations().add(massInformation);
+
+        return this;
     }
 
 }

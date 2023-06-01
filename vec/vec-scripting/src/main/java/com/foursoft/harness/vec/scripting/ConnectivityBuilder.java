@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,30 +40,7 @@ public class ConnectivityBuilder extends AbstractChildBuilder<HarnessBuilder> {
     }
 
     public ConnectivityBuilder addEnd(final String connectorId, final String cavityNumber) {
-        final String endpointId = connectorId + "." + cavityNumber;
-        final VecContactPoint cp = new VecContactPoint();
-        cp.setIdentification(endpointId);
-        contactingSpecification.getContactPoints()
-                .add(cp);
-
-        final VecWireEnd end = new VecWireEnd();
-        end.setIdentification(endpointId);
-        if (wireElementReference
-                .getWireEnds()
-                .isEmpty()) {
-            end.setPositionOnWire(0.0);
-        } else {
-            end.setPositionOnWire(1.0);
-        }
-        wireElementReference.getWireEnds()
-                .add(end);
-
-        final VecWireMounting wireMounting = new VecWireMounting();
-
-        cp.getWireMountings()
-                .add(wireMounting);
-        wireMounting.getReferencedWireEnd()
-                .add(end);
+        final VecContactPoint cp = createContactPointWithWireMounting(connectorId + "." + cavityNumber);
 
         final VecCavityMounting cavityMounting = new VecCavityMounting();
         cp.getCavityMountings()
@@ -87,6 +64,47 @@ public class ConnectivityBuilder extends AbstractChildBuilder<HarnessBuilder> {
                 .add(cavityReference);
 
         return this;
+    }
+
+    public ConnectivityBuilder addEndWithTerminalOnly(final String terminalId) {
+        final VecContactPoint cp = createContactPointWithWireMounting(
+                wireElementReference.getIdentification() + "-" + terminalId);
+
+        final VecPluggableTerminalRole terminal = this.parent
+                .occurrence(terminalId)
+                .getRoleWithType(VecPluggableTerminalRole.class)
+                .orElseThrow();
+
+        cp.setMountedTerminal(terminal);
+
+        return this;
+    }
+
+    private VecContactPoint createContactPointWithWireMounting(final String endpointId) {
+        final VecContactPoint cp = new VecContactPoint();
+        cp.setIdentification(endpointId);
+        contactingSpecification.getContactPoints()
+                .add(cp);
+
+        final VecWireEnd end = new VecWireEnd();
+        end.setIdentification(endpointId);
+        if (wireElementReference
+                .getWireEnds()
+                .isEmpty()) {
+            end.setPositionOnWire(0.0);
+        } else {
+            end.setPositionOnWire(1.0);
+        }
+        wireElementReference.getWireEnds()
+                .add(end);
+
+        final VecWireMounting wireMounting = new VecWireMounting();
+
+        cp.getWireMountings()
+                .add(wireMounting);
+        wireMounting.getReferencedWireEnd()
+                .add(end);
+        return cp;
     }
 
 }
