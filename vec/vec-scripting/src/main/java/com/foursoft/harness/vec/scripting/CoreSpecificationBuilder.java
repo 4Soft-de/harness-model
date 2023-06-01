@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,7 +27,8 @@ package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.v2x.VecCoreSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecNumericalValue;
+
+import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 
 public class CoreSpecificationBuilder extends AbstractChildBuilder<ComponentMasterDataBuilder> {
 
@@ -42,13 +43,22 @@ public class CoreSpecificationBuilder extends AbstractChildBuilder<ComponentMast
     }
 
     public CoreSpecificationBuilder withCSA(final double value) {
-        final VecNumericalValue numericalValue = new VecNumericalValue();
-        numericalValue.setValueComponent(value);
-        numericalValue.setUnitComponent(parent.getSession()
-                                                .squareMM());
-
-        this.coreSpecification.setCrossSectionArea(numericalValue);
+        this.coreSpecification.setCrossSectionArea(value(value, parent.getSession()
+                .squareMM()));
 
         return this;
     }
+
+    public CoreSpecificationBuilder withNumberOfStrands(final int numberOfStrands) {
+        this.coreSpecification.setNumberOfStrands(value(numberOfStrands, getSession().piece()));
+        getSession().addXmlComment(this.coreSpecification.getNumberOfStrands(),
+                                   " Unit `piece`, see: https://prostep-ivip.atlassian.net/browse/KBLFRM-1192 ");
+        return this;
+    }
+
+    public CoreSpecificationBuilder withStrandDiameter(final double diameter) {
+        this.coreSpecification.setStrandDiameter(value(diameter, getSession().mm()));
+        return this;
+    }
 }
+

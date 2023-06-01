@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,6 +31,7 @@ import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 
 public class ComponentMasterDataBuilder implements RootBuilder {
     private final VecSession session;
+    private final String partNumber;
     private final VecDocumentVersion partMasterDocument;
     private final VecPartVersion part;
 
@@ -38,6 +39,7 @@ public class ComponentMasterDataBuilder implements RootBuilder {
                                final String partNumber, final String documentNumber,
                                final VecPrimaryPartType primaryPartType) {
         this.session = session;
+        this.partNumber = partNumber;
         this.part = initializePart(partNumber, primaryPartType);
         this.partMasterDocument = initializeDocument(documentNumber, this.part);
     }
@@ -76,8 +78,24 @@ public class ComponentMasterDataBuilder implements RootBuilder {
 
     }
 
+    public ComponentMasterDataBuilder withApplicationSpecification(final String documentNumber,
+                                                                   final String documentVersion) {
+        VecDocumentVersion dv = new VecDocumentVersion();
+        dv.setDocumentNumber(documentNumber);
+        dv.setDocumentVersion(documentVersion);
+        dv.setCompanyName(getSession().getDefaultValues().getCompanyName());
+        dv.setDocumentType("ApplicationSpecification");
+
+        getSession().addXmlComment(dv, " DocumentType to be verified (KBLFRM-1194).");
+
+        getSession().getVecContentRoot().getDocumentVersions().add(dv);
+        dv.getReferencedPart().add(part);
+
+        return this;
+    }
+
     public GeneralTechnicalPartSpecificationBuilder addGeneralTechnicalPart() {
-        return new GeneralTechnicalPartSpecificationBuilder(this, this.partMasterDocument);
+        return new GeneralTechnicalPartSpecificationBuilder(this, this.partNumber, this.partMasterDocument);
     }
 
     public CoreSpecificationBuilder addCoreSpecification(String identification) {
@@ -85,14 +103,18 @@ public class ComponentMasterDataBuilder implements RootBuilder {
     }
 
     public WireSpecificationBuilder addWireSpecification() {
-        return new WireSpecificationBuilder(this, partMasterDocument);
+        return new WireSpecificationBuilder(this, this.partNumber, partMasterDocument);
+    }
+
+    public WireSingleCoreBuilder addSingleCore() {
+        return new WireSingleCoreBuilder(this, partNumber, partMasterDocument);
     }
 
     public ConnectorSpecificationBuilder addConnectorHousing() {
-        return new ConnectorSpecificationBuilder(this, partMasterDocument);
+        return new ConnectorSpecificationBuilder(this, this.partNumber, partMasterDocument);
     }
 
     public PluggableTerminalSpecificationBuilder addPluggableTerminal() {
-        return new PluggableTerminalSpecificationBuilder(this, partMasterDocument);
+        return new PluggableTerminalSpecificationBuilder(this, this.partNumber, partMasterDocument);
     }
 }

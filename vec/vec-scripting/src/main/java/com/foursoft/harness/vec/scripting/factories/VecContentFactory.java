@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting.factories;
 
 import com.foursoft.harness.vec.common.util.DateUtils;
 import com.foursoft.harness.vec.v2x.VecContent;
+import com.foursoft.harness.vec.v2x.Version;
 
 import java.time.LocalDate;
 
@@ -39,7 +40,7 @@ public final class VecContentFactory {
     public static VecContent create() {
         final VecContent root = new VecContent();
 
-        root.setVecVersion("2.0.1");
+        root.setVecVersion(Version.VERSION);
         root.setDateOfCreation(DateUtils.toXMLGregorianCalendar(LocalDate.now()));
         root.setGeneratingSystemName("VEC Samples");
         root.setGeneratingSystemVersion("0.0.1");

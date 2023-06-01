@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,6 +26,8 @@
 package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.v2x.*;
+
+import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
 
 public class WireElementBuilder<P extends Builder> extends AbstractChildBuilder<P> {
     private final WireElementBuilderContext context;
@@ -63,6 +65,24 @@ public class WireElementBuilder<P extends Builder> extends AbstractChildBuilder<
     public InsulationSpecificationBuilder<WireElementBuilder<P>> addInsulationSpecification(String identification) {
         return new InsulationSpecificationBuilder<>(this, this.context.partMasterDocument(), wireElementSpecification,
                                                     identification);
+    }
+
+    public WireElementBuilder<P> withDin76722WireType(final String wireType) {
+        VecWireType type = new VecWireType();
+        type.setType(wireType);
+        type.setReferenceSystem("DIN 76722");
+
+        this.wireElementSpecification.getTypes().add(type);
+
+        return this;
+    }
+
+    public WireElementBuilder<P> withOutsideDiameter(final double diameter, final double lowerTolerance,
+                                                     final double upperTolerance) {
+        this.wireElementSpecification.setOutsideDiameter(valueWithTolerance(diameter, lowerTolerance, upperTolerance,
+                                                                            getSession().mm()));
+
+        return this;
     }
 
     private class WireElementContext implements WireElementBuilderContext {

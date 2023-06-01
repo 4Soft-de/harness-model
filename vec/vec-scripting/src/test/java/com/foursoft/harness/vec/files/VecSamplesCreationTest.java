@@ -62,8 +62,7 @@ class VecSamplesCreationTest {
 
         createCommonBase(session, "SL3", "3C0_972_100", "2");
 
-//        session.writeToStream(createTestFileStream("ves-wf-changes-sample-post"));
-
+        session.writeToStream(createTestFileStream("ves-wf-changes-sample-post"));
     }
 
     private static void createCommonBase(final VecSession session, final String specialWireId,
@@ -198,7 +197,65 @@ class VecSamplesCreationTest {
                 .end();
 
         // @formatter:on
+    }
 
+    @Test
+    void create_arena_sample() throws IOException {
+        VecSession session = new VecSession();
+
+        // @formatter:off
+        session.component("5-928999-1", "5-928999-1",
+                          VecPrimaryPartType.PLUGGABLE_TERMINAL)
+                .withApplicationSpecification("114-18021","V")
+                .addGeneralTechnicalPart()
+                    .end()
+                .addPluggableTerminal()
+                    .withMissingAttributesComment()
+                    .withInsulationDisplacementLength(3.6,-0.15,0.15)
+                    .withConnectionBLength(5.6)
+                    .withTerminalLengthOverall(13.7)
+                    .withRearBellMouth(0.55)
+                    .withCrimpDetailsExample()
+                    .withSealable(false)
+                    .end()
+                .end();
+
+        session.component("WIRE","DRAW-WIRE", VecPrimaryPartType.WIRE)
+                .addGeneralTechnicalPart()
+                    .withMassInformation(4.6,session.gramPerMeter())
+                    .end()
+                .addSingleCore()
+                    .withDin76722WireType("FLRY-A")
+                    .withCSA(0.35)
+                    .withOutsideDiameter(1.3,-0.1,0.0)
+                    .withInsulationThickness(0.20)
+                    .withNumberOfStrands(7)
+                    .withStrandDiameter(0.27)
+                    .end()
+                .end();
+
+        session.harness("LEADSET", "1")
+                .addPartOccurrence("W1", "WIRE")
+                    .roleBuilder(WireRoleBuilder.class)
+                        .wireElementRef("1")
+                            .withIdentification("W1")
+                            .withLength(1000.0)
+                        .end()
+                    .end()
+                .end()
+                .addPartOccurrence("T1", "5-928999-1")
+                    .end()
+                .addPartOccurrence("T2", "5-928999-1")
+                    .end()
+                .addConnection("W1")
+                    .addEndWithTerminalOnly("T1")
+                    .addEndWithTerminalOnly("T2")
+                .end();
+        // @formatter:on
+
+        ;
+
+        session.writeToStream(createTestFileStream("detail-arena2036-example"));
     }
 
 }

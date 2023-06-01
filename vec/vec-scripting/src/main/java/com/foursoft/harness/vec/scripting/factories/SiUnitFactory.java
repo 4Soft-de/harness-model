@@ -56,4 +56,17 @@ public class SiUnitFactory {
     public static VecSIUnit mm() {
         return new SiUnitFactory(VecSiUnitName.METRE, VecSiPrefix.MILLI).create();
     }
+
+    public static VecSIUnit gram() {
+        return new SiUnitFactory(VecSiUnitName.GRAM, null).create();
+    }
+
+    public static VecSIUnit perMeter() {
+        return new SiUnitFactory(VecSiUnitName.METRE, null, BigInteger.valueOf(-1)).create();
+    }
+
+    public static VecSIUnit newton() {
+        return new SiUnitFactory(VecSiUnitName.NEWTON, null, null).create();
+    }
+
 }
