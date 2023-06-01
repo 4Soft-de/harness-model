@@ -17,7 +17,9 @@
     <xsl:key name="parents" match="ownedAttribute[@xmi:type='uml:Property' and exists(@association) and @aggregation='composite']" use="@type"/>
     <xsl:key name="incoming-refs" match="ownedAttribute[@xmi:type='uml:Property' and exists(@association) and not(@aggregation='composite')]" use="@type"/>
 
-    <xsl:variable name="VEC_VERSION">2.0.2</xsl:variable>
+    <xsl:param name="VEC_VERSION" required="yes"/>
+    <xsl:param name="PACKAGE" required="yes"/>
+    
 
     <!-- Header -->
     <xsl:template match="/">
@@ -27,7 +29,7 @@
                 <jxb:serializable uid="1"/>
             </jxb:globalBindings>
             <jxb:schemaBindings>
-                <jxb:package name="com.foursoft.harness.vec.v113"/>
+                <jxb:package name="{$PACKAGE}"/>
                 <jxb:nameXmlTransform>
                     <jxb:typeName prefix="Vec"/>
                 </jxb:nameXmlTransform>
@@ -51,8 +53,7 @@
 
     <xsl:template match="packagedElement[@xmi:type='uml:Class']" mode="create-parents">
         <nav:parent>
-            <xsl:attribute name="name">parent<xsl:apply-templates select="." mode="create-name"/>
-            </xsl:attribute>
+            <xsl:attribute name="name">parent<xsl:apply-templates select="." mode="create-name"/></xsl:attribute>
             <xsl:attribute name="schema-type">
                 <xsl:apply-templates select="." mode="create-name"/>
             </xsl:attribute>
