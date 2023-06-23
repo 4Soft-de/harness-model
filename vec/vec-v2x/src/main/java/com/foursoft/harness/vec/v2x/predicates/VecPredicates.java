@@ -177,16 +177,16 @@ public final class VecPredicates {
 
     public static Predicate<VecUnit> equalUnit(final VecUnit compareUnit) {
         return unit -> {
-            if (unit instanceof VecSIUnit && compareUnit instanceof VecSIUnit) {
-                return equalSiUnit((VecSIUnit) compareUnit).test((VecSIUnit) unit);
+            if (unit instanceof VecSIUnit siUnit && compareUnit instanceof VecSIUnit compareSiUnit) {
+                return equalSiUnit(compareSiUnit).test(siUnit);
             }
 
-            if (unit instanceof VecUSUnit && compareUnit instanceof VecUSUnit) {
-                return equalUsUnit((VecUSUnit) compareUnit).test((VecUSUnit) unit);
+            if (unit instanceof VecUSUnit usUnit && compareUnit instanceof VecUSUnit compareUsUnit) {
+                return equalUsUnit(compareUsUnit).test(usUnit);
             }
 
-            if (unit instanceof VecCompositeUnit && compareUnit instanceof VecCompositeUnit) {
-                return equalCompositeUnit((VecCompositeUnit) compareUnit).test((VecCompositeUnit) unit);
+            if (unit instanceof VecCompositeUnit cUnit && compareUnit instanceof VecCompositeUnit compareCUnit) {
+                return equalCompositeUnit(compareCUnit).test(cUnit);
             }
             return false;
         };
