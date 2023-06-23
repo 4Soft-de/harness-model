@@ -28,6 +28,7 @@ package com.foursoft.harness.vec.v2x.predicates;
 import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
 import com.foursoft.harness.vec.v2x.*;
 
+import java.math.BigInteger;
 import java.util.Objects;
 import java.util.function.Predicate;
 
@@ -151,6 +152,13 @@ public final class VecPredicates {
         return occ -> !occ.getRolesWithType(VecCavitySealRole.class).isEmpty();
     }
 
+    public static Predicate<VecDocumentVersion> equalDocumentVersion(final VecDocumentVersion compareDocumentVersion) {
+        return documentVersion -> documentVersion.getDocumentNumber().equals(compareDocumentVersion.getDocumentNumber())
+                && documentVersion.getDocumentVersion().equals(compareDocumentVersion.getDocumentVersion())
+                && documentVersion.getCompanyName().equals(compareDocumentVersion.getCompanyName())
+                && documentVersion.getDocumentType().equals(compareDocumentVersion.getDocumentType());
+    }
+
     public static Predicate<VecPartVersion> equalPartVersion(final VecPartVersion comparePartVersion) {
         return partVersion -> partVersion.getPartNumber().equals(comparePartVersion.getPartNumber())
                 && partVersion.getPartVersion().equals(comparePartVersion.getPartVersion())
@@ -190,6 +198,13 @@ public final class VecPredicates {
             }
             return false;
         };
+    }
+
+    public static Predicate<VecSIUnit> equalSiUnitBy(final VecSiUnitName siUnitName, final VecSiPrefix siPrefix,
+                                                     final BigInteger exponent) {
+        return unit -> unit.getSiUnitName() == siUnitName
+                && unit.getSiPrefix() == siPrefix
+                && Objects.equals(unit.getExponent(), exponent);
     }
 
     public static Predicate<VecContract> equalContract(final VecContract compareContract) {
