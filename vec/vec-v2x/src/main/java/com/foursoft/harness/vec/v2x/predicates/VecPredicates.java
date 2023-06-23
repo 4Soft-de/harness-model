@@ -40,27 +40,27 @@ public final class VecPredicates {
         // hide default constructor
     }
 
-    public static Predicate<VecPlaceableElementRole> isOnWayPlacement() {
+    public static Predicate<VecPlaceableElementRole> onWayPlacement() {
         return c -> c.getPlaceableElementSpecification().getValidPlacementTypes()
                 .stream()
                 .anyMatch(VecPlacementType.ON_WAY::equals);
     }
 
-    public static Predicate<VecPlaceableElementRole> isOnPointPlacement() {
+    public static Predicate<VecPlaceableElementRole> onPointPlacement() {
         return c -> c.getPlaceableElementSpecification().getValidPlacementTypes()
                 .stream()
                 .anyMatch(VecPlacementType.ON_POINT::equals);
     }
 
-    public static Predicate<VecAbstractLocalizedString> isGermanLanguageCode() {
-        return isLanguageCode(VecLanguageCode.DE);
+    public static Predicate<VecAbstractLocalizedString> germanLanguageCode() {
+        return languageCode(VecLanguageCode.DE);
     }
 
-    public static Predicate<VecAbstractLocalizedString> isEnglishLanguageCode() {
-        return isLanguageCode(VecLanguageCode.EN);
+    public static Predicate<VecAbstractLocalizedString> englishLanguageCode() {
+        return languageCode(VecLanguageCode.EN);
     }
 
-    public static Predicate<VecAbstractLocalizedString> isLanguageCode(final VecLanguageCode code) {
+    public static Predicate<VecAbstractLocalizedString> languageCode(final VecLanguageCode code) {
         return localizedString -> code == localizedString.getLanguageCode();
     }
 
@@ -71,7 +71,7 @@ public final class VecPredicates {
      *
      * @param specificClass the class to check against.
      */
-    public static Predicate<VecEEComponentRole> isEEComponentOfSpecificType(
+    public static Predicate<VecEEComponentRole> eEComponentOfSpecificType(
             final Class<? extends VecEEComponentSpecification> specificClass) {
         return role -> specificClass.isInstance(role.getEEComponentSpecification());
     }
@@ -81,10 +81,10 @@ public final class VecPredicates {
      * expressed by inheritance of {@link VecEEComponentRole}, but by
      * inheritance of the corresponding {@link VecEEComponentSpecification}.
      */
-    public static Predicate<VecOccurrenceOrUsage> isFuse() {
+    public static Predicate<VecOccurrenceOrUsage> fuse() {
         return occ -> occ.getRolesWithType(VecEEComponentRole.class).stream()
-                .anyMatch(isEEComponentOfSpecificType(VecFuseSpecification.class)
-                                  .or(isEEComponentOfSpecificType(VecMultiFuseSpecification.class)));
+                .anyMatch(eEComponentOfSpecificType(VecFuseSpecification.class)
+                                  .or(eEComponentOfSpecificType(VecMultiFuseSpecification.class)));
     }
 
     /**
@@ -92,13 +92,13 @@ public final class VecPredicates {
      * expressed by inheritance of {@link VecEEComponentRole}, but by
      * inheritance of the corresponding {@link VecEEComponentSpecification}.
      */
-    public static Predicate<VecOccurrenceOrUsage> isRelay() {
+    public static Predicate<VecOccurrenceOrUsage> relay() {
         return occ -> occ.getRolesWithType(VecEEComponentRole.class).stream()
-                .anyMatch(isEEComponentOfSpecificType(VecRelaySpecification.class));
+                .anyMatch(eEComponentOfSpecificType(VecRelaySpecification.class));
     }
 
     @RequiresBackReferences
-    public static Predicate<VecWireElementReference> isRootWireElementReference() {
+    public static Predicate<VecWireElementReference> rootWireElementReference() {
         return reference -> {
             final VecWireElement referencedWireElement = reference.getReferencedWireElement();
             final VecWireSpecification wireSpecification = referencedWireElement.getParentWireSpecification();
@@ -116,7 +116,7 @@ public final class VecPredicates {
      * @return Predicate to check if the tested WireElementReference is single.
      */
     @RequiresBackReferences
-    public static Predicate<VecWireElementReference> isSingleWireElementReference() {
+    public static Predicate<VecWireElementReference> singleWireElementReference() {
         return reference -> reference.getParentWireRole().getWireElementReferences().size() == 1;
     }
 
@@ -127,77 +127,77 @@ public final class VecPredicates {
      *
      * @return Check to test if a PartOccurrence is an assembly.
      */
-    public static Predicate<VecPartOccurrence> isAssemblyOccurrence() {
+    public static Predicate<VecPartOccurrence> assemblyOccurrence() {
         return occ -> !occ.getRolesWithType(VecPartWithSubComponentsRole.class).isEmpty();
     }
 
-    public static Predicate<VecOccurrenceOrUsage> isPartUsage() {
+    public static Predicate<VecOccurrenceOrUsage> partUsage() {
         return VecPartUsage.class::isInstance;
     }
 
-    public static Predicate<VecOccurrenceOrUsage> isPartOccurrence() {
+    public static Predicate<VecOccurrenceOrUsage> partOccurrence() {
         return VecPartOccurrence.class::isInstance;
     }
 
-    public static Predicate<VecPartOccurrence> isWire() {
+    public static Predicate<VecPartOccurrence> wire() {
         return occ -> !occ.getRolesWithType(VecWireRole.class).isEmpty();
     }
 
-    public static Predicate<VecPartOccurrence> isPlug() {
+    public static Predicate<VecPartOccurrence> plug() {
         return occ -> !occ.getRolesWithType(VecCavityPlugRole.class).isEmpty();
     }
 
-    public static Predicate<VecPartOccurrence> isSeal() {
+    public static Predicate<VecPartOccurrence> seal() {
         return occ -> !occ.getRolesWithType(VecCavitySealRole.class).isEmpty();
     }
 
-    public static Predicate<VecPartVersion> isEqualPartVersion(final VecPartVersion comparePartVersion) {
+    public static Predicate<VecPartVersion> equalPartVersion(final VecPartVersion comparePartVersion) {
         return partVersion -> partVersion.getPartNumber().equals(comparePartVersion.getPartNumber())
                 && partVersion.getPartVersion().equals(comparePartVersion.getPartVersion())
                 && partVersion.getCompanyName().equals(comparePartVersion.getCompanyName())
                 && partVersion.getPrimaryPartType() == comparePartVersion.getPrimaryPartType();
     }
 
-    public static Predicate<VecSIUnit> isEqualSiUnit(final VecSIUnit compareUnit) {
+    public static Predicate<VecSIUnit> equalSiUnit(final VecSIUnit compareUnit) {
         return unit -> unit.getSiUnitName() == compareUnit.getSiUnitName()
                 && unit.getSiPrefix() == compareUnit.getSiPrefix()
                 && Objects.equals(unit.getExponent(), compareUnit.getExponent());
     }
 
-    public static Predicate<VecUSUnit> isEqualUsUnit(final VecUSUnit compareUnit) {
+    public static Predicate<VecUSUnit> equalUsUnit(final VecUSUnit compareUnit) {
         return unit -> unit.getUsUnitName() == compareUnit.getUsUnitName()
                 && Objects.equals(unit.getExponent(), compareUnit.getExponent());
     }
 
-    public static Predicate<VecCompositeUnit> isEqualCompositeUnit(final VecCompositeUnit compareUnit) {
+    public static Predicate<VecCompositeUnit> equalCompositeUnit(final VecCompositeUnit compareUnit) {
         return unit -> unit.getFactors().stream()
-                .allMatch(u -> compareUnit.getFactors().stream().anyMatch(isEqualUnit(u)))
+                .allMatch(u -> compareUnit.getFactors().stream().anyMatch(equalUnit(u)))
                 && Objects.equals(unit.getExponent(), compareUnit.getExponent());
     }
 
-    public static Predicate<VecUnit> isEqualUnit(final VecUnit compareUnit) {
+    public static Predicate<VecUnit> equalUnit(final VecUnit compareUnit) {
         return unit -> {
             if (unit instanceof VecSIUnit && compareUnit instanceof VecSIUnit) {
-                return isEqualSiUnit((VecSIUnit) compareUnit).test((VecSIUnit) unit);
+                return equalSiUnit((VecSIUnit) compareUnit).test((VecSIUnit) unit);
             }
 
             if (unit instanceof VecUSUnit && compareUnit instanceof VecUSUnit) {
-                return isEqualUsUnit((VecUSUnit) compareUnit).test((VecUSUnit) unit);
+                return equalUsUnit((VecUSUnit) compareUnit).test((VecUSUnit) unit);
             }
 
             if (unit instanceof VecCompositeUnit && compareUnit instanceof VecCompositeUnit) {
-                return isEqualCompositeUnit((VecCompositeUnit) compareUnit).test((VecCompositeUnit) unit);
+                return equalCompositeUnit((VecCompositeUnit) compareUnit).test((VecCompositeUnit) unit);
             }
             return false;
         };
     }
 
-    public static Predicate<VecContract> isEqualContract(final VecContract compareContract) {
+    public static Predicate<VecContract> equalContract(final VecContract compareContract) {
         return contract -> contract.getContractRole().equals(compareContract.getContractRole()) &&
                 contract.getCompanyName().equals(compareContract.getCompanyName());
     }
 
-    public static Predicate<VecOnPointPlacement> isOnPointPlacementOf(final VecTopologyNode topologyNode) {
+    public static Predicate<VecOnPointPlacement> onPointPlacementOf(final VecTopologyNode topologyNode) {
         return vecPlacement -> vecPlacement.getLocations().stream()
                 .filter(VecNodeLocation.class::isInstance)
                 .map(VecNodeLocation.class::cast)
