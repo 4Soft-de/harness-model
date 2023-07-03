@@ -27,7 +27,7 @@
         <!-- Plugins -->
         <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
-        <license-maven-plugin.version>2.1.0</license-maven-plugin.version>
+        <license-maven-plugin.version>2.2.0</license-maven-plugin.version>
         <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
         <gitflow-maven-plugin.version>1.20.0</gitflow-maven-plugin.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
