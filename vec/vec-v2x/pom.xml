@@ -52,6 +52,7 @@
                                 <include>vec2/*.xjb</include>
                             </bindingIncludes>
                             <args>
+                                <arg>-Xannotate</arg>
                                 <arg>-Xext-navs</arg>
                                 <arg>-Xjavadoc</arg>
                                 <arg>-Xinheritance</arg>
@@ -67,6 +68,11 @@
                                     <groupId>org.patrodyne.jvnet</groupId>
                                     <artifactId>hisrc-basicjaxb-plugins</artifactId>
                                     <version>${hisrc-higherjaxb-maven-plugin.version}</version>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.patrodyne.jvnet</groupId>
+                                    <artifactId>hisrc-hyperjaxb-annox-plugin</artifactId>
+                                    <version>${hisrc-hyperjaxb-annox-plugin.version}</version>
                                 </plugin>
                                 <plugin>
                                     <groupId>org.apache.cxf.xjcplugins</groupId>
