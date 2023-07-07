@@ -531,7 +531,6 @@
    <jxb:bindings node="//xs:complexType[@name='ConfigurableElement']">
       <jxb:bindings node=".//xs:element[@name='ApplicationConstraint']">
          <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
-         <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
          <nav:ext-reference schema-type="ApplicationConstraint" inverse="refConfigurableElement"/>
       </jxb:bindings>
       <jxb:bindings node=".//xs:element[@name='AssociatedAssignmentGroups']">
@@ -544,7 +543,6 @@
       </jxb:bindings>
       <jxb:bindings node=".//xs:element[@name='ConfigurationConstraint']">
          <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
-         <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
       </jxb:bindings>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='ConfigurationConstraint']">
@@ -625,7 +623,6 @@
       <jxb:bindings node=".//xs:element[@name='PlacedNodeViewItems']"/>
       <jxb:bindings node=".//xs:element[@name='PlacedViewItems']">
          <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
-         <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
       </jxb:bindings>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='ConnectorHousingCapRole']">

@@ -51,7 +51,9 @@
         <jxb:bindings node=".//xs:element[@name='{@name}']">
             <xsl:if test="xs:annotation/xs:appinfo/mt:deprecated">
                 <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
-                <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+                <xsl:if test=".[@type!='xs:IDREFS' and not(@maxOccurs = 'unbounded')]">
+                    <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>    
+                </xsl:if>                
             </xsl:if>
             <xsl:apply-templates select=".[@type='xs:IDREFS' or @type='xs:IDREF']" mode="idref"></xsl:apply-templates>        
         </jxb:bindings>
