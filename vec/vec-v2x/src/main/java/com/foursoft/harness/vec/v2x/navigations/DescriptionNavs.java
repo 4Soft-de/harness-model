@@ -89,7 +89,7 @@ public final class DescriptionNavs {
             return localizedStrings.stream()
                     .filter(Objects::nonNull)
                     .filter(d -> !(d instanceof VecLocalizedTypedString))
-                    .filter(VecPredicates.isLanguageCode(vecLanguageCode))
+                    .filter(VecPredicates.languageCode(vecLanguageCode))
                     .map(VecAbstractLocalizedString::getValue)
                     .filter(Objects::nonNull)
                     .collect(StreamUtils.findOneOrNone());
@@ -109,7 +109,7 @@ public final class DescriptionNavs {
     public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> typedStringBy(
             final String descriptionType, final VecLanguageCode vecLanguageCode) {
         return hasDescription -> hasDescription.getDescriptions().stream()
-                .filter(VecPredicates.isLanguageCode(vecLanguageCode))
+                .filter(VecPredicates.languageCode(vecLanguageCode))
                 .flatMap(StreamUtils.ofClass(VecLocalizedTypedString.class))
                 .filter(typedString -> descriptionType.equals(typedString.getType()))
                 .collect(StreamUtils.findOneOrNone())

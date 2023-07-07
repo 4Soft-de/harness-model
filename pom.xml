@@ -6,7 +6,7 @@
 
     <groupId>com.foursoft.harness</groupId>
     <artifactId>harness-parent</artifactId>
-    <version>5.0.0</version>
+    <version>5.1.0</version>
     <packaging>pom</packaging>
     <name>Harness Parent</name>
     <description>Parent POM of all 4Soft Harness Projects.</description>
@@ -17,27 +17,28 @@
         <java.version>17</java.version>
 
         <!-- Dependencies -->
-        <jakarta.version>4.0.2</jakarta.version>
+        <jakarta.version>4.0.3</jakarta.version>
         <slf4j.version>2.0.7</slf4j.version>
-        <logback-classic.version>1.4.7</logback-classic.version>
-        <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <logback-classic.version>1.4.8</logback-classic.version>
+        <junit.jupiter.version>5.9.3</junit.jupiter.version>
         <assertj-core.version>3.24.2</assertj-core.version>
         <maven-core.version>3.9.2</maven-core.version>
 
         <!-- Plugins -->
         <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
-        <license-maven-plugin.version>2.0.1</license-maven-plugin.version>
+        <license-maven-plugin.version>2.2.0</license-maven-plugin.version>
         <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
-        <gitflow-maven-plugin.version>1.19.0</gitflow-maven-plugin.version>
+        <gitflow-maven-plugin.version>1.20.0</gitflow-maven-plugin.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
-        <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
 
         <!-- xjc-maven wrapper -->
         <hisrc-higherjaxb-maven-plugin.version>2.1.0</hisrc-higherjaxb-maven-plugin.version>
         <!-- it's plugins -->
-        <jaxb-visitor.version>3.0.0</jaxb-visitor.version>
+        <hisrc-hyperjaxb-annox-plugin.version>2.1.0</hisrc-hyperjaxb-annox-plugin.version>
+        <jaxb-visitor.version>3.1.0</jaxb-visitor.version>
         <cxf-xjc-javadoc.version>4.0.0</cxf-xjc-javadoc.version>
 
         <!-- Release Plugins -->
@@ -118,7 +119,7 @@
             <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy</artifactId>
-                <version>1.14.4</version>
+                <version>1.14.5</version>
             </dependency>
             <dependency>
                 <groupId>org.reflections</groupId>

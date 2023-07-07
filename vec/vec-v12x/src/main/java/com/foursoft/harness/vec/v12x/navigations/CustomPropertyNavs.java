@@ -26,14 +26,15 @@
 package com.foursoft.harness.vec.v12x.navigations;
 
 import com.foursoft.harness.vec.common.HasCustomProperties;
+import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v12x.*;
+import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
 
 import java.math.BigInteger;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Navigation methods for custom properties of a {@link VecExtendableElement}.
@@ -87,6 +88,23 @@ public final class CustomPropertyNavs {
         return element -> element.getCustomProperty(VecComplexProperty.class, customProperty)
                 .map(VecComplexProperty::getCustomProperties)
                 .orElseGet(Collections::emptyList);
+    }
+
+    public static Function<HasCustomProperties<VecCustomProperty>, Optional<String>> customPropertyValueLocalizedString(
+            final String customProperty, final VecLanguageCode languageCode) {
+        return element -> element.getCustomProperty(VecLocalizedStringProperty.class, customProperty)
+                .stream()
+                .map(convertLocalizedStringProperty(languageCode))
+                .flatMap(StreamUtils.unwrapOptional())
+                .collect(StreamUtils.findOneOrNone());
+    }
+
+    public static Function<VecLocalizedStringProperty, Optional<String>> convertLocalizedStringProperty(
+            final VecLanguageCode languageCode) {
+        return localizedString -> Optional.ofNullable(localizedString)
+                .map(VecLocalizedStringProperty::getValue)
+                .filter(VecPredicates.languageCode(languageCode))
+                .map(VecLocalizedString::getValue);
     }
 
 }

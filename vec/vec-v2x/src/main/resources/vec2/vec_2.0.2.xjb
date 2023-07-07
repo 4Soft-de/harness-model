@@ -1,0 +1,2627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings xmlns:annox="http://jvnet.org/basicjaxb/xjc/annox"
+              xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
+              xmlns:nav="http://www.4soft.de/xjc-plugins/navigations"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              node="/xs:schema"
+              schemaLocation="vec_2.0.2.xsd"
+              version="3.0"
+              extensionBindingPrefixes="xjc">
+   <jxb:globalBindings>
+      <xjc:simple/>
+      <jxb:serializable uid="1"/>
+   </jxb:globalBindings>
+   <jxb:schemaBindings>
+      <jxb:package name="com.foursoft.harness.vec.v2x"/>
+      <jxb:nameXmlTransform>
+         <jxb:typeName prefix="Vec"/>
+      </jxb:nameXmlTransform>
+   </jxb:schemaBindings>
+   <jxb:bindings node="//xs:complexType[@name='AbstractLocalizedString']">
+      <jxb:bindings node=".//xs:element[@name='LanguageCode']"/>
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='AbstractSlot']">
+      <nav:parent name="parentConnectorHousingSpecification"
+                  schema-type="ConnectorHousingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='SlotNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='SlotSpecification']">
+         <nav:ext-reference schema-type="SlotSpecification" inverse="refAbstractSlot"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Coding']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='AbstractSlotReference']">
+      <nav:parent name="parentConnectorHousingRole" schema-type="ConnectorHousingRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferencedSlot']">
+         <nav:ext-reference schema-type="AbstractSlot" inverse="refAbstractSlotReference"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='AliasIdentification']">
+      <jxb:bindings node=".//xs:element[@name='IdentificationValue']"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Scope']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='AntennaSpecification']">
+      <jxb:bindings node=".//xs:element[@name='FMin']"/>
+      <jxb:bindings node=".//xs:element[@name='FMax']"/>
+      <jxb:bindings node=".//xs:element[@name='Impedance']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ApplicationConstraint']">
+      <nav:parent name="parentApplicationConstraintSpecification"
+                  schema-type="ApplicationConstraintSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='FromDate']"/>
+      <jxb:bindings node=".//xs:element[@name='ToDate']"/>
+      <jxb:bindings node=".//xs:element[@name='FromSerialNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='ToSerialNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='ProjectPhase']"/>
+      <jxb:bindings node=".//xs:element[@name='FromEffectivityControlKey']"/>
+      <jxb:bindings node=".//xs:element[@name='ToEffectivityControlKey']"/>
+      <jxb:bindings node=".//xs:element[@name='BaseInclusion']">
+         <nav:ext-reference schema-type="ApplicationConstraint" inverse="refApplicationConstraint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Project']">
+         <nav:ext-reference schema-type="Project" inverse="refApplicationConstraint"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ApplicationConstraintSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ApplicationConstraint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Approval']">
+      <nav:parent name="parentItemVersion" schema-type="ItemVersion"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='CompanyInScope']"/>
+      <jxb:bindings node=".//xs:element[@name='Status']"/>
+      <jxb:bindings node=".//xs:element[@name='LevelOfApproval']"/>
+      <jxb:bindings node=".//xs:element[@name='AdditionalLevelInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='Permission']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='AssignmentGroup']">
+      <nav:parent name="parentAssignmentGroupSpecification"
+                  schema-type="AssignmentGroupSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='AssignmentGroupSpecification']">
+      <jxb:bindings node=".//xs:element[@name='AssignmentGroup']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BaselineSpecification']">
+      <jxb:bindings node=".//xs:element[@name='State']"/>
+      <jxb:bindings node=".//xs:element[@name='Content']"/>
+      <jxb:bindings node=".//xs:element[@name='ValidVersions']">
+         <nav:ext-reference schema-type="ItemVersion" inverse="refBaselineSpecification"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BatterySpecification']">
+      <jxb:bindings node=".//xs:element[@name='U']"/>
+      <jxb:bindings node=".//xs:element[@name='I']"/>
+      <jxb:bindings node=".//xs:element[@name='ICool']"/>
+      <jxb:bindings node=".//xs:element[@name='Capacity']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BoltMountedFixingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='BoltType']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltShape']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltHeight']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BoltTerminalRole']"/>
+   <jxb:bindings node="//xs:complexType[@name='BoltTerminalSpecification']">
+      <jxb:bindings node=".//xs:element[@name='BoltDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltHeight']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltNominalSize']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltType']"/>
+      <jxb:bindings node=".//xs:element[@name='TorsionProtection']"/>
+      <jxb:bindings node=".//xs:element[@name='MaxTerminalCount']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BooleanValueProperty']">
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BoundingBox']">
+      <nav:parent name="parentGeneralTechnicalPartSpecification"
+                  schema-type="GeneralTechnicalPartSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='X']"/>
+      <jxb:bindings node=".//xs:element[@name='Y']"/>
+      <jxb:bindings node=".//xs:element[@name='Z']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BridgeTerminalRole']">
+      <jxb:bindings node=".//xs:element[@name='Connection']">
+         <nav:ext-reference schema-type="Connection" inverse="refBridgeTerminalRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BridgeTerminalSpecification']"/>
+   <jxb:bindings node="//xs:complexType[@name='BuildingBlockPositioning2D']">
+      <nav:parent name="parentHarnessDrawingSpecification2D"
+                  schema-type="HarnessDrawingSpecification2D"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Referenced2DBuildingBlock']">
+         <nav:ext-reference schema-type="BuildingBlockSpecification2D"
+                            inverse="refBuildingBlockPositioning2D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CenterPoint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BuildingBlockPositioning3D']">
+      <nav:parent name="parentHarnessGeometrySpecification3D"
+                  schema-type="HarnessGeometrySpecification3D"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Referenced3DBuildingBlock']">
+         <nav:ext-reference schema-type="BuildingBlockSpecification3D"
+                            inverse="refBuildingBlockPositioning3D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Positioning']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BuildingBlockSpecification2D']">
+      <jxb:bindings node=".//xs:element[@name='BaseUnit']">
+         <nav:ext-reference schema-type="Unit" inverse="refBuildingBlockSpecification2D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='BoundingBox']"/>
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint']"/>
+      <jxb:bindings node=".//xs:element[@name='GeometryNode']"/>
+      <jxb:bindings node=".//xs:element[@name='GeometrySegment']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacedElementViewItem']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BuildingBlockSpecification3D']">
+      <jxb:bindings node=".//xs:element[@name='BaseUnit']">
+         <nav:ext-reference schema-type="Unit" inverse="refBuildingBlockSpecification3D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='TopologyZone']">
+         <nav:ext-reference schema-type="TopologyZone" inverse="refBuildingBlockSpecification3D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint']"/>
+      <jxb:bindings node=".//xs:element[@name='GeometryNode']"/>
+      <jxb:bindings node=".//xs:element[@name='GeometrySegment']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacedElementViewItem3D']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableDuctOutlet']">
+      <nav:parent name="parentCableDuctSpecification"
+                  schema-type="CableDuctSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
+         <nav:ext-reference schema-type="PlacementPoint" inverse="refCableDuctOutlet"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableDuctRole']">
+      <jxb:bindings node=".//xs:element[@name='CableDuctSpecification']">
+         <nav:ext-reference schema-type="CableDuctSpecification" inverse="refCableDuctRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableDuctSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Outlet']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableLeadThrough']">
+      <nav:parent name="parentGrommetSpecification" schema-type="GrommetSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='CableLeadThroughSpecification']">
+         <nav:ext-reference schema-type="CableLeadThroughSpecification"
+                            inverse="refCableLeadThrough"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Outlet']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableLeadThroughOutlet']">
+      <nav:parent name="parentCableLeadThrough" schema-type="CableLeadThrough"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
+         <nav:ext-reference schema-type="PlacementPoint" inverse="refCableLeadThroughOutlet"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableLeadThroughReference']">
+      <nav:parent name="parentGrommetRole" schema-type="GrommetRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='CableLeadThrough']">
+         <nav:ext-reference schema-type="CableLeadThrough" inverse="refCableLeadThroughReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='UsedPlugs']">
+         <nav:ext-reference schema-type="CavityPlugRole" inverse="refCableLeadThroughReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='UsedSeals']">
+         <nav:ext-reference schema-type="CavitySealRole" inverse="refCableLeadThroughReference"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableLeadThroughSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Geometry']"/>
+      <jxb:bindings node=".//xs:element[@name='SealingDimension']"/>
+      <jxb:bindings node=".//xs:element[@name='MinSegmentOutsideDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='MaxSegmentOutsideDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='Sealable']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableTieRole']">
+      <jxb:bindings node=".//xs:element[@name='CableTieSpecification']">
+         <nav:ext-reference schema-type="CableTieSpecification" inverse="refCableTieRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CableTieSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Length']"/>
+      <jxb:bindings node=".//xs:element[@name='Width']"/>
+      <jxb:bindings node=".//xs:element[@name='Thickness']"/>
+      <jxb:bindings node=".//xs:element[@name='TensioningStrength']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CapacitorSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Capacity']"/>
+      <jxb:bindings node=".//xs:element[@name='Impedance']"/>
+      <jxb:bindings node=".//xs:element[@name='UMax']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CartesianDimension']">
+      <nav:parent name="parentBuildingBlockSpecification2D"
+                  schema-type="BuildingBlockSpecification2D"/>
+      <jxb:bindings node=".//xs:element[@name='Height']"/>
+      <jxb:bindings node=".//xs:element[@name='Width']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CartesianPoint2D']">
+      <nav:parent name="parentBuildingBlockPositioning2D"
+                  schema-type="BuildingBlockPositioning2D"/>
+      <nav:parent name="parentBuildingBlockSpecification2D"
+                  schema-type="BuildingBlockSpecification2D"/>
+      <nav:parent name="parentConnectionViewSpecification"
+                  schema-type="ConnectionViewSpecification"/>
+      <nav:parent name="parentNetViewSpecification" schema-type="NetViewSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='X']"/>
+      <jxb:bindings node=".//xs:element[@name='Y']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CartesianPoint3D']">
+      <nav:parent name="parentBuildingBlockSpecification3D"
+                  schema-type="BuildingBlockSpecification3D"/>
+      <nav:parent name="parentCavityPositionDetail" schema-type="CavityPositionDetail"/>
+      <nav:parent name="parentLocalGeometrySpecification"
+                  schema-type="LocalGeometrySpecification"/>
+      <jxb:bindings node=".//xs:element[@name='X']"/>
+      <jxb:bindings node=".//xs:element[@name='Y']"/>
+      <jxb:bindings node=".//xs:element[@name='Z']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CartesianVector']"/>
+   <jxb:bindings node="//xs:complexType[@name='CartesianVector2D']">
+      <jxb:bindings node=".//xs:element[@name='X']"/>
+      <jxb:bindings node=".//xs:element[@name='Y']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CartesianVector3D']">
+      <nav:parent name="parentCavityPositionDetail" schema-type="CavityPositionDetail"/>
+      <jxb:bindings node=".//xs:element[@name='X']"/>
+      <jxb:bindings node=".//xs:element[@name='Y']"/>
+      <jxb:bindings node=".//xs:element[@name='Z']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Cavity']">
+      <nav:parent name="parentSlot" schema-type="Slot"/>
+      <jxb:bindings node=".//xs:element[@name='Available']"/>
+      <jxb:bindings node=".//xs:element[@name='CavityNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='HasIntegratedTerminal']"/>
+      <jxb:bindings node=".//xs:element[@name='CavitySpecification']">
+         <nav:ext-reference schema-type="CavitySpecification" inverse="refCavity"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='IntegratedTerminalSpecification']">
+         <nav:ext-reference schema-type="TerminalSpecification" inverse="refCavity"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PositionDetail']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityAccessoryRole']">
+      <jxb:bindings node=".//xs:element[@name='CavityAccessorySpecification']">
+         <nav:ext-reference schema-type="CavityAccessorySpecification"
+                            inverse="refCavityAccessoryRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityAccessorySpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireElementOutsideDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='WireReceptionType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityAddOn']">
+      <nav:parent name="parentSegmentConnectionPoint"
+                  schema-type="SegmentConnectionPoint"/>
+      <jxb:bindings node=".//xs:element[@name='WireAddOn']"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Cavity']">
+         <nav:ext-reference schema-type="Cavity" inverse="refCavityAddOn"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityCoupling']">
+      <nav:parent name="parentSlotCoupling" schema-type="SlotCoupling"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='FirstCavity']">
+         <nav:ext-reference schema-type="CavityReference" inverse="refCavityCoupling"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SecondCavity']">
+         <nav:ext-reference schema-type="CavityReference" inverse="refCavityCoupling"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityMapping']">
+      <nav:parent name="parentSlotMapping" schema-type="SlotMapping"/>
+      <jxb:bindings node=".//xs:element[@name='IdentificationA']"/>
+      <jxb:bindings node=".//xs:element[@name='IdentificationB']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityMounting']">
+      <nav:parent name="parentContactPoint" schema-type="ContactPoint"/>
+      <jxb:bindings node=".//xs:element[@name='CavityAccessory']">
+         <nav:ext-reference schema-type="CavityAccessoryRole" inverse="refCavityMounting"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='EquippedCavityRef']">
+         <nav:ext-reference schema-type="CavityReference" inverse="refCavityMounting"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReplacedPlug']">
+         <nav:ext-reference schema-type="CavityPlugRole" inverse="refCavityMounting"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CavityMountingDetail']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityMountingDetail']">
+      <nav:parent name="parentCavityMounting" schema-type="CavityMounting"/>
+      <jxb:bindings node=".//xs:element[@name='EquippedCavityRef']">
+         <nav:ext-reference schema-type="CavityReference" inverse="refCavityMountingDetail"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='TerminalReceptionReference']">
+         <nav:ext-reference schema-type="TerminalReceptionReference"
+                            inverse="refCavityMountingDetail"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityPartSpecification']">
+      <jxb:bindings node=".//xs:element[@name='CavityDimension']"/>
+      <jxb:bindings node=".//xs:element[@name='Hardness']"/>
+      <jxb:bindings node=".//xs:element[@name='Geometry']"/>
+      <jxb:bindings node=".//xs:element[@name='CompatibleTerminalType']"/>
+      <jxb:bindings node=".//xs:element[@name='CompatibleCavityGeometry']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityPlugRole']">
+      <jxb:bindings node=".//xs:element[@name='CavityPlugSpecification']">
+         <nav:ext-reference schema-type="CavityPlugSpecification" inverse="refCavityPlugRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PluggedCavityRef']">
+         <nav:ext-reference schema-type="CavityReference" inverse="refCavityPlugRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityPlugSpecification']"/>
+   <jxb:bindings node="//xs:complexType[@name='CavityPositionDetail']">
+      <nav:parent name="parentCavity" schema-type="Cavity"/>
+      <jxb:bindings node=".//xs:element[@name='Rotation']"/>
+      <jxb:bindings node=".//xs:element[@name='CavitySealingOffset']"/>
+      <jxb:bindings node=".//xs:element[@name='BaseUnit']">
+         <nav:ext-reference schema-type="Unit" inverse="refCavityPositionDetail"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='InsertionPosition']"/>
+      <jxb:bindings node=".//xs:element[@name='InsertionVector']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityReference']">
+      <nav:parent name="parentSlotReference" schema-type="SlotReference"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentPort']">
+         <nav:ext-reference schema-type="ComponentPort" inverse="refCavityReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferencedCavity']">
+         <nav:ext-reference schema-type="Cavity" inverse="refCavityReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='IntegratedTerminalRole']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavitySealRole']">
+      <jxb:bindings node=".//xs:element[@name='CavitySealSpecification']">
+         <nav:ext-reference schema-type="CavitySealSpecification" inverse="refCavitySealRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavitySealSpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireElementOutsideDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='WireReceptionType']"/>
+      <jxb:bindings node=".//xs:element[@name='InsideDiameter']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavitySpecification']">
+      <jxb:bindings node=".//xs:element[@name='Angle']"/>
+      <jxb:bindings node=".//xs:element[@name='CavityDesign']">
+         <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+         <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Geometry']"/>
+      <jxb:bindings node=".//xs:element[@name='CavityDimension']"/>
+      <jxb:bindings node=".//xs:element[@name='MinWireElementOutsideDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='MaxWireElementOutsideDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='PrimaryLockingType']"/>
+      <jxb:bindings node=".//xs:element[@name='Sealable']"/>
+      <jxb:bindings node=".//xs:element[@name='CompatibleTerminalType']"/>
+      <jxb:bindings node=".//xs:element[@name='CavitySealingLength']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ChangeDescription']">
+      <nav:parent name="parentItemVersion" schema-type="ItemVersion"/>
+      <nav:parent name="parentSheetOrChapter" schema-type="SheetOrChapter"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Label']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='Approver']"/>
+      <jxb:bindings node=".//xs:element[@name='ChangeDate']"/>
+      <jxb:bindings node=".//xs:element[@name='ResponsibleDesigner']"/>
+      <jxb:bindings node=".//xs:element[@name='RelatedChangeRequest']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Coding']">
+      <nav:parent name="parentAbstractSlot" schema-type="AbstractSlot"/>
+      <nav:parent name="parentConnectorHousingSpecification"
+                  schema-type="ConnectorHousingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Coding']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Color']">
+      <jxb:bindings node=".//xs:element[@name='Key']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferenceSystem']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ComplexProperty']">
+      <jxb:bindings node=".//xs:element[@name='CustomProperty']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ComponentConnector']">
+      <nav:parent name="parentComponentNode" schema-type="ComponentNode"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentPort']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ComponentNode']">
+      <nav:parent name="parentComponentNode" schema-type="ComponentNode"/>
+      <nav:parent name="parentConnectionSpecification"
+                  schema-type="ConnectionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentNodeType']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='SubType']"/>
+      <jxb:bindings node=".//xs:element[@name='NetworkNode']">
+         <nav:ext-reference schema-type="NetworkNode" inverse="refComponentNode"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RealizedUsageNode']">
+         <nav:ext-reference schema-type="UsageNode" inverse="refComponentNode"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ChildNode']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentConnector']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ComponentNodeViewItem']">
+      <nav:parent name="parentConnectionViewSpecification"
+                  schema-type="ConnectionViewSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='GridSquare']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentNode']">
+         <nav:ext-reference schema-type="ComponentNode" inverse="refComponentNodeViewItem"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='DisplayedPort']"/>
+      <jxb:bindings node=".//xs:element[@name='Orientation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ComponentPort']">
+      <nav:parent name="parentComponentConnector" schema-type="ComponentConnector"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalDirection']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='NetworkPort']">
+         <nav:ext-reference schema-type="NetworkPort" inverse="refComponentPort"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Signal']">
+         <nav:ext-reference schema-type="Signal" inverse="refComponentPort"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ComponentPortViewItem']">
+      <nav:parent name="parentComponentNodeViewItem" schema-type="ComponentNodeViewItem"/>
+      <nav:parent name="parentConnectionNodeViewItem"
+                  schema-type="ConnectionNodeViewItem"/>
+      <jxb:bindings node=".//xs:element[@name='Side']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentPort']">
+         <nav:ext-reference schema-type="ComponentPort" inverse="refComponentPortViewItem"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CompositeUnit']">
+      <jxb:bindings node=".//xs:element[@name='Factors']">
+         <nav:ext-reference schema-type="Unit" inverse="refCompositeUnit"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CompositionSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Component']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConductorCurrentInformation']">
+      <nav:parent name="parentConductorSpecification"
+                  schema-type="ConductorSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='MaxCurrent']"/>
+      <jxb:bindings node=".//xs:element[@name='EnvironmentTemperature']"/>
+      <jxb:bindings node=".//xs:element[@name='Voltage']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConductorMaterial']">
+      <nav:parent name="parentWireReceptionSpecification"
+                  schema-type="WireReceptionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Material']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConductorSpecification']">
+      <jxb:bindings node=".//xs:element[@name='CrossSectionArea']"/>
+      <jxb:bindings node=".//xs:element[@name='MassInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='Material']"/>
+      <jxb:bindings node=".//xs:element[@name='Resistance']"/>
+      <jxb:bindings node=".//xs:element[@name='Structure']"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='NumberOfStrands']"/>
+      <jxb:bindings node=".//xs:element[@name='PlatingMaterial']"/>
+      <jxb:bindings node=".//xs:element[@name='StrandDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='VoltageRange']"/>
+      <jxb:bindings node=".//xs:element[@name='CurrentInformation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConfigurableElement']">
+      <jxb:bindings node=".//xs:element[@name='ApplicationConstraint']">
+         <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+         <nav:ext-reference schema-type="ApplicationConstraint" inverse="refConfigurableElement"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='AssociatedAssignmentGroups']">
+         <nav:ext-reference schema-type="AssignmentGroup" inverse="refConfigurableElement"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ConfigInfo']">
+         <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+         <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+         <nav:ext-reference schema-type="VariantConfiguration" inverse="refConfigurableElement"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ConfigurationConstraint']">
+         <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConfigurationConstraint']">
+      <nav:parent name="parentConfigurableElement" schema-type="ConfigurableElement"/>
+      <nav:parent name="parentConfigurationConstraintSpecification"
+                  schema-type="ConfigurationConstraintSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ApplicationConstraint']">
+         <nav:ext-reference schema-type="ApplicationConstraint"
+                            inverse="refConfigurationConstraint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ConfigInfo']">
+         <nav:ext-reference schema-type="VariantConfiguration" inverse="refConfigurationConstraint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ConstrainedElements']">
+         <nav:ext-reference schema-type="ConfigurableElement" inverse="refConfigurationConstraint"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConfigurationConstraintSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ConfigurationConstraint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Connection']">
+      <nav:parent name="parentConnectionSpecification"
+                  schema-type="ConnectionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='InstallationInstruction']"/>
+      <jxb:bindings node=".//xs:element[@name='Net']">
+         <nav:ext-reference schema-type="Net" inverse="refConnection"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Signal']">
+         <nav:ext-reference schema-type="Signal" inverse="refConnection"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ConnectionEnd']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectionEnd']">
+      <nav:parent name="parentConnection" schema-type="Connection"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='IsExternalEnd']"/>
+      <jxb:bindings node=".//xs:element[@name='Gender']"/>
+      <jxb:bindings node=".//xs:element[@name='InstallationInstruction']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectedComponentPort']">
+         <nav:ext-reference schema-type="ComponentPort" inverse="refConnectionEnd"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectionGroup']">
+      <nav:parent name="parentConnectionGroup" schema-type="ConnectionGroup"/>
+      <nav:parent name="parentConnectionSpecification"
+                  schema-type="ConnectionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectionGroupType']"/>
+      <jxb:bindings node=".//xs:element[@name='InstallationInstruction']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='Connection']">
+         <nav:ext-reference schema-type="Connection" inverse="refConnectionGroup"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SubGroup']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectionNodeViewItem']">
+      <annox:annotate>@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+      <nav:parent name="parentConnectionViewSpecification"
+                  schema-type="ConnectionViewSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='GridSquare']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentNode']">
+         <nav:ext-reference schema-type="ComponentNode" inverse="refConnectionNodeViewItem"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='DisplayedPort']"/>
+      <jxb:bindings node=".//xs:element[@name='Orientation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectionSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ComponentNode']"/>
+      <jxb:bindings node=".//xs:element[@name='Connection']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectionGroup']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectionViewSpecification']">
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacedNodeViewItems']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacedViewItems']">
+         <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectorHousingCapRole']">
+      <jxb:bindings node=".//xs:element[@name='ConnectorHousingCapSpecification']">
+         <nav:ext-reference schema-type="ConnectorHousingCapSpecification"
+                            inverse="refConnectorHousingCapRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectorHousingCapSpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireAddOn']"/>
+      <jxb:bindings node=".//xs:element[@name='OutletDirection']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectorHousingRole']">
+      <nav:parent name="parentHousingComponentReference"
+                  schema-type="HousingComponentReference"/>
+      <jxb:bindings node=".//xs:element[@name='SealState']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentConnector']">
+         <nav:ext-reference schema-type="ComponentConnector" inverse="refConnectorHousingRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ConnectorHousingSpecification']">
+         <nav:ext-reference schema-type="ConnectorHousingSpecification"
+                            inverse="refConnectorHousingRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SlotReference']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectorHousingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='AverageWireLengthAddOn']"/>
+      <jxb:bindings node=".//xs:element[@name='VoltageRange']"/>
+      <jxb:bindings node=".//xs:element[@name='Coupleable']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectorPositionAssurance']"/>
+      <jxb:bindings node=".//xs:element[@name='OutletDirection']"/>
+      <jxb:bindings node=".//xs:element[@name='Coding']"/>
+      <jxb:bindings node=".//xs:element[@name='SegmentConnectionPoint']"/>
+      <jxb:bindings node=".//xs:element[@name='Slot']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ContactPoint']">
+      <nav:parent name="parentContactingSpecification"
+                  schema-type="ContactingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='MountedTerminal']">
+         <nav:ext-reference schema-type="TerminalRole" inverse="refContactPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CavityMounting']"/>
+      <jxb:bindings node=".//xs:element[@name='WireMounting']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ContactingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ContactPoint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Contract']">
+      <nav:parent name="parentVecContent" schema-type="VecContent"/>
+      <jxb:bindings node=".//xs:element[@name='CompanyName']"/>
+      <jxb:bindings node=".//xs:element[@name='ContractRole']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CopyrightInformation']">
+      <nav:parent name="parentVecContent" schema-type="VecContent"/>
+      <jxb:bindings node=".//xs:element[@name='CopyrightNote']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CoreSpecification']">
+      <jxb:bindings node=".//xs:element[@name='OutsideDiameter']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CorrugatedPipeSpecification']">
+      <jxb:bindings node=".//xs:element[@name='CorrugationHeight']"/>
+      <jxb:bindings node=".//xs:element[@name='CorrugationWidth']"/>
+      <jxb:bindings node=".//xs:element[@name='CorrugationGradient']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CouplingPoint']">
+      <nav:parent name="parentCouplingSpecification" schema-type="CouplingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='FirstConnector']">
+         <nav:ext-reference schema-type="ConnectorHousingRole" inverse="refCouplingPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SecondConnector']">
+         <nav:ext-reference schema-type="ConnectorHousingRole" inverse="refCouplingPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='MatingPoint']"/>
+      <jxb:bindings node=".//xs:element[@name='SlotCoupling']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CouplingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='CouplingPoint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Creation']">
+      <nav:parent name="parentItemVersion" schema-type="ItemVersion"/>
+      <jxb:bindings node=".//xs:element[@name='CreationDate']"/>
+      <jxb:bindings node=".//xs:element[@name='Creator']"/>
+      <jxb:bindings node=".//xs:element[@name='ResponsibleDesigner']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Curve3D']">
+      <nav:parent name="parentGeometrySegment3D" schema-type="GeometrySegment3D"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CustomProperty']">
+      <nav:parent name="parentComplexProperty" schema-type="ComplexProperty"/>
+      <nav:parent name="parentExtendableElement" schema-type="ExtendableElement"/>
+      <jxb:bindings node=".//xs:element[@name='PropertyType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CustomUnit']">
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DateValueProperty']">
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DefaultDimension']">
+      <nav:parent name="parentDefaultDimensionSpecification"
+                  schema-type="DefaultDimensionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='DimensionValueRange']"/>
+      <jxb:bindings node=".//xs:element[@name='DimensionType']"/>
+      <jxb:bindings node=".//xs:element[@name='ToleranceIndication']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DefaultDimensionSpecification']">
+      <jxb:bindings node=".//xs:element[@name='DefaultDimension']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Dimension']">
+      <nav:parent name="parentPlacementSpecification"
+                  schema-type="PlacementSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ValueComponent']"/>
+      <jxb:bindings node=".//xs:element[@name='ValueCalculated']"/>
+      <jxb:bindings node=".//xs:element[@name='DimensionAnchor']">
+         <nav:ext-reference schema-type="DimensionAnchor" inverse="refDimension"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferenceAnchor']">
+         <nav:ext-reference schema-type="DimensionAnchor" inverse="refDimension"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='UnitComponent']">
+         <nav:ext-reference schema-type="Unit" inverse="refDimension"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='DefinedLocations']"/>
+      <jxb:bindings node=".//xs:element[@name='Path']"/>
+      <jxb:bindings node=".//xs:element[@name='Tolerance']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DimensionAnchor']"/>
+   <jxb:bindings node="//xs:complexType[@name='DiodeSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ThresholdVoltage']"/>
+      <jxb:bindings node=".//xs:element[@name='BreakDownVoltage']"/>
+      <jxb:bindings node=".//xs:element[@name='IMax']"/>
+      <jxb:bindings node=".//xs:element[@name='Anode']">
+         <nav:ext-reference schema-type="PinComponent" inverse="refDiodeSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Cathode']">
+         <nav:ext-reference schema-type="PinComponent" inverse="refDiodeSpecification"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DocumentBasedInstruction']">
+      <jxb:bindings node=".//xs:element[@name='ReferencedDocument']">
+         <nav:ext-reference schema-type="DocumentVersion" inverse="refDocumentBasedInstruction"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferencedSheetOrChapter']">
+         <nav:ext-reference schema-type="SheetOrChapter" inverse="refDocumentBasedInstruction"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DocumentRelatedAssignmentGroup']">
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='RelatedIdentification']"/>
+      <jxb:bindings node=".//xs:element[@name='RelatedDocumentVersion']">
+         <nav:ext-reference schema-type="DocumentVersion"
+                            inverse="refDocumentRelatedAssignmentGroup"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RelatedSheetOrChapter']">
+         <nav:ext-reference schema-type="SheetOrChapter"
+                            inverse="refDocumentRelatedAssignmentGroup"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DocumentVersion']">
+      <nav:parent name="parentVecContent" schema-type="VecContent"/>
+      <jxb:bindings node=".//xs:element[@name='DocumentNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='DocumentType']"/>
+      <jxb:bindings node=".//xs:element[@name='DocumentVersion']"/>
+      <jxb:bindings node=".//xs:element[@name='DigitalRepresentationIndex']"/>
+      <jxb:bindings node=".//xs:element[@name='CreatingSystem']"/>
+      <jxb:bindings node=".//xs:element[@name='DataFormat']"/>
+      <jxb:bindings node=".//xs:element[@name='FileName']"/>
+      <jxb:bindings node=".//xs:element[@name='Location']"/>
+      <jxb:bindings node=".//xs:element[@name='NumberOfSheets']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferencedPart']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refDocumentVersion"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RelatedDocument']">
+         <nav:ext-reference schema-type="DocumentVersion" inverse="refDocumentVersion"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ItemEquivalence']"/>
+      <jxb:bindings node=".//xs:element[@name='SheetOrChapter']"/>
+      <jxb:bindings node=".//xs:element[@name='Specification']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DoubleValueProperty']">
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='EEComponentRole']">
+      <jxb:bindings node=".//xs:element[@name='EEComponentSpecification']">
+         <nav:ext-reference schema-type="EEComponentSpecification" inverse="refEEComponentRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ComponentNode']">
+         <nav:ext-reference schema-type="ComponentNode" inverse="refEEComponentRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ExtensionSlotRef']"/>
+      <jxb:bindings node=".//xs:element[@name='HousingComponentRef']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='EEComponentSpecification']">
+      <jxb:bindings node=".//xs:element[@name='PowerConsumption']"/>
+      <jxb:bindings node=".//xs:element[@name='Connections']"/>
+      <jxb:bindings node=".//xs:element[@name='ExtensionSlots']"/>
+      <jxb:bindings node=".//xs:element[@name='HousingComponent']"/>
+      <jxb:bindings node=".//xs:element[@name='States']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='EdgeMountedFixingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='EdgeThickness']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ExtendableElement']">
+      <jxb:bindings node=".//xs:element[@name='ReferencedExternalDocuments']">
+         <nav:ext-reference schema-type="DocumentVersion" inverse="refExtendableElement"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CustomProperty']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ExtensionSlot']">
+      <nav:parent name="parentEEComponentSpecification"
+                  schema-type="EEComponentSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AllowedInserts']">
+         <nav:ext-reference schema-type="PartRelation" inverse="refExtensionSlot"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ExtensionSlotReference']">
+      <nav:parent name="parentEEComponentRole" schema-type="EEComponentRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ExtensionSlot']">
+         <nav:ext-reference schema-type="ExtensionSlot" inverse="refExtensionSlotReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='UsedInserts']">
+         <nav:ext-reference schema-type="EEComponentRole" inverse="refExtensionSlotReference"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ExternalMapping']">
+      <nav:parent name="parentExternalMappingSpecification"
+                  schema-type="ExternalMappingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='ExternalReference']"/>
+      <jxb:bindings node=".//xs:element[@name='MappedElement']">
+         <nav:ext-reference schema-type="ExtendableElement" inverse="refExternalMapping"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ExternalMappingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='MappedDocument']">
+         <nav:ext-reference schema-type="DocumentVersion" inverse="refExternalMappingSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Mappings']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FerriteRole']">
+      <jxb:bindings node=".//xs:element[@name='NumberOfWindings']"/>
+      <jxb:bindings node=".//xs:element[@name='FerriteSpecification']">
+         <nav:ext-reference schema-type="FerriteSpecification" inverse="refFerriteRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FerriteSpecification']"/>
+   <jxb:bindings node="//xs:complexType[@name='FileBasedInstruction']">
+      <jxb:bindings node=".//xs:element[@name='FileName']"/>
+      <jxb:bindings node=".//xs:element[@name='LastModified']"/>
+      <jxb:bindings node=".//xs:element[@name='DataFormat']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FillerSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Material']"/>
+      <jxb:bindings node=".//xs:element[@name='Diameter']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FittingOutlet']">
+      <nav:parent name="parentFittingSpecification" schema-type="FittingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='InnerDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='OuterDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='NominalSize']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
+         <nav:ext-reference schema-type="PlacementPoint" inverse="refFittingOutlet"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FittingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Form']"/>
+      <jxb:bindings node=".//xs:element[@name='Outlet']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FixingRole']">
+      <jxb:bindings node=".//xs:element[@name='FixingSpecification']">
+         <nav:ext-reference schema-type="FixingSpecification" inverse="refFixingRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FixingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Offset']"/>
+      <jxb:bindings node=".//xs:element[@name='NominalSize']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FlatCoreSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Size']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FunctionalAssignmentGroup']">
+      <jxb:bindings node=".//xs:element[@name='FunctionalRequirements']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FunctionalRequirement']">
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferenceSystem']"/>
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FunctionalStructureNode']">
+      <nav:parent name="parentFunctionalStructureNode"
+                  schema-type="FunctionalStructureNode"/>
+      <nav:parent name="parentFunctionalStructureSpecification"
+                  schema-type="FunctionalStructureSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='ContainedGroups']">
+         <nav:ext-reference schema-type="FunctionalAssignmentGroup"
+                            inverse="refFunctionalStructureNode"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ChildNodes']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FunctionalStructureSpecification']">
+      <jxb:bindings node=".//xs:element[@name='RootNode']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FuseComponent']">
+      <nav:parent name="parentMultiFuseSpecification"
+                  schema-type="MultiFuseSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectedPins']">
+         <nav:ext-reference schema-type="PinComponent" inverse="refFuseComponent"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='FuseSpecification']">
+         <nav:ext-reference schema-type="FuseSpecification" inverse="refFuseComponent"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FuseSpecification']">
+      <jxb:bindings node=".//xs:element[@name='FuseType']"/>
+      <jxb:bindings node=".//xs:element[@name='IMax']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GeneralTechnicalPartSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ColorInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='MassInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='MaterialInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='RobustnessProperties']"/>
+      <jxb:bindings node=".//xs:element[@name='TemperatureInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='FitRate']"/>
+      <jxb:bindings node=".//xs:element[@name='UnspecifiedAccessoryPermitted']"/>
+      <jxb:bindings node=".//xs:element[@name='BoundingBox']"/>
+      <jxb:bindings node=".//xs:element[@name='PartRelation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GeometryNode']">
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferenceNode']">
+         <nav:ext-reference schema-type="TopologyNode" inverse="refGeometryNode"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GeometryNode2D']">
+      <nav:parent name="parentBuildingBlockSpecification2D"
+                  schema-type="BuildingBlockSpecification2D"/>
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint']">
+         <nav:ext-reference schema-type="CartesianPoint2D" inverse="refGeometryNode2D"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GeometryNode3D']">
+      <nav:parent name="parentBuildingBlockSpecification3D"
+                  schema-type="BuildingBlockSpecification3D"/>
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint']">
+         <nav:ext-reference schema-type="CartesianPoint3D" inverse="refGeometryNode3D"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GeometrySegment']">
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferenceSegment']">
+         <nav:ext-reference schema-type="TopologySegment" inverse="refGeometrySegment"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GeometrySegment2D']">
+      <nav:parent name="parentBuildingBlockSpecification2D"
+                  schema-type="BuildingBlockSpecification2D"/>
+      <jxb:bindings node=".//xs:element[@name='StartVector']"/>
+      <jxb:bindings node=".//xs:element[@name='EndVector']"/>
+      <jxb:bindings node=".//xs:element[@name='EndNode']">
+         <nav:ext-reference schema-type="GeometryNode2D" inverse="refGeometrySegment2D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='StartNode']">
+         <nav:ext-reference schema-type="GeometryNode2D" inverse="refGeometrySegment2D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PathSegment']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GeometrySegment3D']">
+      <nav:parent name="parentBuildingBlockSpecification3D"
+                  schema-type="BuildingBlockSpecification3D"/>
+      <jxb:bindings node=".//xs:element[@name='StartVector']"/>
+      <jxb:bindings node=".//xs:element[@name='EndVector']"/>
+      <jxb:bindings node=".//xs:element[@name='EndNode']">
+         <nav:ext-reference schema-type="GeometryNode3D" inverse="refGeometrySegment3D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='StartNode']">
+         <nav:ext-reference schema-type="GeometryNode3D" inverse="refGeometrySegment3D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Curve']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GrommetRole']">
+      <jxb:bindings node=".//xs:element[@name='GrommetSpecification']">
+         <nav:ext-reference schema-type="GrommetSpecification" inverse="refGrommetRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CableLeadThroughReference']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='GrommetSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Hardness']"/>
+      <jxb:bindings node=".//xs:element[@name='HoleDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='PlateThickness']"/>
+      <jxb:bindings node=".//xs:element[@name='GrommetType']"/>
+      <jxb:bindings node=".//xs:element[@name='MountingType']"/>
+      <jxb:bindings node=".//xs:element[@name='CableLeadThrough']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='HarnessDrawingSpecification2D']">
+      <jxb:bindings node=".//xs:element[@name='BuildingBlockPositionings']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='HarnessGeometrySpecification3D']">
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='BuildingBlockPositionings']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='HoleMountedFixingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='HoleDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='PlateThickness']"/>
+      <jxb:bindings node=".//xs:element[@name='HoleType']"/>
+      <jxb:bindings node=".//xs:element[@name='HoleShape']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='HousingComponent']">
+      <nav:parent name="parentEEComponentSpecification"
+                  schema-type="EEComponentSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='CompatibleTypes']"/>
+      <jxb:bindings node=".//xs:element[@name='HousingSpecification']">
+         <nav:ext-reference schema-type="ConnectorHousingSpecification"
+                            inverse="refHousingComponent"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PinComponent']"/>
+      <jxb:bindings node=".//xs:element[@name='SegmentConnectionPoint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='HousingComponentReference']">
+      <nav:parent name="parentEEComponentRole" schema-type="EEComponentRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentConnector']">
+         <nav:ext-reference schema-type="ComponentConnector" inverse="refHousingComponentReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='HousingComponent']">
+         <nav:ext-reference schema-type="HousingComponent" inverse="refHousingComponentReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ConnectorHousingRole']"/>
+      <jxb:bindings node=".//xs:element[@name='PinComponentRef']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='IECUnit']">
+      <jxb:bindings node=".//xs:element[@name='IecUnitName']"/>
+      <jxb:bindings node=".//xs:element[@name='IecPrefix']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ImperialUnit']">
+      <jxb:bindings node=".//xs:element[@name='ImperialUnitName']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Instruction']">
+      <nav:parent name="parentOccurrenceOrUsage" schema-type="OccurrenceOrUsage"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='InsulationSpecification']">
+      <jxb:bindings node=".//xs:element[@name='BaseColor']"/>
+      <jxb:bindings node=".//xs:element[@name='FirstIdentificationColor']"/>
+      <jxb:bindings node=".//xs:element[@name='SecondIdentificationColor']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelIdentificationColor']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelIdentificationType']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelIdentificationValue']"/>
+      <jxb:bindings node=".//xs:element[@name='Material']"/>
+      <jxb:bindings node=".//xs:element[@name='Thickness']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelingTechnology']"/>
+      <jxb:bindings node=".//xs:element[@name='AllowedLabelingTechnology']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='IntegerValueProperty']">
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='InternalComponentConnection']">
+      <nav:parent name="parentEEComponentSpecification"
+                  schema-type="EEComponentSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ConductorSpecification']">
+         <nav:ext-reference schema-type="ConductorSpecification"
+                            inverse="refInternalComponentConnection"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Pins']">
+         <nav:ext-reference schema-type="PinComponent" inverse="refInternalComponentConnection"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='InternalTerminalConnection']">
+      <nav:parent name="parentTerminalSpecification" schema-type="TerminalSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='TerminalReception']">
+         <nav:ext-reference schema-type="TerminalReception" inverse="refInternalTerminalConnection"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireReception']">
+         <nav:ext-reference schema-type="WireReception" inverse="refInternalTerminalConnection"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ItemEquivalence']">
+      <nav:parent name="parentDocumentVersion" schema-type="DocumentVersion"/>
+      <jxb:bindings node=".//xs:element[@name='CompanyName']"/>
+      <jxb:bindings node=".//xs:element[@name='Item']">
+         <nav:ext-reference schema-type="ItemVersion" inverse="refItemEquivalence"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ItemHistoryEntry']">
+      <nav:parent name="parentVecContent" schema-type="VecContent"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='PredecessorVersion']">
+         <nav:ext-reference schema-type="ItemVersion" inverse="refItemHistoryEntry"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SuccessorVersion']">
+         <nav:ext-reference schema-type="ItemVersion" inverse="refItemHistoryEntry"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ItemVersion']">
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='CompanyName']"/>
+      <jxb:bindings node=".//xs:element[@name='ProcessingInstruction']"/>
+      <jxb:bindings node=".//xs:element[@name='Contract']">
+         <nav:ext-reference schema-type="Contract" inverse="refItemVersion"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CopyrightInformation']">
+         <nav:ext-reference schema-type="CopyrightInformation" inverse="refItemVersion"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Approval']"/>
+      <jxb:bindings node=".//xs:element[@name='ChangeDescription']"/>
+      <jxb:bindings node=".//xs:element[@name='Creation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='LabelingRole']">
+      <jxb:bindings node=".//xs:element[@name='LabelType']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelValue']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelingTechnology']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelingSpecification']">
+         <nav:ext-reference schema-type="LabelingSpecification" inverse="refLabelingRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='LabelingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='LabelType']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelValue']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelingTechnology']"/>
+      <jxb:bindings node=".//xs:element[@name='AllowedLabelingTechnology']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='LocalGeometrySpecification']">
+      <jxb:bindings node=".//xs:element[@name='BaseUnit']">
+         <nav:ext-reference schema-type="Unit" inverse="refLocalGeometrySpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='BoundingBoxPositioning']"/>
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint']"/>
+      <jxb:bindings node=".//xs:element[@name='Positions']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='LocalPosition']">
+      <nav:parent name="parentLocalGeometrySpecification"
+                  schema-type="LocalGeometrySpecification"/>
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint']">
+         <nav:ext-reference schema-type="CartesianPoint3D" inverse="refLocalPosition"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='LocalizedString']"/>
+   <jxb:bindings node="//xs:complexType[@name='LocalizedStringProperty']">
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='LocalizedTypedString']">
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Location']">
+      <nav:parent name="parentDimension" schema-type="Dimension"/>
+      <nav:parent name="parentNodeMapping" schema-type="NodeMapping"/>
+      <nav:parent name="parentOnPointPlacement" schema-type="OnPointPlacement"/>
+      <nav:parent name="parentOnWayPlacement" schema-type="OnWayPlacement"/>
+      <nav:parent name="parentZoneCoverage" schema-type="ZoneCoverage"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='MatchingId']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacedPlacementPoints']">
+         <nav:ext-reference schema-type="PlacementPointReference" inverse="refLocation"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Mapping']">
+      <nav:parent name="parentMappingSpecification" schema-type="MappingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='A']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refMapping"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='B']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refMapping"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SlotMapping']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MappingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Mapping']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MassInformation']">
+      <jxb:bindings node=".//xs:element[@name='DeterminationType']"/>
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+      <jxb:bindings node=".//xs:element[@name='ValueSource']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Material']">
+      <jxb:bindings node=".//xs:element[@name='Key']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferenceSystem']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MatingDetail']">
+      <nav:parent name="parentMatingPoint" schema-type="MatingPoint"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Connection']">
+         <nav:ext-reference schema-type="Connection" inverse="refMatingDetail"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='FirstTerminalReception']">
+         <nav:ext-reference schema-type="TerminalReceptionReference" inverse="refMatingDetail"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SecondTerminalReception']">
+         <nav:ext-reference schema-type="TerminalReceptionReference" inverse="refMatingDetail"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MatingPoint']">
+      <nav:parent name="parentCouplingPoint" schema-type="CouplingPoint"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Connection']">
+         <nav:ext-reference schema-type="Connection" inverse="refMatingPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='FirstTerminalRole']">
+         <nav:ext-reference schema-type="TerminalRole" inverse="refMatingPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SecondTerminalRole']">
+         <nav:ext-reference schema-type="TerminalRole" inverse="refMatingPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='MatingDetail']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MeasurePointPosition']">
+      <jxb:bindings node=".//xs:element[@name='MeasurementPoint']">
+         <nav:ext-reference schema-type="MeasurementPoint" inverse="refMeasurePointPosition"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MeasurementPoint']">
+      <nav:parent name="parentPlaceableElementSpecification"
+                  schema-type="PlaceableElementSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MeasurementPointReference']">
+      <nav:parent name="parentPlaceableElementRole" schema-type="PlaceableElementRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='MeasurementPoint']">
+         <nav:ext-reference schema-type="MeasurementPoint" inverse="refMeasurementPointReference"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ModularSlot']">
+      <jxb:bindings node=".//xs:element[@name='Optional']"/>
+      <jxb:bindings node=".//xs:element[@name='AllowedInserts']">
+         <nav:ext-reference schema-type="PartRelation" inverse="refModularSlot"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ModularSlotAddOn']">
+      <nav:parent name="parentSegmentConnectionPoint"
+                  schema-type="SegmentConnectionPoint"/>
+      <jxb:bindings node=".//xs:element[@name='WireAddOn']"/>
+      <jxb:bindings node=".//xs:element[@name='Slot']">
+         <nav:ext-reference schema-type="ModularSlot" inverse="refModularSlotAddOn"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ModularSlotReference']">
+      <jxb:bindings node=".//xs:element[@name='UsedInserts']">
+         <nav:ext-reference schema-type="ConnectorHousingRole" inverse="refModularSlotReference"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ModuleFamily']">
+      <nav:parent name="parentModuleFamilySpecification"
+                  schema-type="ModuleFamilySpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='ModuleInFamily']">
+         <nav:ext-reference schema-type="PartWithSubComponentsRole" inverse="refModuleFamily"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ModuleFamilySpecification']">
+      <jxb:bindings node=".//xs:element[@name='ModuleFamily']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ModuleList']">
+      <nav:parent name="parentModuleListSpecification"
+                  schema-type="ModuleListSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='CompletionComponents']">
+         <nav:ext-reference schema-type="OccurrenceOrUsage" inverse="refModuleList"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ModuleInList']">
+         <nav:ext-reference schema-type="PartWithSubComponentsRole" inverse="refModuleList"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ModuleListSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ModuleListConfiguration']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MultiCavityPlugSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Assignment']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MultiCavitySealSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Assignment']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MultiFuseSpecification']">
+      <jxb:bindings node=".//xs:element[@name='FuseType']"/>
+      <jxb:bindings node=".//xs:element[@name='IMaxTotal']"/>
+      <jxb:bindings node=".//xs:element[@name='FuseComponents']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NURBSControlPoint']">
+      <nav:parent name="parentNURBSCurve" schema-type="NURBSCurve"/>
+      <jxb:bindings node=".//xs:element[@name='Weight']"/>
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint3D']">
+         <nav:ext-reference schema-type="CartesianPoint3D" inverse="refNURBSControlPoint"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NURBSCurve']">
+      <jxb:bindings node=".//xs:element[@name='Degree']"/>
+      <jxb:bindings node=".//xs:element[@name='Knots']"/>
+      <jxb:bindings node=".//xs:element[@name='ControlPoint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Net']">
+      <nav:parent name="parentNetSpecification" schema-type="NetSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='NetType']">
+         <nav:ext-reference schema-type="NetType" inverse="refNet"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='NetworkPort']">
+         <nav:ext-reference schema-type="NetworkPort" inverse="refNet"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NetGroup']">
+      <nav:parent name="parentNetSpecification" schema-type="NetSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='NetGroupType']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='Net']">
+         <nav:ext-reference schema-type="Net" inverse="refNetGroup"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NetSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Net']"/>
+      <jxb:bindings node=".//xs:element[@name='NetGroup']"/>
+      <jxb:bindings node=".//xs:element[@name='NetType']"/>
+      <jxb:bindings node=".//xs:element[@name='NetworkNode']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NetType']">
+      <nav:parent name="parentNetSpecification" schema-type="NetSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalType']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalSubType']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalInformationType']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalTransmissionMediumType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NetViewSpecification']">
+      <jxb:bindings node=".//xs:element[@name='CartesianPoint']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacedViewItems']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NetworkNode']">
+      <nav:parent name="parentNetSpecification" schema-type="NetSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='NetworkNodeType']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='SubType']"/>
+      <jxb:bindings node=".//xs:element[@name='RealizedUsageNode']">
+         <nav:ext-reference schema-type="UsageNode" inverse="refNetworkNode"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Port']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NetworkNodeViewItem']">
+      <nav:parent name="parentNetViewSpecification" schema-type="NetViewSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='GridSquare']"/>
+      <jxb:bindings node=".//xs:element[@name='NetworkNode']">
+         <nav:ext-reference schema-type="NetworkNode" inverse="refNetworkNodeViewItem"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='DisplayedPort']"/>
+      <jxb:bindings node=".//xs:element[@name='Orientation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NetworkPort']">
+      <nav:parent name="parentNetworkNode" schema-type="NetworkNode"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalDirection']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='NetType']">
+         <nav:ext-reference schema-type="NetType" inverse="refNetworkPort"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NetworkPortViewItem']">
+      <nav:parent name="parentNetworkNodeViewItem" schema-type="NetworkNodeViewItem"/>
+      <jxb:bindings node=".//xs:element[@name='Side']"/>
+      <jxb:bindings node=".//xs:element[@name='NetworkPort']">
+         <nav:ext-reference schema-type="NetworkPort" inverse="refNetworkPortViewItem"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NodeLocation']">
+      <jxb:bindings node=".//xs:element[@name='ReferencedNode']">
+         <nav:ext-reference schema-type="TopologyNode" inverse="refNodeLocation"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NodeMapping']">
+      <nav:parent name="parentTopologyMappingSpecification"
+                  schema-type="TopologyMappingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='InnerNode']">
+         <nav:ext-reference schema-type="TopologyNode" inverse="refNodeMapping"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='MappedPosition']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NumericalValue']">
+      <jxb:bindings node=".//xs:element[@name='ValueComponent']"/>
+      <jxb:bindings node=".//xs:element[@name='Tolerance']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='NumericalValueProperty']">
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='OccurrenceOrUsage']">
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='RealizedUsageNode']">
+         <nav:ext-reference schema-type="UsageNode" inverse="refOccurrenceOrUsage"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferenceElement']">
+         <nav:ext-reference schema-type="OccurrenceOrUsage" inverse="refOccurrenceOrUsage"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='InstallationInstruction']"/>
+      <jxb:bindings node=".//xs:element[@name='Role']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='OccurrenceOrUsageViewItem2D']">
+      <nav:parent name="parentBuildingBlockSpecification2D"
+                  schema-type="BuildingBlockSpecification2D"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='GridSquare']"/>
+      <jxb:bindings node=".//xs:element[@name='OccurrenceOrUsage']">
+         <nav:ext-reference schema-type="OccurrenceOrUsage"
+                            inverse="refOccurrenceOrUsageViewItem2D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Orientation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='OccurrenceOrUsageViewItem3D']">
+      <nav:parent name="parentBuildingBlockSpecification3D"
+                  schema-type="BuildingBlockSpecification3D"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='OccurrenceOrUsage']">
+         <nav:ext-reference schema-type="OccurrenceOrUsage"
+                            inverse="refOccurrenceOrUsageViewItem3D"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Orientation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='OnPointPlacement']">
+      <jxb:bindings node=".//xs:element[@name='Location']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='OnWayPlacement']">
+      <jxb:bindings node=".//xs:element[@name='EndLocation']"/>
+      <jxb:bindings node=".//xs:element[@name='Path']"/>
+      <jxb:bindings node=".//xs:element[@name='StartLocation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='OpenCavitiesAssignment']">
+      <nav:parent name="parentMultiCavitySealSpecification"
+                  schema-type="MultiCavitySealSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='OpenCavities']">
+         <nav:ext-reference schema-type="Cavity" inverse="refOpenCavitiesAssignment"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='OpenWireEndTerminalRole']"/>
+   <jxb:bindings node="//xs:complexType[@name='OpenWireEndTerminalSpecification']"/>
+   <jxb:bindings node="//xs:complexType[@name='OtherUnit']">
+      <jxb:bindings node=".//xs:element[@name='OtherUnitName']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartOccurrence']">
+      <nav:parent name="parentCompositionSpecification"
+                  schema-type="CompositionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='IsSecondaryAlternative']"/>
+      <jxb:bindings node=".//xs:element[@name='AlternativeOccurrence']">
+         <nav:ext-reference schema-type="PartOccurrence" inverse="refPartOccurrence"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='InstanciatedOccurrence']">
+         <nav:ext-reference schema-type="PartOccurrence" inverse="refPartOccurrence"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Part']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refPartOccurrence"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RealizedPartUsage']">
+         <nav:ext-reference schema-type="PartUsage" inverse="refPartOccurrence"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartOrUsageRelatedSpecification']">
+      <jxb:bindings node=".//xs:element[@name='SpecialPartType']"/>
+      <jxb:bindings node=".//xs:element[@name='DescribedPart']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refPartOrUsageRelatedSpecification"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartRelation']">
+      <nav:parent name="parentGeneralTechnicalPartSpecification"
+                  schema-type="GeneralTechnicalPartSpecification"/>
+      <nav:parent name="parentWireTupleSpecification"
+                  schema-type="WireTupleSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='RelationType']"/>
+      <jxb:bindings node=".//xs:element[@name='CustomRelationExpression']"/>
+      <jxb:bindings node=".//xs:element[@name='AccessoryPart']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refPartRelation"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartStructureSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Content']"/>
+      <jxb:bindings node=".//xs:element[@name='InBillOfMaterial']">
+         <nav:ext-reference schema-type="OccurrenceOrUsage" inverse="refPartStructureSpecification"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartSubstitutionSpecification']">
+      <jxb:bindings node=".//xs:element[@name='AlternativePartVersions']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refPartSubstitutionSpecification"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartUsage']">
+      <nav:parent name="parentPartUsageSpecification"
+                  schema-type="PartUsageSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='PrimaryPartUsageType']"/>
+      <jxb:bindings node=".//xs:element[@name='InstanciatedUsage']">
+         <nav:ext-reference schema-type="PartUsage" inverse="refPartUsage"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PartOrUsageRelatedSpecification']">
+         <nav:ext-reference schema-type="PartOrUsageRelatedSpecification" inverse="refPartUsage"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PartSubstitution']">
+         <nav:ext-reference schema-type="PartSubstitutionSpecification" inverse="refPartUsage"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartUsageSpecification']">
+      <jxb:bindings node=".//xs:element[@name='PartUsage']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartVersion']">
+      <nav:parent name="parentVecContent" schema-type="VecContent"/>
+      <jxb:bindings node=".//xs:element[@name='PartNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='PartVersion']"/>
+      <jxb:bindings node=".//xs:element[@name='PrimaryPartType']"/>
+      <jxb:bindings node=".//xs:element[@name='IsPreferredPart']"/>
+      <jxb:bindings node=".//xs:element[@name='PreferredUseCase']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Nature']"/>
+      <jxb:bindings node=".//xs:element[@name='Project']">
+         <nav:ext-reference schema-type="Project" inverse="refPartVersion"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PartWithSubComponentsRole']">
+      <jxb:bindings node=".//xs:element[@name='PartStructureSpecification']">
+         <nav:ext-reference schema-type="PartStructureSpecification"
+                            inverse="refPartWithSubComponentsRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SubComponent']">
+         <nav:ext-reference schema-type="OccurrenceOrUsage" inverse="refPartWithSubComponentsRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Path']">
+      <nav:parent name="parentDimension" schema-type="Dimension"/>
+      <nav:parent name="parentOnWayPlacement" schema-type="OnWayPlacement"/>
+      <nav:parent name="parentRouting" schema-type="Routing"/>
+      <nav:parent name="parentSegmentMapping" schema-type="SegmentMapping"/>
+      <nav:parent name="parentTopologyBendingRestriction"
+                  schema-type="TopologyBendingRestriction"/>
+      <jxb:bindings node=".//xs:element[@name='Segment']">
+         <nav:ext-reference schema-type="TopologySegment" inverse="refPath"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PathSegment']">
+      <nav:parent name="parentGeometrySegment2D" schema-type="GeometrySegment2D"/>
+      <jxb:bindings node=".//xs:element[@name='CurveRadius']"/>
+      <jxb:bindings node=".//xs:element[@name='ControlPoint']">
+         <nav:ext-reference schema-type="CartesianPoint2D" inverse="refPathSegment"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Permission']">
+      <nav:parent name="parentApproval" schema-type="Approval"/>
+      <jxb:bindings node=".//xs:element[@name='Permission']"/>
+      <jxb:bindings node=".//xs:element[@name='PermissionDate']"/>
+      <jxb:bindings node=".//xs:element[@name='Permitter']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Person']">
+      <jxb:bindings node=".//xs:element[@name='CompanyName']"/>
+      <jxb:bindings node=".//xs:element[@name='Department']"/>
+      <jxb:bindings node=".//xs:element[@name='FirstName']"/>
+      <jxb:bindings node=".//xs:element[@name='LastName']"/>
+      <jxb:bindings node=".//xs:element[@name='PhoneNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='EmailAddress']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinComponent']">
+      <nav:parent name="parentHousingComponent" schema-type="HousingComponent"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='PinComponentType']"/>
+      <jxb:bindings node=".//xs:element[@name='PinSpecification']">
+         <nav:ext-reference schema-type="TerminalSpecification" inverse="refPinComponent"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferencedCavity']">
+         <nav:ext-reference schema-type="Cavity" inverse="refPinComponent"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Behaviour']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinComponentBehavior']">
+      <nav:parent name="parentPinComponent" schema-type="PinComponent"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalDirection']"/>
+      <jxb:bindings node=".//xs:element[@name='PinType']"/>
+      <jxb:bindings node=".//xs:element[@name='ApplianceType']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='Signal']">
+         <nav:ext-reference schema-type="Signal" inverse="refPinComponentBehavior"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CurrentInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='OpticalInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='VoltageInformation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinComponentReference']">
+      <nav:parent name="parentHousingComponentReference"
+                  schema-type="HousingComponentReference"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='PinComponent']">
+         <nav:ext-reference schema-type="PinComponent" inverse="refPinComponentReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='TerminalRole']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinCurrentInformation']">
+      <nav:parent name="parentPinComponentBehavior" schema-type="PinComponentBehavior"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Current']"/>
+      <jxb:bindings node=".//xs:element[@name='Timing']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinOpticalInformation']">
+      <nav:parent name="parentPinComponentBehavior" schema-type="PinComponentBehavior"/>
+      <jxb:bindings node=".//xs:element[@name='Frequency']"/>
+      <jxb:bindings node=".//xs:element[@name='Attenuation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinTiming']">
+      <nav:parent name="parentPinCurrentInformation" schema-type="PinCurrentInformation"/>
+      <nav:parent name="parentPinVoltageInformation" schema-type="PinVoltageInformation"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Time']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinVoltageInformation']">
+      <nav:parent name="parentPinComponentBehavior" schema-type="PinComponentBehavior"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Voltage']"/>
+      <jxb:bindings node=".//xs:element[@name='Timing']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinWireMappingPoint']">
+      <nav:parent name="parentPinWireMappingSpecification"
+                  schema-type="PinWireMappingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='ContactPoint']">
+         <nav:ext-reference schema-type="ContactPoint" inverse="refPinWireMappingPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PinComponentReference']">
+         <nav:ext-reference schema-type="PinComponentReference" inverse="refPinWireMappingPoint"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PinWireMappingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='PinWireMappingPoint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PlaceableElementRole']">
+      <jxb:bindings node=".//xs:element[@name='PlaceableElementSpecification']">
+         <nav:ext-reference schema-type="PlaceableElementSpecification"
+                            inverse="refPlaceableElementRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='MeasurementPointReference']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPointReference']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PlaceableElementSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ValidPlacementTypes']"/>
+      <jxb:bindings node=".//xs:element[@name='MeasurementPoint']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Placement']">
+      <nav:parent name="parentPlacementSpecification"
+                  schema-type="PlacementSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='IsOnTopOf']">
+         <nav:ext-reference schema-type="Placement" inverse="refPlacement"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PlacedElement']">
+         <nav:ext-reference schema-type="PlaceableElementRole" inverse="refPlacement"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PlacementPoint']">
+      <nav:parent name="parentPlaceableElementSpecification"
+                  schema-type="PlaceableElementSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='SegmentDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='SupplementaryParts']">
+         <nav:ext-reference schema-type="PartRelation" inverse="refPlacementPoint"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PlacementPointPosition']">
+      <jxb:bindings node=".//xs:element[@name='Tangent']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
+         <nav:ext-reference schema-type="PlacementPoint" inverse="refPlacementPointPosition"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PlacementPointReference']">
+      <nav:parent name="parentPlaceableElementRole" schema-type="PlaceableElementRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
+         <nav:ext-reference schema-type="PlacementPoint" inverse="refPlacementPointReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='UsedSupplementaryParts']">
+         <nav:ext-reference schema-type="OccurrenceOrUsage" inverse="refPlacementPointReference"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PlacementSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Dimension']"/>
+      <jxb:bindings node=".//xs:element[@name='Placement']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PluggableTerminalRole']"/>
+   <jxb:bindings node="//xs:complexType[@name='PluggableTerminalSpecification']">
+      <jxb:bindings node=".//xs:element[@name='TerminalType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PotentialDistributorSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Screwable']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltNominalSize']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PowerConsumption']">
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Project']">
+      <nav:parent name="parentVecContent" schema-type="VecContent"/>
+      <jxb:bindings node=".//xs:element[@name='CarClassificationLevel2']"/>
+      <jxb:bindings node=".//xs:element[@name='CarClassificationLevel3']"/>
+      <jxb:bindings node=".//xs:element[@name='CarClassificationLevel4']"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ProtectionMaterialLength']">
+      <nav:parent name="parentWireProtectionRole" schema-type="WireProtectionRole"/>
+      <jxb:bindings node=".//xs:element[@name='LengthValue']"/>
+      <jxb:bindings node=".//xs:element[@name='ValueDetermination']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='RelaySpecification']">
+      <jxb:bindings node=".//xs:element[@name='IMax']"/>
+      <jxb:bindings node=".//xs:element[@name='RelaisType']"/>
+      <jxb:bindings node=".//xs:element[@name='LowNoise']"/>
+      <jxb:bindings node=".//xs:element[@name='ApplianceType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='RequirementsConformanceSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ConformanceStatement']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='RequirementsConformanceStatement']">
+      <nav:parent name="parentRequirementsConformanceSpecification"
+                  schema-type="RequirementsConformanceSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Satisfies']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='DocumentVersion']">
+         <nav:ext-reference schema-type="DocumentVersion"
+                            inverse="refRequirementsConformanceStatement"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='RingTerminalRole']"/>
+   <jxb:bindings node="//xs:complexType[@name='RingTerminalSpecification']">
+      <jxb:bindings node=".//xs:element[@name='BoltDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltNominalSize']"/>
+      <jxb:bindings node=".//xs:element[@name='Thickness']"/>
+      <jxb:bindings node=".//xs:element[@name='BoltType']"/>
+      <jxb:bindings node=".//xs:element[@name='OutsideDimension']"/>
+      <jxb:bindings node=".//xs:element[@name='TorsionProtection']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='RobustnessProperties']">
+      <jxb:bindings node=".//xs:element[@name='Class']"/>
+      <jxb:bindings node=".//xs:element[@name='ClassKey']"/>
+      <jxb:bindings node=".//xs:element[@name='ClassReferenceSystem']"/>
+      <jxb:bindings node=".//xs:element[@name='HasRobustness']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Role']">
+      <nav:parent name="parentOccurrenceOrUsage" schema-type="OccurrenceOrUsage"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='RoutableElement']"/>
+   <jxb:bindings node="//xs:complexType[@name='Routing']">
+      <nav:parent name="parentRoutingSpecification" schema-type="RoutingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='SpecialRoutedComment']"/>
+      <jxb:bindings node=".//xs:element[@name='SpecialRouted']"/>
+      <jxb:bindings node=".//xs:element[@name='MandatorySegment']">
+         <nav:ext-reference schema-type="TopologySegment" inverse="refRouting"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RoutedElement']">
+         <nav:ext-reference schema-type="RoutableElement" inverse="refRouting"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Path']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='RoutingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Routing']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SIUnit']">
+      <jxb:bindings node=".//xs:element[@name='SiUnitName']"/>
+      <jxb:bindings node=".//xs:element[@name='SiPrefix']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SealedCavitiesAssignment']">
+      <nav:parent name="parentMultiCavityPlugSpecification"
+                  schema-type="MultiCavityPlugSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='SealedCavities']">
+         <nav:ext-reference schema-type="Cavity" inverse="refSealedCavitiesAssignment"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SegmentConnectionPoint']">
+      <nav:parent name="parentConnectorHousingSpecification"
+                  schema-type="ConnectorHousingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
+         <nav:ext-reference schema-type="PlacementPoint" inverse="refSegmentConnectionPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReachableCavities']">
+         <nav:ext-reference schema-type="Cavity" inverse="refSegmentConnectionPoint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ModularSlotAddOns']"/>
+      <jxb:bindings node=".//xs:element[@name='CavityAddOns']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SegmentConnectionPointHC']">
+      <nav:parent name="parentHousingComponent" schema-type="HousingComponent"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='WireAddOn']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectorSegmentConnectionPoint']">
+         <nav:ext-reference schema-type="SegmentConnectionPoint"
+                            inverse="refSegmentConnectionPointHC"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
+         <nav:ext-reference schema-type="PlacementPoint" inverse="refSegmentConnectionPointHC"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SegmentCrossSectionArea']">
+      <nav:parent name="parentTopologySegment" schema-type="TopologySegment"/>
+      <jxb:bindings node=".//xs:element[@name='Area']"/>
+      <jxb:bindings node=".//xs:element[@name='ValueDetermination']"/>
+      <jxb:bindings node=".//xs:element[@name='CrossSectionAreaType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SegmentLength']">
+      <nav:parent name="parentTopologySegment" schema-type="TopologySegment"/>
+      <jxb:bindings node=".//xs:element[@name='Length']"/>
+      <jxb:bindings node=".//xs:element[@name='Classification']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SegmentLocation']">
+      <jxb:bindings node=".//xs:element[@name='Offset']"/>
+      <jxb:bindings node=".//xs:element[@name='Anchor']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferencedSegment']">
+         <nav:ext-reference schema-type="TopologySegment" inverse="refSegmentLocation"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SegmentMapping']">
+      <nav:parent name="parentTopologyMappingSpecification"
+                  schema-type="TopologyMappingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='InnerSegment']">
+         <nav:ext-reference schema-type="TopologySegment" inverse="refSegmentMapping"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='MappedPosition']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SheetOrChapter']">
+      <nav:parent name="parentDocumentVersion" schema-type="DocumentVersion"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='SheetNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='SheetVersion']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='SheetFormat']"/>
+      <jxb:bindings node=".//xs:element[@name='SheetSize']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferencedPart']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refSheetOrChapter"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ChangeDescription']"/>
+      <jxb:bindings node=".//xs:element[@name='Specification']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ShieldSpecification']">
+      <jxb:bindings node=".//xs:element[@name='OpticalTissueDensity']"/>
+      <jxb:bindings node=".//xs:element[@name='WindingType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ShrinkableTubeSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ShrinkingFactor']"/>
+      <jxb:bindings node=".//xs:element[@name='MaximumLongitudinalShrinkage']"/>
+      <jxb:bindings node=".//xs:element[@name='Resin']"/>
+      <jxb:bindings node=".//xs:element[@name='WaterAbsorbtion']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Signal']">
+      <nav:parent name="parentSignalSpecification" schema-type="SignalSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalName']"/>
+      <jxb:bindings node=".//xs:element[@name='ClampName']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalInformationType']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalTransmissionMediumType']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalForm']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalCurve']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalType']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalSubType']"/>
+      <jxb:bindings node=".//xs:element[@name='CurrentType']"/>
+      <jxb:bindings node=".//xs:element[@name='NominalVoltage']"/>
+      <jxb:bindings node=".//xs:element[@name='DataRate']"/>
+      <jxb:bindings node=".//xs:element[@name='NetType']">
+         <nav:ext-reference schema-type="NetType" inverse="refSignal"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RecommendedConductorSpecification']">
+         <nav:ext-reference schema-type="ConductorSpecification" inverse="refSignal"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RecommendedInsulationSpecification']">
+         <nav:ext-reference schema-type="InsulationSpecification" inverse="refSignal"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireTupleRequirements']">
+         <nav:ext-reference schema-type="WireTupleSpecification" inverse="refSignal"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SignalSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Signal']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SimpleValueProperty']">
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Size']">
+      <jxb:bindings node=".//xs:element[@name='Width']"/>
+      <jxb:bindings node=".//xs:element[@name='Height']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Slot']">
+      <jxb:bindings node=".//xs:element[@name='ColorInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='SealingType']"/>
+      <jxb:bindings node=".//xs:element[@name='PermittedTerminalSupplierCompanyNames']"/>
+      <jxb:bindings node=".//xs:element[@name='SupplementaryParts']">
+         <nav:ext-reference schema-type="PartRelation" inverse="refSlot"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Cavity']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SlotCoupling']">
+      <nav:parent name="parentCouplingPoint" schema-type="CouplingPoint"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='FirstSlot']">
+         <nav:ext-reference schema-type="AbstractSlotReference" inverse="refSlotCoupling"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SecondSlot']">
+         <nav:ext-reference schema-type="AbstractSlotReference" inverse="refSlotCoupling"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CavityCoupling']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SlotLayout']">
+      <nav:parent name="parentSlotSpecification" schema-type="SlotSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='GridX']"/>
+      <jxb:bindings node=".//xs:element[@name='GridY']"/>
+      <jxb:bindings node=".//xs:element[@name='RowCount']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SlotMapping']">
+      <nav:parent name="parentMapping" schema-type="Mapping"/>
+      <jxb:bindings node=".//xs:element[@name='IdentificationA']"/>
+      <jxb:bindings node=".//xs:element[@name='IdentificationB']"/>
+      <jxb:bindings node=".//xs:element[@name='CavityMapping']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SlotReference']">
+      <jxb:bindings node=".//xs:element[@name='UsedSupplementaryParts']">
+         <nav:ext-reference schema-type="OccurrenceOrUsage" inverse="refSlotReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CavityReference']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SlotSpecification']">
+      <jxb:bindings node=".//xs:element[@name='EmvProtectionRequired']"/>
+      <jxb:bindings node=".//xs:element[@name='Gender']"/>
+      <jxb:bindings node=".//xs:element[@name='LayoutType']"/>
+      <jxb:bindings node=".//xs:element[@name='SecondaryLocking']"/>
+      <jxb:bindings node=".//xs:element[@name='NumberOfCavities']"/>
+      <jxb:bindings node=".//xs:element[@name='SlotLayout']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SoundDampingClass']">
+      <jxb:bindings node=".//xs:element[@name='ClassKey']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferenceSystem']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SpecificRole']">
+      <jxb:bindings node=".//xs:element[@name='SpecificRoleType']"/>
+      <jxb:bindings node=".//xs:element[@name='Specification']">
+         <nav:ext-reference schema-type="PartOrUsageRelatedSpecification" inverse="refSpecificRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Specification']">
+      <nav:parent name="parentDocumentVersion" schema-type="DocumentVersion"/>
+      <nav:parent name="parentSheetOrChapter" schema-type="SheetOrChapter"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SpliceTerminalRole']">
+      <jxb:bindings node=".//xs:element[@name='SpliceType']"/>
+      <jxb:bindings node=".//xs:element[@name='InsulationState']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SpliceTerminalSpecification']"/>
+   <jxb:bindings node="//xs:complexType[@name='StripeSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Length']"/>
+      <jxb:bindings node=".//xs:element[@name='SegmentDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='Width']"/>
+      <jxb:bindings node=".//xs:element[@name='Thickness']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SwitchingState']">
+      <nav:parent name="parentEEComponentSpecification"
+                  schema-type="EEComponentSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='SwitchedConnections']">
+         <nav:ext-reference schema-type="InternalComponentConnection" inverse="refSwitchingState"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TapeRole']">
+      <jxb:bindings node=".//xs:element[@name='TapeOverlap']"/>
+      <jxb:bindings node=".//xs:element[@name='TapeOverlapRelative']"/>
+      <jxb:bindings node=".//xs:element[@name='TapingDirection']"/>
+      <jxb:bindings node=".//xs:element[@name='Gradient']"/>
+      <jxb:bindings node=".//xs:element[@name='WindingType']"/>
+      <jxb:bindings node=".//xs:element[@name='WindingFirmness']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TapeSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Backing']"/>
+      <jxb:bindings node=".//xs:element[@name='Adhesive']"/>
+      <jxb:bindings node=".//xs:element[@name='Width']"/>
+      <jxb:bindings node=".//xs:element[@name='Thickness']"/>
+      <jxb:bindings node=".//xs:element[@name='CoilCoreDiameter']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TemperatureInformation']">
+      <jxb:bindings node=".//xs:element[@name='TemperatureRange']"/>
+      <jxb:bindings node=".//xs:element[@name='TemperatureType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalCurrentInformation']">
+      <nav:parent name="parentTerminalSpecification" schema-type="TerminalSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='CurrentRange']"/>
+      <jxb:bindings node=".//xs:element[@name='NominalVoltage']"/>
+      <jxb:bindings node=".//xs:element[@name='CoreCrossSectionArea']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalPairing']">
+      <nav:parent name="parentTerminalPairingSpecification"
+                  schema-type="TerminalPairingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='ContactResistance']"/>
+      <jxb:bindings node=".//xs:element[@name='MatingForce']"/>
+      <jxb:bindings node=".//xs:element[@name='UnmatingForce']"/>
+      <jxb:bindings node=".//xs:element[@name='FirstTerminal']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refTerminalPairing"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferencedCoreSpecification']">
+         <nav:ext-reference schema-type="ConductorSpecification" inverse="refTerminalPairing"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SecondTerminal']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refTerminalPairing"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalPairingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='TerminalPairing']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalReception']">
+      <nav:parent name="parentTerminalSpecification" schema-type="TerminalSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Gender']"/>
+      <jxb:bindings node=".//xs:element[@name='TerminalReceptionSpecification']">
+         <nav:ext-reference schema-type="TerminalReceptionSpecification"
+                            inverse="refTerminalReception"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalReceptionReference']">
+      <nav:parent name="parentTerminalRole" schema-type="TerminalRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='TerminalReception']">
+         <nav:ext-reference schema-type="TerminalReception" inverse="refTerminalReceptionReference"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalReceptionSpecification']">
+      <jxb:bindings node=".//xs:element[@name='CavityDesign']">
+         <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+         <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PlatingMaterial']"/>
+      <jxb:bindings node=".//xs:element[@name='PrimaryLockingType']"/>
+      <jxb:bindings node=".//xs:element[@name='PullOutForce']"/>
+      <jxb:bindings node=".//xs:element[@name='ContactRangeLength']"/>
+      <jxb:bindings node=".//xs:element[@name='TerminalType']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalRole']">
+      <nav:parent name="parentCavityReference" schema-type="CavityReference"/>
+      <nav:parent name="parentPinComponentReference" schema-type="PinComponentReference"/>
+      <jxb:bindings node=".//xs:element[@name='SealState']"/>
+      <jxb:bindings node=".//xs:element[@name='ComponentPort']">
+         <nav:ext-reference schema-type="ComponentPort" inverse="refTerminalRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='TerminalSpecification']">
+         <nav:ext-reference schema-type="TerminalSpecification" inverse="refTerminalRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='TerminalReceptionReference']"/>
+      <jxb:bindings node=".//xs:element[@name='WireReceptionReference']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalSpecification']">
+      <jxb:bindings node=".//xs:element[@name='VoltageRange']"/>
+      <jxb:bindings node=".//xs:element[@name='SealingType']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectionALength']"/>
+      <jxb:bindings node=".//xs:element[@name='OverallLength']"/>
+      <jxb:bindings node=".//xs:element[@name='CurrentInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='InternalTerminalConnection']"/>
+      <jxb:bindings node=".//xs:element[@name='TerminalReception']"/>
+      <jxb:bindings node=".//xs:element[@name='WireReception']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalType']">
+      <nav:parent name="parentTerminalReceptionSpecification"
+                  schema-type="TerminalReceptionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Name']"/>
+      <jxb:bindings node=".//xs:element[@name='NominalSize']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TextBasedInstruction']">
+      <jxb:bindings node=".//xs:element[@name='InstallationInstruction']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Tolerance']">
+      <nav:parent name="parentDefaultDimension" schema-type="DefaultDimension"/>
+      <nav:parent name="parentDimension" schema-type="Dimension"/>
+      <nav:parent name="parentNumericalValue" schema-type="NumericalValue"/>
+      <jxb:bindings node=".//xs:element[@name='LowerBoundary']"/>
+      <jxb:bindings node=".//xs:element[@name='UpperBoundary']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologyBendingRestriction']">
+      <nav:parent name="parentTopologyBendingRestrictionSpecification"
+                  schema-type="TopologyBendingRestrictionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='MinBendRadiusDynamic']"/>
+      <jxb:bindings node=".//xs:element[@name='MinBendRadiusStatic']"/>
+      <jxb:bindings node=".//xs:element[@name='RestrictedPath']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologyBendingRestrictionSpecification']">
+      <jxb:bindings node=".//xs:element[@name='TopologyBendingRestriction']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologyGroupSpecification']">
+      <jxb:bindings node=".//xs:element[@name='TopologySpecification']">
+         <nav:ext-reference schema-type="TopologySpecification"
+                            inverse="refTopologyGroupSpecification"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologyMappingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='InnerTopolgy']">
+         <nav:ext-reference schema-type="TopologySpecification"
+                            inverse="refTopologyMappingSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='OuterTopology']">
+         <nav:ext-reference schema-type="TopologySpecification"
+                            inverse="refTopologyMappingSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='NodeMapping']"/>
+      <jxb:bindings node=".//xs:element[@name='SegmentMapping']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologyNode']">
+      <nav:parent name="parentTopologySpecification" schema-type="TopologySpecification"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='MatchingPointId']"/>
+      <jxb:bindings node=".//xs:element[@name='ProcessingInstruction']"/>
+      <jxb:bindings node=".//xs:element[@name='NodeType']"/>
+      <jxb:bindings node=".//xs:element[@name='InstantiatedNode']">
+         <nav:ext-reference schema-type="TopologyNode" inverse="refTopologyNode"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RealizedUsageNode']">
+         <nav:ext-reference schema-type="UsageNode" inverse="refTopologyNode"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologySegment']">
+      <nav:parent name="parentTopologySpecification" schema-type="TopologySpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Form']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='ProcessingInstruction']"/>
+      <jxb:bindings node=".//xs:element[@name='EndNode']">
+         <nav:ext-reference schema-type="TopologyNode" inverse="refTopologySegment"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='InstantiatedSegment']">
+         <nav:ext-reference schema-type="TopologySegment" inverse="refTopologySegment"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='StartNode']">
+         <nav:ext-reference schema-type="TopologyNode" inverse="refTopologySegment"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='CrossSectionAreaInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='LengthInformation']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologySpecification']">
+      <jxb:bindings node=".//xs:element[@name='TopologyNode']"/>
+      <jxb:bindings node=".//xs:element[@name='TopologySegment']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologyZone']">
+      <nav:parent name="parentTopologyZone" schema-type="TopologyZone"/>
+      <nav:parent name="parentTopologyZoneSpecification"
+                  schema-type="TopologyZoneSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='AmbientTemperature']"/>
+      <jxb:bindings node=".//xs:element[@name='RequiredRobustnessProperties']"/>
+      <jxb:bindings node=".//xs:element[@name='Assignment']"/>
+      <jxb:bindings node=".//xs:element[@name='SubZone']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TopologyZoneSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Zone']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Transformation2D']">
+      <nav:parent name="parentComponentNodeViewItem" schema-type="ComponentNodeViewItem"/>
+      <nav:parent name="parentConnectionNodeViewItem"
+                  schema-type="ConnectionNodeViewItem"/>
+      <nav:parent name="parentNetworkNodeViewItem" schema-type="NetworkNodeViewItem"/>
+      <nav:parent name="parentOccurrenceOrUsageViewItem2D"
+                  schema-type="OccurrenceOrUsageViewItem2D"/>
+      <jxb:bindings node=".//xs:element[@name='A11']"/>
+      <jxb:bindings node=".//xs:element[@name='A12']"/>
+      <jxb:bindings node=".//xs:element[@name='A21']"/>
+      <jxb:bindings node=".//xs:element[@name='A22']"/>
+      <jxb:bindings node=".//xs:element[@name='Origin']">
+         <nav:ext-reference schema-type="CartesianPoint2D" inverse="refTransformation2D"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Transformation3D']">
+      <nav:parent name="parentBuildingBlockPositioning3D"
+                  schema-type="BuildingBlockPositioning3D"/>
+      <nav:parent name="parentLocalGeometrySpecification"
+                  schema-type="LocalGeometrySpecification"/>
+      <nav:parent name="parentOccurrenceOrUsageViewItem3D"
+                  schema-type="OccurrenceOrUsageViewItem3D"/>
+      <jxb:bindings node=".//xs:element[@name='A11']"/>
+      <jxb:bindings node=".//xs:element[@name='A12']"/>
+      <jxb:bindings node=".//xs:element[@name='A13']"/>
+      <jxb:bindings node=".//xs:element[@name='A21']"/>
+      <jxb:bindings node=".//xs:element[@name='A22']"/>
+      <jxb:bindings node=".//xs:element[@name='A23']"/>
+      <jxb:bindings node=".//xs:element[@name='A31']"/>
+      <jxb:bindings node=".//xs:element[@name='A32']"/>
+      <jxb:bindings node=".//xs:element[@name='A33']"/>
+      <jxb:bindings node=".//xs:element[@name='Origin']">
+         <nav:ext-reference schema-type="CartesianPoint3D" inverse="refTransformation3D"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TubeSpecification']">
+      <jxb:bindings node=".//xs:element[@name='BendRadius']"/>
+      <jxb:bindings node=".//xs:element[@name='InnerDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='WallThickness']"/>
+      <jxb:bindings node=".//xs:element[@name='IsSlit']"/>
+      <jxb:bindings node=".//xs:element[@name='SlitStyle']"/>
+      <jxb:bindings node=".//xs:element[@name='NominalSize']"/>
+      <jxb:bindings node=".//xs:element[@name='SecondaryNominalSize']"/>
+      <jxb:bindings node=".//xs:element[@name='Shape']"/>
+      <jxb:bindings node=".//xs:element[@name='OuterDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='Height']"/>
+      <jxb:bindings node=".//xs:element[@name='Width']"/>
+      <jxb:bindings node=".//xs:element[@name='Length']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='USUnit']">
+      <jxb:bindings node=".//xs:element[@name='UsUnitName']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='Unit']">
+      <nav:parent name="parentVecContent" schema-type="VecContent"/>
+      <jxb:bindings node=".//xs:element[@name='Exponent']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='UsageConstraint']">
+      <nav:parent name="parentUsageConstraintSpecification"
+                  schema-type="UsageConstraintSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='FromDate']"/>
+      <jxb:bindings node=".//xs:element[@name='ToDate']"/>
+      <jxb:bindings node=".//xs:element[@name='FromSerialNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='ToSerialNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='ProjectPhase']"/>
+      <jxb:bindings node=".//xs:element[@name='FromEffectivityControlKey']"/>
+      <jxb:bindings node=".//xs:element[@name='ToEffectivityControlKey']"/>
+      <jxb:bindings node=".//xs:element[@name='Project']">
+         <nav:ext-reference schema-type="Project" inverse="refUsageConstraint"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='UsageNode']">
+         <nav:ext-reference schema-type="UsageNode" inverse="refUsageConstraint"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='UsageConstraintSpecification']">
+      <jxb:bindings node=".//xs:element[@name='ConstrainedParts']">
+         <nav:ext-reference schema-type="PartVersion" inverse="refUsageConstraintSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='PartUsageConstraint']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='UsageNode']">
+      <nav:parent name="parentUsageNode" schema-type="UsageNode"/>
+      <nav:parent name="parentUsageNodeSpecification"
+                  schema-type="UsageNodeSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='UsageNodeType']"/>
+      <jxb:bindings node=".//xs:element[@name='UsedInProject']">
+         <nav:ext-reference schema-type="Project" inverse="refUsageNode"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SubUsageNodes']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='UsageNodeSpecification']">
+      <jxb:bindings node=".//xs:element[@name='UsageNodes']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ValueRange']">
+      <jxb:bindings node=".//xs:element[@name='Minimum']"/>
+      <jxb:bindings node=".//xs:element[@name='Maximum']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ValueRangeProperty']">
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ValueWithUnit']">
+      <jxb:bindings node=".//xs:element[@name='UnitComponent']">
+         <nav:ext-reference schema-type="Unit" inverse="refValueWithUnit"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VariantCode']">
+      <nav:parent name="parentVariantCodeSpecification"
+                  schema-type="VariantCodeSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='CodeType']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VariantCodeSpecification']">
+      <jxb:bindings node=".//xs:element[@name='VariantCode']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VariantConfiguration']">
+      <nav:parent name="parentVariantConfigurationSpecification"
+                  schema-type="VariantConfigurationSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='LogisticControlString']"/>
+      <jxb:bindings node=".//xs:element[@name='LogisticControlExpression']"/>
+      <jxb:bindings node=".//xs:element[@name='ConfigurationType']"/>
+      <jxb:bindings node=".//xs:element[@name='BaseInclusion']">
+         <nav:ext-reference schema-type="VariantConfiguration" inverse="refVariantConfiguration"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VariantConfigurationSpecification']">
+      <jxb:bindings node=".//xs:element[@name='VariantConfiguration']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VariantGroup']">
+      <nav:parent name="parentVariantGroupSpecification"
+                  schema-type="VariantGroupSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='GroupType']"/>
+      <jxb:bindings node=".//xs:element[@name='VariantCode']">
+         <nav:ext-reference schema-type="VariantCode" inverse="refVariantGroup"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VariantGroupSpecification']">
+      <jxb:bindings node=".//xs:element[@name='VariantGroup']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VariantStructureNode']">
+      <nav:parent name="parentVariantStructureNode" schema-type="VariantStructureNode"/>
+      <nav:parent name="parentVariantStructureSpecification"
+                  schema-type="VariantStructureSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Abbreviation']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='ContainedGroups']">
+         <nav:ext-reference schema-type="VariantGroup" inverse="refVariantStructureNode"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ChildNodes']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VariantStructureSpecification']">
+      <jxb:bindings node=".//xs:element[@name='RootNode']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='VecContent']">
+      <jxb:bindings node=".//xs:element[@name='VecVersion']"/>
+      <jxb:bindings node=".//xs:element[@name='GeneratingSystemName']"/>
+      <jxb:bindings node=".//xs:element[@name='DateOfCreation']"/>
+      <jxb:bindings node=".//xs:element[@name='GeneratingSystemVersion']"/>
+      <jxb:bindings node=".//xs:element[@name='StandardCopyrightInformation']">
+         <nav:ext-reference schema-type="CopyrightInformation" inverse="refVecContent"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Contract']"/>
+      <jxb:bindings node=".//xs:element[@name='CopyrightInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='DocumentVersion']"/>
+      <jxb:bindings node=".//xs:element[@name='ItemHistoryEntry']"/>
+      <jxb:bindings node=".//xs:element[@name='PartVersion']"/>
+      <jxb:bindings node=".//xs:element[@name='Project']"/>
+      <jxb:bindings node=".//xs:element[@name='Unit']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireElement']">
+      <nav:parent name="parentWireElement" schema-type="WireElement"/>
+      <nav:parent name="parentWireSpecification" schema-type="WireSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='WireElementSpecification']">
+         <nav:ext-reference schema-type="WireElementSpecification" inverse="refWireElement"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SubWireElement']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireElementReference']">
+      <nav:parent name="parentWireRole" schema-type="WireRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Unconnected']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelValue']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelType']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelPosition']"/>
+      <jxb:bindings node=".//xs:element[@name='LabelingTechnology']"/>
+      <jxb:bindings node=".//xs:element[@name='Connection']">
+         <nav:ext-reference schema-type="Connection" inverse="refWireElementReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ConnectionGroup']">
+         <nav:ext-reference schema-type="ConnectionGroup" inverse="refWireElementReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferencedWireElement']">
+         <nav:ext-reference schema-type="WireElement" inverse="refWireElementReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Signal']">
+         <nav:ext-reference schema-type="Signal" inverse="refWireElementReference"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireEnd']"/>
+      <jxb:bindings node=".//xs:element[@name='WireLength']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireElementSpecification']">
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='MinBendRadiusDynamic']"/>
+      <jxb:bindings node=".//xs:element[@name='MinBendRadiusStatic']"/>
+      <jxb:bindings node=".//xs:element[@name='OutsideDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='SuitedForDynamicUse']"/>
+      <jxb:bindings node=".//xs:element[@name='Impedance']"/>
+      <jxb:bindings node=".//xs:element[@name='Size']"/>
+      <jxb:bindings node=".//xs:element[@name='ValidWireReceptionTypes']"/>
+      <jxb:bindings node=".//xs:element[@name='GridSpacing']"/>
+      <jxb:bindings node=".//xs:element[@name='Shape']"/>
+      <jxb:bindings node=".//xs:element[@name='TransmissionMediumType']"/>
+      <jxb:bindings node=".//xs:element[@name='ConductorSpecification']">
+         <nav:ext-reference schema-type="ConductorSpecification"
+                            inverse="refWireElementSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='FillerSpecification']">
+         <nav:ext-reference schema-type="FillerSpecification" inverse="refWireElementSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='InsulationSpecification']">
+         <nav:ext-reference schema-type="InsulationSpecification"
+                            inverse="refWireElementSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='SubWireElementSpecification']">
+         <nav:ext-reference schema-type="WireElementSpecification"
+                            inverse="refWireElementSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireGroupSpecification']">
+         <nav:ext-reference schema-type="WireGroupSpecification"
+                            inverse="refWireElementSpecification"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireEnd']">
+      <nav:parent name="parentWireElementReference" schema-type="WireElementReference"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='PositionOnWire']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectionEnd']">
+         <nav:ext-reference schema-type="ConnectionEnd" inverse="refWireEnd"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireEndAccessoryRole']">
+      <jxb:bindings node=".//xs:element[@name='WireEndAccessorySpecification']">
+         <nav:ext-reference schema-type="WireEndAccessorySpecification"
+                            inverse="refWireEndAccessoryRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireEndAccessorySpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireReceptionSpecification']">
+         <nav:ext-reference schema-type="WireReceptionSpecification"
+                            inverse="refWireEndAccessorySpecification"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireGroupSpecification']">
+      <jxb:bindings node=".//xs:element[@name='GroupType']"/>
+      <jxb:bindings node=".//xs:element[@name='LengthOfTwist']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireGrouping']">
+      <nav:parent name="parentWireGrouping" schema-type="WireGrouping"/>
+      <nav:parent name="parentWireGroupingSpecification"
+                  schema-type="WireGroupingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectionGroup']">
+         <nav:ext-reference schema-type="ConnectionGroup" inverse="refWireGrouping"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='RelatedWireElementReference']">
+         <nav:ext-reference schema-type="WireElementReference" inverse="refWireGrouping"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireGroupSpecification']">
+         <nav:ext-reference schema-type="WireGroupSpecification" inverse="refWireGrouping"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ContainedWireGroupings']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireGroupingSpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireGrouping']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireLength']">
+      <nav:parent name="parentWireElementReference" schema-type="WireElementReference"/>
+      <jxb:bindings node=".//xs:element[@name='LengthType']"/>
+      <jxb:bindings node=".//xs:element[@name='LengthValue']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireMounting']">
+      <nav:parent name="parentContactPoint" schema-type="ContactPoint"/>
+      <jxb:bindings node=".//xs:element[@name='MountedCavitySeal']">
+         <nav:ext-reference schema-type="CavitySealRole" inverse="refWireMounting"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferencedWireEnd']">
+         <nav:ext-reference schema-type="WireEnd" inverse="refWireMounting"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireEndAccessory']">
+         <nav:ext-reference schema-type="WireEndAccessoryRole" inverse="refWireMounting"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireMountingDetail']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireMountingDetail']">
+      <nav:parent name="parentWireMounting" schema-type="WireMounting"/>
+      <jxb:bindings node=".//xs:element[@name='ContactedWireReception']">
+         <nav:ext-reference schema-type="WireReceptionReference" inverse="refWireMountingDetail"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ReferencedWireEnd']">
+         <nav:ext-reference schema-type="WireEnd" inverse="refWireMountingDetail"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireProtectionRole']">
+      <jxb:bindings node=".//xs:element[@name='ProtectionLength']"/>
+      <jxb:bindings node=".//xs:element[@name='WireProtectionSpecification']">
+         <nav:ext-reference schema-type="WireProtectionSpecification"
+                            inverse="refWireProtectionRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='MaterialLength']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireProtectionSpecification']">
+      <jxb:bindings node=".//xs:element[@name='SoundDampingClass']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireReception']">
+      <nav:parent name="parentTerminalSpecification" schema-type="TerminalSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='Angle']"/>
+      <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
+         <nav:ext-reference schema-type="PlacementPoint" inverse="refWireReception"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireReceptionSpecification']">
+         <nav:ext-reference schema-type="WireReceptionSpecification" inverse="refWireReception"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireReceptionAddOn']">
+      <nav:parent name="parentWireReceptionSpecification"
+                  schema-type="WireReceptionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='WireAddOn']"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireReceptionReference']">
+      <nav:parent name="parentTerminalRole" schema-type="TerminalRole"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='WireReception']">
+         <nav:ext-reference schema-type="WireReception" inverse="refWireReceptionReference"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireReceptionSpecification']">
+      <jxb:bindings node=".//xs:element[@name='CoreCrossSectionArea']"/>
+      <jxb:bindings node=".//xs:element[@name='InsulationDisplacementLength']"/>
+      <jxb:bindings node=".//xs:element[@name='MultiContact']"/>
+      <jxb:bindings node=".//xs:element[@name='WireReceptionType']"/>
+      <jxb:bindings node=".//xs:element[@name='WireElementOutsideDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='PlatingMaterial']"/>
+      <jxb:bindings node=".//xs:element[@name='Sealable']"/>
+      <jxb:bindings node=".//xs:element[@name='FrontBellMouthLength']"/>
+      <jxb:bindings node=".//xs:element[@name='ConductorCrimpLength']"/>
+      <jxb:bindings node=".//xs:element[@name='RearBellMouthLength']"/>
+      <jxb:bindings node=".//xs:element[@name='CrimpConnectionLength']"/>
+      <jxb:bindings node=".//xs:element[@name='InsulationCrimpLength']"/>
+      <jxb:bindings node=".//xs:element[@name='CutOffTabLength']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectionBLength']"/>
+      <jxb:bindings node=".//xs:element[@name='AddOns']"/>
+      <jxb:bindings node=".//xs:element[@name='ValidConductorMaterials']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireRole']">
+      <jxb:bindings node=".//xs:element[@name='WireSpecification']">
+         <nav:ext-reference schema-type="WireSpecification" inverse="refWireRole"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireElementReference']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireSpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireElementSpecification']">
+         <nav:ext-reference schema-type="WireElementSpecification" inverse="refWireSpecification"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireElement']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireTupleSpecification']">
+      <jxb:bindings node=".//xs:element[@name='FixationRequired']"/>
+      <jxb:bindings node=".//xs:element[@name='FixationOffset']"/>
+      <jxb:bindings node=".//xs:element[@name='MaximumUntwistSingleSided']"/>
+      <jxb:bindings node=".//xs:element[@name='MaximumUntwistDualSided']"/>
+      <jxb:bindings node=".//xs:element[@name='FixationAccessory']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireTupleTermination']">
+      <nav:parent name="parentWireTupleTerminationSpecification"
+                  schema-type="WireTupleTerminationSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Fixation']"/>
+      <jxb:bindings node=".//xs:element[@name='FixationOffset']"/>
+      <jxb:bindings node=".//xs:element[@name='PermittedUntwist']"/>
+      <jxb:bindings node=".//xs:element[@name='AssociatedWireEnds']">
+         <nav:ext-reference schema-type="WireEnd" inverse="refWireTupleTermination"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='WireTupleSpecification']">
+         <nav:ext-reference schema-type="WireTupleSpecification" inverse="refWireTupleTermination"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireTupleTerminationSpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireTupleTermination']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireType']">
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferenceSystem']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ZoneAssignment']">
+      <nav:parent name="parentTopologyZone" schema-type="TopologyZone"/>
+      <jxb:bindings node=".//xs:element[@name='AssignedSegment']">
+         <nav:ext-reference schema-type="TopologySegment" inverse="refZoneAssignment"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='Coverage']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ZoneCoverage']">
+      <nav:parent name="parentZoneAssignment" schema-type="ZoneAssignment"/>
+      <jxb:bindings node=".//xs:element[@name='FirstLocation']"/>
+      <jxb:bindings node=".//xs:element[@name='SecondLocation']"/>
+   </jxb:bindings>
+</jxb:bindings>

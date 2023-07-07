@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.foursoft.harness.vec</groupId>
         <artifactId>vec-parent</artifactId>
-        <version>5.0.0</version>
+        <version>5.1.0</version>
     </parent>
 
     <name>VEC 2.X</name>
@@ -46,12 +46,13 @@
                             <locale>en</locale>
                             <encoding>UTF-8</encoding>
                             <schemaIncludes>
-                                <include>vec2/vec_2.0.0.xsd</include>
+                                <include>vec2/vec_2.0.2.xsd</include>
                             </schemaIncludes>
                             <bindingIncludes>
                                 <include>vec2/*.xjb</include>
                             </bindingIncludes>
                             <args>
+                                <arg>-Xannotate</arg>
                                 <arg>-Xext-navs</arg>
                                 <arg>-Xjavadoc</arg>
                                 <arg>-Xinheritance</arg>
@@ -67,6 +68,11 @@
                                     <groupId>org.patrodyne.jvnet</groupId>
                                     <artifactId>hisrc-basicjaxb-plugins</artifactId>
                                     <version>${hisrc-higherjaxb-maven-plugin.version}</version>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.patrodyne.jvnet</groupId>
+                                    <artifactId>hisrc-hyperjaxb-annox-plugin</artifactId>
+                                    <version>${hisrc-hyperjaxb-annox-plugin.version}</version>
                                 </plugin>
                                 <plugin>
                                     <groupId>org.apache.cxf.xjcplugins</groupId>
