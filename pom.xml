@@ -20,7 +20,7 @@
         <jakarta.version>4.0.3</jakarta.version>
         <slf4j.version>2.0.7</slf4j.version>
         <logback-classic.version>1.4.8</logback-classic.version>
-        <junit.jupiter.version>5.9.3</junit.jupiter.version>
+        <junit.jupiter.version>5.10.0</junit.jupiter.version>
         <assertj-core.version>3.24.2</assertj-core.version>
         <maven-core.version>3.9.2</maven-core.version>
 
@@ -156,6 +156,12 @@
                 <artifactId>hisrc-higherjaxb-maven-plugin-testing</artifactId>
                 <version>${hisrc-higherjaxb-maven-plugin.version}</version>
                 <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
