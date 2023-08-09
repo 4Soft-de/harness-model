@@ -35,7 +35,7 @@
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
 
         <!-- xjc-maven wrapper -->
-        <hisrc-higherjaxb-maven-plugin.version>2.1.0</hisrc-higherjaxb-maven-plugin.version>
+        <hisrc-higherjaxb-maven-plugin.version>2.1.1</hisrc-higherjaxb-maven-plugin.version>
         <!-- it's plugins -->
         <hisrc-hyperjaxb-annox-plugin.version>2.1.0</hisrc-hyperjaxb-annox-plugin.version>
         <jaxb-visitor.version>3.1.0</jaxb-visitor.version>
