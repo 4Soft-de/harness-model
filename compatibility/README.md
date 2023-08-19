@@ -31,14 +31,14 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-core', version: 'VERSION'
 ```
 
-### Compatibility VEC 1.1.X to VEC 1.2.X
+### Compatibility VEC 1.2.X to VEC 2.0.X
 
 #### Maven
 
 ```xml
 <dependency>
     <groupId>com.foursoft.harness.compatibility</groupId>
-    <artifactId>compatibility-vec11to12</artifactId>
+    <artifactId>compatibility-vec12to20</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
@@ -46,7 +46,7 @@ implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility
 #### Gradle
 
 ```groovy
-implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-vec11to12', version: 'VERSION'
+implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-vec12to20', version: 'VERSION'
 ```
 
 ## Contributing

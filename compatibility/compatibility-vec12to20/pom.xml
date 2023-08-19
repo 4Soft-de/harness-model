@@ -7,9 +7,9 @@
         <artifactId>compatibility-parent</artifactId>
         <version>5.1.1-SNAPSHOT</version>
     </parent>
-    <name>Compatibility VEC 1.1.X To VEC 1.2.X</name>
-    <artifactId>compatibility-vec11to12</artifactId>
-    <description>The VEC 1.1.* to 1.2.* layer.</description>
+    <name>Compatibility VEC 1.2.X To VEC 2.0.X</name>
+    <artifactId>compatibility-vec12to20</artifactId>
+    <description>The VEC 1.2.* to 2.0.* layer.</description>
 
     <dependencies>
         <dependency>
@@ -17,20 +17,22 @@
             <artifactId>compatibility-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>compatibility-vec-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <!-- Project -->
         <dependency>
             <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v113</artifactId>
+            <artifactId>vec-v12x</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v12x</artifactId>
+            <artifactId>vec-v2x</artifactId>
             <version>${project.version}</version>
         </dependency>
 

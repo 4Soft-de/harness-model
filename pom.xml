@@ -95,6 +95,24 @@
             <organization>4Soft GmbH</organization>
             <organizationUrl>https://www.4soft.de</organizationUrl>
         </developer>
+        <developer>
+            <name>Benedikt Linke</name>
+            <email>linke@4soft.de</email>
+            <organization>4Soft GmbH</organization>
+            <organizationUrl>https://www.4soft.de</organizationUrl>
+        </developer>
+        <developer>
+            <name>Daniel Gabl</name>
+            <email>gabl@4soft.de</email>
+            <organization>4Soft GmbH</organization>
+            <organizationUrl>https://www.4soft.de</organizationUrl>
+        </developer>
+        <developer>
+            <name>Tobias Fehlmann</name>
+            <email>fehlmann@4soft.de</email>
+            <organization>4Soft GmbH</organization>
+            <organizationUrl>https://www.4soft.de</organizationUrl>
+        </developer>
     </developers>
 
     <dependencyManagement>
