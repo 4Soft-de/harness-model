@@ -23,11 +23,12 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.common.util;
+package com.foursoft.harness.compatibility.vec.common.util;
 
 import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import com.foursoft.harness.compatibility.vec.common.util.VecVersionDetector;
-import com.foursoft.harness.compatibility.vec11to12.TestFiles;
+import com.foursoft.harness.compatibility.vec.common.TestFiles;
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

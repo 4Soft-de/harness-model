@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC Common
+ * Compatibility VEC 1.1.X To VEC 1.2.X
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,13 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-module com.foursoft.harness.compatibility.vec.common {
-    requires transitive com.foursoft.harness.compatibility.core;
-    requires org.slf4j;
-    requires java.xml;
-    requires jakarta.xml.bind;
-    requires com.foursoft.harness.vec.common;
+package com.foursoft.harness.compatibility.vec.common;
 
-    exports com.foursoft.harness.compatibility.vec.common;
-    exports com.foursoft.harness.compatibility.vec.common.util;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.util.Objects;
+
+public final class TestFiles {
+
+    public static final String OLD_BEETLE = "/vec11x/oldbeetle_vec113.vec";
+
+    private TestFiles() {
+        // hide constructor
+    }
+
+    public static InputStream getInputStream(final String path) {
+        final InputStream resourceAsStream = TestFiles.class.getResourceAsStream(path);
+        Objects.requireNonNull(resourceAsStream, "Couldn't get resource " + path);
+        return new BufferedInputStream(resourceAsStream);
+    }
+
 }
