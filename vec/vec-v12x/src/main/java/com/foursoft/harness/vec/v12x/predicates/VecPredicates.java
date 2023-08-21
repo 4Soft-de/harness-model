@@ -37,6 +37,8 @@ import java.util.function.Predicate;
  */
 public final class VecPredicates {
 
+    private static final String DOCUMENT_TYPE_PART_MASTER = "PartMaster";
+
     private VecPredicates() {
         // hide default constructor
     }
@@ -53,16 +55,41 @@ public final class VecPredicates {
                 .anyMatch(VecPlacementType.ON_POINT::equals);
     }
 
+    /**
+     * Checks if the given localized string is german.
+     *
+     * @return check result.
+     */
     public static Predicate<VecAbstractLocalizedString> germanLanguageCode() {
         return languageCode(VecLanguageCode.DE);
     }
 
+    /**
+     * Checks if the given localized string is english.
+     *
+     * @return check result.
+     */
     public static Predicate<VecAbstractLocalizedString> englishLanguageCode() {
         return languageCode(VecLanguageCode.EN);
     }
 
+    /**
+     * Checks if the given localized string is of the given locale.
+     *
+     * @param code language code to check.
+     * @return check result.
+     */
     public static Predicate<VecAbstractLocalizedString> languageCode(final VecLanguageCode code) {
         return localizedString -> code == localizedString.getLanguageCode();
+    }
+
+    /**
+     * Checks if the given {@link VecDocumentVersion} is of type 'PartMaster'.
+     *
+     * @return check result.
+     */
+    public static Predicate<VecDocumentVersion> partMasterDocument() {
+        return documentVersion -> documentVersion.getDocumentType().equals(DOCUMENT_TYPE_PART_MASTER);
     }
 
     /**
