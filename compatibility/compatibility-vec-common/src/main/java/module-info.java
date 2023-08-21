@@ -28,9 +28,8 @@ module com.foursoft.harness.compatibility.vec.common {
     requires org.slf4j;
     requires java.xml;
     requires jakarta.xml.bind;
-    requires com.foursoft.harness.vec.v113;
-    requires com.foursoft.harness.vec.v12x;
     requires org.reflections;
+    requires com.foursoft.harness.vec.common;
 
     exports com.foursoft.harness.compatibility.vec.common;
     exports com.foursoft.harness.compatibility.vec.common.util;

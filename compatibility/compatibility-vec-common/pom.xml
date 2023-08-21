@@ -24,21 +24,6 @@
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v113</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v12x</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v2x</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <!-- General -->
         <dependency>
