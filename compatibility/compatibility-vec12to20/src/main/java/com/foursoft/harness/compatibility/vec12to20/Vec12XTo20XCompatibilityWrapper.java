@@ -30,6 +30,9 @@ import com.foursoft.harness.compatibility.core.CompatibilityContext.Compatibilit
 import com.foursoft.harness.compatibility.core.WrapperRegistry;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.CompatibilityWrapper;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.*;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12.*;
+import com.foursoft.harness.vec.v2x.*;
 
 /**
  * Compatibility Wrapper for VEC 1.2.X to VEC 2.0.X and vice versa.
@@ -63,8 +66,28 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
         final WrapperRegistry registry = context.getWrapperRegistry();
 
         // VEC 1.2.X -> VEC 2.0.X
+        registry.register(com.foursoft.harness.vec.v12x.VecConnectorHousingRole.class,
+                          c -> new Vec12To20ConnectorHousingRoleWrapper(context, c))
+                .register(com.foursoft.harness.vec.v12x.VecDocumentVersion.class,
+                          c -> new Vec12To20DocumentVersionWrapper(context, c))
+                .register(com.foursoft.harness.vec.v12x.VecPartVersion.class,
+                          c -> new Vec12To20PartVersionWrapper(context, c))
+                .register(com.foursoft.harness.vec.v12x.VecContent.class,
+                          c -> new Vec12To20ContentWrapper(context, c))
+                .register(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class,
+                          c -> new Vec12To20CableLeadThroughWrapper(context, c));
 
         // VEC 2.0.X -> VEC 1.2.X
+        registry.register(VecConnectorHousingRole.class,
+                          c -> new Vec20To12ConnectorHousingRoleWrapper(context, c))
+                .register(VecDocumentVersion.class,
+                          c -> new Vec20To12DocumentVersionWrapper(context, c))
+                .register(VecPartVersion.class,
+                          c -> new Vec20To12PartVersionWrapper(context, c))
+                .register(VecContent.class,
+                          c -> new Vec20To12ContentWrapper(context, c))
+                .register(VecCableLeadThrough.class,
+                          c -> new Vec20To12CableLeadThroughWrapper(context, c));
     }
 
 }

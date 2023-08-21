@@ -27,8 +27,8 @@ package com.foursoft.harness.compatibility.vec11to12.util;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.CompatibilityWrapper;
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import com.foursoft.harness.compatibility.vec11to12.Vec11XTo12XCompatibilityWrapper;
-import com.foursoft.harness.compatibility.vec11to12.common.VecVersion;
 import com.foursoft.harness.vec.v12x.VecContent;
 import com.foursoft.harness.vec.v12x.VecReader;
 import jakarta.xml.bind.ValidationEvent;

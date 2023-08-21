@@ -23,23 +23,44 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.common;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
-import com.foursoft.harness.vec.common.HasVecVersion;
+import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
+import com.foursoft.harness.vec.v2x.VecLocalizedString;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
+
+import java.lang.reflect.Method;
 
 /**
- * Interface defining creating a {@code VecContent}.
+ * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecCableLeadThrough}
+ * to {@link VecCableLeadThrough}.
  */
-public interface VecProcessor {
+public class Vec12To20CableLeadThroughWrapper extends ReflectionBasedWrapper {
+
 
     /**
-     * Creates a VecContent with the given class by using the {@link VecProcessTask}.
+     * Creates this wrapper.
      *
-     * @param vecProcessTask VEC Process Task which holds all information of what to convert.
-     * @param targetClass    The class which should be returned, should always be a VecContent.
-     * @param <T>            Generic type allowing for different VecContents to be created.
-     * @return A VecContent with the given class.
+     * @param context Context of the wrapper.
+     * @param target  Target object of the wrapper.
      */
-    <T extends HasVecVersion> T createContent(VecProcessTask vecProcessTask, Class<T> targetClass);
+    public Vec12To20CableLeadThroughWrapper(final CompatibilityContext context, final Object target) {
+        super(context, target);
+    }
 
-}
+    @Override
+    protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
+        final String methodName = method.getName();
+        if ("getPlacementPoints".equals(methodName)) {
+
+        }
+        else if ("setPlacementPoints".equals(methodName)) {
+
+        }
+        return super.wrapObject(obj, method, allArguments);
+    }
+
+
+}  

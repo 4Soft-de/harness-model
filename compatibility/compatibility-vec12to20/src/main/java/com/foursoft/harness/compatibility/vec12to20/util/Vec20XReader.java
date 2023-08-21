@@ -25,22 +25,20 @@
  */
 package com.foursoft.harness.compatibility.vec12to20.util;
 
+import com.foursoft.harness.compatibility.vec.common.VecCreator;
+import com.foursoft.harness.compatibility.vec.common.VecProcessor;
 import com.foursoft.harness.compatibility.vec12to20.Vec12XTo20XProcessor;
-import com.foursoft.harness.compatibility.vec12to20.common.VecCreator;
-import com.foursoft.harness.compatibility.vec12to20.common.VecProcessor;
-import com.foursoft.harness.compatibility.vec12to20.Vec12XTo20XProcessor;
-import com.foursoft.harness.vec.v2x.VecContent;
 
 import java.io.InputStream;
 
 /**
  * Class which is able to read and create any VEC 1.X.X.
  */
-public final class Vec1XXReader {
+public final class Vec20XReader {
 
     private static final VecProcessor CREATOR = new Vec12XTo20XProcessor();
 
-    private Vec1XXReader() {
+    private Vec20XReader() {
         //hide default constructor
     }
 

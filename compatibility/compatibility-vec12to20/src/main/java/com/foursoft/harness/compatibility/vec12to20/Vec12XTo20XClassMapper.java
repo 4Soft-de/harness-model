@@ -29,7 +29,7 @@ import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
 import com.foursoft.harness.compatibility.core.MethodIdentifier;
 import com.foursoft.harness.compatibility.core.mapping.NameBasedClassMapper;
 import com.foursoft.harness.compatibility.core.util.ClassUtils;
-import com.foursoft.harness.vec.v12x.*;
+import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
 
 import java.io.Serial;
 import java.util.HashMap;
@@ -60,8 +60,12 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
         ignored = new UnsupportedVec12XToVec20XMethods();
 
         // Ignored VEC 1.2.X -> VEC 2.0.X methods.
+        // methods added in VEC 2.0.X
+        ignored.add(VecCableLeadThrough.class, "getCableLeadThroughOutlets");
 
         // Ignored VEC 2.0.X -> VEC 1.2.X methods.
+        // methods removed in VEC 2.0.X
+        ignored.add(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class, "getPlacementPoints");
     }
 
     @Override

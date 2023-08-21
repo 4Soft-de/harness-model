@@ -31,11 +31,10 @@ module com.foursoft.harness.compatibility.vec12to20 {
     requires com.foursoft.harness.vec.v12x;
     requires com.foursoft.harness.vec.v2x;
     requires org.reflections;
+    requires com.foursoft.harness.compatibility.vec;
 
     exports com.foursoft.harness.compatibility.vec12to20;
-    exports com.foursoft.harness.compatibility.vec12to20.common;
-    exports com.foursoft.harness.compatibility.vec12to20.common.util;
-//    exports com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
+    exports com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 //    exports com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.specification;
 //    exports com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.field;
     exports com.foursoft.harness.compatibility.vec12to20.util;

@@ -23,21 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.compatibility.vec.common.VecVersion;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
+import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
- * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecContent}
- * to {@link com.foursoft.harness.vec.v113.VecContent}.
+ * Wrapper to wrap {@link VecDocumentVersion}
+ * to {@link com.foursoft.harness.vec.v12x.VecDocumentVersion}.
  */
-public class Vec12To11ContentWrapper extends ReflectionBasedWrapper {
+public class Vec20To12DocumentVersionWrapper extends ReflectionBasedWrapper {
 
-    private String vecVersion = VecVersion.VEC11X.getCurrentVersion();
+    protected String numberOfSheets;
 
     /**
      * Creates this wrapper.
@@ -45,23 +47,21 @@ public class Vec12To11ContentWrapper extends ReflectionBasedWrapper {
      * @param context Context of the wrapper.
      * @param target  Target object of the wrapper.
      */
-    public Vec12To11ContentWrapper(final CompatibilityContext context, final Object target) {
+    public Vec20To12DocumentVersionWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
     }
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
-        if ("getVecVersion".equals(method.getName())) {
-            return vecVersion;
+        final String methodName = method.getName();
+        if ("getNumberOfSheets".equals(methodName)) {
+            return numberOfSheets;
         }
-
-        if ("setVecVersion".equals(method.getName()) && allArguments.length == 1) {
-            getResultObject("setVecVersion", Void.class, allArguments);
-            vecVersion = (String) allArguments[0];
-            return null;
+        else if("setNumberOfSheets".equals(methodName)){
+            numberOfSheets = String.valueOf(allArguments[0]);
         }
 
         return super.wrapObject(obj, method, allArguments);
     }
 
-}
+}  

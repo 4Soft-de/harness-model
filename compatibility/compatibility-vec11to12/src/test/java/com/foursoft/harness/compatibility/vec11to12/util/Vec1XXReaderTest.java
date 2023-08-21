@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.compatibility.vec11to12.util;
 
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import com.foursoft.harness.compatibility.vec11to12.TestFiles;
-import com.foursoft.harness.compatibility.vec11to12.common.VecVersion;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.v113.VecContent;
 import com.foursoft.harness.vec.v113.VecCreation;
@@ -41,7 +41,6 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

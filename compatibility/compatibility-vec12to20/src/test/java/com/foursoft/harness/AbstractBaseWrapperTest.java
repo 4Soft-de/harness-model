@@ -23,45 +23,15 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
+package com.foursoft.harness;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.compatibility.vec.common.VecVersion;
+import com.foursoft.harness.compatibility.vec12to20.Vec12XTo20XCompatibilityWrapper;
 
-import java.lang.reflect.Method;
+public abstract class AbstractBaseWrapperTest {
 
-/**
- * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecContent}
- * to {@link com.foursoft.harness.vec.v113.VecContent}.
- */
-public class Vec12To11ContentWrapper extends ReflectionBasedWrapper {
-
-    private String vecVersion = VecVersion.VEC11X.getCurrentVersion();
-
-    /**
-     * Creates this wrapper.
-     *
-     * @param context Context of the wrapper.
-     * @param target  Target object of the wrapper.
-     */
-    public Vec12To11ContentWrapper(final CompatibilityContext context, final Object target) {
-        super(context, target);
-    }
-
-    @Override
-    protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
-        if ("getVecVersion".equals(method.getName())) {
-            return vecVersion;
-        }
-
-        if ("setVecVersion".equals(method.getName()) && allArguments.length == 1) {
-            getResultObject("setVecVersion", Void.class, allArguments);
-            vecVersion = (String) allArguments[0];
-            return null;
-        }
-
-        return super.wrapObject(obj, method, allArguments);
+    protected static CompatibilityContext get12To20Context() {
+        return new Vec12XTo20XCompatibilityWrapper().getContext();
     }
 
 }

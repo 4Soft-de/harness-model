@@ -26,9 +26,9 @@
 package com.foursoft.harness.compatibility.vec12to20;
 
 import com.foursoft.harness.compatibility.core.Context;
-import com.foursoft.harness.compatibility.vec12to20.common.VecProcessTask;
-import com.foursoft.harness.compatibility.vec12to20.common.VecProcessor;
-import com.foursoft.harness.compatibility.vec12to20.common.VecVersion;
+import com.foursoft.harness.compatibility.vec.common.VecProcessTask;
+import com.foursoft.harness.compatibility.vec.common.VecProcessor;
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import com.foursoft.harness.vec.common.HasVecVersion;
 import jakarta.xml.bind.ValidationEvent;
 

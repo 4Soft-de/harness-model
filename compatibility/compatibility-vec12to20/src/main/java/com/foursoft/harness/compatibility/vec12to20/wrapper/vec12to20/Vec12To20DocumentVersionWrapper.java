@@ -23,21 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.compatibility.vec.common.VecVersion;
+import com.foursoft.harness.vec.v2x.VecDocumentVersion;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
+import java.math.BigInteger;
 
 /**
- * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecContent}
- * to {@link com.foursoft.harness.vec.v113.VecContent}.
+ * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecDocumentVersion}
+ * to {@link VecDocumentVersion}.
  */
-public class Vec12To11ContentWrapper extends ReflectionBasedWrapper {
+public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
 
-    private String vecVersion = VecVersion.VEC11X.getCurrentVersion();
+    private static final Logger LOGGER = LoggerFactory.getLogger(Vec12To20DocumentVersionWrapper.class);
 
     /**
      * Creates this wrapper.
@@ -45,23 +48,43 @@ public class Vec12To11ContentWrapper extends ReflectionBasedWrapper {
      * @param context Context of the wrapper.
      * @param target  Target object of the wrapper.
      */
-    public Vec12To11ContentWrapper(final CompatibilityContext context, final Object target) {
+    public Vec12To20DocumentVersionWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
     }
 
+    protected BigInteger numberOfSheets;
+
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
-        if ("getVecVersion".equals(method.getName())) {
-            return vecVersion;
-        }
+        final String methodName = method.getName();
+        if ("getNumberOfSheets".equals(methodName)) {
+            if (numberOfSheets == null) {
+                final Method declaredMethod = getTarget().getClass().getMethod("getNumberOfSheets");
+                final Object invoke = declaredMethod.invoke(getTarget());
+                handleString(invoke);
 
-        if ("setVecVersion".equals(method.getName()) && allArguments.length == 1) {
-            getResultObject("setVecVersion", Void.class, allArguments);
-            vecVersion = (String) allArguments[0];
+                return numberOfSheets;
+            }
+            return numberOfSheets;
+        } else if ("setNumberOfSheets".equals(methodName)) {
+            numberOfSheets = (BigInteger) allArguments[0];
             return null;
         }
 
         return super.wrapObject(obj, method, allArguments);
     }
 
-}
+    private void handleString(Object value) {
+        try {
+            if (value instanceof String valueAsString) {
+                numberOfSheets = new BigInteger(valueAsString);
+            } else {
+                numberOfSheets = (BigInteger) value;
+            }
+        } catch (ClassCastException | NullPointerException e) {
+            LOGGER.error("Cannot convert value '{}' for 'numberOfSheets' to Integer.", value);
+            numberOfSheets = BigInteger.ZERO;
+        }
+    }
+
+}  

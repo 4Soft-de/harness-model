@@ -23,37 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec12to20.util;
+package com.foursoft.harness.compatibility.vec.common;
 
-import java.util.function.Predicate;
+import com.foursoft.harness.vec.common.HasVecVersion;
 
 /**
- * Predicates for several cases.
+ * Interface defining creating a {@code VecContent}.
  */
-public class Predicates {
-
-    private static final String DOCUMENT_TYPE_PART_MASTER = "PartMaster";
-
-    private Predicates() {
-        // Shadow constructor.
-    }
+public interface VecProcessor {
 
     /**
-     * Checks if the {@link com.foursoft.harness.vec.v2x.VecDocumentVersion} is a Part Master.
+     * Creates a VecContent with the given class by using the {@link VecProcessTask}.
      *
-     * @return Predicate to check if the {@link com.foursoft.harness.vec.v12x.VecDocumentVersion} is a Part Master.
+     * @param vecProcessTask VEC Process Task which holds all information of what to convert.
+     * @param targetClass    The class which should be returned, should always be a VecContent.
+     * @param <T>            Generic type allowing for different VecContents to be created.
+     * @return A VecContent with the given class.
      */
-    public static Predicate<com.foursoft.harness.vec.v2x.VecDocumentVersion> partMasterV2() {
-        return documentVersion -> documentVersion.getDocumentType().equals(DOCUMENT_TYPE_PART_MASTER);
-    }
-
-    /**
-     * Checks if the {@link com.foursoft.harness.vec.v12x.VecDocumentVersion} is a Part Master.
-     *
-     * @return Predicate to check if the {@link com.foursoft.harness.vec.v12x.VecDocumentVersion} is a Part Master.
-     */
-    public static Predicate<com.foursoft.harness.vec.v12x.VecDocumentVersion> partMasterV12() {
-        return documentVersion -> documentVersion.getDocumentType().equals(DOCUMENT_TYPE_PART_MASTER);
-    }
+    <T extends HasVecVersion> T createContent(VecProcessTask vecProcessTask, Class<T> targetClass);
 
 }

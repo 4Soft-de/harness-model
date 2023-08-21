@@ -27,8 +27,8 @@ package com.foursoft.harness.compatibility.vec12to20.util;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.common.EventConsumer;
-import com.foursoft.harness.compatibility.vec12to20.common.VecVersion;
-import com.foursoft.harness.compatibility.vec12to20.common.util.VecVersionDetector;
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
+import com.foursoft.harness.compatibility.vec.common.util.VecVersionDetector;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.visitor.Visitable;
 import jakarta.xml.bind.ValidationEvent;
@@ -45,7 +45,7 @@ import java.util.function.Consumer;
  * <b>Important notice:</b> If the {@code VecContent} was converted, the fields will always be {@code null}.
  * When trying to call methods on the {@code VecContent} (e.g. {@code VecContent#getVecVersion}),
  * the value wil be calculated on the fly by
- * executing a corresponding wrapper (in this case: {@link Vec12To11ContentWrapper}).
+ * executing a corresponding wrapper.
  * <p>
  * If you want the fields to be set or if you need to write the {@code VecContent},
  * you have to call {@link InitializeFields#initializeFields(Visitable)}.

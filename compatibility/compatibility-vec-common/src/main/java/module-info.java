@@ -23,37 +23,16 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec12to20.util;
+module com.foursoft.harness.compatibility.vec {
+    requires transitive com.foursoft.harness.compatibility.core;
+    requires org.slf4j;
+    requires java.xml;
+    requires jakarta.xml.bind;
+    requires com.foursoft.harness.vec.v113;
+    requires com.foursoft.harness.vec.v12x;
+    requires org.reflections;
+    requires com.foursoft.harness.vec.v2x;
 
-import java.util.function.Predicate;
-
-/**
- * Predicates for several cases.
- */
-public class Predicates {
-
-    private static final String DOCUMENT_TYPE_PART_MASTER = "PartMaster";
-
-    private Predicates() {
-        // Shadow constructor.
-    }
-
-    /**
-     * Checks if the {@link com.foursoft.harness.vec.v2x.VecDocumentVersion} is a Part Master.
-     *
-     * @return Predicate to check if the {@link com.foursoft.harness.vec.v12x.VecDocumentVersion} is a Part Master.
-     */
-    public static Predicate<com.foursoft.harness.vec.v2x.VecDocumentVersion> partMasterV2() {
-        return documentVersion -> documentVersion.getDocumentType().equals(DOCUMENT_TYPE_PART_MASTER);
-    }
-
-    /**
-     * Checks if the {@link com.foursoft.harness.vec.v12x.VecDocumentVersion} is a Part Master.
-     *
-     * @return Predicate to check if the {@link com.foursoft.harness.vec.v12x.VecDocumentVersion} is a Part Master.
-     */
-    public static Predicate<com.foursoft.harness.vec.v12x.VecDocumentVersion> partMasterV12() {
-        return documentVersion -> documentVersion.getDocumentType().equals(DOCUMENT_TYPE_PART_MASTER);
-    }
-
+    exports com.foursoft.harness.compatibility.vec.common;
+    exports com.foursoft.harness.compatibility.vec.common.util;
 }

@@ -23,21 +23,22 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.vec.common.VecVersion;
+import com.foursoft.harness.vec.v2x.VecContent;
 
 import java.lang.reflect.Method;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecContent}
- * to {@link com.foursoft.harness.vec.v113.VecContent}.
+ * to {@link VecContent}.
  */
-public class Vec12To11ContentWrapper extends ReflectionBasedWrapper {
+public class Vec12To20ContentWrapper extends ReflectionBasedWrapper {
 
-    private String vecVersion = VecVersion.VEC11X.getCurrentVersion();
+    private String vecVersion = VecVersion.VEC20X.getCurrentVersion();
 
     /**
      * Creates this wrapper.
@@ -45,7 +46,7 @@ public class Vec12To11ContentWrapper extends ReflectionBasedWrapper {
      * @param context Context of the wrapper.
      * @param target  Target object of the wrapper.
      */
-    public Vec12To11ContentWrapper(final CompatibilityContext context, final Object target) {
+    public Vec12To20ContentWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
     }
 
