@@ -26,9 +26,9 @@
 package com.foursoft.harness.compatibility.vec11to12.util;
 
 import com.foursoft.harness.compatibility.core.util.ClassUtils;
+import com.foursoft.harness.compatibility.vec.common.VecCreator;
 import com.foursoft.harness.compatibility.vec11to12.TestFiles;
 import com.foursoft.harness.compatibility.vec11to12.Vec11XTo12XProcessor;
-import com.foursoft.harness.compatibility.vec11to12.common.VecCreator;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.v113.VecContent;
 import com.foursoft.harness.vec.v113.VecReader;

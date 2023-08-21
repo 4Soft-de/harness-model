@@ -27,8 +27,8 @@ package com.foursoft.harness.compatibility.vec11to12.util;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.common.EventConsumer;
-import com.foursoft.harness.compatibility.vec11to12.common.VecVersion;
-import com.foursoft.harness.compatibility.vec11to12.common.util.VecVersionDetector;
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
+import com.foursoft.harness.compatibility.vec.common.util.VecVersionDetector;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.Vec11To12ContentWrapper;
 import com.foursoft.harness.vec.v12x.VecContent;
 import com.foursoft.harness.vec.v12x.visitor.Visitable;

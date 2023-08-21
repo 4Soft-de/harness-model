@@ -25,9 +25,9 @@
  */
 package com.foursoft.harness.compatibility.vec11to12.util;
 
+import com.foursoft.harness.compatibility.vec.common.VecCreator;
+import com.foursoft.harness.compatibility.vec.common.VecProcessor;
 import com.foursoft.harness.compatibility.vec11to12.Vec11XTo12XProcessor;
-import com.foursoft.harness.compatibility.vec11to12.common.VecCreator;
-import com.foursoft.harness.compatibility.vec11to12.common.VecProcessor;
 
 import java.io.InputStream;
 

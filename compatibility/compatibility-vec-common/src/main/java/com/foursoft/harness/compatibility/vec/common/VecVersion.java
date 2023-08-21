@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.common;
+package com.foursoft.harness.compatibility.vec.common;
 
 import com.foursoft.harness.vec.common.HasVecVersion;
 import org.slf4j.Logger;
@@ -48,7 +48,12 @@ public enum VecVersion {
     /**
      * Enum value for the VEC 1.2.X.
      */
-    VEC12X("1.2.X", "1.2.0");
+    VEC12X("1.2.X", "1.2.0"),
+
+    /**
+     * Enum value for the VEC 2.0.X.
+     */
+    VEC20X("2.0.X", "2.0.2");
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VecVersion.class);
 

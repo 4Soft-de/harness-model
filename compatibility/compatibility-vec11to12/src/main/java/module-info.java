@@ -31,10 +31,10 @@ module com.foursoft.harness.compatibility.vec11to12 {
     requires com.foursoft.harness.vec.v113;
     requires com.foursoft.harness.vec.v12x;
     requires org.reflections;
+    requires com.foursoft.harness.compatibility.vec;
 
     exports com.foursoft.harness.compatibility.vec11to12;
-    exports com.foursoft.harness.compatibility.vec11to12.common;
-    exports com.foursoft.harness.compatibility.vec11to12.common.util;
+
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.field;
