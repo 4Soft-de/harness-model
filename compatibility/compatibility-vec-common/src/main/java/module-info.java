@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-module com.foursoft.harness.compatibility.vec11to12 {
+module com.foursoft.harness.compatibility.vec.common {
     requires transitive com.foursoft.harness.compatibility.core;
     requires org.slf4j;
     requires java.xml;
@@ -31,12 +31,7 @@ module com.foursoft.harness.compatibility.vec11to12 {
     requires com.foursoft.harness.vec.v113;
     requires com.foursoft.harness.vec.v12x;
     requires org.reflections;
-    requires com.foursoft.harness.compatibility.vec.common;
 
-    exports com.foursoft.harness.compatibility.vec11to12;
-
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.field;
-    exports com.foursoft.harness.compatibility.vec11to12.util;
+    exports com.foursoft.harness.compatibility.vec.common;
+    exports com.foursoft.harness.compatibility.vec.common.util;
 }
