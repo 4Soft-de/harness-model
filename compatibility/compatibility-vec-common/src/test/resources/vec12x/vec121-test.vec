@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vec:VecContent xmlns:vec="http://www.prostep.org/ecad-if/2011/vec"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema" id="id_vec_content_1">
+  <VecVersion>1.2.1</VecVersion>
+  <GeneratingSystemName>Manual</GeneratingSystemName>
+  <DateOfCreation>2022-06-20T14:25:42.864109+02:00</DateOfCreation>
+  <DocumentVersion id="id_docu_ver_1">
+    <CompanyName>Test</CompanyName>
+    <DocumentNumber>Test</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>/NULL</DocumentVersion>
+    <ReferencedPart>id_part_ver_1</ReferencedPart>
+  </DocumentVersion>
+  <PartVersion id="id_part_ver_1">
+    <Abbreviation xsi:type="vec:LocalizedString" id="id_localize_1">
+      <LanguageCode>De</LanguageCode>
+      <Value>Türkontaktschalter</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="id_localize_2">
+      <LanguageCode>De</LanguageCode>
+      <Value>Test für VecVersion</Value>
+    </Description>
+    <CompanyName>Test</CompanyName>
+    <PartNumber>sample</PartNumber>
+    <PartVersion>/NULL</PartVersion>
+    <PrimaryPartType>EEComponent</PrimaryPartType>
+    <IsPreferredPart>undefined</IsPreferredPart>
+  </PartVersion>
+</vec:VecContent>
