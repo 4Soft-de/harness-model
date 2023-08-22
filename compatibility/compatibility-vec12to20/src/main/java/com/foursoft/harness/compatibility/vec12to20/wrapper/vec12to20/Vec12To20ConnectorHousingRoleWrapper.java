@@ -27,9 +27,14 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.v2x.VecComponentConnector;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecConnectorHousingRole}
@@ -37,6 +42,7 @@ import java.lang.reflect.Method;
  */
 public class Vec12To20ConnectorHousingRoleWrapper extends ReflectionBasedWrapper {
 
+    private List<VecComponentConnector> slot;
 
     /**
      * Creates this wrapper.
@@ -51,8 +57,22 @@ public class Vec12To20ConnectorHousingRoleWrapper extends ReflectionBasedWrapper
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
-        if ("getComponentNode".equals(methodName)) {
-
+        if ("getComponentConnector".equals(methodName)) {
+            if (slot == null || slot.isEmpty()) {
+                slot = Stream.ofNullable(
+                                getResultObject("getComponentNode",
+                                                com.foursoft.harness.vec.v12x.VecComponentNode.class))
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .flatMap(StreamUtils.toStream(
+                                com.foursoft.harness.vec.v12x.VecComponentNode::getComponentConnectors))
+                        .map(getContext().getWrapperProxyFactory()::createProxy)
+                        .map(VecComponentConnector.class::cast)
+                        .toList();
+            }
+            return slot;
+        } else if ("setComponentConnector".equals(methodName)) {
+            slot = (List<VecComponentConnector>) allArguments[0];
         }
 
         return super.wrapObject(obj, method, allArguments);

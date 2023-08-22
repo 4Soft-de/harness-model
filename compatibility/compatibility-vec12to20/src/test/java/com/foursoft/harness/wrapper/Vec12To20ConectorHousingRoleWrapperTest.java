@@ -23,30 +23,46 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness;
+package com.foursoft.harness.wrapper;
 
+import com.foursoft.harness.TestFiles;
 import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
+import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.v2x.VecCompositionSpecification;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 import com.foursoft.harness.vec.v2x.VecContent;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Vec12To20ContentWrapperTest extends AbstractBaseWrapperTest {
+class Vec12To20ConectorHousingRoleWrapperTest extends AbstractBaseWrapperTest {
 
     @Test
     void invokeTest() throws IOException {
-        try (final InputStream inputOriginal = new FileInputStream(
-                "C:\\Users\\fehlmann\\Projekte\\K20\\Workspace\\kernel\\testdata\\src\\main\\resources\\test-data" +
-                        "\\dv19_2-ll-rl\\000\\SYS_VNG.900.001_VNG_MiniBN SYS_DV19.2_2022.11.11(1.7.2).sys")) {
-            final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
-            assertThat(originalContent).isNotNull();
-            assertThat(originalContent.getVecVersion()).isEqualTo("2.0.2");
+        final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X);
+        final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
+        assertThat(originalContent).isNotNull();
 
-        }
+        final Optional<VecPartOccurrence> connector = originalContent.getDocumentVersions().stream()
+                .filter(d -> d.getDocumentType().equals("HarnessDescription"))
+                .flatMap(d -> d.getSpecificationsWithType(VecCompositionSpecification.class).stream())
+                .flatMap(StreamUtils.toStream(VecCompositionSpecification::getComponents))
+                .filter(c -> c.getIdentification().equals("XA.MX1.1"))
+                .findAny();
+
+        assertThat(connector).isPresent();
+
+        final Optional<VecConnectorHousingRole> housingRole = connector.get()
+                .getRolesWithType(VecConnectorHousingRole.class)
+                .stream().findAny();
+
+        assertThat(housingRole).isPresent();
+        assertThat(housingRole.get().getComponentConnector()).isNotEmpty();
     }
 
 } 

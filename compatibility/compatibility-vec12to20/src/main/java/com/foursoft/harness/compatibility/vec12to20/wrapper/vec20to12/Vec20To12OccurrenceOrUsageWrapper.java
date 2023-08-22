@@ -23,24 +23,19 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
 
 import java.lang.reflect.Method;
-import java.math.BigInteger;
 
 /**
- * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecDocumentVersion}
- * to {@link VecDocumentVersion}.
+ * Wrapper to wrap {@link VecOccurrenceOrUsage}
+ * to {@link com.foursoft.harness.vec.v12x.VecOccurrenceOrUsage}.
  */
-public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Vec12To20DocumentVersionWrapper.class);
+public class Vec20To12OccurrenceOrUsageWrapper extends ReflectionBasedWrapper {
 
     /**
      * Creates this wrapper.
@@ -48,38 +43,19 @@ public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
      * @param context Context of the wrapper.
      * @param target  Target object of the wrapper.
      */
-    public Vec12To20DocumentVersionWrapper(final CompatibilityContext context, final Object target) {
+    public Vec20To12OccurrenceOrUsageWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
     }
 
-    protected BigInteger numberOfSheets;
-
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
-        final String methodName = method.getName();
-        if ("getNumberOfSheets".equals(methodName)) {
-            if (numberOfSheets == null) {
-                handleValue(getResultObject("getNumberOfSheets", String.class).orElse("0"));
-            }
-            return numberOfSheets;
-        } else if ("setNumberOfSheets".equals(methodName)) {
-            numberOfSheets = (BigInteger) allArguments[0];
-            return null;
-        } else if ("getSpecificationsWithType".equals(method.getName())) {
-            final Class<?> vec20xClass = (Class<?>) allArguments[0];
-            final Class<?> vec12xClass = getContext().getClassMapper().map(vec20xClass);
-            return wrapList("getSpecificationsWithType", vec20xClass, vec12xClass);
+        if ("getRolesWithType".equals(method.getName())) {
+            final Class<?> vec12xClass = (Class<?>) allArguments[0];
+            final Class<?> vec20xClass = getContext().getClassMapper().map(vec12xClass);
+            return wrapList("getRolesWithType", vec12xClass, vec20xClass);
         }
+
         return super.wrapObject(obj, method, allArguments);
     }
 
-    private void handleValue(String value) {
-        try {
-            numberOfSheets = new BigInteger(value);
-        } catch (NumberFormatException e) {
-            LOGGER.error("Cannot convert value '{}' for 'numberOfSheets' to Integer.", value);
-            numberOfSheets = BigInteger.ZERO;
-        }
-    }
-
-}  
+}

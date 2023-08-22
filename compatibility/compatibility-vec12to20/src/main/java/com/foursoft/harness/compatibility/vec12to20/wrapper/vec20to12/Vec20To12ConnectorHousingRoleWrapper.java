@@ -32,6 +32,7 @@ import com.foursoft.harness.vec.v2x.VecComponentNode;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 
 import java.lang.reflect.Method;
+import java.util.Comparator;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecConnectorHousingRole}
@@ -49,20 +50,24 @@ public class Vec20To12ConnectorHousingRoleWrapper extends ReflectionBasedWrapper
         super(context, target);
     }
 
-    private VecComponentNode node;
+    private com.foursoft.harness.vec.v12x.VecComponentNode node;
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
         if ("getComponentNode".equals(methodName)) {
             if (node == null) {
-                node = getResultObject("getComponentConnector", VecComponentConnector.class)
+                node = getResultList("getComponentConnector", VecComponentConnector.class, allArguments[0]).stream()
                         .map(VecComponentConnector::getParentComponentNode)
+                        .distinct()
+                        .min(Comparator.comparing(VecComponentNode::getIdentification))
+                        .map(getContext().getWrapperProxyFactory()::createProxy)
+                        .map(com.foursoft.harness.vec.v12x.VecComponentNode.class::cast)
                         .orElse(null);
             }
             return node;
         } else if ("setComponentNode".equals(methodName)) {
-            node = (VecComponentNode) allArguments[0];
+            node = (com.foursoft.harness.vec.v12x.VecComponentNode) allArguments[0];
         }
 
         return super.wrapObject(obj, method, allArguments);

@@ -74,6 +74,10 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
                           c -> new Vec12To20PartVersionWrapper(context, c))
                 .register(com.foursoft.harness.vec.v12x.VecContent.class,
                           c -> new Vec12To20ContentWrapper(context, c))
+                .register(com.foursoft.harness.vec.v12x.VecPartOccurrence.class,
+                          c -> new Vec12To20PartOccurrenceWrapper(context, c))
+                .register(com.foursoft.harness.vec.v12x.VecPartUsage.class,
+                          c -> new Vec12To20PartUsageWrapper(context, c))
                 .register(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class,
                           c -> new Vec12To20CableLeadThroughWrapper(context, c));
 
@@ -87,7 +91,11 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
                 .register(VecContent.class,
                           c -> new Vec20To12ContentWrapper(context, c))
                 .register(VecCableLeadThrough.class,
-                          c -> new Vec20To12CableLeadThroughWrapper(context, c));
+                          c -> new Vec20To12CableLeadThroughWrapper(context, c))
+                .register(VecPartOccurrence.class,
+                          c -> new Vec20To12PartOccurrenceWrapper(context, c))
+                .register(VecPartUsage.class,
+                          c -> new Vec20To12PartUsageWrapper(context, c));
     }
 
 }

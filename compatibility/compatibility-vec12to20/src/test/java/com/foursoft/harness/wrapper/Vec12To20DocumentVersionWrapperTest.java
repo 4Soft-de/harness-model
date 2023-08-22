@@ -23,14 +23,14 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness;
+package com.foursoft.harness.wrapper;
 
+import com.foursoft.harness.TestFiles;
 import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
@@ -41,23 +41,19 @@ class Vec12To20DocumentVersionWrapperTest extends AbstractBaseWrapperTest {
 
     @Test
     void invokeTest() throws IOException {
-        try (final InputStream inputOriginal = new FileInputStream(
-                "C:\\Users\\fehlmann\\Projekte\\K20\\Workspace\\kernel\\testdata\\src\\main\\resources\\test-data" +
-                        "\\dv19_2-ll-rl\\000\\SYS_VNG.900.001_VNG_MiniBN SYS_DV19.2_2022.11.11(1.7.2).sys")) {
-            final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
-            assertThat(originalContent).isNotNull();
+        final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X);
+        final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
+        assertThat(originalContent).isNotNull();
 
-            final VecDocumentVersion vecDocumentVersion = originalContent.getDocumentVersions().stream()
-                    .filter(d -> !d.getSheetOrChapters().isEmpty())
-                    .toList().get(0);
+        final VecDocumentVersion vecDocumentVersion = originalContent.getDocumentVersions().stream()
+                .filter(d -> !d.getSheetOrChapters().isEmpty())
+                .toList().get(0);
 
-            final BigInteger numberOfSheets = vecDocumentVersion.getNumberOfSheets();
-            assertThat(numberOfSheets).isEqualTo(1);
+        final BigInteger numberOfSheets = vecDocumentVersion.getNumberOfSheets();
+        assertThat(numberOfSheets).isEqualTo(1);
 
-            vecDocumentVersion.setNumberOfSheets(new BigInteger("5"));
-            assertThat(vecDocumentVersion.getNumberOfSheets()).isEqualTo(5);
-
-        }
+        vecDocumentVersion.setNumberOfSheets(new BigInteger("5"));
+        assertThat(vecDocumentVersion.getNumberOfSheets()).isEqualTo(5);
     }
 
 } 
