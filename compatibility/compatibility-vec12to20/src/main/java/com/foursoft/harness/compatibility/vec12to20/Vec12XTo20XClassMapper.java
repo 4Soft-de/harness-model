@@ -61,11 +61,11 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
 
         // Ignored VEC 1.2.X -> VEC 2.0.X methods.
         // methods added in VEC 2.0.X
-        ignored.add(VecCableLeadThrough.class, "getCableLeadThroughOutlets");
+        ignored.add(VecCableLeadThrough.class, "getOutlets");
 
         // Ignored VEC 2.0.X -> VEC 1.2.X methods.
         // methods removed in VEC 2.0.X
-        ignored.add(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class, "getPlacementPoints");
+        ignored.add(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class, "getPlacementPoint");
     }
 
     @Override

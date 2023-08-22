@@ -28,16 +28,16 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12;
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
-import com.foursoft.harness.vec.v2x.VecLocalizedString;
+import com.foursoft.harness.vec.v2x.VecCableLeadThroughOutlet;
 
 import java.lang.reflect.Method;
+import java.util.stream.Collectors;
 
 /**
  * Wrapper to wrap {@link VecCableLeadThrough}
  * to {@link com.foursoft.harness.vec.v12x.VecCableLeadThrough}.
  */
 public class Vec20To12CableLeadThroughWrapper extends ReflectionBasedWrapper {
-
 
     /**
      * Creates this wrapper.
@@ -49,18 +49,17 @@ public class Vec20To12CableLeadThroughWrapper extends ReflectionBasedWrapper {
         super(context, target);
     }
 
-
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
-        if ("getPlacementPoints".equals(methodName)) {
-
-        }
-        else if ("setPlacementPoints".equals(methodName)) {
-
+        if ("getPlacementPoint".equals(methodName)) {
+            return getResultList("getOutlets", VecCableLeadThroughOutlet.class, allArguments[0]).stream()
+                    .map(VecCableLeadThroughOutlet::getPlacementPoint)
+                    .map(getContext().getWrapperProxyFactory()::createProxy)
+                    .map(com.foursoft.harness.vec.v12x.VecPlacementPoint.class::cast)
+                    .collect(Collectors.toList());
         }
         return super.wrapObject(obj, method, allArguments);
     }
 
-
-}  
+}

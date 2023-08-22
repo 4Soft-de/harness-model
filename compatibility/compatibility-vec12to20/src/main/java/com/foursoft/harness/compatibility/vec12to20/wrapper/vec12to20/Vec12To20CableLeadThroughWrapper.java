@@ -28,17 +28,18 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
-import com.foursoft.harness.vec.v2x.VecLocalizedString;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecCableLeadThroughOutlet;
+import com.foursoft.harness.vec.v2x.VecPlacementPoint;
 
 import java.lang.reflect.Method;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecCableLeadThrough}
  * to {@link VecCableLeadThrough}.
  */
 public class Vec12To20CableLeadThroughWrapper extends ReflectionBasedWrapper {
-
 
     /**
      * Creates this wrapper.
@@ -53,14 +54,24 @@ public class Vec12To20CableLeadThroughWrapper extends ReflectionBasedWrapper {
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
-        if ("getPlacementPoints".equals(methodName)) {
-
-        }
-        else if ("setPlacementPoints".equals(methodName)) {
-
+        if ("getOutlets".equals(methodName)) {
+            return getResultList("getPlacementPoint", com.foursoft.harness.vec.v12x.VecPlacementPoint.class,
+                                 allArguments[0])
+                    .stream()
+                    .map(this::wrapPointWithOutlet)
+                    .collect(Collectors.toList());
         }
         return super.wrapObject(obj, method, allArguments);
     }
 
+    private VecCableLeadThroughOutlet wrapPointWithOutlet(
+            com.foursoft.harness.vec.v12x.VecPlacementPoint placementPoint) {
+        VecPlacementPoint wrappedPlacementPoint = getContext().getWrapperProxyFactory().createProxy(placementPoint);
+        VecCableLeadThroughOutlet outlet = new VecCableLeadThroughOutlet();
+        outlet.setXmlId(UUID.randomUUID().toString().substring(0, 10));
+        outlet.setPlacementPoint(wrappedPlacementPoint);
+        outlet.setIdentification("CableLeadThroughOutlet_" + placementPoint.getIdentification());
+        return outlet;
+    }
 
 }  
