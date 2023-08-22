@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,20 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-module com.foursoft.harness.compatibility.vec11to12 {
-    requires transitive com.foursoft.harness.compatibility.core;
-    requires org.slf4j;
-    requires java.xml;
-    requires jakarta.xml.bind;
-    requires com.foursoft.harness.vec.v113;
-    requires com.foursoft.harness.vec.v12x;
-    requires org.reflections;
-    requires com.foursoft.harness.compatibility.vec.common;
+package com.foursoft.harness.compatibility.vec.common;
 
-    exports com.foursoft.harness.compatibility.vec11to12;
+import com.foursoft.harness.vec.common.HasVecVersion;
 
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.field;
-    exports com.foursoft.harness.compatibility.vec11to12.util;
+/**
+ * Interface defining creating a {@code VecContent}.
+ */
+public interface VecProcessor {
+
+    /**
+     * Creates a VecContent with the given class by using the {@link VecProcessTask}.
+     *
+     * @param vecProcessTask VEC Process Task which holds all information of what to convert.
+     * @param targetClass    The class which should be returned, should always be a VecContent.
+     * @param <T>            Generic type allowing for different VecContents to be created.
+     * @return A VecContent with the given class.
+     */
+    <T extends HasVecVersion> T createContent(VecProcessTask vecProcessTask, Class<T> targetClass);
+
 }

@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,12 +23,12 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.common;
+package com.foursoft.harness.compatibility.vec.common;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.common.EventConsumer;
-import com.foursoft.harness.compatibility.vec11to12.common.util.VecVersionDetector;
+import com.foursoft.harness.compatibility.vec.common.util.VecVersionDetector;
 import com.foursoft.harness.vec.common.HasVecVersion;
 import com.foursoft.harness.vec.common.exception.VecException;
 import jakarta.xml.bind.ValidationEvent;

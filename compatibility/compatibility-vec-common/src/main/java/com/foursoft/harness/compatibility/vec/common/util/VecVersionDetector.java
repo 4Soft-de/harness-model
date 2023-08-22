@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,9 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.common.util;
+package com.foursoft.harness.compatibility.vec.common.util;
 
-import com.foursoft.harness.compatibility.vec11to12.common.VecVersion;
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

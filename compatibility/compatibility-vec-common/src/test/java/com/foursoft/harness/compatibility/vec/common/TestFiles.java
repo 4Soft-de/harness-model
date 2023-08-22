@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,20 +23,22 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-module com.foursoft.harness.compatibility.vec11to12 {
-    requires transitive com.foursoft.harness.compatibility.core;
-    requires org.slf4j;
-    requires java.xml;
-    requires jakarta.xml.bind;
-    requires com.foursoft.harness.vec.v113;
-    requires com.foursoft.harness.vec.v12x;
-    requires org.reflections;
-    requires com.foursoft.harness.compatibility.vec.common;
+package com.foursoft.harness.compatibility.vec.common;
 
-    exports com.foursoft.harness.compatibility.vec11to12;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.util.Objects;
 
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
-    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.field;
-    exports com.foursoft.harness.compatibility.vec11to12.util;
+public final class TestFiles {
+
+    private TestFiles() {
+        // hide constructor
+    }
+
+    public static InputStream getInputStream(final String path) {
+        final InputStream resourceAsStream = TestFiles.class.getResourceAsStream(path);
+        Objects.requireNonNull(resourceAsStream, "Couldn't get resource " + path);
+        return new BufferedInputStream(resourceAsStream);
+    }
+
 }

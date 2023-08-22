@@ -26,10 +26,10 @@
 package com.foursoft.harness.compatibility.common;
 
 import com.foursoft.harness.compatibility.core.common.EventConsumer;
+import com.foursoft.harness.compatibility.vec.common.VecCreator;
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import com.foursoft.harness.compatibility.vec11to12.TestFiles;
 import com.foursoft.harness.compatibility.vec11to12.Vec11XTo12XProcessor;
-import com.foursoft.harness.compatibility.vec11to12.common.VecCreator;
-import com.foursoft.harness.compatibility.vec11to12.common.VecVersion;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.common.exception.VecException;
 import com.foursoft.harness.vec.v113.VecContent;

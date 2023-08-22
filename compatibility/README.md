@@ -18,6 +18,7 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 #### Maven
 
 ```xml
+
 <dependency>
     <groupId>com.foursoft.harness.compatibility</groupId>
     <artifactId>compatibility-core</artifactId>
@@ -36,6 +37,7 @@ implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility
 #### Maven
 
 ```xml
+
 <dependency>
     <groupId>com.foursoft.harness.compatibility</groupId>
     <artifactId>compatibility-vec11to12</artifactId>

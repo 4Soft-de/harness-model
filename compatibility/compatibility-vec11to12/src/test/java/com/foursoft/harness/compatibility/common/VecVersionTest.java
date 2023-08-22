@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.compatibility.common;
 
-import com.foursoft.harness.compatibility.vec11to12.common.VecVersion;
+import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import com.foursoft.harness.vec.v12x.VecContent;
 import org.junit.jupiter.api.Test;
 

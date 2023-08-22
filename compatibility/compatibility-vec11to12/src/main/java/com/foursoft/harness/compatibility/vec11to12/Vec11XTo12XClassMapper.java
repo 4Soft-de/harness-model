@@ -66,6 +66,7 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper {
         ignored = new UnsupportedVec11XToVec12XMethods();
 
         // Ignored VEC 1.2.X -> VEC 1.1.X methods.
+        // methods added in VEC 1.2.X
         ignored.add(VecApproval.class, "getAdditionalLevelInformation");
         ignored.add(VecAliasIdentification.class, "getType");
         ignored.add(VecCableLeadThrough.class, "getCableLeadThroughSpecification");
@@ -103,6 +104,7 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper {
         ignored.add(VecWireElementReference.class, "isUnconnected");
 
         // Ignored VEC 1.1.X -> VEC 1.2.X methods.
+        // methods removed in VEC 1.2.X
         ignored.add(com.foursoft.harness.vec.v113.VecContent.class, "getCompliantConformanceClasses");
         ignored.add(com.foursoft.harness.vec.v113.VecPath.class, "getConfigInfo");
         ignored.add(com.foursoft.harness.vec.v113.VecTopologySpecification.class, "getZones");
