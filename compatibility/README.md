@@ -32,7 +32,7 @@ Version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.
 implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-core', version: 'VERSION'
 ```
 
-### Compatibility VEC 1.1.3 to VEC 1.2.X
+### Compatibility VEC 1.1.X to VEC 1.2.X
 
 #### Maven
 
