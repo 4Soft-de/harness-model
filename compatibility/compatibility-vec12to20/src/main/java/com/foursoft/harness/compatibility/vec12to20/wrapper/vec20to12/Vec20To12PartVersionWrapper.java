@@ -38,7 +38,6 @@ import java.lang.reflect.Method;
  */
 public class Vec20To12PartVersionWrapper extends ReflectionBasedWrapper {
 
-
     /**
      * Creates this wrapper.
      *
@@ -55,17 +54,17 @@ public class Vec20To12PartVersionWrapper extends ReflectionBasedWrapper {
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
         if ("getPreferredUseCase".equals(methodName)) {
+            if (preferredUseCase == null) {
+                preferredUseCase = getResultObject("getPreferredUseCase", VecLocalizedString.class)
+                        .map(VecLocalizedString::getValue)
+                        .orElse("");
+            }
             return preferredUseCase;
-        }
-        else if("setPreferredUseCase".equals(methodName)){
-          preferredUseCase =  preferredUseCase(allArguments[0]);
+        } else if ("setPreferredUseCase".equals(methodName)) {
+            preferredUseCase = (String) allArguments[0];
         }
 
         return super.wrapObject(obj, method, allArguments);
-    }
-
-    private String preferredUseCase(final Object valueAsString) {
-        return null;
     }
 
 }  

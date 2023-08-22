@@ -59,11 +59,7 @@ public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
         final String methodName = method.getName();
         if ("getNumberOfSheets".equals(methodName)) {
             if (numberOfSheets == null) {
-                final Method declaredMethod = getTarget().getClass().getMethod("getNumberOfSheets");
-                final Object invoke = declaredMethod.invoke(getTarget());
-                handleString(invoke);
-
-                return numberOfSheets;
+                handleValue(getResultObject("getNumberOfSheets", String.class).orElse("0"));
             }
             return numberOfSheets;
         } else if ("setNumberOfSheets".equals(methodName)) {
@@ -74,14 +70,10 @@ public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
         return super.wrapObject(obj, method, allArguments);
     }
 
-    private void handleString(Object value) {
+    private void handleValue(String value) {
         try {
-            if (value instanceof String valueAsString) {
-                numberOfSheets = new BigInteger(valueAsString);
-            } else {
-                numberOfSheets = (BigInteger) value;
-            }
-        } catch (ClassCastException | NullPointerException e) {
+            numberOfSheets = new BigInteger(value);
+        } catch (NumberFormatException e) {
             LOGGER.error("Cannot convert value '{}' for 'numberOfSheets' to Integer.", value);
             numberOfSheets = BigInteger.ZERO;
         }

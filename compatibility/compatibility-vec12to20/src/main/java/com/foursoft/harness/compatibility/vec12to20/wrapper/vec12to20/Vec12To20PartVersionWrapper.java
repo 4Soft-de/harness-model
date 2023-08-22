@@ -27,18 +27,18 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
+import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecPartVersion}
  * to {@link VecPartVersion}.
  */
 public class Vec12To20PartVersionWrapper extends ReflectionBasedWrapper {
-
 
     /**
      * Creates this wrapper.
@@ -56,19 +56,27 @@ public class Vec12To20PartVersionWrapper extends ReflectionBasedWrapper {
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
         if ("getPreferredUseCase".equals(methodName)) {
+            if (preferredUseCase == null) {
+                String xmlId = getResultObject("getXmlId", String.class)
+                        .orElse(UUID.randomUUID().toString().substring(0, 10));
+                preferredUseCase = wrapToGerman(getResultObject("getPreferredUseCase", String.class).orElse(""), xmlId);
+            }
             return preferredUseCase;
-        }
-        else if("setPreferredUseCase".equals(methodName)){
-                if(allArguments[0] instanceof String valueAsString){
-                    preferredUseCase =  preferredUseCase(valueAsString);
-                }
+        } else if ("setPreferredUseCase".equals(methodName)) {
+            if (allArguments[0] instanceof VecLocalizedString valueAsString) {
+                preferredUseCase = valueAsString;
+            }
         }
 
         return super.wrapObject(obj, method, allArguments);
     }
 
-    private VecLocalizedString preferredUseCase(final String valueAsString) {
-        return null;
+    public static VecLocalizedString wrapToGerman(String text, String xmlId) {
+        VecLocalizedString result = new VecLocalizedString();
+        result.setLanguageCode(VecLanguageCode.DE);
+        result.setValue(text);
+        result.setXmlId(xmlId);
+        return result;
     }
 
 }  
