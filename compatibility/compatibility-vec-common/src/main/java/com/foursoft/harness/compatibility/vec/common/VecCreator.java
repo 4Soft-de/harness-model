@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -48,8 +48,7 @@ public final class VecCreator {
 
     private static final Map<String, VecVersion> CLASS_PATH_TO_VEC_VERSION_MAP = Map.ofEntries(
             Map.entry("com.foursoft.harness.vec.v113.VecContent", VecVersion.VEC11X),
-            Map.entry("com.foursoft.harness.vec.v12x.VecContent", VecVersion.VEC12X),
-            Map.entry("com.foursoft.harness.vec.v2x.VecContent", VecVersion.VEC20X)
+            Map.entry("com.foursoft.harness.vec.v12x.VecContent", VecVersion.VEC12X)
     );
 
     private final VecProcessor processor;

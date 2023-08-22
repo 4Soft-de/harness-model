@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -30,8 +30,6 @@ import java.io.InputStream;
 import java.util.Objects;
 
 public final class TestFiles {
-
-    public static final String OLD_BEETLE = "/vec11x/oldbeetle_vec113.vec";
 
     private TestFiles() {
         // hide constructor

@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -48,12 +48,7 @@ public enum VecVersion {
     /**
      * Enum value for the VEC 1.2.X.
      */
-    VEC12X("1.2.X", "1.2.0"),
-
-    /**
-     * Enum value for the VEC 2.0.X.
-     */
-    VEC20X("2.0.X", "2.0.2");
+    VEC12X("1.2.X", "1.2.0");
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VecVersion.class);
 
