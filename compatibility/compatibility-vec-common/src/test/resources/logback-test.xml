@@ -5,7 +5,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="warn"/>
+    <logger level="warn"/>
 
     <appender name="ASYNCCONSOLE" class="ch.qos.logback.classic.AsyncAppender">
         <appender-ref ref="STDOUT"/>
