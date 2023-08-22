@@ -5,8 +5,6 @@
         </encoder>
     </appender>
 
-    <logger level="warn"/>
-
     <appender name="ASYNCCONSOLE" class="ch.qos.logback.classic.AsyncAppender">
         <appender-ref ref="STDOUT"/>
         <queueSize>1000</queueSize>
