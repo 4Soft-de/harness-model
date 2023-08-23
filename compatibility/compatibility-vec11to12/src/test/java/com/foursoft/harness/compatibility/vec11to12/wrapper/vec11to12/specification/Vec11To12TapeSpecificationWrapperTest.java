@@ -27,9 +27,9 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 
 import com.foursoft.harness.compatibility.vec11to12.TestFiles;
 import com.foursoft.harness.compatibility.vec11to12.util.DefaultVecReader;
-import com.foursoft.harness.compatibility.vec11to12.util.Predicates;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.v12x.*;
+import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -49,7 +49,7 @@ class Vec11To12TapeSpecificationWrapperTest extends AbstractBaseWrapperTest {
 
             final VecTapeSpecification tapeSpecification = vecContent.getDocumentVersions()
                     .stream()
-                    .filter(Predicates.partMasterV12())
+                    .filter(VecPredicates.partMasterDocument())
                     .map(VecDocumentVersion::getSpecifications)
                     .flatMap(Collection::stream)
                     .filter(VecTapeSpecification.class::isInstance)
