@@ -57,8 +57,6 @@ public final class VecPredicates {
 
     /**
      * Checks if the given localized string is german.
-     *
-     * @return check result.
      */
     public static Predicate<VecAbstractLocalizedString> germanLanguageCode() {
         return languageCode(VecLanguageCode.DE);
@@ -66,8 +64,6 @@ public final class VecPredicates {
 
     /**
      * Checks if the given localized string is english.
-     *
-     * @return check result.
      */
     public static Predicate<VecAbstractLocalizedString> englishLanguageCode() {
         return languageCode(VecLanguageCode.EN);
@@ -76,8 +72,7 @@ public final class VecPredicates {
     /**
      * Checks if the given localized string is of the given locale.
      *
-     * @param code language code to check.
-     * @return check result.
+     * @param code language code to check against.
      */
     public static Predicate<VecAbstractLocalizedString> languageCode(final VecLanguageCode code) {
         return localizedString -> code == localizedString.getLanguageCode();
@@ -85,8 +80,6 @@ public final class VecPredicates {
 
     /**
      * Checks if the given {@link VecDocumentVersion} is of type 'PartMaster'.
-     *
-     * @return check result.
      */
     public static Predicate<VecDocumentVersion> partMasterDocument() {
         return documentVersion -> documentVersion.getDocumentType().equals(DOCUMENT_TYPE_PART_MASTER);
@@ -125,6 +118,10 @@ public final class VecPredicates {
                 .anyMatch(eEComponentOfSpecificType(VecRelaySpecification.class));
     }
 
+    /**
+     * Checks if a {@link VecWireElementReference} is the representation (occurrence)
+     * of the top {@link VecWireElement}, that means: the wire itself.
+     */
     @RequiresBackReferences
     public static Predicate<VecWireElementReference> rootWireElementReference() {
         return reference -> {

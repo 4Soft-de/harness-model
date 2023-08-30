@@ -43,11 +43,11 @@ public final class Vec20XReader {
     }
 
     /**
-     * This method creates a VecContent in version 2.0.X from the given {@link InputStream}.
+     * This method creates a VecContent in version 2.X.X from the given {@link InputStream}.
      *
      * @param inputStream InputStream of a VEC.
      * @param streamName  The name of the stream for logging.
-     * @return The VecContent in version 2.0.X.
+     * @return The VecContent in version 2.X.X.
      */
     public static com.foursoft.harness.vec.v2x.
             VecContent createVec20x(final InputStream inputStream, final String streamName) {
@@ -69,9 +69,9 @@ public final class Vec20XReader {
     }
 
     /**
-     * This method performs a downgrade for the given VecContent in version 2.0.X to version 1.2.X.
+     * This method performs a downgrade for the given VecContent in version 2.X.X to version 1.2.X.
      *
-     * @param vecContent The VecContent in version 2.0.X.
+     * @param vecContent The VecContent in version 2.X.X.
      * @param streamName The name of the stream for logging.
      * @return The VecContent in version 1.2.X.
      */
@@ -82,11 +82,11 @@ public final class Vec20XReader {
     }
 
     /**
-     * This method performs an upgrade for the given VecContent in version 1.2.X to version 2.0.X.
+     * This method performs an upgrade for the given VecContent in version 1.2.X to version 2.X.X.
      *
      * @param vecContent The VecContent in version 1.2.X.
      * @param streamName The name of the stream for logging.
-     * @return The VecContent in version 2.0.X.
+     * @return The VecContent in version 2.X.X.
      */
     public static com.foursoft.harness.vec.v2x.VecContent createVec20x(
             final com.foursoft.harness.vec.v12x.VecContent vecContent, final String streamName) {

@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.0.X
+ * Compatibility VEC 1.2.X To VEC 2.X.X
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -35,7 +35,7 @@ import com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12.*;
 import com.foursoft.harness.vec.v2x.*;
 
 /**
- * Compatibility Wrapper for VEC 1.2.X to VEC 2.0.X and vice versa.
+ * Compatibility Wrapper for VEC 1.2.X to VEC 2.X.X and vice versa.
  */
 public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapper {
 
@@ -65,7 +65,7 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
     private static void initializeRegistry(final CompatibilityContext context) {
         final WrapperRegistry registry = context.getWrapperRegistry();
 
-        // VEC 1.2.X -> VEC 2.0.X
+        // VEC 1.2.X -> VEC 2.X.X
         registry.register(com.foursoft.harness.vec.v12x.VecConnectorHousingRole.class,
                           c -> new Vec12To20ConnectorHousingRoleWrapper(context, c))
                 .register(com.foursoft.harness.vec.v12x.VecDocumentVersion.class,
@@ -81,7 +81,7 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
                 .register(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class,
                           c -> new Vec12To20CableLeadThroughWrapper(context, c));
 
-        // VEC 2.0.X -> VEC 1.2.X
+        // VEC 2.X.X -> VEC 1.2.X
         registry.register(VecConnectorHousingRole.class,
                           c -> new Vec20To12ConnectorHousingRoleWrapper(context, c))
                 .register(VecDocumentVersion.class,

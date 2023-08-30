@@ -49,7 +49,7 @@ public final class VecCreator {
     private static final Map<String, VecVersion> CLASS_PATH_TO_VEC_VERSION_MAP = Map.ofEntries(
             Map.entry("com.foursoft.harness.vec.v113.VecContent", VecVersion.VEC11X),
             Map.entry("com.foursoft.harness.vec.v12x.VecContent", VecVersion.VEC12X),
-            Map.entry("com.foursoft.harness.vec.v2x.VecContent", VecVersion.VEC12X)
+            Map.entry("com.foursoft.harness.vec.v2x.VecContent", VecVersion.VEC20X)
     );
 
     private final VecProcessor processor;

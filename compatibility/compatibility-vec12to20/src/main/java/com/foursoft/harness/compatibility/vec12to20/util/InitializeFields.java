@@ -27,10 +27,10 @@ package com.foursoft.harness.compatibility.vec12to20.util;
 
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.util.ReflectionUtils;
-import com.foursoft.harness.vec.v2x.visitor.Visitor;
 import com.foursoft.harness.vec.v2x.visitor.DepthFirstTraverserImpl;
 import com.foursoft.harness.vec.v2x.visitor.TraversingVisitor;
 import com.foursoft.harness.vec.v2x.visitor.Visitable;
+import com.foursoft.harness.vec.v2x.visitor.Visitor;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlID;
 import org.slf4j.Logger;
@@ -77,7 +77,7 @@ public class InitializeFields {
     }
 
     /**
-     * Initializes the fields of the given VEC 2.0.X Visitable.
+     * Initializes the fields of the given VEC 2.X.X Visitable.
      * <p>
      * <b>Notice:</b> Currently, parallel execution is not allowed which is why this method is synchronized.
      */

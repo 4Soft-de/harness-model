@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.0.X
+ * Compatibility VEC 1.2.X To VEC 2.X.X
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -25,9 +25,6 @@
  */
 package com.foursoft.harness.compatibility.vec12to20;
 
-import com.foursoft.harness.vec.v12x.VecCavityPartSpecification;
-import com.foursoft.harness.vec.v12x.VecSize;
-
 /**
  * Class for important constants.
  */
@@ -39,10 +36,9 @@ public final class Constants {
     public static final String PACKAGE_VEC12X = com.foursoft.harness.vec.v12x.VecContent.class.getPackage().getName();
 
     /**
-     * Package of the VEC 1.1.X {@code VecContent}.
+     * Package of the VEC 2.X.X {@code VecContent}.
      */
     public static final String PACKAGE_VEC20X = com.foursoft.harness.vec.v2x.VecContent.class.getPackage().getName();
-
 
     private Constants() {
         // hide default constructor

@@ -50,8 +50,8 @@ public class VecReaderFactory {
     }
 
     /**
-     * Creates a VEC 2.0.X {@link VecContent} from the given {@link InputStream}.
-     * If the given {@link VecVersion} is a {@link VecVersion#VEC12X}, it will be converted to a VEC 2.0.X.
+     * Creates a VEC 2.X.X {@link VecContent} from the given {@link InputStream}.
+     * If the given {@link VecVersion} is a {@link VecVersion#VEC12X}, it will be converted to a VEC 2.X.X.
      *
      * @param vecVersion                   VecVersion of the InputStream.
      * @param inputStream                  InputStream to read and create the VecContent from.
@@ -92,8 +92,8 @@ public class VecReaderFactory {
     }
 
     /**
-     * Creates a VEC 2.0.X {@link VecContent} from the given {@link InputStream}.
-     * If the given {@link VecVersion} is a {@link VecVersion#VEC12X}, it will be converted to a VEC 2.0.X.
+     * Creates a VEC 2.X.X {@link VecContent} from the given {@link InputStream}.
+     * If the given {@link VecVersion} is a {@link VecVersion#VEC12X}, it will be converted to a VEC 2.X.X.
      *
      * @param vecVersion    VecVersion of the InputStream.
      * @param inputStream   InputStream to read and create the VecContent from.

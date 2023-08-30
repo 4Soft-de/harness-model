@@ -25,8 +25,6 @@
  */
 package com.foursoft.harness.compatibility.vec.common.util;
 
-import com.foursoft.harness.compatibility.vec.common.VecVersion;
-import com.foursoft.harness.compatibility.vec.common.util.VecVersionDetector;
 import com.foursoft.harness.compatibility.vec.common.TestFiles;
 import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import org.assertj.core.api.Assertions;

@@ -17,11 +17,6 @@
             <artifactId>compatibility-vec-common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>compatibility-vec-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <!-- Project -->
         <dependency>
             <groupId>com.foursoft.harness.vec</groupId>

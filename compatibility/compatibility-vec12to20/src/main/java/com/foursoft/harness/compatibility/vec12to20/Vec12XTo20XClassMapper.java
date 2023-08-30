@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.0.X
+ * Compatibility VEC 1.2.X To VEC 2.X.X
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Class responsible for mapping VEC 1.2.X classes to VEC 2.0.X <b>and vice versa</b>.
+ * Class responsible for mapping VEC 1.2.X classes to VEC 2.X.X <b>and vice versa</b>.
  */
 public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
 
@@ -53,18 +53,18 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
 
         classMap = new HashMap<>();
 
-        // VEC 1.2.X -> VEC 2.0.X
+        // VEC 1.2.X -> VEC 2.X.X
 
-        // VEC 2.0.X -> VEC 1.2.X
+        // VEC 2.X.X -> VEC 1.2.X
 
         ignored = new UnsupportedVec12XToVec20XMethods();
 
-        // Ignored VEC 1.2.X -> VEC 2.0.X methods.
-        // methods added in VEC 2.0.X
+        // Ignored VEC 1.2.X -> VEC 2.X.X methods.
+        // methods added in VEC 2.X.X
         ignored.add(VecCableLeadThrough.class, "getOutlets");
 
-        // Ignored VEC 2.0.X -> VEC 1.2.X methods.
-        // methods removed in VEC 2.0.X
+        // Ignored VEC 2.X.X -> VEC 1.2.X methods.
+        // methods removed in VEC 2.X.X
         ignored.add(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class, "getPlacementPoint");
     }
 

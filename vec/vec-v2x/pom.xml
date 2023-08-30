@@ -27,11 +27,6 @@
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v12x</artifactId>
-            <version>2.2.0</version>
-        </dependency>
     </dependencies>
 
     <build>
