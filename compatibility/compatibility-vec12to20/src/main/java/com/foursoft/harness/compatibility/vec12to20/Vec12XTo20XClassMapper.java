@@ -50,13 +50,7 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
      */
     public Vec12XTo20XClassMapper() {
         super(Constants.PACKAGE_VEC12X, Constants.PACKAGE_VEC20X);
-
         classMap = new HashMap<>();
-
-        // VEC 1.2.X -> VEC 2.X.X
-
-        // VEC 2.X.X -> VEC 1.2.X
-
         ignored = new UnsupportedVec12XToVec20XMethods();
 
         // Ignored VEC 1.2.X -> VEC 2.X.X methods.

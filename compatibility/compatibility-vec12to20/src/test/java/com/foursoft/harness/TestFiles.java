@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC Common
+ * Compatibility VEC 1.2.X To VEC 2.X.X
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
