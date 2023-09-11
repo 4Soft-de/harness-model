@@ -32,17 +32,14 @@ import com.foursoft.harness.compatibility.core.util.ClassUtils;
 import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
 
 import java.io.Serial;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Class responsible for mapping VEC 1.2.X classes to VEC 2.X.X <b>and vice versa</b>.
  */
 public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
 
-    private final Map<Class<?>, Class<?>> classMap;
+    private final Map<Class<?>, Class<?>> explicitClassMappings;
     private final UnsupportedVec12XToVec20XMethods ignored;
 
     /**
@@ -50,7 +47,7 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
      */
     public Vec12XTo20XClassMapper() {
         super(Constants.PACKAGE_VEC12X, Constants.PACKAGE_VEC20X);
-        classMap = new HashMap<>();
+        explicitClassMappings = new HashMap<>();
         ignored = new UnsupportedVec12XToVec20XMethods();
 
         // Ignored VEC 1.2.X -> VEC 2.X.X methods.
@@ -64,10 +61,12 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
 
     @Override
     public Class<?> map(final Class<?> clazz) {
-        final Class<?> aClass = classMap.get(clazz);
-        return aClass != null
-                ? aClass
-                : classMap.getOrDefault(ClassUtils.getNonProxyClass(clazz), super.map(clazz));
+        return resolveExplicitClassMappings(clazz).orElseGet(() -> super.map(clazz));
+    }
+
+    private Optional<Class<?>> resolveExplicitClassMappings(final Class<?> clazz) {
+        return Optional.<Class<?>>ofNullable(explicitClassMappings.get(clazz))
+                .or(() -> Optional.ofNullable(explicitClassMappings.get(ClassUtils.getNonProxyClass(clazz))));
     }
 
     @Override
