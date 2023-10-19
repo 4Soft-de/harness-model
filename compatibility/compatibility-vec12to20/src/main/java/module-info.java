@@ -35,7 +35,5 @@ module com.foursoft.harness.compatibility.vec12to20 {
 
     exports com.foursoft.harness.compatibility.vec12to20;
     exports com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
-//    exports com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.specification;
-//    exports com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.field;
     exports com.foursoft.harness.compatibility.vec12to20.util;
 }

@@ -28,8 +28,6 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12;
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.math.BigInteger;
@@ -40,7 +38,6 @@ import java.math.BigInteger;
  */
 public class Vec20To12DocumentVersionWrapper extends ReflectionBasedWrapper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Vec20To12DocumentVersionWrapper.class);
     protected String numberOfSheets;
 
     /**
