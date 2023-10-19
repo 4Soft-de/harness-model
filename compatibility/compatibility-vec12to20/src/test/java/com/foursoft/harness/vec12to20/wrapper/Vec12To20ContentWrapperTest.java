@@ -23,37 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.wrapper;
+package com.foursoft.harness.vec12to20.wrapper;
 
 import com.foursoft.harness.TestFiles;
 import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
 import com.foursoft.harness.vec.v2x.VecContent;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Vec12To20DocumentVersionWrapperTest extends AbstractBaseWrapperTest {
+class Vec12To20ContentWrapperTest extends AbstractBaseWrapperTest {
 
     @Test
     void invokeTest() throws IOException {
-        final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X);
-        final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
-        assertThat(originalContent).isNotNull();
-
-        final VecDocumentVersion vecDocumentVersion = originalContent.getDocumentVersions().stream()
-                .filter(d -> !d.getSheetOrChapters().isEmpty())
-                .toList().get(0);
-
-        final BigInteger numberOfSheets = vecDocumentVersion.getNumberOfSheets();
-        assertThat(numberOfSheets).isEqualTo(1);
-
-        vecDocumentVersion.setNumberOfSheets(new BigInteger("5"));
-        assertThat(vecDocumentVersion.getNumberOfSheets()).isEqualTo(5);
+        try (final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X)) {
+            final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
+            assertThat(originalContent).isNotNull();
+            assertThat(originalContent.getVecVersion()).isEqualTo("2.0.2");
+        }
     }
-
 } 

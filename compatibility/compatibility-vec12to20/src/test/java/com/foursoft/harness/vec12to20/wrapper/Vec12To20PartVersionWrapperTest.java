@@ -23,46 +23,39 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.wrapper;
+package com.foursoft.harness.vec12to20.wrapper;
 
 import com.foursoft.harness.TestFiles;
 import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
 import com.foursoft.harness.vec.common.util.StreamUtils;
-import com.foursoft.harness.vec.v2x.VecCompositionSpecification;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 import com.foursoft.harness.vec.v2x.VecContent;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecLocalizedString;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Vec12To20ConectorHousingRoleWrapperTest extends AbstractBaseWrapperTest {
+class Vec12To20PartVersionWrapperTest extends AbstractBaseWrapperTest {
 
     @Test
     void invokeTest() throws IOException {
-        final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X);
-        final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
-        assertThat(originalContent).isNotNull();
+        try (final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X)) {
+            final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
+            final Optional<VecPartVersion> vecPartVersion = originalContent.getPartVersions().stream()
+                    .filter(pv -> !pv.getPreferredUseCases().isEmpty())
+                    .sorted(Comparator.comparing(VecPartVersion::getXmlId))
+                    .collect(StreamUtils.findOneOrNone());
 
-        final Optional<VecPartOccurrence> connector = originalContent.getDocumentVersions().stream()
-                .filter(d -> d.getDocumentType().equals("HarnessDescription"))
-                .flatMap(d -> d.getSpecificationsWithType(VecCompositionSpecification.class).stream())
-                .flatMap(StreamUtils.toStream(VecCompositionSpecification::getComponents))
-                .filter(c -> c.getIdentification().equals("XA.MX1.1"))
-                .findAny();
-
-        assertThat(connector).isPresent();
-
-        final Optional<VecConnectorHousingRole> housingRole = connector.get()
-                .getRolesWithType(VecConnectorHousingRole.class)
-                .stream().findAny();
-
-        assertThat(housingRole).isPresent();
-        assertThat(housingRole.get().getComponentConnector()).isNotEmpty();
+            assertThat(vecPartVersion).isPresent();
+            final List<VecLocalizedString> preferredUseCases = vecPartVersion.get().getPreferredUseCases();
+            assertThat(preferredUseCases).hasSize(1);
+            assertThat(preferredUseCases.get(0).getValue()).isEqualTo("Normal Connector");
+        }
     }
-
 } 

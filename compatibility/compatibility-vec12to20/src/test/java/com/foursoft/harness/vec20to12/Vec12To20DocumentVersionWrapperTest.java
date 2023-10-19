@@ -23,15 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.wrapper;
+package com.foursoft.harness.vec20to12;
 
-import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.vec12to20.Vec12XTo20XCompatibilityWrapper;
+import com.foursoft.harness.TestFiles;
+import com.foursoft.harness.vec.v12x.VecDocumentVersion;
+import com.foursoft.harness.vec12to20.wrapper.AbstractBaseWrapperTest;
+import org.junit.jupiter.api.Test;
 
-public abstract class AbstractBaseWrapperTest {
+import java.io.IOException;
+import java.io.InputStream;
 
-    protected static CompatibilityContext get12To20Context() {
-        return new Vec12XTo20XCompatibilityWrapper().getContext();
+import static org.assertj.core.api.Assertions.assertThat;
+
+class Vec12To20DocumentVersionWrapperTest extends AbstractBaseWrapperTest {
+
+    @Test
+    void invokeTest() throws IOException {
+        try (final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X)) {
+            final com.foursoft.harness.vec.v12x.VecContent originalContent =
+                    new com.foursoft.harness.vec.v12x.VecReader().read(inputOriginal);
+            assertThat(originalContent).isNotNull();
+            assertThat(originalContent).isNotNull();
+
+            final VecDocumentVersion vecDocumentVersion = originalContent.getDocumentVersions().stream()
+                    .filter(d -> !d.getSheetOrChapters().isEmpty())
+                    .toList().get(0);
+
+            final String numberOfSheets = vecDocumentVersion.getNumberOfSheets();
+            assertThat(numberOfSheets).isEqualTo("1");
+        }
     }
-
-}
+} 
