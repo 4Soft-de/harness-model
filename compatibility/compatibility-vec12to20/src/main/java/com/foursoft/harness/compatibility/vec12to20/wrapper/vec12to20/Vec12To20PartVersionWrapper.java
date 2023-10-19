@@ -32,6 +32,8 @@ import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -50,22 +52,19 @@ public class Vec12To20PartVersionWrapper extends ReflectionBasedWrapper {
         super(context, target);
     }
 
-    protected VecLocalizedString preferredUseCase;
+    protected List<VecLocalizedString> preferredUseCases = new ArrayList<>();
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
-        if ("getPreferredUseCase".equals(methodName)) {
-            if (preferredUseCase == null) {
+        if ("getPreferredUseCases".equals(methodName)) {
+            if (preferredUseCases.isEmpty() || !containsGermanString(preferredUseCases)) {
                 String xmlId = getResultObject("getXmlId", String.class)
                         .orElse(UUID.randomUUID().toString().substring(0, 10));
-                preferredUseCase = wrapToGerman(getResultObject("getPreferredUseCase", String.class).orElse(""), xmlId);
+                getResultObject("getPreferredUseCase", String.class)
+                        .ifPresent(result -> preferredUseCases.add(wrapToGerman(result, xmlId)));
             }
-            return preferredUseCase;
-        } else if ("setPreferredUseCase".equals(methodName)) {
-            if (allArguments[0] instanceof VecLocalizedString valueAsString) {
-                preferredUseCase = valueAsString;
-            }
+            return preferredUseCases;
         }
 
         return super.wrapObject(obj, method, allArguments);
@@ -79,4 +78,8 @@ public class Vec12To20PartVersionWrapper extends ReflectionBasedWrapper {
         return result;
     }
 
-}  
+    private boolean containsGermanString(List<VecLocalizedString> list) {
+        return list.stream().anyMatch(ls -> ls.getLanguageCode() == VecLanguageCode.DE);
+    }
+
+}
