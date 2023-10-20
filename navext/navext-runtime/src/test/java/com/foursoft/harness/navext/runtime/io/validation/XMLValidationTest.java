@@ -69,8 +69,8 @@ class XMLValidationTest {
                 .isNotEmpty()
                 .hasSize(2)
                 .allSatisfy(el -> assertThat(el)
-                        .returns(21, x -> x.line)
-                        .returns(true, x -> x.message.contains("id_8")));
+                        .returns(21, ErrorLocation::line)
+                        .returns(true, x -> x.message().contains("id_8")));
     }
 
 }

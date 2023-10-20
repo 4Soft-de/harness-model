@@ -80,8 +80,8 @@ public final class LogErrors {
         final Map<Integer, String> errorMap = new HashMap<>();
 
         for (final LogValidator.ErrorLocation errorLine : errorLines) {
-            final int line = errorLine.line;
-            final String error = errorLine.message;
+            final int line = errorLine.line();
+            final String error = errorLine.message();
             if (errorMap.containsKey(line)) {
                 errorMap.put(line, errorMap.get(line) + "/" + error);
             } else {
@@ -90,4 +90,5 @@ public final class LogErrors {
         }
         return errorMap;
     }
+
 }
