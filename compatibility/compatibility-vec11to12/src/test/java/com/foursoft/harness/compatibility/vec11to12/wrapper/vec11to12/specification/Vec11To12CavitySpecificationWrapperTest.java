@@ -26,9 +26,9 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.vec11to12.TestFiles;
-import com.foursoft.harness.compatibility.vec11to12.util.Predicates;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.v113.*;
+import com.foursoft.harness.vec.v113.predicates.VecPredicates;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -57,7 +57,7 @@ class Vec11To12CavitySpecificationWrapperTest extends AbstractBaseWrapperTest {
 
             final List<VecCavitySpecification> vecCavitySpecifications113 =
                     vecContent113.getDocumentVersions().stream()
-                            .filter(Predicates.partMasterV11())
+                            .filter(VecPredicates.partMasterDocument())
                             .map(VecDocumentVersion::getSpecifications)
                             .flatMap(Collection::stream)
                             .filter(VecCavitySpecification.class::isInstance)
@@ -73,7 +73,7 @@ class Vec11To12CavitySpecificationWrapperTest extends AbstractBaseWrapperTest {
 
             final com.foursoft.harness.vec.v12x.VecCavitySpecification vecCavitySpecification120 =
                     vecContent120.getDocumentVersions().stream()
-                            .filter(Predicates.partMasterV12())
+                            .filter(com.foursoft.harness.vec.v12x.predicates.VecPredicates.partMasterDocument())
                             .map(com.foursoft.harness.vec.v12x.VecDocumentVersion::getSpecifications)
                             .flatMap(Collection::stream)
                             .filter(com.foursoft.harness.vec.v12x.VecCavitySpecification.class::isInstance)

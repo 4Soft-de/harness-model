@@ -37,6 +37,8 @@ import java.util.function.Predicate;
  */
 public final class VecPredicates {
 
+    private static final String DOCUMENT_TYPE_PART_MASTER = "PartMaster";
+
     private VecPredicates() {
         // hide default constructor
     }
@@ -53,16 +55,34 @@ public final class VecPredicates {
                 .anyMatch(VecPlacementType.ON_POINT::equals);
     }
 
+    /**
+     * Checks if the given localized string is german.
+     */
     public static Predicate<VecAbstractLocalizedString> germanLanguageCode() {
         return languageCode(VecLanguageCode.DE);
     }
 
+    /**
+     * Checks if the given localized string is english.
+     */
     public static Predicate<VecAbstractLocalizedString> englishLanguageCode() {
         return languageCode(VecLanguageCode.EN);
     }
 
+    /**
+     * Checks if the given localized string is of the given locale.
+     *
+     * @param code language code to check against.
+     */
     public static Predicate<VecAbstractLocalizedString> languageCode(final VecLanguageCode code) {
         return localizedString -> code == localizedString.getLanguageCode();
+    }
+
+    /**
+     * Checks if the given {@link VecDocumentVersion} is of type 'PartMaster'.
+     */
+    public static Predicate<VecDocumentVersion> partMasterDocument() {
+        return documentVersion -> documentVersion.getDocumentType().equals(DOCUMENT_TYPE_PART_MASTER);
     }
 
     /**
@@ -98,6 +118,10 @@ public final class VecPredicates {
                 .anyMatch(eEComponentOfSpecificType(VecRelaySpecification.class));
     }
 
+    /**
+     * Checks if a {@link VecWireElementReference} is the representation (occurrence)
+     * of the top {@link VecWireElement}, that means: the wire itself.
+     */
     @RequiresBackReferences
     public static Predicate<VecWireElementReference> rootWireElementReference() {
         return reference -> {

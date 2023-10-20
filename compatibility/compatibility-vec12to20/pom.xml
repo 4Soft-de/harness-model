@@ -1,0 +1,50 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.foursoft.harness.compatibility</groupId>
+        <artifactId>compatibility-parent</artifactId>
+        <version>5.1.1-SNAPSHOT</version>
+    </parent>
+    <name>Compatibility VEC 1.2.X To VEC 2.0.X</name>
+    <artifactId>compatibility-vec12to20</artifactId>
+    <description>The VEC 1.2.* to 2.0.* layer.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>compatibility-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>compatibility-vec-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Project -->
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v12x</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v2x</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- General -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

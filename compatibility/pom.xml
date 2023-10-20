@@ -19,6 +19,7 @@
         <module>compatibility-core</module>
         <module>compatibility-vec-common</module>
         <module>compatibility-vec11to12</module>
+        <module>compatibility-vec12to20</module>
     </modules>
 
 </project>

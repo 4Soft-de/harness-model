@@ -34,4 +34,5 @@ open module com.foursoft.harness.vec.v113 {
     exports com.foursoft.harness.vec.v113;
     exports com.foursoft.harness.vec.v113.visitor;
     exports com.foursoft.harness.vec.v113.validation;
+    exports com.foursoft.harness.vec.v113.predicates;
 }

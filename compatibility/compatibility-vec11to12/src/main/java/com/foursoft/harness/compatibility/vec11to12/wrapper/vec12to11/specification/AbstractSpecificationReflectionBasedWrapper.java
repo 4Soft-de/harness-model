@@ -28,10 +28,10 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specifica
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.util.IdCreator;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.compatibility.vec11to12.util.Predicates;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v113.VecSealingClass;
 import com.foursoft.harness.vec.v12x.*;
+import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,7 +96,7 @@ public abstract class AbstractSpecificationReflectionBasedWrapper extends Reflec
             return targetSpecification.getParentDocumentVersion();
         } else {
             return ((VecContent) getContext().getContent()).getDocumentVersions().stream()
-                    .filter(Predicates.partMasterV12())
+                    .filter(VecPredicates.partMasterDocument())
                     .filter(c -> c.getSpecifications().contains(targetSpecification))
                     .collect(StreamUtils.findOneOrNone())
                     .orElse(null);

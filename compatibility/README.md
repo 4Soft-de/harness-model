@@ -51,6 +51,25 @@ implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility
 implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-vec11to12', version: 'VERSION'
 ```
 
+### Compatibility VEC 1.2.X to VEC 2.0.X
+
+#### Maven
+
+```xml
+
+<dependency>
+    <groupId>com.foursoft.harness.compatibility</groupId>
+    <artifactId>compatibility-vec12to20</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+#### Gradle
+
+```groovy
+implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-vec12to20', version: 'VERSION'
+```
+
 ## Contributing
 
 See [parent ReadMe](https://github.com/4Soft-de/harness-model/blob/develop/README.md#contributing).

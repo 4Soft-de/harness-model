@@ -48,7 +48,12 @@ public enum VecVersion {
     /**
      * Enum value for the VEC 1.2.X.
      */
-    VEC12X("1.2.X", "1.2.0");
+    VEC12X("1.2.X", "1.2.0"),
+
+    /**
+     * Enum value for the VEC 2.X.X.
+     */
+    VEC20X("2.X.X", "2.0.2");
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VecVersion.class);
 
