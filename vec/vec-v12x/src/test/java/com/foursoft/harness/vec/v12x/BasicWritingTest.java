@@ -25,10 +25,7 @@
  */
 package com.foursoft.harness.vec.v12x;
 
-import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
-import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.vec.common.util.DateUtils;
-import com.foursoft.harness.vec.v12x.validation.VecValidation;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -38,26 +35,6 @@ import java.time.LocalTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BasicWritingTest {
-
-    @Test
-    void writeToStringWithDoubleHyphenInComment() {
-        final VecContent root = new VecContent();
-        root.setXmlId("id_1000_0");
-        root.setVecVersion("1.2.0");
-
-        final VecWriter vecWriter = new VecWriter();
-        final Comments comments = new Comments();
-        comments.put(root, "Hello -- World");
-        final XMLMeta xmlMeta = new XMLMeta();
-        xmlMeta.setComments(comments);
-        final String vecString = vecWriter.writeToString(root, xmlMeta);
-
-        VecValidation.validateXML(vecString, noop -> {
-        }, true);
-
-        assertThat(vecString)
-                .contains("Hello - - World");
-    }
 
     @Test
     void testWriteModel() {

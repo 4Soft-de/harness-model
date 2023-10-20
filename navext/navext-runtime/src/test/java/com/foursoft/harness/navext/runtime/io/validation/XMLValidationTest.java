@@ -28,6 +28,10 @@ package com.foursoft.harness.navext.runtime.io.validation;
 import com.foursoft.harness.navext.runtime.io.TestData;
 import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
+import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
+import com.foursoft.harness.navext.runtime.model.Root;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.validation.Schema;
@@ -78,8 +82,28 @@ class XMLValidationTest {
 
     @Test
     void validateDoubleHyphenInXmlCommentError() throws IOException {
+        // Validate that no error is thrown when writing an Object with a double hyphen in an XML comment.
+        final Root root = TestData.readBasicXml();
+        final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
+
+        final XMLMeta xmlMeta = new XMLMeta();
+        final Comments comments = new Comments();
+        comments.put(root, "Hello -- World");
+        xmlMeta.setComments(comments);
+        final String result = xmlWriter.writeToString(root, xmlMeta);
+        assertThat(result).contains("Hello - - World");
+
         final XMLValidation xmlValidation = getXmlValidation();
 
+        final Collection<ErrorLocation> errorLocations = xmlValidation.validateXML(result, StandardCharsets.UTF_8);
+        assertThat(errorLocations)
+                // The error sadly can't be avoided here, see https://stackoverflow.com/a/13321178.
+                .isNotEmpty()
+                .hasSize(1)
+                .singleElement()
+                .satisfies(el -> assertThat(el.message()).contains("cvc-elt.1.a"));
+
+        // Validate that an error is thrown when validating an XML string with a double hyphen in an XML comment.
         final String content = new String(
                 Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DOUBLE_HYPHEN_TEST_XML)));
 

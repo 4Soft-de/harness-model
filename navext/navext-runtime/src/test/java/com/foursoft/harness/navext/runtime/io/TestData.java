@@ -59,8 +59,12 @@ public final class TestData {
     }
 
     public static Root readBasicXml() {
+        return readXml(BASIC_BASIC_TEST_XML);
+    }
+
+    public static Root readXml(final String testPath) {
         final TestXMLReader reader = new TestXMLReader();
-        final InputStream inputStream = getInputStream(BASIC_BASIC_TEST_XML);
+        final InputStream inputStream = getInputStream(testPath);
         return reader.read(inputStream);
     }
 
