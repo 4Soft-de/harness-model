@@ -25,10 +25,7 @@
  */
 package com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
@@ -44,6 +41,7 @@ import java.util.Optional;
  * &lt;Root&gt;&lt;/Root&gt;
  */
 public class Comments {
+
     private final Map<Object, String> map = new HashMap<>();
 
     public boolean containsKey(final Object key) {
@@ -59,4 +57,9 @@ public class Comments {
         Objects.requireNonNull(comment);
         map.put(key, comment);
     }
+
+    public Map<Object, String> getCommentMap() {
+        return Collections.unmodifiableMap(map);
+    }
+
 }

@@ -32,6 +32,7 @@ import com.foursoft.harness.navext.runtime.io.write.xmlmeta.MarshallerListener;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMetaAwareXMLStreamWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.CommentAdderListener;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructions.ProcessingInstructionAdderListener;
 import jakarta.xml.bind.*;
 
@@ -154,14 +155,30 @@ public class XMLWriter<T> {
 
             final MarshallerListener marshallerListener = new MarshallerListener();
             marshaller.setListener(marshallerListener);
-            meta.getComments().ifPresent(c -> marshallerListener.addListener(new CommentAdderListener(xsw, c)));
+
+            final XMLMeta safeXmlMeta = new XMLMeta();
             meta.getProcessingInstructions()
+                    .ifPresent(safeXmlMeta::setProcessingInstructions);
+            meta.getComments()
+                    .ifPresent(comments -> {
+                        // Comments need a special handling.
+                        final Comments sanitizedComments = new Comments();
+                        comments.getCommentMap().forEach((k, v) -> {
+                            final String sanitizedComment = v.replace("--", "- -");
+                            sanitizedComments.put(k, sanitizedComment);
+                        });
+                        safeXmlMeta.setComments(sanitizedComments);
+                    });
+
+            safeXmlMeta.getComments()
+                    .ifPresent(c -> marshallerListener.addListener(new CommentAdderListener(xsw, c)));
+
+            safeXmlMeta.getProcessingInstructions()
                     .ifPresent(c -> marshallerListener.addListener(new ProcessingInstructionAdderListener(xsw, c)));
 
             marshaller.marshal(container, xsw);
             xsw.close();
             marshallerListener.clear();
-
         } catch (final XMLStreamException | JAXBException e) {
             throw new XMLIOException("Error serializing XML file.", e);
         }
