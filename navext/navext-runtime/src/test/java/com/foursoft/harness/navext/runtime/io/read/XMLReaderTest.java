@@ -29,7 +29,6 @@ import com.foursoft.harness.navext.runtime.io.TestData;
 import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.model.Root;
 import jakarta.xml.bind.ValidationEvent;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
@@ -39,20 +38,24 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static com.foursoft.harness.navext.runtime.io.TestData.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class XMLReaderTest {
 
     @Test
     void testReadInputStream() {
         final Root read = readBasicXml();
-        Assertions.assertNotNull(read, "read must be not null");
+        assertThat(read)
+                .isNotNull();
     }
 
     @Test
     void testReadWrongFile() {
         final String fileName = Paths.get("unknown-test.xml").toString();
         final TestXMLReader reader = new TestXMLReader();
-        Assertions.assertThrows(XMLIOException.class, () -> reader.read(fileName));
+        assertThatExceptionOfType(XMLIOException.class)
+                .isThrownBy(() -> reader.read(fileName));
     }
 
     @Test
@@ -62,7 +65,8 @@ class XMLReaderTest {
                 .toString();
         final TestXMLReader reader = new TestXMLReader();
         final Root read = reader.read(fileName);
-        Assertions.assertNotNull(read, "read must be not null");
+        assertThat(read)
+                .isNotNull();
     }
 
     @Test
@@ -73,8 +77,10 @@ class XMLReaderTest {
         final InputStream inputStream = TestData.getInputStream(BASIC_BASIC_TEST_XML);
 
         final Root read = reader.read(inputStream);
-        Assertions.assertNotNull(read, "read must be not null");
-        Assertions.assertEquals(0, events.size(), "There should be no validation events");
+        assertThat(read)
+                .isNotNull();
+        assertThat(events)
+                .isEmpty();
     }
 
     @Test
@@ -85,8 +91,14 @@ class XMLReaderTest {
         final InputStream inputStream = TestData.getInputStream(BASIC_ERROR_TEST_XML);
 
         final Root read = reader.read(inputStream);
-        Assertions.assertNotNull(read, "read must be not null");
-        Assertions.assertEquals(1, events.size(), "There should be one validation events");
+        assertThat(read)
+                .isNotNull();
+        assertThat(events)
+                .isNotEmpty()
+                .hasSize(1)
+                .singleElement()
+                .returns(ValidationEvent.ERROR, ValidationEvent::getSeverity)
+                .returns(true, e -> e.getMessage().contains("id_9"));
     }
 
 }

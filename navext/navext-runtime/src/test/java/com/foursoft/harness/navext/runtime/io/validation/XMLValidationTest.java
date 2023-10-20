@@ -27,13 +27,14 @@ package com.foursoft.harness.navext.runtime.io.validation;
 
 import com.foursoft.harness.navext.runtime.io.TestData;
 import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.validation.Schema;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collection;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class XMLValidationTest {
 
@@ -51,7 +52,8 @@ class XMLValidationTest {
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
                                                                            StandardCharsets.UTF_8);
-        Assertions.assertTrue(errors.isEmpty());
+        assertThat(errors)
+                .isEmpty();
     }
 
     @Test
@@ -63,8 +65,12 @@ class XMLValidationTest {
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
                                                                            StandardCharsets.UTF_8);
-        Assertions.assertFalse(errors.isEmpty());
-        Assertions.assertEquals(2, errors.size());
+        assertThat(errors)
+                .isNotEmpty()
+                .hasSize(2)
+                .allSatisfy(el -> assertThat(el)
+                        .returns(21, x -> x.line)
+                        .returns(true, x -> x.message.contains("id_8")));
     }
 
 }

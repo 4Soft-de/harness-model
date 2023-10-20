@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 import javax.xml.validation.Schema;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class SchemaFactoryTest {
 
@@ -43,8 +43,8 @@ class SchemaFactoryTest {
 
     @Test
     void testInvalidSchema() {
-        assertThatThrownBy(() -> SchemaFactory.getSchema(""))
-                .isInstanceOf(SchemaFactoryException.class);
+        assertThatExceptionOfType(SchemaFactoryException.class)
+                .isThrownBy(() -> SchemaFactory.getSchema(""));
     }
 
 }
