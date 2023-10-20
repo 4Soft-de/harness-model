@@ -25,7 +25,11 @@
  */
 package com.foursoft.harness.vec.v12x;
 
+import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.vec.common.util.DateUtils;
+import com.foursoft.harness.vec.v12x.validation.VecValidation;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -33,8 +37,29 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BasicWritingTest {
+
+    @Test
+    void writeToStringWithDoubleHyphenInComment() {
+        final VecContent vecContent = new VecContent();
+        final VecWriter vecWriter = new VecWriter();
+        final Comments comments = new Comments();
+        comments.put(vecContent, "Hello -- World");
+        final XMLMeta xmlMeta = new XMLMeta();
+        xmlMeta.setComments(comments);
+        final String vecString = vecWriter.writeToString(vecContent, xmlMeta);
+
+        assertThatExceptionOfType(XMLIOException.class)
+                // It might be good to allow null as the consumer or have a method to return a boolean.
+                .isThrownBy(() -> VecValidation.validateXML(vecString, noop -> {
+                }, true))
+                // Not completely sure why this is needed.
+                .withCauseInstanceOf(XMLIOException.class)
+                .havingCause()
+                .withMessageContaining("--");
+    }
 
     @Test
     void testWriteModel() {
