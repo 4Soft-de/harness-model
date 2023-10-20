@@ -40,8 +40,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collection;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 class XMLValidationTest {
 
@@ -94,14 +93,8 @@ class XMLValidationTest {
         assertThat(result).contains("Hello - - World");
 
         final XMLValidation xmlValidation = getXmlValidation();
-
-        final Collection<ErrorLocation> errorLocations = xmlValidation.validateXML(result, StandardCharsets.UTF_8);
-        assertThat(errorLocations)
-                // The error sadly can't be avoided here, see https://stackoverflow.com/a/13321178.
-                .isNotEmpty()
-                .hasSize(1)
-                .singleElement()
-                .satisfies(el -> assertThat(el.message()).contains("cvc-elt.1.a"));
+        assertThatNoException()
+                .isThrownBy(() -> xmlValidation.validateXML(result, StandardCharsets.UTF_8));
 
         // Validate that an error is thrown when validating an XML string with a double hyphen in an XML comment.
         final String content = new String(
