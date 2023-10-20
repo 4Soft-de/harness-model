@@ -88,12 +88,13 @@ class XMLReaderTest {
         final List<ValidationEvent> events = new ArrayList<>();
         final Consumer<ValidationEvent> myConsumer = events::add;
         final TestXMLReader reader = new TestXMLReader(myConsumer);
-        final InputStream inputStream = TestData.getInputStream(BASIC_ERROR_TEST_XML);
+        final InputStream inputStream = TestData.getInputStream(BASIC_DUPLICATE_ELEMENT_TEST_XML);
 
         final Root read = reader.read(inputStream);
         assertThat(read)
                 .isNotNull();
         assertThat(events)
+                // The caught error is actually not for the duplicated but because id_9 is now defined nowhere.
                 .isNotEmpty()
                 .hasSize(1)
                 .singleElement()

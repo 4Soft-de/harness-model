@@ -41,17 +41,19 @@ public final class TestData {
 
     private static final String BASIC_TEST_XML = "basic-test.xml";
     private static final String BASIC_TEST_XSD = "basic-test.xsd";
-    private static final String ERROR_TEST_XML = "error-test.xml";
+    private static final String DUPLICATE_ELEMENT_TEST_XML = "duplicate-element-test.xml";
+    private static final String DOUBLE_HYPHEN_TEST_XML = "double-hyphen-in-comment-test.xml";
 
     private static final String BASIC_BASE_PATH = "basic";
     private static final String VALIDATE_BASE_PATH = "validate";
 
     public static String BASIC_BASIC_TEST_XML = BASIC_BASE_PATH + "/" + BASIC_TEST_XML;
-    public static String BASIC_ERROR_TEST_XML = BASIC_BASE_PATH + "/" + ERROR_TEST_XML;
+    public static String BASIC_DUPLICATE_ELEMENT_TEST_XML = BASIC_BASE_PATH + "/" + DUPLICATE_ELEMENT_TEST_XML;
 
     public static String VALIDATE_BASIC_TEST_XML = VALIDATE_BASE_PATH + "/" + BASIC_TEST_XML;
     public static String VALIDATE_BASIC_TEST_XSD = VALIDATE_BASE_PATH + "/" + BASIC_TEST_XSD;
-    public static String VALIDATE_ERROR_TEST_XML = VALIDATE_BASE_PATH + "/" + ERROR_TEST_XML;
+    public static String VALIDATE_DUPLICATE_ELEMENT_TEST_XML = VALIDATE_BASE_PATH + "/" + DUPLICATE_ELEMENT_TEST_XML;
+    public static String VALIDATE_DOUBLE_HYPHEN_TEST_XML = VALIDATE_BASE_PATH + "/" + DOUBLE_HYPHEN_TEST_XML;
 
     private TestData() {
     }

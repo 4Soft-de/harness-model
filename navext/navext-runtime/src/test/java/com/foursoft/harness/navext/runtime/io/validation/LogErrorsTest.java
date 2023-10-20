@@ -42,7 +42,7 @@ class LogErrorsTest {
         final XMLValidation xmlValidation = XMLValidationTest.getXmlValidation();
 
         final String content = new String(
-                Files.readAllBytes(TestData.getPath(TestData.VALIDATE_ERROR_TEST_XML)));
+                Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DUPLICATE_ELEMENT_TEST_XML)));
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
                                                                            StandardCharsets.UTF_8);
         final String errorString = LogErrors.annotateXMLContent(content, errors);

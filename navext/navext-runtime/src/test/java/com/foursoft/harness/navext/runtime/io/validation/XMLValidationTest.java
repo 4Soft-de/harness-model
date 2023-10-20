@@ -26,15 +26,18 @@
 package com.foursoft.harness.navext.runtime.io.validation;
 
 import com.foursoft.harness.navext.runtime.io.TestData;
+import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.validation.Schema;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class XMLValidationTest {
 
@@ -44,7 +47,7 @@ class XMLValidationTest {
     }
 
     @Test
-    void validateXML() throws Exception {
+    void validateXML() throws IOException {
         final XMLValidation xmlValidation = getXmlValidation();
 
         final String content = new String(
@@ -57,11 +60,11 @@ class XMLValidationTest {
     }
 
     @Test
-    void validateErrorXML() throws Exception {
+    void validateDuplicateXmlElementError() throws IOException {
         final XMLValidation xmlValidation = getXmlValidation();
 
         final String content = new String(
-                Files.readAllBytes(TestData.getPath(TestData.VALIDATE_ERROR_TEST_XML)));
+                Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DUPLICATE_ELEMENT_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
                                                                            StandardCharsets.UTF_8);
@@ -71,6 +74,20 @@ class XMLValidationTest {
                 .allSatisfy(el -> assertThat(el)
                         .returns(21, ErrorLocation::line)
                         .returns(true, x -> x.message().contains("id_8")));
+    }
+
+    @Test
+    void validateDoubleHyphenInXmlCommentError() throws IOException {
+        final XMLValidation xmlValidation = getXmlValidation();
+
+        final String content = new String(
+                Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DOUBLE_HYPHEN_TEST_XML)));
+
+        assertThatExceptionOfType(XMLIOException.class)
+                .isThrownBy(() -> xmlValidation.validateXML(content, StandardCharsets.UTF_8))
+                .withCauseInstanceOf(XMLIOException.class)
+                .havingCause()
+                .withMessageContaining("--");
     }
 
 }
