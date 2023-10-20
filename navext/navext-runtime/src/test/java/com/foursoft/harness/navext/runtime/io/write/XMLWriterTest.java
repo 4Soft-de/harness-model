@@ -63,7 +63,7 @@ class XMLWriterTest {
         final Comments comments = new Comments();
         final String expectedComment = "Blafasel";
         comments.put(root.getChildA().get(0), expectedComment);
-        comments.put(root, "Hello World");
+        comments.put(root, "Hello -- World");
         final XMLMeta xmlMeta = new XMLMeta();
         xmlMeta.setComments(comments);
         final ProcessingInstructions processingInstructions = new ProcessingInstructions();
@@ -76,12 +76,11 @@ class XMLWriterTest {
                 .contains(expectedComment)
                 // check for correct new lines
                 .startsWith("<?xml version=\"1.0\" ?>\n" +
-                                    "<!--Hello World-->\n" +
+                                    "<!--Hello - - World-->\n" +
                                     "<?pc pc test?>\n" +
                                     "<Root id=\"id_1\">")
-                .contains(">\n" +
-                                  "<?pc pc test 2?>\n" +
-                                  "  <")
+                .contains("<?pc pc test 2?>\n" +
+                                  "  <ChildA id=\"id_3\">")
                 .doesNotContain("\n\n");
     }
 
