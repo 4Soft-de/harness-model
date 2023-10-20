@@ -37,8 +37,7 @@ class SchemaFactoryTest {
 
     @Test
     void testGetSchema() {
-        final String fileName = TestData.VALIDATE_BASE_PATH.resolve("basic-test.xsd").toString();
-        final Schema schema = SchemaFactory.getSchema(fileName);
+        final Schema schema = TestData.getBasicSchema();
         assertThat(schema).isNotNull();
     }
 
@@ -47,4 +46,5 @@ class SchemaFactoryTest {
         assertThatThrownBy(() -> SchemaFactory.getSchema(""))
                 .isInstanceOf(SchemaFactoryException.class);
     }
+
 }

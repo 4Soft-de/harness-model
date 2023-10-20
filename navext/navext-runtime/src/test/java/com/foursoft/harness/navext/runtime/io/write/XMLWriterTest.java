@@ -47,7 +47,7 @@ class XMLWriterTest {
 
     @Test
     void writeToString() {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         final String result = xmlWriter.writeToString(root);
@@ -57,7 +57,7 @@ class XMLWriterTest {
 
     @Test
     void writeToStringWithComments() {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         final Comments comments = new Comments();
@@ -86,7 +86,7 @@ class XMLWriterTest {
 
     @Test
     void writeToStringDefaultLogger() {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
         final String result = xmlWriter.writeToString(root);
         Assertions.assertThat(result).contains("anotherAttribute").contains("\"Some Information\"");
@@ -94,7 +94,7 @@ class XMLWriterTest {
 
     @Test
     void writeToStringError() {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
 
         final ChildA childA = new ChildA();
         childA.getReferencedChildB().add(new ChildB());
@@ -108,7 +108,7 @@ class XMLWriterTest {
 
     @Test
     void writeToOutputStream() throws IOException {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         try (final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()) {
@@ -121,7 +121,7 @@ class XMLWriterTest {
 
     @Test
     void writeToOutputStreamWithComments() throws IOException {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         final XMLMeta meta = new XMLMeta();

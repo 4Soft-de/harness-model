@@ -40,7 +40,7 @@ class IdGeneratorTest {
                 .withRemovePrefix(0)
                 .build();
 
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         idGenerator.setXmlId(root);
 
         assertThat(root).satisfies(c -> assertThat(c.getXmlId()).isEqualTo("root_1"));
