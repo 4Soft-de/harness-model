@@ -33,15 +33,23 @@ import java.util.Optional;
 /**
  * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
  * and added directly before the xml-element.
- * e.g. if a Root-class exists which is serialized to &lt;Root&gt;&lt;/Root&gt;
- * the following code:
- * Root root = new Root();
- * Comments comments = new Comments();
- * comments.put(root, "TestComment");
- * XMLWriter::write(root, comments);
- * would result in:
- * &lt;!-- TestComment --&gt;
- * &lt;Root&gt;&lt;/Root&gt;
+ * <p>
+ * Example: If a Root-class exists which is serialized to {@code &lt;Root&gt;&lt;/Root&gt;}
+ * the following code
+ * {@code <pre>
+ *     XMLWriter&lt;Root&gt; xmlWriter = new XMLWriter&lt;&gt;(Root.class);
+ *     Root root = new Root();
+ *     XMLMeta xmlMeta = new XMLMeta();
+ *     Comments comments = new Comments();
+ *     comments.put(root, "TestComment");
+ *     xmlMeta.setComments(comments);
+ *     String content = xmlWriter.writeToString(root, xmlMeta);
+ * </pre>}
+ * would result {@code content} in containing
+ * {@code <pre>
+ *     &lt;!--TestComment--&gt;
+ *     &lt;Root&gt;&lt;/Root&gt;
+ * </pre>}
  */
 public class Comments {
 

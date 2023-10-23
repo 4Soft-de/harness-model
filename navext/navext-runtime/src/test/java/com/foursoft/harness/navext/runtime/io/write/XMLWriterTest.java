@@ -59,6 +59,21 @@ class XMLWriterTest {
     }
 
     @Test
+    void writeToStringWithCommentSimple() {
+        final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
+        final Root root = new Root();
+        final XMLMeta xmlMeta = new XMLMeta();
+        final Comments comments = new Comments();
+        comments.put(root, "TestComment");
+        xmlMeta.setComments(comments);
+        final String content = xmlWriter.writeToString(root, xmlMeta);
+        assertThat(content)
+                .contains("" +  // Empty string here for a better readability of the indentation of the expected String.
+                                  "<!--TestComment-->\n" +
+                                  "<Root></Root>");
+    }
+
+    @Test
     void writeToStringWithComments() {
         final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
