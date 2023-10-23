@@ -64,14 +64,14 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper {
         return resolveExplicitClassMappings(clazz).orElseGet(() -> super.map(clazz));
     }
 
-    private Optional<Class<?>> resolveExplicitClassMappings(final Class<?> clazz) {
-        return Optional.<Class<?>>ofNullable(explicitClassMappings.get(clazz))
-                .or(() -> Optional.ofNullable(explicitClassMappings.get(ClassUtils.getNonProxyClass(clazz))));
-    }
-
     @Override
     public HasUnsupportedMethods checkUnsupportedMethods() {
         return ignored;
+    }
+
+    private Optional<Class<?>> resolveExplicitClassMappings(final Class<?> clazz) {
+        return Optional.<Class<?>>ofNullable(explicitClassMappings.get(clazz))
+                .or(() -> Optional.ofNullable(explicitClassMappings.get(ClassUtils.getNonProxyClass(clazz))));
     }
 
     private static class UnsupportedVec12XToVec20XMethods extends HashSet<MethodIdentifier>

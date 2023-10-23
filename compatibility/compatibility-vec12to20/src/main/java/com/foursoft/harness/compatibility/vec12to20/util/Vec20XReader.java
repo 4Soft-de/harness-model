@@ -43,19 +43,6 @@ public final class Vec20XReader {
     }
 
     /**
-     * This method creates a VecContent in version 2.X.X from the given {@link InputStream}.
-     *
-     * @param inputStream InputStream of a VEC.
-     * @param streamName  The name of the stream for logging.
-     * @return The VecContent in version 2.X.X.
-     */
-    public static com.foursoft.harness.vec.v2x.
-            VecContent createVec20x(final InputStream inputStream, final String streamName) {
-        return new VecCreator(CREATOR).createVec(inputStream, streamName,
-                                                 com.foursoft.harness.vec.v2x.VecContent.class);
-    }
-
-    /**
      * This method creates a VecContent in version 1.2.X from the given {@link InputStream}.
      *
      * @param inputStream InputStream of a VEC.
@@ -66,6 +53,19 @@ public final class Vec20XReader {
             VecContent createVec12x(final InputStream inputStream, final String streamName) {
         return new VecCreator(CREATOR).createVec(inputStream, streamName,
                                                  com.foursoft.harness.vec.v12x.VecContent.class);
+    }
+
+    /**
+     * This method creates a VecContent in version 2.X.X from the given {@link InputStream}.
+     *
+     * @param inputStream InputStream of a VEC.
+     * @param streamName  The name of the stream for logging.
+     * @return The VecContent in version 2.X.X.
+     */
+    public static com.foursoft.harness.vec.v2x.
+            VecContent createVec20x(final InputStream inputStream, final String streamName) {
+        return new VecCreator(CREATOR).createVec(inputStream, streamName,
+                                                 com.foursoft.harness.vec.v2x.VecContent.class);
     }
 
     /**

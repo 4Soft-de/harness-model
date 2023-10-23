@@ -40,6 +40,8 @@ import java.util.Comparator;
  */
 public class Vec20To12ConnectorHousingRoleWrapper extends ReflectionBasedWrapper {
 
+    private com.foursoft.harness.vec.v12x.VecComponentNode node;
+
     /**
      * Creates this wrapper.
      *
@@ -49,8 +51,6 @@ public class Vec20To12ConnectorHousingRoleWrapper extends ReflectionBasedWrapper
     public Vec20To12ConnectorHousingRoleWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
     }
-
-    private com.foursoft.harness.vec.v12x.VecComponentNode node;
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {

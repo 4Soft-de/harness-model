@@ -42,6 +42,8 @@ public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Vec12To20DocumentVersionWrapper.class);
 
+    protected BigInteger numberOfSheets;
+
     /**
      * Creates this wrapper.
      *
@@ -51,8 +53,6 @@ public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
     public Vec12To20DocumentVersionWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
     }
-
-    protected BigInteger numberOfSheets;
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
@@ -73,10 +73,10 @@ public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
         return super.wrapObject(obj, method, allArguments);
     }
 
-    private void handleValue(String value) {
+    private void handleValue(final String value) {
         try {
             numberOfSheets = new BigInteger(value);
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             LOGGER.error("Cannot convert value '{}' for 'numberOfSheets' to Integer.", value);
             numberOfSheets = BigInteger.ZERO;
         }

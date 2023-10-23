@@ -38,6 +38,8 @@ import java.lang.reflect.Method;
  */
 public class Vec20To12PartVersionWrapper extends ReflectionBasedWrapper {
 
+    protected String preferredUseCase;
+
     /**
      * Creates this wrapper.
      *
@@ -47,8 +49,6 @@ public class Vec20To12PartVersionWrapper extends ReflectionBasedWrapper {
     public Vec20To12PartVersionWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
     }
-
-    protected String preferredUseCase;
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {

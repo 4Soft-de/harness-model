@@ -65,9 +65,9 @@ public class Vec12To20CableLeadThroughWrapper extends ReflectionBasedWrapper {
     }
 
     private VecCableLeadThroughOutlet wrapPointWithOutlet(
-            com.foursoft.harness.vec.v12x.VecPlacementPoint placementPoint) {
-        VecPlacementPoint wrappedPlacementPoint = getContext().getWrapperProxyFactory().createProxy(placementPoint);
-        VecCableLeadThroughOutlet outlet = new VecCableLeadThroughOutlet();
+            final com.foursoft.harness.vec.v12x.VecPlacementPoint placementPoint) {
+        final VecPlacementPoint wrappedPlacementPoint = getContext().getWrapperProxyFactory().createProxy(placementPoint);
+        final VecCableLeadThroughOutlet outlet = new VecCableLeadThroughOutlet();
         outlet.setXmlId(UUID.randomUUID().toString().substring(0, 10));
         outlet.setPlacementPoint(wrappedPlacementPoint);
         outlet.setIdentification("CableLeadThroughOutlet_" + placementPoint.getIdentification());
