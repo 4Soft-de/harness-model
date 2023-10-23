@@ -25,7 +25,10 @@
  */
 package com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
@@ -42,6 +45,9 @@ import java.util.*;
  */
 public class Comments {
 
+    private static final String DOUBLE_HYPHEN = "--";
+    private static final String SANITIZED_DOUBLE_HYPHEN = "- -";
+
     private final Map<Object, String> map = new HashMap<>();
 
     public boolean containsKey(final Object key) {
@@ -55,11 +61,22 @@ public class Comments {
     public void put(final Object key, final String comment) {
         Objects.requireNonNull(key);
         Objects.requireNonNull(comment);
-        map.put(key, comment);
+        map.put(key, sanitizeComment(comment));
     }
 
-    public Map<Object, String> getCommentMap() {
-        return Collections.unmodifiableMap(map);
+    /**
+     * Sanitizes the given comment.
+     * <p>
+     * This will replace {@link #DOUBLE_HYPHEN} with {@link #SANITIZED_DOUBLE_HYPHEN}.
+     * This is needed since per default, an XML comment may not contain {@link #DOUBLE_HYPHEN}.
+     *
+     * @param comment Comment to sanitize.
+     * @return The sanitized comment.
+     */
+    private String sanitizeComment(final String comment) {
+        return comment.contains(DOUBLE_HYPHEN)
+                ? comment.replace(DOUBLE_HYPHEN, SANITIZED_DOUBLE_HYPHEN)
+                : comment;
     }
 
 }
