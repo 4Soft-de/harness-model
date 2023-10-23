@@ -33,17 +33,29 @@ import java.util.Optional;
 /**
  * Comments allows adding XML-comments to the output file. The comments are linked to JAXB elements
  * and added directly before the xml-element.
- * e.g. if a Root-class exists which is serialized to &lt;Root&gt;&lt;/Root&gt;
- * the following code:
- * Root root = new Root();
- * Comments comments = new Comments();
- * comments.put(root, "TestComment");
- * XMLWriter::write(root, comments);
- * would result in:
- * &lt;!-- TestComment --&gt;
- * &lt;Root&gt;&lt;/Root&gt;
+ * <p>
+ * Example: If a Root-class exists which is serialized to {@code &lt;Root&gt;&lt;/Root&gt;}
+ * the following code
+ * {@code <pre>
+ *     XMLWriter&lt;Root&gt; xmlWriter = new XMLWriter&lt;&gt;(Root.class);
+ *     Root root = new Root();
+ *     XMLMeta xmlMeta = new XMLMeta();
+ *     Comments comments = new Comments();
+ *     comments.put(root, "TestComment");
+ *     xmlMeta.setComments(comments);
+ *     String content = xmlWriter.writeToString(root, xmlMeta);
+ * </pre>}
+ * would result {@code content} in containing
+ * {@code <pre>
+ *     &lt;!--TestComment--&gt;
+ *     &lt;Root&gt;&lt;/Root&gt;
+ * </pre>}
  */
 public class Comments {
+
+    private static final String DOUBLE_HYPHEN = "--";
+    private static final String SANITIZED_DOUBLE_HYPHEN = "- -";
+
     private final Map<Object, String> map = new HashMap<>();
 
     public boolean containsKey(final Object key) {
@@ -57,6 +69,22 @@ public class Comments {
     public void put(final Object key, final String comment) {
         Objects.requireNonNull(key);
         Objects.requireNonNull(comment);
-        map.put(key, comment);
+        map.put(key, sanitizeComment(comment));
     }
+
+    /**
+     * Sanitizes the given comment.
+     * <p>
+     * This will replace {@link #DOUBLE_HYPHEN} with {@link #SANITIZED_DOUBLE_HYPHEN}.
+     * This is needed since per default, an XML comment may not contain {@link #DOUBLE_HYPHEN}.
+     *
+     * @param comment Comment to sanitize.
+     * @return The sanitized comment.
+     */
+    private String sanitizeComment(final String comment) {
+        return comment.contains(DOUBLE_HYPHEN)
+                ? comment.replace(DOUBLE_HYPHEN, SANITIZED_DOUBLE_HYPHEN)
+                : comment;
+    }
+
 }

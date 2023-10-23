@@ -26,47 +26,85 @@
 package com.foursoft.harness.navext.runtime.io.validation;
 
 import com.foursoft.harness.navext.runtime.io.TestData;
+import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
-import org.junit.jupiter.api.Assertions;
+import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
+import com.foursoft.harness.navext.runtime.model.Root;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.validation.Schema;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collection;
 
+import static org.assertj.core.api.Assertions.*;
+
 class XMLValidationTest {
 
     public static XMLValidation getXmlValidation() {
-        final String fileName = TestData.VALIDATE_BASE_PATH.resolve("basic-test.xsd").toString();
-        final Schema schema = SchemaFactory.getSchema(fileName);
+        final Schema schema = TestData.getBasicSchema();
         return new XMLValidation(schema);
     }
 
     @Test
-    void validateXML() throws Exception {
+    void validateXML() throws IOException {
         final XMLValidation xmlValidation = getXmlValidation();
 
         final String content = new String(
-                Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.BASIC_TEST_XML)));
+                Files.readAllBytes(TestData.getPath(TestData.VALIDATE_BASIC_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
                                                                            StandardCharsets.UTF_8);
-        Assertions.assertTrue(errors.isEmpty());
+        assertThat(errors)
+                .isEmpty();
     }
 
     @Test
-    void validateErrorXML() throws Exception {
+    void validateDuplicateXmlElementError() throws IOException {
         final XMLValidation xmlValidation = getXmlValidation();
 
         final String content = new String(
-                Files.readAllBytes(TestData.VALIDATE_BASE_PATH_SRC.resolve(TestData.ERROR_TEST_XML)));
+                Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DUPLICATE_ELEMENT_TEST_XML)));
 
         final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
                                                                            StandardCharsets.UTF_8);
-        Assertions.assertFalse(errors.isEmpty());
-        Assertions.assertEquals(2, errors.size());
+        assertThat(errors)
+                .isNotEmpty()
+                .hasSize(2)
+                .allSatisfy(el -> assertThat(el)
+                        .returns(21, x -> x.line)
+                        .returns(true, x -> x.message.contains("id_8")));
+    }
 
+    @Test
+    void validateDoubleHyphenInXmlCommentError() throws IOException {
+        // Validate that no error is thrown when writing an Object with a double hyphen in an XML comment.
+        final Root root = TestData.readBasicXml();
+        final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
+
+        final XMLMeta xmlMeta = new XMLMeta();
+        final Comments comments = new Comments();
+        comments.put(root, "Hello -- World");
+        xmlMeta.setComments(comments);
+        final String result = xmlWriter.writeToString(root, xmlMeta);
+        assertThat(result).contains("Hello - - World");
+
+        final XMLValidation xmlValidation = getXmlValidation();
+        assertThatNoException()
+                .isThrownBy(() -> xmlValidation.validateXML(result, StandardCharsets.UTF_8));
+
+        // Validate that an error is thrown when validating an XML string with a double hyphen in an XML comment.
+        final String content = new String(
+                Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DOUBLE_HYPHEN_TEST_XML)));
+
+        assertThatExceptionOfType(XMLIOException.class)
+                .isThrownBy(() -> xmlValidation.validateXML(content, StandardCharsets.UTF_8))
+                .withCauseInstanceOf(XMLIOException.class)
+                .havingCause()
+                .withMessageContaining("--");
     }
 
 }

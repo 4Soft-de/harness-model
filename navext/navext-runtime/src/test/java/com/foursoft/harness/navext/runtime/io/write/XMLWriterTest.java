@@ -34,36 +34,54 @@ import com.foursoft.harness.navext.runtime.io.write.xmlmeta.processinginstructio
 import com.foursoft.harness.navext.runtime.model.ChildA;
 import com.foursoft.harness.navext.runtime.model.ChildB;
 import com.foursoft.harness.navext.runtime.model.Root;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 class XMLWriterTest {
 
     @Test
     void writeToString() {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         final String result = xmlWriter.writeToString(root);
-        assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
-        Assertions.assertThat(result).contains("anotherAttribute").contains("\"Some Information\"");
+
+        assertThat(validationEventCollector.hasEvents())
+                .isFalse();
+        assertThat(result)
+                .contains("anotherAttribute")
+                .contains("\"Some Information\"");
+    }
+
+    @Test
+    void writeToStringWithCommentSimple() {
+        final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
+        final Root root = new Root();
+        final XMLMeta xmlMeta = new XMLMeta();
+        final Comments comments = new Comments();
+        comments.put(root, "TestComment");
+        xmlMeta.setComments(comments);
+        final String content = xmlWriter.writeToString(root, xmlMeta);
+        assertThat(content)
+                .contains("" +  // Empty string here for a better readability of the indentation of the expected String.
+                                  "<!--TestComment-->\n" +
+                                  "<Root></Root>");
     }
 
     @Test
     void writeToStringWithComments() {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         final Comments comments = new Comments();
         final String expectedComment = "Blafasel";
         comments.put(root.getChildA().get(0), expectedComment);
-        comments.put(root, "Hello World");
+        comments.put(root, "Hello -- World");
         final XMLMeta xmlMeta = new XMLMeta();
         xmlMeta.setComments(comments);
         final ProcessingInstructions processingInstructions = new ProcessingInstructions();
@@ -71,58 +89,65 @@ class XMLWriterTest {
         processingInstructions.put(root.getChildA().get(1), new ProcessingInstruction("pc", "pc test 2"));
         xmlMeta.setProcessingInstructions(processingInstructions);
         final String result = xmlWriter.writeToString(root, xmlMeta);
-        assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
-        Assertions.assertThat(result)
+
+        assertThat(validationEventCollector.hasEvents())
+                .isFalse();
+        assertThat(result)
                 .contains(expectedComment)
                 // check for correct new lines
                 .startsWith("<?xml version=\"1.0\" ?>\n" +
-                                    "<!--Hello World-->\n" +
+                                    "<!--Hello - - World-->\n" +
                                     "<?pc pc test?>\n" +
                                     "<Root id=\"id_1\">")
-                .contains(">\n" +
-                                  "<?pc pc test 2?>\n" +
-                                  "  <")
+                .contains("<?pc pc test 2?>\n" +
+                                  "  <ChildA id=\"id_3\">")
                 .doesNotContain("\n\n");
     }
 
     @Test
     void writeToStringDefaultLogger() {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
         final String result = xmlWriter.writeToString(root);
-        Assertions.assertThat(result).contains("anotherAttribute").contains("\"Some Information\"");
+        assertThat(result)
+                .contains("anotherAttribute")
+                .contains("\"Some Information\"");
     }
 
     @Test
     void writeToStringError() {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
 
         final ChildA childA = new ChildA();
         childA.getReferencedChildB().add(new ChildB());
         root.getChildA().add(childA);
 
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class);
-        assertThrows(NullPointerException.class, () -> xmlWriter.writeToString(root),
-                     "Jaxb throws a nullpointer exception if the model is invalid");
-
+        // JAXB throws an NPE if the model is invalid.
+        assertThatNullPointerException()
+                .isThrownBy(() -> xmlWriter.writeToString(root));
     }
 
     @Test
     void writeToOutputStream() throws IOException {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         try (final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()) {
             xmlWriter.write(root, byteOutputStream);
             final String result = byteOutputStream.toString();
-            assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
-            Assertions.assertThat(result).contains("anotherAttribute").contains("\"Some Information\"");
+
+            assertThat(validationEventCollector.hasEvents())
+                    .isFalse();
+            assertThat(result)
+                    .contains("anotherAttribute")
+                    .contains("\"Some Information\"");
         }
     }
 
     @Test
     void writeToOutputStreamWithComments() throws IOException {
-        final Root root = TestData.readBasicTest();
+        final Root root = TestData.readBasicXml();
         final ValidationEventCollector validationEventCollector = new ValidationEventCollector();
         final XMLWriter<Root> xmlWriter = new XMLWriter<>(Root.class, validationEventCollector);
         final XMLMeta meta = new XMLMeta();
@@ -139,9 +164,11 @@ class XMLWriterTest {
         try (final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream()) {
             xmlWriter.write(root, meta, byteOutputStream);
             final String result = byteOutputStream.toString();
-            assertFalse(validationEventCollector.hasEvents(), "Should produce no errors!");
-            Assertions.assertThat(result).contains(expectedComment);
-            Assertions.assertThat(result).contains(processingInstruction.getData());
+            assertThat(validationEventCollector.hasEvents())
+                    .isFalse();
+            assertThat(result)
+                    .contains(expectedComment)
+                    .contains(processingInstruction.getData());
         }
     }
 

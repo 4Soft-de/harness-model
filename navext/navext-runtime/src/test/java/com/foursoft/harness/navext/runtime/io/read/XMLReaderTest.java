@@ -27,42 +27,46 @@ package com.foursoft.harness.navext.runtime.io.read;
 
 import com.foursoft.harness.navext.runtime.io.TestData;
 import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
-import com.foursoft.harness.navext.runtime.model.AbstractBase;
 import com.foursoft.harness.navext.runtime.model.Root;
 import jakarta.xml.bind.ValidationEvent;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static com.foursoft.harness.navext.runtime.io.TestData.BASIC_TEST_XML;
+import static com.foursoft.harness.navext.runtime.io.TestData.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class XMLReaderTest {
 
     @Test
-    void readInputStream() {
-        final TestXMLReader reader = new TestXMLReader();
-        final InputStream inputStream = getClass().getResourceAsStream("/basic/" + BASIC_TEST_XML);
-        final Root read = reader.read(inputStream);
-        Assertions.assertNotNull(read, "read must be not null");
+    void testReadInputStream() {
+        final Root read = readBasicXml();
+        assertThat(read)
+                .isNotNull();
     }
 
     @Test
     void testReadWrongFile() {
-        final String fileName = TestData.BASIC_BASE_PATH.resolve("unknown-test.xml").toAbsolutePath().toString();
+        final String fileName = Paths.get("unknown-test.xml").toString();
         final TestXMLReader reader = new TestXMLReader();
-        Assertions.assertThrows(XMLIOException.class, () -> reader.read(fileName));
+        assertThatExceptionOfType(XMLIOException.class)
+                .isThrownBy(() -> reader.read(fileName));
     }
 
     @Test
     void testReadFile() {
-        final String fileName = TestData.BASIC_BASE_PATH.resolve(BASIC_TEST_XML).toAbsolutePath().toString();
+        final String fileName = Paths.get("src/test/resources/")
+                .resolve(BASIC_BASIC_TEST_XML)
+                .toString();
         final TestXMLReader reader = new TestXMLReader();
         final Root read = reader.read(fileName);
-        Assertions.assertNotNull(read, "read must be not null");
+        assertThat(read)
+                .isNotNull();
     }
 
     @Test
@@ -70,10 +74,13 @@ class XMLReaderTest {
         final List<ValidationEvent> events = new ArrayList<>();
         final Consumer<ValidationEvent> myConsumer = events::add;
         final TestXMLReader reader = new TestXMLReader(myConsumer);
-        final InputStream inputStream = getClass().getResourceAsStream("/basic/" + BASIC_TEST_XML);
+        final InputStream inputStream = TestData.getInputStream(BASIC_BASIC_TEST_XML);
+
         final Root read = reader.read(inputStream);
-        Assertions.assertNotNull(read, "read must be not null");
-        Assertions.assertEquals(0, events.size(), "There should be no validation events");
+        assertThat(read)
+                .isNotNull();
+        assertThat(events)
+                .isEmpty();
     }
 
     @Test
@@ -81,20 +88,18 @@ class XMLReaderTest {
         final List<ValidationEvent> events = new ArrayList<>();
         final Consumer<ValidationEvent> myConsumer = events::add;
         final TestXMLReader reader = new TestXMLReader(myConsumer);
-        final InputStream inputStream = getClass().getResourceAsStream("/basic/" + "error-test.xml");
+        final InputStream inputStream = TestData.getInputStream(BASIC_DUPLICATE_ELEMENT_TEST_XML);
 
         final Root read = reader.read(inputStream);
-        Assertions.assertNotNull(read, "read must be not null");
-        Assertions.assertEquals(1, events.size(), "There should be one validation events");
+        assertThat(read)
+                .isNotNull();
+        assertThat(events)
+                // The caught error is actually not for the duplicated but because id_9 is now defined nowhere.
+                .isNotEmpty()
+                .hasSize(1)
+                .singleElement()
+                .returns(ValidationEvent.ERROR, ValidationEvent::getSeverity)
+                .returns(true, e -> e.getMessage().contains("id_9"));
     }
 
-    class TestXMLReader extends XMLReader<Root, AbstractBase> {
-        TestXMLReader() {
-            super(Root.class, AbstractBase.class, AbstractBase::getXmlId);
-        }
-
-        TestXMLReader(final Consumer<ValidationEvent> consumer) {
-            super(Root.class, AbstractBase.class, AbstractBase::getXmlId, consumer);
-        }
-    }
 }

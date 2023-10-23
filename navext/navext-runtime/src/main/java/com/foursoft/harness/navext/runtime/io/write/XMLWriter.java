@@ -154,14 +154,16 @@ public class XMLWriter<T> {
 
             final MarshallerListener marshallerListener = new MarshallerListener();
             marshaller.setListener(marshallerListener);
-            meta.getComments().ifPresent(c -> marshallerListener.addListener(new CommentAdderListener(xsw, c)));
+
+            meta.getComments()
+                    .ifPresent(c -> marshallerListener.addListener(new CommentAdderListener(xsw, c)));
+
             meta.getProcessingInstructions()
                     .ifPresent(c -> marshallerListener.addListener(new ProcessingInstructionAdderListener(xsw, c)));
 
             marshaller.marshal(container, xsw);
             xsw.close();
             marshallerListener.clear();
-
         } catch (final XMLStreamException | JAXBException e) {
             throw new XMLIOException("Error serializing XML file.", e);
         }
