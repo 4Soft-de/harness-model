@@ -32,7 +32,7 @@ import com.foursoft.harness.compatibility.vec12to20.Vec12XTo20XProcessor;
 import java.io.InputStream;
 
 /**
- * Class which is able to read and create any VEC 1.X.X.
+ * Class which is able to read and create any VEC 2.0.X.
  */
 public final class Vec20XReader {
 

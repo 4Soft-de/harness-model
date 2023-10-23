@@ -29,6 +29,7 @@ import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.common.EventConsumer;
 import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import com.foursoft.harness.compatibility.vec.common.util.VecVersionDetector;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.Vec12To20ContentWrapper;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.visitor.Visitable;
 import jakarta.xml.bind.ValidationEvent;
@@ -40,12 +41,12 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
- * Default VEC Reader which will create VEC 1.2.X {@link VecContent}s.
+ * Default VEC Reader which will create VEC 2.0.X {@link VecContent}s.
  * Can also take {@link InputStream}s of older VEC versions which will be converted to VEC 1.2.X.
  * <b>Important notice:</b> If the {@code VecContent} was converted, the fields will always be {@code null}.
  * When trying to call methods on the {@code VecContent} (e.g. {@code VecContent#getVecVersion}),
- * the value wil be calculated on the fly by
- * executing a corresponding wrapper.
+ * the value wil be calculated on the fly by executing a corresponding wrapper.
+ * In this example: {@link Vec12To20ContentWrapper}.
  * <p>
  * If you want the fields to be set or if you need to write the {@code VecContent},
  * you have to call {@link InitializeFields#initializeFields(Visitable)}.

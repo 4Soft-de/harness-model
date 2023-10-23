@@ -45,8 +45,8 @@ import java.util.function.Consumer;
  * Can also take {@link InputStream}s of older VEC versions which will be converted to VEC 1.2.X.
  * <b>Important notice:</b> If the {@code VecContent} was converted, the fields will always be {@code null}.
  * When trying to call methods on the {@code VecContent} (e.g. {@code VecContent#getVecVersion}),
- * the value wil be calculated on the fly by
- * executing a corresponding wrapper (in this case: {@link Vec11To12ContentWrapper}).
+ * the value wil be calculated on the fly by executing a corresponding wrapper.
+ * In this example: {@link Vec11To12ContentWrapper}.
  * <p>
  * If you want the fields to be set or if you need to write the {@code VecContent},
  * you have to call {@link InitializeFields#initializeFields(Visitable)}.

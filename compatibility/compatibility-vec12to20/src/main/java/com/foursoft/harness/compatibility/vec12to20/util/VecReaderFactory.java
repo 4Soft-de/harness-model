@@ -39,7 +39,7 @@ import java.io.InputStream;
 import java.util.function.Consumer;
 
 /**
- * Reader factory to create a VEC 1.2.X {@link VecContent}.
+ * Reader factory to create a VEC 2.0.X {@link VecContent}.
  */
 public class VecReaderFactory {
 

@@ -37,7 +37,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 /**
- * Class responsible for processing and converting any VEC 1.X.X file into another VEC 1.X.X file.
+ * Class responsible for processing and converting any VEC 1.2.X file into another VEC 2.X.X file.
  */
 public class Vec12XTo20XProcessor implements VecProcessor {
 
