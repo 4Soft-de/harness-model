@@ -41,7 +41,6 @@ import java.util.List;
  * a wrapper around a {@link Validator} which logs all error events in an array
  */
 public class LogValidator {
-
     private final Validator validator;
     private final List<ErrorLocation> errorLines;
     private boolean isValid;
@@ -97,7 +96,21 @@ public class LogValidator {
     /**
      * ErrorLocation holds the line and message of the found error
      */
-    public record ErrorLocation(int line, String message) {
-    }
+    public static class ErrorLocation {
+        public final int line;
+        public final String message;
 
+        public ErrorLocation(final int line, final String message) {
+            this.line = line;
+            this.message = message;
+        }
+
+        @Override
+        public String toString() {
+            return "ErrorLocation{" +
+                    "line=" + line +
+                    ", message='" + message + '\'' +
+                    '}';
+        }
+    }
 }
