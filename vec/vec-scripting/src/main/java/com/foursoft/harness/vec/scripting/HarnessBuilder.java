@@ -25,12 +25,15 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
 public class HarnessBuilder implements RootBuilder {
 
     private final VecSession session;
-    private final VecDocumentVersion harnessDocument;
+    private final String documentNumber;
+
+    private final DocumentVersionBuilder harnessDocumentBuilder;
     private final VecCompositionSpecification compositionSpecification;
     private VecCompositionSpecification modulesCompositionSpecification;
 
@@ -38,23 +41,29 @@ public class HarnessBuilder implements RootBuilder {
 
     HarnessBuilder(final VecSession session, final String documentNumber, String version) {
         this.session = session;
-        this.harnessDocument = initializeDocument(documentNumber, version);
-        this.compositionSpecification = initializeCompositionSpecification(harnessDocument);
+        this.documentNumber = documentNumber;
+        this.harnessDocumentBuilder = initializeDocument(documentNumber, version);
+        this.compositionSpecification = initializeCompositionSpecification();
     }
 
     private VecContactingSpecification contactingSpecification() {
         if (contactingSpecification == null) {
             contactingSpecification = new VecContactingSpecification();
-            contactingSpecification.setIdentification(harnessDocument.getDocumentNumber());
-            harnessDocument.getSpecifications().add(contactingSpecification);
+            contactingSpecification.setIdentification(this.documentNumber);
+            harnessDocumentBuilder.addSpecification(contactingSpecification);
         }
         return contactingSpecification;
     }
 
-    private VecCompositionSpecification initializeCompositionSpecification(final VecDocumentVersion harnessDocument) {
+    private DocumentVersionBuilder initializeDocument(final String documentNumber, final String version) {
+        return this.session.document(documentNumber, version).documentType(
+                DefaultValues.HARNESS_DESCRIPTION);
+    }
+
+    private VecCompositionSpecification initializeCompositionSpecification() {
         VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
         compositionSpecification.setIdentification(DefaultValues.COMP_COMPOSITION_SPEC_IDENTIFICATION);
-        harnessDocument.getSpecifications().add(compositionSpecification);
+        this.harnessDocumentBuilder.addSpecification(compositionSpecification);
         return compositionSpecification;
     }
 
@@ -62,20 +71,8 @@ public class HarnessBuilder implements RootBuilder {
         if (modulesCompositionSpecification == null) {
             modulesCompositionSpecification = new VecCompositionSpecification();
             modulesCompositionSpecification.setIdentification(DefaultValues.MODULES_COMPOSITION_SPEC_IDENTIFICATION);
-            harnessDocument.getSpecifications().add(modulesCompositionSpecification);
+            harnessDocumentBuilder.addSpecification(modulesCompositionSpecification);
         }
-    }
-
-    private VecDocumentVersion initializeDocument(final String documentNumber, final String version) {
-        final VecDocumentVersion dv = new VecDocumentVersion();
-        session.getVecContentRoot().getDocumentVersions().add(dv);
-
-        dv.setDocumentNumber(documentNumber);
-        dv.setCompanyName(this.session.getDefaultValues().getCompanyName());
-        dv.setDocumentVersion(version);
-        dv.setDocumentType(DefaultValues.HARNESS_DESCRIPTION);
-
-        return dv;
     }
 
     VecPartOccurrence occurrence(final String identification) {
@@ -110,7 +107,7 @@ public class HarnessBuilder implements RootBuilder {
     public VariantBuilder addVariant(final String partNumber, final String... occurrences) {
         ensureModulesCompositionSpecification();
 
-        return new VariantBuilder(this, this.harnessDocument, partNumber, occurrences);
+        return new VariantBuilder(this, this.harnessDocumentBuilder, partNumber, occurrences);
     }
 
     @Override public VecSession getSession() {

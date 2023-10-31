@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecColor;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
 import com.foursoft.harness.vec.v2x.VecWireElementSpecification;
 
@@ -37,14 +37,14 @@ public class InsulationSpecificationBuilder<P extends Builder> extends AbstractC
     private final VecInsulationSpecification insulationSpecification = new VecInsulationSpecification();
 
     InsulationSpecificationBuilder(final P parent,
-                                   VecDocumentVersion partMasterDocument, VecWireElementSpecification context,
+                                   DocumentVersionBuilder partMasterDocument, VecWireElementSpecification context,
                                    String identification) {
         super(parent);
         insulationSpecification.setIdentification(identification);
 
         context.setInsulationSpecification(insulationSpecification);
 
-        partMasterDocument.getSpecifications().add(insulationSpecification);
+        partMasterDocument.addSpecification(insulationSpecification);
     }
 
     public InsulationSpecificationBuilder<P> withColor(

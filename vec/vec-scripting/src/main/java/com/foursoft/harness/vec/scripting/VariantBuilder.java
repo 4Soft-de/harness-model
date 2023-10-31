@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
 import java.util.Arrays;
@@ -33,7 +34,7 @@ import java.util.List;
 import static com.foursoft.harness.vec.scripting.factories.LocalizedStringFactory.de;
 
 public class VariantBuilder extends AbstractChildBuilder<HarnessBuilder> {
-    private final VecDocumentVersion harnessDocument;
+    private final DocumentVersionBuilder harnessDocument;
     private final String partNumber;
     private final VecCompositionSpecification components;
     private final VecCompositionSpecification modules;
@@ -42,7 +43,7 @@ public class VariantBuilder extends AbstractChildBuilder<HarnessBuilder> {
     private final List<VecPartOccurrence> occurrences;
     private final VecPartOccurrence moduleOccurrence;
 
-    public VariantBuilder(final HarnessBuilder parent, final VecDocumentVersion harnessDocument, String partNumber,
+    public VariantBuilder(final HarnessBuilder parent, final DocumentVersionBuilder harnessDocument, String partNumber,
                           String... occurrences
     ) {
         super(parent);
@@ -121,7 +122,7 @@ public class VariantBuilder extends AbstractChildBuilder<HarnessBuilder> {
         ps.setIdentification("STRUCTURE_" + this.partNumber);
         ps.getDescribedPart().add(this.partVersion);
         ps.setSpecialPartType("Module");
-        harnessDocument.getSpecifications().add(ps);
+        harnessDocument.addSpecification(ps);
 
         ps.getInBillOfMaterial()
                 .addAll(occurrences);
@@ -150,7 +151,7 @@ public class VariantBuilder extends AbstractChildBuilder<HarnessBuilder> {
     private VecVariantConfigurationSpecification initializeVariantConfiguration() {
         VecVariantConfigurationSpecification result = new VecVariantConfigurationSpecification();
         result.setIdentification(DefaultValues.MODULES_COMPOSITION_SPEC_IDENTIFICATION);
-        harnessDocument.getSpecifications().add(result);
+        harnessDocument.addSpecification(result);
         return result;
     }
 

@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecSpecification;
 import com.foursoft.harness.vec.v2x.VecWireElement;
 import com.foursoft.harness.vec.v2x.VecWireSpecification;
@@ -36,7 +36,7 @@ public class WireSpecificationBuilder extends PartOrUsageRelatedSpecificationBui
 
     WireSpecificationBuilder(ComponentMasterDataBuilder parent,
                              final String partNumber,
-                             final VecDocumentVersion partMasterDocument) {
+                             final DocumentVersionBuilder partMasterDocument) {
         super(parent, partMasterDocument);
 
         wireSpecification = initializeSpecification(VecWireSpecification.class, partNumber);
@@ -48,12 +48,12 @@ public class WireSpecificationBuilder extends PartOrUsageRelatedSpecificationBui
 
     private class WireSpecificationContext implements WireElementBuilderContext {
 
-        @Override public VecDocumentVersion partMasterDocument() {
+        @Override public DocumentVersionBuilder partMasterDocument() {
             return partMasterDocument;
         }
 
         @Override public void addSpecification(final VecSpecification specification) {
-            partMasterDocument.getSpecifications().add(specification);
+            partMasterDocument.addSpecification(specification);
         }
 
         @Override public void addWireElement(final VecWireElement element) {

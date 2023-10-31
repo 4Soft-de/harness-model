@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
@@ -32,7 +33,7 @@ import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 public class ComponentMasterDataBuilder implements RootBuilder {
     private final VecSession session;
     private final String partNumber;
-    private final VecDocumentVersion partMasterDocument;
+    private final DocumentVersionBuilder partMasterDocument;
     private final VecPartVersion part;
 
     ComponentMasterDataBuilder(final VecSession session,
@@ -41,7 +42,7 @@ public class ComponentMasterDataBuilder implements RootBuilder {
         this.session = session;
         this.partNumber = partNumber;
         this.part = initializePart(partNumber, primaryPartType);
-        this.partMasterDocument = initializeDocument(documentNumber, this.part);
+        this.partMasterDocument = initializeDocument(documentNumber);
     }
 
     @Override
@@ -49,17 +50,9 @@ public class ComponentMasterDataBuilder implements RootBuilder {
         return session;
     }
 
-    private VecDocumentVersion initializeDocument(final String documentNumber, VecPartVersion partVersion) {
-        final VecDocumentVersion dv = new VecDocumentVersion();
-        session.getVecContentRoot().getDocumentVersions().add(dv);
-
-        dv.setDocumentNumber(documentNumber);
-        dv.setCompanyName(this.session.getDefaultValues().getCompanyName());
-        dv.setDocumentVersion("1");
-        dv.setDocumentType(DefaultValues.PART_MASTER);
-
-        dv.getReferencedPart().add(part);
-        return dv;
+    private DocumentVersionBuilder initializeDocument(final String documentNumber) {
+        return this.session.document(documentNumber, "1").documentType(DefaultValues.PART_MASTER).addReferencedPart(
+                this.part);
     }
 
     private VecPartVersion initializePart(final String partNumber, VecPrimaryPartType primaryPartType) {
@@ -107,7 +100,7 @@ public class ComponentMasterDataBuilder implements RootBuilder {
     }
 
     public WireSingleCoreBuilder addSingleCore() {
-        return new WireSingleCoreBuilder(this, partNumber, partMasterDocument);
+        return new WireSingleCoreBuilder(this, partNumber);
     }
 
     public ConnectorSpecificationBuilder addConnectorHousing() {

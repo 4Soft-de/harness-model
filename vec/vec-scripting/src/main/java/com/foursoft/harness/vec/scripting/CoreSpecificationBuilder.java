@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecCoreSpecification;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 
@@ -35,11 +35,11 @@ public class CoreSpecificationBuilder extends AbstractChildBuilder<ComponentMast
     private final VecCoreSpecification coreSpecification = new VecCoreSpecification();
 
     CoreSpecificationBuilder(final ComponentMasterDataBuilder parent,
-                             VecDocumentVersion partMasterDocument, String identification) {
+                             DocumentVersionBuilder partMasterDocument, String identification) {
         super(parent);
         coreSpecification.setIdentification(identification);
 
-        partMasterDocument.getSpecifications().add(coreSpecification);
+        partMasterDocument.addSpecification(coreSpecification);
     }
 
     public CoreSpecificationBuilder withCSA(final double value) {
