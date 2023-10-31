@@ -25,9 +25,9 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecCavity;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecSlot;
 
 import java.util.HashMap;
@@ -41,7 +41,7 @@ public class ConnectorSpecificationBuilder extends PartOrUsageRelatedSpecificati
 
     ConnectorSpecificationBuilder(final ComponentMasterDataBuilder parent,
                                   final String partNumber,
-                                  final VecDocumentVersion partMasterDocument) {
+                                  final DocumentVersionBuilder partMasterDocument) {
         super(parent, partMasterDocument);
 
         connectorHousingSpecification = initializeSpecification(VecConnectorHousingSpecification.class, partNumber);

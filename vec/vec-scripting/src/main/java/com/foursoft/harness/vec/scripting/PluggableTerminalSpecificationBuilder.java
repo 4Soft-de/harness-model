@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
@@ -40,7 +41,7 @@ public class PluggableTerminalSpecificationBuilder extends PartOrUsageRelatedSpe
 
     PluggableTerminalSpecificationBuilder(final ComponentMasterDataBuilder parent,
                                           final String partNumber,
-                                          final VecDocumentVersion partMasterDocument) {
+                                          final DocumentVersionBuilder partMasterDocument) {
         super(parent, partMasterDocument);
 
         wireReceptionSpecification = new VecWireReceptionSpecification();
@@ -48,8 +49,8 @@ public class PluggableTerminalSpecificationBuilder extends PartOrUsageRelatedSpe
         terminalReceptionSpecification = new VecTerminalReceptionSpecification();
         terminalReceptionSpecification.setIdentification("TermRec-" + partNumber);
 
-        partMasterDocument.getSpecifications().add(wireReceptionSpecification);
-        partMasterDocument.getSpecifications().add(terminalReceptionSpecification);
+        partMasterDocument.addSpecification(wireReceptionSpecification);
+        partMasterDocument.addSpecification(terminalReceptionSpecification);
 
         wireReception = new VecWireReception();
         wireReception.setIdentification("WR1");

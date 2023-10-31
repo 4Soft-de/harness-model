@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
@@ -35,7 +36,7 @@ public class GeneralTechnicalPartSpecificationBuilder extends PartOrUsageRelated
     private final String partNumber;
 
     GeneralTechnicalPartSpecificationBuilder(final ComponentMasterDataBuilder parent, final String partNumber,
-                                             final VecDocumentVersion partMasterDocument) {
+                                             final DocumentVersionBuilder partMasterDocument) {
         super(parent, partMasterDocument);
         this.partNumber = partNumber;
 

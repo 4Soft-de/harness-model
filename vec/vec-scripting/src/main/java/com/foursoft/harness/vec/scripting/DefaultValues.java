@@ -35,6 +35,8 @@ public class DefaultValues {
     public static final String COMP_COMPOSITION_SPEC_IDENTIFICATION = "COMPONENTS";
     public static final String MODULES_COMPOSITION_SPEC_IDENTIFICATION = "MODULES";
 
+    public static final String CONNECTION_SPEC_IDENTIFICATION = "SCHEMATIC";
+
     public String getCompanyName() {
         return companyName;
     }

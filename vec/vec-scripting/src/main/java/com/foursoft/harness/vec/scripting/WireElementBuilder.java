@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
@@ -52,9 +53,8 @@ public class WireElementBuilder<P extends Builder> extends AbstractChildBuilder<
     }
 
     public WireElementBuilder<P> withCoreSpecification(String identification) {
-        VecCoreSpecification coreSpecification = Queries.findSpecification(context.partMasterDocument(),
-                                                                           identification,
-                                                                           VecCoreSpecification.class)
+        VecCoreSpecification coreSpecification = context.partMasterDocument().getSpecificationWith(
+                        VecCoreSpecification.class, identification)
                 .orElseThrow(IllegalArgumentException::new);
 
         wireElementSpecification.setConductorSpecification(coreSpecification);
@@ -87,7 +87,7 @@ public class WireElementBuilder<P extends Builder> extends AbstractChildBuilder<
 
     private class WireElementContext implements WireElementBuilderContext {
 
-        @Override public VecDocumentVersion partMasterDocument() {
+        @Override public DocumentVersionBuilder partMasterDocument() {
             return context.partMasterDocument();
         }
 

@@ -30,8 +30,10 @@ import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
+import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGeneratingTraverser;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGenerator;
 import com.foursoft.harness.vec.v2x.*;
@@ -66,6 +68,14 @@ public class VecSession {
 
     public VecContent getVecContentRoot() {
         return vecContentRoot;
+    }
+
+    public DocumentVersionBuilder document(final String documentNumber, String version) {
+        return new DocumentVersionBuilder(this, documentNumber, version);
+    }
+
+    public SchematicBuilder schematic(DocumentVersionBuilder container) {
+        return new SchematicBuilder(this, container);
     }
 
     public ComponentMasterDataBuilder component(final String partNumber, final String documentNumber,

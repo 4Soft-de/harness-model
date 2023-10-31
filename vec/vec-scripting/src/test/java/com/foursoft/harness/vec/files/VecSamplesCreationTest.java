@@ -31,21 +31,8 @@ import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 class VecSamplesCreationTest {
-
-    private OutputStream createTestFileStream(String testcase) throws IOException {
-        Path dir = FileSystems.getDefault().getPath(".", "target", "samples");
-
-        Files.createDirectories(dir);
-
-        return Files.newOutputStream(dir.resolve(testcase + ".vec"), StandardOpenOption.CREATE);
-    }
 
     @Test
     void ves_wf_changes_sample_pre() throws IOException {
@@ -53,7 +40,7 @@ class VecSamplesCreationTest {
 
         createCommonBase(session, "SL1", "N_018_886_1", "1");
 
-        session.writeToStream(createTestFileStream("ves-wf-changes-sample-pre"));
+        session.writeToStream(TestUtils.createTestFileStream("ves-wf-changes-sample-pre"));
     }
 
     @Test
@@ -62,7 +49,7 @@ class VecSamplesCreationTest {
 
         createCommonBase(session, "SL3", "3C0_972_100", "2");
 
-        session.writeToStream(createTestFileStream("ves-wf-changes-sample-post"));
+        session.writeToStream(TestUtils.createTestFileStream("ves-wf-changes-sample-post"));
     }
 
     private static void createCommonBase(final VecSession session, final String specialWireId,
@@ -255,7 +242,7 @@ class VecSamplesCreationTest {
 
         ;
 
-        session.writeToStream(createTestFileStream("detail-arena2036-example"));
+        session.writeToStream(TestUtils.createTestFileStream("detail-arena2036-example"));
     }
 
 }
