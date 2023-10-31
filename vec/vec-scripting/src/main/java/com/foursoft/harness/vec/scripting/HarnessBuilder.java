@@ -26,6 +26,7 @@
 package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
 public class HarnessBuilder implements RootBuilder {
@@ -38,6 +39,7 @@ public class HarnessBuilder implements RootBuilder {
     private VecCompositionSpecification modulesCompositionSpecification;
 
     private VecContactingSpecification contactingSpecification;
+    private SchematicBuilder schematic;
 
     HarnessBuilder(final VecSession session, final String documentNumber, String version) {
         this.session = session;
@@ -108,6 +110,15 @@ public class HarnessBuilder implements RootBuilder {
         ensureModulesCompositionSpecification();
 
         return new VariantBuilder(this, this.harnessDocumentBuilder, partNumber, occurrences);
+    }
+
+    public HarnessBuilder withSchematic(SchematicBuilder schematic) {
+        this.schematic = schematic;
+        return this;
+    }
+
+    SchematicBuilder getAssociatedSchematic() {
+        return this.schematic;
     }
 
     @Override public VecSession getSession() {

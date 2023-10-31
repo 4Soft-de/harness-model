@@ -71,6 +71,10 @@ public class ComponentMasterDataBuilder implements RootBuilder {
 
     }
 
+    public DocumentVersionBuilder partMasterDocument() {
+        return this.partMasterDocument;
+    }
+
     public ComponentMasterDataBuilder withApplicationSpecification(final String documentNumber,
                                                                    final String documentVersion) {
         VecDocumentVersion dv = new VecDocumentVersion();
@@ -97,6 +101,10 @@ public class ComponentMasterDataBuilder implements RootBuilder {
 
     public WireSpecificationBuilder addWireSpecification() {
         return new WireSpecificationBuilder(this, this.partNumber, partMasterDocument);
+    }
+
+    public EEComponentSpecificationBuilder addEEComponentSpecification() {
+        return new EEComponentSpecificationBuilder(this, this.partNumber, partMasterDocument);
     }
 
     public WireSingleCoreBuilder addSingleCore() {

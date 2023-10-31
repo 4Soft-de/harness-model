@@ -6,6 +6,12 @@ import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecComponentNode;
 import com.foursoft.harness.vec.v2x.VecConnectionSpecification;
+import com.foursoft.harness.vec.v2x.visitor.BaseVisitor;
+import com.foursoft.harness.vec.v2x.visitor.DepthFirstTraverserImpl;
+import com.foursoft.harness.vec.v2x.visitor.TraversingVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SchematicBuilder implements RootBuilder {
 
@@ -32,6 +38,32 @@ public class SchematicBuilder implements RootBuilder {
 
     public ConnectionBuilder addConnection(String identification) {
         return new ConnectionBuilder(this, this.connectionSpecification, identification);
+    }
+
+    public VecComponentNode node(String nodeId) {
+        List<VecComponentNode> nodes = new ArrayList<>();
+        connectionSpecification.accept(
+                new TraversingVisitor<>(new DepthFirstTraverserImpl<>(), new BaseVisitor<>() {
+                    @Override public Object visitVecComponentNode(final VecComponentNode node) {
+                        if (nodeId.equals(node.getIdentification())) {
+                            nodes.add(node);
+                        }
+                        return null;
+                    }
+                }
+                ));
+        if (nodes.isEmpty()) {
+            throw new IllegalArgumentException("No ComponentNode exists with Identification='" + nodeId + "'.");
+        }
+        if (nodes.size() > 1) {
+            throw new IllegalArgumentException(
+                    "More than one ComponentNode exists with Identification='" + nodeId + "'.");
+        }
+        return nodes.get(0);
+    }
+
+    public VecConnectionSpecification getElement() {
+        return this.connectionSpecification;
     }
 
     @Override public VecSession getSession() {
