@@ -2,11 +2,7 @@ package com.foursoft.harness.vec.scripting.schematic;
 
 import com.foursoft.harness.vec.scripting.AbstractChildBuilder;
 import com.foursoft.harness.vec.v2x.*;
-import com.foursoft.harness.vec.v2x.visitor.BaseVisitor;
-import com.foursoft.harness.vec.v2x.visitor.DepthFirstTraverserImpl;
-import com.foursoft.harness.vec.v2x.visitor.TraversingVisitor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionBuilder extends AbstractChildBuilder<SchematicBuilder> {
@@ -57,28 +53,6 @@ public class ConnectionBuilder extends AbstractChildBuilder<SchematicBuilder> {
             this.portId = portId;
         }
 
-        private VecComponentNode findNode() {
-            List<VecComponentNode> nodes = new ArrayList<>();
-            connectionSpecification.accept(
-                    new TraversingVisitor<>(new DepthFirstTraverserImpl<>(), new BaseVisitor<>() {
-                        @Override public Object visitVecComponentNode(final VecComponentNode node) {
-                            if (nodeId.equals(node.getIdentification())) {
-                                nodes.add(node);
-                            }
-                            return null;
-                        }
-                    }
-                    ));
-            if (nodes.isEmpty()) {
-                throw new IllegalArgumentException("No ComponentNode exists with Identification='" + nodeId + "'.");
-            }
-            if (nodes.size() > 1) {
-                throw new IllegalArgumentException(
-                        "More than one ComponentNode exists with Identification='" + nodeId + "'.");
-            }
-            return nodes.get(0);
-        }
-
         private VecComponentConnector findConnector(VecComponentNode node) {
             List<VecComponentConnector> connectors = node.getComponentConnectors().stream().filter(
                     c -> connectorId.equals(c.getIdentification())).toList();
@@ -116,7 +90,7 @@ public class ConnectionBuilder extends AbstractChildBuilder<SchematicBuilder> {
         }
 
         public PortPath find() {
-            VecComponentNode node = findNode();
+            VecComponentNode node = parent.node(nodeId);
             VecComponentConnector connector = findConnector(node);
             VecComponentPort port = findPort(connector);
             return new PortPath(node, connector, port);

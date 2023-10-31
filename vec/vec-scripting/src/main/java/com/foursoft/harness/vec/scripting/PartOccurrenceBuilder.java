@@ -104,6 +104,11 @@ public class PartOccurrenceBuilder extends AbstractChildBuilder<HarnessBuilder> 
                 final VecPluggableTerminalSpecification aBean) throws RuntimeException {
             return new PluggableTerminalRoleBuilder(PartOccurrenceBuilder.this, element, aBean);
         }
+
+        @Override public AbstractChildBuilder<PartOccurrenceBuilder> visitVecEEComponentSpecification(
+                final VecEEComponentSpecification aBean) throws RuntimeException {
+            return new EEComponentRoleBuilder(PartOccurrenceBuilder.this, element, aBean);
+        }
     }
 
 }
