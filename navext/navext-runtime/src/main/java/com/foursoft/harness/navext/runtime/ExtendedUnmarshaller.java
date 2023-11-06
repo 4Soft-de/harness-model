@@ -29,6 +29,7 @@ import com.foursoft.harness.navext.runtime.annotations.XmlBackReference;
 import com.foursoft.harness.navext.runtime.annotations.XmlParent;
 import com.foursoft.harness.navext.runtime.postprocessing.*;
 import jakarta.xml.bind.*;
+import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -37,6 +38,8 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.sax.SAXSource;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -157,14 +160,24 @@ public class ExtendedUnmarshaller<R, I> {
         return this;
     }
 
+    public JaxbModel<R, I> unmarshall(final Node node) throws JAXBException {
+        return unmarshal(new DOMSource(node));
+    }
+
     public JaxbModel<R, I> unmarshall(final InputStream resource) throws JAXBException {
+        SAXSource source = new SAXSource(getXMLReader(), new InputSource(resource));
+
+        return unmarshal(source);
+    }
+
+    public JaxbModel<R, I> unmarshal(final Source source) throws JAXBException {
         final ModelPostProcessorManager modelPostProcessorManager = new ModelPostProcessorManager(
                 postProcessorRegistry);
 
         unmarshaller.setListener(modelPostProcessorManager);
 
         final R root = rootElement.cast(
-                unmarshaller.unmarshal(new SAXSource(getXMLReader(), new InputSource(resource))));
+                unmarshaller.unmarshal(source));
 
         modelPostProcessorManager.doPostProcessing();
 

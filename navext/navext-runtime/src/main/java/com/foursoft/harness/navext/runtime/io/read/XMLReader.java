@@ -33,6 +33,7 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.ValidationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Node;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -127,6 +128,19 @@ public class XMLReader<T, I> {
     }
 
     /**
+     * Builds the complete JAXB tree structure from a preparsed DOM {@link Node}.
+     * Uses the already registered event consumer for validation events
+     *
+     * @param node the node to read from
+     * @return the JAXB object structure representing the xml file.
+     * @throws XMLIOException in case of a JAXBException
+     */
+    public T read(final Node node) {
+        Objects.requireNonNull(node);
+        return readModel(node).getRootElement();
+    }
+
+    /**
      * Builds the complete JAXB tree structure of an xml stream.
      * Uses the already registered event consumer for validation events
      *
@@ -136,14 +150,38 @@ public class XMLReader<T, I> {
      */
     public JaxbModel<T, I> readModel(final InputStream inputStream) {
         Objects.requireNonNull(inputStream);
+        return readModel(() -> unmarshaller.unmarshall(inputStream));
+    }
+
+    /**
+     * Builds the complete JAXB tree structure of a preparsed DOM {@link Node}.
+     * Uses the already registered event consumer for validation events
+     *
+     * @param node the document to read from
+     * @return the JAXB object structure representing the xml file.
+     * @throws XMLIOException in case of a JAXBException
+     */
+    public JaxbModel<T, I> readModel(final Node node) {
+        Objects.requireNonNull(node);
+        return readModel(() -> unmarshaller.unmarshall(node));
+    }
+
+    private JaxbModel<T, I> readModel(UnmarshallCallback<T, I> unmarshallCallback) {
+        Objects.requireNonNull(unmarshallCallback);
         try {
             final long start = System.currentTimeMillis();
-            final JaxbModel<T, I> result = unmarshaller.unmarshall(inputStream);
+            final JaxbModel<T, I> result = unmarshallCallback.unmarshall();
             LOGGER.trace("Finished loading XML. Took {} ms", System.currentTimeMillis() - start);
             return result;
         } catch (final JAXBException e) {
             throw new XMLIOException(e.getMessage(), e);
         }
+    }
+
+    private interface UnmarshallCallback<T, I> {
+
+        JaxbModel<T, I> unmarshall() throws JAXBException;
+
     }
 }
 

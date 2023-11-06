@@ -30,7 +30,13 @@ import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.model.Root;
 import jakarta.xml.bind.ValidationEvent;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -56,6 +62,21 @@ class XMLReaderTest {
         final TestXMLReader reader = new TestXMLReader();
         assertThatExceptionOfType(XMLIOException.class)
                 .isThrownBy(() -> reader.read(fileName));
+    }
+
+    @Test
+    void testReadDocument() throws ParserConfigurationException, IOException, SAXException {
+        final InputStream inputStream = TestData.getInputStream(BASIC_BASIC_TEST_XML);
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        documentBuilderFactory.setNamespaceAware(true);
+        DocumentBuilder builder = documentBuilderFactory
+                .newDocumentBuilder();
+
+        Document document = builder.parse(inputStream);
+        final TestXMLReader reader = new TestXMLReader();
+        final Root read = reader.read(document);
+        assertThat(read)
+                .isNotNull();
     }
 
     @Test
