@@ -34,3 +34,9 @@ As an implementation we chose the org.glassfish namespace since it "seems" to be
 For the XJC part we moved from [jaxb2-basics](https://github.com/highsource/jaxb2-basics) to [hisrc-higherjaxb](https://github.com/patrodyne/hisrc-higherjaxb) since the original one only supports jaxb <= 2.3 
 
 In general we had some troubles moving to jaxb > 2.3. The situation is quite frankly an absolute mess to be honest. We tried to clean up the poms as much as possible to not pollute the dependency tree.
+
+## Error while releasing with github action
+Error:  gpg: no default secret key: No secret key
+Error:  gpg: signing failed: No secret key
+
+This error message can also mean, that the key is there but expired. To check for this replace the mvn call with "gpg --list-keys".
