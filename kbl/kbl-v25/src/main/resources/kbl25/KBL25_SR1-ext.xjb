@@ -30,7 +30,7 @@
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Wire_number' ]]">
-        <inheritance:implements>com.foursoft.harness.kbl.v25.HasWireNumber</inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.kbl.common.HasWireNumber</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true"
