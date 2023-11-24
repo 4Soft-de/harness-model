@@ -29,6 +29,10 @@
         <inheritance:implements>com.foursoft.harness.kbl.common.HasIdentification</inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Wire_number' ]]">
+        <inheritance:implements>com.foursoft.harness.kbl.common.HasWireNumber</inheritance:implements>
+    </jxb:bindings>
+
     <jxb:bindings multiple="true" node="//xs:complexType[@name='Accessory_occurrence'
             or @name='Assembly_part_occurrence'
             or @name='Cavity_plug_occurrence'
@@ -99,10 +103,6 @@
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Instruction_value']]">
         <inheritance:implements>com.foursoft.harness.kbl.common.HasInstruction</inheritance:implements>
-    </jxb:bindings>
-
-    <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Wire_number' ]]">
-        <inheritance:implements>com.foursoft.harness.kbl.v24.HasWireNumber</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[@name='KBL_container']">

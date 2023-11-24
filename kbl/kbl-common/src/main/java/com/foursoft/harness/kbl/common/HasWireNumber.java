@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * KBL 2.5
+ * KBL Common
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v25;
+package com.foursoft.harness.kbl.common;
 
 public interface HasWireNumber {
 
