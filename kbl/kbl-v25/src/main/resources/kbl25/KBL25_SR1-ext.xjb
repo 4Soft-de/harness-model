@@ -89,7 +89,7 @@
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Reference_element']]">
-        <inheritance:implements>com.foursoft.harness.kbl.common.HasReferenceElement&lt;com.foursoft.harness.kbl.v25.ReferenceElement&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.kbl.v25.HasReferenceElement</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description']]">
