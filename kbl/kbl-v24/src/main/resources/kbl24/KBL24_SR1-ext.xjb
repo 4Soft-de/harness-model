@@ -78,7 +78,7 @@
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Installation_information']]">
-        <inheritance:implements>com.foursoft.harness.kbl.common.HasInstallationInformation&lt;com.foursoft.harness.kbl.v24.KblInstallationInstruction&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasInstallationInformation</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Processing_information']]">
