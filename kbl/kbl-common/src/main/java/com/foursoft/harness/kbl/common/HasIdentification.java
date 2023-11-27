@@ -25,9 +25,16 @@
  */
 package com.foursoft.harness.kbl.common;
 
+import java.util.Objects;
+import java.util.function.Predicate;
+
 public interface HasIdentification {
 
     String getId();
 
     void setId(String id);
+
+    default Predicate<HasIdentification> matches() {
+        return h -> Objects.equals(h.getId(), getId());
+    }
 }
