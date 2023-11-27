@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * KBL 2.5
+ * KBL 2.4
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -25,7 +25,9 @@
  */
 package com.foursoft.harness.kbl.v24;
 
-public interface HasPlacement {
+import com.foursoft.harness.kbl.common.HasIdentification;
+
+public interface HasPlacement extends HasIdentification {
 
     KblTransformation getPlacement();
 

@@ -25,7 +25,9 @@
  */
 package com.foursoft.harness.kbl.v25;
 
-public interface HasPlacement {
+import com.foursoft.harness.kbl.common.HasIdentification;
+
+public interface HasPlacement extends HasIdentification {
 
     KblTransformation getPlacement();
 
