@@ -33,9 +33,9 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public interface HasProcessingInformation<X extends HasInstruction> {
+public interface HasProcessingInformation {
 
-    List<X> getProcessingInformations();
+    List<KblProcessingInstruction> getProcessingInformations();
 
     /**
      * Filters the list of {@link HasInstruction} key.
