@@ -25,10 +25,12 @@
  */
 package com.foursoft.harness.kbl.common;
 
+import com.foursoft.harness.navext.runtime.model.Identifiable;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
-public interface HasIdentification {
+public interface HasIdentification extends Identifiable {
 
     String getId();
 
