@@ -47,8 +47,7 @@
                     or @name='Special_terminal_occurrence'
                     or @name='Terminal_occurrence'
                     or @name='Wire_protection_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.common.HasPart&lt;com.foursoft.harness.kbl.v25.KblPart&gt;
-        </inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.kbl.v25.HasPart</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true"

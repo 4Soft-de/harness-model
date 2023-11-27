@@ -3,6 +3,7 @@
         xmlns:inheritance="http://jvnet.org/basicjaxb/xjc/inheritance"
         xmlns:ci="http://jaxb.dev.java.net/plugin/code-injector"
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:nav="http://www.4soft.de/xjc-plugins/navigations"
         extensionBindingPrefixes="xjc dg"
         jxb:extensionBindingPrefixes="xjc annox xhtml"
         node="/xs:schema"
@@ -46,8 +47,7 @@
             or @name='Special_terminal_occurrence'
             or @name='Terminal_occurrence'
             or @name='Wire_protection_occurrence']">
-        <inheritance:implements>com.foursoft.harness.kbl.common.HasPart&lt;com.foursoft.harness.kbl.v24.KblPart&gt;
-        </inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasPart</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[@name='Accessory_occurrence'
@@ -121,5 +121,14 @@
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Related_occurrence']]">
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasRelatedOccurrence</inheritance:implements>
     </jxb:bindings>
+
+    <nav:selector name="LocatedComponent" implements="com.foursoft.harness.navext.runtime.model.Identifiable"/>
+    <nav:selector name="LocatedComponent" implements="com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable"/>
+    <nav:selector name="LocatedComponent" implements="com.foursoft.harness.kbl.v24.PlacedElement"/>
+    <nav:selector name="ConnectionOrOccurrence" implements="com.foursoft.harness.navext.runtime.model.Identifiable"/>
+    <nav:selector name="ConnectionOrOccurrence" implements="com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable"/>
+    <nav:selector name="WireOrCoreOccurrence" implements="com.foursoft.harness.kbl.common.HasWireNumber"/>
+    <nav:selector name="WireOrCoreOccurrence" implements="com.foursoft.harness.kbl.v24.HasInstallationInformation"/>
+
 
 </jxb:bindings>

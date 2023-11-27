@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * KBL Common
+ * KBL 2.5
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,10 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.common;
+package com.foursoft.harness.kbl.v25;
 
-public interface HasPart<X> {
+public interface HasPart {
 
-    X getPart();
+    <X extends KblPart> X getPart();
 
 }
