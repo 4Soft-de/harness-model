@@ -27,13 +27,14 @@ package com.foursoft.harness.kbl.v24;
 
 import com.foursoft.harness.kbl.common.HasInstruction;
 import com.foursoft.harness.kbl.common.util.StreamUtils;
+import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public interface HasProcessingInformation {
+public interface HasProcessingInformation extends ModifiableIdentifiable {
 
     List<KblProcessingInstruction> getProcessingInformations();
 
