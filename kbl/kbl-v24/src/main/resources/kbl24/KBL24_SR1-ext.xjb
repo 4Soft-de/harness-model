@@ -70,7 +70,7 @@
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[@name!='Alias_identification' and .//xs:element[@name='Alias_id']]">
-        <inheritance:implements>com.foursoft.harness.kbl.common.HasAliasId&lt;com.foursoft.harness.kbl.v24.KblAliasIdentification&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasAliasIds</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Description']]">
