@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * KBL Common
+ * KBL 2.4
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,8 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.common;
+package com.foursoft.harness.kbl.v24;
 
+import com.foursoft.harness.kbl.common.HasInstruction;
 import com.foursoft.harness.kbl.common.util.StreamUtils;
 
 import java.util.List;
@@ -32,9 +33,9 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public interface HasProcessingInformation<X extends HasInstruction> {
+public interface HasProcessingInformation {
 
-    List<X> getProcessingInformations();
+    List<KblProcessingInstruction> getProcessingInformations();
 
     /**
      * Filters the list of {@link HasInstruction} key.

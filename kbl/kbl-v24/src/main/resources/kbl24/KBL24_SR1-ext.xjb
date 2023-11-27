@@ -82,7 +82,7 @@
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Processing_information']]">
-        <inheritance:implements>com.foursoft.harness.kbl.common.HasProcessingInformation&lt;com.foursoft.harness.kbl.v24.KblProcessingInstruction&gt;</inheritance:implements>
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasProcessingInformation</inheritance:implements>
     </jxb:bindings>
 
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Reference_element']]">
