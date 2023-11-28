@@ -27,8 +27,8 @@ package com.foursoft.harness.kbl.v24;
 
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 
-public interface HasRelatedOccurrence {
+public interface HasRelatedOccurrence extends Identifiable {
 
-    <X extends Identifiable & ReferenceElement & ConnectionOrOccurrence> X getRelatedOccurrence();
+    <X extends Identifiable & ReferenceElement & ConnectionOrOccurrence & HasParentAssemblyPart> X getRelatedOccurrence();
 
 }

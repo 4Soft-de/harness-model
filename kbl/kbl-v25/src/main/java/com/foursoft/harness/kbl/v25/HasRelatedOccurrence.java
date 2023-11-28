@@ -29,8 +29,8 @@ import com.foursoft.harness.navext.runtime.model.Identifiable;
 
 import java.util.List;
 
-public interface HasRelatedOccurrence {
+public interface HasRelatedOccurrence extends Identifiable {
 
-    <X extends Identifiable & ReferenceElement & ConnectionOrOccurrence> List<X> getRelatedOccurrence();
+    <X extends Identifiable & ReferenceElement & ConnectionOrOccurrence & HasParentAssemblyPart> List<X> getRelatedOccurrence();
 
 }

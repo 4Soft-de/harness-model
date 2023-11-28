@@ -25,7 +25,9 @@
  */
 package com.foursoft.harness.kbl.v24;
 
-public interface HasRelatedAssembly {
+public interface HasRelatedAssembly
+        extends HasRelatedOccurrence, ChangedElement, ConnectionOrOccurrence, HasParentAssemblyPart, HasPart,
+        ReferenceElement {
 
     KblAssemblyPartOccurrence getRelatedAssembly();
 

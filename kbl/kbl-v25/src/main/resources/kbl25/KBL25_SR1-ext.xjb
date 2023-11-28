@@ -71,6 +71,10 @@
         </inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[ @name='Assembly_part_occurrence']">
+        <inheritance:implements>com.foursoft.harness.kbl.v25.HasSpecifiedOccurrences</inheritance:implements>
+    </jxb:bindings>
+
     <jxb:bindings multiple="true"
             node="//xs:complexType[@name!='Alias_identification' and .//xs:element[@name='Alias_id']]">
         <inheritance:implements>com.foursoft.harness.kbl.v25.HasAliasIds</inheritance:implements>
