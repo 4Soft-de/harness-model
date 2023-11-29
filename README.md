@@ -27,13 +27,12 @@ for more information, for example code style, formatter, etc.
 
 ## Moving to Jakarta namespace 
 
-With release 5.x we updated to jaxb 4.0 and moved exclusively to the jakarta namespace with no further for the old javax.xml.bind namespace.
-As an implementation we chose the org.glassfish namespace since it "seems" to be the one that should be used. Indications for that can be found here
-[eclipse-ee4j/jaxb-ri](https://github.com/eclipse-ee4j/jaxb-ri/blob/master/jaxb-ri/boms/bom/pom.xml).
+With the release of version 5.x, we upgraded to JAXB 4.0 and transitioned exclusively to the Jakarta namespace, discontinuing support for the old javax.xml.bind namespace. 
+As our implementation, we opted for the org.glassfish namespace since it appears to be the recommended choice. Indications for this decision can be found here [eclipse-ee4j/jaxb-ri](https://github.com/eclipse-ee4j/jaxb-ri/blob/master/jaxb-ri/boms/bom/pom.xml).
 
-For the XJC part we moved from [jaxb2-basics](https://github.com/highsource/jaxb2-basics) to [hisrc-higherjaxb](https://github.com/patrodyne/hisrc-higherjaxb) since the original one only supports jaxb <= 2.3 
+For the XJC part, we migrated from [jaxb2-basics](https://github.com/highsource/jaxb2-basics) to [hisrc-higherjaxb](https://github.com/patrodyne/hisrc-higherjaxb) as the original one only supports JAXB versions up to 2.3.
 
-In general we had some troubles moving to jaxb > 2.3. The situation is quite frankly an absolute mess to be honest. We tried to clean up the poms as much as possible to not pollute the dependency tree.
+In general, we encountered some challenges while transitioning to JAXB versions beyond 2.3. To be honest, the situation is quite messy. We made efforts to clean up the POMs as much as possible to avoid polluting the dependency tree.
 
 ## Error while releasing with github action
 Error:  gpg: no default secret key: No secret key
