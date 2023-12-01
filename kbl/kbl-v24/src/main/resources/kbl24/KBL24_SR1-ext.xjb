@@ -133,6 +133,7 @@
     <nav:selector name="ConnectionOrOccurrence" implements="com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable"/>
     <nav:selector name="WireOrCoreOccurrence" implements="com.foursoft.harness.kbl.common.HasWireNumber"/>
     <nav:selector name="WireOrCoreOccurrence" implements="com.foursoft.harness.kbl.v24.HasInstallationInformation"/>
-
-
+    <nav:selector name="PartUsageSelect" implements="com.foursoft.harness.kbl.common.HasIdentification"/>
+    <nav:selector name="PartUsageSelect" implements="com.foursoft.harness.kbl.v24.HasInstallationInformation"/>
+    <nav:selector name="PartUsageSelect" implements="com.foursoft.harness.kbl.v24.ConnectionOrOccurrence"/>
 </jxb:bindings>
