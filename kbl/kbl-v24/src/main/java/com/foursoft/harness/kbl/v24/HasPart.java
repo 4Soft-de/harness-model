@@ -25,10 +25,8 @@
  */
 package com.foursoft.harness.kbl.v24;
 
-import com.foursoft.harness.navext.runtime.model.Identifiable;
+public interface HasPart extends HasInstallationInformation {
 
-public interface HasRelatedOccurrence extends Identifiable {
-
-    <X extends Identifiable & ReferenceElement & ConnectionOrOccurrence & HasParentAssemblyPart> X getRelatedOccurrence();
+    <X extends KblPart> X getPart();
 
 }

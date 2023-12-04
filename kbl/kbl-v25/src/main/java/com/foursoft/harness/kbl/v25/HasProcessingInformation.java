@@ -23,31 +23,33 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.common;
+package com.foursoft.harness.kbl.v25;
 
+import com.foursoft.harness.kbl.common.HasInstruction;
 import com.foursoft.harness.kbl.common.util.StreamUtils;
+import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public interface HasInstallationInformation<X extends HasInstruction> {
+public interface HasProcessingInformation extends ModifiableIdentifiable {
 
-    List<X> getInstallationInformations();
+    List<KblProcessingInstruction> getProcessingInformations();
 
     /**
      * Filters the list of {@link HasInstruction} key.
      * At most one element of the specified type is expected here. If more are found, the first one will be returned
      * and a warning will be logged.
      * If multiple values of the specified type are valid, then please use the other
-     * {@link #installationInstructionValues(Predicate)} or {@link #installationInstructionValues(String)} method.
+     * {@link #processingInstructionValues(Predicate)} or {@link #processingInstructionValues(String)} method.
      *
      * @param instructionType defines the meaning of the value
      * @return the first value with the given type.
      */
-    default Optional<String> getInstallationInstructionValue(final String instructionType) {
-        return getInstallationInstructionValue(c -> c.getInstructionType().equals(instructionType));
+    default Optional<String> getProcessingInstructionValue(final String instructionType) {
+        return getProcessingInstructionValue(c -> c.getInstructionType().equals(instructionType));
     }
 
     /**
@@ -55,13 +57,13 @@ public interface HasInstallationInformation<X extends HasInstruction> {
      * At most one element of the specified type is expected here. If more are found, the first one will be returned
      * and a warning will be logged.
      * If multiple values of the specified type are valid, then please use the other
-     * {@link #installationInstructionValues(Predicate)} or {@link #installationInstructionValues(String)} method.
+     * {@link #processingInstructionValues(Predicate)} or {@link #processingInstructionValues(String)} method.
      *
      * @param matches defines the meaning of the value
      * @return the first value with the given type.
      */
-    default Optional<String> getInstallationInstructionValue(final Predicate<HasInstruction> matches) {
-        return installationInstructionValues(matches)
+    default Optional<String> getProcessingInstructionValue(final Predicate<HasInstruction> matches) {
+        return processingInstructionValues(matches)
                 .collect(StreamUtils.findOneOrNone());
     }
 
@@ -71,8 +73,8 @@ public interface HasInstallationInformation<X extends HasInstruction> {
      * @param instructionType defines the meaning of the value
      * @return a stream with all instruction values for the given type.
      */
-    default Stream<String> installationInstructionValues(final String instructionType) {
-        return installationInstructionValues(c -> c.getInstructionType().equalsIgnoreCase(instructionType));
+    default Stream<String> processingInstructionValues(final String instructionType) {
+        return processingInstructionValues(c -> c.getInstructionType().equalsIgnoreCase(instructionType));
     }
 
     /**
@@ -81,8 +83,8 @@ public interface HasInstallationInformation<X extends HasInstruction> {
      * @param matches defines the meaning of the value
      * @return a stream with all instruction values for the given type.
      */
-    default Stream<String> installationInstructionValues(final Predicate<HasInstruction> matches) {
-        return getInstallationInformations()
+    default Stream<String> processingInstructionValues(final Predicate<HasInstruction> matches) {
+        return getProcessingInformations()
                 .stream()
                 .filter(matches)
                 .map(HasInstruction::getInstructionValue);
