@@ -1,23 +1,45 @@
+/*-
+ * ========================LICENSE_START=================================
+ * VEC 2.x Scripting API (Experimental)
+ * %%
+ * Copyright (C) 2020 - 2023 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
 package com.foursoft.harness.vec.scripting.schematic;
 
-import com.foursoft.harness.vec.scripting.AbstractChildBuilder;
-import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.v2x.VecComponentPort;
+import com.foursoft.harness.vec.v2x.VecConnection;
+import com.foursoft.harness.vec.v2x.VecConnectionEnd;
 
-import java.util.List;
-
-public class ConnectionBuilder extends AbstractChildBuilder<SchematicBuilder> {
-
-    private final VecConnectionSpecification connectionSpecification;
+public class ConnectionBuilder implements Builder<VecConnection> {
     private final VecConnection connection = new VecConnection();
+    private final ComponentPortLookup componentPortLookup;
 
-    public ConnectionBuilder(final SchematicBuilder parent, VecConnectionSpecification connectionSpecification,
+    public ConnectionBuilder(ComponentPortLookup componentPortLookup,
                              String identification) {
-        super(parent);
-        this.connectionSpecification = connectionSpecification;
+        this.componentPortLookup = componentPortLookup;
 
         connection.setIdentification(identification);
 
-        this.connectionSpecification.getConnections().add(connection);
     }
 
     public ConnectionBuilder addEnd(final String nodeId, final String connectorId, final String portId
@@ -31,74 +53,13 @@ public class ConnectionBuilder extends AbstractChildBuilder<SchematicBuilder> {
         end.setIdentification(nodeId + "." + connectorId + "." + portId);
         this.connection.getConnectionEnds().add(end);
 
-        PortPath path = find(nodeId, connectorId, portId);
-        end.setConnectedComponentPort(path.port());
+        VecComponentPort port = componentPortLookup.find(nodeId, connectorId, portId);
+        end.setConnectedComponentPort(port);
         return this;
     }
 
-    private PortPath find(final String nodeId, final String connectorId, final String portId) {
-        ComponentPortLocator locator = new ComponentPortLocator(nodeId, connectorId, portId);
-        return locator.find();
-    }
-
-    private class ComponentPortLocator {
-
-        private final String nodeId;
-        private final String connectorId;
-        private final String portId;
-
-        ComponentPortLocator(final String nodeId, final String connectorId, final String portId) {
-            this.nodeId = nodeId;
-            this.connectorId = connectorId;
-            this.portId = portId;
-        }
-
-        private VecComponentConnector findConnector(VecComponentNode node) {
-            List<VecComponentConnector> connectors = node.getComponentConnectors().stream().filter(
-                    c -> connectorId.equals(c.getIdentification())).toList();
-
-            if (connectors.isEmpty()) {
-                throw new IllegalArgumentException(
-                        "No ComponentConnector exists in " + node.getIdentification() + "with Identification='" +
-                                connectorId + "'.");
-            }
-            if (connectors.size() > 1) {
-                throw new IllegalArgumentException(
-                        "More than one ComponentConnector exists in " + node.getIdentification() +
-                                "with Identification='" +
-                                connectorId + "'.");
-            }
-            return connectors.get(0);
-        }
-
-        private VecComponentPort findPort(VecComponentConnector connector) {
-            List<VecComponentPort> ports = connector.getComponentPorts().stream().filter(
-                    c -> portId.equals(c.getIdentification())).toList();
-
-            if (ports.isEmpty()) {
-                throw new IllegalArgumentException(
-                        "No ComponentPort exists in " + connector.getIdentification() + "with Identification='" +
-                                portId + "'.");
-            }
-            if (ports.size() > 1) {
-                throw new IllegalArgumentException(
-                        "More than one ComponentPort exists in " + connector.getIdentification() +
-                                "with Identification='" +
-                                portId + "'.");
-            }
-            return ports.get(0);
-        }
-
-        public PortPath find() {
-            VecComponentNode node = parent.node(nodeId);
-            VecComponentConnector connector = findConnector(node);
-            VecComponentPort port = findPort(connector);
-            return new PortPath(node, connector, port);
-        }
-
-    }
-
-    private record PortPath(VecComponentNode node, VecComponentConnector connector, VecComponentPort port) {
+    @Override public VecConnection build() {
+        return connection;
     }
 
 }

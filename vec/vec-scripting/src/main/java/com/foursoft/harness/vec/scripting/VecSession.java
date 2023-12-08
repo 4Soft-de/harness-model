@@ -41,6 +41,8 @@ import jakarta.xml.bind.Marshaller;
 
 import java.io.OutputStream;
 
+//TODO: Provision of Units & Provision of comments should be extracted to interfaces. (e.g. GlobalUnitProvider)
+
 public class VecSession {
 
     private final XMLMeta xmlMeta = new XMLMeta();
@@ -70,21 +72,49 @@ public class VecSession {
         return vecContentRoot;
     }
 
-    public DocumentVersionBuilder document(final String documentNumber, String version) {
-        return new DocumentVersionBuilder(this, documentNumber, version);
+    public void document(final String documentNumber, String version, Customizer<DocumentVersionBuilder> customizer) {
+        DocumentVersionBuilder builder = new DocumentVersionBuilder(this, documentNumber, version);
+
+        customizer.customize(builder);
+
+        VecDocumentVersion build = builder.build();
+
+        vecContentRoot.getDocumentVersions().add(build);
     }
 
-    public SchematicBuilder schematic(DocumentVersionBuilder container) {
-        return new SchematicBuilder(this, container);
+    public void component(final String partNumber, final String documentNumber,
+                          final VecPrimaryPartType primaryPartType, Customizer<ComponentMasterDataBuilder> customizer) {
+        ComponentMasterDataBuilder builder = new ComponentMasterDataBuilder(this, partNumber, documentNumber,
+                                                                            primaryPartType);
+        customizer.customize(builder);
+
+        ComponentMasterDataBuilder.PartDocumentsPair result = builder.build();
+
+        vecContentRoot.getDocumentVersions().addAll(result.documentVersions());
+        vecContentRoot.getPartVersions().add(result.partVersion());
     }
 
-    public ComponentMasterDataBuilder component(final String partNumber, final String documentNumber,
-                                                final VecPrimaryPartType primaryPartType) {
-        return new ComponentMasterDataBuilder(this, partNumber, documentNumber, primaryPartType);
+    public void schematic(String containerDocumentNumber, Customizer<SchematicBuilder> customizer) {
+        VecDocumentVersion containerDocument = findDocument(containerDocumentNumber);
+
+        SchematicBuilder builder = new SchematicBuilder();
+
+        customizer.customize(builder);
+
+        VecConnectionSpecification result = builder.build();
+
+        containerDocument.getSpecifications().add(result);
     }
 
-    public HarnessBuilder harness(final String documentNumber, String version) {
-        return new HarnessBuilder(this, documentNumber, version);
+    public void harness(final String documentNumber, String version, Customizer<HarnessBuilder> customizer) {
+        HarnessBuilder harnessBuilder = new HarnessBuilder(this, documentNumber, version);
+
+        customizer.customize(harnessBuilder);
+
+        HarnessBuilder.HarnessResult result = harnessBuilder.build();
+
+        this.vecContentRoot.getDocumentVersions().add(result.harnessDocument());
+        this.vecContentRoot.getPartVersions().addAll(result.variants());
     }
 
     public void addXmlComment(Identifiable identifiable, String comment) {
@@ -191,5 +221,10 @@ public class VecSession {
                         .contains(partVersion))
                 .findFirst()
                 .orElseThrow();
+    }
+
+    VecDocumentVersion findDocument(final String documentNumber) {
+        return this.vecContentRoot.getDocumentVersions().stream().filter(
+                dv -> documentNumber.equals(dv.getDocumentNumber())).findFirst().orElseThrow();
     }
 }

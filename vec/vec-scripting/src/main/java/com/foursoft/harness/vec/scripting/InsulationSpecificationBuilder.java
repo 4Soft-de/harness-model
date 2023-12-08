@@ -25,32 +25,26 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecColor;
 import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
-import com.foursoft.harness.vec.v2x.VecWireElementSpecification;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 
-public class InsulationSpecificationBuilder<P extends Builder> extends AbstractChildBuilder<P> {
+public class InsulationSpecificationBuilder implements Builder<VecInsulationSpecification> {
 
     private final VecInsulationSpecification insulationSpecification = new VecInsulationSpecification();
+    private final VecSession session;
 
-    InsulationSpecificationBuilder(final P parent,
-                                   DocumentVersionBuilder partMasterDocument, VecWireElementSpecification context,
-                                   String identification) {
-        super(parent);
+    InsulationSpecificationBuilder(VecSession session, String identification) {
+        this.session = session;
+
         insulationSpecification.setIdentification(identification);
-
-        context.setInsulationSpecification(insulationSpecification);
-
-        partMasterDocument.addSpecification(insulationSpecification);
     }
 
-    public InsulationSpecificationBuilder<P> withColor(
+    public InsulationSpecificationBuilder withColor(
             final String primary) {
         final VecColor color = new VecColor();
-        color.setReferenceSystem(getSession().getDefaultValues().getColorReferenceSystem());
+        color.setReferenceSystem(session.getDefaultValues().getColorReferenceSystem());
         color.setKey(primary);
         insulationSpecification.getFirstIdentificationColors()
                 .add(color);
@@ -58,9 +52,13 @@ public class InsulationSpecificationBuilder<P extends Builder> extends AbstractC
         return this;
     }
 
-    public InsulationSpecificationBuilder<P> withThickness(final double thickness) {
-        insulationSpecification.setThickness(value(thickness, getSession().mm()));
+    public InsulationSpecificationBuilder withThickness(final double thickness) {
+        insulationSpecification.setThickness(value(thickness, session.mm()));
         return this;
+    }
+
+    public VecInsulationSpecification build() {
+        return insulationSpecification;
     }
 }
 

@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting;
 
 public class DefaultValues {
 
+    public static final String VARIANT_CONFIGURATION_SPEC_IDENTIFICATION = "VARIANTS";
     private String companyName = "Acme Inc.";
     private String colorReferenceSystem = "Acme Inc.";
     public static final String PART_MASTER = "PartMaster";

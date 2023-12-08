@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,20 +25,26 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
+import com.foursoft.harness.vec.v2x.VecWireElement;
+import com.foursoft.harness.vec.v2x.VecWireElementReference;
+import com.foursoft.harness.vec.v2x.VecWireLength;
 
-public class WireElementRefBuilder extends AbstractChildBuilder<WireRoleBuilder> {
+public class WireElementRefBuilder implements Builder<VecWireElementReference> {
 
     private final VecWireElementReference wireElementReference;
+    private final VecSession session;
 
-    public WireElementRefBuilder(final WireRoleBuilder parent, VecWireRole role, VecWireElement element) {
-        super(parent);
-
+    public WireElementRefBuilder(VecSession session, VecWireElement element) {
+        this.session = session;
         wireElementReference = new VecWireElementReference();
         wireElementReference.setIdentification(element.getIdentification());
         wireElementReference.setReferencedWireElement(element);
+    }
 
-        role.getWireElementReferences().add(wireElementReference);
+    @Override
+    public VecWireElementReference build() {
+        return wireElementReference;
     }
 
     public WireElementRefBuilder withIdentification(String identification) {
@@ -50,7 +56,7 @@ public class WireElementRefBuilder extends AbstractChildBuilder<WireRoleBuilder>
         VecWireLength wireLength = new VecWireLength();
         wireLength.setLengthType("DMU");
         VecNumericalValue value = new VecNumericalValue();
-        value.setUnitComponent(getSession().mm());
+        value.setUnitComponent(session.mm());
         value.setValueComponent(length);
         wireLength.setLengthValue(value);
         this.wireElementReference.getWireLengths().add(wireLength);

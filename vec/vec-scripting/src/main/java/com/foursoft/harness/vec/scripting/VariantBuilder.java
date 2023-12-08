@@ -25,42 +25,40 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 import static com.foursoft.harness.vec.scripting.factories.LocalizedStringFactory.de;
 
-public class VariantBuilder extends AbstractChildBuilder<HarnessBuilder> {
-    private final DocumentVersionBuilder harnessDocument;
-    private final String partNumber;
-    private final VecCompositionSpecification components;
-    private final VecCompositionSpecification modules;
+public class VariantBuilder implements Builder<VariantBuilder.VariantResult> {
+
+    private final Function<String[], List<VecPartOccurrence>> occurrencesLookup;
+    private VecVariantConfiguration variantConfiguration;
+
+    ;
+
     private final VecPartVersion partVersion;
     private final VecPartStructureSpecification partStructureSpecification;
-    private final List<VecPartOccurrence> occurrences;
     private final VecPartOccurrence moduleOccurrence;
+    private VecPartWithSubComponentsRole partWithSubComponentsRole;
 
-    public VariantBuilder(final HarnessBuilder parent, final DocumentVersionBuilder harnessDocument, String partNumber,
-                          String... occurrences
+    public VariantBuilder(VecSession session,
+                          String partNumber,
+                          Function<String[], List<VecPartOccurrence>> occurrencesLookup
     ) {
-        super(parent);
+        this.occurrencesLookup = occurrencesLookup;
+        this.partVersion = new PartVersionBuilder(session, partNumber, VecPrimaryPartType.PART_STRUCTURE).build();
 
-        this.harnessDocument = harnessDocument;
-        this.partNumber = partNumber;
-        this.components = harnessDocument.getSpecificationWith(VecCompositionSpecification.class,
-                                                               DefaultValues.COMP_COMPOSITION_SPEC_IDENTIFICATION)
-                .orElseThrow();
-        this.modules = harnessDocument.getSpecificationWith(VecCompositionSpecification.class,
-                                                            DefaultValues.MODULES_COMPOSITION_SPEC_IDENTIFICATION)
-                .orElseThrow();
+        this.partStructureSpecification = initializePartStructure(this.partVersion);
+        this.moduleOccurrence = initializeModuleOccurrence(partNumber);
+    }
 
-        this.partVersion = initializePart();
-        this.occurrences = initializeOccurrenceList(occurrences);
-        this.partStructureSpecification = initializePartStructure();
-        this.moduleOccurrence = initializeModuleOccurrence();
+    @Override
+    public VariantResult build() {
+        return new VariantResult(partVersion, moduleOccurrence, partStructureSpecification, variantConfiguration);
     }
 
     public VariantBuilder withAbbreviation(String text) {
@@ -68,91 +66,52 @@ public class VariantBuilder extends AbstractChildBuilder<HarnessBuilder> {
         return this;
     }
 
+    public VariantBuilder withOccurrences(String... occurrences) {
+        List<VecPartOccurrence> result = this.occurrencesLookup.apply(occurrences);
+        this.partStructureSpecification.getInBillOfMaterial().addAll(result);
+        this.partWithSubComponentsRole.getSubComponent().addAll(result);
+        return this;
+    }
+
     public VariantBuilder withConfiguration(final String configuration) {
-        VecVariantConfigurationSpecification spec =
-                ensureVariantConfigurationSpecification();
-
-        VecVariantConfiguration config = new VecVariantConfiguration();
-        config.setIdentification("Config@" + this.partNumber);
-        config.setLogisticControlString(configuration);
-
-        spec.getVariantConfigurations().add(config);
+        variantConfiguration = new VecVariantConfiguration();
+        variantConfiguration.setIdentification("Config@" + this.partVersion.getPartNumber());
+        variantConfiguration.setLogisticControlString(configuration);
 
         VecConfigurationConstraint constraint = new VecConfigurationConstraint();
-        constraint.setIdentification("Config@" + this.partNumber);
-        constraint.setConfigInfo(config);
+        constraint.setIdentification("Config@" + this.partVersion.getPartNumber());
+        constraint.setConfigInfo(variantConfiguration);
 
         moduleOccurrence.getConfigurationConstraints().add(constraint);
 
         return this;
     }
 
-    private VecPartOccurrence initializeModuleOccurrence() {
+    private VecPartOccurrence initializeModuleOccurrence(String partNumber) {
         VecPartOccurrence result = new VecPartOccurrence();
         result.setIdentification(partNumber);
         result.setPart(partVersion);
-        modules.getComponents().add(result);
 
-        VecPartWithSubComponentsRole role = new VecPartWithSubComponentsRole();
-        role.setIdentification(result.getIdentification());
-        role.setPartStructureSpecification(this.partStructureSpecification);
-        role.getSubComponent().addAll(occurrences);
+        partWithSubComponentsRole = new VecPartWithSubComponentsRole();
+        partWithSubComponentsRole.setIdentification(result.getIdentification());
+        partWithSubComponentsRole.setPartStructureSpecification(this.partStructureSpecification);
 
-        result.getRoles().add(role);
+        result.getRoles().add(partWithSubComponentsRole);
 
         return result;
     }
 
-    private VecPartVersion initializePart() {
-        final VecPartVersion part = new VecPartVersion();
-        getSession().getVecContentRoot()
-                .getPartVersions()
-                .add(part);
-
-        part.setCompanyName(getSession().getDefaultValues().getCompanyName());
-        part.setPartVersion("1");
-        part.setPartNumber(this.partNumber);
-        part.setPrimaryPartType(VecPrimaryPartType.PART_STRUCTURE);
-
-        return part;
-    }
-
-    private VecPartStructureSpecification initializePartStructure() {
+    private VecPartStructureSpecification initializePartStructure(VecPartVersion partVersion) {
         final VecPartStructureSpecification ps = new VecPartStructureSpecification();
-        ps.setIdentification("STRUCTURE_" + this.partNumber);
-        ps.getDescribedPart().add(this.partVersion);
+        ps.setIdentification("STRUCTURE_" + partVersion.getPartNumber());
+        ps.getDescribedPart().add(partVersion);
         ps.setSpecialPartType("Module");
-        harnessDocument.addSpecification(ps);
 
-        ps.getInBillOfMaterial()
-                .addAll(occurrences);
         return ps;
     }
 
-    private List<VecPartOccurrence> initializeOccurrenceList(final String[] occurrenceIds) {
-        final List<VecPartOccurrence> result = components.getComponents()
-                .stream()
-                .filter(o -> Arrays.stream(occurrenceIds)
-                        .anyMatch(x -> x.equals(o.getIdentification())))
-                .toList();
-
-        if (result.size() != occurrenceIds.length) {
-            throw new IllegalArgumentException(String.format("One of the occurrences in '%s' can not be found.",
-                                                             Arrays.toString(occurrenceIds)));
-        }
-        return result;
-    }
-
-    private VecVariantConfigurationSpecification ensureVariantConfigurationSpecification() {
-        return harnessDocument.getSpecificationWith(VecVariantConfigurationSpecification.class,
-                                                    "VARIANTS").orElseGet(this::initializeVariantConfiguration);
-    }
-
-    private VecVariantConfigurationSpecification initializeVariantConfiguration() {
-        VecVariantConfigurationSpecification result = new VecVariantConfigurationSpecification();
-        result.setIdentification(DefaultValues.MODULES_COMPOSITION_SPEC_IDENTIFICATION);
-        harnessDocument.addSpecification(result);
-        return result;
+    public record VariantResult(VecPartVersion variantPart, VecPartOccurrence variantOccurrence,
+                                VecPartStructureSpecification bom, VecVariantConfiguration variantConfiguration) {
     }
 
 }

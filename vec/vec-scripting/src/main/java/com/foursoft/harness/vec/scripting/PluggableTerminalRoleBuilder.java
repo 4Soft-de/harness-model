@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,23 +27,25 @@ package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.v2x.*;
 
-public class PluggableTerminalRoleBuilder extends AbstractChildBuilder<PartOccurrenceBuilder> {
+public class PluggableTerminalRoleBuilder implements Builder<VecPluggableTerminalRole> {
 
     private final VecPluggableTerminalRole pluggableTerminalRole;
 
-    public PluggableTerminalRoleBuilder(final PartOccurrenceBuilder parent, VecPartOccurrence partOccurrence,
-                                        VecPluggableTerminalSpecification specification) {
-        super(parent);
-        this.pluggableTerminalRole = pluggableTerminalRole(partOccurrence, specification);
+    public PluggableTerminalRoleBuilder(String identification, VecPluggableTerminalSpecification specification) {
+        this.pluggableTerminalRole = pluggableTerminalRole(identification, specification);
 
     }
 
-    private VecPluggableTerminalRole pluggableTerminalRole(VecPartOccurrence partOccurrence,
+    @Override
+    public VecPluggableTerminalRole build() {
+        return this.pluggableTerminalRole;
+    }
+
+    private VecPluggableTerminalRole pluggableTerminalRole(String identification,
                                                            VecPluggableTerminalSpecification specification) {
 
         VecPluggableTerminalRole role = new VecPluggableTerminalRole();
-        role.setIdentification(partOccurrence.getIdentification());
-        partOccurrence.getRoles().add(role);
+        role.setIdentification(identification);
 
         role.setTerminalSpecification(specification);
 

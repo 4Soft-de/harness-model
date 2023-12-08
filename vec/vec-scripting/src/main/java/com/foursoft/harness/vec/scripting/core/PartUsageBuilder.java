@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,17 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.core;
 
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
-import com.foursoft.harness.vec.v2x.VecSpecification;
-import com.foursoft.harness.vec.v2x.VecWireElement;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.VecPartUsage;
 
-public interface WireElementBuilderContext {
+public class PartUsageBuilder implements Builder<VecPartUsage> {
 
-    DocumentVersionBuilder partMasterDocument();
+    private final VecSession session;
+    private final VecPartUsage partUsage = new VecPartUsage();
 
-    void addSpecification(VecSpecification specification);
+    public PartUsageBuilder(VecSession session, String identification) {
+        this.session = session;
+        this.partUsage.setIdentification(identification);
+    }
 
-    void addWireElement(VecWireElement element);
+    @Override
+    public VecPartUsage build() {
+        return partUsage;
+    }
 }

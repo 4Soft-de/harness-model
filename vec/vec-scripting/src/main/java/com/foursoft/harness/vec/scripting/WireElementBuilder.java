@@ -25,49 +25,72 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
+import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
 
-public class WireElementBuilder<P extends Builder> extends AbstractChildBuilder<P> {
-    private final WireElementBuilderContext context;
-
+public class WireElementBuilder implements Builder<VecWireElement> {
     private final VecWireElement wireElement = new VecWireElement();
     private final VecWireElementSpecification wireElementSpecification = new VecWireElementSpecification();
+    private final VecSession session;
+    private final SpecificationRegistry specificationRegistry;
+    private final SpecificationLocator specificationLocator;
 
-    WireElementBuilder(final P parent, WireElementBuilderContext context, final String identification) {
-        super(parent);
-        this.context = context;
+    WireElementBuilder(final VecSession session, final String identification,
+                       SpecificationRegistry specificationRegistry, SpecificationLocator specificationLocator) {
+        this.session = session;
+        this.specificationRegistry = specificationRegistry;
+        this.specificationLocator = specificationLocator;
 
         wireElement.setIdentification(identification);
         wireElementSpecification.setIdentification(wireElement.getIdentification());
         wireElement.setWireElementSpecification(wireElementSpecification);
-
-        context.addWireElement(wireElement);
-        context.addSpecification(wireElementSpecification);
     }
 
-    public WireElementBuilder<WireElementBuilder<P>> addSubWireElement(String identification) {
-        return new WireElementBuilder<>(this, new WireElementContext(), identification);
-    }
+    public WireElementBuilder addSubWireElement(String identification, Customizer<WireElementBuilder> customizer) {
+        WireElementBuilder builder = new WireElementBuilder(this.session, identification, this.specificationRegistry,
+                                                            this.specificationLocator);
 
-    public WireElementBuilder<P> withCoreSpecification(String identification) {
-        VecCoreSpecification coreSpecification = context.partMasterDocument().getSpecificationWith(
-                        VecCoreSpecification.class, identification)
-                .orElseThrow(IllegalArgumentException::new);
+        customizer.customize(builder);
 
-        wireElementSpecification.setConductorSpecification(coreSpecification);
+        wireElement.getSubWireElements().add(builder.build());
 
         return this;
     }
 
-    public InsulationSpecificationBuilder<WireElementBuilder<P>> addInsulationSpecification(String identification) {
-        return new InsulationSpecificationBuilder<>(this, this.context.partMasterDocument(), wireElementSpecification,
-                                                    identification);
+    public WireElementBuilder withCoreSpecification(String identification) {
+        VecCoreSpecification coreSpecification = this.specificationLocator.find(VecCoreSpecification.class,
+                                                                                identification)
+                .orElseThrow(IllegalArgumentException::new);
+
+        return withConductorSpecification(coreSpecification);
     }
 
-    public WireElementBuilder<P> withDin76722WireType(final String wireType) {
+    public WireElementBuilder withConductorSpecification(VecConductorSpecification conductorSpecification) {
+        wireElementSpecification.setConductorSpecification(conductorSpecification);
+
+        return this;
+    }
+
+    public WireElementBuilder addInsulationSpecification(String identification,
+                                                         Customizer<InsulationSpecificationBuilder> customizer) {
+        InsulationSpecificationBuilder builder = new InsulationSpecificationBuilder(session,
+                                                                                    identification);
+        customizer.customize(builder);
+
+        return withInsulationSpecification(builder.build());
+    }
+
+    public WireElementBuilder withInsulationSpecification(VecInsulationSpecification specification) {
+        specificationRegistry.register(specification);
+        wireElementSpecification.setInsulationSpecification(specification);
+
+        return this;
+    }
+
+    public WireElementBuilder withDin76722WireType(final String wireType) {
         VecWireType type = new VecWireType();
         type.setType(wireType);
         type.setReferenceSystem("DIN 76722");
@@ -77,28 +100,18 @@ public class WireElementBuilder<P extends Builder> extends AbstractChildBuilder<
         return this;
     }
 
-    public WireElementBuilder<P> withOutsideDiameter(final double diameter, final double lowerTolerance,
-                                                     final double upperTolerance) {
+    public WireElementBuilder withOutsideDiameter(final double diameter, final double lowerTolerance,
+                                                  final double upperTolerance) {
         this.wireElementSpecification.setOutsideDiameter(valueWithTolerance(diameter, lowerTolerance, upperTolerance,
-                                                                            getSession().mm()));
+                                                                            session.mm()));
 
         return this;
     }
 
-    private class WireElementContext implements WireElementBuilderContext {
+    @Override public VecWireElement build() {
+        specificationRegistry.register(wireElementSpecification);
 
-        @Override public DocumentVersionBuilder partMasterDocument() {
-            return context.partMasterDocument();
-        }
-
-        @Override public void addSpecification(final VecSpecification specification) {
-            context.addSpecification(specification);
-        }
-
-        @Override public void addWireElement(final VecWireElement element) {
-            wireElement.getSubWireElements().add(element);
-            wireElementSpecification.getSubWireElementSpecification().add(element.getWireElementSpecification());
-        }
+        return this.wireElement;
     }
 
 }

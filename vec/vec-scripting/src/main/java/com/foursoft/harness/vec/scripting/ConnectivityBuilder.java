@@ -27,16 +27,19 @@ package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.v2x.*;
 
-public class ConnectivityBuilder extends AbstractChildBuilder<HarnessBuilder> {
-    private final VecContactingSpecification contactingSpecification;
-    private final VecWireElementReference wireElementReference;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 
-    public ConnectivityBuilder(final HarnessBuilder harnessBuilder,
-                               final VecContactingSpecification contactingSpecification,
-                               final VecWireElementReference wireElementReference) {
-        super(harnessBuilder);
-        this.contactingSpecification = contactingSpecification;
+public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
+    private final VecWireElementReference wireElementReference;
+    private final Function<String, VecPartOccurrence> occurrenceLocator;
+    private final List<VecContactPoint> createdContactPoints = new ArrayList<>();
+
+    public ConnectivityBuilder(final VecWireElementReference wireElementReference,
+                               Function<String, VecPartOccurrence> occurrenceLocator) {
         this.wireElementReference = wireElementReference;
+        this.occurrenceLocator = occurrenceLocator;
     }
 
     public ConnectivityBuilder addEnd(final String connectorId, final String cavityNumber) {
@@ -46,8 +49,7 @@ public class ConnectivityBuilder extends AbstractChildBuilder<HarnessBuilder> {
         cp.getCavityMountings()
                 .add(cavityMounting);
 
-        final VecConnectorHousingRole connector = this.parent
-                .occurrence(connectorId)
+        final VecConnectorHousingRole connector = occurrenceLocator.apply(connectorId)
                 .getRoleWithType(VecConnectorHousingRole.class)
                 .orElseThrow();
 
@@ -70,8 +72,7 @@ public class ConnectivityBuilder extends AbstractChildBuilder<HarnessBuilder> {
         final VecContactPoint cp = createContactPointWithWireMounting(
                 wireElementReference.getIdentification() + "-" + terminalId);
 
-        final VecPluggableTerminalRole terminal = this.parent
-                .occurrence(terminalId)
+        final VecPluggableTerminalRole terminal = occurrenceLocator.apply(terminalId)
                 .getRoleWithType(VecPluggableTerminalRole.class)
                 .orElseThrow();
 
@@ -80,11 +81,14 @@ public class ConnectivityBuilder extends AbstractChildBuilder<HarnessBuilder> {
         return this;
     }
 
+    @Override public List<VecContactPoint> build() {
+        return createdContactPoints;
+    }
+
     private VecContactPoint createContactPointWithWireMounting(final String endpointId) {
         final VecContactPoint cp = new VecContactPoint();
         cp.setIdentification(endpointId);
-        contactingSpecification.getContactPoints()
-                .add(cp);
+        createdContactPoints.add(cp);
 
         final VecWireEnd end = new VecWireEnd();
         end.setIdentification(endpointId);

@@ -1,34 +1,56 @@
+/*-
+ * ========================LICENSE_START=================================
+ * VEC 2.x Scripting API (Experimental)
+ * %%
+ * Copyright (C) 2020 - 2023 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.v2x.*;
 
-public class HousingComponentBuilder extends AbstractChildBuilder<EEComponentSpecificationBuilder> {
+public class HousingComponentBuilder implements Builder<VecHousingComponent> {
 
+    public static final String DEFAULT_SLOT_NUMBER = "X";
     private final VecPluggableTerminalSpecification pin;
+    private final SpecificationRegistry specificationRegistry;
     private VecHousingComponent housingComponent = new VecHousingComponent();
-    private VecConnectorHousingSpecification connectorHousingSpecification = new VecConnectorHousingSpecification();
+    private final ConnectorSpecificationBuilder connectorSpecificationBuilder;
 
-    public HousingComponentBuilder(final EEComponentSpecificationBuilder parent,
-                                   final DocumentVersionBuilder partMasterDocument,
-                                   final VecPluggableTerminalSpecification pin, final String identification) {
-        super(parent);
+    public HousingComponentBuilder(final String identification,
+                                   final VecPluggableTerminalSpecification pin,
+                                   SpecificationRegistry specificationRegistry) {
+        this.connectorSpecificationBuilder = new ConnectorSpecificationBuilder(identification);
+        this.specificationRegistry = specificationRegistry;
         this.pin = pin;
 
         housingComponent.setIdentification(identification);
-        housingComponent.setHousingSpecification(connectorHousingSpecification);
-        parent.getElement().getHousingComponents().add(housingComponent);
-
-        connectorHousingSpecification.setIdentification("CHS-" + identification);
-        partMasterDocument.addSpecification(connectorHousingSpecification);
     }
 
     public HousingComponentBuilder addPinComponent(String identification) {
-        VecCavity cavity = addCavity(identification);
+        connectorSpecificationBuilder.addCavity(DEFAULT_SLOT_NUMBER, identification);
 
         VecPinComponent pinComponent = new VecPinComponent();
         pinComponent.setIdentification(identification);
-        pinComponent.setReferencedCavity(cavity);
         pinComponent.setPinSpecification(pin);
         housingComponent.getPinComponents().add(pinComponent);
 
@@ -43,28 +65,19 @@ public class HousingComponentBuilder extends AbstractChildBuilder<EEComponentSpe
         return this;
     }
 
-    private VecCavity addCavity(final String cavityNumber) {
-        final VecSlot vecSlot = ensureSlot();
+    @Override public VecHousingComponent build() {
+        VecConnectorHousingSpecification connectorHousingSpecification = connectorSpecificationBuilder.build();
+        specificationRegistry.register(connectorHousingSpecification);
 
-        final VecCavity cavity = new VecCavity();
-        cavity.setCavityNumber(cavityNumber);
-        vecSlot.getCavities()
-                .add(cavity);
+        housingComponent.setHousingSpecification(connectorHousingSpecification);
 
-        return cavity;
-    }
-
-    private VecSlot ensureSlot() {
-        if (connectorHousingSpecification.getSlots().isEmpty()) {
-            final VecSlot slot = new VecSlot();
-            slot.setSlotNumber("X");
-            connectorHousingSpecification
-                    .getSlots()
-                    .add(slot);
-            return slot;
-        } else {
-            return (VecSlot) connectorHousingSpecification.getSlots().get(0);
+        for (final VecPinComponent pinComponent : housingComponent.getPinComponents()) {
+            VecCavity cavity = Queries.findCavity(connectorHousingSpecification, DEFAULT_SLOT_NUMBER,
+                                                  pinComponent.getIdentification());
+            pinComponent.setReferencedCavity(cavity);
         }
 
+        return housingComponent;
     }
+
 }
