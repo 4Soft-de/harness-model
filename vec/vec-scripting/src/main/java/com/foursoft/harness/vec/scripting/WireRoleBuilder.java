@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
 import com.foursoft.harness.vec.v2x.VecWireElement;
 import com.foursoft.harness.vec.v2x.VecWireElementReference;
 import com.foursoft.harness.vec.v2x.VecWireRole;
@@ -39,11 +40,13 @@ public class WireRoleBuilder implements Builder<VecWireRole> {
 
     private final VecWireRole wireRole;
     private final VecSession session;
+    private final ConnectionLookup connectionLookup;
     private Map<String, WireElementRefBuilder> wireElementRefBuilders;
 
     public WireRoleBuilder(VecSession session, String identification,
-                           VecWireSpecification specification) {
+                           VecWireSpecification specification, ConnectionLookup connectionLookup) {
         this.session = session;
+        this.connectionLookup = connectionLookup;
         this.wireRole = wireRole(identification, specification);
 
     }
@@ -78,7 +81,8 @@ public class WireRoleBuilder implements Builder<VecWireRole> {
         role.setWireSpecification(specification);
 
         wireElementRefBuilders = flatTree(specification.getWireElement()).collect(
-                Collectors.toMap(VecWireElement::getIdentification, e -> new WireElementRefBuilder(session, e)));
+                Collectors.toMap(VecWireElement::getIdentification,
+                                 e -> new WireElementRefBuilder(session, e, connectionLookup)));
 
         return role;
     }

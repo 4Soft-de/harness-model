@@ -158,7 +158,9 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         PartOccurrenceBuilder builder = new PartOccurrenceBuilder(this.session, identification,
                                                                   partNumber,
                                                                   nodeId -> SchematicQueries.findNode(
-                                                                          schematic, nodeId));
+                                                                          schematic, nodeId),
+                                                                  connectionID -> SchematicQueries.findConnection(
+                                                                          schematic, connectionID));
 
         if (customizer != null) {
             customizer.customize(builder);
