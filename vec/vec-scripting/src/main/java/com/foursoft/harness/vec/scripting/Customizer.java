@@ -25,7 +25,9 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-public interface ChildBuilder<P extends Builder> extends Builder {
+@FunctionalInterface
+public interface Customizer<T extends Builder<?>> {
 
-    P end();
+    void customize(T builder);
+
 }

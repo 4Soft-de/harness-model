@@ -26,14 +26,19 @@
 package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
-import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
+import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
+import com.foursoft.harness.vec.v2x.*;
 
-public class ComponentMasterDataBuilder implements RootBuilder {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBuilder.PartDocumentsPair> {
+
     private final VecSession session;
     private final String partNumber;
     private final DocumentVersionBuilder partMasterDocument;
+
+    private final List<VecDocumentVersion> applicationSpecifications = new ArrayList<>();
     private final VecPartVersion part;
 
     ComponentMasterDataBuilder(final VecSession session,
@@ -41,81 +46,129 @@ public class ComponentMasterDataBuilder implements RootBuilder {
                                final VecPrimaryPartType primaryPartType) {
         this.session = session;
         this.partNumber = partNumber;
-        this.part = initializePart(partNumber, primaryPartType);
+        this.part = new PartVersionBuilder(session, partNumber, primaryPartType).build();
         this.partMasterDocument = initializeDocument(documentNumber);
     }
 
     @Override
-    public VecSession getSession() {
-        return session;
+    public PartDocumentsPair build() {
+        List<VecDocumentVersion> documents = new ArrayList<>();
+        documents.add(partMasterDocument.build());
+        documents.addAll(applicationSpecifications);
+        return new PartDocumentsPair(part, documents);
     }
 
     private DocumentVersionBuilder initializeDocument(final String documentNumber) {
-        return this.session.document(documentNumber, "1").documentType(DefaultValues.PART_MASTER).addReferencedPart(
-                this.part);
-    }
-
-    private VecPartVersion initializePart(final String partNumber, VecPrimaryPartType primaryPartType) {
-        final VecPartVersion part = new VecPartVersion();
-        session.getVecContentRoot().getPartVersions().add(part);
-
-        part.setCompanyName(this.session.getDefaultValues().getCompanyName());
-        part.setPartVersion("1");
-        part.setPartNumber(partNumber);
-        part.setPrimaryPartType(primaryPartType);
-
-        return part;
-    }
-
-    @Override public void end() {
-
-    }
-
-    public DocumentVersionBuilder partMasterDocument() {
-        return this.partMasterDocument;
+        return new DocumentVersionBuilder(session, documentNumber, "1").documentType(DefaultValues.PART_MASTER)
+                .addReferencedPart(
+                        this.part);
     }
 
     public ComponentMasterDataBuilder withApplicationSpecification(final String documentNumber,
                                                                    final String documentVersion) {
-        VecDocumentVersion dv = new VecDocumentVersion();
-        dv.setDocumentNumber(documentNumber);
-        dv.setDocumentVersion(documentVersion);
-        dv.setCompanyName(getSession().getDefaultValues().getCompanyName());
-        dv.setDocumentType("ApplicationSpecification");
+        VecDocumentVersion dv = new DocumentVersionBuilder(session, documentNumber, documentVersion)
+                .documentType("ApplicationSpecification")
+                .build();
 
-        getSession().addXmlComment(dv, " DocumentType to be verified (KBLFRM-1194).");
+        session.addXmlComment(dv, " DocumentType to be verified (KBLFRM-1194).");
 
-        getSession().getVecContentRoot().getDocumentVersions().add(dv);
         dv.getReferencedPart().add(part);
+
+        applicationSpecifications.add(dv);
 
         return this;
     }
 
-    public GeneralTechnicalPartSpecificationBuilder addGeneralTechnicalPart() {
-        return new GeneralTechnicalPartSpecificationBuilder(this, this.partNumber, this.partMasterDocument);
+    private void addPartOrUsageRelatedSpecification(VecPartOrUsageRelatedSpecification specification) {
+        specification.getDescribedPart().add(part);
+        partMasterDocument.addSpecification(specification);
     }
 
-    public CoreSpecificationBuilder addCoreSpecification(String identification) {
-        return new CoreSpecificationBuilder(this, partMasterDocument, identification);
+    private <X extends VecPartOrUsageRelatedSpecification, T extends PartOrUsageRelatedSpecificationBuilder<X>> ComponentMasterDataBuilder addPartOrUsageRelatedSpecification(
+            T builder, Customizer<T> customizer) {
+        if (customizer != null) {
+            customizer.customize(builder);
+        }
+
+        X spec = builder.build();
+
+        this.addPartOrUsageRelatedSpecification(spec);
+
+        return this;
     }
 
-    public WireSpecificationBuilder addWireSpecification() {
-        return new WireSpecificationBuilder(this, this.partNumber, partMasterDocument);
+    public ComponentMasterDataBuilder addGeneralTechnicalPart() {
+        return this.addGeneralTechnicalPart(null);
     }
 
-    public EEComponentSpecificationBuilder addEEComponentSpecification() {
-        return new EEComponentSpecificationBuilder(this, this.partNumber, partMasterDocument);
+    public ComponentMasterDataBuilder addGeneralTechnicalPart(
+            Customizer<GeneralTechnicalPartSpecificationBuilder> customizer) {
+        GeneralTechnicalPartSpecificationBuilder builder = new GeneralTechnicalPartSpecificationBuilder(
+                this.partNumber);
+
+        return addPartOrUsageRelatedSpecification(builder, customizer);
     }
 
-    public WireSingleCoreBuilder addSingleCore() {
-        return new WireSingleCoreBuilder(this, partNumber);
+    public ComponentMasterDataBuilder addCoreSpecification(String identification,
+                                                           Customizer<CoreSpecificationBuilder> customizer) {
+        CoreSpecificationBuilder builder = new CoreSpecificationBuilder(this.session, identification);
+
+        customizer.customize(builder);
+
+        return addCoreSpecification(builder.build());
     }
 
-    public ConnectorSpecificationBuilder addConnectorHousing() {
-        return new ConnectorSpecificationBuilder(this, this.partNumber, partMasterDocument);
+    public ComponentMasterDataBuilder addCoreSpecification(VecCoreSpecification specification) {
+        this.addSpecification(specification);
+
+        return this;
     }
 
-    public PluggableTerminalSpecificationBuilder addPluggableTerminal() {
-        return new PluggableTerminalSpecificationBuilder(this, this.partNumber, partMasterDocument);
+    private void addSpecification(VecSpecification specification) {
+        partMasterDocument.addSpecification(specification);
     }
+
+    public ComponentMasterDataBuilder addWireSpecification(Customizer<WireSpecificationBuilder> customizer) {
+        WireSpecificationBuilder builder = new WireSpecificationBuilder(this.session, this.partNumber,
+                                                                        this::addSpecification,
+                                                                        this.partMasterDocument::getSpecificationWith);
+        return addPartOrUsageRelatedSpecification(builder, customizer);
+    }
+
+    public ComponentMasterDataBuilder addEEComponentSpecification(
+            Customizer<EEComponentSpecificationBuilder> customizer) {
+        EEComponentSpecificationBuilder builder = new EEComponentSpecificationBuilder(
+                this.partNumber, this::addSpecification);
+        return addPartOrUsageRelatedSpecification(builder, customizer);
+    }
+
+    public ComponentMasterDataBuilder addSingleCore(Customizer<WireSingleCoreBuilder> customizer) {
+        WireSingleCoreBuilder builder = new WireSingleCoreBuilder(this.session, this.partNumber,
+                                                                  this::addSpecification,
+                                                                  this.partMasterDocument::getSpecificationWith);
+        return addPartOrUsageRelatedSpecification(builder, customizer);
+    }
+
+    public ComponentMasterDataBuilder addConnectorHousing(Customizer<ConnectorSpecificationBuilder> customizer) {
+        ConnectorSpecificationBuilder builder = new ConnectorSpecificationBuilder(this.partNumber);
+
+        return addPartOrUsageRelatedSpecification(builder, customizer);
+    }
+
+    public ComponentMasterDataBuilder addPluggableTerminal() {
+        return this.addPluggableTerminal(null);
+    }
+
+    public ComponentMasterDataBuilder addPluggableTerminal(
+            Customizer<PluggableTerminalSpecificationBuilder> customizer) {
+        PluggableTerminalSpecificationBuilder builder =
+                new PluggableTerminalSpecificationBuilder(this.session, this::addSpecification, this.partNumber);
+
+        return addPartOrUsageRelatedSpecification(builder, customizer);
+
+    }
+
+    public record PartDocumentsPair(VecPartVersion partVersion, List<VecDocumentVersion> documentVersions) {
+    }
+
 }

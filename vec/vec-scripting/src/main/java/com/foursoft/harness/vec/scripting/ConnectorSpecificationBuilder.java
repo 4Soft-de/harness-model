@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecCavity;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecSlot;
@@ -33,28 +32,29 @@ import com.foursoft.harness.vec.v2x.VecSlot;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConnectorSpecificationBuilder extends PartOrUsageRelatedSpecificationBuilder {
+public class ConnectorSpecificationBuilder
+        extends PartOrUsageRelatedSpecificationBuilder<VecConnectorHousingSpecification> {
 
     private final VecConnectorHousingSpecification connectorHousingSpecification;
 
     private final Map<String, VecSlot> slots = new HashMap<>();
 
-    ConnectorSpecificationBuilder(final ComponentMasterDataBuilder parent,
-                                  final String partNumber,
-                                  final DocumentVersionBuilder partMasterDocument) {
-        super(parent, partMasterDocument);
+    ConnectorSpecificationBuilder(final String partNumber) {
 
         connectorHousingSpecification = initializeSpecification(VecConnectorHousingSpecification.class, partNumber);
     }
 
     public ConnectorSpecificationBuilder addCavity(final String slotNumber, final String cavityNumber) {
         final VecSlot vecSlot = this.slots.computeIfAbsent(slotNumber, this::createSlot);
-        final VecCavity cavity = new VecCavity();
-        cavity.setCavityNumber(cavityNumber);
+        final VecCavity cavity = new CavityBuilder(cavityNumber).build();
         vecSlot.getCavities()
                 .add(cavity);
 
         return this;
+    }
+
+    @Override public VecConnectorHousingSpecification build() {
+        return connectorHousingSpecification;
     }
 
     private VecSlot createSlot(final String slotNumber) {

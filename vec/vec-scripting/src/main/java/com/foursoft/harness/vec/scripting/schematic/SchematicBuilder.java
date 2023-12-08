@@ -1,84 +1,74 @@
+/*-
+ * ========================LICENSE_START=================================
+ * VEC 2.x Scripting API (Experimental)
+ * %%
+ * Copyright (C) 2020 - 2023 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
 package com.foursoft.harness.vec.scripting.schematic;
 
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.DefaultValues;
-import com.foursoft.harness.vec.scripting.RootBuilder;
-import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
-import com.foursoft.harness.vec.v2x.VecComponentNode;
 import com.foursoft.harness.vec.v2x.VecConnectionSpecification;
-import com.foursoft.harness.vec.v2x.visitor.BaseVisitor;
-import com.foursoft.harness.vec.v2x.visitor.DepthFirstTraverserImpl;
-import com.foursoft.harness.vec.v2x.visitor.TraversingVisitor;
 
-import java.util.ArrayList;
-import java.util.List;
+public class SchematicBuilder implements Builder<VecConnectionSpecification> {
 
-public class SchematicBuilder implements RootBuilder {
-
-    private final VecSession session;
-    private final DocumentVersionBuilder container;
     private final VecConnectionSpecification connectionSpecification;
 
-    public SchematicBuilder(final VecSession session, DocumentVersionBuilder container) {
-        this.session = session;
-        this.container = container;
-        this.connectionSpecification = initializeCompositionSpecification();
+    public SchematicBuilder() {
+        this.connectionSpecification = initializeConnectionSpecification();
     }
 
-    private VecConnectionSpecification initializeCompositionSpecification() {
-        VecConnectionSpecification connectionSpecification = new VecConnectionSpecification();
-        connectionSpecification.setIdentification(DefaultValues.CONNECTION_SPEC_IDENTIFICATION);
-        this.container.addSpecification(connectionSpecification);
-        return connectionSpecification;
-    }
-
-    public ComponentNodeBuilder<SchematicBuilder> addComponentNode(String identification) {
-        return new ComponentNodeBuilder<>(this, new Context(), identification);
-    }
-
-    public ConnectionBuilder addConnection(String identification) {
-        return new ConnectionBuilder(this, this.connectionSpecification, identification);
-    }
-
-    public VecComponentNode node(String nodeId) {
-        List<VecComponentNode> nodes = new ArrayList<>();
-        connectionSpecification.accept(
-                new TraversingVisitor<>(new DepthFirstTraverserImpl<>(), new BaseVisitor<>() {
-                    @Override public Object visitVecComponentNode(final VecComponentNode node) {
-                        if (nodeId.equals(node.getIdentification())) {
-                            nodes.add(node);
-                        }
-                        return null;
-                    }
-                }
-                ));
-        if (nodes.isEmpty()) {
-            throw new IllegalArgumentException("No ComponentNode exists with Identification='" + nodeId + "'.");
-        }
-        if (nodes.size() > 1) {
-            throw new IllegalArgumentException(
-                    "More than one ComponentNode exists with Identification='" + nodeId + "'.");
-        }
-        return nodes.get(0);
-    }
-
-    public VecConnectionSpecification getElement() {
+    @Override
+    public VecConnectionSpecification build() {
         return this.connectionSpecification;
     }
 
-    @Override public VecSession getSession() {
-        return this.session;
+    private VecConnectionSpecification initializeConnectionSpecification() {
+        VecConnectionSpecification connectionSpecification = new VecConnectionSpecification();
+        connectionSpecification.setIdentification(DefaultValues.CONNECTION_SPEC_IDENTIFICATION);
+        return connectionSpecification;
     }
 
-    @Override public void end() {
+    public SchematicBuilder addComponentNode(String identification, Customizer<ComponentNodeBuilder> customizer) {
+        ComponentNodeBuilder builder = new ComponentNodeBuilder(identification);
 
+        customizer.customize(builder);
+
+        this.connectionSpecification.getComponentNodes().add(builder.build());
+
+        return this;
     }
 
-    private class Context implements ComponentNodeBuilderContext {
+    public SchematicBuilder addConnection(String identification, Customizer<ConnectionBuilder> customizer) {
+        ConnectionBuilder builder = new ConnectionBuilder(
+                ((nodeId, connectorId, portId) -> SchematicQueries.findPort(connectionSpecification, nodeId,
+                                                                            connectorId, portId)), identification);
 
-        @Override public void addComponentNode(final VecComponentNode node) {
-            connectionSpecification.getComponentNodes().add(node);
-        }
+        customizer.customize(builder);
+
+        this.connectionSpecification.getConnections().add(builder.build());
+
+        return this;
     }
 
 }

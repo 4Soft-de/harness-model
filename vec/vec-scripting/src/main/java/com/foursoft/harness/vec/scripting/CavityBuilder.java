@@ -23,25 +23,19 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.files;
+package com.foursoft.harness.vec.scripting;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import com.foursoft.harness.vec.v2x.VecCavity;
 
-public final class TestUtils {
-    private TestUtils() {
-        throw new AssertionError("TestUtils must not be instantiated.");
+public class CavityBuilder implements Builder<VecCavity> {
+
+    private VecCavity cavity = new VecCavity();
+
+    CavityBuilder(String cavityNumber) {
+        cavity.setCavityNumber(cavityNumber);
     }
 
-    public static OutputStream createTestFileStream(String testcase) throws IOException {
-        Path dir = FileSystems.getDefault().getPath(".", "target", "samples");
-
-        Files.createDirectories(dir);
-
-        return Files.newOutputStream(dir.resolve(testcase + ".vec"), StandardOpenOption.CREATE);
+    @Override public VecCavity build() {
+        return cavity;
     }
 }

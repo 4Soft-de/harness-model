@@ -25,19 +25,20 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
-import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
+import com.foursoft.harness.vec.v2x.VecMassInformation;
+import com.foursoft.harness.vec.v2x.VecUnit;
+import com.foursoft.harness.vec.v2x.VecValueDetermination;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 
-public class GeneralTechnicalPartSpecificationBuilder extends PartOrUsageRelatedSpecificationBuilder {
+public class GeneralTechnicalPartSpecificationBuilder
+        extends PartOrUsageRelatedSpecificationBuilder<VecGeneralTechnicalPartSpecification> {
 
     private final VecGeneralTechnicalPartSpecification element;
     private final String partNumber;
 
-    GeneralTechnicalPartSpecificationBuilder(final ComponentMasterDataBuilder parent, final String partNumber,
-                                             final DocumentVersionBuilder partMasterDocument) {
-        super(parent, partMasterDocument);
+    GeneralTechnicalPartSpecificationBuilder(final String partNumber) {
         this.partNumber = partNumber;
 
         element = this.initializeSpecification(VecGeneralTechnicalPartSpecification.class, partNumber);
@@ -55,4 +56,7 @@ public class GeneralTechnicalPartSpecificationBuilder extends PartOrUsageRelated
         return this;
     }
 
+    @Override public VecGeneralTechnicalPartSpecification build() {
+        return element;
+    }
 }

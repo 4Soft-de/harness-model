@@ -1,24 +1,52 @@
+/*-
+ * ========================LICENSE_START=================================
+ * VEC 2.x Scripting API (Experimental)
+ * %%
+ * Copyright (C) 2020 - 2023 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
 package com.foursoft.harness.vec.scripting.core;
 
+import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecSpecification;
 
-import java.util.List;
 import java.util.Optional;
 
-public class DocumentVersionBuilder {
+public class DocumentVersionBuilder implements Builder<VecDocumentVersion> {
 
     private final VecDocumentVersion documentVersion;
 
-    public DocumentVersionBuilder(final VecSession session, final String documentNumber, String version) {
+    public DocumentVersionBuilder(VecSession session, final String documentNumber, String version) {
         documentVersion = new VecDocumentVersion();
-        session.getVecContentRoot().getDocumentVersions().add(documentVersion);
-
         documentVersion.setDocumentNumber(documentNumber);
         documentVersion.setCompanyName(session.getDefaultValues().getCompanyName());
         documentVersion.setDocumentVersion(version);
+    }
+
+    public <T extends VecSpecification> Optional<T> getSpecificationWith(final Class<T> type,
+                                                                         final String identification) {
+        return this.documentVersion.getSpecificationWith(type, identification);
     }
 
     public DocumentVersionBuilder documentType(String documentType) {
@@ -36,12 +64,7 @@ public class DocumentVersionBuilder {
         return this;
     }
 
-    public <T extends VecSpecification> Optional<T> getSpecificationWith(final Class<T> type,
-                                                                         final String identification) {
-        return this.documentVersion.getSpecificationWith(type, identification);
-    }
-
-    public List<VecPartVersion> getReferencedPart() {
-        return documentVersion.getReferencedPart();
+    @Override public VecDocumentVersion build() {
+        return this.documentVersion;
     }
 }

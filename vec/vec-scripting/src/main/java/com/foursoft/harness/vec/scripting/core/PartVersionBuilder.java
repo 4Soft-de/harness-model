@@ -23,25 +23,29 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.files;
+package com.foursoft.harness.vec.scripting.core;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 
-public final class TestUtils {
-    private TestUtils() {
-        throw new AssertionError("TestUtils must not be instantiated.");
+public class PartVersionBuilder implements Builder<VecPartVersion> {
+
+    private final VecPartVersion part;
+    private final VecSession session;
+
+    public PartVersionBuilder(VecSession session, final String partNumber, VecPrimaryPartType primaryPartType) {
+        this.session = session;
+        part = new VecPartVersion();
+
+        part.setCompanyName(this.session.getDefaultValues().getCompanyName());
+        part.setPartVersion("1");
+        part.setPartNumber(partNumber);
+        part.setPrimaryPartType(primaryPartType);
     }
 
-    public static OutputStream createTestFileStream(String testcase) throws IOException {
-        Path dir = FileSystems.getDefault().getPath(".", "target", "samples");
-
-        Files.createDirectories(dir);
-
-        return Files.newOutputStream(dir.resolve(testcase + ".vec"), StandardOpenOption.CREATE);
+    @Override public VecPartVersion build() {
+        return part;
     }
 }

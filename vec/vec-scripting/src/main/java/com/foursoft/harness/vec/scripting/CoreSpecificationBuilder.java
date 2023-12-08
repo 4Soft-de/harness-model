@@ -25,40 +25,40 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.v2x.VecCoreSpecification;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 
-public class CoreSpecificationBuilder extends AbstractChildBuilder<ComponentMasterDataBuilder> {
+public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
 
     private final VecCoreSpecification coreSpecification = new VecCoreSpecification();
+    private final VecSession session;
 
-    CoreSpecificationBuilder(final ComponentMasterDataBuilder parent,
-                             DocumentVersionBuilder partMasterDocument, String identification) {
-        super(parent);
+    CoreSpecificationBuilder(VecSession session, String identification) {
+        this.session = session;
         coreSpecification.setIdentification(identification);
-
-        partMasterDocument.addSpecification(coreSpecification);
     }
 
     public CoreSpecificationBuilder withCSA(final double value) {
-        this.coreSpecification.setCrossSectionArea(value(value, parent.getSession()
-                .squareMM()));
+        this.coreSpecification.setCrossSectionArea(value(value, session.squareMM()));
 
         return this;
     }
 
     public CoreSpecificationBuilder withNumberOfStrands(final int numberOfStrands) {
-        this.coreSpecification.setNumberOfStrands(value(numberOfStrands, getSession().piece()));
-        getSession().addXmlComment(this.coreSpecification.getNumberOfStrands(),
-                                   " Unit `piece`, see: https://prostep-ivip.atlassian.net/browse/KBLFRM-1192 ");
+        this.coreSpecification.setNumberOfStrands(value(numberOfStrands, session.piece()));
+        session.addXmlComment(this.coreSpecification.getNumberOfStrands(),
+                              " Unit `piece`, see: https://prostep-ivip.atlassian.net/browse/KBLFRM-1192 ");
         return this;
     }
 
     public CoreSpecificationBuilder withStrandDiameter(final double diameter) {
-        this.coreSpecification.setStrandDiameter(value(diameter, getSession().mm()));
+        this.coreSpecification.setStrandDiameter(value(diameter, session.mm()));
         return this;
+    }
+
+    @Override public VecCoreSpecification build() {
+        return coreSpecification;
     }
 }
 

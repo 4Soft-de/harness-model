@@ -25,10 +25,30 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.v2x.*;
+
+import java.util.Arrays;
+import java.util.List;
+
 public final class Queries {
 
     private Queries() {
         throw new AssertionError();
     }
+
+    public static VecCavity findCavity(VecConnectorHousingSpecification connectorHousingSpecification,
+                                       String slotNumber, String cavityNumber) {
+        return connectorHousingSpecification.getSlots()
+                .stream()
+                .filter(s -> slotNumber.equals(s.getSlotNumber()))
+                .filter(VecSlot.class::isInstance)
+                .map(VecSlot.class::cast)
+                .flatMap(s -> s.getCavities().stream())
+                .filter(c -> cavityNumber.equals(c.getCavityNumber()))
+                .findAny()
+                .orElseThrow();
+    }
+
+
 
 }
