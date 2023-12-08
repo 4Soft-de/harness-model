@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,34 +23,29 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.core;
 
-import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 
-import java.lang.reflect.InvocationTargetException;
+public class PartVersionBuilder implements Builder<VecPartVersion> {
 
-public abstract class PartOrUsageRelatedSpecificationBuilder<X extends VecPartOrUsageRelatedSpecification> implements
-        Builder<X> {
+    private final VecPartVersion part;
+    private final VecSession session;
 
-    public PartOrUsageRelatedSpecificationBuilder() {
+    public PartVersionBuilder(VecSession session, final String partNumber, VecPrimaryPartType primaryPartType) {
+        this.session = session;
+        part = new VecPartVersion();
+
+        part.setCompanyName(this.session.getDefaultValues().getCompanyName());
+        part.setPartVersion("1");
+        part.setPartNumber(partNumber);
+        part.setPrimaryPartType(primaryPartType);
     }
 
-    protected <T extends VecPartOrUsageRelatedSpecification> T initializeSpecification(Class<T> clazz,
-                                                                                       final String partNumber) {
-        try {
-            T instance = clazz.getConstructor().newInstance();
-
-            instance.setIdentification(abbreviatedClassName(clazz) + "-" + partNumber);
-
-            return instance;
-        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException |
-                 InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+    @Override public VecPartVersion build() {
+        return part;
     }
-
-    private String abbreviatedClassName(Class<?> clazz) {
-        return clazz.getSimpleName().replace("Vec", "").replaceAll("[^A-Z]", "");
-    }
-
 }

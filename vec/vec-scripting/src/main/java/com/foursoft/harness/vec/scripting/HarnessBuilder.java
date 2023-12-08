@@ -25,36 +25,73 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
 import com.foursoft.harness.vec.v2x.*;
 
-public class HarnessBuilder implements RootBuilder {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
     private final VecSession session;
-    private final VecDocumentVersion harnessDocument;
+    private final String documentNumber;
+
+    private final DocumentVersionBuilder harnessDocumentBuilder;
     private final VecCompositionSpecification compositionSpecification;
     private VecCompositionSpecification modulesCompositionSpecification;
 
+    private VecVariantConfigurationSpecification variantConfigurationSpecification;
+
     private VecContactingSpecification contactingSpecification;
+    private VecConnectionSpecification schematic;
+
+    private List<VecPartVersion> createdParts = new ArrayList<>();
 
     HarnessBuilder(final VecSession session, final String documentNumber, String version) {
         this.session = session;
-        this.harnessDocument = initializeDocument(documentNumber, version);
-        this.compositionSpecification = initializeCompositionSpecification(harnessDocument);
+        this.documentNumber = documentNumber;
+        this.harnessDocumentBuilder = initializeDocument(documentNumber, version);
+        this.compositionSpecification = initializeCompositionSpecification();
+    }
+
+    @Override
+    public HarnessResult build() {
+        if (contactingSpecification != null) {
+            harnessDocumentBuilder.addSpecification(contactingSpecification);
+        }
+
+        this.harnessDocumentBuilder.addSpecification(compositionSpecification);
+
+        if (modulesCompositionSpecification != null) {
+            harnessDocumentBuilder.addSpecification(modulesCompositionSpecification);
+        }
+
+        if (variantConfigurationSpecification != null) {
+            harnessDocumentBuilder.addSpecification(variantConfigurationSpecification);
+        }
+
+        return new HarnessResult(createdParts, harnessDocumentBuilder.build());
     }
 
     private VecContactingSpecification contactingSpecification() {
         if (contactingSpecification == null) {
             contactingSpecification = new VecContactingSpecification();
-            contactingSpecification.setIdentification(harnessDocument.getDocumentNumber());
-            harnessDocument.getSpecifications().add(contactingSpecification);
+            contactingSpecification.setIdentification(this.documentNumber);
+
         }
         return contactingSpecification;
     }
 
-    private VecCompositionSpecification initializeCompositionSpecification(final VecDocumentVersion harnessDocument) {
+    private DocumentVersionBuilder initializeDocument(final String documentNumber, final String version) {
+        return new DocumentVersionBuilder(session, documentNumber, version).documentType(
+                DefaultValues.HARNESS_DESCRIPTION);
+    }
+
+    private VecCompositionSpecification initializeCompositionSpecification() {
         VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
         compositionSpecification.setIdentification(DefaultValues.COMP_COMPOSITION_SPEC_IDENTIFICATION);
-        harnessDocument.getSpecifications().add(compositionSpecification);
         return compositionSpecification;
     }
 
@@ -62,32 +99,32 @@ public class HarnessBuilder implements RootBuilder {
         if (modulesCompositionSpecification == null) {
             modulesCompositionSpecification = new VecCompositionSpecification();
             modulesCompositionSpecification.setIdentification(DefaultValues.MODULES_COMPOSITION_SPEC_IDENTIFICATION);
-            harnessDocument.getSpecifications().add(modulesCompositionSpecification);
         }
     }
 
-    private VecDocumentVersion initializeDocument(final String documentNumber, final String version) {
-        final VecDocumentVersion dv = new VecDocumentVersion();
-        session.getVecContentRoot().getDocumentVersions().add(dv);
-
-        dv.setDocumentNumber(documentNumber);
-        dv.setCompanyName(this.session.getDefaultValues().getCompanyName());
-        dv.setDocumentVersion(version);
-        dv.setDocumentType(DefaultValues.HARNESS_DESCRIPTION);
-
-        return dv;
+    private void ensureVariantConfigurationSpecification() {
+        if (variantConfigurationSpecification == null) {
+            variantConfigurationSpecification = new VecVariantConfigurationSpecification();
+            variantConfigurationSpecification.setIdentification(
+                    DefaultValues.VARIANT_CONFIGURATION_SPEC_IDENTIFICATION);
+        }
     }
 
-    VecPartOccurrence occurrence(final String identification) {
+    VecPartOccurrence findOccurrence(final String identification) {
         return this.compositionSpecification.getComponents()
                 .stream()
                 .filter(o -> o.getIdentification()
                         .equals(identification))
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException(
+                        String.format("The occurrence '%s' can not be found.", identification)));
     }
 
-    public ConnectivityBuilder addConnection(String wireElementReferenceId) {
+    List<VecPartOccurrence> findOccurrences(final String[] occurrenceIds) {
+        return Arrays.stream(occurrenceIds).map(this::findOccurrence).toList();
+    }
+
+    public HarnessBuilder addConnection(String wireElementReferenceId, Customizer<ConnectivityBuilder> customizer) {
         final VecWireElementReference wireElementReference = this.compositionSpecification.getComponents()
                 .stream()
                 .flatMap(o -> o.getRoleWithType(VecWireRole.class)
@@ -99,25 +136,71 @@ public class HarnessBuilder implements RootBuilder {
                 .findAny()
                 .orElseThrow();
 
-        return new ConnectivityBuilder(this, this.contactingSpecification(), wireElementReference);
+        ConnectivityBuilder builder = new ConnectivityBuilder(wireElementReference, this::findOccurrence);
+
+        customizer.customize(builder);
+
+        List<VecContactPoint> result = builder.build();
+
+        contactingSpecification().getContactPoints().addAll(result);
+
+        return this;
     }
 
-    public PartOccurrenceBuilder addPartOccurrence(
+    public HarnessBuilder addPartOccurrence(
             final String identification, final String partNumber) {
-        return new PartOccurrenceBuilder(this, this.compositionSpecification, identification, partNumber);
+        return this.addPartOccurrence(identification, partNumber, null);
     }
 
-    public VariantBuilder addVariant(final String partNumber, final String... occurrences) {
+    public HarnessBuilder addPartOccurrence(
+            final String identification, final String partNumber, Customizer<PartOccurrenceBuilder> customizer) {
+
+        PartOccurrenceBuilder builder = new PartOccurrenceBuilder(this.session, identification,
+                                                                  partNumber,
+                                                                  nodeId -> SchematicQueries.findNode(
+                                                                          schematic, nodeId),
+                                                                  connectionID -> SchematicQueries.findConnection(
+                                                                          schematic, connectionID));
+
+        if (customizer != null) {
+            customizer.customize(builder);
+        }
+
+        VecPartOccurrence result = builder.build();
+
+        this.compositionSpecification.getComponents().add(result);
+
+        return this;
+    }
+
+    public HarnessBuilder addVariant(final String partNumber, Customizer<VariantBuilder> customizer) {
+        VariantBuilder builder = new VariantBuilder(this.session, partNumber, this::findOccurrences);
+
+        customizer.customize(builder);
+
+        VariantBuilder.VariantResult result = builder.build();
+
         ensureModulesCompositionSpecification();
 
-        return new VariantBuilder(this, this.harnessDocument, partNumber, occurrences);
+        harnessDocumentBuilder.addSpecification(result.bom());
+        modulesCompositionSpecification.getComponents().add(result.variantOccurrence());
+        createdParts.add(result.variantPart());
+
+        if (result.variantConfiguration() != null) {
+            ensureVariantConfigurationSpecification();
+            variantConfigurationSpecification.getVariantConfigurations().add(result.variantConfiguration());
+        }
+
+        return this;
     }
 
-    @Override public VecSession getSession() {
-        return this.session;
+    public HarnessBuilder withSchematic(String schematicDocumentNumber) {
+        this.schematic = session.findDocument(schematicDocumentNumber).getSpecificationWith(
+                VecConnectionSpecification.class, DefaultValues.CONNECTION_SPEC_IDENTIFICATION).orElseThrow();
+        return this;
     }
 
-    @Override public void end() {
-
+    public record HarnessResult(List<VecPartVersion> variants, VecDocumentVersion harnessDocument) {
     }
+
 }

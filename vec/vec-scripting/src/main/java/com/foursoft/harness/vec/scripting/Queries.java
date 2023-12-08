@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,10 +25,10 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecSpecification;
+import com.foursoft.harness.vec.v2x.*;
 
-import java.util.Optional;
+import java.util.Arrays;
+import java.util.List;
 
 public final class Queries {
 
@@ -36,13 +36,19 @@ public final class Queries {
         throw new AssertionError();
     }
 
-    public static <R extends VecSpecification> Optional<R> findSpecification(VecDocumentVersion context,
-                                                                             final String identification,
-                                                                             final Class<R> type) {
-        return context.getSpecifications().stream()
-                .filter(type::isInstance)
-                .map(type::cast)
-                .filter(s -> identification.equals(s.getIdentification()))
-                .findFirst();
+    public static VecCavity findCavity(VecConnectorHousingSpecification connectorHousingSpecification,
+                                       String slotNumber, String cavityNumber) {
+        return connectorHousingSpecification.getSlots()
+                .stream()
+                .filter(s -> slotNumber.equals(s.getSlotNumber()))
+                .filter(VecSlot.class::isInstance)
+                .map(VecSlot.class::cast)
+                .flatMap(s -> s.getCavities().stream())
+                .filter(c -> cavityNumber.equals(c.getCavityNumber()))
+                .findAny()
+                .orElseThrow();
     }
+
+
+
 }

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,46 +25,40 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
-import com.foursoft.harness.vec.v2x.VecWireElement;
-import com.foursoft.harness.vec.v2x.VecWireSpecification;
+import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
+import com.foursoft.harness.vec.v2x.VecPluggableTerminalSpecification;
 
-public class WireSpecificationBuilder extends PartOrUsageRelatedSpecificationBuilder<VecWireSpecification> {
+public class EEComponentSpecificationBuilder
+        extends PartOrUsageRelatedSpecificationBuilder<VecEEComponentSpecification> {
 
-    private final VecSession session;
-    private final VecWireSpecification wireSpecification;
-    private final SpecificationLocator specificationLocator;
+    private final VecEEComponentSpecification eeComponentSpecification;
     private final SpecificationRegistry specificationRegistry;
+    private final VecPluggableTerminalSpecification pin;
 
-    WireSpecificationBuilder(VecSession session, final String partNumber,
-                             SpecificationRegistry specificationRegistry, SpecificationLocator specificationLocator) {
-        this.session = session;
+    public EEComponentSpecificationBuilder(final String partNumber, SpecificationRegistry specificationRegistry) {
+        eeComponentSpecification = initializeSpecification(VecEEComponentSpecification.class, partNumber);
         this.specificationRegistry = specificationRegistry;
-        this.specificationLocator = specificationLocator;
 
-        wireSpecification = initializeSpecification(VecWireSpecification.class, partNumber);
+        pin = new VecPluggableTerminalSpecification();
+        pin.setIdentification("PTC-EE-COMP-PIN");
+        pin.setTerminalType("Integrated");
+
+        specificationRegistry.register(pin);
     }
 
-    public WireSpecificationBuilder withWireElement(String identification, Customizer<WireElementBuilder> customizer) {
-        WireElementBuilder builder = new WireElementBuilder(session, identification, specificationRegistry,
-                                                            specificationLocator);
+    public EEComponentSpecificationBuilder addHousingComponent(String identification,
+                                                               Customizer<HousingComponentBuilder> customizer) {
+        HousingComponentBuilder builder = new HousingComponentBuilder(identification, pin, specificationRegistry);
 
         customizer.customize(builder);
 
-        wireSpecification.setWireElement(builder.build());
+        eeComponentSpecification.getHousingComponents().add(builder.build());
 
         return this;
     }
 
-    WireSpecificationBuilder withWireElement(VecWireElement wireElement) {
-        wireSpecification.setWireElement(wireElement);
-
-        return this;
+    @Override public VecEEComponentSpecification build() {
+        return this.eeComponentSpecification;
     }
-
-    @Override public VecWireSpecification build() {
-        return wireSpecification;
-    }
-
 }

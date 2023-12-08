@@ -31,21 +31,8 @@ import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 class VecSamplesCreationTest {
-
-    private OutputStream createTestFileStream(String testcase) throws IOException {
-        Path dir = FileSystems.getDefault().getPath(".", "target", "samples");
-
-        Files.createDirectories(dir);
-
-        return Files.newOutputStream(dir.resolve(testcase + ".vec"), StandardOpenOption.CREATE);
-    }
 
     @Test
     void ves_wf_changes_sample_pre() throws IOException {
@@ -53,7 +40,7 @@ class VecSamplesCreationTest {
 
         createCommonBase(session, "SL1", "N_018_886_1", "1");
 
-        session.writeToStream(createTestFileStream("ves-wf-changes-sample-pre"));
+        session.writeToStream(TestUtils.createTestFileStream("ves-wf-changes-sample-pre"));
     }
 
     @Test
@@ -62,139 +49,104 @@ class VecSamplesCreationTest {
 
         createCommonBase(session, "SL3", "3C0_972_100", "2");
 
-        session.writeToStream(createTestFileStream("ves-wf-changes-sample-post"));
+        session.writeToStream(TestUtils.createTestFileStream("ves-wf-changes-sample-post"));
     }
 
     private static void createCommonBase(final VecSession session, final String specialWireId,
                                          final String specialWirePartNumber, final String harnessVersion) {
         // @formatter:off
         session.component( "CON-A", "DRAW-CON-A",
-                                       VecPrimaryPartType.CONNECTOR_HOUSING)
+                                       VecPrimaryPartType.CONNECTOR_HOUSING, comp -> comp
                 .addGeneralTechnicalPart()
-                    .end()
-                .addConnectorHousing()
+                .addConnectorHousing(builder -> builder
                     .addCavity("A", "1")
-                    .addCavity("A", "2")
-                    .end()
-                .end();
+                    .addCavity("A", "2"))
+        );
 
         session.component( "CON-B", "DRAW-CON-B",
-                                       VecPrimaryPartType.CONNECTOR_HOUSING)
+                                       VecPrimaryPartType.CONNECTOR_HOUSING, comp -> comp
                 .addGeneralTechnicalPart()
-                    .end()
-                .addConnectorHousing()
-                    .addCavity("A", "1")
-                    .end()
-                .end();
+                .addConnectorHousing(builder -> builder
+                    .addCavity("A", "1"))
+        );
 
         session.component( "CON-C", "DRAW-CON-B",
-                                       VecPrimaryPartType.CONNECTOR_HOUSING)
+                                       VecPrimaryPartType.CONNECTOR_HOUSING, comp -> comp
                 .addGeneralTechnicalPart()
-                    .end()
-                .addConnectorHousing()
-                    .addCavity("A", "1")
-                    .end()
-                .end();
+                .addConnectorHousing(builder -> builder
+                    .addCavity("A", "1"))
+        );
 
-        session.component( "N_103_361_01", "DRAW-TERM-N_103_361_01",
-                                                                                  VecPrimaryPartType.PLUGGABLE_TERMINAL)
-                .addGeneralTechnicalPart()
-                    .end()
+        session.component( "N_103_361_01", "DRAW-TERM-N_103_361_01", VecPrimaryPartType.PLUGGABLE_TERMINAL,
+                comp -> comp.addGeneralTechnicalPart()
                 .addPluggableTerminal()
-                    .end()
-                .end();
+        );
 
-        session.component( "036_911_137", "DRAW-TERM-036_911_137",
-                                                                                  VecPrimaryPartType.PLUGGABLE_TERMINAL)
+        session.component( "036_911_137", "DRAW-TERM-036_911_137", VecPrimaryPartType.PLUGGABLE_TERMINAL, comp -> comp
                 .addGeneralTechnicalPart()
-                    .end()
                 .addPluggableTerminal()
-                    .end()
-                .end();
+        );
 
-        session.component( "N_018_886_1", "DRAW-N_018_886_1",VecPrimaryPartType.WIRE)
+        session.component( "N_018_886_1", "DRAW-N_018_886_1",VecPrimaryPartType.WIRE, comp -> comp
                 .addGeneralTechnicalPart()
-                    .end()
-                .addCoreSpecification("FL-A-0.5")
-                    .withCSA(0.5)
-                    .end()
-                .addWireSpecification()
-                    .withWireElement("ROOT")
-                        .addSubWireElement("1")
+                .addCoreSpecification("FL-A-0.5", spec -> spec.withCSA(0.5))
+                .addWireSpecification(ws -> ws
+                    .withWireElement("ROOT", root -> root
+                        .addSubWireElement("1", sub -> sub
                             .withCoreSpecification("FL-A-0.5")
-                                .addInsulationSpecification("FLRY-BR")
-                                .withColor("BR")
-                            .end()
-                        .end()
-                        .addSubWireElement("2")
+                                .addInsulationSpecification("FLRY-BR", spec -> spec.withColor("BR"))
+                        )
+                        .addSubWireElement("2", sub -> sub
                             .withCoreSpecification("FL-A-0.5")
-                            .addInsulationSpecification("FLRY-SW")
-                                .withColor("SW")
-                                .end()
-                            .end()
-                        .end()
-                    .end()
-                .end();
+                            .addInsulationSpecification("FLRY-SW",  spec -> spec.withColor("SW"))
+                        )
+                    )
+                ));
 
-        session.component("3C0_972_100", "DRAW-WIR-3C0_972_100", VecPrimaryPartType.WIRE)
+
+        session.component("3C0_972_100", "DRAW-WIR-3C0_972_100", VecPrimaryPartType.WIRE, comp -> comp
                 .addGeneralTechnicalPart()
-                    .end()
-                .addCoreSpecification("FL-A-0.3")
-                    .withCSA(0.3)
-                    .end()
-                .addWireSpecification()
-                    .withWireElement("ROOT")
-                        .addSubWireElement("1")
+                .addCoreSpecification("FL-A-0.3", spec -> spec.withCSA(0.3))
+                .addWireSpecification(ws -> ws
+                    .withWireElement("ROOT", root -> root
+                        .addSubWireElement("1", sub -> sub
                             .withCoreSpecification("FL-A-0.3")
-                            .addInsulationSpecification("FLRY-BK")
-                                .withColor("B/K")
-                                .end()
-                            .end()
-                        .addSubWireElement("2")
+                            .addInsulationSpecification("FLRY-BK", spec -> spec.withColor("B/K"))
+                        )
+                        .addSubWireElement("2", sub -> sub
                             .withCoreSpecification("FL-A-0.3")
-                            .addInsulationSpecification("FLRY-BKII")
-                                .withColor("B/K")
-                                .end()
-                            .end()
-                        .end()
-                    .end()
-                .end();
+                            .addInsulationSpecification("FLRY-BKII",spec -> spec.withColor("B/K"))
+                        )
+                    )
+                ));
 
-        session.harness("HARNESS-1",harnessVersion)
+        session.harness("HARNESS-1",harnessVersion, harness -> harness
                 .addPartOccurrence("XA.F2.1_1","CON-A")
-                    .end()
                 .addPartOccurrence("XA.44.1","CON-B")
-                    .end()
                 .addPartOccurrence("YW001","CON-C")
-                    .end()
-                .addPartOccurrence(specialWireId, specialWirePartNumber)
-                    .roleBuilder(WireRoleBuilder.class)
-                        .wireElementRef("ROOT")
-                            .withIdentification(specialWireId)
-                            .end()
-                        .wireElementRef("1")
+                .addPartOccurrence(specialWireId, specialWirePartNumber, occ -> occ
+                    .defineRole(WireRoleBuilder.class, role -> role
+                        .wireElementRef("ROOT", ref -> ref
+                            .withIdentification(specialWireId))
+                        .wireElementRef("1", ref -> ref
                             .withIdentification("264002")
-                            .withLength(1063.0)
-                            .end()
-                        .wireElementRef("2")
+                            .withLength(1063.0))
+                        .wireElementRef("2", ref -> ref
                             .withIdentification("264001")
-                            .withLength(503.0)
-                            .end()
-                        .end()
-                    .end()
-                .addConnection("264002")
+                            .withLength(503.0))
+                    )
+                )
+
+                .addConnection("264002", conn -> conn
                     .addEnd("XA.F2.1_1","2")
-                    .addEnd("XA.44.1","1")
-                    .end()
-                .addConnection("264001")
+                    .addEnd("XA.44.1","1"))
+                .addConnection("264001", conn-> conn
                     .addEnd("YW001","1")
-                    .addEnd("XA.F2.1_1","1")
-                    .end()
-                .addVariant("VWK_970_264_A", "XA.F2.1_1","XA.44.1","YW001",  specialWireId)
+                    .addEnd("XA.F2.1_1","1"))
+                .addVariant("VWK_970_264_A", var -> var
                     .withAbbreviation("V1")
                     .withConfiguration("L0L+1CR+QQ5+9GM")
-                    .end()
-                .end();
+                    .withOccurrences("XA.F2.1_1","XA.44.1","YW001",  specialWireId)));
 
         // @formatter:on
     }
@@ -205,57 +157,50 @@ class VecSamplesCreationTest {
 
         // @formatter:off
         session.component("5-928999-1", "5-928999-1",
-                          VecPrimaryPartType.PLUGGABLE_TERMINAL)
+                          VecPrimaryPartType.PLUGGABLE_TERMINAL, comp -> comp
                 .withApplicationSpecification("114-18021","V")
                 .addGeneralTechnicalPart()
-                    .end()
-                .addPluggableTerminal()
+                .addPluggableTerminal(builder -> builder
                     .withMissingAttributesComment()
                     .withInsulationDisplacementLength(3.6,-0.15,0.15)
                     .withConnectionBLength(5.6)
                     .withTerminalLengthOverall(13.7)
                     .withRearBellMouth(0.55)
                     .withCrimpDetailsExample()
-                    .withSealable(false)
-                    .end()
-                .end();
+                    .withSealable(false))
+        );
 
-        session.component("WIRE","DRAW-WIRE", VecPrimaryPartType.WIRE)
-                .addGeneralTechnicalPart()
-                    .withMassInformation(4.6,session.gramPerMeter())
-                    .end()
-                .addSingleCore()
+        session.component("WIRE","DRAW-WIRE", VecPrimaryPartType.WIRE, comp -> comp
+                .addGeneralTechnicalPart(builder -> builder
+                    .withMassInformation(4.6,session.gramPerMeter()))
+                .addSingleCore(wire -> wire
                     .withDin76722WireType("FLRY-A")
                     .withCSA(0.35)
                     .withOutsideDiameter(1.3,-0.1,0.0)
                     .withInsulationThickness(0.20)
                     .withNumberOfStrands(7)
                     .withStrandDiameter(0.27)
-                    .end()
-                .end();
+                )
+        );
 
-        session.harness("LEADSET", "1")
-                .addPartOccurrence("W1", "WIRE")
-                    .roleBuilder(WireRoleBuilder.class)
-                        .wireElementRef("1")
+        session.harness("LEADSET", "1", harness -> harness
+                .addPartOccurrence("W1", "WIRE", occ -> occ
+                    .defineRole(WireRoleBuilder.class, role -> role
+                        .wireElementRef("1", ref -> ref
                             .withIdentification("W1")
-                            .withLength(1000.0)
-                        .end()
-                    .end()
-                .end()
+                            .withLength(1000.0))
+                    )
+                )
                 .addPartOccurrence("T1", "5-928999-1")
-                    .end()
                 .addPartOccurrence("T2", "5-928999-1")
-                    .end()
-                .addConnection("W1")
+                .addConnection("W1", conn -> conn
                     .addEndWithTerminalOnly("T1")
-                    .addEndWithTerminalOnly("T2")
-                .end();
+                    .addEndWithTerminalOnly("T2")));
         // @formatter:on
 
         ;
 
-        session.writeToStream(createTestFileStream("detail-arena2036-example"));
+        session.writeToStream(TestUtils.createTestFileStream("detail-arena2036-example"));
     }
 
 }

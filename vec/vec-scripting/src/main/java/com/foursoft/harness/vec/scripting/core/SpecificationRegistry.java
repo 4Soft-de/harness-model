@@ -23,9 +23,19 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.core;
 
-public interface RootBuilder extends Builder {
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.v2x.VecSpecification;
 
-    void end();
+/**
+ * Interface to allow {@link Builder}s the registering of utitlity specifications
+ * in the relevant context.
+ */
+// TODO This should be refactored to result types, so that builders are side-effect free (e.g. Records, Lists or
+//  similar).
+@FunctionalInterface
+public interface SpecificationRegistry {
+
+    void register(VecSpecification specification);
 }

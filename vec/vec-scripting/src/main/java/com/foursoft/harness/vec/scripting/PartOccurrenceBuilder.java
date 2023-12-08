@@ -26,54 +26,73 @@
 package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
+import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
 import com.foursoft.harness.vec.v2x.*;
 import com.foursoft.harness.vec.v2x.visitor.StrictBaseVisitor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.function.Predicate.not;
 
-public class PartOccurrenceBuilder extends AbstractChildBuilder<HarnessBuilder> {
+public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
 
-    private final VecCompositionSpecification compositionSpecification;
+    private static final Logger LOGGER = LoggerFactory.getLogger(PartOccurrenceBuilder.class);
+
+    private final VecSession session;
     private final String partNumber;
 
-    private final VecPartOccurrence element = new VecPartOccurrence();
-    private List<AbstractChildBuilder<PartOccurrenceBuilder>> roleBuilders;
+    private final VecPartOccurrence partOccurrence = new VecPartOccurrence();
+    private final ComponentNodeLookup componentNodeLookup;
+    private final ConnectionLookup connectionLookup;
+    private List<? extends Builder<? extends VecRole>> roleBuilders;
 
-    PartOccurrenceBuilder(final HarnessBuilder parent, VecCompositionSpecification compositionSpecification,
-                          String identification,
-                          final String partNumber) {
-        super(parent);
-        this.compositionSpecification = compositionSpecification;
+    PartOccurrenceBuilder(VecSession session, String identification,
+                          final String partNumber, ComponentNodeLookup componentNodeLookup,
+                          ConnectionLookup connectionLookup) {
+        this.session = session;
         this.partNumber = partNumber;
-
-        compositionSpecification.getComponents().add(element);
-        element.setIdentification(identification);
+        this.componentNodeLookup = componentNodeLookup;
+        this.connectionLookup = connectionLookup;
+        partOccurrence.setIdentification(identification);
 
         instantiatePartOccurrence();
 
     }
 
-    public <T extends AbstractChildBuilder<PartOccurrenceBuilder>> T roleBuilder(Class<T> clazz) {
-        return StreamUtils.checkAndCast(roleBuilders, clazz).findAny().orElseThrow();
+    @Override
+    public VecPartOccurrence build() {
+        List<? extends VecRole> roles = roleBuilders.stream().map(Builder::build).toList();
+
+        partOccurrence.getRoles().addAll(roles);
+
+        return partOccurrence;
+    }
+
+    public <T extends Builder<? extends VecRole>> PartOccurrenceBuilder defineRole(Class<T> clazz,
+                                                                                   Customizer<T> customizer) {
+        T builder = StreamUtils.checkAndCast(roleBuilders, clazz).findAny().orElseThrow();
+
+        customizer.customize(builder);
+
+        return this;
     }
 
     private void instantiatePartOccurrence() {
-        final VecPartVersion partVersion = this.getSession()
-                .findPartVersionByPartNumber(this.partNumber);
-        final VecDocumentVersion partMasterDocument = this.getSession()
-                .findPartMasterDocument(partVersion);
+        final VecPartVersion partVersion = session.findPartVersionByPartNumber(this.partNumber);
+        final VecDocumentVersion partMasterDocument = session.findPartMasterDocument(partVersion);
 
-        element.setPart(partVersion);
+        partOccurrence.setPart(partVersion);
 
         this.roleBuilders = createRoleBuilders(partVersion, partMasterDocument);
 
     }
 
-    private List<AbstractChildBuilder<PartOccurrenceBuilder>> createRoleBuilders(final VecPartVersion partVersion,
-                                                                                 final VecDocumentVersion partMasterDocument) {
+    private List<? extends Builder<? extends VecRole>> createRoleBuilders(final VecPartVersion partVersion,
+                                                                          final VecDocumentVersion partMasterDocument) {
         final InstantiationVisitor visitor = new InstantiationVisitor();
 
         return StreamUtils.checkAndCast(partMasterDocument.getSpecifications()
@@ -84,25 +103,38 @@ public class PartOccurrenceBuilder extends AbstractChildBuilder<HarnessBuilder> 
                 .filter(Objects::nonNull).toList();
     }
 
-    private class InstantiationVisitor extends StrictBaseVisitor<AbstractChildBuilder<PartOccurrenceBuilder>> {
+    private class InstantiationVisitor extends StrictBaseVisitor<Builder<? extends VecRole>> {
 
         @Override
-        public AbstractChildBuilder<PartOccurrenceBuilder> visitVecConnectorHousingSpecification(
+        public Builder<? extends VecRole> visitVecConnectorHousingSpecification(
                 final VecConnectorHousingSpecification aBean)
                 throws RuntimeException {
-            return new ConnectorHousingRoleBuilder(PartOccurrenceBuilder.this, element, aBean);
+            return new ConnectorHousingRoleBuilder(partOccurrence.getIdentification(), aBean);
         }
 
         @Override
-        public AbstractChildBuilder<PartOccurrenceBuilder> visitVecWireSpecification(final VecWireSpecification aBean)
+        public Builder<? extends VecRole> visitVecWireSpecification(final VecWireSpecification aBean)
                 throws RuntimeException {
-            return new WireRoleBuilder(PartOccurrenceBuilder.this, element, aBean);
+            return new WireRoleBuilder(session, partOccurrence.getIdentification(), aBean, connectionLookup);
         }
 
         @Override
-        public AbstractChildBuilder<PartOccurrenceBuilder> visitVecPluggableTerminalSpecification(
+        public Builder<? extends VecRole> visitVecPluggableTerminalSpecification(
                 final VecPluggableTerminalSpecification aBean) throws RuntimeException {
-            return new PluggableTerminalRoleBuilder(PartOccurrenceBuilder.this, element, aBean);
+            return new PluggableTerminalRoleBuilder(partOccurrence.getIdentification(), aBean);
+        }
+
+        @Override
+        public Builder<? extends VecRole> visitVecEEComponentSpecification(
+                final VecEEComponentSpecification aBean) throws RuntimeException {
+            return new EEComponentRoleBuilder(session, partOccurrence.getIdentification(), aBean, componentNodeLookup);
+        }
+
+        @Override
+        public Builder<? extends VecRole> visitVecPartStructureSpecification(final VecPartStructureSpecification aBean)
+                throws RuntimeException {
+            LOGGER.warn("Instantiating of PartStructures not supported at the moment!");
+            return null;
         }
     }
 

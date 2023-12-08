@@ -25,15 +25,9 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecSpecification;
-import com.foursoft.harness.vec.v2x.VecWireElement;
+@FunctionalInterface
+public interface Customizer<T extends Builder<?>> {
 
-public interface WireElementBuilderContext {
+    void customize(T builder);
 
-    VecDocumentVersion partMasterDocument();
-
-    void addSpecification(VecSpecification specification);
-
-    void addWireElement(VecWireElement element);
 }
