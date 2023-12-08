@@ -25,18 +25,18 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.VecNumericalValue;
-import com.foursoft.harness.vec.v2x.VecWireElement;
-import com.foursoft.harness.vec.v2x.VecWireElementReference;
-import com.foursoft.harness.vec.v2x.VecWireLength;
+import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
+import com.foursoft.harness.vec.v2x.*;
 
 public class WireElementRefBuilder implements Builder<VecWireElementReference> {
 
     private final VecWireElementReference wireElementReference;
     private final VecSession session;
+    private final ConnectionLookup connectionLookup;
 
-    public WireElementRefBuilder(VecSession session, VecWireElement element) {
+    public WireElementRefBuilder(VecSession session, VecWireElement element, ConnectionLookup connectionLookup) {
         this.session = session;
+        this.connectionLookup = connectionLookup;
         wireElementReference = new VecWireElementReference();
         wireElementReference.setIdentification(element.getIdentification());
         wireElementReference.setReferencedWireElement(element);
@@ -49,6 +49,14 @@ public class WireElementRefBuilder implements Builder<VecWireElementReference> {
 
     public WireElementRefBuilder withIdentification(String identification) {
         this.wireElementReference.setIdentification(identification);
+        return this;
+    }
+
+    public WireElementRefBuilder withConnection(String identification) {
+        VecConnection vecConnection = this.connectionLookup.find(identification);
+
+        wireElementReference.getConnection().add(vecConnection);
+
         return this;
     }
 

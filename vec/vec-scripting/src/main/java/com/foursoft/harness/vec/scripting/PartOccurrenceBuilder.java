@@ -27,8 +27,11 @@ package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
+import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
 import com.foursoft.harness.vec.v2x.*;
 import com.foursoft.harness.vec.v2x.visitor.StrictBaseVisitor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
@@ -37,18 +40,23 @@ import static java.util.function.Predicate.not;
 
 public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PartOccurrenceBuilder.class);
+
     private final VecSession session;
     private final String partNumber;
 
     private final VecPartOccurrence partOccurrence = new VecPartOccurrence();
     private final ComponentNodeLookup componentNodeLookup;
+    private final ConnectionLookup connectionLookup;
     private List<? extends Builder<? extends VecRole>> roleBuilders;
 
     PartOccurrenceBuilder(VecSession session, String identification,
-                          final String partNumber, ComponentNodeLookup componentNodeLookup) {
+                          final String partNumber, ComponentNodeLookup componentNodeLookup,
+                          ConnectionLookup connectionLookup) {
         this.session = session;
         this.partNumber = partNumber;
         this.componentNodeLookup = componentNodeLookup;
+        this.connectionLookup = connectionLookup;
         partOccurrence.setIdentification(identification);
 
         instantiatePartOccurrence();
@@ -107,7 +115,7 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
         @Override
         public Builder<? extends VecRole> visitVecWireSpecification(final VecWireSpecification aBean)
                 throws RuntimeException {
-            return new WireRoleBuilder(session, partOccurrence.getIdentification(), aBean);
+            return new WireRoleBuilder(session, partOccurrence.getIdentification(), aBean, connectionLookup);
         }
 
         @Override
@@ -120,6 +128,13 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
         public Builder<? extends VecRole> visitVecEEComponentSpecification(
                 final VecEEComponentSpecification aBean) throws RuntimeException {
             return new EEComponentRoleBuilder(session, partOccurrence.getIdentification(), aBean, componentNodeLookup);
+        }
+
+        @Override
+        public Builder<? extends VecRole> visitVecPartStructureSpecification(final VecPartStructureSpecification aBean)
+                throws RuntimeException {
+            LOGGER.warn("Instantiating of PartStructures not supported at the moment!");
+            return null;
         }
     }
 
