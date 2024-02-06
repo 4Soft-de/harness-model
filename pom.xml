@@ -18,7 +18,7 @@
 
         <!-- Dependencies -->
         <jakarta.version>4.0.4</jakarta.version>
-        <slf4j.version>2.0.11</slf4j.version>
+        <slf4j.version>2.0.12</slf4j.version>
         <logback-classic.version>1.4.14</logback-classic.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <assertj-core.version>3.25.1</assertj-core.version>
