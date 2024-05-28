@@ -30,14 +30,18 @@ import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
+import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
+import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGeneratingTraverser;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGenerator;
 import com.foursoft.harness.vec.v2x.*;
 import jakarta.xml.bind.Marshaller;
 
 import java.io.OutputStream;
+
+//TODO: Provision of Units & Provision of comments should be extracted to interfaces. (e.g. GlobalUnitProvider)
 
 public class VecSession {
 
@@ -68,13 +72,49 @@ public class VecSession {
         return vecContentRoot;
     }
 
-    public ComponentMasterDataBuilder component(final String partNumber, final String documentNumber,
-                                                final VecPrimaryPartType primaryPartType) {
-        return new ComponentMasterDataBuilder(this, partNumber, documentNumber, primaryPartType);
+    public void document(final String documentNumber, String version, Customizer<DocumentVersionBuilder> customizer) {
+        DocumentVersionBuilder builder = new DocumentVersionBuilder(this, documentNumber, version);
+
+        customizer.customize(builder);
+
+        VecDocumentVersion build = builder.build();
+
+        vecContentRoot.getDocumentVersions().add(build);
     }
 
-    public HarnessBuilder harness(final String documentNumber, String version) {
-        return new HarnessBuilder(this, documentNumber, version);
+    public void component(final String partNumber, final String documentNumber,
+                          final VecPrimaryPartType primaryPartType, Customizer<ComponentMasterDataBuilder> customizer) {
+        ComponentMasterDataBuilder builder = new ComponentMasterDataBuilder(this, partNumber, documentNumber,
+                                                                            primaryPartType);
+        customizer.customize(builder);
+
+        ComponentMasterDataBuilder.PartDocumentsPair result = builder.build();
+
+        vecContentRoot.getDocumentVersions().addAll(result.documentVersions());
+        vecContentRoot.getPartVersions().add(result.partVersion());
+    }
+
+    public void schematic(String containerDocumentNumber, Customizer<SchematicBuilder> customizer) {
+        VecDocumentVersion containerDocument = findDocument(containerDocumentNumber);
+
+        SchematicBuilder builder = new SchematicBuilder();
+
+        customizer.customize(builder);
+
+        VecConnectionSpecification result = builder.build();
+
+        containerDocument.getSpecifications().add(result);
+    }
+
+    public void harness(final String documentNumber, String version, Customizer<HarnessBuilder> customizer) {
+        HarnessBuilder harnessBuilder = new HarnessBuilder(this, documentNumber, version);
+
+        customizer.customize(harnessBuilder);
+
+        HarnessBuilder.HarnessResult result = harnessBuilder.build();
+
+        this.vecContentRoot.getDocumentVersions().add(result.harnessDocument());
+        this.vecContentRoot.getPartVersions().addAll(result.variants());
     }
 
     public void addXmlComment(Identifiable identifiable, String comment) {
@@ -181,5 +221,10 @@ public class VecSession {
                         .contains(partVersion))
                 .findFirst()
                 .orElseThrow();
+    }
+
+    VecDocumentVersion findDocument(final String documentNumber) {
+        return this.vecContentRoot.getDocumentVersions().stream().filter(
+                dv -> documentNumber.equals(dv.getDocumentNumber())).findFirst().orElseThrow();
     }
 }

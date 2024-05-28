@@ -23,22 +23,16 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.core;
 
-public class AbstractChildBuilder<P extends Builder>
-        implements ChildBuilder<P> {
+import com.foursoft.harness.vec.v2x.VecSpecification;
 
-    protected final P parent;
+import java.util.Optional;
 
-    public AbstractChildBuilder(P parent) {
-        this.parent = parent;
-    }
+@FunctionalInterface
+public interface SpecificationLocator {
 
-    @Override public VecSession getSession() {
-        return parent.getSession();
-    }
+    <T extends VecSpecification> Optional<T> find(final Class<T> type,
+                                                  final String identification);
 
-    @Override public P end() {
-        return this.parent;
-    }
 }

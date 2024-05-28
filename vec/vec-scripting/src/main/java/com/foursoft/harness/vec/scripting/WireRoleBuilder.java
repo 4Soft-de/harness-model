@@ -25,42 +25,64 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
 import com.foursoft.harness.vec.v2x.VecWireElement;
+import com.foursoft.harness.vec.v2x.VecWireElementReference;
 import com.foursoft.harness.vec.v2x.VecWireRole;
 import com.foursoft.harness.vec.v2x.VecWireSpecification;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class WireRoleBuilder extends AbstractChildBuilder<PartOccurrenceBuilder> {
+public class WireRoleBuilder implements Builder<VecWireRole> {
 
     private final VecWireRole wireRole;
+    private final VecSession session;
+    private final ConnectionLookup connectionLookup;
     private Map<String, WireElementRefBuilder> wireElementRefBuilders;
 
-    public WireRoleBuilder(final PartOccurrenceBuilder parent, VecPartOccurrence partOccurrence,
-                           VecWireSpecification specification) {
-        super(parent);
-        this.wireRole = wireRole(partOccurrence, specification);
+    public WireRoleBuilder(VecSession session, String identification,
+                           VecWireSpecification specification, ConnectionLookup connectionLookup) {
+        this.session = session;
+        this.connectionLookup = connectionLookup;
+        this.wireRole = wireRole(identification, specification);
 
     }
 
-    public WireElementRefBuilder wireElementRef(String partMasterIdentification) {
-        return wireElementRefBuilders.get(partMasterIdentification);
+    public WireRoleBuilder wireElementRef(String partMasterIdentification,
+                                          Customizer<WireElementRefBuilder> customizer) {
+        WireElementRefBuilder builder = wireElementRefBuilders.get(partMasterIdentification);
+
+        if (customizer != null) {
+            customizer.customize(builder);
+        }
+
+        return this;
     }
 
-    private VecWireRole wireRole(VecPartOccurrence partOccurrence,
+    @Override
+    public VecWireRole build() {
+        List<VecWireElementReference> list = wireElementRefBuilders.values().stream().map(WireElementRefBuilder::build)
+                .toList();
+
+        wireRole.getWireElementReferences().addAll(list);
+
+        return wireRole;
+    }
+
+    private VecWireRole wireRole(String identification,
                                  VecWireSpecification specification) {
 
         VecWireRole role = new VecWireRole();
-        role.setIdentification(partOccurrence.getIdentification());
-        partOccurrence.getRoles().add(role);
+        role.setIdentification(identification);
 
         role.setWireSpecification(specification);
 
         wireElementRefBuilders = flatTree(specification.getWireElement()).collect(
-                Collectors.toMap(VecWireElement::getIdentification, e -> new WireElementRefBuilder(this, role, e)));
+                Collectors.toMap(VecWireElement::getIdentification,
+                                 e -> new WireElementRefBuilder(session, e, connectionLookup)));
 
         return role;
     }
