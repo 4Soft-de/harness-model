@@ -32,18 +32,21 @@ import java.util.List;
 import java.util.function.Function;
 
 public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
+    private final VecSession session;
     private final VecWireElementReference wireElementReference;
     private final Function<String, VecPartOccurrence> occurrenceLocator;
     private final List<VecContactPoint> createdContactPoints = new ArrayList<>();
 
-    public ConnectivityBuilder(final VecWireElementReference wireElementReference,
+    public ConnectivityBuilder(VecSession session, final VecWireElementReference wireElementReference,
                                Function<String, VecPartOccurrence> occurrenceLocator) {
+        this.session = session;
         this.wireElementReference = wireElementReference;
         this.occurrenceLocator = occurrenceLocator;
     }
 
     public ConnectivityBuilder addEnd(final String connectorId, final String cavityNumber) {
-        final VecContactPoint cp = createContactPointWithWireMounting(connectorId + "." + cavityNumber);
+        final VecContactPoint cp = createContactPointWithWireMounting(connectorId + "." + cavityNumber, we -> {
+        });
 
         final VecCavityMounting cavityMounting = new VecCavityMounting();
         cp.getCavityMountings()
@@ -68,9 +71,10 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
         return this;
     }
 
-    public ConnectivityBuilder addEndWithTerminalOnly(final String terminalId) {
+    public ConnectivityBuilder addEndWithTerminalOnly(final String terminalId,
+                                                      Customizer<WireEndBuilder> wireEndCustomizer) {
         final VecContactPoint cp = createContactPointWithWireMounting(
-                wireElementReference.getIdentification() + "-" + terminalId);
+                wireElementReference.getIdentification() + "-" + terminalId, wireEndCustomizer);
 
         final VecPluggableTerminalRole terminal = occurrenceLocator.apply(terminalId)
                 .getRoleWithType(VecPluggableTerminalRole.class)
@@ -85,12 +89,17 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
         return createdContactPoints;
     }
 
-    private VecContactPoint createContactPointWithWireMounting(final String endpointId) {
+    private VecContactPoint createContactPointWithWireMounting(final String endpointId,
+                                                               Customizer<WireEndBuilder> wireEndCustomizer) {
         final VecContactPoint cp = new VecContactPoint();
         cp.setIdentification(endpointId);
         createdContactPoints.add(cp);
 
-        final VecWireEnd end = new VecWireEnd();
+        WireEndBuilder wireEndBuilder = new WireEndBuilder(this.session);
+
+        wireEndCustomizer.customize(wireEndBuilder);
+
+        final VecWireEnd end = wireEndBuilder.build();
         end.setIdentification(endpointId);
         if (wireElementReference
                 .getWireEnds()

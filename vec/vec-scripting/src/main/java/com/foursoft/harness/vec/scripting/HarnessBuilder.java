@@ -136,7 +136,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
                 .findAny()
                 .orElseThrow();
 
-        ConnectivityBuilder builder = new ConnectivityBuilder(wireElementReference, this::findOccurrence);
+        ConnectivityBuilder builder = new ConnectivityBuilder(this.session, wireElementReference, this::findOccurrence);
 
         customizer.customize(builder);
 
