@@ -33,6 +33,7 @@ import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
+import static com.foursoft.harness.vec.scripting.factories.WireTypeFactory.din76722;
 
 public class WireElementBuilder implements Builder<VecWireElement> {
     private final VecWireElement wireElement = new VecWireElement();
@@ -94,11 +95,7 @@ public class WireElementBuilder implements Builder<VecWireElement> {
     }
 
     public WireElementBuilder withDin76722WireType(final String wireType) {
-        VecWireType type = new VecWireType();
-        type.setType(wireType);
-        type.setReferenceSystem("DIN 76722");
-
-        this.wireElementSpecification.getTypes().add(type);
+        this.wireElementSpecification.getTypes().add(din76722(wireType));
 
         return this;
     }

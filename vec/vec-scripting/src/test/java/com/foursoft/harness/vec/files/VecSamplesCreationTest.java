@@ -159,15 +159,39 @@ class VecSamplesCreationTest {
         session.component("5-928999-1", "5-928999-1",
                           VecPrimaryPartType.PLUGGABLE_TERMINAL, comp -> comp
                 .withApplicationSpecification("114-18021","V")
-                .addGeneralTechnicalPart()
+                .addGeneralTechnicalPart(gen -> gen
+                        .withBoundingBoxX(2.3))
+                .addCoreSpecification("CORE-FL-A", core -> core
+                        .withDin76722WireType("FL-A")
+                        .withCSA(0.35)
+                        .withStructure("Symmetric"))
+                .addInsulationSpecification("INS-FLRY", ins -> ins
+                        .withThickness(0.20)
+                        .withDin76722WireType("FRLY")
+                        .withInsulationMaterial("PVC")
+                )
+
                 .addPluggableTerminal(builder -> builder
                     .withMissingAttributesComment()
                     .withInsulationDisplacementLength(3.6,-0.15,0.15)
                     .withConnectionBLength(5.6)
                     .withTerminalLengthOverall(13.7)
                     .withRearBellMouth(0.55)
-                    .withCrimpDetailsExample()
-                    .withSealable(false))
+                    .withInsulationCrimpLegHeight(2.1)
+                    .withInsulationCrimpShape("O")
+                    .withWireTipProtrusion(0.1,0.7)
+                    .withSheetThickness(0.2)
+                    .withSealable(false)
+                    .addCoreCrimpDetails("CORE-FL-A",d -> d
+                            .withHeight(0.76,-0.03,0.03)
+                            .withWidth(1.07,0.0,0.1)
+                                .addInsulationCrimpDetails("INS-FLRY", i -> i
+                                        .withHeight(1.5,-0.1,0.1)
+                                        .withWidth(1.5,-0.1,0.1)
+                                        .withPullOffForce(50)
+                                )
+                    )
+                )
         );
 
         session.component("WIRE","DRAW-WIRE", VecPrimaryPartType.WIRE, comp -> comp
@@ -194,8 +218,21 @@ class VecSamplesCreationTest {
                 .addPartOccurrence("T1", "5-928999-1")
                 .addPartOccurrence("T2", "5-928999-1")
                 .addConnection("W1", conn -> conn
-                    .addEndWithTerminalOnly("T1")
-                    .addEndWithTerminalOnly("T2")));
+                    .addEndWithTerminalOnly("T1", we -> we.withStrippingLength(3.6,-0.15,0.15),
+                            wmd -> wmd
+                                .withWireTipProtrusion(0.1,0.7)
+                                .withCoreCrimpHeight(0.76,-0.03,0.03)
+                                .withCoreCrimpWidth(1.07,0.0,0.1)
+                                .withInsulationCrimpHeight(1.5,-0.1,0.1)
+                                .withInsulationCrimpWidth(1.5,-0.1,0.1))
+                    .addEndWithTerminalOnly("T2", we -> we.withStrippingLength(3.6,-0.15,0.15),
+                                            wmd -> wmd
+                                                    .withWireTipProtrusion(0.1,0.7)
+                                                    .withCoreCrimpHeight(0.76,-0.03,0.03)
+                                                    .withCoreCrimpWidth(1.07,0.0,0.1)
+                                                    .withInsulationCrimpHeight(1.5,-0.1,0.1)
+                                                    .withInsulationCrimpWidth(1.5,-0.1,0.1))
+                ));
         // @formatter:on
 
         session.writeToStream(TestUtils.createTestFileStream("detail-arena2036-example"));

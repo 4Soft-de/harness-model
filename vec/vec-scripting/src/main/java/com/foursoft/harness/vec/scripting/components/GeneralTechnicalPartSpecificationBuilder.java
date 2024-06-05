@@ -26,20 +26,18 @@
 package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
-import com.foursoft.harness.vec.v2x.VecMassInformation;
-import com.foursoft.harness.vec.v2x.VecUnit;
-import com.foursoft.harness.vec.v2x.VecValueDetermination;
+import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 
 public class GeneralTechnicalPartSpecificationBuilder
         extends PartOrUsageRelatedSpecificationBuilder<VecGeneralTechnicalPartSpecification> {
-
+    private final VecSession session;
     private final VecGeneralTechnicalPartSpecification element;
     private final String partNumber;
 
-    GeneralTechnicalPartSpecificationBuilder(final String partNumber) {
+    GeneralTechnicalPartSpecificationBuilder(final VecSession session, final String partNumber) {
+        this.session = session;
         this.partNumber = partNumber;
 
         element = this.initializeSpecification(VecGeneralTechnicalPartSpecification.class, partNumber);
@@ -55,6 +53,28 @@ public class GeneralTechnicalPartSpecificationBuilder
         element.getMassInformations().add(massInformation);
 
         return this;
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxX(double x) {
+        getOrCreateBoundingBox().setX(value(x, session.mm()));
+        return this;
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxY(double y) {
+        getOrCreateBoundingBox().setY(value(y, session.mm()));
+        return this;
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxZ(double z) {
+        getOrCreateBoundingBox().setZ(value(z, session.mm()));
+        return this;
+    }
+
+    private VecBoundingBox getOrCreateBoundingBox() {
+        if (element.getBoundingBox() == null) {
+            element.setBoundingBox(new VecBoundingBox());
+        }
+        return element.getBoundingBox();
     }
 
     @Override public VecGeneralTechnicalPartSpecification build() {

@@ -30,6 +30,7 @@ import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecCoreSpecification;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
+import static com.foursoft.harness.vec.scripting.factories.WireTypeFactory.din76722;
 
 public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
 
@@ -56,6 +57,17 @@ public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
 
     public CoreSpecificationBuilder withStrandDiameter(final double diameter) {
         this.coreSpecification.setStrandDiameter(value(diameter, session.mm()));
+        return this;
+    }
+
+    public CoreSpecificationBuilder withStructure(final String structure) {
+        this.coreSpecification.setStructure(structure);
+        return this;
+    }
+
+    public CoreSpecificationBuilder withDin76722WireType(final String wireType) {
+        this.coreSpecification.getWireTypes().add(din76722(wireType));
+
         return this;
     }
 

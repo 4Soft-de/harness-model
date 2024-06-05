@@ -77,10 +77,8 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     public ComponentMasterDataBuilder withApplicationSpecification(final String documentNumber,
                                                                    final String documentVersion) {
         VecDocumentVersion dv = new DocumentVersionBuilder(session, documentNumber, documentVersion)
-                .documentType("ApplicationSpecification")
+                .documentType("ProcessingInstruction")
                 .build();
-
-        session.addXmlComment(dv, " DocumentType to be verified (KBLFRM-1194).");
 
         dv.getReferencedPart().add(part);
 
@@ -116,8 +114,8 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
 
     public ComponentMasterDataBuilder addGeneralTechnicalPart(
             Customizer<GeneralTechnicalPartSpecificationBuilder> customizer) {
-        GeneralTechnicalPartSpecificationBuilder builder = new GeneralTechnicalPartSpecificationBuilder(
-                this.partNumber);
+        GeneralTechnicalPartSpecificationBuilder builder = new GeneralTechnicalPartSpecificationBuilder(session,
+                                                                                                        this.partNumber);
 
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
     }
@@ -160,7 +158,18 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         return addCoreSpecification(builder.build());
     }
 
-    public ComponentMasterDataBuilder addCoreSpecification(VecCoreSpecification specification) {
+    public ComponentMasterDataBuilder addInsulationSpecification(String identification,
+                                                                 Customizer<InsulationSpecificationBuilder> customizer) {
+        InsulationSpecificationBuilder builder = new InsulationSpecificationBuilder(this.session, identification);
+
+        customizer.customize(builder);
+
+        addSpecification(builder.build());
+
+        return this;
+    }
+
+    private ComponentMasterDataBuilder addCoreSpecification(VecCoreSpecification specification) {
         this.addSpecification(specification);
 
         return this;
@@ -218,7 +227,8 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     public ComponentMasterDataBuilder addPluggableTerminal(
             Customizer<PluggableTerminalSpecificationBuilder> customizer) {
         PluggableTerminalSpecificationBuilder builder =
-                new PluggableTerminalSpecificationBuilder(this.session, this::addSpecification, this.partNumber);
+                new PluggableTerminalSpecificationBuilder(this.session, this::addSpecification, this.partNumber,
+                                                          this.partMasterDocument::getSpecificationWith);
 
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
 

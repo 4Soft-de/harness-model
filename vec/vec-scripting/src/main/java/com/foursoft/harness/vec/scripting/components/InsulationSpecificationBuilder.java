@@ -29,8 +29,10 @@ import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecColor;
 import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
+import com.foursoft.harness.vec.v2x.VecMaterial;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
+import static com.foursoft.harness.vec.scripting.factories.WireTypeFactory.din76722;
 
 public class InsulationSpecificationBuilder implements Builder<VecInsulationSpecification> {
 
@@ -57,6 +59,20 @@ public class InsulationSpecificationBuilder implements Builder<VecInsulationSpec
 
     public InsulationSpecificationBuilder withThickness(final double thickness) {
         insulationSpecification.setThickness(value(thickness, session.mm()));
+        return this;
+    }
+
+    public InsulationSpecificationBuilder withDin76722WireType(final String wireType) {
+        insulationSpecification.getWireTypes().add(din76722(wireType));
+
+        return this;
+    }
+
+    public InsulationSpecificationBuilder withInsulationMaterial(String materialName) {
+        VecMaterial material = new VecMaterial();
+        material.setKey(materialName);
+        material.setReferenceSystem("ACME");
+        insulationSpecification.getMaterials().add(material);
         return this;
     }
 
