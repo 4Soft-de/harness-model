@@ -218,8 +218,21 @@ class VecSamplesCreationTest {
                 .addPartOccurrence("T1", "5-928999-1")
                 .addPartOccurrence("T2", "5-928999-1")
                 .addConnection("W1", conn -> conn
-                    .addEndWithTerminalOnly("T1", we -> we.withStrippingLength(3.6,-0.15,0.15))
-                    .addEndWithTerminalOnly("T2", we -> we.withStrippingLength(3.6,-0.15,0.15))));
+                    .addEndWithTerminalOnly("T1", we -> we.withStrippingLength(3.6,-0.15,0.15),
+                            wmd -> wmd
+                                .withWireTipProtrusion(0.1,0.7)
+                                .withCoreCrimpHeight(0.76,-0.03,0.03)
+                                .withCoreCrimpWidth(1.07,0.0,0.1)
+                                .withInsulationCrimpHeight(1.5,-0.1,0.1)
+                                .withInsulationCrimpWidth(1.5,-0.1,0.1))
+                    .addEndWithTerminalOnly("T2", we -> we.withStrippingLength(3.6,-0.15,0.15),
+                                            wmd -> wmd
+                                                    .withWireTipProtrusion(0.1,0.7)
+                                                    .withCoreCrimpHeight(0.76,-0.03,0.03)
+                                                    .withCoreCrimpWidth(1.07,0.0,0.1)
+                                                    .withInsulationCrimpHeight(1.5,-0.1,0.1)
+                                                    .withInsulationCrimpWidth(1.5,-0.1,0.1))
+                ));
         // @formatter:on
 
         ;

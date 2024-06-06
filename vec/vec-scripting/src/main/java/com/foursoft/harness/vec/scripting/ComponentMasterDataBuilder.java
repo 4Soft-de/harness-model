@@ -70,10 +70,8 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     public ComponentMasterDataBuilder withApplicationSpecification(final String documentNumber,
                                                                    final String documentVersion) {
         VecDocumentVersion dv = new DocumentVersionBuilder(session, documentNumber, documentVersion)
-                .documentType("ApplicationSpecification")
+                .documentType("ProcessingInstruction")
                 .build();
-
-        session.addXmlComment(dv, " DocumentType to be verified (KBLFRM-1194).");
 
         dv.getReferencedPart().add(part);
 

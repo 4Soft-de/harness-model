@@ -129,9 +129,8 @@ public class PluggableTerminalSpecificationBuilder
     public PluggableTerminalSpecificationBuilder withMissingAttributesComment() {
         session.addXmlComment(this.element,
                               " The following attributes are currently not mapped in the VEC, issues should be " +
-                                      "created (custom properties would be possible): \n" +
-                                      "SealPosition + Tolerance,  " +
-                                      "MaxTerminalWidth");
+                                      "created (custom properties would be possible): SealPosition + Tolerance " +
+                                      "(KBLFRM-1237)");
         return this;
     }
 
