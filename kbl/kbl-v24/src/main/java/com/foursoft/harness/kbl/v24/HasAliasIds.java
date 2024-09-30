@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * KBL Common
+ * KBL 2.4
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,12 +23,14 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.common;
+package com.foursoft.harness.kbl.v24;
+
+import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
 
 import java.util.List;
 
-public interface HasReferenceElement<X> {
+public interface HasAliasIds extends ModifiableIdentifiable {
 
-    List<X> getReferenceElement();
+    List<KblAliasIdentification> getAliasIds();
 
 }

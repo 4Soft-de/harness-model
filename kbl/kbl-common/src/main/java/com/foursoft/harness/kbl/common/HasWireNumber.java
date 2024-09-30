@@ -25,10 +25,18 @@
  */
 package com.foursoft.harness.kbl.common;
 
-public interface HasPlacement<X> {
+public interface HasWireNumber {
 
-    X getPlacement();
+    /**
+     * @return the identification of a wire.
+     */
+    String getWireNumber();
 
-    void setPlacement(X value);
+    /**
+     * Set the identification of a wire.
+     *
+     * @param value
+     */
+    void setWireNumber(String value);
 
 }
