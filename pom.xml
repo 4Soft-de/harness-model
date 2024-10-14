@@ -42,7 +42,7 @@
         <cxf-xjc-javadoc.version>4.0.2</cxf-xjc-javadoc.version>
 
         <!-- Release Plugins -->
-        <maven-gpg-plugin.version>3.2.6</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
 
         <!-- build and release properties -->
