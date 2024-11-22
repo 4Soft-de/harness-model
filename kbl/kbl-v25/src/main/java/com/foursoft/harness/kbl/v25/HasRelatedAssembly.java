@@ -27,7 +27,9 @@ package com.foursoft.harness.kbl.v25;
 
 import java.util.List;
 
-public interface HasRelatedAssembly {
+public interface HasRelatedAssembly
+        extends HasRelatedOccurrence, ChangedElement, ConnectionOrOccurrence, HasParentAssemblyPart, HasPart,
+        ReferenceElement {
 
     List<KblAssemblyPartOccurrence> getRelatedAssembly();
 

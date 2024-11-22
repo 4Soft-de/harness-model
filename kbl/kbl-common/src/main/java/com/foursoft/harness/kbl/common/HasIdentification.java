@@ -25,9 +25,18 @@
  */
 package com.foursoft.harness.kbl.common;
 
-public interface HasIdentification {
+import com.foursoft.harness.navext.runtime.model.Identifiable;
+
+import java.util.Objects;
+import java.util.function.Predicate;
+
+public interface HasIdentification extends Identifiable {
 
     String getId();
 
     void setId(String id);
+
+    default Predicate<HasIdentification> matches() {
+        return h -> Objects.equals(h.getId(), getId());
+    }
 }

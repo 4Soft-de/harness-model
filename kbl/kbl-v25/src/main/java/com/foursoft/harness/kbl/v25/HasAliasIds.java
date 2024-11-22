@@ -25,18 +25,12 @@
  */
 package com.foursoft.harness.kbl.v25;
 
-public interface HasWireNumber {
+import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
 
-    /**
-     * @return the identification of a wire.
-     */
-    String getWireNumber();
+import java.util.List;
 
-    /**
-     * Set the identification of a wire.
-     *
-     * @param value
-     */
-    void setWireNumber(String value);
+public interface HasAliasIds extends ModifiableIdentifiable {
+
+    List<KblAliasIdentification> getAliasIds();
 
 }

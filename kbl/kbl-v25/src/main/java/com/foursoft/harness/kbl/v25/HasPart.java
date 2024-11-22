@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * KBL 2.4
+ * KBL 2.5
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -23,12 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl.v24;
+package com.foursoft.harness.kbl.v25;
 
-import com.foursoft.harness.navext.runtime.model.Identifiable;
+public interface HasPart {
 
-public interface HasRelatedOccurrence extends Identifiable {
-
-    <X extends Identifiable & ReferenceElement & ConnectionOrOccurrence & HasParentAssemblyPart> X getRelatedOccurrence();
+    <X extends KblPart> X getPart();
 
 }

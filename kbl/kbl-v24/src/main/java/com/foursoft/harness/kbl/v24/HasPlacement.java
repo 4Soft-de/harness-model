@@ -25,18 +25,12 @@
  */
 package com.foursoft.harness.kbl.v24;
 
-public interface HasWireNumber {
+import com.foursoft.harness.kbl.common.HasIdentification;
 
-    /**
-     * @return the identification of a wire.
-     */
-    String getWireNumber();
+public interface HasPlacement extends HasIdentification {
 
-    /**
-     * Set the identification of a wire.
-     *
-     * @param value
-     */
-    void setWireNumber(String value);
+    KblTransformation getPlacement();
+
+    void setPlacement(KblTransformation value);
 
 }
