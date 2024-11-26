@@ -102,6 +102,8 @@ public final class Vec11XTo12XCompatibilityWrapper implements CompatibilityWrapp
                           c -> new Vec11To12WireSpecificationWrapper(context, c))
                 .register(com.foursoft.harness.vec.v113.VecWireElement.class,
                           c -> new Vec11To12WireElementWrapper(context, c))
+                .register(com.foursoft.harness.vec.v113.VecStripeSpecification.class,
+                          c -> new Vec11To12StripeSpecificationWrapper(context, c))
                 .register(com.foursoft.harness.vec.v113.VecTapeSpecification.class,
                           c -> new Vec11To12TapeSpecificationWrapper(context, c))
                 .register(com.foursoft.harness.vec.v113.VecOccurrenceOrUsageViewItem3D.class,
