@@ -1,13 +1,13 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.vec11to12.TestFiles;
-import com.foursoft.harness.compatibility.vec11to12.util.Predicates;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v113.VecContent;
 import com.foursoft.harness.vec.v113.VecReader;
 import com.foursoft.harness.vec.v12x.VecDocumentVersion;
 import com.foursoft.harness.vec.v12x.VecStripeSpecification;
+import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ class Vec11To12StripeSpecificationWrapperTest extends AbstractBaseWrapperTest {
 
             final VecStripeSpecification stripeSpecification = vecContent120.getDocumentVersions()
                     .stream()
-                    .filter(Predicates.partMasterV12())
+                    .filter(VecPredicates.partMasterDocument())
                     .map(VecDocumentVersion::getSpecifications)
                     .flatMap(Collection::stream)
                     .filter(VecStripeSpecification.class::isInstance)
