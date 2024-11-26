@@ -26,11 +26,13 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.vec11to12.TestFiles;
+import com.foursoft.harness.compatibility.vec11to12.util.WrapperUtils;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v113.VecContent;
 import com.foursoft.harness.vec.v113.VecReader;
 import com.foursoft.harness.vec.v12x.VecDocumentVersion;
+import com.foursoft.harness.vec.v12x.VecNumericalValue;
 import com.foursoft.harness.vec.v12x.VecStripeSpecification;
 import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
 import org.junit.jupiter.api.Test;
@@ -67,6 +69,13 @@ class Vec11To12StripeSpecificationWrapperTest extends AbstractBaseWrapperTest {
             assertThat(stripeSpecification).isNotNull()
                     .returns(1.3, c -> c.getThickness().getValueComponent());
 
+            final VecNumericalValue copiedValue =
+                    WrapperUtils.copyVec12xNumericalValue(stripeSpecification.getThickness());
+            copiedValue.setValueComponent(3.1);
+            stripeSpecification.setThickness(copiedValue);
+
+            assertThat(stripeSpecification)
+                    .returns(3.1, c -> c.getThickness().getValueComponent());
         }
     }
 
