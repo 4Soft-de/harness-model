@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.X
+ * VEC 2.x Scripting API (Experimental)
  * %%
  * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,24 +23,29 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.v2x.validation;
+package com.foursoft.harness.vec.scripting.core;
 
-import javax.xml.validation.Schema;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 
-public class SchemaFactory {
+public class PartVersionBuilder implements Builder<VecPartVersion> {
 
-    private static final String SCHEMA_PATH = "vec2/vec_2.1.0.xsd";
-    private static final String STRICT_SCHEMA_PATH = "vec2/vec_2.1.0-strict.xsd";
+    private final VecPartVersion part;
+    private final VecSession session;
 
-    private SchemaFactory() {
-        // Hide constructor
+    public PartVersionBuilder(VecSession session, final String partNumber, VecPrimaryPartType primaryPartType) {
+        this.session = session;
+        part = new VecPartVersion();
+
+        part.setCompanyName(this.session.getDefaultValues().getCompanyName());
+        part.setPartVersion("1");
+        part.setPartNumber(partNumber);
+        part.setPrimaryPartType(primaryPartType);
     }
 
-    public static Schema getStrictSchema() {
-        return com.foursoft.harness.navext.runtime.io.validation.SchemaFactory.getSchema(STRICT_SCHEMA_PATH);
-    }
-
-    public static Schema getSchema() {
-        return com.foursoft.harness.navext.runtime.io.validation.SchemaFactory.getSchema(SCHEMA_PATH);
+    @Override public VecPartVersion build() {
+        return part;
     }
 }

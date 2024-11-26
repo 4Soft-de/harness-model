@@ -25,7 +25,8 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-public interface Builder {
+public interface Builder<T> {
 
-    VecSession getSession();
+    T build();
+
 }

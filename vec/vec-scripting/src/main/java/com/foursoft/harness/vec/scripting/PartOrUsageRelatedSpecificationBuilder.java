@@ -25,19 +25,14 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 
 import java.lang.reflect.InvocationTargetException;
 
-public abstract class PartOrUsageRelatedSpecificationBuilder extends AbstractChildBuilder<ComponentMasterDataBuilder> {
+public abstract class PartOrUsageRelatedSpecificationBuilder<X extends VecPartOrUsageRelatedSpecification> implements
+        Builder<X> {
 
-    protected final VecDocumentVersion partMasterDocument;
-
-    public PartOrUsageRelatedSpecificationBuilder(final ComponentMasterDataBuilder parent,
-                                                  VecDocumentVersion partMasterDocument) {
-        super(parent);
-        this.partMasterDocument = partMasterDocument;
+    public PartOrUsageRelatedSpecificationBuilder() {
     }
 
     protected <T extends VecPartOrUsageRelatedSpecification> T initializeSpecification(Class<T> clazz,
@@ -45,10 +40,7 @@ public abstract class PartOrUsageRelatedSpecificationBuilder extends AbstractChi
         try {
             T instance = clazz.getConstructor().newInstance();
 
-            instance.getDescribedPart().addAll(partMasterDocument.getReferencedPart());
             instance.setIdentification(abbreviatedClassName(clazz) + "-" + partNumber);
-
-            partMasterDocument.getSpecifications().add(instance);
 
             return instance;
         } catch (InstantiationException | NoSuchMethodException | IllegalAccessException |
