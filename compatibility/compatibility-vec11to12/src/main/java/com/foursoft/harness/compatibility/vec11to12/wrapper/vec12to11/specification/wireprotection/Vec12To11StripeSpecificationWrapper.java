@@ -26,6 +26,12 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.wireprotection;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.vec.v113.VecCustomProperty;
+import com.foursoft.harness.vec.v113.VecNumericalValue;
+import com.foursoft.harness.vec.v113.VecNumericalValueProperty;
+
+import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecStripeSpecification}
@@ -41,6 +47,33 @@ public class Vec12To11StripeSpecificationWrapper extends Vec12To11WireProtection
      */
     public Vec12To11StripeSpecificationWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
+    }
+
+    @Override
+    protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
+        if ("getCustomProperties".equals(method.getName())) {
+            return getCustomPropertiesWithThickness();
+        }
+
+        return super.wrapObject(obj, method, allArguments);
+    }
+
+    // The VEC 1.1.3 stores the thickness as a CustomProperty.
+    private List<VecCustomProperty> getCustomPropertiesWithThickness() {
+        final List<VecCustomProperty> customProperties =
+                wrapList("getCustomProperties", VecCustomProperty.class);
+
+        getResultObject("getThickness", com.foursoft.harness.vec.v12x.VecNumericalValue.class)
+                .map(getContext().getWrapperProxyFactory()::createProxy)
+                .map(VecNumericalValue.class::cast)
+                .ifPresent(thickness -> {
+                    final VecNumericalValueProperty vecNumericalValueProperty = new VecNumericalValueProperty();
+                    vecNumericalValueProperty.setPropertyType("Thickness");
+                    vecNumericalValueProperty.setValue(thickness);
+                    customProperties.add(vecNumericalValueProperty);
+                });
+
+        return customProperties;
     }
 
 }
