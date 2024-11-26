@@ -69,12 +69,14 @@ public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper 
     }
 
     private VecNumericalValue getThickness() {
-        thickness = wrapList("getCustomProperties", VecCustomProperty.class).stream()
-                .filter(c -> c.getPropertyType().equalsIgnoreCase("Thickness"))
-                .filter(VecNumericalValueProperty.class::isInstance)
-                .map(VecNumericalValueProperty.class::cast)
-                .map(VecNumericalValueProperty::getValue)
-                .findFirst().orElse(null);
+        if (thickness == null) {
+            thickness = wrapList("getCustomProperties", VecCustomProperty.class).stream()
+                    .filter(c -> c.getPropertyType().equalsIgnoreCase("Thickness"))
+                    .filter(VecNumericalValueProperty.class::isInstance)
+                    .map(VecNumericalValueProperty.class::cast)
+                    .map(VecNumericalValueProperty::getValue)
+                    .findFirst().orElse(null);
+        }
 
         return thickness;
     }
