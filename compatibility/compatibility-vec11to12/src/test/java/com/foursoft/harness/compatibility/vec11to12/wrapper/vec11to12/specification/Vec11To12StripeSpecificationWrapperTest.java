@@ -67,7 +67,10 @@ class Vec11To12StripeSpecificationWrapperTest extends AbstractBaseWrapperTest {
                     .orElse(null);
 
             assertThat(stripeSpecification).isNotNull()
-                    .returns(1.3, c -> c.getThickness().getValueComponent());
+                    .returns(1.3, c -> c.getThickness().getValueComponent())
+                    .satisfies(spec -> assertThat(spec.getCustomProperties())
+                            .isEmpty()
+                    );
 
             final VecNumericalValue copiedValue =
                     WrapperUtils.copyVec12xNumericalValue(stripeSpecification.getThickness());

@@ -32,6 +32,7 @@ import com.foursoft.harness.vec.v12x.VecNumericalValue;
 import com.foursoft.harness.vec.v12x.VecNumericalValueProperty;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecStripeSpecification}
@@ -59,8 +60,18 @@ public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper 
         if ("setThickness".equals(method.getName())) {
             return setThickness((VecNumericalValue) allArguments[0]);
         }
+        if ("getCustomProperties".equals(method.getName())) {
+            return getCustomPropertiesWithoutThickness();
+        }
 
         return super.wrapObject(obj, method, allArguments);
+    }
+
+    // The VEC 1.2.0 is not supposed to provide this CustomProperty anymore since it's an own field now.
+    private List<VecCustomProperty> getCustomPropertiesWithoutThickness() {
+        return wrapList("getCustomProperties", VecCustomProperty.class).stream()
+                .filter(c -> !c.getPropertyType().equalsIgnoreCase("Thickness"))
+                .toList();
     }
 
     private Object setThickness(final VecNumericalValue arg) {
