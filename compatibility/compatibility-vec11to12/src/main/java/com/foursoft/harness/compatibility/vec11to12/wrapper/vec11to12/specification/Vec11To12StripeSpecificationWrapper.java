@@ -40,6 +40,9 @@ import java.util.List;
  */
 public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper {
 
+    private static final String GET_CUSTOM_PROPERTIES_METHOD_NAME = "getCustomProperties";
+    private static final String THICKNESS_CUSTOM_PROPERTY = "Thickness";
+
     private VecNumericalValue thickness;
 
     /**
@@ -60,7 +63,7 @@ public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper 
         if ("setThickness".equals(method.getName())) {
             return setThickness((VecNumericalValue) allArguments[0]);
         }
-        if ("getCustomProperties".equals(method.getName())) {
+        if (GET_CUSTOM_PROPERTIES_METHOD_NAME.equals(method.getName())) {
             return getCustomPropertiesWithoutThickness();
         }
 
@@ -69,8 +72,8 @@ public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper 
 
     // The VEC 1.2.0 is not supposed to provide this CustomProperty anymore since it's an own field now.
     private List<VecCustomProperty> getCustomPropertiesWithoutThickness() {
-        return wrapList("getCustomProperties", VecCustomProperty.class).stream()
-                .filter(c -> !c.getPropertyType().equalsIgnoreCase("Thickness"))
+        return wrapList(GET_CUSTOM_PROPERTIES_METHOD_NAME, VecCustomProperty.class).stream()
+                .filter(c -> !c.getPropertyType().equalsIgnoreCase(THICKNESS_CUSTOM_PROPERTY))
                 .toList();
     }
 
@@ -81,8 +84,8 @@ public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper 
 
     private VecNumericalValue getThickness() {
         if (thickness == null) {
-            thickness = wrapList("getCustomProperties", VecCustomProperty.class).stream()
-                    .filter(c -> c.getPropertyType().equalsIgnoreCase("Thickness"))
+            thickness = wrapList(GET_CUSTOM_PROPERTIES_METHOD_NAME, VecCustomProperty.class).stream()
+                    .filter(c -> c.getPropertyType().equalsIgnoreCase(THICKNESS_CUSTOM_PROPERTY))
                     .filter(VecNumericalValueProperty.class::isInstance)
                     .map(VecNumericalValueProperty.class::cast)
                     .map(VecNumericalValueProperty::getValue)

@@ -48,7 +48,6 @@ class Vec11To12StripeSpecificationWrapperTest extends AbstractBaseWrapperTest {
 
     @Test
     void invokeTest() throws IOException {
-
         try (final InputStream inputStream = TestFiles.getInputStream("/vec11x/wire_protection+111_222_333.vec")) {
             final VecContent vecContent113 = new VecReader().read(inputStream);
 
@@ -66,7 +65,8 @@ class Vec11To12StripeSpecificationWrapperTest extends AbstractBaseWrapperTest {
                     .collect(StreamUtils.findOneOrNone())
                     .orElse(null);
 
-            assertThat(stripeSpecification).isNotNull()
+            assertThat(stripeSpecification)
+                    .isNotNull()
                     .returns(1.3, c -> c.getThickness().getValueComponent())
                     .satisfies(spec -> assertThat(spec.getCustomProperties())
                             .isEmpty()
