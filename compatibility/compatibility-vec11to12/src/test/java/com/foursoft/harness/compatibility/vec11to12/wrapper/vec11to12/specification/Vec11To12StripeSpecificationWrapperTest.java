@@ -48,7 +48,7 @@ class Vec11To12StripeSpecificationWrapperTest extends AbstractBaseWrapperTest {
 
     @Test
     void invokeTest() throws IOException {
-        try (final InputStream inputStream = TestFiles.getInputStream("/vec11x/wire_protection+111_222_333.vec")) {
+        try (final InputStream inputStream = TestFiles.getInputStream(TestFiles.WIRE_PROTECTION_11X)) {
             final VecContent vecContent113 = new VecReader().read(inputStream);
 
             final com.foursoft.harness.vec.v12x.VecContent vecContent120 =
