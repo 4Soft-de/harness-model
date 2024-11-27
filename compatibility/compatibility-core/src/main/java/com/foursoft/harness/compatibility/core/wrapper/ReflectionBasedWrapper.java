@@ -85,6 +85,10 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         return context;
     }
 
+    public <T extends WrapperHelper> T getWrapperHelper(Class<T> wrapperHelperClass) {
+        return wrapperHelperClass.cast(wrapperHelper);
+    }
+
     /**
      * Returns the target object which should be wrapped.
      *
@@ -100,28 +104,32 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
 
     protected <T> Optional<T> getResultObject(final String methodName,
                                               final Class<T> targetClass, final Object... args) {
-        return wrapperHelper.getResultObject(methodName, target, targetClass, args);
+        return executeWithTarget(t -> wrapperHelper.getResultObject(methodName, t, targetClass, args));
     }
 
     protected <T> List<T> getResultList(final String methodName,
                                         final Class<T> targetClass, final Object... args) {
-        return wrapperHelper.getResultList(methodName, target, targetClass, args);
+        return executeWithTarget(t -> wrapperHelper.getResultList(methodName, t, targetClass, args));
     }
 
     protected <T> List<T> wrapList(final String methodName,
                                    final Class<T> targetClass, final Object... args) {
-        return wrapperHelper.wrapList(methodName, target, targetClass, args);
+        return executeWithTarget(t -> wrapperHelper.wrapList(methodName, t, targetClass, args));
     }
 
     protected <T> Optional<T> wrapListToSingleElement(final String methodName,
                                                       final Class<T> targetClass, final Object... args) {
-        return wrapperHelper.wrapListToSingleElement(methodName, target, targetClass, args);
+        return executeWithTarget(t -> wrapperHelper.wrapListToSingleElement(methodName, t, targetClass, args));
     }
 
     protected <T> T wrapListToSingleElementIfNull(final T object,
                                                   final String methodName,
                                                   final Object... args) {
-        return wrapperHelper.wrapListToSingleElementIfNull(object, methodName, target, args);
+        return executeWithTarget(t -> wrapperHelper.wrapListToSingleElementIfNull(object, methodName, t, args));
+    }
+
+    protected <T> T executeWithTarget(Function<Object, T> targetFunc) {
+        return targetFunc.apply(target);
     }
 
     private Object innerInvoke(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
