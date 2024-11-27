@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.util.Vec1XXWrapperHelper;
 import com.foursoft.harness.vec.v12x.VecCustomProperty;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 import com.foursoft.harness.vec.v12x.VecNumericalValueProperty;
@@ -84,12 +85,12 @@ public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper 
 
     private VecNumericalValue getThickness() {
         if (thickness == null) {
-            thickness = wrapList(GET_CUSTOM_PROPERTIES_METHOD_NAME, VecCustomProperty.class).stream()
-                    .filter(c -> c.getPropertyType().equalsIgnoreCase(THICKNESS_CUSTOM_PROPERTY))
-                    .filter(VecNumericalValueProperty.class::isInstance)
-                    .map(VecNumericalValueProperty.class::cast)
+            thickness = executeWithTarget(
+                    target -> getWrapperHelper(Vec1XXWrapperHelper.class)
+                            .getCustomProperty(target,
+                                               THICKNESS_CUSTOM_PROPERTY, VecNumericalValueProperty.class))
                     .map(VecNumericalValueProperty::getValue)
-                    .findFirst().orElse(null);
+                    .orElse(null);
         }
 
         return thickness;
