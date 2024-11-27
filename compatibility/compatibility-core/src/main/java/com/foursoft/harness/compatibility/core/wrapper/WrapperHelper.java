@@ -39,11 +39,11 @@ import java.util.stream.Collectors;
 /**
  * Helper for the {@link CompatibilityWrapper}. Internal use only.
  */
-public final class WrapperHelper {
+public class WrapperHelper {
 
     private final CompatibilityWrapper wrapper;
 
-    WrapperHelper(final CompatibilityWrapper wrapper) {
+    public WrapperHelper(final CompatibilityWrapper wrapper) {
         this.wrapper = wrapper;
     }
 

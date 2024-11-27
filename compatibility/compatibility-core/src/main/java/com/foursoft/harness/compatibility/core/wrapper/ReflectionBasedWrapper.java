@@ -40,6 +40,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -65,7 +66,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         this.context = context;
         this.target = target;
 
-        wrapperHelper = new WrapperHelper(this);
+        wrapperHelper = context.getWrapperHelperCreationFunction().apply(this);
         MethodCache.initClassCache(ClassUtils.getNonProxyClass(target.getClass()));
     }
 
