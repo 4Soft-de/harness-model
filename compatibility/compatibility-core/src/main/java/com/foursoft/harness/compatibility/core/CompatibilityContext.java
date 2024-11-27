@@ -26,11 +26,7 @@
 package com.foursoft.harness.compatibility.core;
 
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
-import com.foursoft.harness.compatibility.core.wrapper.CompatibilityWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.compatibility.core.wrapper.WrapperHelper;
-
-import java.util.function.Function;
 
 /**
  * Default implementation of a {@link Context}.
@@ -43,16 +39,12 @@ public final class CompatibilityContext implements Context {
     private final WrapperRegistry wrapperRegistry;
     private final WrapperProxyFactory wrapperProxyFactory;
     private final HasUnsupportedMethods hasUnsupportedMethods;
-    private final Function<CompatibilityWrapper, WrapperHelper> wrapperHelperCreationFunction;
 
     private Object content;
 
-    private CompatibilityContext(final ClassMapper classMapper, final HasUnsupportedMethods hasUnsupportedMethods,
-                                 final Function<CompatibilityWrapper, WrapperHelper> wrapperHelperCreationFunction) {
+    private CompatibilityContext(final ClassMapper classMapper, final HasUnsupportedMethods hasUnsupportedMethods) {
         this.classMapper = classMapper;
         this.hasUnsupportedMethods = hasUnsupportedMethods;
-        this.wrapperHelperCreationFunction = wrapperHelperCreationFunction;
-
         wrapperRegistry = new WrapperRegistry(c -> new ReflectionBasedWrapper(this, c));
         wrapperProxyFactory = new WrapperProxyFactory.WrapperProxyFactoryBuilder()
                 .withClassMapper(classMapper)
@@ -76,11 +68,6 @@ public final class CompatibilityContext implements Context {
     }
 
     @Override
-    public Function<CompatibilityWrapper, WrapperHelper> getWrapperHelperCreationFunction() {
-        return wrapperHelperCreationFunction;
-    }
-
-    @Override
     public HasUnsupportedMethods checkUnsupportedMethods() {
         return hasUnsupportedMethods;
     }
@@ -101,7 +88,6 @@ public final class CompatibilityContext implements Context {
     public static final class CompatibilityContextBuilder {
         private ClassMapper classMapper;
         private HasUnsupportedMethods hasUnsupportedMethods;
-        private Function<CompatibilityWrapper, WrapperHelper> wrapperHelperCreationFunction;
 
         /**
          * Defines the {@link ClassMapper} to use.
@@ -127,18 +113,6 @@ public final class CompatibilityContext implements Context {
         }
 
         /**
-         * Defines the Function to create the {@link WrapperHelper}.
-         *
-         * @param wrapperHelperFunction Function to create the {@link WrapperHelper}.
-         * @return The builder, useful for chaining.
-         */
-        public CompatibilityContextBuilder withWrapperHelperCreationFunction(
-                final Function<CompatibilityWrapper, WrapperHelper> wrapperHelperFunction) {
-            this.wrapperHelperCreationFunction = wrapperHelperFunction;
-            return this;
-        }
-
-        /**
          * Builds the {@link CompatibilityContext}.
          * If {@link HasUnsupportedMethods} was not defined, all methods will be marked as supported.
          *
@@ -148,10 +122,7 @@ public final class CompatibilityContext implements Context {
             if (hasUnsupportedMethods == null) {
                 hasUnsupportedMethods = method -> false;
             }
-            if (wrapperHelperCreationFunction == null) {
-                wrapperHelperCreationFunction = WrapperHelper::new;
-            }
-            return new CompatibilityContext(classMapper, hasUnsupportedMethods, wrapperHelperCreationFunction);
+            return new CompatibilityContext(classMapper, hasUnsupportedMethods);
         }
 
     }

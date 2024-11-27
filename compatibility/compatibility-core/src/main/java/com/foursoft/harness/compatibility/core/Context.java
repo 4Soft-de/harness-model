@@ -26,10 +26,6 @@
 package com.foursoft.harness.compatibility.core;
 
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
-import com.foursoft.harness.compatibility.core.wrapper.CompatibilityWrapper;
-import com.foursoft.harness.compatibility.core.wrapper.WrapperHelper;
-
-import java.util.function.Function;
 
 /**
  * Interface for a context.
@@ -63,13 +59,6 @@ public interface Context {
      * @return The {@link WrapperProxyFactory} of this Context.
      */
     WrapperProxyFactory getWrapperProxyFactory();
-
-    /**
-     * Returns the Function to create the {@link WrapperHelper}.
-     *
-     * @return The Function to create the {@link WrapperHelper}.
-     */
-    Function<CompatibilityWrapper, WrapperHelper> getWrapperHelperCreationFunction();
 
     /**
      * Returns the target object of this Context.

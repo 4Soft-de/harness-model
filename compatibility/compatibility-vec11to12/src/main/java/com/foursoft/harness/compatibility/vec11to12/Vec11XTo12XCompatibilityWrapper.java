@@ -33,7 +33,6 @@ import com.foursoft.harness.compatibility.core.wrapper.CompatibilityWrapper;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.*;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification.*;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification.wireprotection.Vec11To12StripeSpecificationWrapper;
-import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.util.Vec1XXWrapperHelper;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.*;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.*;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.terminal.Vec12To11PluggableTerminalSpecificationWrapper;
@@ -64,7 +63,6 @@ public final class Vec11XTo12XCompatibilityWrapper implements CompatibilityWrapp
                 new CompatibilityContextBuilder()
                         .withClassMapper(classMapper)
                         .withUnsupportedMethodCheck(classMapper.checkUnsupportedMethods())
-                        .withWrapperHelperCreationFunction(Vec1XXWrapperHelper::new)
                         .build();
 
         initializeRegistry(context);
