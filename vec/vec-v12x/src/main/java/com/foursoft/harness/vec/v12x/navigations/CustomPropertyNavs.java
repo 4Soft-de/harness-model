@@ -31,6 +31,7 @@ import com.foursoft.harness.vec.v12x.*;
 import com.foursoft.harness.vec.v12x.predicates.VecPredicates;
 
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -105,6 +106,15 @@ public final class CustomPropertyNavs {
                 .map(VecLocalizedStringProperty::getValue)
                 .filter(VecPredicates.languageCode(languageCode))
                 .map(VecLocalizedString::getValue);
+    }
+
+    public static <T extends VecCustomProperty> Function<Collection<VecCustomProperty>, Optional<T>> customPropertyOfType(
+            final String propertyType, final Class<T> targetClass) {
+        return customProperties -> customProperties.stream()
+                .filter(customProperty -> customProperty.getPropertyType().equalsIgnoreCase(propertyType))
+                .filter(targetClass::isInstance)
+                .map(targetClass::cast)
+                .findFirst();
     }
 
 }

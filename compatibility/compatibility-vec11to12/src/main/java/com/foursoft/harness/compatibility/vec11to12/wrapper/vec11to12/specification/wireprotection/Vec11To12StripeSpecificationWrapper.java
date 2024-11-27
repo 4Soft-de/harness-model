@@ -30,6 +30,7 @@ import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.vec.v12x.VecCustomProperty;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 import com.foursoft.harness.vec.v12x.VecNumericalValueProperty;
+import com.foursoft.harness.vec.v12x.navigations.CustomPropertyNavs;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -84,12 +85,13 @@ public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper 
 
     private VecNumericalValue getThickness() {
         if (thickness == null) {
-            thickness = wrapList(GET_CUSTOM_PROPERTIES_METHOD_NAME, VecCustomProperty.class).stream()
-                    .filter(c -> c.getPropertyType().equalsIgnoreCase(THICKNESS_CUSTOM_PROPERTY))
-                    .filter(VecNumericalValueProperty.class::isInstance)
-                    .map(VecNumericalValueProperty.class::cast)
+            final List<VecCustomProperty> vecCustomProperties =
+                    wrapList(GET_CUSTOM_PROPERTIES_METHOD_NAME, VecCustomProperty.class);
+            thickness = CustomPropertyNavs.customPropertyOfType(THICKNESS_CUSTOM_PROPERTY,
+                                                                VecNumericalValueProperty.class)
+                    .apply(vecCustomProperties)
                     .map(VecNumericalValueProperty::getValue)
-                    .findFirst().orElse(null);
+                    .orElse(null);
         }
 
         return thickness;
