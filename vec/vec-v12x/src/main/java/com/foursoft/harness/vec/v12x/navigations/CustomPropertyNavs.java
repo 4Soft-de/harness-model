@@ -114,7 +114,7 @@ public final class CustomPropertyNavs {
                 .filter(customProperty -> customProperty.getPropertyType().equalsIgnoreCase(propertyType))
                 .filter(targetClass::isInstance)
                 .map(targetClass::cast)
-                .findFirst();
+                .collect(StreamUtils.findOneOrNone());
     }
 
 }
