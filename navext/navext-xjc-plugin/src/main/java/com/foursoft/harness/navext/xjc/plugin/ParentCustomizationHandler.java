@@ -83,6 +83,8 @@ public class ParentCustomizationHandler extends AbstractCustomizationHandler {
             final JFieldVar parentField = propertyBuilder.withName(name)
                     .withBaseType(baseType)
                     .withGetterJavadoc(createGetterJavadoc(codeModel, baseType))
+                    .withSetter()
+                    .withSetterJavadoc(createSetterJavadoc(codeModel, baseType))
                     .build(targetClass);
 
             parentField.annotate(codeModel.ref(XmlParent.class));
@@ -102,6 +104,19 @@ public class ParentCustomizationHandler extends AbstractCustomizationHandler {
 
         }
         return target;
+    }
+
+    private JDocComment createSetterJavadoc(final JCodeModel codeModel, final JDefinedClass baseType)
+            throws ClassNotFoundException {
+        final JDocComment comment = new JDocComment(codeModel)
+                .append("Sets a reference to the parent of this object in the XML DOM Tree. This property is " +
+                                "initialized " +
+                                "during the unmarshalling process by the {@link ExtendedUnmarshaller }.<br/>")
+                .append("It shall only be set manually, if your are creating VEC objects and want a consistent " +
+                                "behaviour " +
+                                "of the DOM for downstream processors. During XML marshalling this property is " +
+                                "ignored.<br/>");
+        return comment;
     }
 
     private JDocComment createGetterJavadoc(final JCodeModel codeModel, final JDefinedClass baseType)
