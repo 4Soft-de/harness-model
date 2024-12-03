@@ -37,6 +37,7 @@ module com.foursoft.harness.compatibility.vec11to12 {
 
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
+    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification.wireprotection;
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.field;
     exports com.foursoft.harness.compatibility.vec11to12.util;
 }
