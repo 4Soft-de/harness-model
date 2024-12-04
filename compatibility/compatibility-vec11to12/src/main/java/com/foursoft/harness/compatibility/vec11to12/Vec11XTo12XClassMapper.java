@@ -95,7 +95,6 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper {
         ignored.add(VecSignal.class, "getCurrentType");
         ignored.add(VecSignal.class, "getDataRate");
         ignored.add(VecSlot.class, "getSupplementaryParts");
-        ignored.add(VecStripeSpecification.class, "getThickness");
         ignored.add(VecTopologyNode.class, "getInstantiatedNode");
         ignored.add(VecTopologySegment.class, "getInstantiatedSegment");
         ignored.add(VecUnit.class, "getRefLocalGeometrySpecification");

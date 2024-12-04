@@ -31,6 +31,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 public class PropertyBuilder {
 
     private static final String GETTER_PREFIX = "get";
+    private static final String SETTER_PREFIX = "set";
 
     private final JCodeModel codeModel;
     private String name;
@@ -38,6 +39,9 @@ public class PropertyBuilder {
     private JType baseType;
     private JExpression init;
     private JDocComment getterJavadoc;
+    private boolean setter;
+    private String setterName;
+    private JDocComment setterJavadoc;
 
     public PropertyBuilder(final JCodeModel codeModel) {
         this.codeModel = codeModel;
@@ -48,11 +52,17 @@ public class PropertyBuilder {
         final String suffix = name.substring(0, 1)
                 .toUpperCase() + name.substring(1);
         getterName = GETTER_PREFIX + suffix;
+        setterName = SETTER_PREFIX + suffix;
         return this;
     }
 
     public PropertyBuilder withBaseType(final String typeName) throws ClassNotFoundException {
         baseType = codeModel.parseType(typeName);
+        return this;
+    }
+
+    public PropertyBuilder withSetter() {
+        setter = true;
         return this;
     }
 
@@ -78,6 +88,16 @@ public class PropertyBuilder {
                     .addAll(getterJavadoc);
         }
 
+        if (setter) {
+            final JMethod setter = targetClass.method(JMod.PUBLIC, void.class, setterName);
+            JVar param = setter.param(baseType, name);
+            setter.body().assign(JExpr._this().ref(field), param);
+            if (setterJavadoc != null) {
+                setter.javadoc()
+                        .addAll(setterJavadoc);
+            }// Assign the parameter to the field
+        }
+
         return field;
     }
 
@@ -101,6 +121,11 @@ public class PropertyBuilder {
 
     public PropertyBuilder withGetterJavadoc(final JDocComment comment) {
         getterJavadoc = comment;
+        return this;
+    }
+
+    public PropertyBuilder withSetterJavadoc(final JDocComment comment) {
+        setterJavadoc = comment;
         return this;
     }
 }

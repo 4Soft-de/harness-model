@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.foursoft.harness.vec</groupId>
         <artifactId>vec-parent</artifactId>
-        <version>5.2.0</version>
+        <version>5.3.0</version>
     </parent>
 
     <name>VEC 2.X</name>
@@ -46,7 +46,7 @@
                             <locale>en</locale>
                             <encoding>UTF-8</encoding>
                             <schemaIncludes>
-                                <include>vec2/vec_2.0.2.xsd</include>
+                                <include>vec2/vec_2.1.0.xsd</include>
                             </schemaIncludes>
                             <bindingIncludes>
                                 <include>vec2/*.xjb</include>

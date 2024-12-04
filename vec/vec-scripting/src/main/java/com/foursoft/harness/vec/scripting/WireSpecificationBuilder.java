@@ -25,41 +25,46 @@
  */
 package com.foursoft.harness.vec.scripting;
 
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecSpecification;
+import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
+import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.v2x.VecWireElement;
 import com.foursoft.harness.vec.v2x.VecWireSpecification;
 
-public class WireSpecificationBuilder extends PartOrUsageRelatedSpecificationBuilder {
+public class WireSpecificationBuilder extends PartOrUsageRelatedSpecificationBuilder<VecWireSpecification> {
 
+    private final VecSession session;
     private final VecWireSpecification wireSpecification;
+    private final SpecificationLocator specificationLocator;
+    private final SpecificationRegistry specificationRegistry;
 
-    WireSpecificationBuilder(ComponentMasterDataBuilder parent,
-                             final String partNumber,
-                             final VecDocumentVersion partMasterDocument) {
-        super(parent, partMasterDocument);
+    WireSpecificationBuilder(VecSession session, final String partNumber,
+                             SpecificationRegistry specificationRegistry, SpecificationLocator specificationLocator) {
+        this.session = session;
+        this.specificationRegistry = specificationRegistry;
+        this.specificationLocator = specificationLocator;
 
         wireSpecification = initializeSpecification(VecWireSpecification.class, partNumber);
     }
 
-    public WireElementBuilder<WireSpecificationBuilder> withWireElement(String identification) {
-        return new WireElementBuilder<>(this, new WireSpecificationContext(), identification);
+    public WireSpecificationBuilder withWireElement(String identification, Customizer<WireElementBuilder> customizer) {
+        WireElementBuilder builder = new WireElementBuilder(session, identification, specificationRegistry,
+                                                            specificationLocator);
+
+        customizer.customize(builder);
+
+        wireSpecification.setWireElement(builder.build());
+
+        return this;
     }
 
-    private class WireSpecificationContext implements WireElementBuilderContext {
+    WireSpecificationBuilder withWireElement(VecWireElement wireElement) {
+        wireSpecification.setWireElement(wireElement);
 
-        @Override public VecDocumentVersion partMasterDocument() {
-            return partMasterDocument;
-        }
+        return this;
+    }
 
-        @Override public void addSpecification(final VecSpecification specification) {
-            partMasterDocument.getSpecifications().add(specification);
-        }
-
-        @Override public void addWireElement(final VecWireElement element) {
-            wireSpecification.setWireElement(element);
-            wireSpecification.setWireElementSpecification(element.getWireElementSpecification());
-        }
+    @Override public VecWireSpecification build() {
+        return wireSpecification;
     }
 
 }

@@ -5,7 +5,7 @@
               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
               xmlns:xs="http://www.w3.org/2001/XMLSchema"
               node="/xs:schema"
-              schemaLocation="vec_2.0.2.xsd"
+              schemaLocation="vec_2.1.0.xsd"
               version="3.0"
               extensionBindingPrefixes="xjc">
    <jxb:globalBindings>
@@ -44,6 +44,7 @@
       <jxb:bindings node=".//xs:element[@name='Scope']"/>
       <jxb:bindings node=".//xs:element[@name='Description']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='AntennaRole']"/>
    <jxb:bindings node="//xs:complexType[@name='AntennaSpecification']">
       <jxb:bindings node=".//xs:element[@name='FMin']"/>
       <jxb:bindings node=".//xs:element[@name='FMax']"/>
@@ -96,12 +97,14 @@
          <nav:ext-reference schema-type="ItemVersion" inverse="refBaselineSpecification"/>
       </jxb:bindings>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BatteryRole']"/>
    <jxb:bindings node="//xs:complexType[@name='BatterySpecification']">
       <jxb:bindings node=".//xs:element[@name='U']"/>
       <jxb:bindings node=".//xs:element[@name='I']"/>
       <jxb:bindings node=".//xs:element[@name='ICool']"/>
       <jxb:bindings node=".//xs:element[@name='Capacity']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='BoltMountedFixingRole']"/>
    <jxb:bindings node="//xs:complexType[@name='BoltMountedFixingSpecification']">
       <jxb:bindings node=".//xs:element[@name='BoltType']"/>
       <jxb:bindings node=".//xs:element[@name='BoltShape']"/>
@@ -239,6 +242,7 @@
       <jxb:bindings node=".//xs:element[@name='Thickness']"/>
       <jxb:bindings node=".//xs:element[@name='TensioningStrength']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CapacitorRole']"/>
    <jxb:bindings node="//xs:complexType[@name='CapacitorSpecification']">
       <jxb:bindings node=".//xs:element[@name='Capacity']"/>
       <jxb:bindings node=".//xs:element[@name='Impedance']"/>
@@ -352,6 +356,7 @@
                             inverse="refCavityMountingDetail"/>
       </jxb:bindings>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CavityPartRole']"/>
    <jxb:bindings node="//xs:complexType[@name='CavityPartSpecification']">
       <jxb:bindings node=".//xs:element[@name='CavityDimension']"/>
       <jxb:bindings node=".//xs:element[@name='Hardness']"/>
@@ -372,6 +377,7 @@
       <nav:parent name="parentCavity" schema-type="Cavity"/>
       <jxb:bindings node=".//xs:element[@name='Rotation']"/>
       <jxb:bindings node=".//xs:element[@name='CavitySealingOffset']"/>
+      <jxb:bindings node=".//xs:element[@name='InsertionDepth']"/>
       <jxb:bindings node=".//xs:element[@name='BaseUnit']">
          <nav:ext-reference schema-type="Unit" inverse="refCavityPositionDetail"/>
       </jxb:bindings>
@@ -477,6 +483,7 @@
    <jxb:bindings node="//xs:complexType[@name='ComponentPort']">
       <nav:parent name="parentComponentConnector" schema-type="ComponentConnector"/>
       <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
       <jxb:bindings node=".//xs:element[@name='SignalDirection']"/>
       <jxb:bindings node=".//xs:element[@name='Description']"/>
       <jxb:bindings node=".//xs:element[@name='NetworkPort']">
@@ -516,6 +523,7 @@
       <jxb:bindings node=".//xs:element[@name='Material']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='ConductorSpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireType']"/>
       <jxb:bindings node=".//xs:element[@name='CrossSectionArea']"/>
       <jxb:bindings node=".//xs:element[@name='MassInformation']"/>
       <jxb:bindings node=".//xs:element[@name='Material']"/>
@@ -635,10 +643,20 @@
       <jxb:bindings node=".//xs:element[@name='WireAddOn']"/>
       <jxb:bindings node=".//xs:element[@name='OutletDirection']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectorHousingCoverRole']">
+      <jxb:bindings node=".//xs:element[@name='TransportOnly']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectorHousingCoverSpecification']">
+         <nav:ext-reference schema-type="ConnectorHousingCoverSpecification"
+                            inverse="refConnectorHousingCoverRole"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ConnectorHousingCoverSpecification']"/>
    <jxb:bindings node="//xs:complexType[@name='ConnectorHousingRole']">
       <nav:parent name="parentHousingComponentReference"
                   schema-type="HousingComponentReference"/>
       <jxb:bindings node=".//xs:element[@name='SealState']"/>
+      <jxb:bindings node=".//xs:element[@name='CpaState']"/>
+      <jxb:bindings node=".//xs:element[@name='LockingState']"/>
       <jxb:bindings node=".//xs:element[@name='ComponentConnector']">
          <nav:ext-reference schema-type="ComponentConnector" inverse="refConnectorHousingRole"/>
       </jxb:bindings>
@@ -653,7 +671,9 @@
       <jxb:bindings node=".//xs:element[@name='VoltageRange']"/>
       <jxb:bindings node=".//xs:element[@name='Coupleable']"/>
       <jxb:bindings node=".//xs:element[@name='ConnectorPositionAssurance']"/>
+      <jxb:bindings node=".//xs:element[@name='ConnectorPositionAssuranceType']"/>
       <jxb:bindings node=".//xs:element[@name='OutletDirection']"/>
+      <jxb:bindings node=".//xs:element[@name='LockingType']"/>
       <jxb:bindings node=".//xs:element[@name='Coding']"/>
       <jxb:bindings node=".//xs:element[@name='SegmentConnectionPoint']"/>
       <jxb:bindings node=".//xs:element[@name='Slot']"/>
@@ -680,13 +700,25 @@
       <nav:parent name="parentVecContent" schema-type="VecContent"/>
       <jxb:bindings node=".//xs:element[@name='CopyrightNote']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CoreCrimpDetail']">
+      <nav:parent name="parentWireReceptionSpecification"
+                  schema-type="WireReceptionSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='AppliesTo']">
+         <nav:ext-reference schema-type="ConductorSpecification" inverse="refCoreCrimpDetail"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='InsulationCrimpDetails']"/>
+   </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='CoreSpecification']">
       <jxb:bindings node=".//xs:element[@name='OutsideDiameter']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CorrugatedPipeRole']">
+      <jxb:bindings node=".//xs:element[@name='CutOnWave']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='CorrugatedPipeSpecification']">
       <jxb:bindings node=".//xs:element[@name='CorrugationHeight']"/>
       <jxb:bindings node=".//xs:element[@name='CorrugationWidth']"/>
       <jxb:bindings node=".//xs:element[@name='CorrugationGradient']"/>
+      <jxb:bindings node=".//xs:element[@name='CutOnWave']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='CouplingPoint']">
       <nav:parent name="parentCouplingSpecification" schema-type="CouplingSpecification"/>
@@ -708,6 +740,15 @@
       <jxb:bindings node=".//xs:element[@name='CreationDate']"/>
       <jxb:bindings node=".//xs:element[@name='Creator']"/>
       <jxb:bindings node=".//xs:element[@name='ResponsibleDesigner']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='CrimpDetail']">
+      <jxb:bindings node=".//xs:element[@name='Size']"/>
+      <jxb:bindings node=".//xs:element[@name='MachineCrimpTool']">
+         <nav:ext-reference schema-type="ResourceVersion" inverse="refCrimpDetail"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ManualCrimpTool']">
+         <nav:ext-reference schema-type="ResourceVersion" inverse="refCrimpDetail"/>
+      </jxb:bindings>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='Curve3D']">
       <nav:parent name="parentGeometrySegment3D" schema-type="GeometrySegment3D"/>
@@ -753,6 +794,7 @@
       <jxb:bindings node=".//xs:element[@name='Tolerance']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='DimensionAnchor']"/>
+   <jxb:bindings node="//xs:complexType[@name='DiodeRole']"/>
    <jxb:bindings node="//xs:complexType[@name='DiodeSpecification']">
       <jxb:bindings node=".//xs:element[@name='ThresholdVoltage']"/>
       <jxb:bindings node=".//xs:element[@name='BreakDownVoltage']"/>
@@ -771,6 +813,11 @@
       <jxb:bindings node=".//xs:element[@name='ReferencedSheetOrChapter']">
          <nav:ext-reference schema-type="SheetOrChapter" inverse="refDocumentBasedInstruction"/>
       </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='DocumentClassification']">
+      <jxb:bindings node=".//xs:element[@name='Key']"/>
+      <jxb:bindings node=".//xs:element[@name='ReferenceSystem']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='DocumentRelatedAssignmentGroup']">
       <jxb:bindings node=".//xs:element[@name='Type']"/>
@@ -795,6 +842,8 @@
       <jxb:bindings node=".//xs:element[@name='FileName']"/>
       <jxb:bindings node=".//xs:element[@name='Location']"/>
       <jxb:bindings node=".//xs:element[@name='NumberOfSheets']"/>
+      <jxb:bindings node=".//xs:element[@name='ConfidentialityLevel']"/>
+      <jxb:bindings node=".//xs:element[@name='DocumentClassification']"/>
       <jxb:bindings node=".//xs:element[@name='ReferencedPart']">
          <nav:ext-reference schema-type="PartVersion" inverse="refDocumentVersion"/>
       </jxb:bindings>
@@ -820,11 +869,13 @@
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='EEComponentSpecification']">
       <jxb:bindings node=".//xs:element[@name='PowerConsumption']"/>
+      <jxb:bindings node=".//xs:element[@name='VoltageRating']"/>
       <jxb:bindings node=".//xs:element[@name='Connections']"/>
       <jxb:bindings node=".//xs:element[@name='ExtensionSlots']"/>
       <jxb:bindings node=".//xs:element[@name='HousingComponent']"/>
       <jxb:bindings node=".//xs:element[@name='States']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='EdgeMountedFixingRole']"/>
    <jxb:bindings node="//xs:complexType[@name='EdgeMountedFixingSpecification']">
       <jxb:bindings node=".//xs:element[@name='EdgeThickness']"/>
    </jxb:bindings>
@@ -892,6 +943,7 @@
          <nav:ext-reference schema-type="PlacementPoint" inverse="refFittingOutlet"/>
       </jxb:bindings>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FittingRole']"/>
    <jxb:bindings node="//xs:complexType[@name='FittingSpecification']">
       <jxb:bindings node=".//xs:element[@name='Form']"/>
       <jxb:bindings node=".//xs:element[@name='Outlet']"/>
@@ -945,6 +997,7 @@
          <nav:ext-reference schema-type="FuseSpecification" inverse="refFuseComponent"/>
       </jxb:bindings>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='FuseRole']"/>
    <jxb:bindings node="//xs:complexType[@name='FuseSpecification']">
       <jxb:bindings node=".//xs:element[@name='FuseType']"/>
       <jxb:bindings node=".//xs:element[@name='IMax']"/>
@@ -953,6 +1006,7 @@
       <jxb:bindings node=".//xs:element[@name='ColorInformation']"/>
       <jxb:bindings node=".//xs:element[@name='MassInformation']"/>
       <jxb:bindings node=".//xs:element[@name='MaterialInformation']"/>
+      <jxb:bindings node=".//xs:element[@name='MaterialComposition']"/>
       <jxb:bindings node=".//xs:element[@name='RobustnessProperties']"/>
       <jxb:bindings node=".//xs:element[@name='TemperatureInformation']"/>
       <jxb:bindings node=".//xs:element[@name='FitRate']"/>
@@ -1035,11 +1089,21 @@
       <jxb:bindings node=".//xs:element[@name='Type']"/>
       <jxb:bindings node=".//xs:element[@name='BuildingBlockPositionings']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='HoleMountedFixingRole']"/>
    <jxb:bindings node="//xs:complexType[@name='HoleMountedFixingSpecification']">
       <jxb:bindings node=".//xs:element[@name='HoleDiameter']"/>
       <jxb:bindings node=".//xs:element[@name='PlateThickness']"/>
       <jxb:bindings node=".//xs:element[@name='HoleType']"/>
       <jxb:bindings node=".//xs:element[@name='HoleShape']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='HoleTerminalRole']"/>
+   <jxb:bindings node="//xs:complexType[@name='HoleTerminalSpecification']">
+      <jxb:bindings node=".//xs:element[@name='HoleDiameter']"/>
+      <jxb:bindings node=".//xs:element[@name='HoleDepth']"/>
+      <jxb:bindings node=".//xs:element[@name='HoleNominalSize']"/>
+      <jxb:bindings node=".//xs:element[@name='HoleType']"/>
+      <jxb:bindings node=".//xs:element[@name='TorsionProtection']"/>
+      <jxb:bindings node=".//xs:element[@name='MaxTerminalCount']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='HousingComponent']">
       <nav:parent name="parentEEComponentSpecification"
@@ -1076,7 +1140,16 @@
    <jxb:bindings node="//xs:complexType[@name='Instruction']">
       <nav:parent name="parentOccurrenceOrUsage" schema-type="OccurrenceOrUsage"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='InsulationCrimpDetail']">
+      <nav:parent name="parentCoreCrimpDetail" schema-type="CoreCrimpDetail"/>
+      <jxb:bindings node=".//xs:element[@name='PullOffForce']"/>
+      <jxb:bindings node=".//xs:element[@name='AppliesTo']">
+         <nav:ext-reference schema-type="InsulationSpecification"
+                            inverse="refInsulationCrimpDetail"/>
+      </jxb:bindings>
+   </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='InsulationSpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireType']"/>
       <jxb:bindings node=".//xs:element[@name='BaseColor']"/>
       <jxb:bindings node=".//xs:element[@name='FirstIdentificationColor']"/>
       <jxb:bindings node=".//xs:element[@name='SecondIdentificationColor']"/>
@@ -1195,6 +1268,8 @@
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='Mapping']">
       <nav:parent name="parentMappingSpecification" schema-type="MappingSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='IdentificationA']"/>
+      <jxb:bindings node=".//xs:element[@name='IdentificationB']"/>
       <jxb:bindings node=".//xs:element[@name='A']">
          <nav:ext-reference schema-type="PartVersion" inverse="refMapping"/>
       </jxb:bindings>
@@ -1215,6 +1290,10 @@
       <jxb:bindings node=".//xs:element[@name='Key']"/>
       <jxb:bindings node=".//xs:element[@name='ReferenceSystem']"/>
       <jxb:bindings node=".//xs:element[@name='Description']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MaterialComposition']">
+      <jxb:bindings node=".//xs:element[@name='Material']"/>
+      <jxb:bindings node=".//xs:element[@name='MassInformation']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='MatingDetail']">
       <nav:parent name="parentMatingPoint" schema-type="MatingPoint"/>
@@ -1306,12 +1385,15 @@
    <jxb:bindings node="//xs:complexType[@name='ModuleListSpecification']">
       <jxb:bindings node=".//xs:element[@name='ModuleListConfiguration']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MultiCavityPlugRole']"/>
    <jxb:bindings node="//xs:complexType[@name='MultiCavityPlugSpecification']">
       <jxb:bindings node=".//xs:element[@name='Assignment']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MultiCavitySealRole']"/>
    <jxb:bindings node="//xs:complexType[@name='MultiCavitySealSpecification']">
       <jxb:bindings node=".//xs:element[@name='Assignment']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='MultiFuseRole']"/>
    <jxb:bindings node="//xs:complexType[@name='MultiFuseSpecification']">
       <jxb:bindings node=".//xs:element[@name='FuseType']"/>
       <jxb:bindings node=".//xs:element[@name='IMaxTotal']"/>
@@ -1393,6 +1475,7 @@
    <jxb:bindings node="//xs:complexType[@name='NetworkPort']">
       <nav:parent name="parentNetworkNode" schema-type="NetworkNode"/>
       <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
       <jxb:bindings node=".//xs:element[@name='SignalDirection']"/>
       <jxb:bindings node=".//xs:element[@name='Description']"/>
       <jxb:bindings node=".//xs:element[@name='NetType']">
@@ -1616,6 +1699,7 @@
    <jxb:bindings node="//xs:complexType[@name='PinComponentBehavior']">
       <nav:parent name="parentPinComponent" schema-type="PinComponent"/>
       <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
       <jxb:bindings node=".//xs:element[@name='SignalDirection']"/>
       <jxb:bindings node=".//xs:element[@name='PinType']"/>
       <jxb:bindings node=".//xs:element[@name='ApplianceType']"/>
@@ -1729,7 +1813,13 @@
    <jxb:bindings node="//xs:complexType[@name='PluggableTerminalRole']"/>
    <jxb:bindings node="//xs:complexType[@name='PluggableTerminalSpecification']">
       <jxb:bindings node=".//xs:element[@name='TerminalType']"/>
+      <jxb:bindings node=".//xs:element[@name='MaximumInsertionForce']"/>
+      <jxb:bindings node=".//xs:element[@name='ExtractionTool']">
+         <nav:ext-reference schema-type="ResourceVersion"
+                            inverse="refPluggableTerminalSpecification"/>
+      </jxb:bindings>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='PotentialDistributorRole']"/>
    <jxb:bindings node="//xs:complexType[@name='PotentialDistributorSpecification']">
       <jxb:bindings node=".//xs:element[@name='Screwable']"/>
       <jxb:bindings node=".//xs:element[@name='BoltDiameter']"/>
@@ -1753,6 +1843,7 @@
       <jxb:bindings node=".//xs:element[@name='LengthValue']"/>
       <jxb:bindings node=".//xs:element[@name='ValueDetermination']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='RelayRole']"/>
    <jxb:bindings node="//xs:complexType[@name='RelaySpecification']">
       <jxb:bindings node=".//xs:element[@name='IMax']"/>
       <jxb:bindings node=".//xs:element[@name='RelaisType']"/>
@@ -1772,6 +1863,12 @@
                             inverse="refRequirementsConformanceStatement"/>
       </jxb:bindings>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ResourceVersion']">
+      <nav:parent name="parentVecContent" schema-type="VecContent"/>
+      <jxb:bindings node=".//xs:element[@name='ResourceNumber']"/>
+      <jxb:bindings node=".//xs:element[@name='ResourceVersion']"/>
+      <jxb:bindings node=".//xs:element[@name='PrimaryResourceType']"/>
+   </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='RingTerminalRole']"/>
    <jxb:bindings node="//xs:complexType[@name='RingTerminalSpecification']">
       <jxb:bindings node=".//xs:element[@name='BoltDiameter']"/>
@@ -1780,6 +1877,7 @@
       <jxb:bindings node=".//xs:element[@name='BoltType']"/>
       <jxb:bindings node=".//xs:element[@name='OutsideDimension']"/>
       <jxb:bindings node=".//xs:element[@name='TorsionProtection']"/>
+      <jxb:bindings node=".//xs:element[@name='NutIntegrated']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='RobustnessProperties']">
       <jxb:bindings node=".//xs:element[@name='Class']"/>
@@ -1886,9 +1984,14 @@
       <jxb:bindings node=".//xs:element[@name='Specification']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='ShieldSpecification']">
-      <jxb:bindings node=".//xs:element[@name='OpticalTissueDensity']"/>
+      <jxb:bindings node=".//xs:element[@name='OpticalTissueDensity']">
+         <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+         <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='OpticalCoverage']"/>
       <jxb:bindings node=".//xs:element[@name='WindingType']"/>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='ShrinkableTubeRole']"/>
    <jxb:bindings node="//xs:complexType[@name='ShrinkableTubeSpecification']">
       <jxb:bindings node=".//xs:element[@name='ShrinkingFactor']"/>
       <jxb:bindings node=".//xs:element[@name='MaximumLongitudinalShrinkage']"/>
@@ -1923,6 +2026,50 @@
       <jxb:bindings node=".//xs:element[@name='WireTupleRequirements']">
          <nav:ext-reference schema-type="WireTupleSpecification" inverse="refSignal"/>
       </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SignalGraph']">
+      <nav:parent name="parentSignalGraphSpecification"
+                  schema-type="SignalGraphSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='Edge']"/>
+      <jxb:bindings node=".//xs:element[@name='Node']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SignalGraphEdge']">
+      <nav:parent name="parentSignalGraph" schema-type="SignalGraph"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='FromNode']">
+         <nav:ext-reference schema-type="SignalGraphNode" inverse="refSignalGraphEdge"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='ToNode']">
+         <nav:ext-reference schema-type="SignalGraphNode" inverse="refSignalGraphEdge"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SignalGraphNode']">
+      <nav:parent name="parentSignalGraph" schema-type="SignalGraph"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='RepresentedElement']">
+         <nav:ext-reference schema-type="ConfigurableElement" inverse="refSignalGraphNode"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SignalGraphRelation']">
+      <nav:parent name="parentSignalGraphSpecification"
+                  schema-type="SignalGraphSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='AliasId']"/>
+      <jxb:bindings node=".//xs:element[@name='Description']"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='From']">
+         <nav:ext-reference schema-type="SignalGraph" inverse="refSignalGraphRelation"/>
+      </jxb:bindings>
+      <jxb:bindings node=".//xs:element[@name='To']">
+         <nav:ext-reference schema-type="SignalGraph" inverse="refSignalGraphRelation"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='SignalGraphSpecification']">
+      <jxb:bindings node=".//xs:element[@name='SignalGraph']"/>
+      <jxb:bindings node=".//xs:element[@name='SignalGraphRelation']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='SignalSpecification']">
       <jxb:bindings node=".//xs:element[@name='Signal']"/>
@@ -1967,6 +2114,7 @@
       <jxb:bindings node=".//xs:element[@name='CavityMapping']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='SlotReference']">
+      <jxb:bindings node=".//xs:element[@name='TpaState']"/>
       <jxb:bindings node=".//xs:element[@name='UsedSupplementaryParts']">
          <nav:ext-reference schema-type="OccurrenceOrUsage" inverse="refSlotReference"/>
       </jxb:bindings>
@@ -1977,6 +2125,7 @@
       <jxb:bindings node=".//xs:element[@name='Gender']"/>
       <jxb:bindings node=".//xs:element[@name='LayoutType']"/>
       <jxb:bindings node=".//xs:element[@name='SecondaryLocking']"/>
+      <jxb:bindings node=".//xs:element[@name='SecondaryLockingType']"/>
       <jxb:bindings node=".//xs:element[@name='NumberOfCavities']"/>
       <jxb:bindings node=".//xs:element[@name='SlotLayout']"/>
    </jxb:bindings>
@@ -2001,6 +2150,7 @@
       <jxb:bindings node=".//xs:element[@name='InsulationState']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='SpliceTerminalSpecification']"/>
+   <jxb:bindings node="//xs:complexType[@name='StripeRole']"/>
    <jxb:bindings node="//xs:complexType[@name='StripeSpecification']">
       <jxb:bindings node=".//xs:element[@name='Length']"/>
       <jxb:bindings node=".//xs:element[@name='SegmentDiameter']"/>
@@ -2022,6 +2172,7 @@
       <jxb:bindings node=".//xs:element[@name='Gradient']"/>
       <jxb:bindings node=".//xs:element[@name='WindingType']"/>
       <jxb:bindings node=".//xs:element[@name='WindingFirmness']"/>
+      <jxb:bindings node=".//xs:element[@name='NumberOfTurns']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='TapeSpecification']">
       <jxb:bindings node=".//xs:element[@name='Backing']"/>
@@ -2039,6 +2190,11 @@
       <jxb:bindings node=".//xs:element[@name='CurrentRange']"/>
       <jxb:bindings node=".//xs:element[@name='NominalVoltage']"/>
       <jxb:bindings node=".//xs:element[@name='CoreCrossSectionArea']"/>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TerminalDistanceInformation']">
+      <nav:parent name="parentTerminalSpecification" schema-type="TerminalSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Type']"/>
+      <jxb:bindings node=".//xs:element[@name='Value']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='TerminalPairing']">
       <nav:parent name="parentTerminalPairingSpecification"
@@ -2083,6 +2239,7 @@
       <jxb:bindings node=".//xs:element[@name='PlatingMaterial']"/>
       <jxb:bindings node=".//xs:element[@name='PrimaryLockingType']"/>
       <jxb:bindings node=".//xs:element[@name='PullOutForce']"/>
+      <jxb:bindings node=".//xs:element[@name='TestingPullOutForce']"/>
       <jxb:bindings node=".//xs:element[@name='ContactRangeLength']"/>
       <jxb:bindings node=".//xs:element[@name='TerminalType']"/>
    </jxb:bindings>
@@ -2106,6 +2263,7 @@
       <jxb:bindings node=".//xs:element[@name='OverallLength']"/>
       <jxb:bindings node=".//xs:element[@name='CurrentInformation']"/>
       <jxb:bindings node=".//xs:element[@name='InternalTerminalConnection']"/>
+      <jxb:bindings node=".//xs:element[@name='MinimumDistance']"/>
       <jxb:bindings node=".//xs:element[@name='TerminalReception']"/>
       <jxb:bindings node=".//xs:element[@name='WireReception']"/>
    </jxb:bindings>
@@ -2239,6 +2397,10 @@
          <nav:ext-reference schema-type="CartesianPoint3D" inverse="refTransformation3D"/>
       </jxb:bindings>
    </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='TubeRole']">
+      <jxb:bindings node=".//xs:element[@name='SlitStyle']"/>
+      <jxb:bindings node=".//xs:element[@name='IsSlit']"/>
+   </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='TubeSpecification']">
       <jxb:bindings node=".//xs:element[@name='BendRadius']"/>
       <jxb:bindings node=".//xs:element[@name='InnerDiameter']"/>
@@ -2259,6 +2421,7 @@
    <jxb:bindings node="//xs:complexType[@name='Unit']">
       <nav:parent name="parentVecContent" schema-type="VecContent"/>
       <jxb:bindings node=".//xs:element[@name='Exponent']"/>
+      <jxb:bindings node=".//xs:element[@name='UnEceCode']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='UsageConstraint']">
       <nav:parent name="parentUsageConstraintSpecification"
@@ -2384,6 +2547,7 @@
       <jxb:bindings node=".//xs:element[@name='ItemHistoryEntry']"/>
       <jxb:bindings node=".//xs:element[@name='PartVersion']"/>
       <jxb:bindings node=".//xs:element[@name='Project']"/>
+      <jxb:bindings node=".//xs:element[@name='ResourceVersion']"/>
       <jxb:bindings node=".//xs:element[@name='Unit']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='WireElement']">
@@ -2454,6 +2618,8 @@
       <nav:parent name="parentWireElementReference" schema-type="WireElementReference"/>
       <jxb:bindings node=".//xs:element[@name='Identification']"/>
       <jxb:bindings node=".//xs:element[@name='PositionOnWire']"/>
+      <jxb:bindings node=".//xs:element[@name='CutBackLength']"/>
+      <jxb:bindings node=".//xs:element[@name='StrippingLength']"/>
       <jxb:bindings node=".//xs:element[@name='ConnectionEnd']">
          <nav:ext-reference schema-type="ConnectionEnd" inverse="refWireEnd"/>
       </jxb:bindings>
@@ -2513,12 +2679,26 @@
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='WireMountingDetail']">
       <nav:parent name="parentWireMounting" schema-type="WireMounting"/>
+      <jxb:bindings node=".//xs:element[@name='CoreCrimpSize']"/>
+      <jxb:bindings node=".//xs:element[@name='InsulationCrimpSize']"/>
+      <jxb:bindings node=".//xs:element[@name='WireTipProtrusion']"/>
       <jxb:bindings node=".//xs:element[@name='ContactedWireReception']">
          <nav:ext-reference schema-type="WireReceptionReference" inverse="refWireMountingDetail"/>
       </jxb:bindings>
       <jxb:bindings node=".//xs:element[@name='ReferencedWireEnd']">
          <nav:ext-reference schema-type="WireEnd" inverse="refWireMountingDetail"/>
       </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireProtectionGroup']">
+      <nav:parent name="parentWireProtectionGroupSpecification"
+                  schema-type="WireProtectionGroupSpecification"/>
+      <jxb:bindings node=".//xs:element[@name='Identification']"/>
+      <jxb:bindings node=".//xs:element[@name='RelatedWireProtections']">
+         <nav:ext-reference schema-type="WireProtectionRole" inverse="refWireProtectionGroup"/>
+      </jxb:bindings>
+   </jxb:bindings>
+   <jxb:bindings node="//xs:complexType[@name='WireProtectionGroupSpecification']">
+      <jxb:bindings node=".//xs:element[@name='WireProtectionGroup']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='WireProtectionRole']">
       <jxb:bindings node=".//xs:element[@name='ProtectionLength']"/>
@@ -2535,6 +2715,7 @@
       <nav:parent name="parentTerminalSpecification" schema-type="TerminalSpecification"/>
       <jxb:bindings node=".//xs:element[@name='Identification']"/>
       <jxb:bindings node=".//xs:element[@name='Angle']"/>
+      <jxb:bindings node=".//xs:element[@name='Rotation']"/>
       <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
          <nav:ext-reference schema-type="PlacementPoint" inverse="refWireReception"/>
       </jxb:bindings>
@@ -2565,12 +2746,19 @@
       <jxb:bindings node=".//xs:element[@name='Sealable']"/>
       <jxb:bindings node=".//xs:element[@name='FrontBellMouthLength']"/>
       <jxb:bindings node=".//xs:element[@name='ConductorCrimpLength']"/>
+      <jxb:bindings node=".//xs:element[@name='ConductorCrimpShape']"/>
+      <jxb:bindings node=".//xs:element[@name='ConductorCrimpLegHeight']"/>
       <jxb:bindings node=".//xs:element[@name='RearBellMouthLength']"/>
       <jxb:bindings node=".//xs:element[@name='CrimpConnectionLength']"/>
       <jxb:bindings node=".//xs:element[@name='InsulationCrimpLength']"/>
+      <jxb:bindings node=".//xs:element[@name='InsulationCrimpShape']"/>
+      <jxb:bindings node=".//xs:element[@name='InsulationCrimpLegHeight']"/>
       <jxb:bindings node=".//xs:element[@name='CutOffTabLength']"/>
       <jxb:bindings node=".//xs:element[@name='ConnectionBLength']"/>
+      <jxb:bindings node=".//xs:element[@name='SheetThickness']"/>
+      <jxb:bindings node=".//xs:element[@name='WireTipProtrusion']"/>
       <jxb:bindings node=".//xs:element[@name='AddOns']"/>
+      <jxb:bindings node=".//xs:element[@name='CoreCrimpDetails']"/>
       <jxb:bindings node=".//xs:element[@name='ValidConductorMaterials']"/>
    </jxb:bindings>
    <jxb:bindings node="//xs:complexType[@name='WireRole']">

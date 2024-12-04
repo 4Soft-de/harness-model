@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vec:VecContent xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="id_1000_0">
+    <VecVersion>1.2.0</VecVersion>
+    <DocumentVersion id="id_1002_0">
+        <CompanyName>XY</CompanyName>
+        <Approval id="id_2014_0">
+            <Status>Approved</Status>
+            <Permission id="id_2185_0">
+                <Permission>Released</Permission>
+                <PermissionDate>2013-12-16T13:34:10.656+01:00</PermissionDate>
+                <Permitter id="id_2186_0">
+                    <LastName>/NULL</LastName>
+                </Permitter>
+            </Permission>
+        </Approval>
+        <ChangeDescription id="id_2056_0">
+            <ChangeDate>2013-09-16T10:22:10.024+02:00</ChangeDate>
+            <ResponsibleDesigner id="id_2114_0">
+                <LastName>/NULL</LastName>
+            </ResponsibleDesigner>
+        </ChangeDescription>
+        <Creation id="id_1007_0">
+            <CreationDate>2013-09-16T10:22:10.024+02:00</CreationDate>
+        </Creation>
+        <DocumentNumber>111_222_333</DocumentNumber>
+        <DocumentType>PartMaster</DocumentType>
+        <DocumentVersion>3</DocumentVersion>
+        <ReferencedPart>id_1001_0</ReferencedPart>
+        <Specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vec:GeneralTechnicalPartSpecification" id="id_2000_1">
+            <Identification>Gtps-111_222_333-3</Identification>
+            <DescribedPart>id_1001_0</DescribedPart>
+        </Specification>
+        <Specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vec:StripeSpecification" id="id_2000_0">
+            <Identification>Str-111_222_333-3</Identification>
+            <DescribedPart>id_1001_0</DescribedPart>
+            <Length id="id_2099_0">
+                <UnitComponent>id_1005_0</UnitComponent>
+                <ValueComponent>120.0</ValueComponent>
+            </Length>
+            <Thickness id="id_1004_0">
+                <UnitComponent>id_1005_0</UnitComponent>
+                <ValueComponent>1.3</ValueComponent>
+            </Thickness>
+        </Specification>
+    </DocumentVersion>
+    <PartVersion id="id_1001_0">
+        <CompanyName>XY AG</CompanyName>
+        <PartNumber>111_222_333</PartNumber>
+        <PartVersion>3</PartVersion>
+        <PrimaryPartType>Stripe</PrimaryPartType>
+        <IsPreferredPart>negative</IsPreferredPart>
+    </PartVersion>
+    <Unit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vec:SIUnit" id="id_1005_0">
+        <SiUnitName>Metre</SiUnitName>
+        <SiPrefix>Milli</SiPrefix>
+    </Unit>
+    <Unit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vec:SIUnit" id="id_1005_1">
+        <SiUnitName>Gram</SiUnitName>
+    </Unit>
+    <Unit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vec:SIUnit" id="id_1005_2">
+        <SiUnitName>DegreeCelsius</SiUnitName>
+    </Unit>
+</vec:VecContent>

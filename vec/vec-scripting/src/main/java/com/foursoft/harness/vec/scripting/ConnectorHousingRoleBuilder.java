@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,23 +27,20 @@ package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.v2x.*;
 
-public class ConnectorHousingRoleBuilder extends AbstractChildBuilder<PartOccurrenceBuilder> {
+public class ConnectorHousingRoleBuilder implements Builder<VecConnectorHousingRole> {
 
     private final VecConnectorHousingRole connectorHousingRole;
 
-    public ConnectorHousingRoleBuilder(final PartOccurrenceBuilder parent, VecPartOccurrence partOccurrence,
-                                       VecConnectorHousingSpecification specification) {
-        super(parent);
-        this.connectorHousingRole = connectorHousingRole(partOccurrence, specification);
+    public ConnectorHousingRoleBuilder(String identification, VecConnectorHousingSpecification specification) {
+        this.connectorHousingRole = connectorHousingRole(identification, specification);
 
     }
 
-    private VecConnectorHousingRole connectorHousingRole(VecPartOccurrence partOccurrence,
+    private VecConnectorHousingRole connectorHousingRole(String identification,
                                                          VecConnectorHousingSpecification specification) {
 
         VecConnectorHousingRole role = new VecConnectorHousingRole();
-        role.setIdentification(partOccurrence.getIdentification());
-        partOccurrence.getRoles().add(role);
+        role.setIdentification(identification);
 
         role.setConnectorHousingSpecification(specification);
 
@@ -54,6 +51,11 @@ public class ConnectorHousingRoleBuilder extends AbstractChildBuilder<PartOccurr
                                 .toList());
 
         return role;
+    }
+
+    @Override
+    public VecConnectorHousingRole build() {
+        return this.connectorHousingRole;
     }
 
     private VecSlotReference toSlotReference(final VecAbstractSlot abstractSlot) {

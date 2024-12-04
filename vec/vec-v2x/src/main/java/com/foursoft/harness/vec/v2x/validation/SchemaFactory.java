@@ -29,8 +29,8 @@ import javax.xml.validation.Schema;
 
 public class SchemaFactory {
 
-    private static final String SCHEMA_PATH = "vec2/vec_2.0.2.xsd";
-    private static final String STRICT_SCHEMA_PATH = "vec2/vec_2.0.2-strict.xsd";
+    private static final String SCHEMA_PATH = "vec2/vec_2.1.0.xsd";
+    private static final String STRICT_SCHEMA_PATH = "vec2/vec_2.1.0-strict.xsd";
 
     private SchemaFactory() {
         // Hide constructor
