@@ -39,7 +39,7 @@
         <!-- it's plugins -->
         <hisrc-hyperjaxb-annox-plugin.version>2.2.1</hisrc-hyperjaxb-annox-plugin.version>
         <jaxb-visitor.version>3.1.0</jaxb-visitor.version>
-        <cxf-xjc-javadoc.version>4.0.2</cxf-xjc-javadoc.version>
+        <cxf-xjc-javadoc.version>4.1.0</cxf-xjc-javadoc.version>
 
         <!-- Release Plugins -->
         <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
