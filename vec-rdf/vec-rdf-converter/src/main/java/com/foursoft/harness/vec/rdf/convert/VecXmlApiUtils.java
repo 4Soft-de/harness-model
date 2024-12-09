@@ -60,7 +60,7 @@ public final class VecXmlApiUtils {
             documentBuilderFactory.setNamespaceAware(true);
             documentBuilderFactory.setXIncludeAware(false);
             documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            
+
             DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
             return builder.parse(file);
         } catch (IOException | ParserConfigurationException | SAXException e) {
@@ -82,7 +82,7 @@ public final class VecXmlApiUtils {
             Object depthFirstTraverser = depthFirstTraverserClass.getConstructor()
                     .newInstance();
             Object functionVisitor = functionVisitorClass.getConstructor(Function.class)
-                    .newInstance((Function<Identifiable, Void>) (identifiable) -> {
+                    .newInstance((Function<Identifiable, Void>) identifiable -> {
                         consumer.accept(identifiable);
                         return null;
                     });

@@ -59,4 +59,13 @@ public record UmlType(String xmiId, String name, String xmiType, UmlLiteral[] li
         result = 31 * result + Arrays.hashCode(literals);
         return result;
     }
+
+    @Override public String toString() {
+        return "UmlType{" +
+                "xmiId='" + xmiId + '\'' +
+                ", name='" + name + '\'' +
+                ", xmiType='" + xmiType + '\'' +
+                ", literals=" + Arrays.toString(literals) +
+                '}';
+    }
 }

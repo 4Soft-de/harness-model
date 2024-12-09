@@ -61,8 +61,9 @@ public class Vec2RdfConverter {
      *
      * @param inputFiles
      * @param targetNamespace
+     * @deprecated Is only support during migration of RDF Api to public repository.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public void convert(File[] inputFiles, String targetNamespace) {
         for (File inputFile : inputFiles) {
             final String fileName = inputFile.getName();
@@ -73,8 +74,9 @@ public class Vec2RdfConverter {
             try {
                 Model model = convert(new FileInputStream(inputFile), ns);
 
-                LOGGER.info("Writing output file: {}", fileName + ".ttl");
-                model.write(new FileOutputStream(uriFilename + ".ttl"), "TURTLE");
+                final String outputfileName = uriFilename + ".ttl";
+                LOGGER.info("Writing output file: {}", outputfileName);
+                model.write(new FileOutputStream(outputfileName), "TURTLE");
             } catch (IOException e) {
                 throw new VecRdfConversionException("Error during conversion", e);
             }

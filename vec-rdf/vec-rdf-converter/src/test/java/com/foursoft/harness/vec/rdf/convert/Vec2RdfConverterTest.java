@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,7 +30,6 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,7 +37,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Vec2RdfConverterTest {
 
     @Test
-    void should_convert_a_xml_file() throws FileNotFoundException {
+    void should_convert_a_xml_file() {
         Vec2RdfConverter converter = new Vec2RdfConverter();
 
         InputStream inputFile = this.getClass().getResourceAsStream("/fixtures/oldbeetle/oldbeetle_vec113.vec");

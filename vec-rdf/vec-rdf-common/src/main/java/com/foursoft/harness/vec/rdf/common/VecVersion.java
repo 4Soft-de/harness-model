@@ -41,7 +41,7 @@ public enum VecVersion {
     V202("2.0.2", Packages.V2X, false),
     V210("2.1.0", Packages.V2X, true);
 
-    private final static String modelLocationPattern = "/vec/v%1$s/vec-%1$s.mdxml";
+    private static final String MODEL_LOCATION_PATTERN = "/vec/v%1$s/vec-%1$s.mdxml";
     private final String versionString;
     private final String apiPackage;
     private final boolean latest;
@@ -66,9 +66,8 @@ public enum VecVersion {
     }
 
     public InputStream getModelInputStream() {
-        final String modelLocation = String.format(modelLocationPattern, versionString);
-        final InputStream resourceAsStream = this.getClass().getResourceAsStream(modelLocation);
-        return resourceAsStream;
+        final String modelLocation = String.format(MODEL_LOCATION_PATTERN, versionString);
+        return this.getClass().getResourceAsStream(modelLocation);
     }
 
     public static VecVersion findLatestVersionForApiPackage(final String apiPackage) {
@@ -88,7 +87,7 @@ public enum VecVersion {
                 .orElseThrow(() -> new VecRdfException("Unsupported VEC Version: " + version));
     }
 
-    private final static class Packages {
+    private static final class Packages {
         public static final String V113 = "com.foursoft.harness.vec.v113";
         public static final String V12X = "com.foursoft.harness.vec.v12x";
         public static final String V2X = "com.foursoft.harness.vec.v2x";

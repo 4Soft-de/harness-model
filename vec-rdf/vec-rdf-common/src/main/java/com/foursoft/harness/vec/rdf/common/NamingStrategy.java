@@ -42,8 +42,7 @@ import java.util.Optional;
 public class NamingStrategy {
 
     public static String modelName(Class<?> clazz) {
-        if (clazz.getSimpleName()
-                .equals("VecContent")) { //NOSONAR This should be a package agnostic check.
+        if (clazz.getName().endsWith(".VecContent")) {
             return clazz.getSimpleName();
         }
         return clazz.getSimpleName()
