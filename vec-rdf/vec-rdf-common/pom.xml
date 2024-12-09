@@ -13,16 +13,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v113</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v12x</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.foursoft.harness.vec</groupId>
-            <artifactId>vec-v2x</artifactId>
+            <groupId>com.foursoft.harness.navext</groupId>
+            <artifactId>navext-runtime</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -36,6 +28,21 @@
             <groupId>org.apache.jena</groupId>
             <artifactId>apache-jena-libs</artifactId>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v113</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v12x</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v2x</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

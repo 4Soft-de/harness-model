@@ -37,6 +37,11 @@
                 <artifactId>vec-v2x</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.foursoft.harness.navext</groupId>
+                <artifactId>navext-runtime</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

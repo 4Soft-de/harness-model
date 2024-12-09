@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +25,8 @@
  */
 package com.foursoft.harness.vec.rdf.common.meta.xmi;
 
-import com.foursoft.harness.vec.v2x.VecSpecification;
+import com.foursoft.harness.vec.rdf.common.VecVersion;
+import com.foursoft.harness.vec.v113.VecSpecification;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -36,8 +37,8 @@ class VecModelProviderBuilderTest {
 
     @Test
     void should_initialize() {
-        for (VecUmlModel model : VecUmlModel.values()) {
-            final VecModelProvider provider = new VecModelProviderBuilder(model.getInputStream()).build();
+        for (VecVersion model : VecVersion.values()) {
+            final VecModelProvider provider = new VecModelProviderBuilder(model.getModelInputStream()).build();
 
             assertThat(provider).isNotNull();
         }
@@ -45,7 +46,7 @@ class VecModelProviderBuilderTest {
 
     @Test
     void should_return_field() throws NoSuchFieldException {
-        final VecModelProvider provider = new VecModelProviderBuilder(VecUmlModel.VEC_2X.getInputStream()).build();
+        final VecModelProvider provider = new VecModelProviderBuilder(VecVersion.V113.getModelInputStream()).build();
 
         assertThat(provider).isNotNull();
 
