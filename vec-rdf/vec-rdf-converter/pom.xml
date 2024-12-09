@@ -1,0 +1,37 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.foursoft.harness.vec.rdf</groupId>
+        <artifactId>vec-rdf-parent</artifactId>
+        <version>5.3.1-SNAPSHOT</version>
+    </parent>
+
+    <name>VEC RDF Converter</name>
+    <artifactId>vec-rdf-converter</artifactId>
+    <description>API to convert any version of a VEC file (XML) to RDF.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.foursoft.harness.vec.rdf</groupId>
+            <artifactId>vec-rdf-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.navext</groupId>
+            <artifactId>navext-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v113</artifactId>
+            <scope>test</scope>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+        </plugins>
+    </build>
+</project>

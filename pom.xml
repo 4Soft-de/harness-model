@@ -74,6 +74,7 @@
         <module>kbl</module>
         <module>vec</module>
         <module>compatibility</module>
+        <module>vec-rdf</module>
     </modules>
 
     <scm>
@@ -131,6 +132,23 @@
                 <artifactId>jakarta.annotation-api</artifactId>
                 <version>3.0.0</version>
             </dependency>
+            <dependency>
+                <groupId>net.sf.saxon</groupId>
+                <artifactId>Saxon-HE</artifactId>
+                <version>12.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.17.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.jena</groupId>
+                <artifactId>apache-jena-libs</artifactId>
+                <type>pom</type>
+                <version>5.2.0</version>
+            </dependency>
+
 
             <!-- Test -->
             <dependency>
