@@ -36,7 +36,7 @@ class VecXmlApiUtilsTest {
     @Test
     void guess_version_should_return_correct_version() {
         final Document document = VecXmlApiUtils.loadDocument(
-                VecXmlApiUtilsTest.class.getResourceAsStream("/data/oldbeetle_vec113.vec"));
+                VecXmlApiUtilsTest.class.getResourceAsStream("/fixtures/oldbeetle/oldbeetle_vec113.vec"));
 
         final VecVersion vecVersion = VecXmlApiUtils.guessVersion(document);
 

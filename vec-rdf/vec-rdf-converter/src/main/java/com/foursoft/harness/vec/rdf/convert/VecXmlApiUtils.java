@@ -58,6 +58,9 @@ public final class VecXmlApiUtils {
             LOGGER.info("Parsing DOM Tree.");
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             documentBuilderFactory.setNamespaceAware(true);
+            documentBuilderFactory.setXIncludeAware(false);
+            documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            
             DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
             return builder.parse(file);
         } catch (IOException | ParserConfigurationException | SAXException e) {
