@@ -27,6 +27,12 @@ class MetaDataServiceTest {
         assertThat(chsMetaData.isAnonymous()).isFalse();
         assertThat(chsMetaData.getType()).isEqualTo(VecConnectorHousingSpecification.class);
 
+        assertThat(chsMetaData.fields()).filteredOn(
+                fieldMetaData -> fieldMetaData.getField().getName().equals("connectorPositionAssuranceType")).hasSize(
+                1).singleElement().satisfies(fieldMetaData -> {
+            assertThat(fieldMetaData.getModelType().isEnum()).isTrue();
+        });
+
         assertThat(numValMetaData).isNotNull();
         assertThat(numValMetaData.isAnonymous()).isTrue();
         assertThat(numValMetaData.getType()).isEqualTo(VecNumericalValue.class);
@@ -39,6 +45,7 @@ class MetaDataServiceTest {
             assertThat(f.isAssociation()).isFalse();
             assertThat(f.isOrdered()).isFalse();
             assertThat(f.isUnique()).isTrue();
+            assertThat(f.getModelType().isPrimitive()).isTrue();
             assertThat(f.isEnumField()).isFalse();
         });
     }

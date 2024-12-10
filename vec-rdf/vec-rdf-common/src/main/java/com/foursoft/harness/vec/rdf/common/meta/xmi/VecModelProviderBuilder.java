@@ -64,7 +64,7 @@ public class VecModelProviderBuilder {
     public static final String XP_XMI_TYPE = "@xmi:type";
     public static final String UML_CLASS = "uml:Class";
     public static final String UML_ENUMERATION = "uml:Enumeration";
-    public static final String UML_PRIMITIVE = "uml:Primitive";
+    public static final String UML_PRIMITIVE = "uml:PrimitiveType";
     public static final String XP_XMI_ID = "@xmi:id";
     public static final String XP_TYPE = "@type";
 
