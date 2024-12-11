@@ -1,4 +1,4 @@
-com.foursoft.harness.vecrdf.patch.VecObjectWrapperTest.should_load_values=[
+com.foursoft.harness.vec.rdf.changes.patch.VecObjectWrapperTest.should_load_values=[
   {
     "refExternalMapping": [ ],
     "lengthType": "DMU",
@@ -19,7 +19,7 @@ com.foursoft.harness.vecrdf.patch.VecObjectWrapperTest.should_load_values=[
 ]
 
 
-com.foursoft.harness.vecrdf.patch.VecObjectWrapperTest.should_unload_values=[
+com.foursoft.harness.vec.rdf.changes.patch.VecObjectWrapperTest.should_unload_values=[
   {
     "xmlId": "id_00074",
     "refExternalMapping": [ ]
