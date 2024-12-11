@@ -41,16 +41,19 @@ public enum VecVersion {
     V202("2.0.2", Packages.V2X, false),
     V210("2.1.0", Packages.V2X, true);
 
+    public static final VecVersion LATEST = V210;
+
     private static final String MODEL_LOCATION_PATTERN = "/vec/v%1$s/vec-%1$s.mdxml";
+    private static final String ONTOLOGY_LOCATION_PATTERN = "/vec/v%1$s/vec-%1$s-ontology.ttl";
     private final String versionString;
     private final String apiPackage;
-    private final boolean latest;
+    private final boolean latestCompatible;
 
     VecVersion(final String versionString, final String apiPackage,
-               final boolean latest) {
+               final boolean latestCompatible) {
         this.versionString = versionString;
         this.apiPackage = apiPackage;
-        this.latest = latest;
+        this.latestCompatible = latestCompatible;
     }
 
     public String getVersionString() {
@@ -61,8 +64,8 @@ public enum VecVersion {
         return apiPackage;
     }
 
-    public boolean isLatest() {
-        return latest;
+    public boolean isLatestCompatible() {
+        return latestCompatible;
     }
 
     public InputStream getModelInputStream() {
@@ -70,17 +73,22 @@ public enum VecVersion {
         return this.getClass().getResourceAsStream(modelLocation);
     }
 
+    public InputStream getOntologyInputStream() {
+        final String modelLocation = String.format(ONTOLOGY_LOCATION_PATTERN, versionString);
+        return this.getClass().getResourceAsStream(modelLocation);
+    }
+
     public static VecVersion findLatestVersionForApiPackage(final String apiPackage) {
         return Arrays.stream(values())
                 .filter(literal -> literal.apiPackage.equals(apiPackage))
-                .filter(VecVersion::isLatest)
+                .filter(VecVersion::isLatestCompatible)
                 .findAny()
                 .orElseThrow(() -> new VecRdfException("No UML model found for VEC API package: " + apiPackage));
     }
 
-    public static VecVersion fromVersionString(String version) {
+    public static VecVersion fromVersionString(final String version) {
         Objects.requireNonNull(version, "version must not be null");
-        VecVersion[] enumConstants = VecVersion.class.getEnumConstants();
+        final VecVersion[] enumConstants = VecVersion.class.getEnumConstants();
         return Arrays.stream(enumConstants)
                 .filter(v -> version.equals(v.getVersionString()))
                 .findFirst()

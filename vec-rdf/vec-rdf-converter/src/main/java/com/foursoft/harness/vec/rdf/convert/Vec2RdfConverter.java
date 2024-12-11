@@ -30,8 +30,8 @@ import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.rdf.common.NamingStrategy;
 import com.foursoft.harness.vec.rdf.common.VEC;
 import com.foursoft.harness.vec.rdf.common.VecVersion;
-import com.foursoft.harness.vec.rdf.common.meta.MetaDataService;
 import com.foursoft.harness.vec.rdf.common.meta.xmi.VersionLookupModelProvider;
+import com.foursoft.harness.vec.rdf.common.util.VecXmlApiUtils;
 import com.foursoft.harness.vec.rdf.convert.exception.VecRdfConversionException;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -44,15 +44,17 @@ import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+import static com.foursoft.harness.vec.rdf.common.util.VecXmlApiUtils.*;
+
 public class Vec2RdfConverter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Vec2RdfConverter.class);
 
-    private final MetaDataService metaDataService;
     private final NamingStrategy namingStrategy;
+    private final VersionLookupModelProvider vecModelProvider;
 
     public Vec2RdfConverter() {
-        this.metaDataService = new MetaDataService(new VersionLookupModelProvider());
+        vecModelProvider = new VersionLookupModelProvider();
         this.namingStrategy = new NamingStrategy();
     }
 
@@ -64,41 +66,42 @@ public class Vec2RdfConverter {
      * @deprecated Is only support during migration of RDF Api to public repository.
      */
     @Deprecated(forRemoval = true)
-    public void convert(File[] inputFiles, String targetNamespace) {
-        for (File inputFile : inputFiles) {
+    public void convert(final File[] inputFiles, final String targetNamespace) {
+        for (final File inputFile : inputFiles) {
             final String fileName = inputFile.getName();
-            String uriFilename = fileName
+            final String uriFilename = fileName
                     .replace(".vec", "");
-            String ns = targetNamespace + "/" + URLEncoder.encode(uriFilename, StandardCharsets.UTF_8) + "#";
+            final String ns = targetNamespace + "/" + URLEncoder.encode(uriFilename, StandardCharsets.UTF_8) + "#";
 
             try {
-                Model model = convert(new FileInputStream(inputFile), ns);
+                final Model model = convert(new FileInputStream(inputFile), ns);
 
                 final String outputfileName = uriFilename + ".ttl";
                 LOGGER.info("Writing output file: {}", outputfileName);
                 model.write(new FileOutputStream(outputfileName), "TURTLE");
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 throw new VecRdfConversionException("Error during conversion", e);
             }
         }
     }
 
-    public Model convert(InputStream vecXmlFile, String targetNamespace) {
-        Document document = VecXmlApiUtils.loadDocument(vecXmlFile);
+    public Model convert(final InputStream vecXmlFile, final String targetNamespace) {
+        final Document document = loadDocument(vecXmlFile);
 
-        VecVersion version = VecXmlApiUtils.guessVersion(document);
-        Model model = ModelFactory.createDefaultModel();
+        final VecVersion version = guessVersion(document);
+        final Model model = ModelFactory.createDefaultModel();
 
         model.withDefaultMappings(PrefixMapping.Standard);
         model.setNsPrefix(VEC.PREFIX, VEC.URI);
         model.setNsPrefix("vec-dbg", VEC.DEBUG_NS);
         model.setNsPrefix("", targetNamespace);
 
-        VecSerializer vecSerializer = new VecSerializer(model, metaDataService, namingStrategy, targetNamespace);
+        final VecSerializer vecSerializer = new VecSerializer(model, vecModelProvider, namingStrategy,
+                                                              targetNamespace);
 
-        XMLReader<?, Identifiable> reader = VecXmlApiUtils.resolveReader(version);
+        final XMLReader<?, Identifiable> reader = resolveReader(version);
 
-        Object root = reader.read(document);
+        final Object root = reader.read(document);
 
         VecXmlApiUtils.genericVecModelTraversal(root, vecSerializer::handle);
 

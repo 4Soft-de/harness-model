@@ -1,0 +1,102 @@
+PREFIX : <https://www.acme.inc/conversion/test/diff-test#>
+PREFIX cs: <http://www.prostep.org/ontologies/ecad/2024/03/vec-changeset#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX vec: <http://www.prostep.org/ontologies/ecad/2024/03/vec#>
+PREFIX vec-dbg: <http://www.prostep.org/ontologies/ecad/2024/03/vec-debug#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+<https://www.acme.inc/conversion/test/diff-test#ColorReferenceSystem_Acme%20Inc.>
+    rdf:type vec:ColorReferenceSystem ;
+    vec:enumLiteral "Acme Inc." .
+
+:InsulationSpecification-id_00036
+    vec:insulationSpecificationSecondIdentificationColor
+        _:b0 .
+
+:WireElementReference-id_00076
+    vec:wireElementReferenceReferencedWireElement
+        :WireElement-id_00030, :WireElement-id_00045 ;
+    vec:wireElementReferenceWireLength
+        _:b1, _:b2 .
+
+:WireElementReference-id_00071
+    vec:wireElementReferenceReferencedWireElement
+        :WireElement-id_00029, :WireElement-id_00044 .
+
+_:b1 rdf:type vec:WireLength ;
+    rdfs:label "WireLength[id_00079]" ;
+    vec:wireLengthLengthType vec:WireLengthType_DMU ;
+    vec:wireLengthLengthValue
+        [
+            rdf:type vec:NumericalValue ;
+            rdfs:label "NumericalValue[id_00080]" ;
+            vec:numericalValueValueComponent
+                "503.0"^^xsd:double ;
+            vec:valueWithUnitUnitComponent :SIUnit-id_00102 ;
+            vec-dbg:id "id_00080"
+        ] ;
+    vec-dbg:id "id_00079" .
+
+_:b2 rdf:type vec:WireLength ;
+    rdfs:label "WireLength[id_00079]" ;
+    vec:wireLengthLengthType vec:WireLengthType_DMU ;
+    vec:wireLengthLengthValue
+        [
+            rdf:type vec:NumericalValue ;
+            rdfs:label "NumericalValue[id_00080]" ;
+            vec:numericalValueValueComponent
+                "1503.0"^^xsd:double ;
+            vec:valueWithUnitUnitComponent :SIUnit-id_00102 ;
+            vec-dbg:id "id_00080"
+        ] ;
+    vec-dbg:id "id_00079" .
+
+:WireRole-id_00069 vec:roleIdentification
+        "SL1", "SL3" ;
+    vec:wireRoleWireSpecification :WireSpecification-id_00027, :WireSpecification-id_00042 .
+
+:WireElementReference-id_00070
+    vec:wireElementReferenceReferencedWireElement
+        :WireElement-id_00028, :WireElement-id_00043 .
+
+:DocumentVersion-id_00053
+    vec:documentVersionDocumentVersion
+        "1", "2" .
+
+_:b0 rdf:type vec:Color ;
+    rdfs:label "Color[id_000038]" ;
+    vec:colorKey "BL" ;
+    vec:colorReferenceSystem <https://www.acme.inc/conversion/test/diff-test#ColorReferenceSystem_Acme%20Inc.> ;
+    vec-dbg:id "id_000038" .
+
+:MyChangeSet rdf:type cs:ChangeSet ;
+    cs:changeSetAdded
+        << :WireElementReference-id_00076 vec:wireElementReferenceWireLength _:b2 >>,
+        << :WireElementReference-id_00076 vec:wireElementReferenceReferencedWireElement :WireElement-id_00045 >>,
+        << :InsulationSpecification-id_00036 vec:insulationSpecificationSecondIdentificationColor _:b0 >>,
+        << :DocumentVersion-id_00053 vec:documentVersionDocumentVersion "2" >>,
+        << :PartOccurrence-id_00068 vec:occurrenceOrUsageIdentification "SL3" >>,
+        << :WireElementReference-id_00070 vec:wireElementReferenceReferencedWireElement :WireElement-id_00043 >>,
+        << :WireRole-id_00069 vec:wireRoleWireSpecification :WireSpecification-id_00042 >>,
+        << :PartOccurrence-id_00068 vec:partOccurrencePart :PartVersion-id_00100 >>,
+        << :WireRole-id_00069 vec:roleIdentification "SL3" >>,
+        << :WireElementReference-id_00071 vec:wireElementReferenceReferencedWireElement :WireElement-id_00044 >> ;
+    cs:changeSetIdentification "ISSUE-1278" ;
+    cs:changeSetRemoved
+        << :WireElementReference-id_00076 vec:wireElementReferenceWireLength _:b1 >>,
+        << :PartOccurrence-id_00068 vec:partOccurrencePart :PartVersion-id_00099 >>,
+        << :WireRole-id_00069 vec:wireRoleWireSpecification :WireSpecification-id_00027 >>,
+        << :WireElementReference-id_00070 vec:wireElementReferenceReferencedWireElement :WireElement-id_00028 >>,
+        << :WireRole-id_00069 vec:roleIdentification "SL1" >>,
+        << :DocumentVersion-id_00053 vec:documentVersionDocumentVersion "1" >>,
+        << :PartOccurrence-id_00068 vec:occurrenceOrUsageIdentification "SL1" >>,
+        << :WireElementReference-id_00076 vec:wireElementReferenceReferencedWireElement :WireElement-id_00030 >>,
+        << :WireElementReference-id_00071 vec:wireElementReferenceReferencedWireElement :WireElement-id_00029 >> .
+
+:PartOccurrence-id_00068
+    vec:occurrenceOrUsageIdentification
+        "SL1", "SL3" ;
+    vec:partOccurrencePart :PartVersion-id_00099, :PartVersion-id_00100 .
