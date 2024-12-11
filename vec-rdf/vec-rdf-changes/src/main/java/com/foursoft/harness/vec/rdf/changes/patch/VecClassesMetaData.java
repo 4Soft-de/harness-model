@@ -3,6 +3,7 @@ package com.foursoft.harness.vec.rdf.changes.patch;
 import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -29,6 +30,7 @@ public class VecClassesMetaData {
         List<VecField> vecFields = new ArrayList<>();
         while (currentClass != null) {
             Stream.of(currentClass.getDeclaredFields())
+                    .filter(field -> !Modifier.isStatic(field.getModifiers()))
                     .map(VecField::new)
                     .forEach(vecFields::add);
 

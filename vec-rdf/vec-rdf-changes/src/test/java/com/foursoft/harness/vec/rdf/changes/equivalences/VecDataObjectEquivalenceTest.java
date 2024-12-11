@@ -1,17 +1,11 @@
-package com.foursoft.harness.vec.rdf.changes.equals;
+package com.foursoft.harness.vec.rdf.changes.equivalences;
 
-import static org.assertj.core.api.Assertions.*;
-
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.foursoft.harness.vec.v2x.VecNumericalValue;
-import com.foursoft.harness.vec.v2x.VecNumericalValueProperty;
-import com.foursoft.harness.vec.v2x.VecSIUnit;
-import com.foursoft.harness.vec.v2x.VecSimpleValueProperty;
-import com.foursoft.harness.vec.v2x.VecTolerance;
-import com.foursoft.harness.vec.v2x.VecUnit;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class VecDataObjectEquivalenceTest {
 

@@ -16,7 +16,7 @@ class VecClassesMetaDataTest {
     void should_return_all_fields() {
         VecField[] connectorHousingFields = metaData.fieldsForClass(VecConnectorHousingSpecification.class);
 
-        assertThat(connectorHousingFields).hasSize(26);
+        assertThat(connectorHousingFields).hasSize(25);
     }
 
     @Test

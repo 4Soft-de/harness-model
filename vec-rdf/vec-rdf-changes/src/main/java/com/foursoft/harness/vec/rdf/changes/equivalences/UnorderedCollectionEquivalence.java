@@ -1,4 +1,4 @@
-package com.foursoft.harness.vec.rdf.changes.equals;
+package com.foursoft.harness.vec.rdf.changes.equivalences;
 
 import com.google.common.base.Equivalence;
 import org.apache.commons.collections4.SetUtils;

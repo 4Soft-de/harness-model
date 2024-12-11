@@ -1,4 +1,4 @@
-package com.foursoft.harness.vec.rdf.changes.equals;
+package com.foursoft.harness.vec.rdf.changes.equivalences;
 
 import com.foursoft.harness.vec.rdf.changes.patch.VecField;
 import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;

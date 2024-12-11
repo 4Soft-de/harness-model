@@ -1,12 +1,11 @@
-package com.foursoft.harness.vec.rdf.changes.equals;
+package com.foursoft.harness.vec.rdf.changes.equivalences;
 
-import static org.assertj.core.api.Assertions.*;
+import com.google.common.base.Equivalence;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import com.google.common.base.Equivalence;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class UnorderedCollectionEquivalenceTest {
 

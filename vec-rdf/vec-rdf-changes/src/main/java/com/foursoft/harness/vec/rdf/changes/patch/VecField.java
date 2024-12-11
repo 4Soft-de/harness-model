@@ -1,7 +1,7 @@
 package com.foursoft.harness.vec.rdf.changes.patch;
 
-import com.foursoft.harness.vec.rdf.changes.equals.VecDataObjectEquivalence;
-import com.foursoft.harness.vec.rdf.changes.equals.VecFieldEquivalence;
+import com.foursoft.harness.vec.rdf.changes.equivalences.VecDataObjectEquivalence;
+import com.foursoft.harness.vec.rdf.changes.equivalences.VecFieldEquivalence;
 import com.google.common.base.Equivalence;
 import jakarta.xml.bind.annotation.XmlID;
 import jakarta.xml.bind.annotation.XmlIDREF;
