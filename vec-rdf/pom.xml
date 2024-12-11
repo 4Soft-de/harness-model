@@ -18,6 +18,7 @@
     <modules>
         <module>vec-rdf-common</module>
         <module>vec-rdf-converter</module>
+        <module>vec-rdf-changes</module>
     </modules>
 
     <dependencyManagement>

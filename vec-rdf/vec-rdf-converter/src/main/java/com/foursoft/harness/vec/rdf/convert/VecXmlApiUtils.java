@@ -113,13 +113,13 @@ public final class VecXmlApiUtils {
         return com.foursoft.harness.vec.rdf.common.VecVersion.fromVersionString(version);
     }
 
-    public static XMLReader<? extends Identifiable, Identifiable> resolveReader(VecVersion version) {
+    public static XMLReader<Identifiable, Identifiable> resolveReader(VecVersion version) {
         String readerClassName = version.getApiPackage() + "." + "VecReader";
 
         try {
             final Class<?> readerClass = Class.forName(readerClassName);
 
-            return (XMLReader<? extends Identifiable, Identifiable>) readerClass.getConstructor().newInstance();
+            return (XMLReader<Identifiable, Identifiable>) readerClass.getConstructor().newInstance();
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
                  InvocationTargetException | ClassCastException e) {
             throw new VecRdfException(
@@ -134,7 +134,7 @@ public final class VecXmlApiUtils {
         try {
             final Class<?> writerClass = Class.forName(writerClassName);
 
-            return (XMLWriter<? extends Identifiable>) writerClass.getConstructor().newInstance();
+            return (XMLWriter<Identifiable>) writerClass.getConstructor().newInstance();
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
                  InvocationTargetException | ClassCastException e) {
             throw new VecRdfException(
