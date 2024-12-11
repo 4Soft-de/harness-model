@@ -1,0 +1,112 @@
+package com.foursoft.harness.vec.rdf.changes.diff.keys;
+
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Resource;
+import org.junit.jupiter.api.Test;
+
+import static com.foursoft.harness.vec.rdf.changes.test.TestUtils.findNodeWithXmlId;
+import static com.foursoft.harness.vec.rdf.changes.test.TestUtils.loadModel;
+import static org.assertj.core.api.Assertions.assertThat;
+
+class BNodeKeyTest {
+
+    private static final String BNODE1_TTL = """
+            [
+                rdf:type vec:WireLength ;
+                rdfs:label "WireLength[id_00074]" ;
+                vec:wireLengthLengthType vec:WireLengthType_DMU ;
+                vec:wireLengthLengthValue
+                    [
+                        rdf:type vec:NumericalValue ;
+                        rdfs:label "NumericalValue[id_00075]" ;
+                        vec:numericalValueValueComponent
+                            "1063.0"^^xsd:double ;
+                        vec:valueWithUnitUnitComponent :SIUnit-id_00102 ;
+                        vec-dbg:id "id_00075"
+                    ] ;
+                vec-dbg:id "id_00074"
+            ].
+            """;
+
+    private static final String BNODE2_TTL = """
+            [
+                rdf:type vec:WireLength ;
+                rdfs:label "WireLength[id_00074]" ;
+                vec:wireLengthLengthType vec:WireLengthType_DMU ;
+                vec:wireLengthLengthValue
+                    [
+                        rdf:type vec:NumericalValue ;
+                        rdfs:label "NumericalValue[id_00075]" ;
+                        vec:numericalValueValueComponent
+                            "1000.0"^^xsd:double ;
+                        vec:valueWithUnitUnitComponent :SIUnit-id_00102 ;
+                        vec-dbg:id "id_00075"
+                    ] ;
+                vec-dbg:id "id_00074"
+            ].
+            """;
+
+    private static final String BNODE3_TTL = """
+            [
+                rdf:type vec:WireLength ;
+                rdfs:label "WireLength[id_00074]" ;
+                vec:wireLengthLengthType vec:WireLengthType_DMU ;
+                vec:wireLengthLengthValue
+                    [
+                        rdf:type vec:NumericalValue ;
+                        rdfs:label "NumericalValue[id_00075]" ;
+                        vec:numericalValueValueComponent
+                            "1063.0"^^xsd:double ;
+                        vec:valueWithUnitUnitComponent :SIUnit-id_00103 ;
+                        vec-dbg:id "id_00075"
+                    ] ;
+                vec-dbg:id "id_00074"
+            ].
+            """;
+
+    @Test
+    void should_return_equal_for_identical_bnode() {
+        Model m1 = loadModel(BNODE1_TTL);
+        Model m2 = loadModel(BNODE1_TTL);
+
+        Resource bNode1 = findNodeWithXmlId(m1, "id_00074");
+        Resource bNode2 = findNodeWithXmlId(m2, "id_00074");
+
+        BNodeKey key1 = BNodeKey.from(bNode1);
+        BNodeKey key2 = BNodeKey.from(bNode2);
+
+        assertThat(key1).isEqualTo(key2)
+                .hasSameHashCodeAs(key2);
+    }
+
+    @Test
+    void should_return_not_equal_for_literal_change() {
+        Model m1 = loadModel(BNODE1_TTL);
+        Model m2 = loadModel(BNODE2_TTL);
+
+        Resource bNode1 = findNodeWithXmlId(m1, "id_00074");
+        Resource bNode2 = findNodeWithXmlId(m2, "id_00074");
+
+        BNodeKey key1 = BNodeKey.from(bNode1);
+        BNodeKey key2 = BNodeKey.from(bNode2);
+
+        assertThat(key1).isNotEqualTo(key2)
+                .doesNotHaveSameHashCodeAs(key2);
+    }
+
+    @Test
+    void should_return_not_equal_for_uri_change() {
+        Model m1 = loadModel(BNODE1_TTL);
+        Model m2 = loadModel(BNODE3_TTL);
+
+        Resource bNode1 = findNodeWithXmlId(m1, "id_00074");
+        Resource bNode2 = findNodeWithXmlId(m2, "id_00074");
+
+        BNodeKey key1 = BNodeKey.from(bNode1);
+        BNodeKey key2 = BNodeKey.from(bNode2);
+
+        assertThat(key1).isNotEqualTo(key2)
+                .doesNotHaveSameHashCodeAs(key2);
+    }
+
+}
