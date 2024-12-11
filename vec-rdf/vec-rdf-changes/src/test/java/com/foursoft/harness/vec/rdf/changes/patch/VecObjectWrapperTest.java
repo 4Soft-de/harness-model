@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,7 +38,6 @@ import org.apache.jena.riot.RDFDataMgr;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import static com.foursoft.harness.vec.rdf.changes.test.TestUtils.*;
@@ -48,16 +47,6 @@ import static org.assertj.core.api.Assumptions.assumeThat;
 class VecObjectWrapperTest {
 
     private Expect expect;
-
-    private static final String PROLOGUE = """
-            PREFIX : <https://www.foursoft.com/test#>
-            PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-            PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
-            PREFIX vec:     <http://www.prostep.org/ontologies/ecad/2024/03/vec#>
-            PREFIX vec-dbg: <http://www.prostep.org/ontologies/ecad/2024/03/vec-debug#>
-            PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
-            
-            """;
 
     private static final String BNODE1_TTL = """
             [
@@ -78,7 +67,7 @@ class VecObjectWrapperTest {
             """;
 
     @Test
-    void should_load_values() throws IOException {
+    void should_load_values() {
         Model m1 = loadModel(BNODE1_TTL);
         RDFDataMgr.read(m1, loadResourceFromClasspath("/vec/v2.1.0/vec-2.1.0-ontology.ttl"), Lang.TTL);
         Resource bNode1 = findNodeWithXmlId(m1, "id_00074");
@@ -103,7 +92,7 @@ class VecObjectWrapperTest {
     }
 
     @Test
-    void should_unload_values() throws IOException {
+    void should_unload_values() {
         Model m1 = loadModel(BNODE1_TTL);
         RDFDataMgr.read(m1, loadResourceFromClasspath("/vec/v2.1.0/vec-2.1.0-ontology.ttl"), Lang.TTL);
         Resource bNode1 = findNodeWithXmlId(m1, "id_00074");

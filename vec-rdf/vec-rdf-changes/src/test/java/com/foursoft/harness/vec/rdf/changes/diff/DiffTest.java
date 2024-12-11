@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -49,7 +49,8 @@ public class DiffTest {
      * @throws IOException
      */
     @Test
-    public void diff() throws IOException {
+    void diff() throws IOException {
+        //TODO: Make a better Test.
         Model m1 = ModelFactory.createDefaultModel();
         Model m2 = ModelFactory.createDefaultModel();
 
@@ -59,8 +60,6 @@ public class DiffTest {
         if (m1.isIsomorphicWith(m2)) {
             System.out.println("SAME!");
         }
-
-        DiffResult r = new DiffResult();
 
         DiffProcessor processor = new DiffProcessor(m1, m2);
         DiffResult diff = processor.diff();

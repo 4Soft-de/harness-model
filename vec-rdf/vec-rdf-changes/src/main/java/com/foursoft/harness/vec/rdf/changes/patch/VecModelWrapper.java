@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -52,10 +52,9 @@ public class VecModelWrapper {
     private final NamingStrategy namingStrategy;
     private final String namespace;
     //TODO: Move to merge context.
-    private final Map<String, Identifiable> uriToIdentifiable = new HashMap<String, Identifiable>();
+    private final Map<String, Identifiable> uriToIdentifiable = new HashMap<>();
     private final Map<Identifiable, VecObjectWrapper> wrapperObjects = new HashMap<>();
     private MergeContext mergeContext;
-    private VecVersion version;
 
     public VecModelWrapper(NamingStrategy namingStrategy, String targetNamespace) {
         this.namingStrategy = namingStrategy;
@@ -66,7 +65,7 @@ public class VecModelWrapper {
     public void load(InputStream vecFile) {
         LOGGER.info("Loading VEC model for patching.");
         Document vecDocument = VecXmlApiUtils.loadDocument(vecFile);
-        version = VecXmlApiUtils.guessVersion(vecDocument);
+        VecVersion version = VecXmlApiUtils.guessVersion(vecDocument);
 
         XMLReader<? extends Identifiable, Identifiable> vecReader = VecXmlApiUtils.resolveReader(version);
 

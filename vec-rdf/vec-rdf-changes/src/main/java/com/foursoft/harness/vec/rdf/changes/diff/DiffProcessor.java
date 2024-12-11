@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -54,18 +54,6 @@ public class DiffProcessor {
                         .visitWith(new KeyFactory()));
 
         //TODO: If Diff contains Custom Open Enums, those must be added as well.
-
-        //        beforeBNodes.forEach((key, value) -> {
-        //            if (!afterBNodes.containsKey(key)) {
-        //                value.forEach(bnode -> {
-        //                    diff.getRemoved()
-        //                            .add(key.subject(), key.property(), bnode);
-        //                    diff.getRemoved()
-        //                            .add(Closure.closure(bnode.asResource(), true));
-        //                });
-        //                System.out.println("BNode Key not found in dest:" + key);
-        //            }
-        //        });
 
         return diff;
     }

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,7 +46,7 @@ public class PatchTest {
     public static final String CHANGESET_TTL = "/fixtures/mini-change/changeset.ttl";
 
     @Test
-    public void applyPatch() throws IOException {
+    void applyPatch() throws IOException {
         Model m1 = ModelFactory.createDefaultModel();
 
         RDFDataMgr.read(m1, loadResourceFromClasspath(CHANGESET_TTL), Lang.TTL);
@@ -63,7 +63,8 @@ public class PatchTest {
         wrapper.write("output.xml");
     }
 
-    public void handleChangeSet(Resource changeSet, VecModelWrapper wrapper) {
+    void handleChangeSet(Resource changeSet, VecModelWrapper wrapper) {
+        //TODO: This should not be in a Test Case
         changeSet.listProperties(VECCS.removed)
                 .forEach(s -> {
                     Statement removedStatement = s.getObject()

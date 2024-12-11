@@ -21,16 +21,6 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.foursoft.harness.navext</groupId>-->
-        <!--            <artifactId>navext-runtime</artifactId>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.foursoft.harness.vec</groupId>-->
-        <!--            <artifactId>vec-v113</artifactId>-->
-        <!--            <scope>test</scope>-->
-        <!--            <version>${project.version}</version>-->
-        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.foursoft.harness.vec</groupId>
