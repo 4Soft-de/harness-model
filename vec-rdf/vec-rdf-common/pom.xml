@@ -1,0 +1,54 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.foursoft.harness.vec.rdf</groupId>
+        <artifactId>vec-rdf-parent</artifactId>
+        <version>5.3.1-SNAPSHOT</version>
+    </parent>
+
+    <name>VEC RDF Common</name>
+    <artifactId>vec-rdf-common</artifactId>
+    <description>Common Code for the VEC RDF modules.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.foursoft.harness.navext</groupId>
+            <artifactId>navext-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>apache-jena-libs</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v113</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v12x</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v2x</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+        </plugins>
+    </build>
+</project>

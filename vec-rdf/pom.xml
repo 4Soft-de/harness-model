@@ -1,0 +1,48 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.foursoft.harness</groupId>
+        <artifactId>harness-parent</artifactId>
+        <version>5.3.1-SNAPSHOT</version>
+    </parent>
+    <groupId>com.foursoft.harness.vec.rdf</groupId>
+    <artifactId>vec-rdf-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>VEC RDF Parent</name>
+
+    <inceptionYear>2024</inceptionYear>
+
+    <modules>
+        <module>vec-rdf-common</module>
+        <module>vec-rdf-converter</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.foursoft.harness.vec</groupId>
+                <artifactId>vec-v113</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.foursoft.harness.vec</groupId>
+                <artifactId>vec-v12x</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.foursoft.harness.vec</groupId>
+                <artifactId>vec-v2x</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.foursoft.harness.navext</groupId>
+                <artifactId>navext-runtime</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
