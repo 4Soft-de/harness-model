@@ -1,6 +1,7 @@
 package com.foursoft.harness.vec.rdf.changes.test;
 
 import com.foursoft.harness.vec.rdf.common.VEC;
+import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
 import org.apache.commons.lang3.stream.Streams;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -8,6 +9,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 
+import java.io.InputStream;
 import java.io.StringReader;
 
 public class TestUtils {
@@ -32,6 +34,15 @@ public class TestUtils {
         return Streams.of(model.listResourcesWithProperty(model.createProperty(VEC.DEBUG_NS, "id"), xmlId))
                 .findFirst()
                 .orElseThrow();
+    }
+
+    public static InputStream loadResourceFromClasspath(String filename) {
+        final InputStream resourceAsStream = TestUtils.class.getResourceAsStream(filename);
+
+        if (resourceAsStream == null) {
+            throw new VecRdfException("Resource not found: " + filename);
+        }
+        return resourceAsStream;
     }
 }
 

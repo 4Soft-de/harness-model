@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static com.foursoft.harness.vec.rdf.changes.test.TestUtils.loadResourceFromClasspath;
+
 public class DiffTest {
 
     public static final String VEC_BEFORE = "/fixtures/mini-change/VEC-Change-Example I.ttl";
@@ -26,8 +28,8 @@ public class DiffTest {
         Model m1 = ModelFactory.createDefaultModel();
         Model m2 = ModelFactory.createDefaultModel();
 
-        RDFDataMgr.read(m1, DiffTest.class.getResourceAsStream(VEC_BEFORE), Lang.TTL);
-        RDFDataMgr.read(m2, DiffTest.class.getResourceAsStream(VEC_AFTER), Lang.TTL);
+        RDFDataMgr.read(m1, loadResourceFromClasspath(VEC_BEFORE), Lang.TTL);
+        RDFDataMgr.read(m2, loadResourceFromClasspath(VEC_AFTER), Lang.TTL);
 
         if (m1.isIsomorphicWith(m2)) {
             System.out.println("SAME!");
@@ -37,15 +39,6 @@ public class DiffTest {
 
         DiffProcessor processor = new DiffProcessor(m1, m2);
         DiffResult diff = processor.diff();
-
-        //        System.out.println("Removed");
-        //        diff.getRemoved()
-        //                .write(System.out, "TURTLE");
-        //        System.out.println("Added");
-        //        diff.getAdded()
-        //                .write(System.out, "TURTLE");
-
-        //        diff.write(System.out);
 
         diff.write(new FileOutputStream("changeset.ttl"));
     }

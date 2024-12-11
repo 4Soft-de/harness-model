@@ -6,6 +6,7 @@ import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
 import com.google.common.base.Equivalence;
 import com.google.common.base.Predicate;
 import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -154,15 +155,29 @@ public class VecObjectWrapper {
     private PropertyDescriptor findPropertyDescriptor(Property property) {
         String propertyName = PatchUtils.resolvePropertyName(wrappedObject.getClass(), property);
 
-        if (!propertyDescriptors.containsKey(propertyName)) {
-            propertyName = propertyName + "s";
-            if (!propertyDescriptors.containsKey(propertyName)) {
+        PropertyDescriptor descriptor = getPropertyDescriptor(propertyName);
+
+        if (descriptor == null) {
+            descriptor = getPropertyDescriptor(propertyName + "s");
+            if (descriptor == null) {
                 throw new VecRdfException(String.format(
                         "Property: %1$s(s) does not exist on object %2$s, tried singular and plural variant.", property,
                         wrappedObject));
             }
         }
-        return propertyDescriptors.get(propertyName);
+        return descriptor;
+    }
+
+    PropertyDescriptor getPropertyDescriptor(String name) {
+        PropertyDescriptor pd = this.propertyDescriptors.get(name);
+        if (pd == null && StringUtils.isNotEmpty(name)) {
+            // Same lenient fallback checking as in Property...
+            pd = this.propertyDescriptors.get(StringUtils.uncapitalize(name));
+            if (pd == null) {
+                pd = this.propertyDescriptors.get(StringUtils.capitalize(name));
+            }
+        }
+        return pd;
     }
 
     private boolean isCollection(PropertyDescriptor propertyDescriptor) {

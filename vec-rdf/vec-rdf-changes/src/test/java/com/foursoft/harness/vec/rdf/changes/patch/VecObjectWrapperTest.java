@@ -1,27 +1,23 @@
 package com.foursoft.harness.vec.rdf.changes.patch;
 
-import static com.foursoft.harness.vecrdf.test.TestUtils.findNodeWithXmlId;
-import static com.foursoft.harness.vecrdf.test.TestUtils.loadModel;
-import static org.assertj.core.api.Assumptions.assumeThat;
-
-import java.io.IOException;
-import java.util.HashMap;
-
+import au.com.origin.snapshots.Expect;
+import au.com.origin.snapshots.junit5.SnapshotExtension;
+import com.foursoft.harness.navext.runtime.model.Identifiable;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
+import com.foursoft.harness.vec.v2x.VecSIUnit;
+import com.foursoft.harness.vec.v2x.VecWireLength;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.core.io.ClassPathResource;
 
-import com.foursoft.harness.navext.runtime.model.Identifiable;
-import com.foursoft.harness.vec.v2x.VecNumericalValue;
-import com.foursoft.harness.vec.v2x.VecSIUnit;
-import com.foursoft.harness.vec.v2x.VecWireLength;
+import java.io.IOException;
+import java.util.HashMap;
 
-import au.com.origin.snapshots.Expect;
-import au.com.origin.snapshots.junit5.SnapshotExtension;
+import static com.foursoft.harness.vec.rdf.changes.test.TestUtils.*;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
 @ExtendWith({SnapshotExtension.class})
 class VecObjectWrapperTest {
@@ -59,7 +55,7 @@ class VecObjectWrapperTest {
     @Test
     void should_load_values() throws IOException {
         Model m1 = loadModel(BNODE1_TTL);
-        RDFDataMgr.read(m1, new ClassPathResource("vec/v2.1.0/vec-2.1.0-ontology.ttl").getInputStream(), Lang.TTL);
+        RDFDataMgr.read(m1, loadResourceFromClasspath("/vec/v2.1.0/vec-2.1.0-ontology.ttl"), Lang.TTL);
         Resource bNode1 = findNodeWithXmlId(m1, "id_00074");
 
         assumeThat(bNode1).isNotNull();
@@ -84,7 +80,7 @@ class VecObjectWrapperTest {
     @Test
     void should_unload_values() throws IOException {
         Model m1 = loadModel(BNODE1_TTL);
-        RDFDataMgr.read(m1, new ClassPathResource("vec/v2.1.0/vec-2.1.0-ontology.ttl").getInputStream(), Lang.TTL);
+        RDFDataMgr.read(m1, loadResourceFromClasspath("/vec/v2.1.0/vec-2.1.0-ontology.ttl"), Lang.TTL);
         Resource bNode1 = findNodeWithXmlId(m1, "id_00074");
 
         assumeThat(bNode1).isNotNull();

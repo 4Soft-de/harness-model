@@ -13,22 +13,24 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static com.foursoft.harness.vec.rdf.changes.test.TestUtils.loadResourceFromClasspath;
+
 public class PatchTest {
 
-    public static final String VEC_BEFORE = "/fixtures/mini-change/VEC-Change-Example I.xml";
-    public static final String VEC_CS = "/fixtures/mini-change/changeset.ttl";
+    public static final String VEC_XML_BEFORE = "/fixtures/mini-change/VEC-Change-Example I.xml";
+    public static final String CHANGESET_TTL = "/fixtures/mini-change/changeset.ttl";
 
     @Test
     public void applyPatch() throws IOException {
         Model m1 = ModelFactory.createDefaultModel();
 
-        RDFDataMgr.read(m1, this.getClass().getResourceAsStream(VEC_BEFORE), Lang.TTL);
-        RDFDataMgr.read(m1, this.getClass().getResourceAsStream("vec/v2.1.0/vec-2.1.0-ontology.ttl"),
+        RDFDataMgr.read(m1, loadResourceFromClasspath(CHANGESET_TTL), Lang.TTL);
+        RDFDataMgr.read(m1, loadResourceFromClasspath("/vec/v2.1.0/vec-2.1.0-ontology.ttl"),
                         Lang.TTL);
 
         VecModelWrapper wrapper = new VecModelWrapper(new NamingStrategy(),
                                                       "https://www.acme.inc/conversion/test/diff-test#");
-        wrapper.load(this.getClass().getResourceAsStream(VEC_CS));
+        wrapper.load(loadResourceFromClasspath(VEC_XML_BEFORE));
 
         m1.listSubjectsWithProperty(RDF.type, VECCS.ChangeSet)
                 .forEach(changeSet -> handleChangeSet(changeSet, wrapper));
