@@ -29,16 +29,14 @@ import com.foursoft.harness.vec.rdf.common.VecVersion;
 import com.foursoft.harness.vec.v113.VecSpecification;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class VecModelProviderBuilderTest {
 
     @Test
     void should_initialize() {
-        for (VecVersion model : VecVersion.values()) {
-            final VecModelProvider provider = new VecModelProviderBuilder(model.getModelInputStream()).build();
+        for (final VecVersion model : VecVersion.values()) {
+            final UmlModelProvider provider = new XmiModelProviderBuilder(model.getModelInputStream()).build();
 
             assertThat(provider).isNotNull();
         }
@@ -46,14 +44,14 @@ class VecModelProviderBuilderTest {
 
     @Test
     void should_return_field() throws NoSuchFieldException {
-        final VecModelProvider provider = new VecModelProviderBuilder(VecVersion.V113.getModelInputStream()).build();
+        final UmlModelProvider provider = new XmiModelProviderBuilder(VecVersion.V113.getModelInputStream()).build();
 
         assertThat(provider).isNotNull();
 
-        final Optional<UmlField> identification = provider.findField(
+        final UmlField identification = provider.findField(
                 VecSpecification.class.getDeclaredField("identification"));
 
-        assertThat(identification).isPresent();
+        assertThat(identification).isNotNull();
     }
 
 }

@@ -31,15 +31,15 @@ import java.util.Objects;
 public record UmlType(String xmiId, String name, String xmiType, UmlLiteral[] literals) {
 
     public boolean isClass() {
-        return VecModelProviderBuilder.UML_CLASS.equals(xmiType);
+        return XmiModelProviderBuilder.UML_CLASS.equals(xmiType);
     }
 
     public boolean isEnum() {
-        return VecModelProviderBuilder.UML_ENUMERATION.equals(xmiType);
+        return XmiModelProviderBuilder.UML_ENUMERATION.equals(xmiType);
     }
 
     public boolean isPrimitive() {
-        return VecModelProviderBuilder.UML_PRIMITIVE.equals(xmiType);
+        return XmiModelProviderBuilder.UML_PRIMITIVE.equals(xmiType);
     }
 
     @Override public boolean equals(final Object o) {

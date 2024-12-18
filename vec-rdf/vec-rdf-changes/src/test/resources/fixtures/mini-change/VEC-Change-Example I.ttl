@@ -1,0 +1,978 @@
+PREFIX : <https://www.acme.inc/conversion/test/diff-test#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX vec: <http://www.prostep.org/ontologies/ecad/2024/03/vec#>
+PREFIX vec-dbg: <http://www.prostep.org/ontologies/ecad/2024/03/vec-debug#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+:WireEnd-id_00077 rdf:type vec:WireEnd ;
+    rdfs:label "WireEnd[id_00077]" ;
+    vec:wireEndIdentification "YW001.1" ;
+    vec:wireEndPositionOnWire "0.0"^^xsd:double ;
+    vec-dbg:id "id_00077" .
+
+:ConnectorHousingSpecification-id_00003
+    rdf:type vec:ConnectorHousingSpecification ;
+    rdfs:label "ConnectorHousingSpecification[id_00003]" ;
+    vec:connectorHousingSpecificationSlot
+        :Slot-id_00004 ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00094 ;
+    vec:specificationIdentification
+        "DRAW-CON-A" ;
+    vec-dbg:id "id_00003" .
+
+:WireElementSpecification-id_00046
+    rdf:type vec:WireElementSpecification ;
+    rdfs:label "WireElementSpecification[id_00046]" ;
+    vec:specificationIdentification
+        "ROOT" ;
+    vec:wireElementSpecificationSubWireElementSpecification
+        :WireElementSpecification-id_00050, :WireElementSpecification-id_00047 ;
+    vec-dbg:id "id_00046" .
+
+:Slot-id_00004 rdf:type vec:Slot ;
+    rdfs:label "Slot[id_00004]" ;
+    vec:abstractSlotSlotNumber "A" ;
+    vec:slotCavity :Cavity-id_00006, :Cavity-id_00005 ;
+    vec-dbg:id "id_00004" .
+
+:CavityMounting-id_00092
+    rdf:type vec:CavityMounting ;
+    rdfs:label "CavityMounting[id_00092]" ;
+    vec:cavityMountingEquippedCavityRef
+        :CavityReference-id_00058 ;
+    vec-dbg:id "id_00092" .
+
+:ConnectorHousingRole-id_00065
+    rdf:type vec:ConnectorHousingRole ;
+    rdfs:label "ConnectorHousingRole[id_00065]" ;
+    vec:connectorHousingRoleConnectorHousingSpecification
+        :ConnectorHousingSpecification-id_00014 ;
+    vec:connectorHousingRoleSlotReference
+        :SlotReference-id_00066 ;
+    vec:roleIdentification "YW001" ;
+    vec-dbg:id "id_00065" .
+
+:PartVersion-id_00096
+    rdf:type vec:PartVersion ;
+    rdfs:label "PartVersion[id_00096]" ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec:partVersionPartNumber "CON-C" ;
+    vec:partVersionPartVersion "1" ;
+    vec:partVersionPrimaryPartType vec:PrimaryPartType_ConnectorHousing ;
+    vec-dbg:id "id_00096" .
+
+:WireEnd-id_00072 rdf:type vec:WireEnd ;
+    rdfs:label "WireEnd[id_00072]" ;
+    vec:wireEndIdentification "XA.F2.1_1.2" ;
+    vec:wireEndPositionOnWire "0.0"^^xsd:double ;
+    vec-dbg:id "id_00072" .
+
+:CavityReference-id_00058
+    rdf:type vec:CavityReference ;
+    rdfs:label "CavityReference[id_00058]" ;
+    vec:cavityReferenceIdentification
+        "1" ;
+    vec:cavityReferenceReferencedCavity
+        :Cavity-id_00005 ;
+    vec-dbg:id "id_00058" .
+
+:PluggableTerminalSpecification-id_00019
+    rdf:type vec:PluggableTerminalSpecification ;
+    rdfs:label "PluggableTerminalSpecification[id_00019]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00097 ;
+    vec:specificationIdentification
+        "DRAW-TERM-N_103_361_01" ;
+    vec-dbg:id "id_00019" .
+
+:PartOccurrence-id_00068
+    rdf:type vec:PartOccurrence ;
+    rdfs:label "PartOccurrence[id_00068]" ;
+    vec:occurrenceOrUsageIdentification
+        "SL1" ;
+    vec:occurrenceOrUsageRole :WireRole-id_00069 ;
+    vec:partOccurrencePart :PartVersion-id_00099 ;
+    vec-dbg:id "id_00068" .
+
+:WireRole-id_00069 rdf:type vec:WireRole ;
+    rdfs:label "WireRole[id_00069]" ;
+    vec:roleIdentification "SL1" ;
+    vec:wireRoleWireElementReference
+        :WireElementReference-id_00076, :WireElementReference-id_00071, :WireElementReference-id_00070 ;
+    vec:wireRoleWireSpecification :WireSpecification-id_00027 ;
+    vec-dbg:id "id_00069" .
+
+:VecContent-id_00000 rdf:type vec:VecContent ;
+    rdfs:label "VecContent[id_00000]" ;
+    vec:vecContentDateOfCreation "2023-05-30T00:00:00"^^xsd:dateTime ;
+    vec:vecContentDocumentVersion
+        :DocumentVersion-id_00053,
+        :DocumentVersion-id_00012,
+        :DocumentVersion-id_00017,
+        :DocumentVersion-id_00023,
+        :DocumentVersion-id_00001,
+        :DocumentVersion-id_00020,
+        :DocumentVersion-id_00007,
+        :DocumentVersion-id_00038 ;
+    vec:vecContentGeneratingSystemName
+        "VEC Samples" ;
+    vec:vecContentGeneratingSystemVersion
+        "0.0.1" ;
+    vec:vecContentPartVersion
+        :PartVersion-id_00099,
+        :PartVersion-id_00096,
+        :PartVersion-id_00100,
+        :PartVersion-id_00097,
+        :PartVersion-id_00094,
+        :PartVersion-id_00098,
+        :PartVersion-id_00095 ;
+    vec:vecContentUnit :SIUnit-id_00101, :SIUnit-id_00102 ;
+    vec:vecContentVecVersion vec:VecVersion_2.0.1 ;
+    vec-dbg:id "id_00000" .
+
+:Cavity-id_00016 rdf:type vec:Cavity ;
+    rdfs:label "Cavity[id_00016]" ;
+    vec:cavityCavityNumber "1" ;
+    vec-dbg:id "id_00016" .
+
+:WireMounting-id_00087
+    rdf:type vec:WireMounting ;
+    rdfs:label "WireMounting[id_00087]" ;
+    vec:wireMountingReferencedWireEnd
+        :WireEnd-id_00073 ;
+    vec-dbg:id "id_00087" .
+
+:PluggableTerminalSpecification-id_00022
+    rdf:type vec:PluggableTerminalSpecification ;
+    rdfs:label "PluggableTerminalSpecification[id_00022]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00098 ;
+    vec:specificationIdentification
+        "DRAW-TERM-036_911_137" ;
+    vec-dbg:id "id_00022" .
+
+:WireElement-id_00043
+    rdf:type vec:WireElement ;
+    rdfs:label "WireElement[id_00043]" ;
+    vec:wireElementIdentification "ROOT" ;
+    vec:wireElementSubWireElement :WireElement-id_00045, :WireElement-id_00044 ;
+    vec:wireElementWireElementSpecification
+        :WireElementSpecification-id_00046 ;
+    vec-dbg:id "id_00043" .
+
+:PartOccurrence-id_00055
+    rdf:type vec:PartOccurrence ;
+    rdfs:label "PartOccurrence[id_00055]" ;
+    vec:occurrenceOrUsageIdentification
+        "XA.F2.1_1" ;
+    vec:occurrenceOrUsageRole :ConnectorHousingRole-id_00056 ;
+    vec:partOccurrencePart :PartVersion-id_00094 ;
+    vec-dbg:id "id_00055" .
+
+:SIUnit-id_00101 rdf:type vec:SIUnit ;
+    rdfs:label "SIUnit[id_00101]" ;
+    vec:sIUnitSiPrefix vec:SiPrefix_Milli ;
+    vec:sIUnitSiUnitName vec:SiUnitName_Metre ;
+    vec:unitExponent 2 ;
+    vec-dbg:id "id_00101" .
+
+:Cavity-id_00011 rdf:type vec:Cavity ;
+    rdfs:label "Cavity[id_00011]" ;
+    vec:cavityCavityNumber "1" ;
+    vec-dbg:id "id_00011" .
+
+:WireMounting-id_00090
+    rdf:type vec:WireMounting ;
+    rdfs:label "WireMounting[id_00090]" ;
+    vec:wireMountingReferencedWireEnd
+        :WireEnd-id_00077 ;
+    vec-dbg:id "id_00090" .
+
+:SlotReference-id_00066
+    rdf:type vec:SlotReference ;
+    rdfs:label "SlotReference[id_00066]" ;
+    vec:abstractSlotReferenceIdentification
+        "A" ;
+    vec:abstractSlotReferenceReferencedSlot
+        :Slot-id_00015 ;
+    vec:slotReferenceCavityReference
+        :CavityReference-id_00067 ;
+    vec-dbg:id "id_00066" .
+
+:InsulationSpecification-id_00033
+    rdf:type vec:InsulationSpecification ;
+    rdfs:label "InsulationSpecification[id_00033]" ;
+    vec:insulationSpecificationFirstIdentificationColor
+        [
+            rdf:type vec:Color ;
+            rdfs:label "Color[id_00034]" ;
+            vec:colorKey "BR" ;
+            vec:colorReferenceSystem
+                <https://www.acme.inc/conversion/test/diff-test#ColorReferenceSystem_Acme%20Inc.> ;
+            vec-dbg:id "id_00034"
+        ] ;
+    vec:specificationIdentification
+        "FLRY-BR" ;
+    vec-dbg:id "id_00033" .
+
+:CavityMounting-id_00086
+    rdf:type vec:CavityMounting ;
+    rdfs:label "CavityMounting[id_00086]" ;
+    vec:cavityMountingEquippedCavityRef
+        :CavityReference-id_00063 ;
+    vec-dbg:id "id_00086" .
+
+:WireElement-id_00030
+    rdf:type vec:WireElement ;
+    rdfs:label "WireElement[id_00030]" ;
+    vec:wireElementIdentification "2" ;
+    vec:wireElementWireElementSpecification
+        :WireElementSpecification-id_00035 ;
+    vec-dbg:id "id_00030" .
+
+:WireSpecification-id_00042
+    rdf:type vec:WireSpecification ;
+    rdfs:label "WireSpecification[id_00042]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00100 ;
+    vec:specificationIdentification
+        "DRAW-WIR-3C0_972_100" ;
+    vec:wireSpecificationWireElement
+        :WireElement-id_00043 ;
+    vec:wireSpecificationWireElementSpecification
+        :WireElementSpecification-id_00046 ;
+    vec-dbg:id "id_00042" .
+
+:PartVersion-id_00098
+    rdf:type vec:PartVersion ;
+    rdfs:label "PartVersion[id_00098]" ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec:partVersionPartNumber "036_911_137" ;
+    vec:partVersionPartVersion "1" ;
+    vec:partVersionPrimaryPartType vec:PrimaryPartType_PluggableTerminal ;
+    vec-dbg:id "id_00098" .
+
+:WireElementSpecification-id_00035
+    rdf:type vec:WireElementSpecification ;
+    rdfs:label "WireElementSpecification[id_00035]" ;
+    vec:specificationIdentification
+        "2" ;
+    vec:wireElementSpecificationConductorSpecification
+        :CoreSpecification-id_00025 ;
+    vec:wireElementSpecificationInsulationSpecification
+        :InsulationSpecification-id_00036 ;
+    vec-dbg:id "id_00035" .
+
+:DocumentVersion-id_00007
+    rdf:type vec:DocumentVersion ;
+    rdfs:label "DocumentVersion[id_00007]" ;
+    vec:documentVersionDocumentNumber
+        "DRAW-CON-B" ;
+    vec:documentVersionDocumentType
+        vec:DocumentType_PartMaster ;
+    vec:documentVersionDocumentVersion
+        "1" ;
+    vec:documentVersionReferencedPart
+        :PartVersion-id_00095 ;
+    vec:documentVersionSpecification
+        :ConnectorHousingSpecification-id_00009, :GeneralTechnicalPartSpecification-id_00008 ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec-dbg:id "id_00007" .
+
+:DocumentVersion-id_00023
+    rdf:type vec:DocumentVersion ;
+    rdfs:label "DocumentVersion[id_00023]" ;
+    vec:documentVersionDocumentNumber
+        "DRAW-N_018_886_1" ;
+    vec:documentVersionDocumentType
+        vec:DocumentType_PartMaster ;
+    vec:documentVersionDocumentVersion
+        "1" ;
+    vec:documentVersionReferencedPart
+        :PartVersion-id_00099 ;
+    vec:documentVersionSpecification
+        :WireSpecification-id_00027,
+        :WireElementSpecification-id_00032,
+        :InsulationSpecification-id_00036,
+        :WireElementSpecification-id_00035,
+        :CoreSpecification-id_00025,
+        :InsulationSpecification-id_00033,
+        :GeneralTechnicalPartSpecification-id_00024,
+        :WireElementSpecification-id_00031 ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec-dbg:id "id_00023" .
+
+:WireElementReference-id_00070
+    rdf:type vec:WireElementReference ;
+    rdfs:label "WireElementReference[id_00070]" ;
+    vec:wireElementReferenceIdentification
+        "SL1" ;
+    vec:wireElementReferenceReferencedWireElement
+        :WireElement-id_00028 ;
+    vec-dbg:id "id_00070" .
+
+:InsulationSpecification-id_00048
+    rdf:type vec:InsulationSpecification ;
+    rdfs:label "InsulationSpecification[id_00048]" ;
+    vec:insulationSpecificationFirstIdentificationColor
+        [
+            rdf:type vec:Color ;
+            rdfs:label "Color[id_00049]" ;
+            vec:colorKey "B/K" ;
+            vec:colorReferenceSystem
+                <https://www.acme.inc/conversion/test/diff-test#ColorReferenceSystem_Acme%20Inc.> ;
+            vec-dbg:id "id_00049"
+        ] ;
+    vec:specificationIdentification
+        "FLRY-BK" ;
+    vec-dbg:id "id_00048" .
+
+:WireElement-id_00029
+    rdf:type vec:WireElement ;
+    rdfs:label "WireElement[id_00029]" ;
+    vec:wireElementIdentification "1" ;
+    vec:wireElementWireElementSpecification
+        :WireElementSpecification-id_00032 ;
+    vec-dbg:id "id_00029" .
+
+:CavityReference-id_00063
+    rdf:type vec:CavityReference ;
+    rdfs:label "CavityReference[id_00063]" ;
+    vec:cavityReferenceIdentification
+        "1" ;
+    vec:cavityReferenceReferencedCavity
+        :Cavity-id_00011 ;
+    vec-dbg:id "id_00063" .
+
+:WireElement-id_00045
+    rdf:type vec:WireElement ;
+    rdfs:label "WireElement[id_00045]" ;
+    vec:wireElementIdentification "2" ;
+    vec:wireElementWireElementSpecification
+        :WireElementSpecification-id_00050 ;
+    vec-dbg:id "id_00045" .
+
+:CoreSpecification-id_00025
+    rdf:type vec:CoreSpecification ;
+    rdfs:label "CoreSpecification[id_00025]" ;
+    vec:conductorSpecificationCrossSectionArea
+        [
+            rdf:type vec:NumericalValue ;
+            rdfs:label "NumericalValue[id_00026]" ;
+            vec:numericalValueValueComponent
+                "0.5"^^xsd:double ;
+            vec:valueWithUnitUnitComponent :SIUnit-id_00101 ;
+            vec-dbg:id "id_00026"
+        ] ;
+    vec:specificationIdentification
+        "FL-A-0.5" ;
+    vec-dbg:id "id_00025" .
+
+:Cavity-id_00005 rdf:type vec:Cavity ;
+    rdfs:label "Cavity[id_00005]" ;
+    vec:cavityCavityNumber "1" ;
+    vec-dbg:id "id_00005" .
+
+:WireMounting-id_00084
+    rdf:type vec:WireMounting ;
+    rdfs:label "WireMounting[id_00084]" ;
+    vec:wireMountingReferencedWireEnd
+        :WireEnd-id_00072 ;
+    vec-dbg:id "id_00084" .
+
+:GeneralTechnicalPartSpecification-id_00008
+    rdf:type vec:GeneralTechnicalPartSpecification ;
+    rdfs:label "GeneralTechnicalPartSpecification[id_00008]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00095 ;
+    vec:specificationIdentification
+        "DRAW-CON-B" ;
+    vec-dbg:id "id_00008" .
+
+:GeneralTechnicalPartSpecification-id_00024
+    rdf:type vec:GeneralTechnicalPartSpecification ;
+    rdfs:label "GeneralTechnicalPartSpecification[id_00024]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00099 ;
+    vec:specificationIdentification
+        "DRAW-N_018_886_1" ;
+    vec-dbg:id "id_00024" .
+
+:CompositionSpecification-id_00054
+    rdf:type vec:CompositionSpecification ;
+    rdfs:label "CompositionSpecification[id_00054]" ;
+    vec:compositionSpecificationComponent
+        :PartOccurrence-id_00068, :PartOccurrence-id_00064, :PartOccurrence-id_00060, :PartOccurrence-id_00055 ;
+    vec:specificationIdentification
+        "HARNESS-1" ;
+    vec-dbg:id "id_00054" .
+
+:DocumentVersion-id_00038
+    rdf:type vec:DocumentVersion ;
+    rdfs:label "DocumentVersion[id_00038]" ;
+    vec:documentVersionDocumentNumber
+        "DRAW-WIR-3C0_972_100" ;
+    vec:documentVersionDocumentType
+        vec:DocumentType_PartMaster ;
+    vec:documentVersionDocumentVersion
+        "1" ;
+    vec:documentVersionReferencedPart
+        :PartVersion-id_00100 ;
+    vec:documentVersionSpecification
+        :WireElementSpecification-id_00046,
+        :InsulationSpecification-id_00051,
+        :WireElementSpecification-id_00050,
+        :CoreSpecification-id_00040,
+        :GeneralTechnicalPartSpecification-id_00039,
+        :InsulationSpecification-id_00048,
+        :WireSpecification-id_00042,
+        :WireElementSpecification-id_00047 ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec-dbg:id "id_00038" .
+
+:ContactPoint-id_00088
+    rdf:type vec:ContactPoint ;
+    rdfs:label "ContactPoint[id_00088]" ;
+    vec:contactPointCavityMounting :CavityMounting-id_00089 ;
+    vec:contactPointIdentification "YW001.1" ;
+    vec:contactPointWireMounting :WireMounting-id_00090 ;
+    vec-dbg:id "id_00088" .
+
+:InsulationSpecification-id_00051
+    rdf:type vec:InsulationSpecification ;
+    rdfs:label "InsulationSpecification[id_00051]" ;
+    vec:insulationSpecificationFirstIdentificationColor
+        [
+            rdf:type vec:Color ;
+            rdfs:label "Color[id_00052]" ;
+            vec:colorKey "B/K" ;
+            vec:colorReferenceSystem
+                <https://www.acme.inc/conversion/test/diff-test#ColorReferenceSystem_Acme%20Inc.> ;
+            vec-dbg:id "id_00052"
+        ] ;
+    vec:specificationIdentification
+        "FLRY-BKII" ;
+    vec-dbg:id "id_00051" .
+
+:PartOccurrence-id_00060
+    rdf:type vec:PartOccurrence ;
+    rdfs:label "PartOccurrence[id_00060]" ;
+    vec:occurrenceOrUsageIdentification
+        "XA.44.1" ;
+    vec:occurrenceOrUsageRole :ConnectorHousingRole-id_00061 ;
+    vec:partOccurrencePart :PartVersion-id_00095 ;
+    vec-dbg:id "id_00060" .
+
+:PartVersion-id_00100
+    rdf:type vec:PartVersion ;
+    rdfs:label "PartVersion[id_00100]" ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec:partVersionPartNumber "3C0_972_100" ;
+    vec:partVersionPartVersion "1" ;
+    vec:partVersionPrimaryPartType vec:PrimaryPartType_Wire ;
+    vec-dbg:id "id_00100" .
+
+:DocumentVersion-id_00017
+    rdf:type vec:DocumentVersion ;
+    rdfs:label "DocumentVersion[id_00017]" ;
+    vec:documentVersionDocumentNumber
+        "DRAW-TERM-N_103_361_01" ;
+    vec:documentVersionDocumentType
+        vec:DocumentType_PartMaster ;
+    vec:documentVersionDocumentVersion
+        "1" ;
+    vec:documentVersionReferencedPart
+        :PartVersion-id_00097 ;
+    vec:documentVersionSpecification
+        :PluggableTerminalSpecification-id_00019, :GeneralTechnicalPartSpecification-id_00018 ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec-dbg:id "id_00017" .
+
+:ContactPoint-id_00091
+    rdf:type vec:ContactPoint ;
+    rdfs:label "ContactPoint[id_00091]" ;
+    vec:contactPointCavityMounting :CavityMounting-id_00092 ;
+    vec:contactPointIdentification "XA.F2.1_1.1" ;
+    vec:contactPointWireMounting :WireMounting-id_00093 ;
+    vec-dbg:id "id_00091" .
+
+:CavityMounting-id_00083
+    rdf:type vec:CavityMounting ;
+    rdfs:label "CavityMounting[id_00083]" ;
+    vec:cavityMountingEquippedCavityRef
+        :CavityReference-id_00059 ;
+    vec-dbg:id "id_00083" .
+
+:ConnectorHousingRole-id_00056
+    rdf:type vec:ConnectorHousingRole ;
+    rdfs:label "ConnectorHousingRole[id_00056]" ;
+    vec:connectorHousingRoleConnectorHousingSpecification
+        :ConnectorHousingSpecification-id_00003 ;
+    vec:connectorHousingRoleSlotReference
+        :SlotReference-id_00057 ;
+    vec:roleIdentification "XA.F2.1_1" ;
+    vec-dbg:id "id_00056" .
+
+:GeneralTechnicalPartSpecification-id_00039
+    rdf:type vec:GeneralTechnicalPartSpecification ;
+    rdfs:label "GeneralTechnicalPartSpecification[id_00039]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00100 ;
+    vec:specificationIdentification
+        "DRAW-WIR-3C0_972_100" ;
+    vec-dbg:id "id_00039" .
+
+:PartVersion-id_00095
+    rdf:type vec:PartVersion ;
+    rdfs:label "PartVersion[id_00095]" ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec:partVersionPartNumber "CON-B" ;
+    vec:partVersionPartVersion "1" ;
+    vec:partVersionPrimaryPartType vec:PrimaryPartType_ConnectorHousing ;
+    vec-dbg:id "id_00095" .
+
+:WireElementSpecification-id_00032
+    rdf:type vec:WireElementSpecification ;
+    rdfs:label "WireElementSpecification[id_00032]" ;
+    vec:specificationIdentification
+        "1" ;
+    vec:wireElementSpecificationConductorSpecification
+        :CoreSpecification-id_00025 ;
+    vec:wireElementSpecificationInsulationSpecification
+        :InsulationSpecification-id_00033 ;
+    vec-dbg:id "id_00032" .
+
+:DocumentVersion-id_00012
+    rdf:type vec:DocumentVersion ;
+    rdfs:label "DocumentVersion[id_00012]" ;
+    vec:documentVersionDocumentNumber
+        "DRAW-CON-B" ;
+    vec:documentVersionDocumentType
+        vec:DocumentType_PartMaster ;
+    vec:documentVersionDocumentVersion
+        "1" ;
+    vec:documentVersionReferencedPart
+        :PartVersion-id_00096 ;
+    vec:documentVersionSpecification
+        :ConnectorHousingSpecification-id_00014, :GeneralTechnicalPartSpecification-id_00013 ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec-dbg:id "id_00012" .
+
+:DocumentVersion-id_00020
+    rdf:type vec:DocumentVersion ;
+    rdfs:label "DocumentVersion[id_00020]" ;
+    vec:documentVersionDocumentNumber
+        "DRAW-TERM-036_911_137" ;
+    vec:documentVersionDocumentType
+        vec:DocumentType_PartMaster ;
+    vec:documentVersionDocumentVersion
+        "1" ;
+    vec:documentVersionReferencedPart
+        :PartVersion-id_00098 ;
+    vec:documentVersionSpecification
+        :PluggableTerminalSpecification-id_00022, :GeneralTechnicalPartSpecification-id_00021 ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec-dbg:id "id_00020" .
+
+:ConnectorHousingSpecification-id_00009
+    rdf:type vec:ConnectorHousingSpecification ;
+    rdfs:label "ConnectorHousingSpecification[id_00009]" ;
+    vec:connectorHousingSpecificationSlot
+        :Slot-id_00010 ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00095 ;
+    vec:specificationIdentification
+        "DRAW-CON-B" ;
+    vec-dbg:id "id_00009" .
+
+:GeneralTechnicalPartSpecification-id_00018
+    rdf:type vec:GeneralTechnicalPartSpecification ;
+    rdfs:label "GeneralTechnicalPartSpecification[id_00018]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00097 ;
+    vec:specificationIdentification
+        "DRAW-TERM-N_103_361_01" ;
+    vec-dbg:id "id_00018" .
+
+:WireEnd-id_00078 rdf:type vec:WireEnd ;
+    rdfs:label "WireEnd[id_00078]" ;
+    vec:wireEndIdentification "XA.F2.1_1.1" ;
+    vec:wireEndPositionOnWire "1.0"^^xsd:double ;
+    vec-dbg:id "id_00078" .
+
+:GeneralTechnicalPartSpecification-id_00013
+    rdf:type vec:GeneralTechnicalPartSpecification ;
+    rdfs:label "GeneralTechnicalPartSpecification[id_00013]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00096 ;
+    vec:specificationIdentification
+        "DRAW-CON-B" ;
+    vec-dbg:id "id_00013" .
+
+:GeneralTechnicalPartSpecification-id_00021
+    rdf:type vec:GeneralTechnicalPartSpecification ;
+    rdfs:label "GeneralTechnicalPartSpecification[id_00021]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00098 ;
+    vec:specificationIdentification
+        "DRAW-TERM-036_911_137" ;
+    vec-dbg:id "id_00021" .
+
+:WireElementSpecification-id_00047
+    rdf:type vec:WireElementSpecification ;
+    rdfs:label "WireElementSpecification[id_00047]" ;
+    vec:specificationIdentification
+        "1" ;
+    vec:wireElementSpecificationConductorSpecification
+        :CoreSpecification-id_00040 ;
+    vec:wireElementSpecificationInsulationSpecification
+        :InsulationSpecification-id_00048 ;
+    vec-dbg:id "id_00047" .
+
+:SlotReference-id_00057
+    rdf:type vec:SlotReference ;
+    rdfs:label "SlotReference[id_00057]" ;
+    vec:abstractSlotReferenceIdentification
+        "A" ;
+    vec:abstractSlotReferenceReferencedSlot
+        :Slot-id_00004 ;
+    vec:slotReferenceCavityReference
+        :CavityReference-id_00059, :CavityReference-id_00058 ;
+    vec-dbg:id "id_00057" .
+
+:ContactPoint-id_00085
+    rdf:type vec:ContactPoint ;
+    rdfs:label "ContactPoint[id_00085]" ;
+    vec:contactPointCavityMounting :CavityMounting-id_00086 ;
+    vec:contactPointIdentification "XA.44.1.1" ;
+    vec:contactPointWireMounting :WireMounting-id_00087 ;
+    vec-dbg:id "id_00085" .
+
+:PartVersion-id_00097
+    rdf:type vec:PartVersion ;
+    rdfs:label "PartVersion[id_00097]" ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec:partVersionPartNumber "N_103_361_01" ;
+    vec:partVersionPartVersion "1" ;
+    vec:partVersionPrimaryPartType vec:PrimaryPartType_PluggableTerminal ;
+    vec-dbg:id "id_00097" .
+
+:WireEnd-id_00073 rdf:type vec:WireEnd ;
+    rdfs:label "WireEnd[id_00073]" ;
+    vec:wireEndIdentification "XA.44.1.1" ;
+    vec:wireEndPositionOnWire "1.0"^^xsd:double ;
+    vec-dbg:id "id_00073" .
+
+:CavityReference-id_00059
+    rdf:type vec:CavityReference ;
+    rdfs:label "CavityReference[id_00059]" ;
+    vec:cavityReferenceIdentification
+        "2" ;
+    vec:cavityReferenceReferencedCavity
+        :Cavity-id_00006 ;
+    vec-dbg:id "id_00059" .
+
+:CavityReference-id_00067
+    rdf:type vec:CavityReference ;
+    rdfs:label "CavityReference[id_00067]" ;
+    vec:cavityReferenceIdentification
+        "1" ;
+    vec:cavityReferenceReferencedCavity
+        :Cavity-id_00016 ;
+    vec-dbg:id "id_00067" .
+
+:WireElementSpecification-id_00050
+    rdf:type vec:WireElementSpecification ;
+    rdfs:label "WireElementSpecification[id_00050]" ;
+    vec:specificationIdentification
+        "2" ;
+    vec:wireElementSpecificationConductorSpecification
+        :CoreSpecification-id_00040 ;
+    vec:wireElementSpecificationInsulationSpecification
+        :InsulationSpecification-id_00051 ;
+    vec-dbg:id "id_00050" .
+
+:ContactingSpecification-id_00081
+    rdf:type vec:ContactingSpecification ;
+    rdfs:label "ContactingSpecification[id_00081]" ;
+    vec:contactingSpecificationContactPoint
+        :ContactPoint-id_00091, :ContactPoint-id_00088, :ContactPoint-id_00085, :ContactPoint-id_00082 ;
+    vec:specificationIdentification
+        "HARNESS-1" ;
+    vec-dbg:id "id_00081" .
+
+:ConnectorHousingRole-id_00061
+    rdf:type vec:ConnectorHousingRole ;
+    rdfs:label "ConnectorHousingRole[id_00061]" ;
+    vec:connectorHousingRoleConnectorHousingSpecification
+        :ConnectorHousingSpecification-id_00009 ;
+    vec:connectorHousingRoleSlotReference
+        :SlotReference-id_00062 ;
+    vec:roleIdentification "XA.44.1" ;
+    vec-dbg:id "id_00061" .
+
+:WireElement-id_00028
+    rdf:type vec:WireElement ;
+    rdfs:label "WireElement[id_00028]" ;
+    vec:wireElementIdentification "ROOT" ;
+    vec:wireElementSubWireElement :WireElement-id_00030, :WireElement-id_00029 ;
+    vec:wireElementWireElementSpecification
+        :WireElementSpecification-id_00031 ;
+    vec-dbg:id "id_00028" .
+
+:DocumentVersion-id_00001
+    rdf:type vec:DocumentVersion ;
+    rdfs:label "DocumentVersion[id_00001]" ;
+    vec:documentVersionDocumentNumber
+        "DRAW-CON-A" ;
+    vec:documentVersionDocumentType
+        vec:DocumentType_PartMaster ;
+    vec:documentVersionDocumentVersion
+        "1" ;
+    vec:documentVersionReferencedPart
+        :PartVersion-id_00094 ;
+    vec:documentVersionSpecification
+        :GeneralTechnicalPartSpecification-id_00002, :ConnectorHousingSpecification-id_00003 ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec-dbg:id "id_00001" .
+
+:WireElement-id_00044
+    rdf:type vec:WireElement ;
+    rdfs:label "WireElement[id_00044]" ;
+    vec:wireElementIdentification "1" ;
+    vec:wireElementWireElementSpecification
+        :WireElementSpecification-id_00047 ;
+    vec-dbg:id "id_00044" .
+
+:SIUnit-id_00102 rdf:type vec:SIUnit ;
+    rdfs:label "SIUnit[id_00102]" ;
+    vec:sIUnitSiPrefix vec:SiPrefix_Milli ;
+    vec:sIUnitSiUnitName vec:SiUnitName_Metre ;
+    vec-dbg:id "id_00102" .
+
+:PartOccurrence-id_00064
+    rdf:type vec:PartOccurrence ;
+    rdfs:label "PartOccurrence[id_00064]" ;
+    vec:occurrenceOrUsageIdentification
+        "YW001" ;
+    vec:occurrenceOrUsageRole :ConnectorHousingRole-id_00065 ;
+    vec:partOccurrencePart :PartVersion-id_00096 ;
+    vec-dbg:id "id_00064" .
+
+:CoreSpecification-id_00040
+    rdf:type vec:CoreSpecification ;
+    rdfs:label "CoreSpecification[id_00040]" ;
+    vec:conductorSpecificationCrossSectionArea
+        [
+            rdf:type vec:NumericalValue ;
+            rdfs:label "NumericalValue[id_00041]" ;
+            vec:numericalValueValueComponent
+                "0.3"^^xsd:double ;
+            vec:valueWithUnitUnitComponent :SIUnit-id_00101 ;
+            vec-dbg:id "id_00041"
+        ] ;
+    vec:specificationIdentification
+        "FL-A-0.3" ;
+    vec-dbg:id "id_00040" .
+
+:ConnectorHousingSpecification-id_00014
+    rdf:type vec:ConnectorHousingSpecification ;
+    rdfs:label "ConnectorHousingSpecification[id_00014]" ;
+    vec:connectorHousingSpecificationSlot
+        :Slot-id_00015 ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00096 ;
+    vec:specificationIdentification
+        "DRAW-CON-B" ;
+    vec-dbg:id "id_00014" .
+
+:Slot-id_00015 rdf:type vec:Slot ;
+    rdfs:label "Slot[id_00015]" ;
+    vec:abstractSlotSlotNumber "A" ;
+    vec:slotCavity :Cavity-id_00016 ;
+    vec-dbg:id "id_00015" .
+
+:DocumentVersion-id_00053
+    rdf:type vec:DocumentVersion ;
+    rdfs:label "DocumentVersion[id_00053]" ;
+    vec:documentVersionDocumentNumber
+        "HARNESS-1" ;
+    vec:documentVersionDocumentType
+        vec:DocumentType_HarnessDescription ;
+    vec:documentVersionDocumentVersion
+        "1" ;
+    vec:documentVersionSpecification
+        :ContactingSpecification-id_00081, :CompositionSpecification-id_00054 ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec-dbg:id "id_00053" .
+
+:WireElementReference-id_00076
+    rdf:type vec:WireElementReference ;
+    rdfs:label "WireElementReference[id_00076]" ;
+    vec:wireElementReferenceIdentification
+        "264001" ;
+    vec:wireElementReferenceReferencedWireElement
+        :WireElement-id_00030 ;
+    vec:wireElementReferenceWireEnd
+        :WireEnd-id_00078, :WireEnd-id_00077 ;
+    vec:wireElementReferenceWireLength
+        [
+            rdf:type vec:WireLength ;
+            rdfs:label "WireLength[id_00079]" ;
+            vec:wireLengthLengthType vec:WireLengthType_DMU ;
+            vec:wireLengthLengthValue
+                [
+                    rdf:type vec:NumericalValue ;
+                    rdfs:label "NumericalValue[id_00080]" ;
+                    vec:numericalValueValueComponent
+                        "503.0"^^xsd:double ;
+                    vec:valueWithUnitUnitComponent :SIUnit-id_00102 ;
+                    vec-dbg:id "id_00080"
+                ] ;
+            vec-dbg:id "id_00079"
+        ] ;
+    vec-dbg:id "id_00076" .
+
+:WireSpecification-id_00027
+    rdf:type vec:WireSpecification ;
+    rdfs:label "WireSpecification[id_00027]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00099 ;
+    vec:specificationIdentification
+        "DRAW-N_018_886_1" ;
+    vec:wireSpecificationWireElement
+        :WireElement-id_00028 ;
+    vec:wireSpecificationWireElementSpecification
+        :WireElementSpecification-id_00031 ;
+    vec-dbg:id "id_00027" .
+
+<https://www.acme.inc/conversion/test/diff-test#ColorReferenceSystem_Acme%20Inc.>
+    rdf:type vec:ColorReferenceSystem ;
+    vec:enumLiteral "Acme Inc." .
+
+:PartVersion-id_00099
+    rdf:type vec:PartVersion ;
+    rdfs:label "PartVersion[id_00099]" ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec:partVersionPartNumber "N_018_886_1" ;
+    vec:partVersionPartVersion "1" ;
+    vec:partVersionPrimaryPartType vec:PrimaryPartType_Wire ;
+    vec-dbg:id "id_00099" .
+
+:GeneralTechnicalPartSpecification-id_00002
+    rdf:type vec:GeneralTechnicalPartSpecification ;
+    rdfs:label "GeneralTechnicalPartSpecification[id_00002]" ;
+    vec:partOrUsageRelatedSpecificationDescribedPart
+        :PartVersion-id_00094 ;
+    vec:specificationIdentification
+        "DRAW-CON-A" ;
+    vec-dbg:id "id_00002" .
+
+:Slot-id_00010 rdf:type vec:Slot ;
+    rdfs:label "Slot[id_00010]" ;
+    vec:abstractSlotSlotNumber "A" ;
+    vec:slotCavity :Cavity-id_00011 ;
+    vec-dbg:id "id_00010" .
+
+:ContactPoint-id_00082
+    rdf:type vec:ContactPoint ;
+    rdfs:label "ContactPoint[id_00082]" ;
+    vec:contactPointCavityMounting :CavityMounting-id_00083 ;
+    vec:contactPointIdentification "XA.F2.1_1.2" ;
+    vec:contactPointWireMounting :WireMounting-id_00084 ;
+    vec-dbg:id "id_00082" .
+
+:SlotReference-id_00062
+    rdf:type vec:SlotReference ;
+    rdfs:label "SlotReference[id_00062]" ;
+    vec:abstractSlotReferenceIdentification
+        "A" ;
+    vec:abstractSlotReferenceReferencedSlot
+        :Slot-id_00010 ;
+    vec:slotReferenceCavityReference
+        :CavityReference-id_00063 ;
+    vec-dbg:id "id_00062" .
+
+:WireElementReference-id_00071
+    rdf:type vec:WireElementReference ;
+    rdfs:label "WireElementReference[id_00071]" ;
+    vec:wireElementReferenceIdentification
+        "264002" ;
+    vec:wireElementReferenceReferencedWireElement
+        :WireElement-id_00029 ;
+    vec:wireElementReferenceWireEnd
+        :WireEnd-id_00073, :WireEnd-id_00072 ;
+    vec:wireElementReferenceWireLength
+        [
+            rdf:type vec:WireLength ;
+            rdfs:label "WireLength[id_00074]" ;
+            vec:wireLengthLengthType vec:WireLengthType_DMU ;
+            vec:wireLengthLengthValue
+                [
+                    rdf:type vec:NumericalValue ;
+                    rdfs:label "NumericalValue[id_00075]" ;
+                    vec:numericalValueValueComponent
+                        "1063.0"^^xsd:double ;
+                    vec:valueWithUnitUnitComponent :SIUnit-id_00102 ;
+                    vec-dbg:id "id_00075"
+                ] ;
+            vec-dbg:id "id_00074"
+        ] ;
+    vec-dbg:id "id_00071" .
+
+:PartVersion-id_00094
+    rdf:type vec:PartVersion ;
+    rdfs:label "PartVersion[id_00094]" ;
+    vec:itemVersionCompanyName "Acme Inc." ;
+    vec:partVersionPartNumber "CON-A" ;
+    vec:partVersionPartVersion "1" ;
+    vec:partVersionPrimaryPartType vec:PrimaryPartType_ConnectorHousing ;
+    vec-dbg:id "id_00094" .
+
+:WireElementSpecification-id_00031
+    rdf:type vec:WireElementSpecification ;
+    rdfs:label "WireElementSpecification[id_00031]" ;
+    vec:specificationIdentification
+        "ROOT" ;
+    vec:wireElementSpecificationSubWireElementSpecification
+        :WireElementSpecification-id_00035, :WireElementSpecification-id_00032 ;
+    vec-dbg:id "id_00031" .
+
+:Cavity-id_00006 rdf:type vec:Cavity ;
+    rdfs:label "Cavity[id_00006]" ;
+    vec:cavityCavityNumber "2" ;
+    vec-dbg:id "id_00006" .
+
+:WireMounting-id_00093
+    rdf:type vec:WireMounting ;
+    rdfs:label "WireMounting[id_00093]" ;
+    vec:wireMountingReferencedWireEnd
+        :WireEnd-id_00078 ;
+    vec-dbg:id "id_00093" .
+
+:CavityMounting-id_00089
+    rdf:type vec:CavityMounting ;
+    rdfs:label "CavityMounting[id_00089]" ;
+    vec:cavityMountingEquippedCavityRef
+        :CavityReference-id_00067 ;
+    vec-dbg:id "id_00089" .
+
+:InsulationSpecification-id_00036
+    rdf:type vec:InsulationSpecification ;
+    rdfs:label "InsulationSpecification[id_00036]" ;
+    vec:insulationSpecificationFirstIdentificationColor
+        [
+            rdf:type vec:Color ;
+            rdfs:label "Color[id_00037]" ;
+            vec:colorKey "SW" ;
+            vec:colorReferenceSystem
+                <https://www.acme.inc/conversion/test/diff-test#ColorReferenceSystem_Acme%20Inc.> ;
+            vec-dbg:id "id_00037"
+        ] ;
+    vec:specificationIdentification
+        "FLRY-SW" ;
+    vec-dbg:id "id_00036" .

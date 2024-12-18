@@ -30,8 +30,10 @@ module com.foursoft.harness.vec.rdf.common {
     requires org.apache.commons.lang3;
     requires jakarta.xml.bind;
     requires org.apache.jena.core;
+    requires java.desktop;
     exports com.foursoft.harness.vec.rdf.common.exception;
     exports com.foursoft.harness.vec.rdf.common.meta;
     exports com.foursoft.harness.vec.rdf.common;
     exports com.foursoft.harness.vec.rdf.common.meta.xmi;
+    exports com.foursoft.harness.vec.rdf.common.util;
 }

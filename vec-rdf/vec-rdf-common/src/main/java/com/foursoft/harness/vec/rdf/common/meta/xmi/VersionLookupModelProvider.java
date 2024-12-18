@@ -30,25 +30,24 @@ import com.foursoft.harness.vec.rdf.common.VecVersion;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
-public class VersionLookupModelProvider implements VecModelProvider {
-    private final Map<String, VecModelProvider> providerMap = new HashMap<>();
+public class VersionLookupModelProvider implements UmlModelProvider {
+    private final Map<String, UmlModelProvider> providerMap = new HashMap<>();
 
     @Override
-    public Optional<UmlField> findField(Field field) {
-        VecModelProvider provider = getProvider(field.getDeclaringClass()
-                                                        .getPackageName());
+    public UmlField findField(final Field field) {
+        final UmlModelProvider provider = getProvider(field.getDeclaringClass()
+                                                              .getPackageName());
 
         return provider.findField(field);
     }
 
-    private VecModelProvider getProvider(String pkg) {
+    private UmlModelProvider getProvider(final String pkg) {
         return providerMap.computeIfAbsent(pkg, this::loadProvider);
     }
 
-    private VecModelProvider loadProvider(String aPackage) {
-        return new VecModelProviderBuilder(
+    private UmlModelProvider loadProvider(final String aPackage) {
+        return new XmiModelProviderBuilder(
                 VecVersion.findLatestVersionForApiPackage(aPackage).getModelInputStream()).build();
     }
 }
