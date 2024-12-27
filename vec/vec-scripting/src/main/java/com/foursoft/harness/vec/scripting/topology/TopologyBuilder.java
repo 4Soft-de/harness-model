@@ -3,14 +3,18 @@ package com.foursoft.harness.vec.scripting.topology;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.DefaultValues;
+import com.foursoft.harness.vec.scripting.Locator;
+import com.foursoft.harness.vec.v2x.VecConfigurationConstraint;
 import com.foursoft.harness.vec.v2x.VecTopologyNode;
 import com.foursoft.harness.vec.v2x.VecTopologySpecification;
 
 public class TopologyBuilder implements Builder<VecTopologySpecification> {
 
     private final VecTopologySpecification topologySpecification;
+    private final Locator<VecConfigurationConstraint> configurationConstraintLocator;
 
-    public TopologyBuilder() {
+    public TopologyBuilder(Locator<VecConfigurationConstraint> configurationConstraintLocator) {
+        this.configurationConstraintLocator = configurationConstraintLocator;
         this.topologySpecification = initializeTopologySpecification();
     }
 
@@ -44,7 +48,8 @@ public class TopologyBuilder implements Builder<VecTopologySpecification> {
         VecTopologyNode startNode = findOrCreateNode(startNodeIdentification);
         VecTopologyNode endNode = findOrCreateNode(endNodeIdentification);
 
-        TopologySegmentBuilder builder = new TopologySegmentBuilder(identification, startNode, endNode);
+        TopologySegmentBuilder builder = new TopologySegmentBuilder(configurationConstraintLocator, identification,
+                                                                    startNode, endNode);
 
         customizer.customize(builder);
 

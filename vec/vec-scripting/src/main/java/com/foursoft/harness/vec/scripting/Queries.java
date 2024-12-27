@@ -51,9 +51,20 @@ public final class Queries {
                         notFoundException("Cavity", "SlotNumber: " + slotNumber + " CavityNumber: " + cavityNumber));
     }
 
+    public static Locator<VecConfigurationConstraint> configConstraintLocator(
+            VecConfigurationConstraintSpecification constraintSpecification) {
+        return id -> findByValue(constraintSpecification.getConfigurationConstraints(),
+                                 VecConfigurationConstraint::getIdentification, id, "ConfigurationConstraint");
+    }
+
     public static Locator<VecTopologyNode> nodeLocator(VecTopologySpecification topologySpecification) {
         return id -> findByValue(topologySpecification.getTopologyNodes(), VecTopologyNode::getIdentification, id,
                                  "TopologyNode");
+    }
+
+    public static Locator<VecTopologySegment> segmentLocator(VecTopologySpecification topologySpecification) {
+        return id -> findByValue(topologySpecification.getTopologySegments(), VecTopologySegment::getIdentification, id,
+                                 "TopologySegment");
     }
 
     public static Locator<VecPartOccurrence> partOccurrenceLocator(
@@ -61,7 +72,19 @@ public final class Queries {
         return id ->
                 findByValue(compositionSpecification.getComponents(), VecPartOccurrence::getIdentification, id,
                             "PartOccurrence");
+    }
 
+    public static Locator<VecWireElementReference> wireElementReferenceLocator(
+            VecCompositionSpecification compositionSpecification) {
+        return id -> {
+            List<VecWireElementReference> wireRefs = compositionSpecification.getComponents()
+                    .stream()
+                    .flatMap(o -> o.getRoleWithType(VecWireRole.class).stream())
+                    .flatMap(o -> o.getWireElementReferences().stream())
+                    .toList();
+
+            return findByValue(wireRefs, VecWireElementReference::getIdentification, id, "WireElementReference");
+        };
     }
 
     private static <T, V> T findByValue(List<T> elements, Function<T, V> valueFn, V value, String elementType) {

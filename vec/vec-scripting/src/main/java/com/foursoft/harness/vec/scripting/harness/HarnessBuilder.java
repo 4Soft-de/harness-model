@@ -32,16 +32,17 @@ import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.components.PartOccurrenceBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.routing.RoutingSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
 import com.foursoft.harness.vec.scripting.topology.TopologyBuilder;
+import com.foursoft.harness.vec.scripting.variants.ConfigManagementBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.foursoft.harness.vec.scripting.Queries.nodeLocator;
-import static com.foursoft.harness.vec.scripting.Queries.partOccurrenceLocator;
+import static com.foursoft.harness.vec.scripting.Queries.*;
 
 public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
@@ -59,7 +60,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
     private final List<VecPartVersion> createdParts = new ArrayList<>();
     private VecTopologySpecification topologySpecification;
-    private VecPlacementSpecification placementSpecification;
+    private VecConfigurationConstraintSpecification configurationConstraintSpecification;
 
     public HarnessBuilder(final VecSession session, final String documentNumber, String version) {
         this.session = session;
@@ -137,16 +138,8 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     }
 
     public HarnessBuilder addConnection(String wireElementReferenceId, Customizer<ConnectivityBuilder> customizer) {
-        final VecWireElementReference wireElementReference = this.compositionSpecification.getComponents()
-                .stream()
-                .flatMap(o -> o.getRoleWithType(VecWireRole.class)
-                        .stream())
-                .flatMap(o -> o.getWireElementReferences()
-                        .stream())
-                .filter(ref -> ref.getIdentification()
-                        .equals(wireElementReferenceId))
-                .findAny()
-                .orElseThrow();
+        final VecWireElementReference wireElementReference = wireElementReferenceLocator(
+                compositionSpecification).locate(wireElementReferenceId);
 
         ConnectivityBuilder builder = new ConnectivityBuilder(wireElementReference, this::findOccurrence);
 
@@ -213,7 +206,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     }
 
     public HarnessBuilder withTopology(Customizer<TopologyBuilder> customizer) {
-        TopologyBuilder builder = new TopologyBuilder();
+        TopologyBuilder builder = new TopologyBuilder(configConstraintLocator(configurationConstraintSpecification));
 
         customizer.customize(builder);
 
@@ -230,11 +223,41 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
                 nodeLocator(this.topologySpecification));
         customizer.customize(builder);
 
-        placementSpecification = builder.build();
+        VecPlacementSpecification placementSpecification = builder.build();
 
         harnessDocumentBuilder.addSpecification(placementSpecification);
 
         return this;
+    }
+
+    public HarnessBuilder withRoutings(Customizer<RoutingSpecificationBuilder> customizer) {
+        RoutingSpecificationBuilder builder = new RoutingSpecificationBuilder(
+                wireElementReferenceLocator(compositionSpecification), segmentLocator(topologySpecification),
+                configConstraintLocator(configurationConstraintSpecification));
+
+        customizer.customize(builder);
+
+        final VecRoutingSpecification routingSpecification = builder.build();
+
+        harnessDocumentBuilder.addSpecification(routingSpecification);
+
+        return this;
+    }
+
+    public HarnessBuilder withConfigManagement(Customizer<ConfigManagementBuilder> customizer) {
+        ConfigManagementBuilder builder = new ConfigManagementBuilder();
+
+        customizer.customize(builder);
+
+        builder.build().forEach(s -> {
+            if (s instanceof VecConfigurationConstraintSpecification constraintSpecification) {
+                this.configurationConstraintSpecification = constraintSpecification;
+            }
+            harnessDocumentBuilder.addSpecification(s);
+        });
+
+        return this;
+
     }
 
     public record HarnessResult(List<VecPartVersion> variants, VecDocumentVersion harnessDocument) {

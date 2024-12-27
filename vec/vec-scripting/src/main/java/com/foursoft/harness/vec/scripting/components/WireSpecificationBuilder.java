@@ -55,13 +55,15 @@ public class WireSpecificationBuilder extends PartOrUsageRelatedSpecificationBui
 
         customizer.customize(builder);
 
-        wireSpecification.setWireElement(builder.build());
+        final VecWireElement wireElement = builder.build();
 
-        return this;
+        return withWireElement(wireElement);
     }
 
     WireSpecificationBuilder withWireElement(VecWireElement wireElement) {
         wireSpecification.setWireElement(wireElement);
+
+        wireSpecification.setWireElementSpecification(wireElement.getWireElementSpecification());
 
         return this;
     }
