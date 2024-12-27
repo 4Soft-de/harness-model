@@ -23,11 +23,15 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.Locator;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
-import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
 import com.foursoft.harness.vec.v2x.*;
 import com.foursoft.harness.vec.v2x.visitor.StrictBaseVisitor;
 import org.slf4j.Logger;
@@ -47,12 +51,12 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
 
     private final VecPartOccurrence partOccurrence = new VecPartOccurrence();
     private final ComponentNodeLookup componentNodeLookup;
-    private final ConnectionLookup connectionLookup;
+    private final Locator<VecConnection> connectionLookup;
     private List<? extends Builder<? extends VecRole>> roleBuilders;
 
-    PartOccurrenceBuilder(VecSession session, String identification,
-                          final String partNumber, ComponentNodeLookup componentNodeLookup,
-                          ConnectionLookup connectionLookup) {
+    public PartOccurrenceBuilder(VecSession session, String identification,
+                                 final String partNumber, ComponentNodeLookup componentNodeLookup,
+                                 Locator<VecConnection> connectionLookup) {
         this.session = session;
         this.partNumber = partNumber;
         this.componentNodeLookup = componentNodeLookup;
@@ -128,6 +132,11 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
         public Builder<? extends VecRole> visitVecEEComponentSpecification(
                 final VecEEComponentSpecification aBean) throws RuntimeException {
             return new EEComponentRoleBuilder(session, partOccurrence.getIdentification(), aBean, componentNodeLookup);
+        }
+
+        @Override public Builder<? extends VecRole> visitVecPlaceableElementSpecification(
+                final VecPlaceableElementSpecification aBean) throws RuntimeException {
+            return new PlaceableElementRoleBuilder(partOccurrence.getIdentification(), aBean);
         }
 
         @Override

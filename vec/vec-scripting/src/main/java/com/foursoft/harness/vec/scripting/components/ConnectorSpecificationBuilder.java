@@ -23,8 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.v2x.VecCavity;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecSlot;
@@ -39,7 +40,7 @@ public class ConnectorSpecificationBuilder
 
     private final Map<String, VecSlot> slots = new HashMap<>();
 
-    ConnectorSpecificationBuilder(final String partNumber) {
+    public ConnectorSpecificationBuilder(final String partNumber) {
 
         connectorHousingSpecification = initializeSpecification(VecConnectorHousingSpecification.class, partNumber);
     }

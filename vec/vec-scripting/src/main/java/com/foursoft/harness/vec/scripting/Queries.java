@@ -27,8 +27,9 @@ package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.v2x.*;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public final class Queries {
 
@@ -46,9 +47,34 @@ public final class Queries {
                 .flatMap(s -> s.getCavities().stream())
                 .filter(c -> cavityNumber.equals(c.getCavityNumber()))
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(
+                        notFoundException("Cavity", "SlotNumber: " + slotNumber + " CavityNumber: " + cavityNumber));
     }
 
+    public static Locator<VecTopologyNode> nodeLocator(VecTopologySpecification topologySpecification) {
+        return id -> findByValue(topologySpecification.getTopologyNodes(), VecTopologyNode::getIdentification, id,
+                                 "TopologyNode");
+    }
 
+    public static Locator<VecPartOccurrence> partOccurrenceLocator(
+            VecCompositionSpecification compositionSpecification) {
+        return id ->
+                findByValue(compositionSpecification.getComponents(), VecPartOccurrence::getIdentification, id,
+                            "PartOccurrence");
+
+    }
+
+    private static <T, V> T findByValue(List<T> elements, Function<T, V> valueFn, V value, String elementType) {
+        return elements.stream()
+                .filter(element -> value.equals(valueFn.apply(element)))
+                .findAny()
+                .orElseThrow(notFoundException(elementType, value));
+
+    }
+
+    private static <T> Supplier<VecScriptingException> notFoundException(String elementType, T identification) {
+        return () -> new VecScriptingException(
+                "No '" + elementType + "' found with identification '" + identification + "'.");
+    }
 
 }

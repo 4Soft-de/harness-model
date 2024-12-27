@@ -23,8 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.v2x.*;
 

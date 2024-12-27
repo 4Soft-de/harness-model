@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,34 +23,20 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
-import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.v2x.VecCavity;
 
-import java.lang.reflect.InvocationTargetException;
+public class CavityBuilder implements Builder<VecCavity> {
 
-public abstract class PartOrUsageRelatedSpecificationBuilder<X extends VecPartOrUsageRelatedSpecification> implements
-        Builder<X> {
+    private VecCavity cavity = new VecCavity();
 
-    public PartOrUsageRelatedSpecificationBuilder() {
+    CavityBuilder(String cavityNumber) {
+        cavity.setCavityNumber(cavityNumber);
     }
 
-    protected <T extends VecPartOrUsageRelatedSpecification> T initializeSpecification(Class<T> clazz,
-                                                                                       final String partNumber) {
-        try {
-            T instance = clazz.getConstructor().newInstance();
-
-            instance.setIdentification(abbreviatedClassName(clazz) + "-" + partNumber);
-
-            return instance;
-        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException |
-                 InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+    @Override public VecCavity build() {
+        return cavity;
     }
-
-    private String abbreviatedClassName(Class<?> clazz) {
-        return clazz.getSimpleName().replace("Vec", "").replaceAll("[^A-Z]", "");
-    }
-
 }

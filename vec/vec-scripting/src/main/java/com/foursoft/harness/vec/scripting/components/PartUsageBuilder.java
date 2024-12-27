@@ -23,27 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.core;
+package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.Locator;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.WireRoleBuilder;
-import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
-import com.foursoft.harness.vec.v2x.VecPartUsage;
-import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
-import com.foursoft.harness.vec.v2x.VecWireRole;
-import com.foursoft.harness.vec.v2x.VecWireSpecification;
+import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
+import com.foursoft.harness.vec.v2x.*;
 
 public class PartUsageBuilder implements Builder<VecPartUsage> {
 
     private final VecSession session;
     private final SpecificationLocator specificationLocator;
-    private final ConnectionLookup connectionLookup;
+    private final Locator<VecConnection> connectionLookup;
     private final VecPartUsage partUsage = new VecPartUsage();
 
     public PartUsageBuilder(VecSession session, String identification, SpecificationLocator specificationLocator,
-                            ConnectionLookup connectionLookup) {
+                            Locator<VecConnection> connectionLookup) {
         this.session = session;
         this.specificationLocator = specificationLocator;
         this.connectionLookup = connectionLookup;

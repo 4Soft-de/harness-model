@@ -23,13 +23,13 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
-import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
-import com.foursoft.harness.vec.v2x.VecWireElement;
-import com.foursoft.harness.vec.v2x.VecWireElementReference;
-import com.foursoft.harness.vec.v2x.VecWireRole;
-import com.foursoft.harness.vec.v2x.VecWireSpecification;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.Locator;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.*;
 
 import java.util.List;
 import java.util.Map;
@@ -40,11 +40,11 @@ public class WireRoleBuilder implements Builder<VecWireRole> {
 
     private final VecWireRole wireRole;
     private final VecSession session;
-    private final ConnectionLookup connectionLookup;
+    private final Locator<VecConnection> connectionLookup;
     private Map<String, WireElementRefBuilder> wireElementRefBuilders;
 
     public WireRoleBuilder(VecSession session, String identification,
-                           VecWireSpecification specification, ConnectionLookup connectionLookup) {
+                           VecWireSpecification specification, Locator<VecConnection> connectionLookup) {
         this.session = session;
         this.connectionLookup = connectionLookup;
         this.wireRole = wireRole(identification, specification);

@@ -23,10 +23,17 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.DefaultValues;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
+import com.foursoft.harness.vec.scripting.eecomponents.EEComponentSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.harness.VirtualPartStructureBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
 import com.foursoft.harness.vec.v2x.*;
@@ -44,9 +51,9 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     private final VecPartVersion part;
     private VecConnectionSpecification interalSchematic;
 
-    ComponentMasterDataBuilder(final VecSession session,
-                               final String partNumber, final String documentNumber,
-                               final VecPrimaryPartType primaryPartType) {
+    public ComponentMasterDataBuilder(final VecSession session,
+                                      final String partNumber, final String documentNumber,
+                                      final VecPrimaryPartType primaryPartType) {
         this.session = session;
         this.partNumber = partNumber;
         this.part = new PartVersionBuilder(session, partNumber, primaryPartType).build();
@@ -196,6 +203,12 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         ConnectorSpecificationBuilder builder = new ConnectorSpecificationBuilder(this.partNumber);
 
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
+    }
+
+    public ComponentMasterDataBuilder addPlaceability(VecPlacementType placementType) {
+        PlaceableElementSpecificationBuilder builder = new PlaceableElementSpecificationBuilder(this.partNumber,
+                                                                                                placementType);
+        return addPartOrUsageRelatedSpecification(builder, null, true);
     }
 
     public ComponentMasterDataBuilder addPluggableTerminal() {

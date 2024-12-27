@@ -23,18 +23,20 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
-import com.foursoft.harness.vec.scripting.schematic.ConnectionLookup;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.Locator;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.*;
 
 public class WireElementRefBuilder implements Builder<VecWireElementReference> {
 
     private final VecWireElementReference wireElementReference;
     private final VecSession session;
-    private final ConnectionLookup connectionLookup;
+    private final Locator<VecConnection> connectionLookup;
 
-    public WireElementRefBuilder(VecSession session, VecWireElement element, ConnectionLookup connectionLookup) {
+    public WireElementRefBuilder(VecSession session, VecWireElement element, Locator<VecConnection> connectionLookup) {
         this.session = session;
         this.connectionLookup = connectionLookup;
         wireElementReference = new VecWireElementReference();
@@ -53,7 +55,7 @@ public class WireElementRefBuilder implements Builder<VecWireElementReference> {
     }
 
     public WireElementRefBuilder withConnection(String identification) {
-        VecConnection vecConnection = this.connectionLookup.find(identification);
+        VecConnection vecConnection = this.connectionLookup.locate(identification);
 
         wireElementReference.getConnection().add(vecConnection);
 

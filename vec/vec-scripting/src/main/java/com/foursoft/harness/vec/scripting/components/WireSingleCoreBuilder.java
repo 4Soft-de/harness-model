@@ -23,8 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.v2x.VecCoreSpecification;
@@ -68,6 +70,11 @@ public class WireSingleCoreBuilder extends PartOrUsageRelatedSpecificationBuilde
 
     public WireSingleCoreBuilder withInsulationThickness(double thickness) {
         this.insulationSpecificationBuilder.withThickness(thickness);
+        return this;
+    }
+
+    public WireSingleCoreBuilder withColor(String primary) {
+        this.insulationSpecificationBuilder.withColor(primary);
         return this;
     }
 

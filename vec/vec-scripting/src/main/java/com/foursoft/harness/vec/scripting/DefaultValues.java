@@ -28,6 +28,8 @@ package com.foursoft.harness.vec.scripting;
 public class DefaultValues {
 
     public static final String VARIANT_CONFIGURATION_SPEC_IDENTIFICATION = "VARIANTS";
+    public static final String TOPO_SPEC_IDENTIFICATION = "TOPOLOGY";
+    public static final String PLACEMENT_SPECIFICATION_IDENTIFICATION = "PLACEMENTS";
     private String companyName = "Acme Inc.";
     private String colorReferenceSystem = "Acme Inc.";
     public static final String PART_MASTER = "PartMaster";

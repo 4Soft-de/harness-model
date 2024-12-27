@@ -23,40 +23,44 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
-import com.foursoft.harness.vec.v2x.VecMassInformation;
-import com.foursoft.harness.vec.v2x.VecUnit;
-import com.foursoft.harness.vec.v2x.VecValueDetermination;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.VecCoreSpecification;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 
-public class GeneralTechnicalPartSpecificationBuilder
-        extends PartOrUsageRelatedSpecificationBuilder<VecGeneralTechnicalPartSpecification> {
+public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
 
-    private final VecGeneralTechnicalPartSpecification element;
-    private final String partNumber;
+    private final VecCoreSpecification coreSpecification = new VecCoreSpecification();
+    private final VecSession session;
 
-    GeneralTechnicalPartSpecificationBuilder(final String partNumber) {
-        this.partNumber = partNumber;
-
-        element = this.initializeSpecification(VecGeneralTechnicalPartSpecification.class, partNumber);
+    CoreSpecificationBuilder(VecSession session, String identification) {
+        this.session = session;
+        coreSpecification.setIdentification(identification);
     }
 
-    public GeneralTechnicalPartSpecificationBuilder withMassInformation(double value, VecUnit unit) {
-
-        VecMassInformation massInformation = new VecMassInformation();
-        massInformation.setValue(value(value, unit));
-        massInformation.setDeterminationType(VecValueDetermination.MEASURED);
-        massInformation.setValueSource("Series");
-
-        element.getMassInformations().add(massInformation);
+    public CoreSpecificationBuilder withCSA(final double value) {
+        this.coreSpecification.setCrossSectionArea(value(value, session.squareMM()));
 
         return this;
     }
 
-    @Override public VecGeneralTechnicalPartSpecification build() {
-        return element;
+    public CoreSpecificationBuilder withNumberOfStrands(final int numberOfStrands) {
+        this.coreSpecification.setNumberOfStrands(value(numberOfStrands, session.piece()));
+        session.addXmlComment(this.coreSpecification.getNumberOfStrands(),
+                              " Unit `piece`, see: https://prostep-ivip.atlassian.net/browse/KBLFRM-1192 ");
+        return this;
+    }
+
+    public CoreSpecificationBuilder withStrandDiameter(final double diameter) {
+        this.coreSpecification.setStrandDiameter(value(diameter, session.mm()));
+        return this;
+    }
+
+    @Override public VecCoreSpecification build() {
+        return coreSpecification;
     }
 }
+

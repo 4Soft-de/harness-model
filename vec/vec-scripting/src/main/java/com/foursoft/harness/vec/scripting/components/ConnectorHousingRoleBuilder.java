@@ -23,8 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.v2x.*;
 
 public class ConnectorHousingRoleBuilder implements Builder<VecConnectorHousingRole> {

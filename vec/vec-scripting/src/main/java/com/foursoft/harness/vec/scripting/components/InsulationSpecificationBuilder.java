@@ -23,8 +23,10 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecColor;
 import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
 
@@ -46,7 +48,8 @@ public class InsulationSpecificationBuilder implements Builder<VecInsulationSpec
         final VecColor color = new VecColor();
         color.setReferenceSystem(session.getDefaultValues().getColorReferenceSystem());
         color.setKey(primary);
-        insulationSpecification.getFirstIdentificationColors()
+        insulationSpecification
+                .getBaseColors()
                 .add(color);
 
         return this;

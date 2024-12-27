@@ -23,15 +23,25 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting;
+package com.foursoft.harness.vec.scripting.harness;
 
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.DefaultValues;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.components.PartOccurrenceBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
+import com.foursoft.harness.vec.scripting.topology.TopologyBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.foursoft.harness.vec.scripting.Queries.nodeLocator;
+import static com.foursoft.harness.vec.scripting.Queries.partOccurrenceLocator;
 
 public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
@@ -47,9 +57,11 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     private VecContactingSpecification contactingSpecification;
     private VecConnectionSpecification schematic;
 
-    private List<VecPartVersion> createdParts = new ArrayList<>();
+    private final List<VecPartVersion> createdParts = new ArrayList<>();
+    private VecTopologySpecification topologySpecification;
+    private VecPlacementSpecification placementSpecification;
 
-    HarnessBuilder(final VecSession session, final String documentNumber, String version) {
+    public HarnessBuilder(final VecSession session, final String documentNumber, String version) {
         this.session = session;
         this.documentNumber = documentNumber;
         this.harnessDocumentBuilder = initializeDocument(documentNumber, version);
@@ -197,6 +209,31 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     public HarnessBuilder withSchematic(String schematicDocumentNumber) {
         this.schematic = session.findDocument(schematicDocumentNumber).getSpecificationWith(
                 VecConnectionSpecification.class, DefaultValues.CONNECTION_SPEC_IDENTIFICATION).orElseThrow();
+        return this;
+    }
+
+    public HarnessBuilder withTopology(Customizer<TopologyBuilder> customizer) {
+        TopologyBuilder builder = new TopologyBuilder();
+
+        customizer.customize(builder);
+
+        topologySpecification = builder.build();
+
+        harnessDocumentBuilder.addSpecification(topologySpecification);
+
+        return this;
+    }
+
+    public HarnessBuilder withPlacements(Customizer<PlacementSpecificationBuilder> customizer) {
+        PlacementSpecificationBuilder builder = new PlacementSpecificationBuilder(
+                partOccurrenceLocator(this.compositionSpecification),
+                nodeLocator(this.topologySpecification));
+        customizer.customize(builder);
+
+        placementSpecification = builder.build();
+
+        harnessDocumentBuilder.addSpecification(placementSpecification);
+
         return this;
     }
 
