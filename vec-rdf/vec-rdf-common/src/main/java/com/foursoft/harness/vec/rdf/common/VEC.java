@@ -41,13 +41,12 @@ public final class VEC {
     public static final String PREFIX = "vec";
     public static final String URI = "http://www.prostep.org/ontologies/ecad/2024/03/vec#";
     public static final String DEBUG_NS = "http://www.prostep.org/ontologies/ecad/2024/03/vec-debug#";
-    public static final String CHANGESET = "http://www.prostep.org/ontologies/ecad/2024/03/vec-changeset#";
 
-    protected static Property property(String local) {
+    static Property property(String local) {
         return ResourceFactory.createProperty(URI, local);
     }
 
-    protected static Resource resource(String local) {
+    static Resource resource(String local) {
         return ResourceFactory.createResource(URI + local);
     }
 
