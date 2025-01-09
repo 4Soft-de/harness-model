@@ -37,13 +37,8 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
           check-latest: true
+          cache: 'maven'
           gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }} # Value of the GPG private key to import
-      - name: Cache Maven packages
-        uses: actions/cache@v4.2.0
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
       - name: Configure Git user
         run: |
           git config user.email "${{ github.event.inputs.git_mail }}"
@@ -51,7 +46,7 @@ jobs:
           git remote set-url origin https://${{ github.event.inputs.github_user }}:${{ github.event.inputs.github_pat }}@github.com/${GITHUB_REPOSITORY}.git
       - name: Release with Maven
         run: |
-          mvn -e -P release -B -DreleaseVersion=${{ github.event.inputs.release_version }} -s .mvn/release.settings.xml gitflow:release --file pom.xml
+          mvnw -e -P release -B -DreleaseVersion=${{ github.event.inputs.release_version }} -s .mvn/release.settings.xml gitflow:release --file pom.xml
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
