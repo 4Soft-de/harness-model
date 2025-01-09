@@ -46,7 +46,7 @@ jobs:
           git remote set-url origin https://${{ github.event.inputs.github_user }}:${{ github.event.inputs.github_pat }}@github.com/${GITHUB_REPOSITORY}.git
       - name: Release with Maven
         run: |
-          mvnw -e -P release -B -DreleaseVersion=${{ github.event.inputs.release_version }} -s .mvn/release.settings.xml gitflow:release --file pom.xml
+          ./mvnw -e -P release -B -DreleaseVersion=${{ github.event.inputs.release_version }} -s .mvn/release.settings.xml gitflow:release --file pom.xml
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
