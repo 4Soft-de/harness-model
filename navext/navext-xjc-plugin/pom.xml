@@ -28,6 +28,21 @@
 
         <!-- test -->
         <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.patrodyne.jvnet</groupId>
+            <artifactId>hisrc-higherjaxb-maven-plugin</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.patrodyne.jvnet</groupId>
             <artifactId>hisrc-higherjaxb-maven-plugin-testing</artifactId>
             <scope>test</scope>

@@ -26,7 +26,6 @@
 package com.foursoft.harness.navext.xjc.plugin;
 
 import org.junit.jupiter.api.Assertions;
-import org.jvnet.higherjaxb.mojo.test.RunHigherjaxbMojo;
 
 import javax.tools.*;
 import javax.tools.JavaCompiler.CompilationTask;
@@ -34,10 +33,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
-public abstract class AbstractPluginTest extends RunHigherjaxbMojo {
+public abstract class AbstractPluginTest extends RunHigherJaxbMojoTest {
 
     private final File DEFAULT_CLASSES_DIR = new File(getBaseDir(), "target/test-classes");
 
@@ -54,7 +53,7 @@ public abstract class AbstractPluginTest extends RunHigherjaxbMojo {
 
         final StandardJavaFileManager standardFileManager = compiler.getStandardFileManager(null, null, null);
 
-        standardFileManager.setLocation(StandardLocation.CLASS_OUTPUT, Arrays.asList(DEFAULT_CLASSES_DIR));
+        standardFileManager.setLocation(StandardLocation.CLASS_OUTPUT, List.of(DEFAULT_CLASSES_DIR));
 
         final DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<>();
 
@@ -67,13 +66,13 @@ public abstract class AbstractPluginTest extends RunHigherjaxbMojo {
 
         if (!success) {
             for (final Diagnostic<? extends JavaFileObject> diagnostic : diagnostics.getDiagnostics()) {
-                log.error("Code: " + diagnostic.getCode());
-                log.error("Kind: " + diagnostic.getKind());
-                log.error("Position: " + diagnostic.getPosition());
-                log.error("Start Position: " + diagnostic.getStartPosition());
-                log.error("End Position: " + diagnostic.getEndPosition());
-                log.error("Source: " + diagnostic.getSource());
-                log.error("Message: " + diagnostic.getMessage(Locale.getDefault()));
+                getLogger().error("Code: {}", diagnostic.getCode());
+                getLogger().error("Kind: {}", diagnostic.getKind());
+                getLogger().error("Position: {}", diagnostic.getPosition());
+                getLogger().error("Start Position: {}", diagnostic.getStartPosition());
+                getLogger().error("End Position: {}", diagnostic.getEndPosition());
+                getLogger().error("Source: {}", diagnostic.getSource());
+                getLogger().error("Message: {}", diagnostic.getMessage(Locale.getDefault()));
             }
 
             Assertions.fail("Compilation failed!");
