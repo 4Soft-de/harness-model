@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.foursoft.harness</groupId>
         <artifactId>harness-parent</artifactId>
-        <version>5.4.0</version>
+        <version>5.4.1-SNAPSHOT</version>
     </parent>
     <groupId>com.foursoft.harness.kbl</groupId>
     <artifactId>kbl-parent</artifactId>
