@@ -6,7 +6,7 @@
 
     <groupId>com.foursoft.harness</groupId>
     <artifactId>harness-parent</artifactId>
-    <version>5.3.0</version>
+    <version>5.4.0</version>
     <packaging>pom</packaging>
     <name>Harness Parent</name>
     <description>Parent POM of all 4Soft Harness Projects.</description>
@@ -19,27 +19,29 @@
         <!-- Dependencies -->
         <jakarta.version>4.0.5</jakarta.version>
         <slf4j.version>2.0.16</slf4j.version>
-        <logback-classic.version>1.5.12</logback-classic.version>
-        <junit.jupiter.version>5.11.3</junit.jupiter.version>
-        <assertj-core.version>3.26.3</assertj-core.version>
-        <maven-core.version>3.9.2</maven-core.version>
+        <logback-classic.version>1.5.16</logback-classic.version>
+        <junit.jupiter.version>5.11.4</junit.jupiter.version>
+        <assertj-core.version>3.27.2</assertj-core.version>
+        <maven-api.version>3.9.9</maven-api.version>
+        <java-snapshot-testing.version>4.0.8</java-snapshot-testing.version>
+        <jackson.version>2.18.2</jackson.version>
 
         <!-- Plugins -->
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <license-maven-plugin.version>2.5.0</license-maven-plugin.version>
-        <maven-javadoc-plugin.version>3.11.1</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <gitflow-maven-plugin.version>1.21.0</gitflow-maven-plugin.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 
         <!-- xjc-maven wrapper -->
-        <hisrc-higherjaxb-maven-plugin.version>2.1.1</hisrc-higherjaxb-maven-plugin.version>
+        <hisrc-higherjaxb-maven-plugin.version>2.2.1</hisrc-higherjaxb-maven-plugin.version>
         <!-- it's plugins -->
         <hisrc-hyperjaxb-annox-plugin.version>2.2.1</hisrc-hyperjaxb-annox-plugin.version>
         <jaxb-visitor.version>3.1.0</jaxb-visitor.version>
-        <cxf-xjc-javadoc.version>4.0.2</cxf-xjc-javadoc.version>
+        <cxf-xjc-javadoc.version>4.1.0</cxf-xjc-javadoc.version>
 
         <!-- Release Plugins -->
         <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
@@ -74,6 +76,7 @@
         <module>kbl</module>
         <module>vec</module>
         <module>compatibility</module>
+        <module>vec-rdf</module>
     </modules>
 
     <scm>
@@ -119,7 +122,7 @@
             <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy</artifactId>
-                <version>1.15.10</version>
+                <version>1.15.11</version>
             </dependency>
             <dependency>
                 <groupId>org.reflections</groupId>
@@ -131,6 +134,28 @@
                 <artifactId>jakarta.annotation-api</artifactId>
                 <version>3.0.0</version>
             </dependency>
+            <dependency>
+                <groupId>net.sf.saxon</groupId>
+                <artifactId>Saxon-HE</artifactId>
+                <version>12.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.17.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.jena</groupId>
+                <artifactId>apache-jena-libs</artifactId>
+                <type>pom</type>
+                <version>5.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>33.4.0-jre</version>
+            </dependency>
+
 
             <!-- Test -->
             <dependency>
@@ -152,6 +177,38 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${maven-api.version}</version>
+                <scope>provided</scope>
+                <exclusions>
+                    <!-- In favor of jakarta.annotation:jakarta.annotation-api -->
+                    <exclusion>
+                        <groupId>javax.annotation</groupId>
+                        <artifactId>javax.annotation-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-core</artifactId>
+                <version>${maven-api.version}</version>
+                <scope>provided</scope>
+                <exclusions>
+                    <!-- In favor of jakarta.inject:jakarta.inject-api -->
+                    <exclusion>
+                        <groupId>javax.inject</groupId>
+                        <artifactId>javax.inject</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.patrodyne.jvnet</groupId>
+                <artifactId>hisrc-higherjaxb-maven-plugin</artifactId>
+                <version>${hisrc-higherjaxb-maven-plugin.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.patrodyne.jvnet</groupId>
                 <artifactId>hisrc-higherjaxb-maven-plugin-testing</artifactId>
                 <version>${hisrc-higherjaxb-maven-plugin.version}</version>
@@ -162,6 +219,30 @@
                         <artifactId>junit-jupiter-api</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.github.origin-energy</groupId>
+                <artifactId>java-snapshot-testing-junit5</artifactId>
+                <version>${java-snapshot-testing.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.origin-energy</groupId>
+                <artifactId>java-snapshot-testing-plugin-jackson</artifactId>
+                <version>${java-snapshot-testing.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -194,6 +275,26 @@
             <artifactId>jaxb-runtime</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.origin-energy</groupId>
+            <artifactId>java-snapshot-testing-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.origin-energy</groupId>
+            <artifactId>java-snapshot-testing-plugin-jackson</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -215,6 +316,7 @@
                     <artifactId>gitflow-maven-plugin</artifactId>
                     <version>${gitflow-maven-plugin.version}</version>
                     <configuration>
+                        <mvnExecutable>./mvnw</mvnExecutable>
                         <argLine>-DskipTests -P release -s .mvn/release.settings.xml</argLine>
                         <installProject>true</installProject>
                         <skipTestProject>true</skipTestProject>

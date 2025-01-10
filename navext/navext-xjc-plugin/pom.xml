@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.foursoft.harness.navext</groupId>
         <artifactId>navext-parent</artifactId>
-        <version>5.3.0</version>
+        <version>5.4.0</version>
     </parent>
     <name>NavExt XJC Plugin</name>
     <artifactId>navext-xjc-plugin</artifactId>
@@ -27,6 +27,21 @@
         </dependency>
 
         <!-- test -->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.patrodyne.jvnet</groupId>
+            <artifactId>hisrc-higherjaxb-maven-plugin</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.patrodyne.jvnet</groupId>
             <artifactId>hisrc-higherjaxb-maven-plugin-testing</artifactId>

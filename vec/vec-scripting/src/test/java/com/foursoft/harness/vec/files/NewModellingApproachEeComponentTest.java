@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.files;
 
-import com.foursoft.harness.vec.scripting.EEComponentRoleBuilder;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 

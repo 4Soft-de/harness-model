@@ -26,7 +26,7 @@
 package com.foursoft.harness.vec.files;
 
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.WireRoleBuilder;
+import com.foursoft.harness.vec.scripting.components.WireRoleBuilder;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 
@@ -197,8 +197,6 @@ class VecSamplesCreationTest {
                     .addEndWithTerminalOnly("T1")
                     .addEndWithTerminalOnly("T2")));
         // @formatter:on
-
-        ;
 
         session.writeToStream(TestUtils.createTestFileStream("detail-arena2036-example"));
     }

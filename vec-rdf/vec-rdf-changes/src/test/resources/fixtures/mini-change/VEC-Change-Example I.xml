@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vec:VecContent id="id_00000"  xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <VecVersion>2.0.1</VecVersion>
+    <GeneratingSystemName>VEC Samples</GeneratingSystemName>
+    <DateOfCreation>2023-05-30T00:00:00</DateOfCreation>
+    <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
+    <DocumentVersion id="id_00001">
+        <CompanyName>Acme Inc.</CompanyName>
+        <DocumentNumber>DRAW-CON-A</DocumentNumber>
+        <DocumentType>PartMaster</DocumentType>
+        <DocumentVersion>1</DocumentVersion>
+        <ReferencedPart>id_00094</ReferencedPart>
+        <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="id_00002">
+            <Identification>DRAW-CON-A</Identification>
+            <DescribedPart>id_00094</DescribedPart>
+        </Specification>
+        <Specification xsi:type="vec:ConnectorHousingSpecification" id="id_00003">
+            <Identification>DRAW-CON-A</Identification>
+            <DescribedPart>id_00094</DescribedPart>
+            <Slot xsi:type="vec:Slot" id="id_00004">
+                <SlotNumber>A</SlotNumber>
+                <Cavity id="id_00005">
+                    <CavityNumber>1</CavityNumber>
+                </Cavity>
+                <Cavity id="id_00006">
+                    <CavityNumber>2</CavityNumber>
+                </Cavity>
+            </Slot>
+        </Specification>
+    </DocumentVersion>
+    <DocumentVersion id="id_00007">
+        <CompanyName>Acme Inc.</CompanyName>
+        <DocumentNumber>DRAW-CON-B</DocumentNumber>
+        <DocumentType>PartMaster</DocumentType>
+        <DocumentVersion>1</DocumentVersion>
+        <ReferencedPart>id_00095</ReferencedPart>
+        <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="id_00008">
+            <Identification>DRAW-CON-B</Identification>
+            <DescribedPart>id_00095</DescribedPart>
+        </Specification>
+        <Specification xsi:type="vec:ConnectorHousingSpecification" id="id_00009">
+            <Identification>DRAW-CON-B</Identification>
+            <DescribedPart>id_00095</DescribedPart>
+            <Slot xsi:type="vec:Slot" id="id_00010">
+                <SlotNumber>A</SlotNumber>
+                <Cavity id="id_00011">
+                    <CavityNumber>1</CavityNumber>
+                </Cavity>
+            </Slot>
+        </Specification>
+    </DocumentVersion>
+    <DocumentVersion id="id_00012">
+        <CompanyName>Acme Inc.</CompanyName>
+        <DocumentNumber>DRAW-CON-B</DocumentNumber>
+        <DocumentType>PartMaster</DocumentType>
+        <DocumentVersion>1</DocumentVersion>
+        <ReferencedPart>id_00096</ReferencedPart>
+        <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="id_00013">
+            <Identification>DRAW-CON-B</Identification>
+            <DescribedPart>id_00096</DescribedPart>
+        </Specification>
+        <Specification xsi:type="vec:ConnectorHousingSpecification" id="id_00014">
+            <Identification>DRAW-CON-B</Identification>
+            <DescribedPart>id_00096</DescribedPart>
+            <Slot xsi:type="vec:Slot" id="id_00015">
+                <SlotNumber>A</SlotNumber>
+                <Cavity id="id_00016">
+                    <CavityNumber>1</CavityNumber>
+                </Cavity>
+            </Slot>
+        </Specification>
+    </DocumentVersion>
+    <DocumentVersion id="id_00017">
+        <CompanyName>Acme Inc.</CompanyName>
+        <DocumentNumber>DRAW-TERM-N_103_361_01</DocumentNumber>
+        <DocumentType>PartMaster</DocumentType>
+        <DocumentVersion>1</DocumentVersion>
+        <ReferencedPart>id_00097</ReferencedPart>
+        <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="id_00018">
+            <Identification>DRAW-TERM-N_103_361_01</Identification>
+            <DescribedPart>id_00097</DescribedPart>
+        </Specification>
+        <Specification xsi:type="vec:PluggableTerminalSpecification" id="id_00019">
+            <Identification>DRAW-TERM-N_103_361_01</Identification>
+            <DescribedPart>id_00097</DescribedPart>
+        </Specification>
+    </DocumentVersion>
+    <DocumentVersion id="id_00020">
+        <CompanyName>Acme Inc.</CompanyName>
+        <DocumentNumber>DRAW-TERM-036_911_137</DocumentNumber>
+        <DocumentType>PartMaster</DocumentType>
+        <DocumentVersion>1</DocumentVersion>
+        <ReferencedPart>id_00098</ReferencedPart>
+        <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="id_00021">
+            <Identification>DRAW-TERM-036_911_137</Identification>
+            <DescribedPart>id_00098</DescribedPart>
+        </Specification>
+        <Specification xsi:type="vec:PluggableTerminalSpecification" id="id_00022">
+            <Identification>DRAW-TERM-036_911_137</Identification>
+            <DescribedPart>id_00098</DescribedPart>
+        </Specification>
+    </DocumentVersion>
+    <DocumentVersion id="id_00023">
+        <CompanyName>Acme Inc.</CompanyName>
+        <DocumentNumber>DRAW-N_018_886_1</DocumentNumber>
+        <DocumentType>PartMaster</DocumentType>
+        <DocumentVersion>1</DocumentVersion>
+        <ReferencedPart>id_00099</ReferencedPart>
+        <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="id_00024">
+            <Identification>DRAW-N_018_886_1</Identification>
+            <DescribedPart>id_00099</DescribedPart>
+        </Specification>
+        <Specification xsi:type="vec:CoreSpecification" id="id_00025">
+            <Identification>FL-A-0.5</Identification>
+            <CrossSectionArea id="id_00026">
+                <UnitComponent>id_00101</UnitComponent>
+                <ValueComponent>0.5</ValueComponent>
+            </CrossSectionArea>
+        </Specification>
+        <Specification xsi:type="vec:WireSpecification" id="id_00027">
+            <Identification>DRAW-N_018_886_1</Identification>
+            <DescribedPart>id_00099</DescribedPart>
+            <WireElementSpecification>id_00031</WireElementSpecification>
+            <WireElement id="id_00028">
+                <Identification>ROOT</Identification>
+                <WireElementSpecification>id_00031</WireElementSpecification>
+                <SubWireElement id="id_00029">
+                    <Identification>1</Identification>
+                    <WireElementSpecification>id_00032</WireElementSpecification>
+                </SubWireElement>
+                <SubWireElement id="id_00030">
+                    <Identification>2</Identification>
+                    <WireElementSpecification>id_00035</WireElementSpecification>
+                </SubWireElement>
+            </WireElement>
+        </Specification>
+        <Specification xsi:type="vec:WireElementSpecification" id="id_00031">
+            <Identification>ROOT</Identification>
+            <SubWireElementSpecification>id_00032 id_00035</SubWireElementSpecification>
+        </Specification>
+        <Specification xsi:type="vec:WireElementSpecification" id="id_00032">
+            <Identification>1</Identification>
+            <ConductorSpecification>id_00025</ConductorSpecification>
+            <InsulationSpecification>id_00033</InsulationSpecification>
+        </Specification>
+        <Specification xsi:type="vec:InsulationSpecification" id="id_00033">
+            <Identification>FLRY-BR</Identification>
+            <FirstIdentificationColor id="id_00034">
+                <Key>BR</Key>
+                <ReferenceSystem>Acme Inc.</ReferenceSystem>
+            </FirstIdentificationColor>
+        </Specification>
+        <Specification xsi:type="vec:WireElementSpecification" id="id_00035">
+            <Identification>2</Identification>
+            <ConductorSpecification>id_00025</ConductorSpecification>
+            <InsulationSpecification>id_00036</InsulationSpecification>
+        </Specification>
+        <Specification xsi:type="vec:InsulationSpecification" id="id_00036">
+            <Identification>FLRY-SW</Identification>
+            <FirstIdentificationColor id="id_00037">
+                <Key>SW</Key>
+                <ReferenceSystem>Acme Inc.</ReferenceSystem>
+            </FirstIdentificationColor>
+        </Specification>
+    </DocumentVersion>
+    <DocumentVersion id="id_00038">
+        <CompanyName>Acme Inc.</CompanyName>
+        <DocumentNumber>DRAW-WIR-3C0_972_100</DocumentNumber>
+        <DocumentType>PartMaster</DocumentType>
+        <DocumentVersion>1</DocumentVersion>
+        <ReferencedPart>id_00100</ReferencedPart>
+        <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="id_00039">
+            <Identification>DRAW-WIR-3C0_972_100</Identification>
+            <DescribedPart>id_00100</DescribedPart>
+        </Specification>
+        <Specification xsi:type="vec:CoreSpecification" id="id_00040">
+            <Identification>FL-A-0.3</Identification>
+            <CrossSectionArea id="id_00041">
+                <UnitComponent>id_00101</UnitComponent>
+                <ValueComponent>0.3</ValueComponent>
+            </CrossSectionArea>
+        </Specification>
+        <Specification xsi:type="vec:WireSpecification" id="id_00042">
+            <Identification>DRAW-WIR-3C0_972_100</Identification>
+            <DescribedPart>id_00100</DescribedPart>
+            <WireElementSpecification>id_00046</WireElementSpecification>
+            <WireElement id="id_00043">
+                <Identification>ROOT</Identification>
+                <WireElementSpecification>id_00046</WireElementSpecification>
+                <SubWireElement id="id_00044">
+                    <Identification>1</Identification>
+                    <WireElementSpecification>id_00047</WireElementSpecification>
+                </SubWireElement>
+                <SubWireElement id="id_00045">
+                    <Identification>2</Identification>
+                    <WireElementSpecification>id_00050</WireElementSpecification>
+                </SubWireElement>
+            </WireElement>
+        </Specification>
+        <Specification xsi:type="vec:WireElementSpecification" id="id_00046">
+            <Identification>ROOT</Identification>
+            <SubWireElementSpecification>id_00047 id_00050</SubWireElementSpecification>
+        </Specification>
+        <Specification xsi:type="vec:WireElementSpecification" id="id_00047">
+            <Identification>1</Identification>
+            <ConductorSpecification>id_00040</ConductorSpecification>
+            <InsulationSpecification>id_00048</InsulationSpecification>
+        </Specification>
+        <Specification xsi:type="vec:InsulationSpecification" id="id_00048">
+            <Identification>FLRY-BK</Identification>
+            <FirstIdentificationColor id="id_00049">
+                <Key>B/K</Key>
+                <ReferenceSystem>Acme Inc.</ReferenceSystem>
+            </FirstIdentificationColor>
+        </Specification>
+        <Specification xsi:type="vec:WireElementSpecification" id="id_00050">
+            <Identification>2</Identification>
+            <ConductorSpecification>id_00040</ConductorSpecification>
+            <InsulationSpecification>id_00051</InsulationSpecification>
+        </Specification>
+        <Specification xsi:type="vec:InsulationSpecification" id="id_00051">
+            <Identification>FLRY-BKII</Identification>
+            <FirstIdentificationColor id="id_00052">
+                <Key>B/K</Key>
+                <ReferenceSystem>Acme Inc.</ReferenceSystem>
+            </FirstIdentificationColor>
+        </Specification>
+    </DocumentVersion>
+    <DocumentVersion id="id_00053">
+        <CompanyName>Acme Inc.</CompanyName>
+        <DocumentNumber>HARNESS-1</DocumentNumber>
+        <DocumentType>HarnessDescription</DocumentType>
+        <DocumentVersion>1</DocumentVersion>
+        <Specification xsi:type="vec:CompositionSpecification" id="id_00054">
+            <Identification>HARNESS-1</Identification>
+            <Component id="id_00055">
+                <Identification>XA.F2.1_1</Identification>
+                <Role xsi:type="vec:ConnectorHousingRole" id="id_00056">
+                    <Identification>XA.F2.1_1</Identification>
+                    <ConnectorHousingSpecification>id_00003</ConnectorHousingSpecification>
+                    <SlotReference xsi:type="vec:SlotReference" id="id_00057">
+                        <Identification>A</Identification>
+                        <ReferencedSlot>id_00004</ReferencedSlot>
+                        <CavityReference id="id_00058">
+                            <Identification>1</Identification>
+                            <ReferencedCavity>id_00005</ReferencedCavity>
+                        </CavityReference>
+                        <CavityReference id="id_00059">
+                            <Identification>2</Identification>
+                            <ReferencedCavity>id_00006</ReferencedCavity>
+                        </CavityReference>
+                    </SlotReference>
+                </Role>
+                <Part>id_00094</Part>
+            </Component>
+            <Component id="id_00060">
+                <Identification>XA.44.1</Identification>
+                <Role xsi:type="vec:ConnectorHousingRole" id="id_00061">
+                    <Identification>XA.44.1</Identification>
+                    <ConnectorHousingSpecification>id_00009</ConnectorHousingSpecification>
+                    <SlotReference xsi:type="vec:SlotReference" id="id_00062">
+                        <Identification>A</Identification>
+                        <ReferencedSlot>id_00010</ReferencedSlot>
+                        <CavityReference id="id_00063">
+                            <Identification>1</Identification>
+                            <ReferencedCavity>id_00011</ReferencedCavity>
+                        </CavityReference>
+                    </SlotReference>
+                </Role>
+                <Part>id_00095</Part>
+            </Component>
+            <Component id="id_00064">
+                <Identification>YW001</Identification>
+                <Role xsi:type="vec:ConnectorHousingRole" id="id_00065">
+                    <Identification>YW001</Identification>
+                    <ConnectorHousingSpecification>id_00014</ConnectorHousingSpecification>
+                    <SlotReference xsi:type="vec:SlotReference" id="id_00066">
+                        <Identification>A</Identification>
+                        <ReferencedSlot>id_00015</ReferencedSlot>
+                        <CavityReference id="id_00067">
+                            <Identification>1</Identification>
+                            <ReferencedCavity>id_00016</ReferencedCavity>
+                        </CavityReference>
+                    </SlotReference>
+                </Role>
+                <Part>id_00096</Part>
+            </Component>
+            <Component id="id_00068">
+                <Identification>SL1</Identification>
+                <Role xsi:type="vec:WireRole" id="id_00069">
+                    <Identification>SL1</Identification>
+                    <WireSpecification>id_00027</WireSpecification>
+                    <WireElementReference id="id_00070">
+                        <Identification>SL1</Identification>
+                        <ReferencedWireElement>id_00028</ReferencedWireElement>
+                    </WireElementReference>
+                    <WireElementReference id="id_00071">
+                        <Identification>264002</Identification>
+                        <ReferencedWireElement>id_00029</ReferencedWireElement>
+                        <WireEnd id="id_00072">
+                            <Identification>XA.F2.1_1.2</Identification>
+                            <PositionOnWire>0.0</PositionOnWire>
+                        </WireEnd>
+                        <WireEnd id="id_00073">
+                            <Identification>XA.44.1.1</Identification>
+                            <PositionOnWire>1.0</PositionOnWire>
+                        </WireEnd>
+                        <WireLength id="id_00074">
+                            <LengthType>DMU</LengthType>
+                            <LengthValue id="id_00075">
+                                <UnitComponent>id_00102</UnitComponent>
+                                <ValueComponent>1063.0</ValueComponent>
+                            </LengthValue>
+                        </WireLength>
+                    </WireElementReference>
+                    <WireElementReference id="id_00076">
+                        <Identification>264001</Identification>
+                        <ReferencedWireElement>id_00030</ReferencedWireElement>
+                        <WireEnd id="id_00077">
+                            <Identification>YW001.1</Identification>
+                            <PositionOnWire>0.0</PositionOnWire>
+                        </WireEnd>
+                        <WireEnd id="id_00078">
+                            <Identification>XA.F2.1_1.1</Identification>
+                            <PositionOnWire>1.0</PositionOnWire>
+                        </WireEnd>
+                        <WireLength id="id_00079">
+                            <LengthType>DMU</LengthType>
+                            <LengthValue id="id_00080">
+                                <UnitComponent>id_00102</UnitComponent>
+                                <ValueComponent>503.0</ValueComponent>
+                            </LengthValue>
+                        </WireLength>
+                    </WireElementReference>
+                </Role>
+                <Part>id_00099</Part>
+            </Component>
+        </Specification>
+        <Specification xsi:type="vec:ContactingSpecification" id="id_00081">
+            <Identification>HARNESS-1</Identification>
+            <ContactPoint id="id_00082">
+                <Identification>XA.F2.1_1.2</Identification>
+                <CavityMounting id="id_00083">
+                    <EquippedCavityRef>id_00059</EquippedCavityRef>
+                </CavityMounting>
+                <WireMounting id="id_00084">
+                    <ReferencedWireEnd>id_00072</ReferencedWireEnd>
+                </WireMounting>
+            </ContactPoint>
+            <ContactPoint id="id_00085">
+                <Identification>XA.44.1.1</Identification>
+                <CavityMounting id="id_00086">
+                    <EquippedCavityRef>id_00063</EquippedCavityRef>
+                </CavityMounting>
+                <WireMounting id="id_00087">
+                    <ReferencedWireEnd>id_00073</ReferencedWireEnd>
+                </WireMounting>
+            </ContactPoint>
+            <ContactPoint id="id_00088">
+                <Identification>YW001.1</Identification>
+                <CavityMounting id="id_00089">
+                    <EquippedCavityRef>id_00067</EquippedCavityRef>
+                </CavityMounting>
+                <WireMounting id="id_00090">
+                    <ReferencedWireEnd>id_00077</ReferencedWireEnd>
+                </WireMounting>
+            </ContactPoint>
+            <ContactPoint id="id_00091">
+                <Identification>XA.F2.1_1.1</Identification>
+                <CavityMounting id="id_00092">
+                    <EquippedCavityRef>id_00058</EquippedCavityRef>
+                </CavityMounting>
+                <WireMounting id="id_00093">
+                    <ReferencedWireEnd>id_00078</ReferencedWireEnd>
+                </WireMounting>
+            </ContactPoint>
+        </Specification>
+    </DocumentVersion>
+    <PartVersion id="id_00094">
+        <CompanyName>Acme Inc.</CompanyName>
+        <PartNumber>CON-A</PartNumber>
+        <PartVersion>1</PartVersion>
+        <PrimaryPartType>ConnectorHousing</PrimaryPartType>
+    </PartVersion>
+    <PartVersion id="id_00095">
+        <CompanyName>Acme Inc.</CompanyName>
+        <PartNumber>CON-B</PartNumber>
+        <PartVersion>1</PartVersion>
+        <PrimaryPartType>ConnectorHousing</PrimaryPartType>
+    </PartVersion>
+    <PartVersion id="id_00096">
+        <CompanyName>Acme Inc.</CompanyName>
+        <PartNumber>CON-C</PartNumber>
+        <PartVersion>1</PartVersion>
+        <PrimaryPartType>ConnectorHousing</PrimaryPartType>
+    </PartVersion>
+    <PartVersion id="id_00097">
+        <CompanyName>Acme Inc.</CompanyName>
+        <PartNumber>N_103_361_01</PartNumber>
+        <PartVersion>1</PartVersion>
+        <PrimaryPartType>PluggableTerminal</PrimaryPartType>
+    </PartVersion>
+    <PartVersion id="id_00098">
+        <CompanyName>Acme Inc.</CompanyName>
+        <PartNumber>036_911_137</PartNumber>
+        <PartVersion>1</PartVersion>
+        <PrimaryPartType>PluggableTerminal</PrimaryPartType>
+    </PartVersion>
+    <PartVersion id="id_00099">
+        <CompanyName>Acme Inc.</CompanyName>
+        <PartNumber>N_018_886_1</PartNumber>
+        <PartVersion>1</PartVersion>
+        <PrimaryPartType>Wire</PrimaryPartType>
+    </PartVersion>
+    <PartVersion id="id_00100">
+        <CompanyName>Acme Inc.</CompanyName>
+        <PartNumber>3C0_972_100</PartNumber>
+        <PartVersion>1</PartVersion>
+        <PrimaryPartType>Wire</PrimaryPartType>
+    </PartVersion>
+    <Unit xsi:type="vec:SIUnit" id="id_00101">
+        <Exponent>2</Exponent>
+        <SiUnitName>Metre</SiUnitName>
+        <SiPrefix>Milli</SiPrefix>
+    </Unit>
+    <Unit xsi:type="vec:SIUnit" id="id_00102">
+        <SiUnitName>Metre</SiUnitName>
+        <SiPrefix>Milli</SiPrefix>
+    </Unit>
+</vec:VecContent>
