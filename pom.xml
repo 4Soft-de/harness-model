@@ -316,6 +316,7 @@
                     <artifactId>gitflow-maven-plugin</artifactId>
                     <version>${gitflow-maven-plugin.version}</version>
                     <configuration>
+                        <mvnExecutable>./mvnw</mvnExecutable>
                         <argLine>-DskipTests -P release -s .mvn/release.settings.xml</argLine>
                         <installProject>true</installProject>
                         <skipTestProject>true</skipTestProject>
