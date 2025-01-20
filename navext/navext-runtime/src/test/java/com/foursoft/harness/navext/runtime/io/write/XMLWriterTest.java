@@ -96,8 +96,8 @@ class XMLWriterTest {
                 .contains(expectedComment)
                 // check for correct new lines
                 .startsWith("<?xml version=\"1.0\" ?>\n" +
-                                    "<!--Hello - - World-->\n" +
                                     "<?pc pc test?>\n" +
+                                    "<!--Hello - - World-->\n" +
                                     "<Root id=\"id_1\">")
                 .contains("<?pc pc test 2?>\n" +
                                   "  <ChildA id=\"id_3\">")
