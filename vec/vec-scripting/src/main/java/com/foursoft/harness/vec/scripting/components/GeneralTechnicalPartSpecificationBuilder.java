@@ -27,9 +27,11 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.enums.TemperatureType;
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
+import static com.foursoft.harness.vec.scripting.factories.ValueRangeFactory.valueRange;
 
 public class GeneralTechnicalPartSpecificationBuilder
         extends PartOrUsageRelatedSpecificationBuilder<VecGeneralTechnicalPartSpecification> {
@@ -52,6 +54,20 @@ public class GeneralTechnicalPartSpecificationBuilder
         massInformation.setValueSource("Series");
 
         element.getMassInformations().add(massInformation);
+
+        return this;
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final TemperatureType temperatureType,
+                                                                               final double lowerLimit,
+                                                                               final double upperLimit,
+                                                                               final VecUnit unit) {
+
+        final VecTemperatureInformation temperatureInformation = new VecTemperatureInformation();
+        temperatureInformation.setTemperatureType(temperatureType.value());
+        temperatureInformation.setTemperatureRange(valueRange(lowerLimit, upperLimit, unit));
+
+        element.getTemperatureInformations().add(temperatureInformation);
 
         return this;
     }

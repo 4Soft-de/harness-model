@@ -28,8 +28,10 @@ package com.foursoft.harness.vec.scripting.components;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecCoreSpecification;
+import com.foursoft.harness.vec.v2x.VecMaterial;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
+import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
 import static com.foursoft.harness.vec.scripting.factories.WireTypeFactory.din76722;
 
 public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
@@ -37,7 +39,7 @@ public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
     private final VecCoreSpecification coreSpecification = new VecCoreSpecification();
     private final VecSession session;
 
-    CoreSpecificationBuilder(VecSession session, String identification) {
+    CoreSpecificationBuilder(final VecSession session, final String identification) {
         this.session = session;
         coreSpecification.setIdentification(identification);
     }
@@ -48,10 +50,44 @@ public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
         return this;
     }
 
+    public CoreSpecificationBuilder withOutsideDiameter(final double value) {
+        this.coreSpecification.setOutsideDiameter(value(value, session.mm()));
+
+        return this;
+    }
+
+    public CoreSpecificationBuilder withResistance(final double valueInmOhmPerMetre) {
+        this.coreSpecification.setResistance(value(valueInmOhmPerMetre, session.mOhmPerMeter()));
+
+        return this;
+    }
+
+    public CoreSpecificationBuilder withMaterial(final VecMaterial material) {
+        this.coreSpecification.getMaterials().add(material);
+
+        return this;
+    }
+
+    public CoreSpecificationBuilder strands(final int numberOfStrands, final double strandTolerancePercentage,
+                                            final double diameter) {
+        this.coreSpecification.setType("Stranded");
+        final long tolerance = Math.round(numberOfStrands * strandTolerancePercentage);
+        return this.withNumberOfStrands(numberOfStrands, -tolerance,
+                                        tolerance)
+                .withStrandDiameter(diameter);
+    }
+
     public CoreSpecificationBuilder withNumberOfStrands(final int numberOfStrands) {
         this.coreSpecification.setNumberOfStrands(value(numberOfStrands, session.piece()));
         session.addXmlComment(this.coreSpecification.getNumberOfStrands(),
                               " Unit `piece`, see: https://prostep-ivip.atlassian.net/browse/KBLFRM-1192 ");
+        return this;
+    }
+
+    public CoreSpecificationBuilder withNumberOfStrands(final int numberOfStrands, final double lowerBoundary,
+                                                        final double upperBoundary) {
+        this.coreSpecification.setNumberOfStrands(
+                valueWithTolerance(numberOfStrands, lowerBoundary, upperBoundary, session.piece()));
         return this;
     }
 
@@ -74,5 +110,6 @@ public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
     @Override public VecCoreSpecification build() {
         return coreSpecification;
     }
+
 }
 

@@ -36,7 +36,7 @@ class VecSamplesCreationTest {
 
     @Test
     void ves_wf_changes_sample_pre() throws IOException {
-        VecSession session = new VecSession();
+        final VecSession session = new VecSession();
 
         createCommonBase(session, "SL1", "N_018_886_1", "1");
 
@@ -45,7 +45,7 @@ class VecSamplesCreationTest {
 
     @Test
     void ves_wf_changes_sample_post() throws IOException {
-        VecSession session = new VecSession();
+        final VecSession session = new VecSession();
 
         createCommonBase(session, "SL3", "3C0_972_100", "2");
 
@@ -89,7 +89,7 @@ class VecSamplesCreationTest {
 
         session.component( "N_018_886_1", "DRAW-N_018_886_1",VecPrimaryPartType.WIRE, comp -> comp
                 .addGeneralTechnicalPart()
-                .addCoreSpecification("FL-A-0.5", spec -> spec.withCSA(0.5))
+                .addConductorSpecification("FL-A-0.5", spec -> spec.withCSA(0.5))
                 .addWireSpecification(ws -> ws
                     .withWireElement("ROOT", root -> root
                         .addSubWireElement("1", sub -> sub
@@ -106,7 +106,7 @@ class VecSamplesCreationTest {
 
         session.component("3C0_972_100", "DRAW-WIR-3C0_972_100", VecPrimaryPartType.WIRE, comp -> comp
                 .addGeneralTechnicalPart()
-                .addCoreSpecification("FL-A-0.3", spec -> spec.withCSA(0.3))
+                .addConductorSpecification("FL-A-0.3", spec -> spec.withCSA(0.3))
                 .addWireSpecification(ws -> ws
                     .withWireElement("ROOT", root -> root
                         .addSubWireElement("1", sub -> sub
@@ -153,7 +153,7 @@ class VecSamplesCreationTest {
 
     @Test
     void create_arena_sample() throws IOException {
-        VecSession session = new VecSession();
+        final VecSession session = new VecSession();
 
         // @formatter:off
         session.component("5-928999-1", "5-928999-1",
@@ -161,7 +161,7 @@ class VecSamplesCreationTest {
                 .withApplicationSpecification("114-18021","V")
                 .addGeneralTechnicalPart(gen -> gen
                         .withBoundingBoxX(2.3))
-                .addCoreSpecification("CORE-FL-A", core -> core
+                .addConductorSpecification("CORE-FL-A", core -> core
                         .withDin76722WireType("FL-A")
                         .withCSA(0.35)
                         .withStructure("Symmetric"))

@@ -32,6 +32,7 @@ import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.v2x.*;
 
+import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
 import static com.foursoft.harness.vec.scripting.factories.WireTypeFactory.din76722;
 
@@ -43,7 +44,8 @@ public class WireElementBuilder implements Builder<VecWireElement> {
     private final SpecificationLocator specificationLocator;
 
     WireElementBuilder(final VecSession session, final String identification,
-                       SpecificationRegistry specificationRegistry, SpecificationLocator specificationLocator) {
+                       final SpecificationRegistry specificationRegistry,
+                       final SpecificationLocator specificationLocator) {
         this.session = session;
         this.specificationRegistry = specificationRegistry;
         this.specificationLocator = specificationLocator;
@@ -53,9 +55,11 @@ public class WireElementBuilder implements Builder<VecWireElement> {
         wireElement.setWireElementSpecification(wireElementSpecification);
     }
 
-    public WireElementBuilder addSubWireElement(String identification, Customizer<WireElementBuilder> customizer) {
-        WireElementBuilder builder = new WireElementBuilder(this.session, identification, this.specificationRegistry,
-                                                            this.specificationLocator);
+    public WireElementBuilder addSubWireElement(final String identification,
+                                                final Customizer<WireElementBuilder> customizer) {
+        final WireElementBuilder builder = new WireElementBuilder(this.session, identification,
+                                                                  this.specificationRegistry,
+                                                                  this.specificationLocator);
 
         customizer.customize(builder);
 
@@ -64,30 +68,31 @@ public class WireElementBuilder implements Builder<VecWireElement> {
         return this;
     }
 
-    public WireElementBuilder withCoreSpecification(String identification) {
-        VecCoreSpecification coreSpecification = this.specificationLocator.find(VecCoreSpecification.class,
-                                                                                identification)
+    public WireElementBuilder withCoreSpecification(final String identification) {
+        final VecConductorSpecification coreSpecification = this.specificationLocator.find(
+                        VecConductorSpecification.class,
+                        identification)
                 .orElseThrow(IllegalArgumentException::new);
 
         return withConductorSpecification(coreSpecification);
     }
 
-    public WireElementBuilder withConductorSpecification(VecConductorSpecification conductorSpecification) {
+    public WireElementBuilder withConductorSpecification(final VecConductorSpecification conductorSpecification) {
         wireElementSpecification.setConductorSpecification(conductorSpecification);
 
         return this;
     }
 
-    public WireElementBuilder addInsulationSpecification(String identification,
-                                                         Customizer<InsulationSpecificationBuilder> customizer) {
-        InsulationSpecificationBuilder builder = new InsulationSpecificationBuilder(session,
-                                                                                    identification);
+    public WireElementBuilder addInsulationSpecification(final String identification,
+                                                         final Customizer<InsulationSpecificationBuilder> customizer) {
+        final InsulationSpecificationBuilder builder = new InsulationSpecificationBuilder(session,
+                                                                                          identification);
         customizer.customize(builder);
 
         return withInsulationSpecification(builder.build());
     }
 
-    public WireElementBuilder withInsulationSpecification(VecInsulationSpecification specification) {
+    public WireElementBuilder withInsulationSpecification(final VecInsulationSpecification specification) {
         specificationRegistry.register(specification);
         wireElementSpecification.setInsulationSpecification(specification);
 
@@ -96,6 +101,46 @@ public class WireElementBuilder implements Builder<VecWireElement> {
 
     public WireElementBuilder withDin76722WireType(final String wireType) {
         this.wireElementSpecification.getTypes().add(din76722(wireType));
+
+        return this;
+    }
+
+    public WireElementBuilder withMinBendRadiusDynamic(final double radius) {
+        this.wireElementSpecification.setMinBendRadiusDynamic(value(radius, session.mm()));
+
+        return this;
+    }
+
+    public WireElementBuilder withMinBendRadiusStatic(final double radius) {
+        this.wireElementSpecification.setMinBendRadiusStatic(value(radius, session.mm()));
+
+        return this;
+    }
+
+    public WireElementBuilder withInductance(final double inductance) {
+        final VecDoubleValueProperty cs = new VecDoubleValueProperty();
+        cs.setPropertyType("Inductance");
+        cs.setValue(inductance);
+
+        wireElementSpecification.getCustomProperties().add(cs);
+        session.addXmlComment(cs,
+                              "Currently missing in VEC, could be represented with unit with a NumericalValueProperty");
+        return this;
+    }
+
+    public WireElementBuilder withCapacitance(final double capacitance) {
+        final VecDoubleValueProperty cs = new VecDoubleValueProperty();
+        cs.setPropertyType("Capacitance");
+        cs.setValue(capacitance);
+
+        wireElementSpecification.getCustomProperties().add(cs);
+        session.addXmlComment(cs,
+                              "Currently missing in VEC, could be represented with unit with a NumericalValueProperty");
+        return this;
+    }
+
+    public WireElementBuilder withImpedance(final double impedance) {
+        this.wireElementSpecification.setImpedance(value(impedance, session.ohm()));
 
         return this;
     }

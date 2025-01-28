@@ -36,7 +36,7 @@ class NewModellingApproachEeComponentTest {
 
     @Test
     void create_ee_component_with_schematic() throws IOException {
-        VecSession session = new VecSession();
+        final VecSession session = new VecSession();
 
         // @formatter:off
         session.component("EE-COMP", "DRAW-EE-COMP", VecPrimaryPartType.EE_COMPONENT, comp -> comp
@@ -83,7 +83,7 @@ class NewModellingApproachEeComponentTest {
                     .addPinComponents("1","2","3","4","5"))
                 .addHousingComponent("F2", hc -> hc
                     .addPinComponents("1","2")))
-            .addCoreSpecification("BUSBAR", spec -> spec.withCSA(5.0))
+            .addConductorSpecification("BUSBAR", spec -> spec.withCSA(5.0))
             .addWireSpecificationForPartUsage("BUSBAR", ws -> ws
                     .withWireElement("BUSBAR", we -> we
                         .withCoreSpecification("BUSBAR")))
