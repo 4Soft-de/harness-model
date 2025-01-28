@@ -25,9 +25,10 @@
  */
 package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.v2x.*;
 
@@ -47,8 +48,8 @@ public class PluggableTerminalSpecificationBuilder
     private final SpecificationRegistry specificationRegistry;
     private final SpecificationLocator specificationLocator;
 
-    PluggableTerminalSpecificationBuilder(VecSession session, SpecificationRegistry specificationRegistry,
-                                          final String partNumber, SpecificationLocator specificationLocator) {
+    PluggableTerminalSpecificationBuilder(final VecSession session, final SpecificationRegistry specificationRegistry,
+                                          final String partNumber, final SpecificationLocator specificationLocator) {
         this.session = session;
         this.specificationRegistry = specificationRegistry;
         this.specificationLocator = specificationLocator;
@@ -65,7 +66,7 @@ public class PluggableTerminalSpecificationBuilder
         terminalReception.setIdentification("TR1");
         terminalReception.setTerminalReceptionSpecification(terminalReceptionSpecification);
 
-        VecInternalTerminalConnection terminalConnection = new VecInternalTerminalConnection();
+        final VecInternalTerminalConnection terminalConnection = new VecInternalTerminalConnection();
         terminalConnection.setIdentification("IntCon-" + partNumber);
         terminalConnection.getTerminalReception().add(terminalReception);
         terminalConnection.getWireReception().add(wireReception);
@@ -78,52 +79,53 @@ public class PluggableTerminalSpecificationBuilder
         element.getInternalTerminalConnections().add(terminalConnection);
     }
 
-    public PluggableTerminalSpecificationBuilder withInsulationDisplacementLength(double value, double lowerTolerance,
-                                                                                  double upperTolerance) {
+    public PluggableTerminalSpecificationBuilder withInsulationDisplacementLength(final double value,
+                                                                                  final double lowerTolerance,
+                                                                                  final double upperTolerance) {
         this.wireReceptionSpecification.setInsulationDisplacementLength(
                 valueWithTolerance(value, lowerTolerance, upperTolerance, session.mm()));
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withSealable(boolean sealable) {
+    public PluggableTerminalSpecificationBuilder withSealable(final boolean sealable) {
         this.wireReceptionSpecification.setSealable(sealable);
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withConnectionBLength(double value) {
+    public PluggableTerminalSpecificationBuilder withConnectionBLength(final double value) {
         this.wireReceptionSpecification.setConnectionBLength(value(value, session.mm()));
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withRearBellMouth(double value) {
-        VecNumericalValue numericalValue = value(value, session.mm());
+    public PluggableTerminalSpecificationBuilder withRearBellMouth(final double value) {
+        final VecNumericalValue numericalValue = value(value, session.mm());
         session.addXmlComment(numericalValue, " Excelsheet has Min- & MaxBackBellmouth. How is this connected?");
         this.wireReceptionSpecification.setRearBellMouthLength(numericalValue);
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withTerminalLengthOverall(double value) {
+    public PluggableTerminalSpecificationBuilder withTerminalLengthOverall(final double value) {
         this.element.setOverallLength(value(value, session.mm()));
 
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withInsulationCrimpLegHeight(double value) {
+    public PluggableTerminalSpecificationBuilder withInsulationCrimpLegHeight(final double value) {
         this.wireReceptionSpecification.setInsulationCrimpLegHeight(value(value, session.mm()));
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withSheetThickness(double value) {
+    public PluggableTerminalSpecificationBuilder withSheetThickness(final double value) {
         this.wireReceptionSpecification.setSheetThickness(value(value, session.mm()));
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withInsulationCrimpShape(String value) {
+    public PluggableTerminalSpecificationBuilder withInsulationCrimpShape(final String value) {
         this.wireReceptionSpecification.setInsulationCrimpShape(value);
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withWireTipProtrusion(double min, double max) {
+    public PluggableTerminalSpecificationBuilder withWireTipProtrusion(final double min, final double max) {
         this.wireReceptionSpecification.setWireTipProtrusion(valueRange(min, max, session.mm()));
         return this;
     }
@@ -136,8 +138,8 @@ public class PluggableTerminalSpecificationBuilder
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder addCoreCrimpDetails(String coreIdentification,
-                                                                     Customizer<CoreCrimpDetailBuilder> crimpDetailsCustomizer) {
+    public PluggableTerminalSpecificationBuilder addCoreCrimpDetails(final String coreIdentification,
+                                                                     final Customizer<CoreCrimpDetailBuilder> crimpDetailsCustomizer) {
         final CoreCrimpDetailBuilder crimpDetailsBuilder = new CoreCrimpDetailBuilder(session, specificationLocator,
                                                                                       coreIdentification);
 

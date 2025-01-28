@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
@@ -43,9 +44,9 @@ public class GeneralTechnicalPartSpecificationBuilder
         element = this.initializeSpecification(VecGeneralTechnicalPartSpecification.class, partNumber);
     }
 
-    public GeneralTechnicalPartSpecificationBuilder withMassInformation(double value, VecUnit unit) {
+    public GeneralTechnicalPartSpecificationBuilder withMassInformation(final double value, final VecUnit unit) {
 
-        VecMassInformation massInformation = new VecMassInformation();
+        final VecMassInformation massInformation = new VecMassInformation();
         massInformation.setValue(value(value, unit));
         massInformation.setDeterminationType(VecValueDetermination.MEASURED);
         massInformation.setValueSource("Series");
@@ -55,17 +56,17 @@ public class GeneralTechnicalPartSpecificationBuilder
         return this;
     }
 
-    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxX(double x) {
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxX(final double x) {
         getOrCreateBoundingBox().setX(value(x, session.mm()));
         return this;
     }
 
-    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxY(double y) {
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxY(final double y) {
         getOrCreateBoundingBox().setY(value(y, session.mm()));
         return this;
     }
 
-    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxZ(double z) {
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxZ(final double z) {
         getOrCreateBoundingBox().setZ(value(z, session.mm()));
         return this;
     }

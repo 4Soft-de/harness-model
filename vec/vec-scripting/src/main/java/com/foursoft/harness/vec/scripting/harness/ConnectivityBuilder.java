@@ -26,6 +26,8 @@
 package com.foursoft.harness.vec.scripting.harness;
 
 import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.*;
 
 import java.util.ArrayList;
@@ -38,8 +40,8 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
     private final Function<String, VecPartOccurrence> occurrenceLocator;
     private final List<VecContactPoint> createdContactPoints = new ArrayList<>();
 
-    public ConnectivityBuilder(VecSession session, final VecWireElementReference wireElementReference,
-                               Function<String, VecPartOccurrence> occurrenceLocator) {
+    public ConnectivityBuilder(final VecSession session, final VecWireElementReference wireElementReference,
+                               final Function<String, VecPartOccurrence> occurrenceLocator) {
         this.session = session;
         this.wireElementReference = wireElementReference;
         this.occurrenceLocator = occurrenceLocator;
@@ -73,8 +75,8 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
     }
 
     public ConnectivityBuilder addEndWithTerminalOnly(final String terminalId,
-                                                      Customizer<WireEndBuilder> wireEndCustomizer,
-                                                      Customizer<WireMountingDetailBuilder> wireMountingDetailBuilderCustomizer) {
+                                                      final Customizer<WireEndBuilder> wireEndCustomizer,
+                                                      final Customizer<WireMountingDetailBuilder> wireMountingDetailBuilderCustomizer) {
         final VecContactPoint cp = createContactPointWithWireMounting(
                 wireElementReference.getIdentification() + "-" + terminalId, wireEndCustomizer,
                 wireMountingDetailBuilderCustomizer);
@@ -85,10 +87,9 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
 
         cp.setMountedTerminal(terminal);
 
-        terminal.getWireReceptionReferences().forEach(wrRef -> {
-            cp.getWireMountings().stream().flatMap(wm -> wm.getWireMountingDetails().stream()).forEach(
-                    wmd -> wmd.setContactedWireReception(wrRef));
-        });
+        terminal.getWireReceptionReferences().forEach(
+                wrRef -> cp.getWireMountings().stream().flatMap(wm -> wm.getWireMountingDetails().stream()).forEach(
+                        wmd -> wmd.setContactedWireReception(wrRef)));
 
         return this;
     }
@@ -98,13 +99,13 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
     }
 
     private VecContactPoint createContactPointWithWireMounting(final String endpointId,
-                                                               Customizer<WireEndBuilder> wireEndCustomizer,
-                                                               Customizer<WireMountingDetailBuilder> wireMountingDetailCustomizer) {
+                                                               final Customizer<WireEndBuilder> wireEndCustomizer,
+                                                               final Customizer<WireMountingDetailBuilder> wireMountingDetailCustomizer) {
         final VecContactPoint cp = new VecContactPoint();
         cp.setIdentification(endpointId);
         createdContactPoints.add(cp);
 
-        WireEndBuilder wireEndBuilder = new WireEndBuilder(this.session);
+        final WireEndBuilder wireEndBuilder = new WireEndBuilder(this.session);
 
         wireEndCustomizer.customize(wireEndBuilder);
 

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,23 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.factories;
+package com.foursoft.harness.vec.scripting.harness;
 
-import com.foursoft.harness.vec.v2x.VecUnit;
-import com.foursoft.harness.vec.v2x.VecValueRange;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.VecWireEnd;
 
-public final class ValueRangeFactory {
+import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
 
-    private ValueRangeFactory() {
-        throw new AssertionError();
+public class WireEndBuilder implements Builder<VecWireEnd> {
+
+    private final VecWireEnd wireEnd;
+    private final VecSession session;
+
+    public WireEndBuilder(final VecSession session) {
+        this.session = session;
+        wireEnd = new VecWireEnd();
     }
 
-    public static VecValueRange valueRange(final double min, final double max, VecUnit unit) {
-        final VecValueRange valueRange = new VecValueRange();
-        valueRange.setMinimum(min);
-        valueRange.setMaximum(max);
-        valueRange.setUnitComponent(unit);
+    public WireEndBuilder withStrippingLength(final double value, final double lowerTolerance,
+                                              final double upperTolerance) {
+        wireEnd.setStrippingLength(valueWithTolerance(value, lowerTolerance, upperTolerance, session.mm()));
+        return this;
+    }
 
-        return valueRange;
+    @Override public VecWireEnd build() {
+        return wireEnd;
     }
 }
