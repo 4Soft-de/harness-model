@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC 2.x Scripting API (Experimental)
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2025 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,35 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.core;
+package com.foursoft.harness.vec.scripting.factories;
 
-import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.v2x.VecLocalizedString;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
-import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
+import com.foursoft.harness.vec.v2x.VecUnit;
+import com.foursoft.harness.vec.v2x.VecValueRange;
 
-public class PartVersionBuilder implements Builder<VecPartVersion> {
+public final class ValueRangeFactory {
 
-    private final VecPartVersion part;
-    private final VecSession session;
-
-    public PartVersionBuilder(final VecSession session, final String partNumber, final VecPrimaryPartType primaryPartType) {
-        this.session = session;
-        part = new VecPartVersion();
-
-        part.setCompanyName(this.session.getDefaultValues().getCompanyName());
-        part.setPartVersion("1");
-        part.setPartNumber(partNumber);
-        part.setPrimaryPartType(primaryPartType);
+    private ValueRangeFactory() {
+        throw new AssertionError();
     }
 
-    public PartVersionBuilder withAbbreviation(final VecLocalizedString abbreviation) {
-        part.getAbbreviations().add(abbreviation);
-        return this;
-    }
+    public static VecValueRange valueRange(final double min, final double max, VecUnit unit) {
+        final VecValueRange valueRange = new VecValueRange();
+        valueRange.setMinimum(min);
+        valueRange.setMaximum(max);
+        valueRange.setUnitComponent(unit);
 
-    @Override public VecPartVersion build() {
-        return part;
+        return valueRange;
     }
 }

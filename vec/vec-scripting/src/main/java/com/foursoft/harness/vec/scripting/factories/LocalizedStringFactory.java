@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting.factories;
 
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
+import com.foursoft.harness.vec.v2x.VecLocalizedTypedString;
 
 public final class LocalizedStringFactory {
 
@@ -34,17 +35,34 @@ public final class LocalizedStringFactory {
         throw new AssertionError();
     }
 
-    public static VecLocalizedString de(String text) {
-        VecLocalizedString result = new VecLocalizedString();
+    public static VecLocalizedString de(final String text) {
+        final VecLocalizedString result = new VecLocalizedString();
         result.setLanguageCode(VecLanguageCode.DE);
         result.setValue(text);
         return result;
     }
 
-    public static VecLocalizedString en(String text) {
-        VecLocalizedString result = new VecLocalizedString();
+    public static VecLocalizedString en(final String text) {
+        final VecLocalizedString result = new VecLocalizedString();
         result.setLanguageCode(VecLanguageCode.EN);
         result.setValue(text);
         return result;
     }
+
+    public static VecLocalizedTypedString de(final String text, final String type) {
+        final VecLocalizedTypedString result = new VecLocalizedTypedString();
+        result.setLanguageCode(VecLanguageCode.DE);
+        result.setValue(text);
+        result.setType(type);
+        return result;
+    }
+
+    public static VecLocalizedTypedString en(final String text, final String type) {
+        final VecLocalizedTypedString result = new VecLocalizedTypedString();
+        result.setLanguageCode(VecLanguageCode.EN);
+        result.setValue(text);
+        result.setType(type);
+        return result;
+    }
+
 }

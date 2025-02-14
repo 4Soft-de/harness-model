@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC 2.x Scripting API (Experimental)
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2025 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,35 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.core;
+package com.foursoft.harness.vec.scripting.harness;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.v2x.VecLocalizedString;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
-import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
+import com.foursoft.harness.vec.v2x.VecWireEnd;
 
-public class PartVersionBuilder implements Builder<VecPartVersion> {
+import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
 
-    private final VecPartVersion part;
+public class WireEndBuilder implements Builder<VecWireEnd> {
+
+    private final VecWireEnd wireEnd;
     private final VecSession session;
 
-    public PartVersionBuilder(final VecSession session, final String partNumber, final VecPrimaryPartType primaryPartType) {
+    public WireEndBuilder(final VecSession session) {
         this.session = session;
-        part = new VecPartVersion();
-
-        part.setCompanyName(this.session.getDefaultValues().getCompanyName());
-        part.setPartVersion("1");
-        part.setPartNumber(partNumber);
-        part.setPrimaryPartType(primaryPartType);
+        wireEnd = new VecWireEnd();
     }
 
-    public PartVersionBuilder withAbbreviation(final VecLocalizedString abbreviation) {
-        part.getAbbreviations().add(abbreviation);
+    public WireEndBuilder withStrippingLength(final double value, final double lowerTolerance,
+                                              final double upperTolerance) {
+        wireEnd.setStrippingLength(valueWithTolerance(value, lowerTolerance, upperTolerance, session.mm()));
         return this;
     }
 
-    @Override public VecPartVersion build() {
-        return part;
+    @Override public VecWireEnd build() {
+        return wireEnd;
     }
 }

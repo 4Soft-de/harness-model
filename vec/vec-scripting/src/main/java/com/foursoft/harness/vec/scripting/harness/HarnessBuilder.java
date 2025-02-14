@@ -141,7 +141,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         final VecWireElementReference wireElementReference = wireElementReferenceLocator(
                 compositionSpecification).locate(wireElementReferenceId);
 
-        ConnectivityBuilder builder = new ConnectivityBuilder(wireElementReference, this::findOccurrence);
+        ConnectivityBuilder builder = new ConnectivityBuilder(this.session, wireElementReference, this::findOccurrence);
 
         customizer.customize(builder);
 

@@ -25,29 +25,30 @@
  */
 package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
-import com.foursoft.harness.vec.v2x.VecMassInformation;
-import com.foursoft.harness.vec.v2x.VecUnit;
-import com.foursoft.harness.vec.v2x.VecValueDetermination;
+import com.foursoft.harness.vec.scripting.enums.TemperatureType;
+import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
+import static com.foursoft.harness.vec.scripting.factories.ValueRangeFactory.valueRange;
 
 public class GeneralTechnicalPartSpecificationBuilder
         extends PartOrUsageRelatedSpecificationBuilder<VecGeneralTechnicalPartSpecification> {
-
+    private final VecSession session;
     private final VecGeneralTechnicalPartSpecification element;
     private final String partNumber;
 
-    GeneralTechnicalPartSpecificationBuilder(final String partNumber) {
+    GeneralTechnicalPartSpecificationBuilder(final VecSession session, final String partNumber) {
+        this.session = session;
         this.partNumber = partNumber;
 
         element = this.initializeSpecification(VecGeneralTechnicalPartSpecification.class, partNumber);
     }
 
-    public GeneralTechnicalPartSpecificationBuilder withMassInformation(double value, VecUnit unit) {
+    public GeneralTechnicalPartSpecificationBuilder withMassInformation(final double value, final VecUnit unit) {
 
-        VecMassInformation massInformation = new VecMassInformation();
+        final VecMassInformation massInformation = new VecMassInformation();
         massInformation.setValue(value(value, unit));
         massInformation.setDeterminationType(VecValueDetermination.MEASURED);
         massInformation.setValueSource("Series");
@@ -55,6 +56,42 @@ public class GeneralTechnicalPartSpecificationBuilder
         element.getMassInformations().add(massInformation);
 
         return this;
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final TemperatureType temperatureType,
+                                                                               final double lowerLimit,
+                                                                               final double upperLimit,
+                                                                               final VecUnit unit) {
+
+        final VecTemperatureInformation temperatureInformation = new VecTemperatureInformation();
+        temperatureInformation.setTemperatureType(temperatureType.value());
+        temperatureInformation.setTemperatureRange(valueRange(lowerLimit, upperLimit, unit));
+
+        element.getTemperatureInformations().add(temperatureInformation);
+
+        return this;
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxX(final double x) {
+        getOrCreateBoundingBox().setX(value(x, session.mm()));
+        return this;
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxY(final double y) {
+        getOrCreateBoundingBox().setY(value(y, session.mm()));
+        return this;
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withBoundingBoxZ(final double z) {
+        getOrCreateBoundingBox().setZ(value(z, session.mm()));
+        return this;
+    }
+
+    private VecBoundingBox getOrCreateBoundingBox() {
+        if (element.getBoundingBox() == null) {
+            element.setBoundingBox(new VecBoundingBox());
+        }
+        return element.getBoundingBox();
     }
 
     @Override public VecGeneralTechnicalPartSpecification build() {
