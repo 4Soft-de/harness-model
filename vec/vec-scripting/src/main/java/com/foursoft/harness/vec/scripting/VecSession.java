@@ -32,6 +32,7 @@ import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.scripting.components.ComponentMasterDataBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
 import com.foursoft.harness.vec.scripting.harness.HarnessBuilder;
@@ -66,6 +67,8 @@ public class VecSession {
     private VecSIUnit perMetre;
     private VecCompositeUnit mOhmPerMeter;
     private VecSIUnit ohm;
+    private VecSIUnit ampere;
+    private VecSIUnit volts;
 
     public VecSession() {
         xmlMeta.setComments(comments);
@@ -88,6 +91,17 @@ public class VecSession {
         final VecDocumentVersion build = builder.build();
 
         vecContentRoot.getDocumentVersions().add(build);
+    }
+
+    public void part(final String partNumber, final VecPrimaryPartType primaryPartType,
+                     final Customizer<PartVersionBuilder> customizer) {
+        final PartVersionBuilder builder = new PartVersionBuilder(this, partNumber, primaryPartType);
+
+        customizer.customize(builder);
+
+        final VecPartVersion build = builder.build();
+
+        vecContentRoot.getPartVersions().add(build);
     }
 
     public void component(final String partNumber, final String documentNumber,
@@ -160,6 +174,15 @@ public class VecSession {
         vecContentRoot.accept(new XmlIdGeneratingTraverser(xmlIdGenerator));
     }
 
+    public VecSIUnit volts() {
+        if (this.volts == null) {
+            this.volts = SiUnitFactory.volts();
+            this.vecContentRoot.getUnits()
+                    .add(this.volts);
+        }
+        return this.volts;
+    }
+
     public VecSIUnit mm() {
         if (this.mm == null) {
             this.mm = SiUnitFactory.mm();
@@ -223,6 +246,14 @@ public class VecSession {
             this.vecContentRoot.getUnits().add(perMetre);
         }
         return this.perMetre;
+    }
+
+    public VecSIUnit ampere() {
+        if (this.ampere == null) {
+            this.ampere = SiUnitFactory.ampere();
+            this.vecContentRoot.getUnits().add(ampere);
+        }
+        return this.ampere;
     }
 
     public VecUnit gramPerMeter() {

@@ -30,8 +30,10 @@ import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
+import com.foursoft.harness.vec.scripting.enums.WireReceptionType;
 import com.foursoft.harness.vec.v2x.*;
 
+import static com.foursoft.harness.vec.scripting.factories.MaterialFactory.material;
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.valueWithTolerance;
 import static com.foursoft.harness.vec.scripting.factories.ValueRangeFactory.valueRange;
@@ -110,8 +112,37 @@ public class PluggableTerminalSpecificationBuilder
         return this;
     }
 
+    public PluggableTerminalSpecificationBuilder withTerminalLengthOverall(final double value,
+                                                                           final double lowerTolerance,
+                                                                           final double upperTolerance) {
+        this.element.setOverallLength(valueWithTolerance(value, lowerTolerance, upperTolerance, session.mm()));
+
+        return this;
+    }
+
     public PluggableTerminalSpecificationBuilder withInsulationCrimpLegHeight(final double value) {
         this.wireReceptionSpecification.setInsulationCrimpLegHeight(value(value, session.mm()));
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withInsulationCrimpLegHeight(final double value,
+                                                                              final double lowerUpperTolerance) {
+        this.wireReceptionSpecification.setInsulationCrimpLegHeight(
+                valueWithTolerance(value, -lowerUpperTolerance, lowerUpperTolerance, session.mm()));
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withConductorCrimpLength(final double value,
+                                                                          final double lowerUpperTolerance) {
+        this.wireReceptionSpecification.setConductorCrimpLength(
+                valueWithTolerance(value, -lowerUpperTolerance, lowerUpperTolerance, session.mm()));
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withConductorCrimpLegHeight(final double value,
+                                                                             final double lowerUpperTolerance) {
+        this.wireReceptionSpecification.setConductorCrimpLegHeight(
+                valueWithTolerance(value, -lowerUpperTolerance, lowerUpperTolerance, session.mm()));
         return this;
     }
 
@@ -125,8 +156,92 @@ public class PluggableTerminalSpecificationBuilder
         return this;
     }
 
+    public PluggableTerminalSpecificationBuilder withInsulationCrimpLength(final double value,
+                                                                           final double lowerUpperLimit) {
+        this.wireReceptionSpecification.setInsulationCrimpLength(
+                valueWithTolerance(value, -lowerUpperLimit, lowerUpperLimit, session.mm()));
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withCrimpConnectionLength(final double value,
+                                                                           final double lowerUpperLimit) {
+        this.wireReceptionSpecification.setCrimpConnectionLength(
+                valueWithTolerance(value, -lowerUpperLimit, lowerUpperLimit, session.mm()));
+
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withContactRangeLength(final double value, final double lowerLimit,
+                                                                        final double upperLimit) {
+        this.terminalReceptionSpecification.setContactRangeLength(
+                valueWithTolerance(value, lowerLimit, upperLimit, session.mm()));
+        return this;
+    }
+
     public PluggableTerminalSpecificationBuilder withWireTipProtrusion(final double min, final double max) {
         this.wireReceptionSpecification.setWireTipProtrusion(valueRange(min, max, session.mm()));
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withPlatingMaterialTerminalReception(final String materialName) {
+        final VecMaterial material =
+                material(session.getDefaultValues().getMaterialReferenceSystem(), materialName);
+
+        terminalReceptionSpecification.getPlatingMaterials().add(material);
+
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withPlatingMaterialWireReception(final String materialName) {
+        final VecMaterial material =
+                material(session.getDefaultValues().getMaterialReferenceSystem(), materialName);
+
+        wireReceptionSpecification.getPlatingMaterials().add(material);
+
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withCoreCrossSectionArea(final double min, final double max) {
+        wireReceptionSpecification.setCoreCrossSectionArea(valueRange(min, max, session.squareMM()));
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withWireReceptionType(final WireReceptionType wireReceptionType) {
+        wireReceptionSpecification.setWireReceptionType(wireReceptionType.value());
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withWireElementOutsideDiameter(final double min, final double max) {
+        wireReceptionSpecification.setWireElementOutsideDiameter(valueRange(min, max, session.mm()));
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withTerminalCurrentInformation(final double crossSectionArea,
+                                                                                final double nominalVoltage,
+                                                                                final double lowerLimit,
+                                                                                final double upperLimit,
+                                                                                final double temperature) {
+        final VecTerminalCurrentInformation terminalCurrentInformation = new VecTerminalCurrentInformation();
+        terminalCurrentInformation.setCurrentRange(valueRange(lowerLimit, upperLimit, session.ampere()));
+        terminalCurrentInformation.setCoreCrossSectionArea(value(crossSectionArea, session.squareMM()));
+        terminalCurrentInformation.setNominalVoltage(value(nominalVoltage, session.volts()));
+        session.addXmlComment(terminalCurrentInformation,
+                              " Current information is currently not temperature dependent (KBLFRM-1264): " +
+                                      temperature);
+        this.element.getCurrentInformations().add(terminalCurrentInformation);
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withPullOutForce(final double pullOutForce) {
+        terminalReceptionSpecification.setPullOutForce(value(pullOutForce, session.newton()));
+        return this;
+    }
+
+    public PluggableTerminalSpecificationBuilder withTerminalType(final String name, final String nominalSize) {
+        final VecTerminalType type = new VecTerminalType();
+        type.setName(name);
+        type.setNominalSize(nominalSize);
+        terminalReceptionSpecification.setTerminalType(type);
         return this;
     }
 

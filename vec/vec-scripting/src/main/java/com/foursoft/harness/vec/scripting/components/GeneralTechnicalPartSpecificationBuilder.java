@@ -30,6 +30,7 @@ import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBu
 import com.foursoft.harness.vec.scripting.enums.TemperatureType;
 import com.foursoft.harness.vec.v2x.*;
 
+import static com.foursoft.harness.vec.scripting.factories.MaterialFactory.material;
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
 import static com.foursoft.harness.vec.scripting.factories.ValueRangeFactory.valueRange;
 
@@ -44,6 +45,13 @@ public class GeneralTechnicalPartSpecificationBuilder
         this.partNumber = partNumber;
 
         element = this.initializeSpecification(VecGeneralTechnicalPartSpecification.class, partNumber);
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withMaterialInformation(final String materialName) {
+        element.getMaterialInformations().add(
+                material(session.getDefaultValues().getMaterialReferenceSystem(), materialName));
+
+        return this;
     }
 
     public GeneralTechnicalPartSpecificationBuilder withMassInformation(final double value, final VecUnit unit) {

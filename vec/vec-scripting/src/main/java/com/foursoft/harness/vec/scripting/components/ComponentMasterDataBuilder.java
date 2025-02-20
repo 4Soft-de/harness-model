@@ -263,6 +263,18 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
 
     }
 
+    public ComponentMasterDataBuilder addTerminalPairing(final String otherSidePartNumber,
+                                                         final Customizer<TerminalPairingBuilder> customizer) {
+        final TerminalPairingBuilder terminalPairingBuilder = new TerminalPairingBuilder(this.session, this.part,
+                                                                                         this.session.findPartVersionByPartNumber(
+                                                                                                 otherSidePartNumber));
+        customizer.customize(terminalPairingBuilder);
+
+        final VecTerminalPairingSpecification build = terminalPairingBuilder.build();
+        this.addSpecification(build);
+        return this;
+    }
+
     public record PartDocumentsPair(VecPartVersion partVersion, List<VecDocumentVersion> documentVersions) {
     }
 
