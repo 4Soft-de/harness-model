@@ -1,0 +1,69 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.foursoft.harness</groupId>
+        <artifactId>harness-parent</artifactId>
+        <version>5.4.2-SNAPSHOT</version>
+    </parent>
+    <groupId>com.foursoft.harness.vec.aas</groupId>
+    <artifactId>vec-aas</artifactId>
+
+    <properties>
+        <aas4j.version>1.0.4</aas4j.version>
+    </properties>
+
+
+    <name>VEC to AAS Converter</name>
+
+    <inceptionYear>2025</inceptionYear>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.foursoft.harness.vec</groupId>
+            <artifactId>vec-v2x</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.vec.rdf</groupId>
+            <artifactId>vec-rdf-converter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.digitaltwin.aas4j</groupId>
+            <artifactId>aas4j-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.digitaltwin.aas4j</groupId>
+            <artifactId>aas4j-dataformat-json</artifactId>
+        </dependency>
+    </dependencies>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.foursoft.harness.vec</groupId>
+                <artifactId>vec-v2x</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.foursoft.harness.vec.rdf</groupId>
+                <artifactId>vec-rdf-converter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.digitaltwin.aas4j</groupId>
+                <artifactId>aas4j-model</artifactId>
+                <version>${aas4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.digitaltwin.aas4j</groupId>
+                <artifactId>aas4j-dataformat-json</artifactId>
+                <version>${aas4j.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>
