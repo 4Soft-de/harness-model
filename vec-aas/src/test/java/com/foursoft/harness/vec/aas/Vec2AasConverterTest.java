@@ -45,7 +45,7 @@ class Vec2AasConverterTest {
 
         final InputStream inputFile = this.getClass().getResourceAsStream("/kostal-32124733993.vec");
 
-        final SubmodelElement model = converter.convert(inputFile, "https://www.kostal.com/kostal-32124733993");
+        final SubmodelElement model = converter.convert(inputFile, "https://www.kostal.com/kostal-32124733993#");
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
