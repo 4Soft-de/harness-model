@@ -85,4 +85,12 @@ public class SiUnitFactory {
         return new SiUnitFactory(VecSiUnitName.NEWTON, null, null).create();
     }
 
+    public static VecSIUnit ampere() {
+        return new SiUnitFactory(VecSiUnitName.AMPERE).create();
+    }
+
+    public static VecSIUnit volts() {
+        return new SiUnitFactory(VecSiUnitName.VOLT).create();
+    }
+
 }
