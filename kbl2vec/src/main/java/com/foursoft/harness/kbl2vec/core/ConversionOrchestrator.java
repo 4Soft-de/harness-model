@@ -28,10 +28,12 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     private final List<Processor<S>> preProcessors = new ArrayList<>();
 
     public ConversionOrchestrator(final Class<S> sourceRootClass, final Class<D> destinationRootClass,
-                                  final TransformerRegistry transformerRegistry) {
+                                  final TransformerRegistry transformerRegistry
+    ) {
         this.sourceClass = sourceRootClass;
         this.destinationClass = destinationRootClass;
         this.transformerRegistry = transformerRegistry;
+
         LOGGER.debug("Created orchestrator for conversion pipeline.");
     }
 
@@ -100,7 +102,7 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     }
 
     private <FROM, TO> void handleElementTransformation(final Transformation<FROM, TO> step) {
-        final Transformer<FROM, TO> transformer = transformerRegistry.getTransformer(step.sourceClass(),
+        final Transformer<FROM, TO> transformer = transformerRegistry.getTransformer(this, step.sourceClass(),
                                                                                      step.destinationClass());
 
         step.sourceQuery()
@@ -125,4 +127,5 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     public EntityMapping getEntityMapping() {
         return entityMapping;
     }
+
 }

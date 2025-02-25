@@ -1,9 +1,11 @@
 package com.foursoft.harness.kbl2vec.transfrom;
 
 import com.foursoft.harness.kbl.v25.KBLContainer;
+import com.foursoft.harness.kbl.v25.KblUnit;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecContent;
+import com.foursoft.harness.vec.v2x.VecUnit;
 
 public class VecContentTransformer implements Transformer<KBLContainer, VecContent> {
     @Override
@@ -17,7 +19,7 @@ public class VecContentTransformer implements Transformer<KBLContainer, VecConte
         return TransformationResult.from(resultElement)
 //                .downstreamTransformation(KblPart.class, VecCopyrightInformation.class, allParts(source),
 //                                          resultElement::getCopyrightInformations)
-//                .downstreamTransformation(KblUnit.class, VecUnit.class, source::getUnits, resultElement::getUnits)
+                .downstreamTransformation(KblUnit.class, VecUnit.class, source::getUnits, resultElement::getUnits)
 //                .downstreamTransformation(KblPart.class, VecPartVersion.class, allParts(source),
 //                                          resultElement::getPartVersions)
 //                .downstreamTransformation(KblPart.class, VecDocumentVersion.class, source::getParts,

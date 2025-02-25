@@ -2,5 +2,5 @@ package com.foursoft.harness.kbl2vec.core;
 
 public interface TransformerRegistry {
 
-    <S, D> Transformer<S, D> getTransformer(Class<S> source, Class<D> destination);
+    <S, D> Transformer<S, D> getTransformer(TransformationContext context, Class<S> source, Class<D> destination);
 }

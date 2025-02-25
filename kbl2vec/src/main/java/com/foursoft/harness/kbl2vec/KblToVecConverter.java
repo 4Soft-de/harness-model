@@ -12,7 +12,7 @@ public class KblToVecConverter {
             orchestrator;
 
     public KblToVecConverter() {
-        orchestrator = orchestrator(null);
+        orchestrator = orchestrator(new ReflectionsBasedTransformerRegistry());
     }
 
     public VecContent convert(final KBLContainer container) {
