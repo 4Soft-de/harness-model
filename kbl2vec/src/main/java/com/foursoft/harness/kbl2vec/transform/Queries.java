@@ -1,4 +1,4 @@
-package com.foursoft.harness.kbl2vec.transfrom;
+package com.foursoft.harness.kbl2vec.transform;
 
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblPart;

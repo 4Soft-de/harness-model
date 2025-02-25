@@ -16,6 +16,7 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     private final Class<S> sourceClass;
     private final Class<D> destinationClass;
     private final TransformerRegistry transformerRegistry;
+    private final ConversionProperties conversionProperties;
 
     private final EntityMapping entityMapping = new EntityMapping();
 
@@ -28,11 +29,13 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     private final List<Processor<S>> preProcessors = new ArrayList<>();
 
     public ConversionOrchestrator(final Class<S> sourceRootClass, final Class<D> destinationRootClass,
-                                  final TransformerRegistry transformerRegistry
+                                  final TransformerRegistry transformerRegistry,
+                                  final ConversionProperties conversionProperties
     ) {
         this.sourceClass = sourceRootClass;
         this.destinationClass = destinationRootClass;
         this.transformerRegistry = transformerRegistry;
+        this.conversionProperties = conversionProperties;
 
         LOGGER.debug("Created orchestrator for conversion pipeline.");
     }
@@ -128,4 +131,8 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
         return entityMapping;
     }
 
+    @Override
+    public ConversionProperties getConversionProperties() {
+        return conversionProperties;
+    }
 }

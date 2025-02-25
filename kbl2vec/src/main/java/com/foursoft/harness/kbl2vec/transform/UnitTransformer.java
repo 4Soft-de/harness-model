@@ -1,4 +1,4 @@
-package com.foursoft.harness.kbl2vec.transfrom;
+package com.foursoft.harness.kbl2vec.transform;
 
 import com.foursoft.harness.kbl.v25.KblUnit;
 import com.foursoft.harness.kbl2vec.core.NoMappingDefinedException;
@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
+
+import static com.foursoft.harness.kbl2vec.utils.EnumMapper.mapEnum;
 
 public class UnitTransformer implements Transformer<KblUnit, VecUnit> {
 
@@ -47,17 +49,6 @@ public class UnitTransformer implements Transformer<KblUnit, VecUnit> {
             }
         }
         return result;
-    }
-
-    private <D extends Enum<D>> D mapEnum(final Enum<?> source, final Class<D> enumClass) {
-        final String name = source.name();
-        final D[] literals = enumClass.getEnumConstants();
-        for (final D literal : literals) {
-            if (name.equalsIgnoreCase(literal.name())) {
-                return literal;
-            }
-        }
-        throw new NoMappingDefinedException("No mapping defined for " + enumClass.getSimpleName() + ": " + name);
     }
 
 }

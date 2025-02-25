@@ -2,6 +2,7 @@ package com.foursoft.harness.kbl2vec;
 
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl2vec.core.ConversionOrchestrator;
+import com.foursoft.harness.kbl2vec.core.ConversionProperties;
 import com.foursoft.harness.kbl2vec.core.TransformerRegistry;
 import com.foursoft.harness.kbl2vec.post.XmlIdPostProcessor;
 import com.foursoft.harness.vec.v2x.VecContent;
@@ -23,7 +24,7 @@ public class KblToVecConverter {
         final ConversionOrchestrator<KBLContainer, VecContent> orchestrator = new ConversionOrchestrator<>(
                 KBLContainer.class,
                 VecContent.class,
-                registry);
+                registry, new ConversionProperties());
 
         orchestrator.addPostProcessor(new XmlIdPostProcessor());
 

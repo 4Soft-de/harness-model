@@ -4,4 +4,6 @@ public interface TransformationContext {
 
     EntityMapping getEntityMapping();
 
+    ConversionProperties getConversionProperties();
+
 }
