@@ -19,19 +19,19 @@ public class LinkingFinalizer<S, D> implements Finalizer {
 
     public LinkingFinalizer(final Query<S> sourceObjects, final Class<D> targetClass,
                             final Supplier<List<D>> targetProperty) {
-        this(sourceObjects, targetClass, (value) -> targetProperty.get()
-                .addLast(value));
+        this(sourceObjects, targetClass, value -> targetProperty.get()
+                .add(value));
     }
 
     public LinkingFinalizer(final S sourceObject, final Class<D> targetClass, final Supplier<List<D>> targetProperty) {
         this(Query.of(sourceObject), targetClass, (value) -> targetProperty.get()
-                .addLast(value));
+                .add(value));
     }
 
     @Override
-    public void finalize(final TransformationContext context) {
+    public void finishTransformation(final TransformationContext context) {
         sourceObjects.stream()
-                .map(s -> context.getEntityCache()
+                .map(s -> context.getEntityMapping()
                         .getIfUniqueOrElseThrow(s, targetClass))
                 .forEach(targetProperty);
     }

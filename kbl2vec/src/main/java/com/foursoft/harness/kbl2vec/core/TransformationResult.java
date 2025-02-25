@@ -13,7 +13,7 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
     public TransformationResult {
 
         Objects.requireNonNull(downstreamTransformations,
-                "downstreamTransformations must not be null, use empty list instead.");
+                               "downstreamTransformations must not be null, use empty list instead.");
         Objects.requireNonNull(finalizer, "callbacks must not be null, use empty list instead");
     }
 
@@ -25,12 +25,12 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         return new TransformationResult<>(null, Collections.emptyList(), Collections.emptyList());
     }
 
-    public static <D> TransformationResult<D> of(D element) {
+    public static <D> TransformationResult<D> of(final D element) {
         Objects.requireNonNull(element, "element must not be null");
         return new TransformationResult<>(element, Collections.emptyList(), Collections.emptyList());
     }
 
-    public static <D> Builder<D> from(D element) {
+    public static <D> Builder<D> from(final D element) {
         return new Builder<>(element);
     }
 
@@ -40,7 +40,7 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         private final List<Transformation<?, ?>> downstreamTransformations = new ArrayList<>();
         private final List<Finalizer> finalizers = new ArrayList<>();
 
-        private Builder(D element) {
+        private Builder(final D element) {
             Objects.requireNonNull(element, "element must not be null");
             this.element = element;
         }
@@ -49,34 +49,36 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
             return new TransformationResult<>(element, List.copyOf(downstreamTransformations), List.copyOf(finalizers));
         }
 
-        public <FROM, TO> Builder<D> downstreamTransformation(Class<FROM> sourceClass, Class<TO> destinationClass,
-                Query<FROM> sourceQuery, Supplier<List<? super TO>> contextList) {
+        public <FROM, TO> Builder<D> downstreamTransformation(final Class<FROM> sourceClass,
+                                                              final Class<TO> destinationClass,
+                                                              final Query<FROM> sourceQuery,
+                                                              final Supplier<List<? super TO>> contextList) {
             downstreamTransformations.add(new Transformation<>(sourceClass, destinationClass, sourceQuery,
-                    (value) -> contextList.get()
-                            .addLast(value)));
+                                                               (value) -> contextList.get()
+                                                                       .add(value)));
 
             return this;
         }
 
-        public <FROM, TO> Builder<D> withLinker(Query<FROM> sourceObject, Class<TO> targetClass,
-                Consumer<TO> targetProperty) {
+        public <FROM, TO> Builder<D> withLinker(final Query<FROM> sourceObject, final Class<TO> targetClass,
+                                                final Consumer<TO> targetProperty) {
             this.finalizers.add(new LinkingFinalizer<>(sourceObject, targetClass, targetProperty));
             return this;
         }
 
-        public <FROM, TO> Builder<D> withLinker(Query<FROM> sourceObject, Class<TO> targetClass,
-                Supplier<List<TO>> targetProperty) {
+        public <FROM, TO> Builder<D> withLinker(final Query<FROM> sourceObject, final Class<TO> targetClass,
+                                                final Supplier<List<TO>> targetProperty) {
             this.finalizers.add(new LinkingFinalizer<>(sourceObject, targetClass, targetProperty));
             return this;
         }
 
-        public <FROM, TO> Builder<D> withLinker(FROM sourceObject, Class<TO> targetClass,
-                Supplier<List<TO>> targetProperty) {
+        public <FROM, TO> Builder<D> withLinker(final FROM sourceObject, final Class<TO> targetClass,
+                                                final Supplier<List<TO>> targetProperty) {
             this.finalizers.add(new LinkingFinalizer<>(sourceObject, targetClass, targetProperty));
             return this;
         }
 
-        public Builder<D> withFinalizer(Finalizer finalizer) {
+        public Builder<D> withFinalizer(final Finalizer finalizer) {
             finalizers.add(finalizer);
             return this;
         }

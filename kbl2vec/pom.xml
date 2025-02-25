@@ -28,6 +28,14 @@
             <groupId>com.foursoft.harness.navext</groupId>
             <artifactId>navext-runtime</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+        </dependency>
 
     </dependencies>
 
@@ -39,6 +47,12 @@
                 <artifactId>kbl-v25</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.foursoft.harness.kbl</groupId>
+                <artifactId>kbl-v24</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.foursoft.harness.vec</groupId>
                 <artifactId>vec-v2x</artifactId>

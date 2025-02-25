@@ -1,8 +1,6 @@
 package com.foursoft.harness.kbl2vec.core;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -18,10 +16,7 @@ public interface Query<T> {
 
     @SafeVarargs
     static <T> Query<T> fromLists(final List<T>... lists) {
-        return () -> {
-            final Iterable<T> concatenated = Iterables.concat(lists);
-            return Lists.newArrayList(concatenated);
-        };
+        return () -> Arrays.stream(lists).flatMap(List::stream).toList();
     }
 
     static <T> Query<T> of(final Supplier<T> supplier) {
