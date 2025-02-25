@@ -52,7 +52,7 @@ public class Vec2AasConverter {
 
     public Vec2AasConverter() {
         vecModelProvider = new VersionLookupModelProvider();
-        this.namingStrategy = new NamingStrategy();
+        this.namingStrategy = new AasNamingStrategy();
     }
 
     public SubmodelElement convert(final InputStream vecXmlFile, final String targetNamespace) {
