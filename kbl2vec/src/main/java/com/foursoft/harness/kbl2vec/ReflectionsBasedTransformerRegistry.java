@@ -1,7 +1,6 @@
 package com.foursoft.harness.kbl2vec;
 
 import com.foursoft.harness.kbl2vec.core.ConversionException;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.core.TransformerRegistry;
 import org.reflections.Reflections;
@@ -24,29 +23,27 @@ public class ReflectionsBasedTransformerRegistry implements TransformerRegistry 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionsBasedTransformerRegistry.class);
     private final Map<ClassTupleKey<?, ?>, List<Class<? extends Transformer>>>
             transformerClasses;
-    private final Map<TransformerInstanceKey<?, ?>, Transformer<?, ?>> transformerInstances = new HashMap<>();
+    private final Map<ClassTupleKey<?, ?>, Transformer<?, ?>> transformerInstances = new HashMap<>();
 
     public ReflectionsBasedTransformerRegistry() {
         transformerClasses = createTransformerClassMap();
     }
 
     @Override
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    public <S, D> Transformer<S, D> getTransformer(final TransformationContext context, final Class<S> source,
+    public <S, D> Transformer<S, D> getTransformer(final Class<S> source,
                                                    final Class<D> destination) {
-        final TransformerInstanceKey key = new TransformerInstanceKey(context, source, destination);
+        final ClassTupleKey key = new ClassTupleKey(source, destination);
 
         return (Transformer<S, D>) transformerInstances.computeIfAbsent(key,
-                                                                        k -> createTransformerInstance(k.context,
-                                                                                                       k.source,
-                                                                                                       k.destination));
+                                                                        k -> createTransformerInstance(
+                                                                                k.source,
+                                                                                k.destination));
 
     }
 
-    @SuppressWarnings({"unchecked"})
-    private <S, D> Transformer<S, D> createTransformerInstance(final TransformationContext context,
-                                                               final Class<S> source,
-                                                               final Class<D> destination) {
+    private <S, D> Transformer<S, D> createTransformerInstance(
+            final Class<S> source,
+            final Class<D> destination) {
         final List<Class<? extends Transformer>> transformers = transformerClasses.get(
                 new ClassTupleKey<>(source, destination));
         if (transformers == null || transformers.isEmpty()) {
@@ -58,29 +55,13 @@ public class ReflectionsBasedTransformerRegistry implements TransformerRegistry 
         final Class<? extends Transformer<S, D>> transformerClass =
                 (Class<? extends Transformer<S, D>>) transformers.get(0);
         try {
-            return tryInstanceCreation(context, transformerClass);
+            final Constructor<? extends Transformer<S, D>> constructor = transformerClass.getConstructor();
+            return constructor.newInstance();
         } catch (final NoSuchMethodException e) {
             throw new ConversionException("The transformer " + transformerClass.getName() +
                                                   "has no default or single arg TransformationContext constructor");
         } catch (final InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new ConversionException("Error while creating transformer instance.", e);
-        }
-    }
-
-    private static <S, D> Transformer<S, D> tryInstanceCreation(final TransformationContext context,
-                                                                final Class<? extends Transformer<S, D>> transformerClass)
-            throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        try {
-            final Constructor<? extends Transformer<S, D>> constructor = transformerClass.getConstructor(
-                    TransformationContext.class);
-            return constructor.newInstance(context);
-        } catch (final NoSuchMethodException e) {
-            LOGGER.debug(
-                    "Transformer {} has no constructor with TransformationContext as args, using default " +
-                            "constructor.",
-                    transformerClass);
-            final Constructor<? extends Transformer<S, D>> constructor = transformerClass.getConstructor();
-            return constructor.newInstance();
         }
     }
 
@@ -106,7 +87,6 @@ public class ReflectionsBasedTransformerRegistry implements TransformerRegistry 
                                               " does not implement Transformer<S,D> with actual type arguments.");
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
     private static Map<ClassTupleKey<?, ?>, List<Class<? extends Transformer>>> createTransformerClassMap() {
         final Reflections reflections = new Reflections("com.foursoft.harness.kbl2vec");
 
@@ -117,9 +97,6 @@ public class ReflectionsBasedTransformerRegistry implements TransformerRegistry 
     }
 
     private record ClassTupleKey<S, D>(Class<S> source, Class<D> destination) {
-    }
-
-    private record TransformerInstanceKey<S, D>(TransformationContext context, Class<S> source, Class<D> destination) {
     }
 
 }

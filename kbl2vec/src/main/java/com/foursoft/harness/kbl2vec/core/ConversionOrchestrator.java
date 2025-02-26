@@ -1,5 +1,6 @@
 package com.foursoft.harness.kbl2vec.core;
 
+import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +18,7 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     private final Class<D> destinationClass;
     private final TransformerRegistry transformerRegistry;
     private final ConversionProperties conversionProperties;
+    private final ConverterRegistry converterRegistry;
 
     private final EntityMapping entityMapping = new EntityMapping();
 
@@ -36,7 +38,7 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
         this.destinationClass = destinationRootClass;
         this.transformerRegistry = transformerRegistry;
         this.conversionProperties = conversionProperties;
-
+        this.converterRegistry = new ConverterRegistry(conversionProperties);
         LOGGER.debug("Created orchestrator for conversion pipeline.");
     }
 
@@ -105,7 +107,7 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     }
 
     private <FROM, TO> void handleElementTransformation(final Transformation<FROM, TO> step) {
-        final Transformer<FROM, TO> transformer = transformerRegistry.getTransformer(this, step.sourceClass(),
+        final Transformer<FROM, TO> transformer = transformerRegistry.getTransformer(step.sourceClass(),
                                                                                      step.destinationClass());
 
         step.sourceQuery()
@@ -117,7 +119,7 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     }
 
     private <FROM, TO> TO handleElementTransformation(final Transformer<FROM, TO> transformer, final FROM element) {
-        final TransformationResult<TO> result = transformer.transform(element);
+        final TransformationResult<TO> result = transformer.transform(this, element);
         if (!result.isEmpty()) {
             transformations.addAll(result.downstreamTransformations());
             finalizer.addAll(result.finalizer());
@@ -134,5 +136,9 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     @Override
     public ConversionProperties getConversionProperties() {
         return conversionProperties;
+    }
+
+    @Override public ConverterRegistry getConverterRegistry() {
+        return converterRegistry;
     }
 }

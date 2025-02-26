@@ -3,10 +3,10 @@ package com.foursoft.harness.kbl2vec.transform;
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl.v25.visitor.StrictBaseVisitor;
 import com.foursoft.harness.kbl2vec.convert.Converter;
-import com.foursoft.harness.kbl2vec.convert.StringToLocalizedStringConverter;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.TransformationResult.Builder;
+import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
@@ -14,19 +14,17 @@ import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 
 import java.util.Optional;
 
-public class PartVersionTransformer implements com.foursoft.harness.kbl2vec.core.Transformer<KblPart, VecPartVersion> {
+public class PartVersionTransformer implements Transformer<KblPart, VecPartVersion> {
 
     private final PrimaryPartTypeVisitor primaryPartTypeVisitor = new PrimaryPartTypeVisitor();
-    private final Converter<String, Optional<VecLocalizedString>> stringConverter;
-
-    public PartVersionTransformer(final TransformationContext context) {
-        stringConverter = new StringToLocalizedStringConverter(context.getConversionProperties()
-                                                                       .getDefaultLanguageCode());
-    }
 
     @Override
-    public com.foursoft.harness.kbl2vec.core.TransformationResult<VecPartVersion> transform(final KblPart source) {
+    public TransformationResult<VecPartVersion> transform(
+            final TransformationContext context, final KblPart source) {
         final VecPartVersion partVersion = new VecPartVersion();
+
+        final Converter<String, Optional<VecLocalizedString>> stringConverter =
+                context.getConverterRegistry().getStringToLocalizedString();
 
         stringConverter.convert(source.getAbbreviation())
                 .ifPresent(v -> partVersion.getAbbreviations()

@@ -2,6 +2,7 @@ package com.foursoft.harness.kbl2vec.transform;
 
 import com.foursoft.harness.kbl.v25.KblUnit;
 import com.foursoft.harness.kbl2vec.core.NoMappingDefinedException;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.*;
@@ -16,10 +17,8 @@ public class UnitTransformer implements Transformer<KblUnit, VecUnit> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UnitTransformer.class);
 
-    //private final ModelMapper mapper = new ModelMapper();
-
     @Override
-    public TransformationResult<VecUnit> transform(final KblUnit source) {
+    public TransformationResult<VecUnit> transform(final TransformationContext context, final KblUnit source) {
 
         if (source.getSiUnitName() != null) {
             return TransformationResult.of(toSiUnit(source));
