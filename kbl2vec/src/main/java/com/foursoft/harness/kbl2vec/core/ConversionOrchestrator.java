@@ -11,16 +11,13 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ConversionOrchestrator<S, D> implements TransformationContext {
+public class ConversionOrchestrator<S, D> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConversionOrchestrator.class);
     private final Class<S> sourceClass;
     private final Class<D> destinationClass;
     private final TransformerRegistry transformerRegistry;
-    private final ConversionProperties conversionProperties;
-    private final ConverterRegistry converterRegistry;
-
-    private final EntityMapping entityMapping = new EntityMapping();
+    private final TransformationContext transformationContext;
 
     private final Queue<Transformation<?, ?>> transformations = new ConcurrentLinkedQueue<>();
 
@@ -37,12 +34,13 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
         this.sourceClass = sourceRootClass;
         this.destinationClass = destinationRootClass;
         this.transformerRegistry = transformerRegistry;
-        this.conversionProperties = conversionProperties;
-        this.converterRegistry = new ConverterRegistry(conversionProperties);
+        this.transformationContext = new TransformationContextImpl(conversionProperties,
+                                                                   new ConverterRegistry(conversionProperties),
+                                                                   new EntityMapping());
         LOGGER.debug("Created orchestrator for conversion pipeline.");
     }
 
-    public D convert(final S source) {
+    public D orchestrateTransformation(final S source) {
         LOGGER.debug("Starting conversion for: {}", source);
 
         final S innerSource = handleProcessorsPipeline(preProcessors, source);
@@ -55,7 +53,7 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
 
         transformations.offer(initialTransformation);
 
-        processTransformationSteps();
+        processTransformations();
 
         processFinalizer();
 
@@ -77,16 +75,16 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
     }
 
     private void processFinalizer() {
-        Finalizer currentStep;
-        while ((currentStep = finalizer.poll()) != null) {
-            currentStep.finishTransformation(this);
+        Finalizer currentFinalizer;
+        while ((currentFinalizer = finalizer.poll()) != null) {
+            currentFinalizer.finishTransformation(this.transformationContext);
         }
     }
 
-    private void processTransformationSteps() {
-        Transformation<?, ?> currentStep;
-        while ((currentStep = transformations.poll()) != null) {
-            handleElementTransformation(currentStep);
+    private void processTransformations() {
+        Transformation<?, ?> currentTransformation;
+        while ((currentTransformation = transformations.poll()) != null) {
+            handleSingleTransformation(currentTransformation);
         }
     }
 
@@ -106,39 +104,26 @@ public class ConversionOrchestrator<S, D> implements TransformationContext {
         return resultValue;
     }
 
-    private <FROM, TO> void handleElementTransformation(final Transformation<FROM, TO> step) {
-        final Transformer<FROM, TO> transformer = transformerRegistry.getTransformer(step.sourceClass(),
-                                                                                     step.destinationClass());
+    private <FROM, TO> void handleSingleTransformation(final Transformation<FROM, TO> transformation) {
+        final Transformer<FROM, TO> transformer = transformerRegistry.getTransformer(transformation.sourceClass(),
+                                                                                     transformation.destinationClass());
 
-        step.sourceQuery()
+        transformation.sourceQuery()
                 .stream()
                 .map(from -> handleElementTransformation(transformer, from))
                 .filter(Objects::nonNull)
-                .forEach(step.contextLinker());
+                .forEach(transformation.contextLinker());
 
     }
 
     private <FROM, TO> TO handleElementTransformation(final Transformer<FROM, TO> transformer, final FROM element) {
-        final TransformationResult<TO> result = transformer.transform(this, element);
+        final TransformationResult<TO> result = transformer.transform(this.transformationContext, element);
         if (!result.isEmpty()) {
             transformations.addAll(result.downstreamTransformations());
             finalizer.addAll(result.finalizer());
-            entityMapping.put(element, result.element());
+            transformationContext.getEntityMapping().put(element, result.element());
         }
         return result.element();
     }
 
-    @Override
-    public EntityMapping getEntityMapping() {
-        return entityMapping;
-    }
-
-    @Override
-    public ConversionProperties getConversionProperties() {
-        return conversionProperties;
-    }
-
-    @Override public ConverterRegistry getConverterRegistry() {
-        return converterRegistry;
-    }
 }

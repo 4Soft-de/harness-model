@@ -3,24 +3,24 @@ package com.foursoft.harness.kbl2vec;
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl2vec.core.ConversionOrchestrator;
 import com.foursoft.harness.kbl2vec.core.ConversionProperties;
-import com.foursoft.harness.kbl2vec.core.TransformerRegistry;
 import com.foursoft.harness.kbl2vec.post.XmlIdPostProcessor;
 import com.foursoft.harness.vec.v2x.VecContent;
 
 public class KblToVecConverter {
 
-    private final ConversionOrchestrator<KBLContainer, VecContent>
-            orchestrator;
+    private final ReflectionsBasedTransformerRegistry registry;
 
     public KblToVecConverter() {
-        orchestrator = orchestrator(new ReflectionsBasedTransformerRegistry());
+        registry = new ReflectionsBasedTransformerRegistry();
+
     }
 
     public VecContent convert(final KBLContainer container) {
-        return orchestrator.convert(container);
+        final ConversionOrchestrator<KBLContainer, VecContent> orchestrator = createOrchestrator();
+        return orchestrator.orchestrateTransformation(container);
     }
 
-    private static ConversionOrchestrator<KBLContainer, VecContent> orchestrator(final TransformerRegistry registry) {
+    private ConversionOrchestrator<KBLContainer, VecContent> createOrchestrator() {
         final ConversionOrchestrator<KBLContainer, VecContent> orchestrator = new ConversionOrchestrator<>(
                 KBLContainer.class,
                 VecContent.class,
