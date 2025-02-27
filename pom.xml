@@ -77,6 +77,7 @@
         <module>vec</module>
         <module>compatibility</module>
         <module>vec-rdf</module>
+        <module>kbl2vec</module>
     </modules>
 
     <scm>
