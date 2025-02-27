@@ -15,7 +15,7 @@ public class KblToVecConverter {
 
     }
 
-    public VecContent convert(final KBLContainer container) {
+    public ConversionOrchestrator.Result<VecContent> convert(final KBLContainer container) {
         final ConversionOrchestrator<KBLContainer, VecContent> orchestrator = createOrchestrator();
         return orchestrator.orchestrateTransformation(container);
     }

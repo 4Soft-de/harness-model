@@ -11,6 +11,7 @@ import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
 
@@ -40,6 +41,12 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
         partVersion.setPrimaryPartType(source.accept(primaryPartTypeVisitor));
 
         final Builder<VecPartVersion> resultBuilder = TransformationResult.from(partVersion);
+        if (StringUtils.isNotBlank(source.getPartNumberType())) {
+            context.getLogger().warn("'{}' uses Part_number_type {} cannot be mapped at the moment", source,
+                                     source.getPartNumberType());
+            resultBuilder.withComment("Part_number_type cannot be mapped at the moment (see KBLFRM-1267)");
+        }
+
         //TODO: Copyright is not that easy
 //        if (!StringUtils.isBlank(source.getCopyrightNote())) {
 //            resultBuilder.withLinker(Query.of(source), VecCopyrightInformation.class,

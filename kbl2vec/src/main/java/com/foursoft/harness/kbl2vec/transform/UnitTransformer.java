@@ -6,16 +6,12 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
 
 import static com.foursoft.harness.kbl2vec.utils.EnumMapper.mapEnum;
 
 public class UnitTransformer implements Transformer<KblUnit, VecUnit> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(UnitTransformer.class);
 
     @Override
     public TransformationResult<VecUnit> transform(final TransformationContext context, final KblUnit source) {
@@ -24,7 +20,8 @@ public class UnitTransformer implements Transformer<KblUnit, VecUnit> {
             return TransformationResult.of(toSiUnit(source));
         }
 
-        LOGGER.warn("DIALECT: KBL uses non standard unit {}, converted to CustomUnit.", source.getUnitName());
+        context.getLogger().warn("DIALECT: KBL uses non standard unit {}, converted to CustomUnit.",
+                                 source.getUnitName());
         final VecCustomUnit vecCustomUnit = new VecCustomUnit();
 
         vecCustomUnit.setIdentification(source.getUnitName());

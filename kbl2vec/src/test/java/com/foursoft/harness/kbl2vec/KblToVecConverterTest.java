@@ -2,8 +2,11 @@ package com.foursoft.harness.kbl2vec;
 
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblReader;
+import com.foursoft.harness.kbl2vec.core.ConversionOrchestrator;
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
+import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.vec.v2x.VecContent;
 import jakarta.xml.bind.Marshaller;
 import org.junit.jupiter.api.Test;
@@ -23,14 +26,21 @@ class KblToVecConverterTest {
 
             final KBLContainer kblContainer = new KblReader(new ValidationEventLogger()).read(is);
 
-            System.out.println(writeToString(converter.convert(kblContainer)));
+            final ConversionOrchestrator.Result<VecContent> result = converter.convert(kblContainer);
+            System.out.println(writeToString(result));
         }
     }
 
-    public String writeToString(final VecContent root) {
+    public String writeToString(final ConversionOrchestrator.Result<VecContent> result) {
         final XMLWriter<VecContent> writer = createWriter();
 
-        return writer.writeToString(root);
+        final XMLMeta xmlMeta = new XMLMeta();
+        final Comments comments = new Comments();
+        xmlMeta.setComments(comments);
+
+        result.comments().forEach(comments::put);
+
+        return writer.writeToString(result.resultValue(), xmlMeta);
     }
 
     public void writeToStream(final VecContent root, final OutputStream stream) {

@@ -4,10 +4,7 @@ import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -27,6 +24,8 @@ public class ConversionOrchestrator<S, D> {
 
     private final List<Processor<S>> preProcessors = new ArrayList<>();
 
+    private final Map<Object, String> comments = new HashMap<>();
+
     public ConversionOrchestrator(final Class<S> sourceRootClass, final Class<D> destinationRootClass,
                                   final TransformerRegistry transformerRegistry,
                                   final ConversionProperties conversionProperties
@@ -40,7 +39,7 @@ public class ConversionOrchestrator<S, D> {
         LOGGER.debug("Created orchestrator for conversion pipeline.");
     }
 
-    public D orchestrateTransformation(final S source) {
+    public Result<D> orchestrateTransformation(final S source) {
         LOGGER.debug("Starting conversion for: {}", source);
 
         final S innerSource = handleProcessorsPipeline(preProcessors, source);
@@ -63,7 +62,7 @@ public class ConversionOrchestrator<S, D> {
             throw new ConversionException("No result found.");
         }
 
-        return resultValue;
+        return new Result<>(resultValue, comments);
     }
 
     public void addPostProcessor(final Processor<D> postProcessor) {
@@ -112,6 +111,7 @@ public class ConversionOrchestrator<S, D> {
                 .stream()
                 .map(from -> handleElementTransformation(transformer, from))
                 .filter(Objects::nonNull)
+                //TODO: find a good name for that.
                 .forEach(transformation.contextLinker());
 
     }
@@ -122,8 +122,12 @@ public class ConversionOrchestrator<S, D> {
             transformations.addAll(result.downstreamTransformations());
             finalizer.addAll(result.finalizer());
             transformationContext.getEntityMapping().put(element, result.element());
+            comments.putAll(result.comments());
         }
         return result.element();
+    }
+
+    public record Result<D>(D resultValue, Map<Object, String> comments) {
     }
 
 }
