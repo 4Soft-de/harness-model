@@ -1,6 +1,7 @@
 package com.foursoft.harness.kbl2vec.core;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -24,6 +25,9 @@ public interface Query<T> {
     }
 
     static <T> Query<T> of(final T element) {
+        if (element == null) {
+            return Collections::emptyList;
+        }
         return () -> List.of(element);
     }
 

@@ -27,26 +27,20 @@ class KblToVecConverterTest {
             final KBLContainer kblContainer = new KblReader(new ValidationEventLogger()).read(is);
 
             final ConversionOrchestrator.Result<VecContent> result = converter.convert(kblContainer);
-            System.out.println(writeToString(result));
+
+            writeToStream(result, TestUtils.createTestFileStream("vobes_sample_kbl24"));
         }
     }
 
-    public String writeToString(final ConversionOrchestrator.Result<VecContent> result) {
+    public void writeToStream(final ConversionOrchestrator.Result<VecContent> result, final OutputStream stream) {
         final XMLWriter<VecContent> writer = createWriter();
-
         final XMLMeta xmlMeta = new XMLMeta();
         final Comments comments = new Comments();
         xmlMeta.setComments(comments);
 
         result.comments().forEach(comments::put);
 
-        return writer.writeToString(result.resultValue(), xmlMeta);
-    }
-
-    public void writeToStream(final VecContent root, final OutputStream stream) {
-        final XMLWriter<VecContent> writer = createWriter();
-
-        writer.write(root, stream);
+        writer.write(result.resultValue(), xmlMeta, stream);
     }
 
     private static XMLWriter<VecContent> createWriter() {

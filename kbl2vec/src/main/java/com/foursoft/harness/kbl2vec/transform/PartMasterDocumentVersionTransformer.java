@@ -6,10 +6,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
-import com.foursoft.harness.vec.v2x.VecLocalizedString;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.*;
 
 import java.util.Optional;
 
@@ -20,7 +17,7 @@ public class PartMasterDocumentVersionTransformer implements Transformer<KblPart
                                                               final KblPart source) {
         final Converter<String, Optional<VecLocalizedString>> stringConverter =
                 context.getConverterRegistry().getStringToLocalizedString();
-        
+
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
 
         documentVersion.setCompanyName(source.getCompanyName());
@@ -35,6 +32,8 @@ public class PartMasterDocumentVersionTransformer implements Transformer<KblPart
 
         return TransformationResult.from(documentVersion)
                 .downstreamTransformation(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
+                                          documentVersion::getSpecifications)
+                .downstreamTransformation(KblPart.class, VecConnectorHousingSpecification.class, Query.of(source),
                                           documentVersion::getSpecifications)
                 .withLinker(source, VecPartVersion.class, documentVersion::getReferencedPart)
                 .build();

@@ -47,6 +47,7 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
             resultBuilder.withComment("Part_number_type cannot be mapped at the moment (see KBLFRM-1267)");
         }
 
+        //TODO: Change
         //TODO: Copyright is not that easy
 //        if (!StringUtils.isBlank(source.getCopyrightNote())) {
 //            resultBuilder.withLinker(Query.of(source), VecCopyrightInformation.class,
@@ -62,6 +63,10 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
 
         @Override
         public VecPrimaryPartType visitKblAccessory(final KblAccessory aBean) throws RuntimeException {
+            return VecPrimaryPartType.OTHER;
+        }
+
+        @Override public VecPrimaryPartType visitKblCoPackPart(final KblCoPackPart aBean) throws RuntimeException {
             return VecPrimaryPartType.OTHER;
         }
 
@@ -105,6 +110,11 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
             return VecPrimaryPartType.PART_STRUCTURE;
         }
 
+        @Override public VecPrimaryPartType visitKblHarnessConfiguration(final KblHarnessConfiguration aBean)
+                throws RuntimeException {
+            return VecPrimaryPartType.PART_STRUCTURE;
+        }
+
         @Override
         public VecPrimaryPartType visitKblModule(final KblModule aBean) throws RuntimeException {
             return VecPrimaryPartType.PART_STRUCTURE;
@@ -113,6 +123,11 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
         @Override
         public VecPrimaryPartType visitKblAssemblyPart(final KblAssemblyPart aBean) throws RuntimeException {
             return VecPrimaryPartType.PART_STRUCTURE;
+        }
+
+        @Override
+        public VecPrimaryPartType visitKblComponent(final KblComponent aBean) throws RuntimeException {
+            return VecPrimaryPartType.EE_COMPONENT;
         }
 
         @Override

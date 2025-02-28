@@ -55,6 +55,16 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         public <FROM, TO> Builder<D> downstreamTransformation(final Class<FROM> sourceClass,
                                                               final Class<TO> destinationClass,
                                                               final Query<FROM> sourceQuery,
+                                                              final Consumer<TO> contextConsumer) {
+            downstreamTransformations.add(
+                    new Transformation<>(sourceClass, destinationClass, sourceQuery, contextConsumer));
+
+            return this;
+        }
+
+        public <FROM, TO> Builder<D> downstreamTransformation(final Class<FROM> sourceClass,
+                                                              final Class<TO> destinationClass,
+                                                              final Query<FROM> sourceQuery,
                                                               final Supplier<List<? super TO>> contextList) {
             downstreamTransformations.add(new Transformation<>(sourceClass, destinationClass, sourceQuery,
                                                                (value) -> contextList.get()
