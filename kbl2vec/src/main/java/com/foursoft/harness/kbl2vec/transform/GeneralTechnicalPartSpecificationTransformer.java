@@ -13,7 +13,7 @@ import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
 import com.foursoft.harness.vec.v2x.VecMassInformation;
 import com.foursoft.harness.vec.v2x.VecMaterial;
 
-import static com.foursoft.harness.kbl2vec.transform.SpecificationUtils.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 
 public class GeneralTechnicalPartSpecificationTransformer
         implements Transformer<KblPart, VecGeneralTechnicalPartSpecification> {

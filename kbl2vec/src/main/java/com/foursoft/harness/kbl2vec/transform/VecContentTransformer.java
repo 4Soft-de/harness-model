@@ -1,8 +1,10 @@
 package com.foursoft.harness.kbl2vec.transform;
 
 import com.foursoft.harness.kbl.v25.KBLContainer;
+import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblPart;
 import com.foursoft.harness.kbl.v25.KblUnit;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
@@ -36,6 +38,8 @@ public class VecContentTransformer implements Transformer<KBLContainer, VecConte
                 .downstreamTransformation(KblPart.class, VecPartVersion.class, allParts(source),
                                           resultElement::getPartVersions)
                 .downstreamTransformation(KblPart.class, VecDocumentVersion.class, source::getParts,
+                                          resultElement::getDocumentVersions)
+                .downstreamTransformation(KblHarness.class, VecDocumentVersion.class, Query.of(source::getHarness),
                                           resultElement::getDocumentVersions)
                 .build();
     }

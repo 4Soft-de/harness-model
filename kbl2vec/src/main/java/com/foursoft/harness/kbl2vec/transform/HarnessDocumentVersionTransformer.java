@@ -1,31 +1,31 @@
 package com.foursoft.harness.kbl2vec.transform;
 
+import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblPart;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
+import com.foursoft.harness.vec.v2x.VecTopologySpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonDocumentAttributes;
 
-public class PartMasterDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
+public class HarnessDocumentVersionTransformer implements Transformer<KblHarness, VecDocumentVersion> {
 
     @Override
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
-                                                              final KblPart source) {
+                                                              final KblHarness source) {
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
-
         //TODO: Enums/Consts for OpenEnums.
-        documentVersion.setDocumentType("PartMaster");
+        documentVersion.setDocumentType("HarnessDescription");
 
         return TransformationResult.from(documentVersion)
                 .withFragment(commonDocumentAttributes(source, context))
                 .downstreamTransformation(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
                                           documentVersion::getSpecifications)
-                .downstreamTransformation(KblPart.class, VecConnectorHousingSpecification.class, Query.of(source),
+                .downstreamTransformation(KblHarness.class, VecTopologySpecification.class, Query.of(source),
                                           documentVersion::getSpecifications)
                 .build();
     }

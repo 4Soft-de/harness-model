@@ -7,7 +7,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 
-import static com.foursoft.harness.kbl2vec.transform.SpecificationUtils.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 
 public class ConnectorHousingSpecificationTransformer
         implements Transformer<KblPart, VecConnectorHousingSpecification> {
