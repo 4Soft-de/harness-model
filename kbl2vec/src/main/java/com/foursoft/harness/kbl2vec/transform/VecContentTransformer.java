@@ -23,6 +23,13 @@ public class VecContentTransformer implements Transformer<KBLContainer, VecConte
         resultElement.setGeneratingSystemVersion("0.0.1");
 
         return TransformationResult.from(resultElement)
+                .withComment(
+                        """
+                                WARNING:
+                                This file was created with KBL2VEC PoC Converter (https://github.com/4Soft-de/harness-model).
+                                This is just a showcase implementation for KBL mapping in the VEC.
+                                This is not intended for productive use and is not complete!
+                                """)
 //                .downstreamTransformation(KblPart.class, VecCopyrightInformation.class, allParts(source),
 //                                          resultElement::getCopyrightInformations)
                 .downstreamTransformation(KblUnit.class, VecUnit.class, source::getUnits, resultElement::getUnits)

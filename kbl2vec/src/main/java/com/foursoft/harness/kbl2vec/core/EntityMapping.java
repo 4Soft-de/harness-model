@@ -2,6 +2,7 @@ package com.foursoft.harness.kbl2vec.core;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
+import com.google.common.collect.Multimaps;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,10 @@ public class EntityMapping {
         Objects.requireNonNull(destinationEntity, "destinationEntity must not be null");
         mappedElements.put(sourceEntity, destinationEntity);
 
+    }
+
+    public Multimap<Object, Object> getContent() {
+        return Multimaps.unmodifiableMultimap(mappedElements);
     }
 
     /**

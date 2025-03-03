@@ -7,16 +7,13 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecMassInformation;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class MassInformationTransformer implements Transformer<KblNumericalValue, VecMassInformation> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MassInformationTransformer.class);
 
     @Override
     public TransformationResult<VecMassInformation> transform(final TransformationContext context,
                                                               final KblNumericalValue source) {
-        LOGGER.debug("Transforming {} to VecMassinformation.", source);
+        context.getLogger().debug("Transforming {} to VecMassinformation.", source);
 
         final VecMassInformation massInformation = new VecMassInformation();
 

@@ -101,10 +101,15 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
             return this;
         }
 
+        public Builder<D> withFragment(final TransformationFragment<D> fragment) {
+            fragment.performFragment(element, this);
+            return this;
+        }
+
         public Builder<D> withFinalizer(final Finalizer finalizer) {
             finalizers.add(finalizer);
             return this;
         }
-
     }
+
 }

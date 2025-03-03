@@ -12,9 +12,8 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
 import com.foursoft.harness.vec.v2x.VecMassInformation;
 import com.foursoft.harness.vec.v2x.VecMaterial;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
 
-import static com.foursoft.harness.kbl2vec.transform.SpecificationUtils.withIdentification;
+import static com.foursoft.harness.kbl2vec.transform.SpecificationUtils.commonSpecificationAttributes;
 
 public class GeneralTechnicalPartSpecificationTransformer
         implements Transformer<KblPart, VecGeneralTechnicalPartSpecification> {
@@ -22,8 +21,6 @@ public class GeneralTechnicalPartSpecificationTransformer
     public TransformationResult<VecGeneralTechnicalPartSpecification> transform(final TransformationContext context,
                                                                                 final KblPart source) {
         final VecGeneralTechnicalPartSpecification specification = new VecGeneralTechnicalPartSpecification();
-
-        withIdentification(specification, source.getPartNumber());
 
         if (source instanceof final KblConnectorHousing connectorHousing) {
             final StringToColorConverter colorConverter =
@@ -34,13 +31,13 @@ public class GeneralTechnicalPartSpecificationTransformer
         }
 
         return TransformationResult.from(specification)
+                .withFragment(commonSpecificationAttributes(source))
                 .downstreamTransformation(KblNumericalValue.class, VecMassInformation.class,
                                           Query.of(source.getMassInformation()),
                                           specification::getMassInformations)
                 .downstreamTransformation(KblMaterial.class, VecMaterial.class,
                                           Query.of(source.getMaterialInformation()),
                                           specification::getMaterialInformations)
-                .withLinker(Query.of(source), VecPartVersion.class, specification::getDescribedPart)
                 .build();
     }
 }

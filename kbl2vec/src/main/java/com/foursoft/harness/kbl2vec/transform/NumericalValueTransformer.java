@@ -7,16 +7,13 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class NumericalValueTransformer implements Transformer<KblNumericalValue, VecNumericalValue> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(NumericalValueTransformer.class);
 
     @Override
     public TransformationResult<VecNumericalValue> transform(final TransformationContext context,
                                                              final KblNumericalValue source) {
-        LOGGER.debug("Transforming {} to VecNumericalValue.", source);
+        context.getLogger().debug("Transforming {} to VecNumericalValue.", source);
         final VecNumericalValue result = new VecNumericalValue();
         result.setValueComponent(source.getValueComponent());
 

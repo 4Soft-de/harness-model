@@ -1,6 +1,7 @@
 package com.foursoft.harness.kbl2vec.core;
 
 import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
+import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +63,7 @@ public class ConversionOrchestrator<S, D> {
             throw new ConversionException("No result found.");
         }
 
-        return new Result<>(resultValue, comments);
+        return new Result<>(resultValue, comments, this.transformationContext.getEntityMapping().getContent());
     }
 
     public void addPostProcessor(final Processor<D> postProcessor) {
@@ -127,7 +128,7 @@ public class ConversionOrchestrator<S, D> {
         return result.element();
     }
 
-    public record Result<D>(D resultValue, Map<Object, String> comments) {
+    public record Result<D>(D resultValue, Map<Object, String> comments, Multimap<Object, Object> entityMapping) {
     }
 
 }
