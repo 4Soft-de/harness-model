@@ -35,7 +35,6 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
                         .add(v));
 
         partVersion.setCompanyName(source.getCompanyName());
-        //TODO: Other Attributes
         partVersion.setPartNumber(source.getPartNumber());
         partVersion.setPartVersion(source.getVersion());
         partVersion.setPrimaryPartType(source.accept(primaryPartTypeVisitor));

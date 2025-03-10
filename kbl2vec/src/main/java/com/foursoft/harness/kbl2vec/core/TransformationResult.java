@@ -74,12 +74,13 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         }
 
         public Builder<D> withComment(final String comment) {
-            this.comments.put(element, comment);
+            this.comments.merge(element, comment, (a, b) -> a + "\n" + b);
+
             return this;
         }
 
         public Builder<D> withCommentOnDetail(final Identifiable detail, final String comment) {
-            this.comments.put(detail, comment);
+            this.comments.merge(detail, comment, (a, b) -> a + "\n" + b);
             return this;
         }
 
