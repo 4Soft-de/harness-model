@@ -5,6 +5,7 @@ import com.foursoft.harness.kbl2vec.convert.Converter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationFragment;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
@@ -22,7 +23,8 @@ public final class Fragments {
         return clazz.getSimpleName().replace("Vec", "").replaceAll("[^A-Z]", "");
     }
 
-    public static <D extends VecPartOrUsageRelatedSpecification> TransformationFragment<D> commonSpecificationAttributes(
+    public static <D extends VecPartOrUsageRelatedSpecification> TransformationFragment<D,
+            TransformationResult.Builder<D>> commonSpecificationAttributes(
             final KblPart source) {
         return (specification, builder) -> {
             specification.setIdentification(
@@ -31,7 +33,7 @@ public final class Fragments {
         };
     }
 
-    public static <D extends VecDocumentVersion> TransformationFragment<D> commonDocumentAttributes(
+    public static <D extends VecDocumentVersion> TransformationFragment<D, TransformationResult.Builder<D>> commonDocumentAttributes(
             final KblPart source,
             final TransformationContext context) {
         return (dv, builder) -> {
