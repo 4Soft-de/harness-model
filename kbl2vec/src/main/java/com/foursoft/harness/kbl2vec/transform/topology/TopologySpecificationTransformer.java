@@ -1,4 +1,4 @@
-package com.foursoft.harness.kbl2vec.transform;
+package com.foursoft.harness.kbl2vec.transform.topology;
 
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblNode;

@@ -112,8 +112,7 @@ public class ConversionOrchestrator<S, D> {
                 .stream()
                 .map(from -> handleElementTransformation(transformer, from))
                 .filter(Objects::nonNull)
-                //TODO: find a good name for that.
-                .forEach(transformation.contextLinker());
+                .forEach(transformation.accumulator());
 
     }
 

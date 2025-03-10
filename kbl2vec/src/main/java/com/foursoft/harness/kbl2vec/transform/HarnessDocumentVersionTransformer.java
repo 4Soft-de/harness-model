@@ -6,6 +6,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCompositionSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
 import com.foursoft.harness.vec.v2x.VecTopologySpecification;
@@ -26,6 +27,8 @@ public class HarnessDocumentVersionTransformer implements Transformer<KblHarness
                 .downstreamTransformation(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
                                           documentVersion::getSpecifications)
                 .downstreamTransformation(KblHarness.class, VecTopologySpecification.class, Query.of(source),
+                                          documentVersion::getSpecifications)
+                .downstreamTransformation(KblHarness.class, VecCompositionSpecification.class, Query.of(source),
                                           documentVersion::getSpecifications)
                 .build();
     }

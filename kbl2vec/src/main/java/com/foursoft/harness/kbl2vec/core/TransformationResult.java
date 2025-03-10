@@ -55,9 +55,9 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         public <FROM, TO> Builder<D> downstreamTransformation(final Class<FROM> sourceClass,
                                                               final Class<TO> destinationClass,
                                                               final Query<FROM> sourceQuery,
-                                                              final Consumer<TO> contextConsumer) {
+                                                              final Consumer<TO> accumulator) {
             downstreamTransformations.add(
-                    new Transformation<>(sourceClass, destinationClass, sourceQuery, contextConsumer));
+                    new Transformation<>(sourceClass, destinationClass, sourceQuery, accumulator));
 
             return this;
         }
