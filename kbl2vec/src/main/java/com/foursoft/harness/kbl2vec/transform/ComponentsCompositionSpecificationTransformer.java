@@ -23,14 +23,25 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform;
 
-public class NoMappingDefinedException extends ConversionException {
-    public NoMappingDefinedException(final String message) {
-        super(message);
-    }
+import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
+import com.foursoft.harness.kbl.v25.KblHarness;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCompositionSpecification;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 
-    public NoMappingDefinedException(final String message, final Throwable cause) {
-        super(message, cause);
+public class ComponentsCompositionSpecificationTransformer implements Transformer<KblHarness, VecCompositionSpecification> {
+    @Override public TransformationResult<VecCompositionSpecification> transform(final TransformationContext context,
+                                                                                 final KblHarness source) {
+        final VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
+        compositionSpecification.setIdentification("COMPONENTS");
+
+        return TransformationResult.from(compositionSpecification)
+                .downstreamTransformation(ConnectionOrOccurrence.class, VecPartOccurrence.class,
+                                          source::getConnectionOrOccurrences, compositionSpecification::getComponents)
+                .build();
     }
 }

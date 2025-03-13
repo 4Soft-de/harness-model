@@ -23,35 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform;
+package com.foursoft.harness.kbl2vec.transform.modules;
 
-import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl.v25.KblModule;
+import com.foursoft.harness.kbl.v25.KblModuleConfiguration;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecPartWithSubComponentsRole;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.commonDocumentAttributes;
-
-public class PartMasterDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
-
+public class ModuleOccurrenceTransformer implements Transformer<KblModule, VecPartOccurrence> {
     @Override
-    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
-                                                              final KblPart source) {
-        final VecDocumentVersion documentVersion = new VecDocumentVersion();
+    public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
+                                                             final KblModule source) {
+        final VecPartOccurrence occurrence = new VecPartOccurrence();
+        occurrence.setIdentification(source.getPartNumber());
 
-        //TODO: Enums/Consts for OpenEnums.
-        documentVersion.setDocumentType("PartMaster");
-
-        return TransformationResult.from(documentVersion)
-                .withFragment(commonDocumentAttributes(source, context))
-                .downstreamTransformation(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
-                                          documentVersion::getSpecifications)
-                .downstreamTransformation(KblPart.class, VecConnectorHousingSpecification.class, Query.of(source),
-                                          documentVersion::getSpecifications)
+        return TransformationResult.from(occurrence)
+                .downstreamTransformation(KblModuleConfiguration.class, VecPartWithSubComponentsRole.class,
+                                          Query.of(source.getModuleConfiguration()), occurrence::getRoles)
+                .withLinker(Query.of(source), VecPartVersion.class, occurrence::setPart)
                 .build();
+
     }
+
 }
