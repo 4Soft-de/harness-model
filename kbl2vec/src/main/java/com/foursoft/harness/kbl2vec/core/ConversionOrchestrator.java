@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Stream;
 
 public class ConversionOrchestrator<S, D> {
 
@@ -130,15 +131,22 @@ public class ConversionOrchestrator<S, D> {
     }
 
     private <FROM, TO> void handleSingleTransformation(final Transformation<FROM, TO> transformation) {
-        final Transformer<FROM, TO> transformer = transformerRegistry.getTransformer(transformation.sourceClass(),
-                                                                                     transformation.destinationClass());
+        final Collection<Transformer<FROM, TO>> transformers = transformerRegistry.getTransformer(
+                transformation.sourceClass(),
+                transformation.destinationClass());
 
         transformation.sourceQuery()
                 .stream()
-                .map(from -> handleElementTransformation(transformer, from))
+                .flatMap(from -> handleElementTransformations(transformers, from))
                 .filter(Objects::nonNull)
                 .forEach(transformation.accumulator());
 
+    }
+
+    private <FROM, TO> Stream<TO> handleElementTransformations(final Collection<Transformer<FROM, TO>> transformers,
+                                                               final FROM element) {
+        return transformers.stream()
+                .map(t -> handleElementTransformation(t, element));
     }
 
     private <FROM, TO> TO handleElementTransformation(final Transformer<FROM, TO> transformer, final FROM element) {
