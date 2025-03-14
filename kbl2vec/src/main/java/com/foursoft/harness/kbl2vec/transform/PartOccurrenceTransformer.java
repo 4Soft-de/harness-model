@@ -29,6 +29,7 @@ import com.foursoft.harness.kbl.common.HasDescription;
 import com.foursoft.harness.kbl.common.HasIdentification;
 import com.foursoft.harness.kbl.common.HasPart;
 import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
+import com.foursoft.harness.kbl.v25.HasRelatedOccurrence;
 import com.foursoft.harness.kbl2vec.convert.Converter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -60,6 +61,11 @@ public class PartOccurrenceTransformer implements Transformer<ConnectionOrOccurr
                 builder.withComment("This occurence has no \"Id\" in the KBL data.");
                 occurrence.setIdentification("GenericIdentifier-" + idCounter++);
             }
+            if (source instanceof final HasRelatedOccurrence hasRelatedOccurrence) {
+                builder.withLinker(hasRelatedOccurrence::getRelatedOccurrence, VecPartOccurrence.class,
+                                   VecPartOccurrence::getInstanciatedOccurrence);
+            }
+
             handleDescription(source, occurrence, context);
             return builder.build();
         }

@@ -49,11 +49,15 @@ public final class Queries {
                 .toList();
     }
 
-    public static Query<ConnectionOrOccurrence> partOccurrences(final KblModuleConfiguration source) {
-        return () -> source.getControlledComponents()
+    public static Query<ConnectionOrOccurrence> partOccurrences(final List<ConnectionOrOccurrence> components) {
+        return () -> components
                 .stream()
                 .filter(c -> !(c instanceof KblConnection))
                 .toList();
+    }
+
+    public static Query<ConnectionOrOccurrence> partOccurrences(final KblModuleConfiguration source) {
+        return partOccurrences(source.getControlledComponents());
     }
 
 }

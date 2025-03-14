@@ -30,9 +30,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
+import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonDocumentAttributes;
 
@@ -51,6 +49,10 @@ public class PartMasterDocumentVersionTransformer implements Transformer<KblPart
                 .withDownstream(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
                 .withDownstream(KblPart.class, VecConnectorHousingSpecification.class, Query.of(source),
+                                VecDocumentVersion::getSpecifications)
+                .withDownstream(KblPart.class, VecCompositionSpecification.class, Query.of(source),
+                                VecDocumentVersion::getSpecifications)
+                .withDownstream(KblPart.class, VecPartStructureSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
                 .build();
     }
