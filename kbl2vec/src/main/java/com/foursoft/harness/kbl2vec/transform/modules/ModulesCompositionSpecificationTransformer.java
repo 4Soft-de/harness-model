@@ -42,7 +42,7 @@ public class ModulesCompositionSpecificationTransformer
 
         return TransformationResult.from(compositionSpecification)
                 .withDownstream(KblModule.class, VecPartOccurrence.class,
-                                source::getModules, compositionSpecification::getComponents)
+                                source::getModules, VecCompositionSpecification::getComponents)
                 .build();
     }
 }

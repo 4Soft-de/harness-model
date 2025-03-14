@@ -49,9 +49,9 @@ public class PartMasterDocumentVersionTransformer implements Transformer<KblPart
         return TransformationResult.from(documentVersion)
                 .withFragment(commonDocumentAttributes(source, context))
                 .withDownstream(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
-                                documentVersion::getSpecifications)
+                                VecDocumentVersion::getSpecifications)
                 .withDownstream(KblPart.class, VecConnectorHousingSpecification.class, Query.of(source),
-                                documentVersion::getSpecifications)
+                                VecDocumentVersion::getSpecifications)
                 .build();
     }
 }

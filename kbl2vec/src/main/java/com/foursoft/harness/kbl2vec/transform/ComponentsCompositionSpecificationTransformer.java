@@ -42,7 +42,7 @@ public class ComponentsCompositionSpecificationTransformer
 
         return TransformationResult.from(compositionSpecification)
                 .withDownstream(ConnectionOrOccurrence.class, VecPartOccurrence.class,
-                                source::getConnectionOrOccurrences, compositionSpecification::getComponents)
+                                source::getConnectionOrOccurrences, VecCompositionSpecification::getComponents)
                 .build();
     }
 }

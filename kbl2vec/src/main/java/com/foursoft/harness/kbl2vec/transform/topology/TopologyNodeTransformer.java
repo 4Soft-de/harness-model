@@ -41,7 +41,7 @@ public class TopologyNodeTransformer implements Transformer<KblNode, VecTopology
 
         return TransformationResult.from(topologyNode)
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
-                                source::getAliasIds, topologyNode::getAliasIds)
+                                source::getAliasIds, VecTopologyNode::getAliasIds)
                 .build();
     }
 }

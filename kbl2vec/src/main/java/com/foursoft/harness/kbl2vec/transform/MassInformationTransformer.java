@@ -45,7 +45,7 @@ public class MassInformationTransformer implements Transformer<KblNumericalValue
         return TransformationResult.from(massInformation).withDownstream(KblNumericalValue.class,
                                                                          VecNumericalValue.class,
                                                                          Query.of(source),
-                                                                         massInformation::setValue)
+                                                                         VecMassInformation::setValue)
                 .build();
 
     }

@@ -59,13 +59,13 @@ public class VecContentTransformer implements Transformer<KBLContainer, VecConte
                                 """)
 //                .downstreamTransformation(KblPart.class, VecCopyrightInformation.class, allParts(source),
 //                                          resultElement::getCopyrightInformations)
-                .withDownstream(KblUnit.class, VecUnit.class, source::getUnits, resultElement::getUnits)
+                .withDownstream(KblUnit.class, VecUnit.class, source::getUnits, VecContent::getUnits)
                 .withDownstream(KblPart.class, VecPartVersion.class, allParts(source),
-                                resultElement::getPartVersions)
+                                VecContent::getPartVersions)
                 .withDownstream(KblPart.class, VecDocumentVersion.class, source::getParts,
-                                resultElement::getDocumentVersions)
+                                VecContent::getDocumentVersions)
                 .withDownstream(KblHarness.class, VecDocumentVersion.class, Query.of(source::getHarness),
-                                resultElement::getDocumentVersions)
+                                VecContent::getDocumentVersions)
                 .build();
     }
 

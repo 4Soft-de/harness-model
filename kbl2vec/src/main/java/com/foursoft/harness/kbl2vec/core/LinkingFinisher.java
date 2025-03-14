@@ -25,33 +25,19 @@
  */
 package com.foursoft.harness.kbl2vec.core;
 
-import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class LinkingFinisher<S, D> implements Finisher {
 
     private final Query<S> sourceObjects;
     private final Class<D> targetClass;
-    private final Consumer<D> targetProperty;
+    private final Consumer<D> linker;
 
     public LinkingFinisher(final Query<S> sourceObjects, final Class<D> targetClass,
-                           final Consumer<D> targetProperty) {
+                           final Consumer<D> linker) {
         this.sourceObjects = sourceObjects;
         this.targetClass = targetClass;
-        this.targetProperty = targetProperty;
-    }
-
-    public LinkingFinisher(final Query<S> sourceObjects, final Class<D> targetClass,
-                           final Supplier<List<? super D>> targetProperty) {
-        this(sourceObjects, targetClass, value -> targetProperty.get()
-                .add(value));
-    }
-
-    public LinkingFinisher(final S sourceObject, final Class<D> targetClass,
-                           final Supplier<List<? super D>> targetProperty) {
-        this(Query.of(sourceObject), targetClass, value -> targetProperty.get()
-                .add(value));
+        this.linker = linker;
     }
 
     @Override
@@ -59,6 +45,6 @@ public class LinkingFinisher<S, D> implements Finisher {
         sourceObjects.stream()
                 .map(s -> context.getEntityMapping()
                         .getIfUniqueOrElseThrow(s, targetClass))
-                .forEach(targetProperty);
+                .forEach(linker);
     }
 }

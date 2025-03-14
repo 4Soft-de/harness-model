@@ -35,7 +35,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.*;
 
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 public class TopologySegmentTransformer implements Transformer<KblSegment, VecTopologySegment> {
     @Override
@@ -49,21 +49,19 @@ public class TopologySegmentTransformer implements Transformer<KblSegment, VecTo
 
         return TransformationResult.from(topologySegment)
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
-                                source::getAliasIds, topologySegment::getAliasIds)
+                                source::getAliasIds, VecTopologySegment::getAliasIds)
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
-                                Query.of(source.getVirtualLength()),
-                                appendLengthInformation(topologySegment, "Designed"))
+                                Query.of(source.getVirtualLength()), appendLengthInformation("Designed"))
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
-                                Query.of(source.getPhysicalLength()),
-                                appendLengthInformation(topologySegment, "Adapted"))
-                .withLinker(Query.of(source::getStartNode), VecTopologyNode.class, topologySegment::setStartNode)
-                .withLinker(Query.of(source::getEndNode), VecTopologyNode.class, topologySegment::setEndNode)
+                                Query.of(source.getPhysicalLength()), appendLengthInformation("Adapted"))
+                .withLinker(Query.of(source::getStartNode), VecTopologyNode.class, VecTopologySegment::setStartNode)
+                .withLinker(Query.of(source::getEndNode), VecTopologyNode.class, VecTopologySegment::setEndNode)
                 .build();
     }
 
-    private Consumer<VecNumericalValue> appendLengthInformation(final VecTopologySegment topologySegment,
-                                                                final String classification) {
-        return (final VecNumericalValue numericalValue) -> {
+    private BiConsumer<VecTopologySegment, VecNumericalValue> appendLengthInformation(
+            final String classification) {
+        return (final VecTopologySegment topologySegment, final VecNumericalValue numericalValue) -> {
             final VecSegmentLength segmentLength = new VecSegmentLength();
             segmentLength.setClassification(classification);
             segmentLength.setLength(numericalValue);

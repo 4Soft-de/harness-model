@@ -28,8 +28,8 @@ package com.foursoft.harness.kbl2vec.core;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public record TransformationResult<D>(D element, List<Transformation<?, ?>> downstreamTransformations,
                                       List<Finisher> finisher, Map<Object, String> comments) {
@@ -80,9 +80,10 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         public <FROM, TO> Builder<D> withDownstream(final Class<FROM> sourceClass,
                                                     final Class<TO> destinationClass,
                                                     final Query<FROM> sourceQuery,
-                                                    final Consumer<TO> accumulator) {
+                                                    final BiConsumer<D, TO> accumulator) {
             downstreamTransformations.add(
-                    new Transformation<>(sourceClass, destinationClass, sourceQuery, accumulator));
+                    new Transformation<>(sourceClass, destinationClass, sourceQuery,
+                                         result -> accumulator.accept(element, result)));
 
             return this;
         }
@@ -90,10 +91,9 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         public <FROM, TO> Builder<D> withDownstream(final Class<FROM> sourceClass,
                                                     final Class<TO> destinationClass,
                                                     final Query<FROM> sourceQuery,
-                                                    final Supplier<List<? super TO>> contextList) {
+                                                    final Function<D, List<? super TO>> contextListProvider) {
             downstreamTransformations.add(new Transformation<>(sourceClass, destinationClass, sourceQuery,
-                                                               value -> contextList.get()
-                                                                       .add(value)));
+                                                               value -> contextListProvider.apply(element).add(value)));
 
             return this;
         }
@@ -110,21 +110,21 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         }
 
         public <FROM, TO> Builder<D> withLinker(final Query<FROM> sourceObject, final Class<TO> targetClass,
-                                                final Consumer<TO> targetProperty) {
-            this.finishers.add(new LinkingFinisher<>(sourceObject, targetClass, targetProperty));
+                                                final BiConsumer<D, TO> linker) {
+            this.finishers.add(
+                    new LinkingFinisher<>(sourceObject, targetClass, target -> linker.accept(element, target)));
             return this;
         }
 
         public <FROM, TO> Builder<D> withLinker(final Query<FROM> sourceObject, final Class<TO> targetClass,
-                                                final Supplier<List<? super TO>> targetProperty) {
-            this.finishers.add(new LinkingFinisher<>(sourceObject, targetClass, targetProperty));
-            return this;
+                                                final Function<D, List<? super TO>> targetListMapper) {
+            return this.withLinker(sourceObject, targetClass,
+                                   (context, target) -> targetListMapper.apply(context).add(target));
         }
 
         public <FROM, TO> Builder<D> withLinker(final FROM sourceObject, final Class<TO> targetClass,
-                                                final Supplier<List<? super TO>> targetProperty) {
-            this.finishers.add(new LinkingFinisher<>(sourceObject, targetClass, targetProperty));
-            return this;
+                                                final Function<D, List<? super TO>> targetListMapper) {
+            return this.withLinker(Query.of(sourceObject), targetClass, targetListMapper);
         }
 
         public Builder<D> withFragment(final TransformationFragment<D, Builder<D>> fragment) {

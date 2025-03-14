@@ -44,8 +44,8 @@ public class ModuleOccurrenceTransformer implements Transformer<KblModule, VecPa
 
         return TransformationResult.from(occurrence)
                 .withDownstream(KblModuleConfiguration.class, VecPartWithSubComponentsRole.class,
-                                Query.of(source.getModuleConfiguration()), occurrence::getRoles)
-                .withLinker(Query.of(source), VecPartVersion.class, occurrence::setPart)
+                                Query.of(source.getModuleConfiguration()), VecPartOccurrence::getRoles)
+                .withLinker(Query.of(source), VecPartVersion.class, VecPartOccurrence::setPart)
                 .build();
 
     }

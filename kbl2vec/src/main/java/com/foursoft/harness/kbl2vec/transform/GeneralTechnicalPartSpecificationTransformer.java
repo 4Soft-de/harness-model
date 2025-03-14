@@ -59,10 +59,9 @@ public class GeneralTechnicalPartSpecificationTransformer
                 .withFragment(commonSpecificationAttributes(source))
                 .withDownstream(KblNumericalValue.class, VecMassInformation.class,
                                 Query.of(source.getMassInformation()),
-                                specification::getMassInformations)
-                .withDownstream(KblMaterial.class, VecMaterial.class,
-                                Query.of(source.getMaterialInformation()),
-                                specification::getMaterialInformations)
+                                VecGeneralTechnicalPartSpecification::getMassInformations)
+                .withDownstream(KblMaterial.class, VecMaterial.class, Query.of(source.getMaterialInformation()),
+                                VecGeneralTechnicalPartSpecification::getMaterialInformations)
                 .build();
     }
 }

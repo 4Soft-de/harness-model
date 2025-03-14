@@ -78,7 +78,7 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
 //                                     partVersion::setCopyrightInformation);
 //        }
         return resultBuilder.withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
-                                            source::getAliasIds, partVersion::getAliasIds)
+                                            source::getAliasIds, VecPartVersion::getAliasIds)
                 .build();
     }
 

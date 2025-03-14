@@ -48,10 +48,10 @@ public class TopologySpecificationTransformer implements Transformer<KblHarness,
         return TransformationResult.from(topologySpecification)
                 .withDownstream(KblNode.class, VecTopologyNode.class,
                                 () -> source.getParentKBLContainer().getNodes(),
-                                topologySpecification::getTopologyNodes)
+                                VecTopologySpecification::getTopologyNodes)
                 .withDownstream(KblSegment.class, VecTopologySegment.class,
                                 () -> source.getParentKBLContainer().getSegments(),
-                                topologySpecification::getTopologySegments)
+                                VecTopologySpecification::getTopologySegments)
                 .build();
     }
 }
