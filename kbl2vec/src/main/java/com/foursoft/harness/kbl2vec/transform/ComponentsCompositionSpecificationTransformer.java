@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,15 +33,16 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCompositionSpecification;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 
-public class ComponentsCompositionSpecificationTransformer implements Transformer<KblHarness, VecCompositionSpecification> {
+public class ComponentsCompositionSpecificationTransformer
+        implements Transformer<KblHarness, VecCompositionSpecification> {
     @Override public TransformationResult<VecCompositionSpecification> transform(final TransformationContext context,
                                                                                  final KblHarness source) {
         final VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
         compositionSpecification.setIdentification("COMPONENTS");
 
         return TransformationResult.from(compositionSpecification)
-                .downstreamTransformation(ConnectionOrOccurrence.class, VecPartOccurrence.class,
-                                          source::getConnectionOrOccurrences, compositionSpecification::getComponents)
+                .withDownstream(ConnectionOrOccurrence.class, VecPartOccurrence.class,
+                                source::getConnectionOrOccurrences, compositionSpecification::getComponents)
                 .build();
     }
 }

@@ -32,13 +32,13 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public record TransformationResult<D>(D element, List<Transformation<?, ?>> downstreamTransformations,
-                                      List<Finalizer> finalizer, Map<Object, String> comments) {
+                                      List<Finisher> finisher, Map<Object, String> comments) {
 
     public TransformationResult {
 
         Objects.requireNonNull(downstreamTransformations,
                                "downstreamTransformations must not be null, use empty list instead.");
-        Objects.requireNonNull(finalizer, "callbacks must not be null, use empty list instead");
+        Objects.requireNonNull(finisher, "callbacks must not be null, use empty list instead");
     }
 
     public boolean isEmpty() {
@@ -64,7 +64,7 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
 
         private final D element;
         private final List<Transformation<?, ?>> downstreamTransformations = new ArrayList<>();
-        private final List<Finalizer> finalizers = new ArrayList<>();
+        private final List<Finisher> finishers = new ArrayList<>();
         private final Map<Object, String> comments = new HashMap<>();
 
         private Builder(final D element) {
@@ -73,26 +73,26 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
         }
 
         public TransformationResult<D> build() {
-            return new TransformationResult<>(element, List.copyOf(downstreamTransformations), List.copyOf(finalizers),
+            return new TransformationResult<>(element, List.copyOf(downstreamTransformations), List.copyOf(finishers),
                                               comments);
         }
 
-        public <FROM, TO> Builder<D> downstreamTransformation(final Class<FROM> sourceClass,
-                                                              final Class<TO> destinationClass,
-                                                              final Query<FROM> sourceQuery,
-                                                              final Consumer<TO> accumulator) {
+        public <FROM, TO> Builder<D> withDownstream(final Class<FROM> sourceClass,
+                                                    final Class<TO> destinationClass,
+                                                    final Query<FROM> sourceQuery,
+                                                    final Consumer<TO> accumulator) {
             downstreamTransformations.add(
                     new Transformation<>(sourceClass, destinationClass, sourceQuery, accumulator));
 
             return this;
         }
 
-        public <FROM, TO> Builder<D> downstreamTransformation(final Class<FROM> sourceClass,
-                                                              final Class<TO> destinationClass,
-                                                              final Query<FROM> sourceQuery,
-                                                              final Supplier<List<? super TO>> contextList) {
+        public <FROM, TO> Builder<D> withDownstream(final Class<FROM> sourceClass,
+                                                    final Class<TO> destinationClass,
+                                                    final Query<FROM> sourceQuery,
+                                                    final Supplier<List<? super TO>> contextList) {
             downstreamTransformations.add(new Transformation<>(sourceClass, destinationClass, sourceQuery,
-                                                               (value) -> contextList.get()
+                                                               value -> contextList.get()
                                                                        .add(value)));
 
             return this;
@@ -111,19 +111,19 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
 
         public <FROM, TO> Builder<D> withLinker(final Query<FROM> sourceObject, final Class<TO> targetClass,
                                                 final Consumer<TO> targetProperty) {
-            this.finalizers.add(new LinkingFinalizer<>(sourceObject, targetClass, targetProperty));
+            this.finishers.add(new LinkingFinisher<>(sourceObject, targetClass, targetProperty));
             return this;
         }
 
         public <FROM, TO> Builder<D> withLinker(final Query<FROM> sourceObject, final Class<TO> targetClass,
                                                 final Supplier<List<? super TO>> targetProperty) {
-            this.finalizers.add(new LinkingFinalizer<>(sourceObject, targetClass, targetProperty));
+            this.finishers.add(new LinkingFinisher<>(sourceObject, targetClass, targetProperty));
             return this;
         }
 
         public <FROM, TO> Builder<D> withLinker(final FROM sourceObject, final Class<TO> targetClass,
                                                 final Supplier<List<? super TO>> targetProperty) {
-            this.finalizers.add(new LinkingFinalizer<>(sourceObject, targetClass, targetProperty));
+            this.finishers.add(new LinkingFinisher<>(sourceObject, targetClass, targetProperty));
             return this;
         }
 
@@ -132,8 +132,8 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
             return this;
         }
 
-        public Builder<D> withFinalizer(final Finalizer finalizer) {
-            finalizers.add(finalizer);
+        public Builder<D> withFinisher(final Finisher finisher) {
+            finishers.add(finisher);
             return this;
         }
     }

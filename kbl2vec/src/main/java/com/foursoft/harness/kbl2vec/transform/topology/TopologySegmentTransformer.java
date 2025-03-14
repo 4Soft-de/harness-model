@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -48,14 +48,14 @@ public class TopologySegmentTransformer implements Transformer<KblSegment, VecTo
         }
 
         return TransformationResult.from(topologySegment)
-                .downstreamTransformation(KblAliasIdentification.class, VecAliasIdentification.class,
-                                          source::getAliasIds, topologySegment::getAliasIds)
-                .downstreamTransformation(KblNumericalValue.class, VecNumericalValue.class,
-                                          Query.of(source.getVirtualLength()),
-                                          appendLengthInformation(topologySegment, "Designed"))
-                .downstreamTransformation(KblNumericalValue.class, VecNumericalValue.class,
-                                          Query.of(source.getPhysicalLength()),
-                                          appendLengthInformation(topologySegment, "Adapted"))
+                .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
+                                source::getAliasIds, topologySegment::getAliasIds)
+                .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
+                                Query.of(source.getVirtualLength()),
+                                appendLengthInformation(topologySegment, "Designed"))
+                .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
+                                Query.of(source.getPhysicalLength()),
+                                appendLengthInformation(topologySegment, "Adapted"))
                 .withLinker(Query.of(source::getStartNode), VecTopologyNode.class, topologySegment::setStartNode)
                 .withLinker(Query.of(source::getEndNode), VecTopologyNode.class, topologySegment::setEndNode)
                 .build();

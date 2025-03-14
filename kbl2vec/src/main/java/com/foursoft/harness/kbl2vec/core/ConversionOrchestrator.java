@@ -45,7 +45,7 @@ public class ConversionOrchestrator<S, D> {
 
     private final Queue<Transformation<?, ?>> transformations = new ConcurrentLinkedQueue<>();
 
-    private final Queue<Finalizer> finalizer = new ConcurrentLinkedQueue<>();
+    private final Queue<Finisher> finisher = new ConcurrentLinkedQueue<>();
 
     private final List<Processor<D>> postProcessors = new ArrayList<>();
 
@@ -101,9 +101,9 @@ public class ConversionOrchestrator<S, D> {
     }
 
     private void processFinalizer() {
-        Finalizer currentFinalizer;
-        while ((currentFinalizer = finalizer.poll()) != null) {
-            currentFinalizer.finishTransformation(this.transformationContext);
+        Finisher currentFinisher;
+        while ((currentFinisher = finisher.poll()) != null) {
+            currentFinisher.finishTransformation(this.transformationContext);
         }
     }
 
@@ -153,7 +153,7 @@ public class ConversionOrchestrator<S, D> {
         final TransformationResult<TO> result = transformer.transform(this.transformationContext, element);
         if (!result.isEmpty()) {
             transformations.addAll(result.downstreamTransformations());
-            finalizer.addAll(result.finalizer());
+            finisher.addAll(result.finisher());
             transformationContext.getEntityMapping().put(element, result.element());
             comments.putAll(result.comments());
         }

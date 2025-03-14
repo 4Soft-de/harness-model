@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.core;
 
-public interface Finalizer {
+public interface Finisher {
 
     void finishTransformation(TransformationContext context);
 }
