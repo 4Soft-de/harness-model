@@ -55,4 +55,20 @@ class Vec2AasConverterTest {
 //        System.out.println(baos.toString(StandardCharsets.UTF_8));
     }
 
+    @Test
+    void should_convert_coroflex_xml_file() throws SerializationException, FileNotFoundException {
+        final Vec2AasConverter converter = new Vec2AasConverter();
+
+        final InputStream inputFile = this.getClass().getResourceAsStream("/coroflex-ti-9-2611-35.vec");
+
+        final SubmodelElement model = converter.convert(inputFile, "https://www.coroflex.com/kostal-9-2611-353#");
+
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        serializer.write(new FileOutputStream("coroflex-example.json"), StandardCharsets.UTF_8, model);
+//        serializer.write(baos, StandardCharsets.UTF_8, model);
+//
+//        System.out.println(baos.toString(StandardCharsets.UTF_8));
+    }
+
 }

@@ -284,7 +284,9 @@ public class VecAasSerializer {
         } else {
             propertyBuilder.value(value.toString());
         }
+
         return propertyBuilder.valueType(valueTypeFor(field)).build();
+
     }
 
     private DataTypeDefXsd valueTypeFor(final VecField field) {
