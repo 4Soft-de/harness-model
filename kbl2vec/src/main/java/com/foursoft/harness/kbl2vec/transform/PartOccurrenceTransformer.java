@@ -29,15 +29,14 @@ import com.foursoft.harness.kbl.common.HasDescription;
 import com.foursoft.harness.kbl.common.HasIdentification;
 import com.foursoft.harness.kbl.common.HasPart;
 import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
+import com.foursoft.harness.kbl.v25.HasRelatedAssembly;
 import com.foursoft.harness.kbl.v25.HasRelatedOccurrence;
 import com.foursoft.harness.kbl2vec.convert.Converter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecLocalizedString;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
@@ -65,9 +64,17 @@ public class PartOccurrenceTransformer implements Transformer<ConnectionOrOccurr
                 builder.withLinker(hasRelatedOccurrence::getRelatedOccurrence, VecPartOccurrence.class,
                                    VecPartOccurrence::getInstanciatedOccurrence);
             }
+            if (source instanceof final HasRelatedAssembly hasRelatedAssembly) {
+                builder.withLinker(hasRelatedAssembly::getRelatedAssembly, VecPartWithSubComponentsRole.class,
+                                   (occ, assembly) -> assembly.getSubComponent().add(occ));
+            }
 
             handleDescription(source, occurrence, context);
-            return builder.build();
+            return builder
+                    .withDownstream(ConnectionOrOccurrence.class, VecPartWithSubComponentsRole.class, Query.of(source),
+                                    VecOccurrenceOrUsage::getRoles)
+
+                    .build();
         }
         return TransformationResult.noResult();
     }
