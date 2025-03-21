@@ -40,14 +40,19 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+import static com.foursoft.harness.vec.aas.LocalizedStringWrapper.isLocalizedType;
 import static com.foursoft.harness.vec.rdf.common.meta.VecClass.analyzeClass;
 import static java.util.Map.entry;
 
 public class VecAasSerializer {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(VecAasSerializer.class);
+
     private final String targetNamespace;
     private final Identifiable root;
     private final UmlModelProvider modelProvider;
@@ -65,7 +70,7 @@ public class VecAasSerializer {
         this.namingStrategy = namingStrategy;
         this.targetNamespace = targetNamespace;
         this.root = root;
-        referenceFactory = new ReferenceFactory(this.namingStrategy, this.targetNamespace, this.root);
+        referenceFactory = new ReferenceFactory(this.namingStrategy, targetNamespace, this.root);
         vecOntology = new VecOntology(this.namingStrategy);
 
     }
@@ -74,34 +79,76 @@ public class VecAasSerializer {
 
         return new DefaultSubmodel.Builder()
                 .semanticId(referenceFactory.referenceFor(VEC.URI))
-                .submodelElements(createObjectNode(root))
+                .submodelElements(handleVecObject(root))
                 .build();
     }
 
-    private SubmodelElementCollection createObjectNode(final Identifiable identifiable) {
-        final VecClass metaData = analyzeClass(root.getClass());
+    private SubmodelElementCollection handleVecObject(final Identifiable contextObject) {
+        final VecClass metaData = analyzeClass(contextObject.getClass());
         final DefaultSubmodelElementCollection.Builder builder =
                 new DefaultSubmodelElementCollection.Builder().semanticId(
-                                referenceFactory.semanticIdFor(identifiable.getClass()))
-                        .idShort(namingStrategy.idShort(identifiable))
-                        .description(vecOntology.descriptionFor(identifiable.getClass()));
+                                referenceFactory.semanticIdFor(contextObject.getClass()))
+                        .idShort(namingStrategy.idShort(contextObject))
+                        .description(vecOntology.descriptionFor(contextObject.getClass()));
 
-        for (final VecField field : metaData.getFields()) {
-            final Object value = field.readValue(identifiable);
-
-            if (value != null) {
-                if (value instanceof final List<?> list) {
-                    if (!list.isEmpty()) {
-                        builder.value(createList(identifiable, field, list));
-                    }
-                } else {
-                    builder.value(createProperty(identifiable, field, value, -1));
-                }
-
-            }
-        }
+        Arrays.stream(metaData.getFields())
+                .map(field -> handleVecObjectField(contextObject, field))
+                .filter(Objects::nonNull)
+                .forEach(builder::value);
 
         return builder.build();
+    }
+
+    private SubmodelElement handleVecObjectField(final Identifiable contextObject, final VecField field) {
+        if (field.isCollection()) {
+            if (isLocalizedType(field.getValueType())) {
+                return handleMultiLangValueField(contextObject, field);
+            }
+            return handleMultiValueField(contextObject, field);
+        } else {
+            return handleSingleValueField(contextObject, field);
+        }
+    }
+
+    private SubmodelElement handleSingleValueField(final Identifiable contextObject, final VecField field) {
+        final Object fieldValue = field.readValue(contextObject);
+        if (fieldValue == null) {
+            return null;
+        }
+        return createProperty(contextObject, field, fieldValue, -1);
+    }
+
+    private SubmodelElement handleMultiValueField(final Identifiable contextObject, final VecField field) {
+        final Object fieldValue = field.readValue(contextObject);
+        if (fieldValue == null) {
+            return null;
+        }
+        if (fieldValue instanceof final List<?> list) {
+            return createList(contextObject, field, list);
+        }
+        throw new AasConversionException("Expected a list value for: " + field + " but got " + fieldValue);
+    }
+
+    private SubmodelElement handleMultiLangValueField(final Identifiable contextObject, final VecField field) {
+        final Object fieldValue = field.readValue(contextObject);
+        if (fieldValue == null) {
+            return null;
+        }
+        if (fieldValue instanceof final List<?> list) {
+            final List<LangStringTextType> langStrings = list.stream()
+                    .map(LocalizedStringWrapper::wrap)
+                    .map(LocalizedStringWrapper::toLangStringTextType)
+                    .toList();
+
+            final DefaultMultiLanguageProperty.Builder builder = new DefaultMultiLanguageProperty.Builder()
+                    .idShort(namingStrategy.idShort(field))
+                    .semanticId(referenceFactory.semanticIdFor(field))
+                    .description(vecOntology.descriptionFor(field))
+                    .value(langStrings);
+
+            return builder.build();
+        }
+        throw new AasConversionException("Expected a list value for: " + field + " but got " + fieldValue);
     }
 
     private SubmodelElement createList(final Identifiable context, final VecField field, final List<?> list) {
@@ -109,7 +156,8 @@ public class VecAasSerializer {
         final DefaultSubmodelElementList.Builder builder = new DefaultSubmodelElementList.Builder()
                 .idShort(namingStrategy.idShort(field))
                 .semanticId(referenceFactory.semanticIdFor(field))
-                .description(vecOntology.descriptionFor(field)).orderRelevant(umlField.isOrdered());
+                .description(vecOntology.descriptionFor(field))
+                .orderRelevant(umlField.isOrdered());
 
         final Class<?> vecValueType = field.getValueType();
 
@@ -123,7 +171,7 @@ public class VecAasSerializer {
                             createReferenceNode(context, field, identifiable));
                 } else {
                     builder.typeValueListElement(AasSubmodelElements.SUBMODEL_ELEMENT_COLLECTION).value(
-                            createObjectNode(identifiable));
+                            handleVecObject(identifiable));
                 }
             } else {
                 throw new AasConversionException("Unsupported list element type: " + vecValueType);
@@ -154,10 +202,6 @@ public class VecAasSerializer {
         throw new AasConversionException("Unhandled Type: " + value.getClass()
                 .getSimpleName());
 
-    }
-
-    private UmlField getUmlField(final VecField field) {
-        return modelProvider.findField(field.getField());
     }
 
     private SubmodelElement handleOpenEnum(final VecField field, final String enumLiteralValue) {
@@ -193,8 +237,8 @@ public class VecAasSerializer {
                 .idShort(namingStrategy.idShort(value))
                 .semanticId(referenceFactory.semanticIdFor(field))
                 .description(vecOntology.descriptionFor(field))
-                .first(localReferenceFor(context))
-                .second(localReferenceFor(value))
+                .first(referenceFactory.localReferenceFor(context))
+                .second(referenceFactory.localReferenceFor(value))
                 .build();
     }
 
@@ -204,8 +248,8 @@ public class VecAasSerializer {
                 .idShort(namingStrategy.idShort(field))
                 .semanticId(referenceFactory.semanticIdFor(field))
                 .description(vecOntology.descriptionFor(field))
-                .first(localReferenceFor(context))
-                .second(localReferenceFor(value))
+                .first(referenceFactory.localReferenceFor(context))
+                .second(referenceFactory.localReferenceFor(value))
                 .build();
     }
 
@@ -214,7 +258,7 @@ public class VecAasSerializer {
                 .idShort(namingStrategy.idShort(field))
                 .semanticId(referenceFactory.semanticIdFor(field))
                 .description(vecOntology.descriptionFor(field))
-                .value(createObjectNode(value));
+                .value(handleVecObject(value));
         return builder.build();
     }
 
@@ -233,10 +277,6 @@ public class VecAasSerializer {
 
     }
 
-    private Reference localReferenceFor(final Identifiable context) {
-        return referenceFactory.localReferenceFor(context);
-    }
-
     private DataTypeDefXsd valueTypeFor(final VecField field) {
         final Class<?> valueType = field.getValueType();
         final DataTypeDefXsd dataTypeDefXsd = dataTypeDefXsdCache.get(valueType);
@@ -253,7 +293,13 @@ public class VecAasSerializer {
             entry(String.class, DataTypeDefXsd.STRING),
             entry(double.class, DataTypeDefXsd.DOUBLE),
             entry(BigInteger.class, DataTypeDefXsd.LONG),
-            entry(Boolean.class, DataTypeDefXsd.BOOLEAN)
+            entry(Boolean.class, DataTypeDefXsd.BOOLEAN),
+            entry(boolean.class, DataTypeDefXsd.BOOLEAN),
+            entry(Double.class, DataTypeDefXsd.DOUBLE)
     );
+
+    private UmlField getUmlField(final VecField field) {
+        return modelProvider.findField(field.getField());
+    }
 
 }
