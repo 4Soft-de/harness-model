@@ -45,7 +45,7 @@ class Vec2AasConverterTest {
 
         final InputStream inputFile = this.getClass().getResourceAsStream("/kostal-32124733993.vec");
 
-        final Submodel model = converter.convert(inputFile, "https://www.kostal.com/kostal-32124733993#");
+        final Submodel model = converter.convert(inputFile, "https://www.kostal.com/32124733993/vec#");
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -61,7 +61,7 @@ class Vec2AasConverterTest {
 
         final InputStream inputFile = this.getClass().getResourceAsStream("/coroflex-ti-9-2611-35.vec");
 
-        final Submodel model = converter.convert(inputFile, "https://www.coroflex.com/kostal-9-2611-353#");
+        final Submodel model = converter.convert(inputFile, "https://www.coroflex.com/9-2611-353/vec#");
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

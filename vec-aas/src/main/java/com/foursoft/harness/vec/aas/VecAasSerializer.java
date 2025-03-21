@@ -80,6 +80,8 @@ public class VecAasSerializer {
 
         return new DefaultSubmodel.Builder()
                 .semanticId(referenceFactory.referenceFor(VEC.URI))
+                .id(targetNamespace)
+                .idShort("VEC")
                 .submodelElements(handleVecObject(root))
                 .build();
     }
