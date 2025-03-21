@@ -29,6 +29,27 @@ public class ReferenceFactory {
 
     }
 
+    public Reference semanticIdFor(final Class<?> vecElement) {
+        final String typeIRI = namingStrategy.uriFor(vecElement);
+        return referenceFor(typeIRI);
+    }
+
+    public Reference semanticIdFor(final VecField vecElement) {
+        final String typeIRI = namingStrategy.uriFor(vecElement.getField());
+        return referenceFor(typeIRI);
+    }
+
+    public Reference referenceFor(final Enum<?> enumLiteral) {
+        final String typeIRI = namingStrategy.uriFor(enumLiteral);
+        return referenceFor(typeIRI);
+    }
+
+    public Reference referenceFor(final String iri) {
+        return new DefaultReference.Builder().type(ReferenceTypes.EXTERNAL_REFERENCE)
+                .keys(new DefaultKey.Builder().type(KeyTypes.GLOBAL_REFERENCE).value(iri).build())
+                .build();
+    }
+
     public Reference localReferenceFor(final Identifiable vecElement) {
         if (!references.containsKey(vecElement)) {
             throw new AasConversionException("Cannot find precalculated reference stack for " + vecElement);

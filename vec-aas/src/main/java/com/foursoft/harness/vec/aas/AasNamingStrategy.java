@@ -18,4 +18,6 @@ public class AasNamingStrategy extends NamingStrategy {
     public String idShort(final VecField field) {
         return field.getName();
     }
+
+
 }
