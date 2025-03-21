@@ -26,7 +26,6 @@
 package com.foursoft.harness.vec.aas;
 
 import com.foursoft.harness.navext.runtime.model.Identifiable;
-import com.foursoft.harness.vec.rdf.common.NamingStrategy;
 import com.foursoft.harness.vec.rdf.common.meta.MetaDataUtils;
 import com.foursoft.harness.vec.rdf.common.meta.VecClass;
 import com.foursoft.harness.vec.rdf.common.meta.VecField;
@@ -39,7 +38,6 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.util.SplitIRI;
 import org.apache.jena.vocabulary.RDFS;
 import org.eclipse.digitaltwin.aas4j.v3.model.*;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.*;
@@ -57,34 +55,40 @@ import static java.util.Map.entry;
 public class VecAasSerializer {
     private static final Logger LOGGER = LoggerFactory.getLogger(VecAasSerializer.class);
     private final String targetNamespace;
+    private final Identifiable root;
     private final UmlModelProvider modelProvider;
-    private final NamingStrategy namingStrategy;
+    private final AasNamingStrategy namingStrategy;
     private final Model vecOntology;
+    private final ReferenceFactory referenceFactory;
 
     public VecAasSerializer(final UmlModelProvider modelProvider,
-                            final NamingStrategy namingStrategy,
-                            final String targetNamespace) {
+                            final AasNamingStrategy namingStrategy,
+                            final String targetNamespace,
+                            final Identifiable root) {
 
         this.modelProvider = modelProvider;
         this.namingStrategy = namingStrategy;
         this.targetNamespace = targetNamespace;
+        this.root = root;
+        referenceFactory = new ReferenceFactory(this.namingStrategy, this.targetNamespace, this.root);
         vecOntology = ModelFactory.createDefaultModel();
         RDFDataMgr.read(vecOntology, this.getClass().getResourceAsStream("/vec/v2.1.0/vec-2.1.0-ontology.ttl"),
                         Lang.TTL);
     }
 
-    public SubmodelElement handle(final Identifiable identifiable) {
-        final VecClass metaData = analyzeClass(identifiable.getClass());
-        return createObjectNode(identifiable, false, metaData);
+    public Submodel serialize() {
+        final VecClass metaData = analyzeClass(root.getClass());
+
+        return new DefaultSubmodel.Builder()
+                .submodelElements(createObjectNode(root, false, metaData))
+                .build();
     }
 
     private SubmodelElementCollection createObjectNode(final Identifiable identifiable, final boolean createBNode,
                                                        final VecClass metaData) {
-        final String elementIRI = namingStrategy.uriFor(targetNamespace, identifiable);
-
         final DefaultSubmodelElementCollection.Builder builder =
                 new DefaultSubmodelElementCollection.Builder().semanticId(semanticIdFor(identifiable.getClass()))
-                        .idShort(SplitIRI.localname(elementIRI))
+                        .idShort(namingStrategy.idShort(identifiable))
                         .description(descriptionFor(identifiable.getClass()));
 
         for (final VecField field : metaData.getFields()) {
@@ -126,19 +130,6 @@ public class VecAasSerializer {
                 .build();
     }
 
-    public Reference localReferenceFor(final Identifiable vecElement) {
-        final String elementIRI = namingStrategy.uriFor(targetNamespace, vecElement);
-        final String localName = SplitIRI.localname(elementIRI);
-        return new DefaultReference.Builder()
-                .type(ReferenceTypes.MODEL_REFERENCE)
-                .keys(
-                        new DefaultKey.Builder()
-                                .type(KeyTypes.SUBMODEL_ELEMENT_COLLECTION)
-                                .value(localName)
-                                .build())
-                .build();
-    }
-
     private LangStringTextType descriptionFor(final Class<?> vecElement) {
         final String typeIRI = namingStrategy.uriFor(vecElement);
         final Resource vecResource = vecOntology.getResource(typeIRI);
@@ -162,8 +153,8 @@ public class VecAasSerializer {
 
     private SubmodelElement createList(final Identifiable context, final VecField field, final List<?> list) {
         final UmlField umlField = getUmlField(field);
-        final DefaultSubmodelElementList.Builder builder = new DefaultSubmodelElementList.Builder().idShort(
-                        field.getName())
+        final DefaultSubmodelElementList.Builder builder = new DefaultSubmodelElementList.Builder()
+                .idShort(namingStrategy.idShort(field))
                 .semanticId(semanticIdFor(field))
                 .description(descriptionFor(field)).orderRelevant(umlField.isOrdered());
 
@@ -222,7 +213,7 @@ public class VecAasSerializer {
                                                                        targetNamespace);
 
         return new DefaultProperty.Builder()
-                .idShort(field.getName())
+                .idShort(namingStrategy.idShort(field))
                 .semanticId(semanticIdFor(field))
                 .description(descriptionFor(field))
                 .value(enumLiteralValue)
@@ -234,7 +225,7 @@ public class VecAasSerializer {
     //
     private SubmodelElement handleClosedEnumProperty(final VecField field, final Enum<?> enumLiteral) {
         final DefaultProperty.Builder propertyBuilder = new DefaultProperty.Builder()
-                .idShort(field.getName())
+                .idShort(namingStrategy.idShort(field))
                 .semanticId(semanticIdFor(field))
                 .description(descriptionFor(field));
         propertyBuilder.value(enumLiteral.name());
@@ -244,9 +235,8 @@ public class VecAasSerializer {
 
     private SubmodelElement createReferenceNode(final Identifiable context, final VecField field,
                                                 final Identifiable value) {
-        final String elementIRI = namingStrategy.uriFor(targetNamespace, value);
         return new DefaultRelationshipElement.Builder()
-                .idShort(SplitIRI.localname(elementIRI))
+                .idShort(namingStrategy.idShort(value))
                 .semanticId(semanticIdFor(field))
                 .description(descriptionFor(field))
                 .first(localReferenceFor(context))
@@ -257,7 +247,7 @@ public class VecAasSerializer {
     private SubmodelElement handleReferenceProperty(final Identifiable context, final VecField field,
                                                     final Identifiable value) {
         return new DefaultRelationshipElement.Builder()
-                .idShort(field.getName())
+                .idShort(namingStrategy.idShort(field))
                 .semanticId(semanticIdFor(field))
                 .description(descriptionFor(field))
                 .first(localReferenceFor(context))
@@ -266,8 +256,8 @@ public class VecAasSerializer {
     }
 
     private SubmodelElement handleObjectProperty(final VecField field, final Identifiable value) {
-        final DefaultSubmodelElementCollection.Builder builder = new DefaultSubmodelElementCollection.Builder().idShort(
-                        field.getName())
+        final DefaultSubmodelElementCollection.Builder builder = new DefaultSubmodelElementCollection.Builder()
+                .idShort(namingStrategy.idShort(field))
                 .semanticId(semanticIdFor(field))
                 .description(descriptionFor(field))
                 .value(createObjectNode(value, false, VecClass.analyzeClass(value.getClass())));
@@ -276,7 +266,7 @@ public class VecAasSerializer {
 
     private SubmodelElement handleLiteralProperty(final VecField field, final Object value) {
         final DefaultProperty.Builder propertyBuilder = new DefaultProperty.Builder()
-                .idShort(field.getName())
+                .idShort(namingStrategy.idShort(field))
                 .semanticId(semanticIdFor(field))
                 .description(descriptionFor(field));
         if (value instanceof final XMLGregorianCalendar calendar) {
@@ -287,6 +277,10 @@ public class VecAasSerializer {
 
         return propertyBuilder.valueType(valueTypeFor(field)).build();
 
+    }
+
+    private Reference localReferenceFor(final Identifiable context) {
+        return referenceFactory.localReferenceFor(context);
     }
 
     private DataTypeDefXsd valueTypeFor(final VecField field) {

@@ -27,7 +27,7 @@ package com.foursoft.harness.vec.aas;
 
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.core.SerializationException;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.json.JsonSerializer;
-import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElement;
+import org.eclipse.digitaltwin.aas4j.v3.model.Submodel;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -45,7 +45,7 @@ class Vec2AasConverterTest {
 
         final InputStream inputFile = this.getClass().getResourceAsStream("/kostal-32124733993.vec");
 
-        final SubmodelElement model = converter.convert(inputFile, "https://www.kostal.com/kostal-32124733993#");
+        final Submodel model = converter.convert(inputFile, "https://www.kostal.com/kostal-32124733993#");
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -61,7 +61,7 @@ class Vec2AasConverterTest {
 
         final InputStream inputFile = this.getClass().getResourceAsStream("/coroflex-ti-9-2611-35.vec");
 
-        final SubmodelElement model = converter.convert(inputFile, "https://www.coroflex.com/kostal-9-2611-353#");
+        final Submodel model = converter.convert(inputFile, "https://www.coroflex.com/kostal-9-2611-353#");
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

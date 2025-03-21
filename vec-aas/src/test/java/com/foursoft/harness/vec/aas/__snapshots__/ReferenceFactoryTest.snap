@@ -1,0 +1,55 @@
+com.foursoft.harness.vec.aas.ReferenceFactoryTest.test=[
+  {
+    "keys": [
+      {
+        "type": "GLOBAL_REFERENCE",
+        "value": "https://www.test.com"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "Content_00000"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "documentVersions"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "DocumentVersion_00006"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "specifications"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "WireSpecification_00061"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "wireElement"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "WireElement_00062"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "subWireElements"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "WireElement_00063"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "subWireElements"
+      },
+      {
+        "type": "FRAGMENT_REFERENCE",
+        "value": "WireElement_00064"
+      }
+    ],
+    "type": "MODEL_REFERENCE"
+  }
+]
