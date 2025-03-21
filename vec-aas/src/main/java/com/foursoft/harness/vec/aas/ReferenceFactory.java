@@ -13,12 +13,18 @@ import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultReference;
 import java.util.*;
 
 import static com.foursoft.harness.vec.rdf.common.meta.VecClass.analyzeClass;
+import static java.util.Map.entry;
 
 public class ReferenceFactory {
 
     private final Map<Identifiable, List<String>> references = new HashMap<>();
     private final AasNamingStrategy namingStrategy;
     private final String targetNamespace;
+    private static final Map<String, String> REFERENCE_SYSTEM_FORMATS = Map.ofEntries(
+            entry("Color-coroflex", "https://www.coroflex.com/colors/%s"),
+            entry("Color-ral", "https://ral-has-no-http-iri-format.com/ral/%s")
+    );
+    private static final String REFERENCE_SYSTEM_KEY_FORMAT = "%1s-%2s";
 
     public ReferenceFactory(final AasNamingStrategy namingStrategy, final String targetNamespace,
                             final Identifiable root) {
@@ -48,6 +54,28 @@ public class ReferenceFactory {
         return new DefaultReference.Builder().type(ReferenceTypes.EXTERNAL_REFERENCE)
                 .keys(new DefaultKey.Builder().type(KeyTypes.GLOBAL_REFERENCE).value(iri).build())
                 .build();
+    }
+
+    public Reference referenceFor(final SemanticValueAdapter semanticValueAdapter) {
+        return new DefaultReference.Builder()
+                .type(ReferenceTypes.EXTERNAL_REFERENCE)
+                .keys(new DefaultKey.Builder()
+                              .type(KeyTypes.GLOBAL_REFERENCE)
+                              .value(iriFor(semanticValueAdapter))
+                              .build())
+                .build();
+
+    }
+
+    private String iriFor(final SemanticValueAdapter semanticValueAdapter) {
+        final String refKey = REFERENCE_SYSTEM_KEY_FORMAT.formatted(semanticValueAdapter.getType(),
+                                                                    semanticValueAdapter.getReferenceSystem());
+        if (!REFERENCE_SYSTEM_FORMATS.containsKey(refKey)) {
+            throw new AasConversionException(
+                    "No IRI format defined for type: " + semanticValueAdapter.getType() + " reference system: " +
+                            semanticValueAdapter.getReferenceSystem());
+        }
+        return REFERENCE_SYSTEM_FORMATS.get(refKey).formatted(semanticValueAdapter.getKey());
     }
 
     public Reference localReferenceFor(final Identifiable vecElement) {

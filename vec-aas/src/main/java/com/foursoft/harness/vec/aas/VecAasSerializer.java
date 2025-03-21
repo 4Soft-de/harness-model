@@ -45,6 +45,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.foursoft.harness.vec.aas.ColorWrapper.isColorType;
 import static com.foursoft.harness.vec.aas.LocalizedStringWrapper.isLocalizedType;
 import static com.foursoft.harness.vec.rdf.common.meta.VecClass.analyzeClass;
 import static java.util.Map.entry;
@@ -83,7 +84,7 @@ public class VecAasSerializer {
                 .build();
     }
 
-    private SubmodelElementCollection handleVecObject(final Identifiable contextObject) {
+    private SubmodelElement handleVecObject(final Identifiable contextObject) {
         final VecClass metaData = analyzeClass(contextObject.getClass());
         final DefaultSubmodelElementCollection.Builder builder =
                 new DefaultSubmodelElementCollection.Builder().semanticId(
@@ -151,6 +152,10 @@ public class VecAasSerializer {
         throw new AasConversionException("Expected a list value for: " + field + " but got " + fieldValue);
     }
 
+    private SubmodelElement handleColorFieldValue(final Identifiable contextObject) {
+        return ColorWrapper.wrap(contextObject).toProperty(referenceFactory);
+    }
+
     private SubmodelElement createList(final Identifiable context, final VecField field, final List<?> list) {
         final UmlField umlField = getUmlField(field);
         final DefaultSubmodelElementList.Builder builder = new DefaultSubmodelElementList.Builder()
@@ -169,6 +174,10 @@ public class VecAasSerializer {
                 if (field.isReference()) {
                     builder.typeValueListElement(AasSubmodelElements.RELATIONSHIP_ELEMENT).value(
                             createReferenceNode(context, field, identifiable));
+                }
+                if (isColorType(field.getValueType())) {
+                    builder.typeValueListElement(AasSubmodelElements.PROPERTY).value(
+                            handleColorFieldValue(identifiable));
                 } else {
                     builder.typeValueListElement(AasSubmodelElements.SUBMODEL_ELEMENT_COLLECTION).value(
                             handleVecObject(identifiable));
@@ -274,7 +283,6 @@ public class VecAasSerializer {
         }
 
         return propertyBuilder.valueType(valueTypeFor(field)).build();
-
     }
 
     private DataTypeDefXsd valueTypeFor(final VecField field) {
