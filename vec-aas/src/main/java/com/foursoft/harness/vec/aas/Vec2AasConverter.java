@@ -27,14 +27,9 @@ package com.foursoft.harness.vec.aas;
 
 import com.foursoft.harness.navext.runtime.io.read.XMLReader;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
-import com.foursoft.harness.vec.rdf.common.NamingStrategy;
-import com.foursoft.harness.vec.rdf.common.VEC;
 import com.foursoft.harness.vec.rdf.common.VecVersion;
 import com.foursoft.harness.vec.rdf.common.meta.xmi.VersionLookupModelProvider;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.shared.PrefixMapping;
-import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElement;
+import org.eclipse.digitaltwin.aas4j.v3.model.Submodel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -47,7 +42,7 @@ public class Vec2AasConverter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Vec2AasConverter.class);
 
-    private final NamingStrategy namingStrategy;
+    private final AasNamingStrategy namingStrategy;
     private final VersionLookupModelProvider vecModelProvider;
 
     public Vec2AasConverter() {
@@ -55,25 +50,19 @@ public class Vec2AasConverter {
         this.namingStrategy = new AasNamingStrategy();
     }
 
-    public SubmodelElement convert(final InputStream vecXmlFile, final String targetNamespace) {
+    public Submodel convert(final InputStream vecXmlFile, final String targetNamespace) {
         final Document document = loadDocument(vecXmlFile);
 
         final VecVersion version = guessVersion(document);
-        final Model model = ModelFactory.createDefaultModel();
-
-        model.withDefaultMappings(PrefixMapping.Standard);
-        model.setNsPrefix(VEC.PREFIX, VEC.URI);
-        model.setNsPrefix("vec-dbg", VEC.DEBUG_NS);
-        model.setNsPrefix("", targetNamespace);
-
-        final VecAasSerializer vecSerializer = new VecAasSerializer(vecModelProvider, namingStrategy,
-                                                                    targetNamespace);
 
         final XMLReader<?, Identifiable> reader = resolveReader(version);
 
         final Object root = reader.read(document);
 
-        return vecSerializer.handle((Identifiable) root);
+        final VecAasSerializer vecSerializer = new VecAasSerializer(vecModelProvider, namingStrategy,
+                                                                    targetNamespace, (Identifiable) root);
+
+        return vecSerializer.serialize();
     }
 
 }
