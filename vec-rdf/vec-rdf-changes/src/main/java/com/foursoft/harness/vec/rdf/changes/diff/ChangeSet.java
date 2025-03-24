@@ -28,6 +28,7 @@ package com.foursoft.harness.vec.rdf.changes.diff;
 import com.foursoft.harness.vec.rdf.changes.VECCS;
 import com.foursoft.harness.vec.rdf.changes.VecPrefixMapping;
 import com.foursoft.harness.vec.rdf.common.VEC;
+import com.foursoft.harness.vec.rdf.common.VecNsUtilities;
 import com.foursoft.harness.vec.rdf.common.VecVersion;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.riot.Lang;
@@ -114,10 +115,10 @@ class ChangeSet {
         if (typeResource == null) {
             return false;
         }
-        if (!VEC.isSubclassOf(typeResource, VEC.OpenEnumeration)) {
+        if (!VecNsUtilities.isSubclassOf(typeResource, VEC.OpenEnumeration)) {
             return false;
         }
-        return !VEC.URI.equals(resource.getNameSpace());
+        return !VEC.NS.equals(resource.getNameSpace());
     }
 
 }

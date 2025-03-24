@@ -26,6 +26,7 @@
 package com.foursoft.harness.vec.rdf.changes;
 
 import com.foursoft.harness.vec.rdf.common.VEC;
+import com.foursoft.harness.vec.rdf.common.VecNsUtilities;
 import org.apache.jena.shared.PrefixMapping;
 
 public final class VecPrefixMapping {
@@ -36,8 +37,8 @@ public final class VecPrefixMapping {
 
     public static final PrefixMapping VecStandard = PrefixMapping.Factory.create()
             .withDefaultMappings(PrefixMapping.Standard)
-            .setNsPrefix(VEC.PREFIX, VEC.URI)
-            .setNsPrefix("vec-dbg", VEC.DEBUG_NS)
+            .setNsPrefix(VecNsUtilities.PREFIX, VEC.NS)
+            .setNsPrefix("vec-dbg", VecNsUtilities.DEBUG_NS)
             .setNsPrefix("cs", VECCS.URI)
             .lock();
 }
