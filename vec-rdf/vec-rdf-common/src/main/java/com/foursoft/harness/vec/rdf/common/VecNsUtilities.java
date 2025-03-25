@@ -26,7 +26,9 @@
 package com.foursoft.harness.vec.rdf.common;
 
 import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
-import org.apache.jena.rdf.model.*;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 
@@ -41,15 +43,8 @@ public class VecNsUtilities {
     public static final String PREFIX = "vec";
     public static final String DEBUG_NS = "http://www.prostep.org/ontologies/ecad/2024/03/vec-debug#";
 
-    public static final Property enumLiteral = property("enumLiteral");
-    public static final Property orderedIndex = property("orderedIndex");
-    
-    static Property property(final String local) {
-        return ResourceFactory.createProperty(VEC.NS, local);
-    }
-
     public static String enumLiteralValueFor(final Resource enumValueResource) {
-        final Statement literalStatement = enumValueResource.getProperty(enumLiteral);
+        final Statement literalStatement = enumValueResource.getProperty(VEC.enumLiteral);
         if (literalStatement == null) {
             throw new VecRdfException("No enumLiteral found for OpenEnumeration Resource" + enumValueResource);
         }
