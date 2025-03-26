@@ -49,32 +49,49 @@ public class SiUnitFactory {
         siUnit.setSiUnitName(unitName);
     }
 
-    public static VecSIUnit degreeCelsius() {
-        return new SiUnitFactory(VecSiUnitName.DEGREE_CELSIUS).create();
+    private SiUnitFactory unEceCode(final String value) {
+        siUnit.setUnEceCode(value);
+        return this;
     }
 
     private VecSIUnit create() {
         return siUnit;
     }
 
+    public static VecSIUnit degreeCelsius() {
+        return new SiUnitFactory(VecSiUnitName.DEGREE_CELSIUS)
+                .unEceCode("CEL")
+                .create();
+    }
+
     public static VecSIUnit squareMM() {
-        return new SiUnitFactory(VecSiUnitName.METRE, VecSiPrefix.MILLI, BigInteger.TWO).create();
+        return new SiUnitFactory(VecSiUnitName.METRE, VecSiPrefix.MILLI, BigInteger.TWO)
+                .unEceCode("MMK")
+                .create();
     }
 
     public static VecSIUnit mm() {
-        return new SiUnitFactory(VecSiUnitName.METRE, VecSiPrefix.MILLI).create();
+        return new SiUnitFactory(VecSiUnitName.METRE, VecSiPrefix.MILLI)
+                .unEceCode("MMT")
+                .create();
     }
 
     public static VecSIUnit gram() {
-        return new SiUnitFactory(VecSiUnitName.GRAM, null).create();
+        return new SiUnitFactory(VecSiUnitName.GRAM, null)
+                .unEceCode("GRM")
+                .create();
     }
 
     public static VecSIUnit mOhm() {
-        return new SiUnitFactory(VecSiUnitName.OHM, VecSiPrefix.MILLI).create();
+        return new SiUnitFactory(VecSiUnitName.OHM, VecSiPrefix.MILLI)
+                .unEceCode("E45")
+                .create();
     }
 
     public static VecSIUnit ohm() {
-        return new SiUnitFactory(VecSiUnitName.OHM).create();
+        return new SiUnitFactory(VecSiUnitName.OHM)
+                .unEceCode("OHM")
+                .create();
     }
 
     public static VecSIUnit perMeter() {
@@ -82,7 +99,9 @@ public class SiUnitFactory {
     }
 
     public static VecSIUnit newton() {
-        return new SiUnitFactory(VecSiUnitName.NEWTON, null, null).create();
+        return new SiUnitFactory(VecSiUnitName.NEWTON, null, null)
+                .unEceCode("NEW")
+                .create();
     }
 
     public static VecSIUnit ampere() {
