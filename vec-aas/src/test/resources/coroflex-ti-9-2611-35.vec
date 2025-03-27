@@ -2,7 +2,7 @@
 <vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_00000" xsi:schemaLocation="">
   <VecVersion>2.1.0</VecVersion>
   <GeneratingSystemName>VEC Samples</GeneratingSystemName>
-  <DateOfCreation>2025-03-14T00:00:00</DateOfCreation>
+  <DateOfCreation>2025-03-26T00:00:00</DateOfCreation>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
   <DocumentVersion id="DocumentVersion_00001">
     <CompanyName>VDA</CompanyName>
@@ -312,34 +312,43 @@
     <SiUnitName>Metre</SiUnitName>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00072">
+    <UnEceCode>GRM</UnEceCode>
     <SiUnitName>Gram</SiUnitName>
   </Unit>
   <Unit xsi:type="vec:CompositeUnit" id="CompositeUnit_00073">
+    <UnEceCode>GF</UnEceCode>
     <Factors>SIUnit_00072 SIUnit_00071</Factors>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00074">
+    <UnEceCode>CEL</UnEceCode>
     <SiUnitName>DegreeCelsius</SiUnitName>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00075">
     <Exponent>2</Exponent>
+    <UnEceCode>MMK</UnEceCode>
     <SiUnitName>Metre</SiUnitName>
     <SiPrefix>Milli</SiPrefix>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00076">
+    <UnEceCode>MMT</UnEceCode>
     <SiUnitName>Metre</SiUnitName>
     <SiPrefix>Milli</SiPrefix>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00077">
+    <UnEceCode>E45</UnEceCode>
     <SiUnitName>Ohm</SiUnitName>
     <SiPrefix>Milli</SiPrefix>
   </Unit>
   <Unit xsi:type="vec:CompositeUnit" id="CompositeUnit_00078">
+    <UnEceCode>F54</UnEceCode>
     <Factors>SIUnit_00077 SIUnit_00071</Factors>
   </Unit>
   <Unit xsi:type="vec:OtherUnit" id="OtherUnit_00079">
+    <UnEceCode>H87</UnEceCode>
     <OtherUnitName>Piece</OtherUnitName>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00080">
+    <UnEceCode>OHM</UnEceCode>
     <SiUnitName>Ohm</SiUnitName>
   </Unit>
 </vec:VecContent>

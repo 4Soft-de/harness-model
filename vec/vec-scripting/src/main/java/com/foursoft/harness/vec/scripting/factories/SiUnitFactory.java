@@ -105,11 +105,15 @@ public class SiUnitFactory {
     }
 
     public static VecSIUnit ampere() {
-        return new SiUnitFactory(VecSiUnitName.AMPERE).create();
+        return new SiUnitFactory(VecSiUnitName.AMPERE)
+                .unEceCode("AMP")
+                .create();
     }
 
     public static VecSIUnit volts() {
-        return new SiUnitFactory(VecSiUnitName.VOLT).create();
+        return new SiUnitFactory(VecSiUnitName.VOLT)
+                .unEceCode("VLT")
+                .create();
     }
 
 }

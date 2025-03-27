@@ -1,48 +1,43 @@
+/*-
+ * ========================LICENSE_START=================================
+ * VEC to AAS Converter
+ * %%
+ * Copyright (C) 2025 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
 package com.foursoft.harness.vec.aas;
 
-import com.foursoft.harness.vec.rdf.common.meta.VecClass;
-import com.foursoft.harness.vec.rdf.common.meta.VecField;
-import org.apache.commons.lang3.reflect.FieldUtils;
 import org.eclipse.digitaltwin.aas4j.v3.model.DataTypeDefXsd;
 import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElement;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultProperty;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
+public interface SemanticValueAdapter {
 
-public abstract class SemanticValueAdapter {
+    String getType();
 
-    private final Object contextObject;
-    private final Map<String, Field> fields;
+    String getKey();
 
-    protected SemanticValueAdapter(final Object contextObject) {
-        this.contextObject = contextObject;
-        Objects.requireNonNull(contextObject, "contextObject");
+    String getReferenceSystem();
 
-        fields = Arrays.stream(VecClass.analyzeClass(contextObject.getClass()).getFields()).collect(
-                Collectors.toMap(VecField::getName, VecField::getField));
-    }
-    public abstract String getType();
-
-    public abstract String getKey();
-
-    public abstract String getReferenceSystem();
-
-    protected Object getFieldValue(final String fieldName) {
-        if (!fields.containsKey(fieldName)) {
-            throw new AasConversionException("Cannot find field: " + fieldName);
-        }
-        try {
-            return FieldUtils.readField(fields.get(fieldName), contextObject, true);
-        } catch (final IllegalAccessException e) {
-            throw new AasConversionException("Access to field " + fieldName + " failed", e);
-        }
-    }
-
-    public SubmodelElement toProperty(final ReferenceFactory referenceFactory) {
+    default SubmodelElement toProperty(final ReferenceFactory referenceFactory) {
         return new DefaultProperty.Builder()
                 .idShort(getReferenceSystem() + "_" + getKey())
                 .value(getKey())
