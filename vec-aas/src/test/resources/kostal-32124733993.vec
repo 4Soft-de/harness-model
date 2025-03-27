@@ -2,7 +2,7 @@
 <vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_00000" xsi:schemaLocation="">
   <VecVersion>2.1.0</VecVersion>
   <GeneratingSystemName>VEC Samples</GeneratingSystemName>
-  <DateOfCreation>2025-02-20T00:00:00</DateOfCreation>
+  <DateOfCreation>2025-03-27T00:00:00</DateOfCreation>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
   <DocumentVersion id="DocumentVersion_00001">
     <CompanyName>Kostal</CompanyName>
@@ -295,23 +295,29 @@
   </PartVersion>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00072">
     <Exponent>2</Exponent>
+    <UnEceCode>MMK</UnEceCode>
     <SiUnitName>Metre</SiUnitName>
     <SiPrefix>Milli</SiPrefix>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00073">
+    <UnEceCode>MMT</UnEceCode>
     <SiUnitName>Metre</SiUnitName>
     <SiPrefix>Milli</SiPrefix>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00074">
+    <UnEceCode>CEL</UnEceCode>
     <SiUnitName>DegreeCelsius</SiUnitName>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00075">
+    <UnEceCode>AMP</UnEceCode>
     <SiUnitName>Ampere</SiUnitName>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00076">
+    <UnEceCode>VLT</UnEceCode>
     <SiUnitName>Volt</SiUnitName>
   </Unit>
   <Unit xsi:type="vec:SIUnit" id="SIUnit_00077">
+    <UnEceCode>NEW</UnEceCode>
     <SiUnitName>Newton</SiUnitName>
   </Unit>
 </vec:VecContent>

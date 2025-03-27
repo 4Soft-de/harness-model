@@ -26,6 +26,10 @@
 package com.foursoft.harness.vec.aas;
 
 import com.foursoft.harness.navext.runtime.model.Identifiable;
+import com.foursoft.harness.vec.aas.wrapper.ColorWrapper;
+import com.foursoft.harness.vec.aas.wrapper.LocalizedStringWrapper;
+import com.foursoft.harness.vec.aas.wrapper.NumericalValueWrapper;
+import com.foursoft.harness.vec.aas.wrapper.ToleranceWrapper;
 import com.foursoft.harness.vec.rdf.common.VEC;
 import com.foursoft.harness.vec.rdf.common.meta.MetaDataUtils;
 import com.foursoft.harness.vec.rdf.common.meta.VecClass;
@@ -33,6 +37,7 @@ import com.foursoft.harness.vec.rdf.common.meta.VecField;
 import com.foursoft.harness.vec.rdf.common.meta.xmi.UmlField;
 import com.foursoft.harness.vec.rdf.common.meta.xmi.UmlModelProvider;
 import com.foursoft.harness.vec.rdf.common.meta.xmi.UmlType;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.digitaltwin.aas4j.v3.model.*;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.*;
 import org.slf4j.Logger;
@@ -45,8 +50,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.foursoft.harness.vec.aas.ColorWrapper.isColorType;
-import static com.foursoft.harness.vec.aas.LocalizedStringWrapper.isLocalizedType;
+import static com.foursoft.harness.vec.aas.wrapper.ColorWrapper.isColorType;
+import static com.foursoft.harness.vec.aas.wrapper.LocalizedStringWrapper.isLocalizedType;
 import static com.foursoft.harness.vec.rdf.common.meta.VecClass.analyzeClass;
 import static java.util.Map.entry;
 
@@ -61,6 +66,7 @@ public class VecAasSerializer {
 
     private final ReferenceFactory referenceFactory;
     private final VecOntology vecOntology;
+    private final QudtRepository qudtRepository = new QudtRepository();
 
     public VecAasSerializer(final UmlModelProvider modelProvider,
                             final AasNamingStrategy namingStrategy,
@@ -202,7 +208,9 @@ public class VecAasSerializer {
                 return handleLiteralProperty(field, value);
             }
         } else if (value instanceof final Identifiable destinationIdentifiable) {
-            if (!field.isReference()) {
+            if (NumericalValueWrapper.isNumericalValueType(field.getValueType())) {
+                return handleNumericalValueProperty(field, destinationIdentifiable);
+            } else if (!field.isReference()) {
                 return handleObjectProperty(field, destinationIdentifiable);
             } else {
                 return handleReferenceProperty(context, field, destinationIdentifiable);
@@ -271,6 +279,71 @@ public class VecAasSerializer {
                 .description(vecOntology.descriptionFor(field))
                 .value(handleVecObject(value));
         return builder.build();
+    }
+
+    private SubmodelElement handleNumericalValueProperty(final VecField field, final Identifiable value) {
+        LOGGER.warn("NumericalValue for: {} - {}", field.getName(), value);
+
+        final NumericalValueWrapper numericalValue = NumericalValueWrapper.wrap(value);
+
+        final DefaultProperty.Builder propertyBuilder = new DefaultProperty.Builder()
+                .idShort(namingStrategy.idShort(field))
+                .semanticId(referenceFactory.semanticIdFor(field))
+                .description(vecOntology.descriptionFor(field))
+                .value(Double.toString(numericalValue.getValueComponent()))
+                .valueType(DataTypeDefXsd.DOUBLE);
+
+        handleUnitForValue(numericalValue, propertyBuilder);
+
+        if (numericalValue.getTolerance() != null) {
+            propertyBuilder.qualifiers(handleTolerance(numericalValue.getTolerance()));
+        }
+
+        return propertyBuilder.build();
+    }
+
+    private List<Qualifier> handleTolerance(final ToleranceWrapper tolerance) {
+        return List.of(new DefaultQualifier.Builder()
+                               .value(Double.toString(tolerance.getLowerBoundary()))
+                               .valueType(DataTypeDefXsd.DOUBLE)
+                               .kind(QualifierKind.VALUE_QUALIFIER)
+                               .type("TOLERANCE_LOWER_BOUNDARY")
+                               .build()
+                , new DefaultQualifier.Builder()
+                               .value(Double.toString(tolerance.getUpperBoundary()))
+                               .valueType(DataTypeDefXsd.DOUBLE)
+                               .kind(QualifierKind.VALUE_QUALIFIER)
+                               .type("TOLERANCE_UPPER_BOUNDARY")
+                               .build()
+        );
+    }
+
+    private void handleUnitForValue(final NumericalValueWrapper numericalValue,
+                                    final DefaultProperty.Builder propertyBuilder) {
+        final String unEceCode = numericalValue.getUnitComponent().getUnEceCode();
+        if (StringUtils.isBlank(unEceCode)) {
+            throw new AasConversionException("Could not convert unit of " + numericalValue +
+                                                     " cause no unEceCode is set. Currently only those units are " +
+                                                     "supported.");
+        }
+        // Skip Unit handling, it is the code for piece.
+        if (!"H87".equals(unEceCode)) {
+            final QudtRepository.QudtUnit qudtUnit = qudtRepository.findByUnEceCommonCode(unEceCode);
+            if (qudtUnit == null) {
+                throw new AasConversionException("No qudtUnit found for unit code: " + unEceCode);
+            }
+            propertyBuilder.embeddedDataSpecifications(
+                    new DefaultEmbeddedDataSpecification.Builder()
+                            .dataSpecificationContent(
+                                    new DefaultDataSpecificationIec61360.Builder()
+                                            .unit(qudtUnit.label())
+                                            .unitId(referenceFactory.referenceFor(qudtUnit.uri()))
+                                            .build()
+
+                            )
+                            .build()
+            );
+        }
     }
 
     private SubmodelElement handleLiteralProperty(final VecField field, final Object value) {
