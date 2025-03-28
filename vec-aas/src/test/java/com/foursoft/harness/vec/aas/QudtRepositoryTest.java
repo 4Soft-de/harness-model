@@ -45,7 +45,8 @@ class QudtRepositoryTest {
         final QudtRepository.QudtUnit e45 = qudtRepository.findByUnEceCommonCode("E45");
         assertThat(e45).isNotNull();
         assertThat(e45.uri()).isEqualTo("http://qudt.org/vocab/unit/MilliOHM");
-        assertThat(e45.label()).isEqualTo("mΩ");
+        assertThat(e45.symbol()).isEqualTo("mΩ");
+        assertThat(e45.name()).isEqualTo("Milliohm");
     }
 
 }

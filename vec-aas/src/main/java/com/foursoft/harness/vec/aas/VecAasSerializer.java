@@ -166,29 +166,31 @@ public class VecAasSerializer {
 
     private SubmodelElement createList(final Identifiable context, final VecField field, final List<?> list) {
         final UmlField umlField = getUmlField(field);
-        final DefaultSubmodelElementList.Builder builder = new DefaultSubmodelElementList.Builder()
+        final DefaultSubmodelElementCollection.Builder builder = new DefaultSubmodelElementCollection.Builder()
                 .idShort(namingStrategy.idShort(field))
                 .semanticId(referenceFactory.semanticIdFor(field))
-                .description(vecOntology.descriptionFor(field))
-                .orderRelevant(umlField.isOrdered());
+                .description(vecOntology.descriptionFor(field));
+//                .orderRelevant(umlField.isOrdered());
 
         final Class<?> vecValueType = field.getValueType();
 
         for (final Object value : list) {
             if (MetaDataUtils.isRdfLiteral(vecValueType)) {
-                builder.typeValueListElement(AasSubmodelElements.PROPERTY);
+                //builder.typeValueListElement(AasSubmodelElements.PROPERTY);
                 throw new AasConversionException("Unsupported list element type: " + vecValueType);
             } else if (value instanceof final Identifiable identifiable) {
                 if (field.isReference()) {
-                    builder.typeValueListElement(AasSubmodelElements.RELATIONSHIP_ELEMENT).value(
-                            createReferenceNode(context, field, identifiable));
-                }
-                if (isColorType(field.getValueType())) {
-                    builder.typeValueListElement(AasSubmodelElements.PROPERTY).value(
-                            handleColorFieldValue(identifiable));
+                    builder
+                            //.typeValueListElement(AasSubmodelElements.RELATIONSHIP_ELEMENT)
+                            .value(createReferenceNode(context, field, identifiable));
+                } else if (isColorType(field.getValueType())) {
+                    builder
+                            //.typeValueListElement(AasSubmodelElements.PROPERTY)
+                            .value(handleColorFieldValue(identifiable));
                 } else {
-                    builder.typeValueListElement(AasSubmodelElements.SUBMODEL_ELEMENT_COLLECTION).value(
-                            handleVecObject(identifiable));
+                    builder
+                            //.typeValueListElement(AasSubmodelElements.SUBMODEL_ELEMENT_COLLECTION)
+                            .value(handleVecObject(identifiable));
                 }
             } else {
                 throw new AasConversionException("Unsupported list element type: " + vecValueType);
@@ -336,7 +338,8 @@ public class VecAasSerializer {
                     new DefaultEmbeddedDataSpecification.Builder()
                             .dataSpecificationContent(
                                     new DefaultDataSpecificationIec61360.Builder()
-                                            .unit(qudtUnit.label())
+                                            .unit(qudtUnit.name())
+                                            .symbol(qudtUnit.symbol())
                                             .unitId(referenceFactory.referenceFor(qudtUnit.uri()))
                                             .build()
 

@@ -40,10 +40,13 @@ public class QudtRepository {
 
     private static final String QUERY_TEMPLATE = """
             PREFIX qudt: <http://qudt.org/schema/qudt/>
-            SELECT ?unit ?symbol
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            SELECT ?unit ?name ?symbol
             WHERE {
                 ?unit qudt:uneceCommonCode ?code;
-                      qudt:symbol ?symbol
+                      qudt:symbol ?symbol;
+                      rdfs:label ?name
+                FILTER(LANG(?name) = "" || LANGMATCHES(LANG(?name), "en"))
             }
             """;
 
@@ -66,13 +69,14 @@ public class QudtRepository {
             if (results.hasNext()) {
                 final QuerySolution solution = results.next();
                 return new QudtUnit(solution.getResource("unit").getURI(),
+                                    solution.getLiteral("name").getLexicalForm(),
                                     solution.getLiteral("symbol").getLexicalForm());
             }
             return null;
         }
     }
 
-    public record QudtUnit(String uri, String label) {
+    public record QudtUnit(String uri, String name, String symbol) {
     }
 
 }
