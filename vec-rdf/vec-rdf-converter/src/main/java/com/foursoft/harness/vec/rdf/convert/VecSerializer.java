@@ -133,7 +133,7 @@ public class VecSerializer {
                                                                        targetNamespace);
 
         final Resource literalResource = model.createResource(literalUri);
-        if (!literalUri.startsWith(VEC.URI)) {
+        if (!literalUri.startsWith(VEC.NS)) {
             literalResource.addProperty(RDF.type, model.createResource(namingStrategy.uriFor(modelType)));
             literalResource.addProperty(VEC.enumLiteral, model.createLiteral(enumLiteralValue));
         }
@@ -166,7 +166,8 @@ public class VecSerializer {
         }
         if (umlField.isOrdered()) {
             object.addProperty(RDF.type, VEC.Ordered);
-            object.addLiteral(VEC.orderedIndex, model.createTypedLiteral(index, XSDDatatype.XSDnonNegativeInteger));
+            object.addLiteral(VEC.orderedIndex,
+                              model.createTypedLiteral(index, XSDDatatype.XSDnonNegativeInteger));
         }
 
         targetResource.addProperty(property, object);

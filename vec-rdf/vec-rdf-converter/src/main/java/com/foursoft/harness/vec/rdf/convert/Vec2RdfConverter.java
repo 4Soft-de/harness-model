@@ -29,6 +29,7 @@ import com.foursoft.harness.navext.runtime.io.read.XMLReader;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.rdf.common.NamingStrategy;
 import com.foursoft.harness.vec.rdf.common.VEC;
+import com.foursoft.harness.vec.rdf.common.VecNsUtilities;
 import com.foursoft.harness.vec.rdf.common.VecVersion;
 import com.foursoft.harness.vec.rdf.common.meta.xmi.VersionLookupModelProvider;
 import com.foursoft.harness.vec.rdf.common.util.VecXmlApiUtils;
@@ -85,6 +86,17 @@ public class Vec2RdfConverter {
         }
     }
 
+    /**
+     * Converts a VEC file (provided as {@link InputStream}) into an Apache Jena {@link Model}. The VEC Model version
+     * is autodetected and handled accordingly. The content data is created in the given targetNamespace.
+     * <p>
+     * The result can then be serialized with the Apache Jena serialization functions (see
+     * <a href="https://jena.apache.org/tutorials/rdf_api.html#ch-Writing-RDF">Apache Jena / Writing-RDF</a>).
+     *
+     * @param vecXmlFile      VEC XML data as {@link InputStream}
+     * @param targetNamespace The namespace in which the data from the XML file is created.
+     * @return The content data in an Apache Jena Model.
+     */
     public Model convert(final InputStream vecXmlFile, final String targetNamespace) {
         final Document document = loadDocument(vecXmlFile);
 
@@ -92,8 +104,8 @@ public class Vec2RdfConverter {
         final Model model = ModelFactory.createDefaultModel();
 
         model.withDefaultMappings(PrefixMapping.Standard);
-        model.setNsPrefix(VEC.PREFIX, VEC.URI);
-        model.setNsPrefix("vec-dbg", VEC.DEBUG_NS);
+        model.setNsPrefix(VecNsUtilities.PREFIX, VEC.NS);
+        model.setNsPrefix("vec-dbg", VecNsUtilities.DEBUG_NS);
         model.setNsPrefix("", targetNamespace);
 
         final VecSerializer vecSerializer = new VecSerializer(model, vecModelProvider, namingStrategy,

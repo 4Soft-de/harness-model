@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +25,7 @@
  */
 package com.foursoft.harness.vec.rdf.changes.test;
 
-import com.foursoft.harness.vec.rdf.common.VEC;
+import com.foursoft.harness.vec.rdf.common.VecNsUtilities;
 import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
 import org.apache.commons.lang3.stream.Streams;
 import org.apache.jena.rdf.model.Model;
@@ -48,20 +48,20 @@ public class TestUtils {
             
             """;
 
-    public static Model loadModel(String turtleString) {
-        Model m1 = ModelFactory.createDefaultModel();
+    public static Model loadModel(final String turtleString) {
+        final Model m1 = ModelFactory.createDefaultModel();
         RDFDataMgr.read(m1, new StringReader(PROLOGUE + turtleString), "https://www.foursoft.com/test", Lang.TTL);
 
         return m1;
     }
 
-    public static Resource findNodeWithXmlId(Model model, String xmlId) {
-        return Streams.of(model.listResourcesWithProperty(model.createProperty(VEC.DEBUG_NS, "id"), xmlId))
+    public static Resource findNodeWithXmlId(final Model model, final String xmlId) {
+        return Streams.of(model.listResourcesWithProperty(model.createProperty(VecNsUtilities.DEBUG_NS, "id"), xmlId))
                 .findFirst()
                 .orElseThrow();
     }
 
-    public static InputStream loadResourceFromClasspath(String filename) {
+    public static InputStream loadResourceFromClasspath(final String filename) {
         final InputStream resourceAsStream = TestUtils.class.getResourceAsStream(filename);
 
         if (resourceAsStream == null) {

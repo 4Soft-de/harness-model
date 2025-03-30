@@ -29,6 +29,7 @@ import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.rdf.changes.equivalences.jaxb.VecFieldEquivalence;
 import com.foursoft.harness.vec.rdf.changes.equivalences.jaxb.VecValueObjectEquivalence;
 import com.foursoft.harness.vec.rdf.common.VEC;
+import com.foursoft.harness.vec.rdf.common.VecNsUtilities;
 import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
 import com.foursoft.harness.vec.rdf.common.meta.VecClass;
 import com.google.common.base.Equivalence;
@@ -260,8 +261,8 @@ public class VecObjectWrapper {
 
         @Override
         public Object visitURI(final Resource r, final String uri) {
-            if (VEC.isInstanceOf(r, VEC.OpenEnumeration)) {
-                final String openEnumLiteralValue = VEC.enumLiteralValueFor(r);
+            if (VecNsUtilities.isInstanceOf(r, VEC.OpenEnumeration)) {
+                final String openEnumLiteralValue = VecNsUtilities.enumLiteralValueFor(r);
                 LOGGER.info("Selected '{}' as literal value for {}", openEnumLiteralValue, r);
                 return openEnumLiteralValue;
             }
