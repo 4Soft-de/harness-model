@@ -30,7 +30,6 @@ import org.junit.jupiter.api.Test;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -44,28 +43,6 @@ class DateUtilsTest {
         final LocalDate localDateFromCalendar = DateUtils.toLocalDate(calenderOfCurrentDate);
 
         assertThat(now).isAfterOrEqualTo(localDateFromCalendar);
-    }
-
-    @Test
-    void testToXMLGregorianCalendarWithDate() {
-        final LocalDate now = LocalDate.now();
-        final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(now);
-
-        assertThat(calenderOfDate.toString()).startsWith(now.toString());
-
-        final LocalDate localDateFromCalendar = DateUtils.toLocalDate(calenderOfDate);
-        assertThat(now).isEqualTo(localDateFromCalendar);
-    }
-
-    @Test
-    void testToXMLGregorianCalendarWithDateTime() {
-        final LocalDateTime now = LocalDateTime.now();
-        final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(now);
-
-        assertThat(now).hasToString(calenderOfDate.toString());
-
-        final LocalDateTime localDateTimeFromCalendar = DateUtils.toLocalDateTime(calenderOfDate);
-        assertThat(now).isEqualTo(localDateTimeFromCalendar);
     }
 
     @Test

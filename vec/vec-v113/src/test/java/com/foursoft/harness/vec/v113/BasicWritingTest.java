@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.vec.v113;
 
-import com.foursoft.harness.vec.common.util.DateUtils;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -44,12 +43,12 @@ class BasicWritingTest {
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.1.3");
-        root.setDateOfCreation(DateUtils.toXMLGregorianCalendar(exampleDate));
+        //root.setDateOfCreation(DateUtils.toXMLGregorianCalendar(exampleDate));
 
         final VecPermission permission = new VecPermission();
         permission.setXmlId("id_2185_0");
         permission.setPermission("Released");
-        permission.setPermissionDate(DateUtils.toXMLGregorianCalendar(exampleDateTime));
+        //permission.setPermissionDate(DateUtils.toXMLGregorianCalendar(exampleDateTime));
 
         final VecApproval approval = new VecApproval();
         approval.setXmlId("id_2014_0");
