@@ -25,11 +25,10 @@
  */
 package com.foursoft.harness.vec.v12x;
 
+import com.foursoft.harness.vec.common.util.DateUtils;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,18 +36,22 @@ class BasicWritingTest {
 
     @Test
     void testWriteModel() {
-        final LocalDate exampleDate = LocalDate.of(2022, 3, 24);
-        final LocalDateTime exampleDateTime = LocalDateTime.of(exampleDate, LocalTime.NOON);
+        final LocalDate testDate = LocalDate.of(2022, 3, 24);
+
+        final Instant exampleDate = testDate
+                .atStartOfDay(ZoneOffset.UTC).toInstant();
+        final Instant exampleDateTime = LocalDateTime.of(testDate, LocalTime.NOON)
+                .atZone(ZoneOffset.UTC).toInstant();
 
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
         root.setVecVersion("1.2.0");
-        //root.setDateOfCreation(DateUtils.toXMLGregorianCalendar(exampleDate));
+        root.setDateOfCreation(DateUtils.toXMLGregorianCalendar(exampleDate));
 
         final VecPermission permission = new VecPermission();
         permission.setXmlId("id_2185_0");
         permission.setPermission("Released");
-        //permission.setPermissionDate(DateUtils.toXMLGregorianCalendar(exampleDateTime));
+        permission.setPermissionDate(DateUtils.toXMLGregorianCalendar(exampleDateTime));
 
         final VecApproval approval = new VecApproval();
         approval.setXmlId("id_2014_0");
@@ -82,13 +85,13 @@ class BasicWritingTest {
                                 "<vec:VecContent id=\"id_1000_0\" " +
                                 "xmlns:vec=\"http://www.prostep.org/ecad-if/2011/vec\">\n" +
                                 "    <VecVersion>1.2.0</VecVersion>\n" +
-                                "    <DateOfCreation>2022-03-24T00:00:00</DateOfCreation>\n" +
+                                "    <DateOfCreation>2022-03-24T00:00:00Z</DateOfCreation>\n" +
                                 "    <DocumentVersion id=\"id_1002_0\">\n" +
                                 "        <Approval id=\"id_2014_0\">\n" +
                                 "            <Status>Approved</Status>\n" +
                                 "            <Permission id=\"id_2185_0\">\n" +
                                 "                <Permission>Released</Permission>\n" +
-                                "                <PermissionDate>2022-03-24T12:00:00</PermissionDate>\n" +
+                                "                <PermissionDate>2022-03-24T12:00:00Z</PermissionDate>\n" +
                                 "            </Permission>\n" +
                                 "        </Approval>\n" +
                                 "        <DocumentNumber>123_456_789</DocumentNumber>\n" +

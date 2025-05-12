@@ -56,8 +56,18 @@ public final class DateUtils {
      * @throws VecException In case the conversion fails.
      */
     public static XMLGregorianCalendar currentDate() {
-        final Instant date = Instant.now();
-        return toXMLGregorianCalendar(date.toString());
+        return toXMLGregorianCalendar(Instant.now());
+    }
+
+    /**
+     * Converts the given {@link Instant} to an {@link XMLGregorianCalendar}.
+     *
+     * @param instant Instant to set.
+     * @return A never-null {@link XMLGregorianCalendar} for the given date.
+     * @throws VecException In case the conversion fails.
+     */
+    public static XMLGregorianCalendar toXMLGregorianCalendar(final Instant instant) {
+        return toXMLGregorianCalendar(instant.toString());
     }
 
     /**
