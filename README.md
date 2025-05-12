@@ -28,6 +28,18 @@ Please read our
 detailed [Contribution Guidelines](https://github.com/4Soft-de/harness-model/blob/develop/.github/CONTRIBUTING.md)
 for more information, for example code style, formatter, etc.
 
+### Problems when cloning the repository under Windows
+
+When initially cloning the repository, you might stumble upon a few errors regarding file creation when using Windows.
+
+This happens due to the limit being 260 characters for a filename. In that case, execute the following command:
+
+```cmd
+git config --local core.longpaths true
+```
+
+After this, clean up the worktree by using `git reset --hard`. Now you should be good to go.
+
 ## Moving to Jakarta namespace 
 
 With the release of version 5.x, we upgraded to JAXB 4.0 and transitioned exclusively to the Jakarta namespace, discontinuing support for the old javax.xml.bind namespace. 
