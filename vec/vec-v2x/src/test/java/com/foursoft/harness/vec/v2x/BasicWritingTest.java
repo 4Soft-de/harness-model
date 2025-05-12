@@ -45,7 +45,7 @@ class BasicWritingTest {
 
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
-        root.setVecVersion("1.2.0");
+        root.setVecVersion("2.1.0");
         root.setDateOfCreation(DateUtils.toXMLGregorianCalendar(exampleDate));
 
         final VecPermission permission = new VecPermission();
@@ -84,7 +84,7 @@ class BasicWritingTest {
                         "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
                                 "<vec:VecContent id=\"id_1000_0\" " +
                                 "xmlns:vec=\"http://www.prostep.org/ecad-if/2011/vec\">\n" +
-                                "    <VecVersion>1.2.0</VecVersion>\n" +
+                                "    <VecVersion>2.1.0</VecVersion>\n" +
                                 "    <DateOfCreation>2022-03-24T00:00:00Z</DateOfCreation>\n" +
                                 "    <DocumentVersion id=\"id_1002_0\">\n" +
                                 "        <Approval id=\"id_2014_0\">\n" +
