@@ -46,8 +46,9 @@ public class WireSingleCoreBuilder extends PartOrUsageRelatedSpecificationBuilde
 
     private final SpecificationRegistry registry;
 
-    public WireSingleCoreBuilder(VecSession session, final String partNumber, SpecificationRegistry registry,
-                                 SpecificationLocator locator) {
+    public WireSingleCoreBuilder(final VecSession session, final String partNumber,
+                                 final SpecificationRegistry registry,
+                                 final SpecificationLocator locator) {
         this.session = session;
         this.registry = registry;
 
@@ -58,27 +59,33 @@ public class WireSingleCoreBuilder extends PartOrUsageRelatedSpecificationBuilde
         wireElementBuilder = new WireElementBuilder(session, "1", registry, locator);
     }
 
-    public WireSingleCoreBuilder withCSA(double csa) {
+    public WireSingleCoreBuilder withCSA(final double csa) {
         this.coreSpecificationBuilder.withCSA(csa);
         return this;
     }
 
-    public WireSingleCoreBuilder withOutsideDiameter(double diameter, double lowerTolerance, double upperTolerance) {
+    public WireSingleCoreBuilder withOutsideDiameter(final double diameter, final double lowerTolerance,
+                                                     final double upperTolerance) {
         this.wireElementBuilder.withOutsideDiameter(diameter, lowerTolerance, upperTolerance);
         return this;
     }
 
-    public WireSingleCoreBuilder withInsulationThickness(double thickness) {
+    public WireSingleCoreBuilder withInsulationThickness(final double thickness) {
         this.insulationSpecificationBuilder.withThickness(thickness);
         return this;
     }
 
-    public WireSingleCoreBuilder withColor(String primary) {
+    public WireSingleCoreBuilder withColor(final String primary) {
         this.insulationSpecificationBuilder.withColor(primary);
         return this;
     }
 
-    public WireSingleCoreBuilder withDin76722WireType(String wireType) {
+    public WireSingleCoreBuilder withFirstIdentificationColor(final String firstIdentificationColor) {
+        this.insulationSpecificationBuilder.withFirstIdentificationColor(firstIdentificationColor);
+        return this;
+    }
+
+    public WireSingleCoreBuilder withDin76722WireType(final String wireType) {
         this.wireElementBuilder.withDin76722WireType(wireType);
         return this;
     }
@@ -94,9 +101,9 @@ public class WireSingleCoreBuilder extends PartOrUsageRelatedSpecificationBuilde
     }
 
     @Override public VecWireSpecification build() {
-        VecCoreSpecification coreSpecification = this.coreSpecificationBuilder.build();
+        final VecCoreSpecification coreSpecification = this.coreSpecificationBuilder.build();
         registry.register(coreSpecification);
-        VecInsulationSpecification insulationSpecification = this.insulationSpecificationBuilder.build();
+        final VecInsulationSpecification insulationSpecification = this.insulationSpecificationBuilder.build();
         registry.register(insulationSpecification);
 
         this.wireElementBuilder.withConductorSpecification(coreSpecification);

@@ -48,8 +48,20 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
     }
 
     public ConnectivityBuilder addEnd(final String connectorId, final String cavityNumber) {
+        return addEnd(connectorId, cavityNumber, null);
+    }
+
+    public ConnectivityBuilder addEnd(final String connectorId, final String cavityNumber, final String terminalId) {
         final VecContactPoint cp = createContactPointWithWireMounting(connectorId + "." + cavityNumber, we -> {
         }, null);
+
+        if (terminalId != null) {
+            final VecPluggableTerminalRole terminal = occurrenceLocator.apply(terminalId)
+                    .getRoleWithType(VecPluggableTerminalRole.class)
+                    .orElseThrow();
+
+            cp.setMountedTerminal(terminal);
+        }
 
         final VecCavityMounting cavityMounting = new VecCavityMounting();
         cp.getCavityMountings()
@@ -59,15 +71,7 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
                 .getRoleWithType(VecConnectorHousingRole.class)
                 .orElseThrow();
 
-        final VecCavityReference cavityReference = connector.getSlotReferences()
-                .stream()
-                .map(VecSlotReference.class::cast)
-                .flatMap(s -> s.getCavityReferences()
-                        .stream())
-                .filter(c -> c.getIdentification()
-                        .equals(cavityNumber))
-                .findAny()
-                .orElseThrow();
+        final VecCavityReference cavityReference = HarnessQueries.findCavity(connector, cavityNumber);
         cavityMounting.getEquippedCavityRef()
                 .add(cavityReference);
 

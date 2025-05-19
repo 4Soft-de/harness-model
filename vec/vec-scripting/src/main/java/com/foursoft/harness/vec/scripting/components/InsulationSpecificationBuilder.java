@@ -57,6 +57,18 @@ public class InsulationSpecificationBuilder implements Builder<VecInsulationSpec
         return this;
     }
 
+    public InsulationSpecificationBuilder withFirstIdentificationColor(
+            final String firstIdentificationColor) {
+        final VecColor color = new VecColor();
+        color.setReferenceSystem(session.getDefaultValues().getColorReferenceSystem());
+        color.setKey(firstIdentificationColor);
+        insulationSpecification
+                .getFirstIdentificationColors()
+                .add(color);
+
+        return this;
+    }
+
     public InsulationSpecificationBuilder withBaseColor(final VecColor color) {
         insulationSpecification.getBaseColors().add(color);
         return this;

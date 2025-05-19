@@ -35,8 +35,6 @@ public class DefaultValues {
     private String companyName = "Acme Inc.";
     private String colorReferenceSystem = "Acme Inc.";
     private String materialReferenceSystem = "Acme Inc.";
-    public static final String PART_MASTER = "PartMaster";
-    public static final String HARNESS_DESCRIPTION = "HarnessDescription";
     public static final String REQUIREMENTS_DESCRIPTION = "RequirementsDescription";
 
     public static final String COMP_COMPOSITION_SPEC_IDENTIFICATION = "COMPONENTS";

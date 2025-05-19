@@ -28,6 +28,7 @@ package com.foursoft.harness.vec.scripting.components;
 import com.foursoft.harness.vec.scripting.DefaultValues;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecRequirementsConformanceSpecification;
 import com.foursoft.harness.vec.v2x.VecRequirementsConformanceStatement;
@@ -52,7 +53,7 @@ public class RequirementsConformanceBuilder extends
 
         if (requirements.isEmpty()) {
             session.document(documentNumber, "", doc ->
-                    doc.documentType(DefaultValues.REQUIREMENTS_DESCRIPTION)
+                    doc.documentType(DocumentType.REQUIREMENTS_DESCRIPTION)
                             .companyName(companyName)
             );
             requirements = session.findDocument(documentNumber, companyName);

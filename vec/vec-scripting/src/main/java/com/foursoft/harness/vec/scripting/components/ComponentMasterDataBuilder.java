@@ -33,6 +33,7 @@ import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.harness.VirtualPartStructureBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
@@ -69,7 +70,7 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     }
 
     private DocumentVersionBuilder initializeDocument(final String documentNumber) {
-        return new DocumentVersionBuilder(session, documentNumber, "1").documentType(DefaultValues.PART_MASTER)
+        return new DocumentVersionBuilder(session, documentNumber, "1").documentType(DocumentType.PART_MASTER)
                 .addReferencedPart(
                         this.part);
     }
@@ -87,7 +88,7 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     public ComponentMasterDataBuilder withApplicationSpecification(final String documentNumber,
                                                                    final String documentVersion) {
         final VecDocumentVersion dv = new DocumentVersionBuilder(session, documentNumber, documentVersion)
-                .documentType("ProcessingInstruction")
+                .documentType(DocumentType.PROCESSING_INSTRUCTION)
                 .build();
 
         dv.getReferencedPart().add(part);
