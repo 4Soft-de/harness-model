@@ -25,39 +25,28 @@
  */
 package com.foursoft.harness.kbl2vec.transform;
 
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.KblNumericalValue;
 import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecMassInformation;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
 
-import java.util.Arrays;
-import java.util.List;
+public class MassInformationTransformer implements Transformer<KblNumericalValue, VecMassInformation> {
 
-public final class Queries {
+    @Override
+    public TransformationResult<VecMassInformation> transform(final TransformationContext context,
+                                                              final KblNumericalValue source) {
+        context.getLogger().debug("Transforming {} to VecMassinformation.", source);
 
-    private Queries() {
-        throw new AssertionError("Should not be instantiated");
+        final VecMassInformation massInformation = new VecMassInformation();
+
+        return TransformationResult.from(massInformation).withDownstream(KblNumericalValue.class,
+                                                                         VecNumericalValue.class,
+                                                                         Query.of(source),
+                                                                         VecMassInformation::setValue)
+                .build();
+
     }
-
-    public static Query<KblPart> allParts(final KBLContainer container) {
-        return () -> concat(container.getParts(), List.of(container.getHarness()), container.getHarness()
-                .getModules());
-    }
-
-    private static <T> List<T> concat(final List<? extends T>... lists) {
-        return Arrays.stream(lists)
-                .flatMap(List::stream)
-                .map(e -> (T) e)
-                .toList();
-    }
-
-    public static Query<ConnectionOrOccurrence> partOccurrences(final List<ConnectionOrOccurrence> components) {
-        return () -> components
-                .stream()
-                .filter(c -> !(c instanceof KblConnection))
-                .toList();
-    }
-
-    public static Query<ConnectionOrOccurrence> partOccurrences(final KblModuleConfiguration source) {
-        return partOccurrences(source.getControlledComponents());
-    }
-
 }

@@ -1,3 +1,28 @@
+/*-
+ * ========================LICENSE_START=================================
+ * KBL to VEC Converter
+ * %%
+ * Copyright (C) 2025 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
 package com.foursoft.harness.kbl2vec.transform;
 
 import com.foursoft.harness.kbl.v25.*;
@@ -11,6 +36,7 @@ import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
 
@@ -34,19 +60,25 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
                         .add(v));
 
         partVersion.setCompanyName(source.getCompanyName());
-        //TODO: Other Attributes
         partVersion.setPartNumber(source.getPartNumber());
         partVersion.setPartVersion(source.getVersion());
         partVersion.setPrimaryPartType(source.accept(primaryPartTypeVisitor));
 
         final Builder<VecPartVersion> resultBuilder = TransformationResult.from(partVersion);
+        if (StringUtils.isNotBlank(source.getPartNumberType())) {
+            context.getLogger().warn("'{}' uses Part_number_type {} cannot be mapped at the moment", source,
+                                     source.getPartNumberType());
+            resultBuilder.withComment("Part_number_type cannot be mapped at the moment (see KBLFRM-1267)");
+        }
+
+        //TODO: Change
         //TODO: Copyright is not that easy
 //        if (!StringUtils.isBlank(source.getCopyrightNote())) {
 //            resultBuilder.withLinker(Query.of(source), VecCopyrightInformation.class,
 //                                     partVersion::setCopyrightInformation);
 //        }
-        return resultBuilder.downstreamTransformation(KblAliasIdentification.class, VecAliasIdentification.class,
-                                                      source::getAliasIds, partVersion::getAliasIds)
+        return resultBuilder.withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
+                                            source::getAliasIds, VecPartVersion::getAliasIds)
                 .build();
     }
 
@@ -55,6 +87,10 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
 
         @Override
         public VecPrimaryPartType visitKblAccessory(final KblAccessory aBean) throws RuntimeException {
+            return VecPrimaryPartType.OTHER;
+        }
+
+        @Override public VecPrimaryPartType visitKblCoPackPart(final KblCoPackPart aBean) throws RuntimeException {
             return VecPrimaryPartType.OTHER;
         }
 
@@ -98,6 +134,11 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
             return VecPrimaryPartType.PART_STRUCTURE;
         }
 
+        @Override public VecPrimaryPartType visitKblHarnessConfiguration(final KblHarnessConfiguration aBean)
+                throws RuntimeException {
+            return VecPrimaryPartType.PART_STRUCTURE;
+        }
+
         @Override
         public VecPrimaryPartType visitKblModule(final KblModule aBean) throws RuntimeException {
             return VecPrimaryPartType.PART_STRUCTURE;
@@ -106,6 +147,11 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
         @Override
         public VecPrimaryPartType visitKblAssemblyPart(final KblAssemblyPart aBean) throws RuntimeException {
             return VecPrimaryPartType.PART_STRUCTURE;
+        }
+
+        @Override
+        public VecPrimaryPartType visitKblComponent(final KblComponent aBean) throws RuntimeException {
+            return VecPrimaryPartType.EE_COMPONENT;
         }
 
         @Override

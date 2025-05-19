@@ -25,12 +25,9 @@
  */
 package com.foursoft.harness.kbl2vec.core;
 
-public class NoMappingDefinedException extends ConversionException {
-    public NoMappingDefinedException(final String message) {
-        super(message);
-    }
+@FunctionalInterface
+public interface TransformationFragment<D, B> {
 
-    public NoMappingDefinedException(final String message, final Throwable cause) {
-        super(message, cause);
-    }
+    void performFragment(D resultValue, B builder);
+
 }

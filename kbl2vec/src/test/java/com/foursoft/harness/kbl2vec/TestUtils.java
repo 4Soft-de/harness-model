@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * KBL to VEC Converter
+ * VEC 2.x Scripting API (Experimental)
  * %%
- * Copyright (C) 2025 4Soft GmbH
+ * Copyright (C) 2020 - 2023 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,25 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec;
 
-public class NoMappingDefinedException extends ConversionException {
-    public NoMappingDefinedException(final String message) {
-        super(message);
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+
+public final class TestUtils {
+    private TestUtils() {
+        throw new AssertionError("TestUtils must not be instantiated.");
     }
 
-    public NoMappingDefinedException(final String message, final Throwable cause) {
-        super(message, cause);
+    public static OutputStream createTestFileStream(String testcase) throws IOException {
+        Path dir = FileSystems.getDefault().getPath(".", "target", "samples");
+
+        Files.createDirectories(dir);
+
+        return Files.newOutputStream(dir.resolve(testcase + ".vec"), StandardOpenOption.CREATE);
     }
 }

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,12 +25,26 @@
  */
 package com.foursoft.harness.kbl2vec.core;
 
-public class NoMappingDefinedException extends ConversionException {
-    public NoMappingDefinedException(final String message) {
-        super(message);
+import java.util.function.Consumer;
+
+public class LinkingFinisher<S, D> implements Finisher {
+
+    private final Query<S> sourceObjects;
+    private final Class<D> targetClass;
+    private final Consumer<D> linker;
+
+    public LinkingFinisher(final Query<S> sourceObjects, final Class<D> targetClass,
+                           final Consumer<D> linker) {
+        this.sourceObjects = sourceObjects;
+        this.targetClass = targetClass;
+        this.linker = linker;
     }
 
-    public NoMappingDefinedException(final String message, final Throwable cause) {
-        super(message, cause);
+    @Override
+    public void finishTransformation(final TransformationContext context) {
+        sourceObjects.stream()
+                .map(s -> context.getEntityMapping()
+                        .getIfUniqueOrElseThrow(s, targetClass))
+                .forEach(linker);
     }
 }

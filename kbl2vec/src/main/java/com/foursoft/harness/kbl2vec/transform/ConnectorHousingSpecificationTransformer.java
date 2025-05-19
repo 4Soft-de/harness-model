@@ -23,40 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblConnectorHousing;
+import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 
-public class TransformationContextImpl implements TransformationContext {
-    private final ConversionProperties conversionProperties;
-    private final ConverterRegistry converterRegistry;
-    private final EntityMapping entityMapping;
-    private final Logger logger = Logging.TRANSFORM_LOGGER;
+import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 
-    public TransformationContextImpl(final ConversionProperties conversionProperties,
-                                     final ConverterRegistry converterRegistry, final EntityMapping entityMapping) {
-        this.conversionProperties = conversionProperties;
-        this.converterRegistry = converterRegistry;
-        this.entityMapping = entityMapping;
-    }
-
+public class ConnectorHousingSpecificationTransformer
+        implements Transformer<KblPart, VecConnectorHousingSpecification> {
     @Override
-    public ConverterRegistry getConverterRegistry() {
-        return converterRegistry;
-    }
+    public TransformationResult<VecConnectorHousingSpecification> transform(final TransformationContext context,
+                                                                            final KblPart source) {
+        if (source instanceof final KblConnectorHousing connector) {
+            final VecConnectorHousingSpecification specification = new VecConnectorHousingSpecification();
 
-    @Override
-    public ConversionProperties getConversionProperties() {
-        return conversionProperties;
-    }
+            specification.setSpecialPartType(connector.getHousingType());
 
-    @Override
-    public EntityMapping getEntityMapping() {
-        return entityMapping;
-    }
-
-    @Override public Logger getLogger() {
-        return logger;
+            return TransformationResult.from(specification)
+                    .withFragment(commonSpecificationAttributes(source))
+                    .build();
+        }
+        return TransformationResult.noResult();
     }
 }

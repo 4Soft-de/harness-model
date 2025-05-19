@@ -1,47 +1,69 @@
+/*-
+ * ========================LICENSE_START=================================
+ * KBL to VEC Converter
+ * %%
+ * Copyright (C) 2025 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
 package com.foursoft.harness.kbl2vec;
 
 import com.foursoft.harness.kbl2vec.core.ConversionException;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.core.TransformerRegistry;
 import org.reflections.Reflections;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class ReflectionsBasedTransformerRegistry implements TransformerRegistry {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionsBasedTransformerRegistry.class);
     private final Map<ClassTupleKey<?, ?>, List<Class<? extends Transformer>>>
             transformerClasses;
-    private final Map<ClassTupleKey<?, ?>, Transformer<?, ?>> transformerInstances = new HashMap<>();
+    private final Map<ClassTupleKey<?, ?>, Collection<Transformer>> transformerInstances = new HashMap<>();
 
     public ReflectionsBasedTransformerRegistry() {
         transformerClasses = createTransformerClassMap();
     }
 
     @Override
-    public <S, D> Transformer<S, D> getTransformer(final Class<S> source,
-                                                   final Class<D> destination) {
+    public <S, D> Collection<Transformer<S, D>> getTransformer(final Class<S> source,
+                                                               final Class<D> destination) {
         final ClassTupleKey key = new ClassTupleKey(source, destination);
 
-        return (Transformer<S, D>) transformerInstances.computeIfAbsent(key,
-                                                                        k -> createTransformerInstance(
-                                                                                k.source,
-                                                                                k.destination));
+        return transformerInstances.computeIfAbsent(key,
+                                                    k -> createTransformerInstances(
+                                                            k.source,
 
+                                                            k.destination))
+                .stream()
+                .map(x -> (Transformer<S, D>) x)
+                .toList();
     }
 
-    private <S, D> Transformer<S, D> createTransformerInstance(
+    private <S, D> Collection<Transformer> createTransformerInstances(
             final Class<S> source,
             final Class<D> destination) {
         final List<Class<? extends Transformer>> transformers = transformerClasses.get(
@@ -49,13 +71,15 @@ public class ReflectionsBasedTransformerRegistry implements TransformerRegistry 
         if (transformers == null || transformers.isEmpty()) {
             throw new ConversionException("No transformer found for " + source + " and " + destination);
         }
-        if (transformers.size() > 1) {
-            throw new ConversionException("Multiple transformers found for " + source + " and " + destination);
-        }
-        final Class<? extends Transformer<S, D>> transformerClass =
-                (Class<? extends Transformer<S, D>>) transformers.get(0);
+
+        return transformers.stream()
+                .map(this::createTransformerInstance)
+                .toList();
+    }
+
+    private Transformer createTransformerInstance(final Class<? extends Transformer> transformerClass) {
         try {
-            final Constructor<? extends Transformer<S, D>> constructor = transformerClass.getConstructor();
+            final Constructor<? extends Transformer> constructor = transformerClass.getConstructor();
             return constructor.newInstance();
         } catch (final NoSuchMethodException e) {
             throw new ConversionException("The transformer " + transformerClass.getName() +

@@ -23,37 +23,32 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform;
+package com.foursoft.harness.kbl2vec.transform.modules;
 
-import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl.v25.KblModuleConfiguration;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
+import com.foursoft.harness.vec.v2x.VecPartWithSubComponentsRole;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.commonDocumentAttributes;
+import static com.foursoft.harness.kbl2vec.transform.Queries.partOccurrences;
 
-public class PartMasterDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
-
+public class PartWithSubComponentsRole implements Transformer<KblModuleConfiguration, VecPartWithSubComponentsRole> {
     @Override
-    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
-                                                              final KblPart source) {
-        final VecDocumentVersion documentVersion = new VecDocumentVersion();
+    public TransformationResult<VecPartWithSubComponentsRole> transform(final TransformationContext context,
+                                                                        final KblModuleConfiguration source) {
+        final VecPartWithSubComponentsRole element = new VecPartWithSubComponentsRole();
+        element.setIdentification(source.getParentModule().getPartNumber());
 
-        //TODO: Enums/Consts for OpenEnums.
-        documentVersion.setDocumentType("PartMaster");
-
-        return TransformationResult.from(documentVersion)
-                .withFragment(commonDocumentAttributes(source, context))
-                .withDownstream(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
-                                VecDocumentVersion::getSpecifications)
-                .withDownstream(KblPart.class, VecConnectorHousingSpecification.class, Query.of(source),
-                                VecDocumentVersion::getSpecifications)
-                .withDownstream(KblPart.class, VecCompositionSpecification.class, Query.of(source),
-                                VecDocumentVersion::getSpecifications)
-                .withDownstream(KblPart.class, VecPartStructureSpecification.class, Query.of(source),
-                                VecDocumentVersion::getSpecifications)
+        return TransformationResult.from(element)
+                .withLinker(partOccurrences(source), VecPartOccurrence.class,
+                            VecPartWithSubComponentsRole::getSubComponent)
+                .withLinker(Query.of(source), VecPartStructureSpecification.class,
+                            VecPartWithSubComponentsRole::setPartStructureSpecification)
                 .build();
+
     }
 }

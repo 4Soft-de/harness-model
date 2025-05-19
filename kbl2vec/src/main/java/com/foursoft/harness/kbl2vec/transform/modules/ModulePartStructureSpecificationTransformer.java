@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,23 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform;
+package com.foursoft.harness.kbl2vec.transform.modules;
 
-import com.foursoft.harness.kbl.v25.KblAliasIdentification;
+import com.foursoft.harness.kbl.v25.KblModuleConfiguration;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecAliasIdentification;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
 
-public class AliasIdentificationTransformer implements Transformer<KblAliasIdentification, VecAliasIdentification> {
-    @Override
-    public TransformationResult<VecAliasIdentification> transform(final TransformationContext context,
-                                                                  final KblAliasIdentification source) {
-        final VecAliasIdentification aliasIdentification = new VecAliasIdentification();
-        aliasIdentification.setIdentificationValue(source.getAliasId());
-        aliasIdentification.setScope(source.getScope());
-        aliasIdentification.setType(source.getDescription());
-        //TODO: LocalizedDescription missing
-        return TransformationResult.of(aliasIdentification);
+import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.transform.Queries.partOccurrences;
+
+public class ModulePartStructureSpecificationTransformer
+        implements Transformer<KblModuleConfiguration, VecPartStructureSpecification> {
+    @Override public TransformationResult<VecPartStructureSpecification> transform(final TransformationContext context,
+                                                                                   final KblModuleConfiguration source) {
+        final VecPartStructureSpecification element = new VecPartStructureSpecification();
+
+        switch (source.getParentModule().getContent()) {
+            case MODULE -> element.setContent("Module");
+            case VARIANT -> element.setContent("Variant");
+        }
+
+        return TransformationResult.from(element)
+                .withLinker(partOccurrences(source), VecPartOccurrence.class,
+                            VecPartStructureSpecification::getInBillOfMaterial)
+                .withFragment(commonSpecificationAttributes(source.getParentModule()))
+                .build();
     }
+
 }

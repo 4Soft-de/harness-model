@@ -23,41 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform;
+package com.foursoft.harness.kbl2vec.transform.modules;
 
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.KblModule;
+import com.foursoft.harness.kbl.v25.KblModuleConfiguration;
 import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecPartWithSubComponentsRole;
 
-import java.util.Arrays;
-import java.util.List;
+public class ModuleOccurrenceTransformer implements Transformer<KblModule, VecPartOccurrence> {
+    @Override
+    public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
+                                                             final KblModule source) {
+        final VecPartOccurrence occurrence = new VecPartOccurrence();
+        occurrence.setIdentification(source.getPartNumber());
 
-public final class Queries {
+        return TransformationResult.from(occurrence)
+                .withDownstream(KblModuleConfiguration.class, VecPartWithSubComponentsRole.class,
+                                Query.of(source.getModuleConfiguration()), VecPartOccurrence::getRoles)
+                .withLinker(Query.of(source), VecPartVersion.class, VecPartOccurrence::setPart)
+                .build();
 
-    private Queries() {
-        throw new AssertionError("Should not be instantiated");
-    }
-
-    public static Query<KblPart> allParts(final KBLContainer container) {
-        return () -> concat(container.getParts(), List.of(container.getHarness()), container.getHarness()
-                .getModules());
-    }
-
-    private static <T> List<T> concat(final List<? extends T>... lists) {
-        return Arrays.stream(lists)
-                .flatMap(List::stream)
-                .map(e -> (T) e)
-                .toList();
-    }
-
-    public static Query<ConnectionOrOccurrence> partOccurrences(final List<ConnectionOrOccurrence> components) {
-        return () -> components
-                .stream()
-                .filter(c -> !(c instanceof KblConnection))
-                .toList();
-    }
-
-    public static Query<ConnectionOrOccurrence> partOccurrences(final KblModuleConfiguration source) {
-        return partOccurrences(source.getControlledComponents());
     }
 
 }

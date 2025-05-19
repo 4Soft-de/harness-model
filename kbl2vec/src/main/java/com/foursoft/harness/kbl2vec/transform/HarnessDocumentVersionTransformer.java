@@ -25,6 +25,9 @@
  */
 package com.foursoft.harness.kbl2vec.transform;
 
+import com.foursoft.harness.kbl.v25.KblHarness;
+import com.foursoft.harness.kbl.v25.KblModule;
+import com.foursoft.harness.kbl.v25.KblModuleConfiguration;
 import com.foursoft.harness.kbl.v25.KblPart;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -34,26 +37,32 @@ import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonDocumentAttributes;
 
-public class PartMasterDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
+public class HarnessDocumentVersionTransformer implements Transformer<KblHarness, VecDocumentVersion> {
 
     @Override
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
-                                                              final KblPart source) {
+                                                              final KblHarness source) {
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
-
         //TODO: Enums/Consts for OpenEnums.
-        documentVersion.setDocumentType("PartMaster");
+        documentVersion.setDocumentType("HarnessDescription");
 
         return TransformationResult.from(documentVersion)
                 .withFragment(commonDocumentAttributes(source, context))
                 .withDownstream(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
-                .withDownstream(KblPart.class, VecConnectorHousingSpecification.class, Query.of(source),
+                .withDownstream(KblHarness.class, VecTopologySpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
+                // Modules
+                .withDownstream(KblHarness.class, VecCompositionSpecification.class, Query.of(source),
+                                VecDocumentVersion::getSpecifications)
+                // Components
                 .withDownstream(KblPart.class, VecCompositionSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
-                .withDownstream(KblPart.class, VecPartStructureSpecification.class, Query.of(source),
+                .withDownstream(KblHarness.class, VecPartStructureSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
+                .withDownstream(KblModuleConfiguration.class, VecPartStructureSpecification.class,
+                                () -> source.getModules().stream().map(KblModule::getModuleConfiguration)
+                                        .toList(), VecDocumentVersion::getSpecifications)
                 .build();
     }
 }

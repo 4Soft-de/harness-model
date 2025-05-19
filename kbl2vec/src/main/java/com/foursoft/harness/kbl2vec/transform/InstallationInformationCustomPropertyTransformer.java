@@ -23,14 +23,28 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform;
 
-public class NoMappingDefinedException extends ConversionException {
-    public NoMappingDefinedException(final String message) {
-        super(message);
-    }
+import com.foursoft.harness.kbl.v25.KblInstallationInstruction;
+import com.foursoft.harness.kbl.v25.KblInstructionClassification;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCustomProperty;
+import com.foursoft.harness.vec.v2x.VecSimpleValueProperty;
 
-    public NoMappingDefinedException(final String message, final Throwable cause) {
-        super(message, cause);
+public class InstallationInformationCustomPropertyTransformer
+        implements Transformer<KblInstallationInstruction, VecCustomProperty> {
+    @Override
+    public TransformationResult<VecCustomProperty> transform(final TransformationContext context,
+                                                             final KblInstallationInstruction source) {
+        if (source.getClassification() == null ||
+                source.getClassification() == KblInstructionClassification.CUSTOM_PROPERTY) {
+            final VecSimpleValueProperty property = new VecSimpleValueProperty();
+            property.setPropertyType(source.getInstructionType());
+            property.setValue(source.getInstructionType());
+            return TransformationResult.of(property);
+        }
+        return TransformationResult.noResult();
     }
 }
