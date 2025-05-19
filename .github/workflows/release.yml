@@ -38,7 +38,7 @@ jobs:
           java-version: '17'
           check-latest: true
           cache: 'maven'
-          gpg-private-key: ${{ secrets.SONATYPE_GPG_PRIVATE_KEY }} # Value of the GPG private key to import
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
       - name: Configure Git user
         run: |
           git config user.email "${{ github.event.inputs.git_mail }}"
@@ -50,4 +50,4 @@ jobs:
         env:
           SONATYPE_CENTRAL_USERNAME: ${{ secrets.SONATYPE_CENTRAL_USERNAME }}
           SONATYPE_CENTRAL_TOKEN:    ${{ secrets.SONATYPE_CENTRAL_TOKEN }}
-          SONATYPE_GPG_PASSPHRASE:   ${{ secrets.SONATYPE_GPG_PASSPHRASE }}
+          GPG_PASSPHRASE:   ${{ secrets.GPG_PASSPHRASE }}
