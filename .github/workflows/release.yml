@@ -10,18 +10,18 @@ on:
       github_user:
         description: 'The GitHub user to release with (Owner of the PAT)'
         required: true
-        default: 'beckerjohannes'
+        default: 'RainerGanss'
       github_pat:
         description: 'A PAT that has the permission to push to protected branches.'
         required: true
       git_name:
         description: 'Name used for the release commits.'
         required: true
-        default: 'Johannes Becker'
+        default: 'Rainer Ganß'
       git_mail:
         description: 'eMail used for the release commits.'
         required: true
-        default: 'johannes.becker@4soft.de'
+        default: 'ganss@4soft.de'
 
 jobs:
   build:
@@ -38,7 +38,7 @@ jobs:
           java-version: '17'
           check-latest: true
           cache: 'maven'
-          gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }} # Value of the GPG private key to import
+          gpg-private-key: ${{ secrets.SONATYPE_GPG_PRIVATE_KEY }} # Value of the GPG private key to import
       - name: Configure Git user
         run: |
           git config user.email "${{ github.event.inputs.git_mail }}"
@@ -48,6 +48,6 @@ jobs:
         run: |
           ./mvnw -e -P release -B -DreleaseVersion=${{ github.event.inputs.release_version }} -s .mvn/release.settings.xml gitflow:release --file pom.xml
         env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-          OSSRH_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+          SONATYPE_CENTRAL_USERNAME: ${{ secrets.SONATYPE_CENTRAL_USERNAME }}
+          SONATYPE_CENTRAL_TOKEN:    ${{ secrets.SONATYPE_CENTRAL_TOKEN }}
+          SONATYPE_GPG_PASSPHRASE:   ${{ secrets.SONATYPE_GPG_PASSPHRASE }}

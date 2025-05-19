@@ -404,7 +404,7 @@
                     <version>${central-publishing-maven-plugin.version}</version>
                     <extensions>true</extensions>
                     <configuration>
-                      <publishingServerId>central-sonatype-com</publishingServerId>
+                      <publishingServerId>sonatype-central</publishingServerId>
                       <autoPublish>true</autoPublish>
                     </configuration>
                   </plugin>
@@ -496,7 +496,7 @@
                     </plugin>
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
-                    <artifactId>central-publishing-maven-plugin</artifactId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
