@@ -50,4 +50,4 @@ jobs:
         env:
           SONATYPE_CENTRAL_USERNAME: ${{ secrets.SONATYPE_CENTRAL_USERNAME }}
           SONATYPE_CENTRAL_TOKEN:    ${{ secrets.SONATYPE_CENTRAL_TOKEN }}
-          GPG_PASSPHRASE:   ${{ secrets.GPG_PASSPHRASE }}
+          MAVEN_GPG_PASSPHRASE:   ${{ secrets.GPG_PASSPHRASE }}
