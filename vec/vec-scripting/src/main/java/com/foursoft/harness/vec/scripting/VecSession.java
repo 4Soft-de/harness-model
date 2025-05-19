@@ -33,6 +33,7 @@ import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.scripting.components.ComponentMasterDataBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
+import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
 import com.foursoft.harness.vec.scripting.harness.HarnessBuilder;
@@ -295,7 +296,7 @@ public class VecSession {
         return this.vecContentRoot.getDocumentVersions()
                 .stream()
                 .filter(dv -> dv.getDocumentType()
-                        .equals(DefaultValues.PART_MASTER) && dv.getReferencedPart()
+                        .equals(DocumentType.PART_MASTER.value()) && dv.getReferencedPart()
                         .contains(partVersion))
                 .findFirst()
                 .orElseThrow();

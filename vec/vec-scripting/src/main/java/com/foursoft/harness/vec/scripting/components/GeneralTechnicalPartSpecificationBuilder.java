@@ -66,6 +66,15 @@ public class GeneralTechnicalPartSpecificationBuilder
         return this;
     }
 
+    public GeneralTechnicalPartSpecificationBuilder withColorInformation(final String colorName) {
+        final VecColor color = new VecColor();
+        color.setReferenceSystem(session.getDefaultValues().getColorReferenceSystem());
+        color.setKey(colorName);
+        element.getColorInformations().add(color);
+
+        return this;
+    }
+
     public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final TemperatureType temperatureType,
                                                                                final double lowerLimit,
                                                                                final double upperLimit,

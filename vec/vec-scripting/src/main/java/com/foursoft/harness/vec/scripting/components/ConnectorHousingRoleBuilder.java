@@ -26,21 +26,28 @@
 package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.harness.HarnessQueries;
+import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
+import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
 import com.foursoft.harness.vec.v2x.*;
 
 public class ConnectorHousingRoleBuilder implements Builder<VecConnectorHousingRole> {
 
     private final VecConnectorHousingRole connectorHousingRole;
+    private final ComponentNodeLookup componentNodeLookup;
 
-    public ConnectorHousingRoleBuilder(String identification, VecConnectorHousingSpecification specification) {
+    public ConnectorHousingRoleBuilder(final String identification,
+                                       final VecConnectorHousingSpecification specification,
+                                       final ComponentNodeLookup componentNodeLookup) {
+        this.componentNodeLookup = componentNodeLookup;
         this.connectorHousingRole = connectorHousingRole(identification, specification);
 
     }
 
-    private VecConnectorHousingRole connectorHousingRole(String identification,
-                                                         VecConnectorHousingSpecification specification) {
+    private VecConnectorHousingRole connectorHousingRole(final String identification,
+                                                         final VecConnectorHousingSpecification specification) {
 
-        VecConnectorHousingRole role = new VecConnectorHousingRole();
+        final VecConnectorHousingRole role = new VecConnectorHousingRole();
         role.setIdentification(identification);
 
         role.setConnectorHousingSpecification(specification);
@@ -52,6 +59,37 @@ public class ConnectorHousingRoleBuilder implements Builder<VecConnectorHousingR
                                 .toList());
 
         return role;
+    }
+
+    public ConnectorHousingRoleBuilder withComponentConnector(final String componentNodeId,
+                                                              final String componentConnectorId) {
+        final VecComponentNode node = componentNodeLookup.find(componentNodeId);
+
+        final VecComponentConnector connector = SchematicQueries.findConnector(node, componentConnectorId);
+
+        this.connectorHousingRole.getComponentConnector().add(connector);
+
+        return this;
+    }
+
+    /**
+     * Can only be used if withComponentConnector has been called before.
+     *
+     * @param cavityNumber
+     * @param portId
+     * @return
+     */
+    public ConnectorHousingRoleBuilder withPort(final String cavityNumber, final String portId) {
+        if (this.connectorHousingRole.getComponentConnector().isEmpty()) {
+            throw new IllegalStateException("ComponentConnector has to be set first.");
+        }
+        final VecCavityReference cavityReference = HarnessQueries.findCavity(connectorHousingRole, cavityNumber);
+
+        for (final VecComponentConnector connector : this.connectorHousingRole.getComponentConnector()) {
+            final VecComponentPort port = SchematicQueries.findPort(connector, portId);
+            cavityReference.getComponentPort().add(port);
+        }
+        return this;
     }
 
     @Override

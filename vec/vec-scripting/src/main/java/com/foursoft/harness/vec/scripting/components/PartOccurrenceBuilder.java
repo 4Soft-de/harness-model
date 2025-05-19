@@ -54,9 +54,9 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
     private final Locator<VecConnection> connectionLookup;
     private List<? extends Builder<? extends VecRole>> roleBuilders;
 
-    public PartOccurrenceBuilder(VecSession session, String identification,
-                                 final String partNumber, ComponentNodeLookup componentNodeLookup,
-                                 Locator<VecConnection> connectionLookup) {
+    public PartOccurrenceBuilder(final VecSession session, final String identification,
+                                 final String partNumber, final ComponentNodeLookup componentNodeLookup,
+                                 final Locator<VecConnection> connectionLookup) {
         this.session = session;
         this.partNumber = partNumber;
         this.componentNodeLookup = componentNodeLookup;
@@ -69,16 +69,16 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
 
     @Override
     public VecPartOccurrence build() {
-        List<? extends VecRole> roles = roleBuilders.stream().map(Builder::build).toList();
+        final List<? extends VecRole> roles = roleBuilders.stream().map(Builder::build).toList();
 
         partOccurrence.getRoles().addAll(roles);
 
         return partOccurrence;
     }
 
-    public <T extends Builder<? extends VecRole>> PartOccurrenceBuilder defineRole(Class<T> clazz,
-                                                                                   Customizer<T> customizer) {
-        T builder = StreamUtils.checkAndCast(roleBuilders, clazz).findAny().orElseThrow();
+    public <T extends Builder<? extends VecRole>> PartOccurrenceBuilder defineRole(final Class<T> clazz,
+                                                                                   final Customizer<T> customizer) {
+        final T builder = StreamUtils.checkAndCast(roleBuilders, clazz).findAny().orElseThrow();
 
         customizer.customize(builder);
 
@@ -113,7 +113,8 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
         public Builder<? extends VecRole> visitVecConnectorHousingSpecification(
                 final VecConnectorHousingSpecification aBean)
                 throws RuntimeException {
-            return new ConnectorHousingRoleBuilder(partOccurrence.getIdentification(), aBean);
+            return new ConnectorHousingRoleBuilder(partOccurrence.getIdentification(), aBean,
+                                                   componentNodeLookup);
         }
 
         @Override

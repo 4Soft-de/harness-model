@@ -31,6 +31,7 @@ import com.foursoft.harness.vec.scripting.DefaultValues;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.components.PartOccurrenceBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.routing.RoutingSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
@@ -62,7 +63,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     private VecTopologySpecification topologySpecification;
     private VecConfigurationConstraintSpecification configurationConstraintSpecification;
 
-    public HarnessBuilder(final VecSession session, final String documentNumber, String version) {
+    public HarnessBuilder(final VecSession session, final String documentNumber, final String version) {
         this.session = session;
         this.documentNumber = documentNumber;
         this.harnessDocumentBuilder = initializeDocument(documentNumber, version);
@@ -99,11 +100,11 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
     private DocumentVersionBuilder initializeDocument(final String documentNumber, final String version) {
         return new DocumentVersionBuilder(session, documentNumber, version).documentType(
-                DefaultValues.HARNESS_DESCRIPTION);
+                DocumentType.HARNESS_DESCRIPTION);
     }
 
     private VecCompositionSpecification initializeCompositionSpecification() {
-        VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
+        final VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
         compositionSpecification.setIdentification(DefaultValues.COMP_COMPOSITION_SPEC_IDENTIFICATION);
         return compositionSpecification;
     }
@@ -137,15 +138,17 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         return Arrays.stream(occurrenceIds).map(this::findOccurrence).toList();
     }
 
-    public HarnessBuilder addConnection(String wireElementReferenceId, Customizer<ConnectivityBuilder> customizer) {
+    public HarnessBuilder addConnection(final String wireElementReferenceId,
+                                        final Customizer<ConnectivityBuilder> customizer) {
         final VecWireElementReference wireElementReference = wireElementReferenceLocator(
                 compositionSpecification).locate(wireElementReferenceId);
 
-        ConnectivityBuilder builder = new ConnectivityBuilder(this.session, wireElementReference, this::findOccurrence);
+        final ConnectivityBuilder builder = new ConnectivityBuilder(this.session, wireElementReference,
+                                                                    this::findOccurrence);
 
         customizer.customize(builder);
 
-        List<VecContactPoint> result = builder.build();
+        final List<VecContactPoint> result = builder.build();
 
         contactingSpecification().getContactPoints().addAll(result);
 
@@ -158,32 +161,32 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     }
 
     public HarnessBuilder addPartOccurrence(
-            final String identification, final String partNumber, Customizer<PartOccurrenceBuilder> customizer) {
+            final String identification, final String partNumber, final Customizer<PartOccurrenceBuilder> customizer) {
 
-        PartOccurrenceBuilder builder = new PartOccurrenceBuilder(this.session, identification,
-                                                                  partNumber,
-                                                                  nodeId -> SchematicQueries.findNode(
-                                                                          schematic, nodeId),
-                                                                  connectionID -> SchematicQueries.findConnection(
-                                                                          schematic, connectionID));
+        final PartOccurrenceBuilder builder = new PartOccurrenceBuilder(this.session, identification,
+                                                                        partNumber,
+                                                                        nodeId -> SchematicQueries.findNode(
+                                                                                schematic, nodeId),
+                                                                        connectionID -> SchematicQueries.findConnection(
+                                                                                schematic, connectionID));
 
         if (customizer != null) {
             customizer.customize(builder);
         }
 
-        VecPartOccurrence result = builder.build();
+        final VecPartOccurrence result = builder.build();
 
         this.compositionSpecification.getComponents().add(result);
 
         return this;
     }
 
-    public HarnessBuilder addVariant(final String partNumber, Customizer<VariantBuilder> customizer) {
-        VariantBuilder builder = new VariantBuilder(this.session, partNumber, this::findOccurrences);
+    public HarnessBuilder addVariant(final String partNumber, final Customizer<VariantBuilder> customizer) {
+        final VariantBuilder builder = new VariantBuilder(this.session, partNumber, this::findOccurrences);
 
         customizer.customize(builder);
 
-        VariantBuilder.VariantResult result = builder.build();
+        final VariantBuilder.VariantResult result = builder.build();
 
         ensureModulesCompositionSpecification();
 
@@ -199,14 +202,15 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         return this;
     }
 
-    public HarnessBuilder withSchematic(String schematicDocumentNumber) {
+    public HarnessBuilder withSchematic(final String schematicDocumentNumber) {
         this.schematic = session.findDocument(schematicDocumentNumber).getSpecificationWith(
                 VecConnectionSpecification.class, DefaultValues.CONNECTION_SPEC_IDENTIFICATION).orElseThrow();
         return this;
     }
 
-    public HarnessBuilder withTopology(Customizer<TopologyBuilder> customizer) {
-        TopologyBuilder builder = new TopologyBuilder(configConstraintLocator(configurationConstraintSpecification));
+    public HarnessBuilder withTopology(final Customizer<TopologyBuilder> customizer) {
+        final TopologyBuilder builder = new TopologyBuilder(
+                configConstraintLocator(configurationConstraintSpecification));
 
         customizer.customize(builder);
 
@@ -217,21 +221,21 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         return this;
     }
 
-    public HarnessBuilder withPlacements(Customizer<PlacementSpecificationBuilder> customizer) {
-        PlacementSpecificationBuilder builder = new PlacementSpecificationBuilder(
+    public HarnessBuilder withPlacements(final Customizer<PlacementSpecificationBuilder> customizer) {
+        final PlacementSpecificationBuilder builder = new PlacementSpecificationBuilder(
                 partOccurrenceLocator(this.compositionSpecification),
                 nodeLocator(this.topologySpecification));
         customizer.customize(builder);
 
-        VecPlacementSpecification placementSpecification = builder.build();
+        final VecPlacementSpecification placementSpecification = builder.build();
 
         harnessDocumentBuilder.addSpecification(placementSpecification);
 
         return this;
     }
 
-    public HarnessBuilder withRoutings(Customizer<RoutingSpecificationBuilder> customizer) {
-        RoutingSpecificationBuilder builder = new RoutingSpecificationBuilder(
+    public HarnessBuilder withRoutings(final Customizer<RoutingSpecificationBuilder> customizer) {
+        final RoutingSpecificationBuilder builder = new RoutingSpecificationBuilder(
                 wireElementReferenceLocator(compositionSpecification), segmentLocator(topologySpecification),
                 configConstraintLocator(configurationConstraintSpecification));
 
@@ -244,13 +248,13 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         return this;
     }
 
-    public HarnessBuilder withConfigManagement(Customizer<ConfigManagementBuilder> customizer) {
-        ConfigManagementBuilder builder = new ConfigManagementBuilder();
+    public HarnessBuilder withConfigManagement(final Customizer<ConfigManagementBuilder> customizer) {
+        final ConfigManagementBuilder builder = new ConfigManagementBuilder();
 
         customizer.customize(builder);
 
         builder.build().forEach(s -> {
-            if (s instanceof VecConfigurationConstraintSpecification constraintSpecification) {
+            if (s instanceof final VecConfigurationConstraintSpecification constraintSpecification) {
                 this.configurationConstraintSpecification = constraintSpecification;
             }
             harnessDocumentBuilder.addSpecification(s);

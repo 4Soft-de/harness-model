@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting.core;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecSpecification;
@@ -49,8 +50,8 @@ public class DocumentVersionBuilder implements Builder<VecDocumentVersion> {
         return this.documentVersion.getSpecificationWith(type, identification);
     }
 
-    public DocumentVersionBuilder documentType(final String documentType) {
-        documentVersion.setDocumentType(documentType);
+    public DocumentVersionBuilder documentType(final DocumentType documentType) {
+        documentVersion.setDocumentType(documentType.value());
         return this;
     }
 
