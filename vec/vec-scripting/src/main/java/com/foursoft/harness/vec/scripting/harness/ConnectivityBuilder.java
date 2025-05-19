@@ -26,6 +26,8 @@
 package com.foursoft.harness.vec.scripting.harness;
 
 import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.*;
 
 import java.util.ArrayList;
@@ -33,18 +35,33 @@ import java.util.List;
 import java.util.function.Function;
 
 public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
+    private final VecSession session;
     private final VecWireElementReference wireElementReference;
     private final Function<String, VecPartOccurrence> occurrenceLocator;
     private final List<VecContactPoint> createdContactPoints = new ArrayList<>();
 
-    public ConnectivityBuilder(final VecWireElementReference wireElementReference,
-                               Function<String, VecPartOccurrence> occurrenceLocator) {
+    public ConnectivityBuilder(final VecSession session, final VecWireElementReference wireElementReference,
+                               final Function<String, VecPartOccurrence> occurrenceLocator) {
+        this.session = session;
         this.wireElementReference = wireElementReference;
         this.occurrenceLocator = occurrenceLocator;
     }
 
     public ConnectivityBuilder addEnd(final String connectorId, final String cavityNumber) {
-        final VecContactPoint cp = createContactPointWithWireMounting(connectorId + "." + cavityNumber);
+        return addEnd(connectorId, cavityNumber, null);
+    }
+
+    public ConnectivityBuilder addEnd(final String connectorId, final String cavityNumber, final String terminalId) {
+        final VecContactPoint cp = createContactPointWithWireMounting(connectorId + "." + cavityNumber, we -> {
+        }, null);
+
+        if (terminalId != null) {
+            final VecPluggableTerminalRole terminal = occurrenceLocator.apply(terminalId)
+                    .getRoleWithType(VecPluggableTerminalRole.class)
+                    .orElseThrow();
+
+            cp.setMountedTerminal(terminal);
+        }
 
         final VecCavityMounting cavityMounting = new VecCavityMounting();
         cp.getCavityMountings()
@@ -54,30 +71,29 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
                 .getRoleWithType(VecConnectorHousingRole.class)
                 .orElseThrow();
 
-        final VecCavityReference cavityReference = connector.getSlotReferences()
-                .stream()
-                .map(VecSlotReference.class::cast)
-                .flatMap(s -> s.getCavityReferences()
-                        .stream())
-                .filter(c -> c.getIdentification()
-                        .equals(cavityNumber))
-                .findAny()
-                .orElseThrow();
+        final VecCavityReference cavityReference = HarnessQueries.findCavity(connector, cavityNumber);
         cavityMounting.getEquippedCavityRef()
                 .add(cavityReference);
 
         return this;
     }
 
-    public ConnectivityBuilder addEndWithTerminalOnly(final String terminalId) {
+    public ConnectivityBuilder addEndWithTerminalOnly(final String terminalId,
+                                                      final Customizer<WireEndBuilder> wireEndCustomizer,
+                                                      final Customizer<WireMountingDetailBuilder> wireMountingDetailBuilderCustomizer) {
         final VecContactPoint cp = createContactPointWithWireMounting(
-                wireElementReference.getIdentification() + "-" + terminalId);
+                wireElementReference.getIdentification() + "-" + terminalId, wireEndCustomizer,
+                wireMountingDetailBuilderCustomizer);
 
         final VecPluggableTerminalRole terminal = occurrenceLocator.apply(terminalId)
                 .getRoleWithType(VecPluggableTerminalRole.class)
                 .orElseThrow();
 
         cp.setMountedTerminal(terminal);
+
+        terminal.getWireReceptionReferences().forEach(
+                wrRef -> cp.getWireMountings().stream().flatMap(wm -> wm.getWireMountingDetails().stream()).forEach(
+                        wmd -> wmd.setContactedWireReception(wrRef)));
 
         return this;
     }
@@ -86,12 +102,18 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
         return createdContactPoints;
     }
 
-    private VecContactPoint createContactPointWithWireMounting(final String endpointId) {
+    private VecContactPoint createContactPointWithWireMounting(final String endpointId,
+                                                               final Customizer<WireEndBuilder> wireEndCustomizer,
+                                                               final Customizer<WireMountingDetailBuilder> wireMountingDetailCustomizer) {
         final VecContactPoint cp = new VecContactPoint();
         cp.setIdentification(endpointId);
         createdContactPoints.add(cp);
 
-        final VecWireEnd end = new VecWireEnd();
+        final WireEndBuilder wireEndBuilder = new WireEndBuilder(this.session);
+
+        wireEndCustomizer.customize(wireEndBuilder);
+
+        final VecWireEnd end = wireEndBuilder.build();
         end.setIdentification(endpointId);
         if (wireElementReference
                 .getWireEnds()
@@ -109,6 +131,16 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
                 .add(wireMounting);
         wireMounting.getReferencedWireEnd()
                 .add(end);
+
+        if (wireMountingDetailCustomizer != null) {
+            final WireMountingDetailBuilder wireMountingDetailBuilder = new WireMountingDetailBuilder(this.session);
+            wireMountingDetailCustomizer.customize(wireMountingDetailBuilder);
+            final VecWireMountingDetail detail = wireMountingDetailBuilder.build();
+
+            wireMounting.getWireMountingDetails().add(detail);
+            detail.getReferencedWireEnd().add(end);
+        }
+
         return cp;
     }
 

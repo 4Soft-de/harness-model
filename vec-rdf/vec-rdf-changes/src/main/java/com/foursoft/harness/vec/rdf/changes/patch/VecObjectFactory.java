@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,47 +40,47 @@ public class VecObjectFactory {
 
     private final String packageName;
 
-    public VecObjectFactory(Class<? extends Identifiable> rootClass) {
+    public VecObjectFactory(final Class<? extends Identifiable> rootClass) {
         this.packageName = rootClass.getPackageName();
     }
 
-    public Identifiable create(Resource node) {
+    public Identifiable create(final Resource node) {
         Objects.requireNonNull(node, "Parameter 'node' must not be null.");
 
-        Statement requiredProperty = node.getProperty(RDF.type);
+        final Statement requiredProperty = node.getProperty(RDF.type);
         if (requiredProperty == null) {
             throw new VecRdfException("Cannot create a VEC class for node " + node + "without rdf:type property");
         }
 
-        Resource typeResource = toUriResource(requiredProperty.getObject());
+        final Resource typeResource = toUriResource(requiredProperty.getObject());
 
-        Class<? extends Identifiable> vecClass = lookupVecClass(typeResource);
+        final Class<? extends Identifiable> vecClass = lookupVecClass(typeResource);
 
         try {
             return vecClass.getConstructor()
                     .newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                 NoSuchMethodException e) {
+        } catch (final InstantiationException | IllegalAccessException | InvocationTargetException |
+                       NoSuchMethodException e) {
             throw new VecRdfException("Unable to instantiate VEC object for: " + node, e);
         }
 
     }
 
-    private Class<? extends Identifiable> lookupVecClass(Resource typeResource) {
-        if (!VEC.URI.equals(typeResource.getNameSpace())) {
+    private Class<? extends Identifiable> lookupVecClass(final Resource typeResource) {
+        if (!VEC.NS.equals(typeResource.getNameSpace())) {
             throw new VecRdfException("Cannot find VEC class for: " + typeResource);
         }
-        String localName = typeResource.getLocalName();
-        String className = packageName + ".Vec" + localName;
+        final String localName = typeResource.getLocalName();
+        final String className = packageName + ".Vec" + localName;
 
         try {
             return (Class<? extends Identifiable>) Class.forName(className);
-        } catch (ClassNotFoundException e) {
+        } catch (final ClassNotFoundException e) {
             throw new VecRdfException("Could not load class for type: " + typeResource, e);
         }
     }
 
-    private Resource toUriResource(RDFNode node) {
+    private Resource toUriResource(final RDFNode node) {
         if (node.isURIResource()) {
             return node.asResource();
         }

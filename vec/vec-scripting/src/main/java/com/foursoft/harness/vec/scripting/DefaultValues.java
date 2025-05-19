@@ -34,8 +34,8 @@ public class DefaultValues {
     public static final String CONFIG_CONSTRAINTS_SPEC_IDENTIFICATION = "CONFIG_CONSTRAINTS";
     private String companyName = "Acme Inc.";
     private String colorReferenceSystem = "Acme Inc.";
-    public static final String PART_MASTER = "PartMaster";
-    public static final String HARNESS_DESCRIPTION = "HarnessDescription";
+    private String materialReferenceSystem = "Acme Inc.";
+    public static final String REQUIREMENTS_DESCRIPTION = "RequirementsDescription";
 
     public static final String COMP_COMPOSITION_SPEC_IDENTIFICATION = "COMPONENTS";
     public static final String MODULES_COMPOSITION_SPEC_IDENTIFICATION = "MODULES";
@@ -56,5 +56,13 @@ public class DefaultValues {
 
     public void setColorReferenceSystem(final String colorReferenceSystem) {
         this.colorReferenceSystem = colorReferenceSystem;
+    }
+
+    public String getMaterialReferenceSystem() {
+        return materialReferenceSystem;
+    }
+
+    public void setMaterialReferenceSystem(final String materialReferenceSystem) {
+        this.materialReferenceSystem = materialReferenceSystem;
     }
 }

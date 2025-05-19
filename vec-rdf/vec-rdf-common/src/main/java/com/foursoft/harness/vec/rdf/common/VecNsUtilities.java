@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC RDF Common
  * %%
- * Copyright (C) 2024 4Soft GmbH
+ * Copyright (C) 2024 - 2025 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,44 +26,29 @@
 package com.foursoft.harness.vec.rdf.common;
 
 import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
-import org.apache.jena.rdf.model.*;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 
 import java.util.List;
 
-public final class VEC {
+public class VecNsUtilities {
 
-    private VEC() {
+    private VecNsUtilities() {
         throw new AssertionError("Can't instantiate utility class");
     }
 
     public static final String PREFIX = "vec";
-    public static final String URI = "http://www.prostep.org/ontologies/ecad/2024/03/vec#";
     public static final String DEBUG_NS = "http://www.prostep.org/ontologies/ecad/2024/03/vec-debug#";
 
-    static Property property(String local) {
-        return ResourceFactory.createProperty(URI, local);
-    }
-
-    static Resource resource(String local) {
-        return ResourceFactory.createResource(URI + local);
-    }
-
-    public static final Property enumLiteral = property("enumLiteral");
-
-    public static final Resource Ordered = resource("Ordered");
-
-    public static final Property orderedIndex = property("orderedIndex");
-
-    public static final Resource OpenEnumeration = resource("OpenEnumeration");
-
-    public static String enumLiteralValueFor(Resource enumValueResource) {
-        Statement literalStatement = enumValueResource.getProperty(VEC.enumLiteral);
+    public static String enumLiteralValueFor(final Resource enumValueResource) {
+        final Statement literalStatement = enumValueResource.getProperty(VEC.enumLiteral);
         if (literalStatement == null) {
             throw new VecRdfException("No enumLiteral found for OpenEnumeration Resource" + enumValueResource);
         }
-        RDFNode literalObject = literalStatement.getObject();
+        final RDFNode literalObject = literalStatement.getObject();
         if (!literalObject.isLiteral()) {
             throw new VecRdfException(
                     "EnumLiteral '" + literalObject + "' for OpenEnumeration " + enumValueResource +
@@ -81,9 +66,9 @@ public final class VEC {
      * @param type
      * @return
      */
-    public static boolean isInstanceOf(Resource object,
-                                       Resource type) {
-        List<Resource> types = object.listProperties(RDF.type)
+    public static boolean isInstanceOf(final Resource object,
+                                       final Resource type) {
+        final List<Resource> types = object.listProperties(RDF.type)
                 .mapWith(Statement::getObject)
                 .filterKeep(RDFNode::isResource)
                 .mapWith(RDFNode::asResource)
@@ -92,12 +77,12 @@ public final class VEC {
                 .anyMatch(t -> isSubclassOf(t, type));
     }
 
-    public static boolean isSubclassOf(Resource type,
-                                       Resource superType) {
+    public static boolean isSubclassOf(final Resource type,
+                                       final Resource superType) {
         if (type.equals(superType)) {
             return true;
         }
-        List<Resource> candidateSuperTypes = type.listProperties(RDFS.subClassOf)
+        final List<Resource> candidateSuperTypes = type.listProperties(RDFS.subClassOf)
                 .mapWith(Statement::getObject)
                 .filterKeep(RDFNode::isResource)
                 .mapWith(RDFNode::asResource)
@@ -110,4 +95,5 @@ public final class VEC {
         return candidateSuperTypes.stream()
                 .anyMatch(t -> isSubclassOf(t, superType));
     }
+
 }

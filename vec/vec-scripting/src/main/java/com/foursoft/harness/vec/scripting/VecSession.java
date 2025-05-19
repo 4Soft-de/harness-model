@@ -32,6 +32,8 @@ import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.scripting.components.ComponentMasterDataBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
+import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
+import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
 import com.foursoft.harness.vec.scripting.harness.HarnessBuilder;
@@ -42,6 +44,7 @@ import com.foursoft.harness.vec.v2x.*;
 import jakarta.xml.bind.Marshaller;
 
 import java.io.OutputStream;
+import java.util.Optional;
 
 //TODO: Provision of Units & Provision of comments should be extracted to interfaces. (e.g. GlobalUnitProvider)
 
@@ -61,6 +64,12 @@ public class VecSession {
     private VecCompositeUnit gramPerMeter;
     private VecOtherUnit piece;
     private VecSIUnit newton;
+    private VecSIUnit degreeCelsius;
+    private VecSIUnit perMetre;
+    private VecCompositeUnit mOhmPerMeter;
+    private VecSIUnit ohm;
+    private VecSIUnit ampere;
+    private VecSIUnit volts;
 
     public VecSession() {
         xmlMeta.setComments(comments);
@@ -74,52 +83,66 @@ public class VecSession {
         return vecContentRoot;
     }
 
-    public void document(final String documentNumber, String version, Customizer<DocumentVersionBuilder> customizer) {
-        DocumentVersionBuilder builder = new DocumentVersionBuilder(this, documentNumber, version);
+    public void document(final String documentNumber, final String version,
+                         final Customizer<DocumentVersionBuilder> customizer) {
+        final DocumentVersionBuilder builder = new DocumentVersionBuilder(this, documentNumber, version);
 
         customizer.customize(builder);
 
-        VecDocumentVersion build = builder.build();
+        final VecDocumentVersion build = builder.build();
 
         vecContentRoot.getDocumentVersions().add(build);
     }
 
-    public void component(final String partNumber, final String documentNumber,
-                          final VecPrimaryPartType primaryPartType, Customizer<ComponentMasterDataBuilder> customizer) {
-        ComponentMasterDataBuilder builder = new ComponentMasterDataBuilder(this, partNumber, documentNumber,
-                                                                            primaryPartType);
+    public void part(final String partNumber, final VecPrimaryPartType primaryPartType,
+                     final Customizer<PartVersionBuilder> customizer) {
+        final PartVersionBuilder builder = new PartVersionBuilder(this, partNumber, primaryPartType);
+
         customizer.customize(builder);
 
-        ComponentMasterDataBuilder.PartDocumentsPair result = builder.build();
+        final VecPartVersion build = builder.build();
+
+        vecContentRoot.getPartVersions().add(build);
+    }
+
+    public void component(final String partNumber, final String documentNumber,
+                          final VecPrimaryPartType primaryPartType,
+                          final Customizer<ComponentMasterDataBuilder> customizer) {
+        final ComponentMasterDataBuilder builder = new ComponentMasterDataBuilder(this, partNumber, documentNumber,
+                                                                                  primaryPartType);
+        customizer.customize(builder);
+
+        final ComponentMasterDataBuilder.PartDocumentsPair result = builder.build();
 
         vecContentRoot.getDocumentVersions().addAll(result.documentVersions());
         vecContentRoot.getPartVersions().add(result.partVersion());
     }
 
-    public void schematic(String containerDocumentNumber, Customizer<SchematicBuilder> customizer) {
-        VecDocumentVersion containerDocument = findDocument(containerDocumentNumber);
+    public void schematic(final String containerDocumentNumber, final Customizer<SchematicBuilder> customizer) {
+        final VecDocumentVersion containerDocument = findDocument(containerDocumentNumber);
 
-        SchematicBuilder builder = new SchematicBuilder();
+        final SchematicBuilder builder = new SchematicBuilder();
 
         customizer.customize(builder);
 
-        VecConnectionSpecification result = builder.build();
+        final VecConnectionSpecification result = builder.build();
 
         containerDocument.getSpecifications().add(result);
     }
 
-    public void harness(final String documentNumber, String version, Customizer<HarnessBuilder> customizer) {
-        HarnessBuilder harnessBuilder = new HarnessBuilder(this, documentNumber, version);
+    public void harness(final String documentNumber, final String version,
+                        final Customizer<HarnessBuilder> customizer) {
+        final HarnessBuilder harnessBuilder = new HarnessBuilder(this, documentNumber, version);
 
         customizer.customize(harnessBuilder);
 
-        HarnessBuilder.HarnessResult result = harnessBuilder.build();
+        final HarnessBuilder.HarnessResult result = harnessBuilder.build();
 
         this.vecContentRoot.getDocumentVersions().add(result.harnessDocument());
         this.vecContentRoot.getPartVersions().addAll(result.variants());
     }
 
-    public void addXmlComment(Identifiable identifiable, String comment) {
+    public void addXmlComment(final Identifiable identifiable, final String comment) {
         comments.put(identifiable, comment);
     }
 
@@ -130,7 +153,7 @@ public class VecSession {
         return writer.writeToString(vecContentRoot, xmlMeta);
     }
 
-    public void writeToStream(OutputStream stream) {
+    public void writeToStream(final OutputStream stream) {
         ensureXmlIds();
         final XMLWriter<VecContent> writer = createWriter();
 
@@ -152,6 +175,15 @@ public class VecSession {
         vecContentRoot.accept(new XmlIdGeneratingTraverser(xmlIdGenerator));
     }
 
+    public VecSIUnit volts() {
+        if (this.volts == null) {
+            this.volts = SiUnitFactory.volts();
+            this.vecContentRoot.getUnits()
+                    .add(this.volts);
+        }
+        return this.volts;
+    }
+
     public VecSIUnit mm() {
         if (this.mm == null) {
             this.mm = SiUnitFactory.mm();
@@ -159,6 +191,14 @@ public class VecSession {
                     .add(this.mm);
         }
         return this.mm;
+    }
+
+    public VecSIUnit degreeCelsius() {
+        if (this.degreeCelsius == null) {
+            this.degreeCelsius = SiUnitFactory.degreeCelsius();
+            this.vecContentRoot.getUnits().add(degreeCelsius);
+        }
+        return this.degreeCelsius;
     }
 
     public VecUnit piece() {
@@ -191,19 +231,56 @@ public class VecSession {
         return this.newton;
     }
 
+    public VecSIUnit ohm() {
+        if (this.ohm == null) {
+            this.ohm = SiUnitFactory.ohm();
+
+            this.vecContentRoot.getUnits()
+                    .add(this.ohm);
+        }
+        return this.ohm;
+    }
+
+    public VecSIUnit perMetre() {
+        if (this.perMetre == null) {
+            this.perMetre = SiUnitFactory.perMeter();
+            this.vecContentRoot.getUnits().add(perMetre);
+        }
+        return this.perMetre;
+    }
+
+    public VecSIUnit ampere() {
+        if (this.ampere == null) {
+            this.ampere = SiUnitFactory.ampere();
+            this.vecContentRoot.getUnits().add(ampere);
+        }
+        return this.ampere;
+    }
+
     public VecUnit gramPerMeter() {
         if (this.gramPerMeter == null) {
-            VecSIUnit gram = SiUnitFactory.gram();
-            VecSIUnit perMeter = SiUnitFactory.perMeter();
+            final VecSIUnit gram = SiUnitFactory.gram();
             this.gramPerMeter = new VecCompositeUnit();
             this.gramPerMeter.getFactors().add(gram);
-            this.gramPerMeter.getFactors().add(perMeter);
+            this.gramPerMeter.getFactors().add(perMetre());
 
             this.vecContentRoot.getUnits().add(gram);
-            this.vecContentRoot.getUnits().add(perMeter);
             this.vecContentRoot.getUnits().add(this.gramPerMeter);
         }
         return this.gramPerMeter;
+    }
+
+    public VecCompositeUnit mOhmPerMeter() {
+        if (this.mOhmPerMeter == null) {
+            final VecSIUnit mOhm = SiUnitFactory.mOhm();
+            this.mOhmPerMeter = new VecCompositeUnit();
+            this.mOhmPerMeter.getFactors().add(mOhm);
+            this.mOhmPerMeter.getFactors().add(perMetre());
+
+            this.vecContentRoot.getUnits().add(mOhm);
+            this.vecContentRoot.getUnits().add(this.mOhmPerMeter);
+        }
+        return this.mOhmPerMeter;
     }
 
     public VecPartVersion findPartVersionByPartNumber(final String partNumber) {
@@ -219,7 +296,7 @@ public class VecSession {
         return this.vecContentRoot.getDocumentVersions()
                 .stream()
                 .filter(dv -> dv.getDocumentType()
-                        .equals(DefaultValues.PART_MASTER) && dv.getReferencedPart()
+                        .equals(DocumentType.PART_MASTER.value()) && dv.getReferencedPart()
                         .contains(partVersion))
                 .findFirst()
                 .orElseThrow();
@@ -228,5 +305,11 @@ public class VecSession {
     public VecDocumentVersion findDocument(final String documentNumber) {
         return this.vecContentRoot.getDocumentVersions().stream().filter(
                 dv -> documentNumber.equals(dv.getDocumentNumber())).findFirst().orElseThrow();
+    }
+
+    public Optional<VecDocumentVersion> findDocument(final String documentNumber, final String companyName) {
+        return this.vecContentRoot.getDocumentVersions().stream().filter(
+                        dv -> documentNumber.equals(dv.getDocumentNumber()) && companyName.equals(dv.getCompanyName()))
+                .findFirst();
     }
 }

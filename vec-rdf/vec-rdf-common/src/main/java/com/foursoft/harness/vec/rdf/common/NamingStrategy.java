@@ -41,7 +41,7 @@ import java.util.Optional;
 
 public class NamingStrategy {
 
-    public static String modelName(Class<?> clazz) {
+    public static String modelName(final Class<?> clazz) {
         if (clazz.getName().endsWith(".VecContent")) {
             return clazz.getSimpleName();
         }
@@ -49,89 +49,90 @@ public class NamingStrategy {
                 .replaceFirst("Vec", "");
     }
 
-    public static String modelName(Field field) {
-        XmlElement annotation = field.getAnnotation(XmlElement.class);
+    public static String modelName(final Field field) {
+        final XmlElement annotation = field.getAnnotation(XmlElement.class);
         return StringUtils.uncapitalize(annotation.name());
     }
 
-    public String rdfName(Class<?> clazz) {
+    public String rdfName(final Class<?> clazz) {
         return modelName(clazz);
     }
 
-    public String rdfName(Field field) {
+    public String rdfName(final Field field) {
         return StringUtils.uncapitalize(rdfName(field.getDeclaringClass())) + StringUtils.capitalize(modelName(field));
     }
 
-    public String rdfName(Identifiable identifiable) {
+    public String rdfName(final Identifiable identifiable) {
         return rdfName(identifiable.getClass()) + "-" + identifiable.getXmlId();
     }
 
-    public String rdfName(Enum<?> literalValue) {
+    public String rdfName(final Enum<?> literalValue) {
         try {
-            Class<?> enumClass = literalValue.getClass();
-            String enumLiteralValue = (String) enumClass.getMethod("value")
+            final Class<?> enumClass = literalValue.getClass();
+            final String enumLiteralValue = (String) enumClass.getMethod("value")
                     .invoke(literalValue);
             return rdfName(enumClass) + "_" + URLEncoder.encode(enumLiteralValue, StandardCharsets.UTF_8);
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             throw new VecRdfException("Can not create URI for literal value: " + literalValue.name(), e);
         }
     }
 
-    public String rdfLabel(Identifiable identifiable) {
+    public String rdfLabel(final Identifiable identifiable) {
         return modelName(identifiable.getClass()) + "[" + identifiable.getXmlId() + "]";
     }
 
-    public String uriFor(Class<?> clazz) {
-        return VEC.URI + rdfName(clazz);
+    public String uriFor(final Class<?> clazz) {
+        return VEC.NS + rdfName(clazz);
     }
 
-    public String uriFor(Field field) {
-        return VEC.URI + rdfName(field);
+    public String uriFor(final Field field) {
+        return VEC.NS + rdfName(field);
     }
 
-    public String uriFor(String namespace, Identifiable identifiable) {
+    public String uriFor(final String namespace, final Identifiable identifiable) {
         return namespace + rdfName(identifiable);
     }
 
-    public String uriFor(Enum<?> literalValue) {
-        return VEC.URI + rdfName(literalValue);
+    public String uriFor(final Enum<?> literalValue) {
+        return VEC.NS + rdfName(literalValue);
     }
 
-    public String debugUri(String localName) {
-        return VEC.DEBUG_NS + localName;
+    public String debugUri(final String localName) {
+        return VecNsUtilities.DEBUG_NS + localName;
     }
 
-    public String rdfNameForOpenEnumLiteral(UmlType enumType, String literalValue) {
+    public String rdfNameForOpenEnumLiteral(final UmlType enumType, final String literalValue) {
         return enumType.name() + "_" + URLEncoder.encode(literalValue, StandardCharsets.UTF_8)
                 .replace("+", "%20");
     }
 
-    public String uriFor(UmlType modelType) {
-        return VEC.URI + modelType.name();
+    public String uriFor(final UmlType modelType) {
+        return VEC.NS + modelType.name();
     }
 
-    public String uriForWrapper(UmlType modelType) {
-        return VEC.URI + rdfNameForWrapper(modelType);
+    public String uriForWrapper(final UmlType modelType) {
+        return VEC.NS + rdfNameForWrapper(modelType);
     }
 
-    public String uriForWrapperItemProperty(UmlType modelType) {
-        return VEC.URI + StringUtils.uncapitalize(rdfNameForWrapper(modelType)) + "Item";
+    public String uriForWrapperItemProperty(final UmlType modelType) {
+        return VEC.NS + StringUtils.uncapitalize(rdfNameForWrapper(modelType)) + "Item";
     }
 
-    private static String rdfNameForWrapper(UmlType modelType) {
+    private static String rdfNameForWrapper(final UmlType modelType) {
         return modelType.name() + "Wrapper";
     }
 
-    public String uriForOpenEnumLiteral(UmlType enumType, String enumLiteralValue, String instanceNamespace) {
+    public String uriForOpenEnumLiteral(final UmlType enumType, final String enumLiteralValue,
+                                        final String instanceNamespace) {
         // We have an OpenEnumeration...
-        String resourceName = rdfNameForOpenEnumLiteral(enumType, enumLiteralValue);
+        final String resourceName = rdfNameForOpenEnumLiteral(enumType, enumLiteralValue);
         if (hasDefinedLiteral(enumType, enumLiteralValue)) {
-            return VEC.URI + resourceName;
+            return VEC.NS + resourceName;
         }
         return instanceNamespace + resourceName;
     }
 
-    private boolean hasDefinedLiteral(UmlType enumType, String literal) {
+    private boolean hasDefinedLiteral(final UmlType enumType, final String literal) {
         return Optional.ofNullable(enumType)
                 .map(t -> Arrays.stream(t.literals())
                         .map(UmlLiteral::name)

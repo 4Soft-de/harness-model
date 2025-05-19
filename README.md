@@ -12,6 +12,9 @@ This repository consists of 4 libraries:
 - [VEC](https://github.com/4Soft-de/harness-model/tree/develop/vec)
 - [Navigation Extender](https://github.com/4Soft-de/harness-model/tree/develop/navext)
 - [Compatibility](https://github.com/4Soft-de/harness-model/tree/develop/compatibility)
+- [VEC RDF Tooling](https://github.com/4Soft-de/harness-model/tree/develop/vec-rdf)
+- [KBL to VEC Converter (Prototype)](https://github.com/4Soft-de/harness-model/tree/develop/kbl2vec)
+- [VEC Scripting Api (Experimental)](https://github.com/4Soft-de/harness-model/tree/develop/vec/vec-scripting)
 
 For detailed information over a project, have a look at its own ReadMe.
 
@@ -24,6 +27,18 @@ same branch. We will reject any PRs not following that or if this is already wor
 Please read our
 detailed [Contribution Guidelines](https://github.com/4Soft-de/harness-model/blob/develop/.github/CONTRIBUTING.md)
 for more information, for example code style, formatter, etc.
+
+### Problems when cloning the repository under Windows
+
+When initially cloning the repository, you might stumble upon a few errors regarding file creation when using Windows.
+
+This happens due to the limit being 260 characters for a filename. In that case, execute the following command:
+
+```cmd
+git config --local core.longpaths true
+```
+
+After this, clean up the worktree by using `git reset --hard`. Now you should be good to go.
 
 ## Moving to Jakarta namespace 
 

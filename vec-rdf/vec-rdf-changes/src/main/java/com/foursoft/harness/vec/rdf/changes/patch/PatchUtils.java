@@ -65,6 +65,6 @@ public final class PatchUtils {
     }
 
     public static boolean isVecProperty(final Property property) {
-        return VEC.URI.equals(property.getNameSpace());
+        return VEC.NS.equals(property.getNameSpace());
     }
 }

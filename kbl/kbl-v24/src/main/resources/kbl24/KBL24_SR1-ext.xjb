@@ -103,6 +103,10 @@
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasConnectionOrOccurrences</inheritance:implements>
     </jxb:bindings>
 
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='Assembly_part']">
+        <inheritance:implements>com.foursoft.harness.kbl.v24.HasConnectionOrOccurrences</inheritance:implements>
+    </jxb:bindings>
+
     <jxb:bindings multiple="true" node="//xs:complexType[.//xs:element[@name='Related_assembly']]">
         <inheritance:implements>com.foursoft.harness.kbl.v24.HasRelatedAssembly</inheritance:implements>
     </jxb:bindings>

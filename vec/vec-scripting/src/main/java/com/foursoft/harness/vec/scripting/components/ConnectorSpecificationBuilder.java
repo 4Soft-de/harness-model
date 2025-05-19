@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.vec.v2x.VecCoding;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecSlot;
 
@@ -45,12 +46,26 @@ public class ConnectorSpecificationBuilder
         connectorHousingSpecification = initializeSpecification(VecConnectorHousingSpecification.class, partNumber);
     }
 
+    public ConnectorSpecificationBuilder withCoding(final String coding) {
+        final VecCoding codingObject = new VecCoding();
+        codingObject.setCoding(coding);
+        connectorHousingSpecification.setCoding(codingObject);
+        return this;
+    }
+
     public ConnectorSpecificationBuilder addCavity(final String slotNumber, final String cavityNumber) {
         final VecSlot vecSlot = this.slots.computeIfAbsent(slotNumber, this::createSlot);
         final VecCavity cavity = new CavityBuilder(cavityNumber).build();
         vecSlot.getCavities()
                 .add(cavity);
 
+        return this;
+    }
+
+    public ConnectorSpecificationBuilder addNumericalCavities(final String slotNumber, final int numberOfCavities) {
+        for (int cavityNumber = 1; cavityNumber <= numberOfCavities; cavityNumber++) {
+            this.addCavity(slotNumber, Integer.toString(cavityNumber));
+        }
         return this;
     }
 

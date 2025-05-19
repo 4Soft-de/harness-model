@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,8 +34,8 @@ public class ConnectionBuilder implements Builder<VecConnection> {
     private final VecConnection connection = new VecConnection();
     private final ComponentPortLookup componentPortLookup;
 
-    public ConnectionBuilder(ComponentPortLookup componentPortLookup,
-                             String identification) {
+    public ConnectionBuilder(final ComponentPortLookup componentPortLookup,
+                             final String identification) {
         this.componentPortLookup = componentPortLookup;
 
         connection.setIdentification(identification);
@@ -48,12 +48,13 @@ public class ConnectionBuilder implements Builder<VecConnection> {
     }
 
     public ConnectionBuilder addEnd(final String nodeId, final String connectorId, final String portId,
-                                    boolean isExternal) {
-        VecConnectionEnd end = new VecConnectionEnd();
+                                    final boolean isExternal) {
+        final VecConnectionEnd end = new VecConnectionEnd();
         end.setIdentification(nodeId + "." + connectorId + "." + portId);
+        end.setIsExternalEnd(isExternal);
         this.connection.getConnectionEnds().add(end);
 
-        VecComponentPort port = componentPortLookup.find(nodeId, connectorId, portId);
+        final VecComponentPort port = componentPortLookup.find(nodeId, connectorId, portId);
         end.setConnectedComponentPort(port);
         return this;
     }

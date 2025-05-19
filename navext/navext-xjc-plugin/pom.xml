@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.foursoft.harness.navext</groupId>
         <artifactId>navext-parent</artifactId>
-        <version>5.4.1</version>
+        <version>5.5.0</version>
     </parent>
     <name>NavExt XJC Plugin</name>
     <artifactId>navext-xjc-plugin</artifactId>

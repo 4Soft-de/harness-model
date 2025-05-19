@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,14 +34,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class VECTest {
+class VecNsUtilitiesTest {
 
     private Model ontology;
 
     @BeforeEach
     void loadOntologyModel() {
         ontology = ModelFactory.createDefaultModel();
-        ontology.read(VECTest.class.getResourceAsStream("/vec/v2.1.0/vec-2.1.0-ontology.ttl"), VEC.URI, "TURTLE");
+        ontology.read(VecNsUtilitiesTest.class.getResourceAsStream("/vec/v2.1.0/vec-2.1.0-ontology.ttl"), VEC.NS,
+                      "TURTLE");
     }
 
     @Nested
@@ -49,18 +50,18 @@ class VECTest {
 
         @Test
         void should_return_true_for_color_reference_system() {
-            final Resource type = ontology.getResource(VEC.URI + "ColorReferenceSystem");
-            final Resource instance = ontology.getResource(VEC.URI + "ColorReferenceSystem_RAL");
+            final Resource type = ontology.getResource(VEC.ColorReferenceSystem.getURI());
+            final Resource instance = ontology.getResource(VEC.ColorReferenceSystem_RAL.getURI());
 
-            assertThat(VEC.isInstanceOf(instance, type)).isTrue();
+            assertThat(VecNsUtilities.isInstanceOf(instance, type)).isTrue();
         }
 
         @Test
         void should_return_false_for_specification() {
-            final Resource type = ontology.getResource(VEC.URI + "Specification");
-            final Resource instance = ontology.getResource(VEC.URI + "ColorReferenceSystem_RAL");
+            final Resource type = ontology.getResource(VEC.Specification.getURI());
+            final Resource instance = ontology.getResource(VEC.ColorReferenceSystem_RAL.getURI());
 
-            assertThat(VEC.isInstanceOf(instance, type)).isFalse();
+            assertThat(VecNsUtilities.isInstanceOf(instance, type)).isFalse();
         }
 
     }
@@ -70,18 +71,18 @@ class VECTest {
 
         @Test
         void should_return_true_for_open_enumeration() {
-            final Resource subType = ontology.getResource(VEC.URI + "ColorReferenceSystem");
+            final Resource subType = ontology.getResource(VEC.ColorReferenceSystem.getURI());
             final Resource superType = VEC.OpenEnumeration;
 
-            assertThat(VEC.isSubclassOf(subType, superType)).isTrue();
+            assertThat(VecNsUtilities.isSubclassOf(subType, superType)).isTrue();
         }
 
         @Test
         void should_return_false_for_specification() {
-            final Resource subType = ontology.getResource(VEC.URI + "ColorReferenceSystem");
-            final Resource superType = ontology.getResource(VEC.URI + "Specification");
+            final Resource subType = ontology.getResource(VEC.ColorReferenceSystem.getURI());
+            final Resource superType = ontology.getResource(VEC.Specification.getURI());
 
-            assertThat(VEC.isSubclassOf(subType, superType)).isFalse();
+            assertThat(VecNsUtilities.isSubclassOf(subType, superType)).isFalse();
         }
 
     }

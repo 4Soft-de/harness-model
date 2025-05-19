@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting.core;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecSpecification;
@@ -37,7 +38,7 @@ public class DocumentVersionBuilder implements Builder<VecDocumentVersion> {
 
     private final VecDocumentVersion documentVersion;
 
-    public DocumentVersionBuilder(VecSession session, final String documentNumber, String version) {
+    public DocumentVersionBuilder(final VecSession session, final String documentNumber, final String version) {
         documentVersion = new VecDocumentVersion();
         documentVersion.setDocumentNumber(documentNumber);
         documentVersion.setCompanyName(session.getDefaultValues().getCompanyName());
@@ -49,19 +50,24 @@ public class DocumentVersionBuilder implements Builder<VecDocumentVersion> {
         return this.documentVersion.getSpecificationWith(type, identification);
     }
 
-    public DocumentVersionBuilder documentType(String documentType) {
-        documentVersion.setDocumentType(documentType);
+    public DocumentVersionBuilder documentType(final DocumentType documentType) {
+        documentVersion.setDocumentType(documentType.value());
         return this;
     }
 
-    public DocumentVersionBuilder addSpecification(VecSpecification specification) {
+    public DocumentVersionBuilder companyName(final String companyName) {
+        documentVersion.setCompanyName(companyName);
+        return this;
+    }
+
+    public DocumentVersionBuilder addSpecification(final VecSpecification specification) {
         if (!documentVersion.getSpecifications().contains(specification)) {
             documentVersion.getSpecifications().add(specification);
         }
         return this;
     }
 
-    public DocumentVersionBuilder addReferencedPart(VecPartVersion partVersion) {
+    public DocumentVersionBuilder addReferencedPart(final VecPartVersion partVersion) {
         this.documentVersion.getReferencedPart().add(partVersion);
         return this;
     }

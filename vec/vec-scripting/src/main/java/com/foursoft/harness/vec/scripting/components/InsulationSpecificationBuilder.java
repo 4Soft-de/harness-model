@@ -30,24 +30,26 @@ import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecColor;
 import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
 
+import static com.foursoft.harness.vec.scripting.factories.MaterialFactory.material;
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
+import static com.foursoft.harness.vec.scripting.factories.WireTypeFactory.din76722;
 
 public class InsulationSpecificationBuilder implements Builder<VecInsulationSpecification> {
 
     private final VecInsulationSpecification insulationSpecification = new VecInsulationSpecification();
     private final VecSession session;
 
-    InsulationSpecificationBuilder(VecSession session, String identification) {
+    InsulationSpecificationBuilder(final VecSession session, final String identification) {
         this.session = session;
 
         insulationSpecification.setIdentification(identification);
     }
 
     public InsulationSpecificationBuilder withColor(
-            final String primary) {
+            final String baseColor) {
         final VecColor color = new VecColor();
         color.setReferenceSystem(session.getDefaultValues().getColorReferenceSystem());
-        color.setKey(primary);
+        color.setKey(baseColor);
         insulationSpecification
                 .getBaseColors()
                 .add(color);
@@ -55,8 +57,45 @@ public class InsulationSpecificationBuilder implements Builder<VecInsulationSpec
         return this;
     }
 
+    public InsulationSpecificationBuilder withFirstIdentificationColor(
+            final String firstIdentificationColor) {
+        final VecColor color = new VecColor();
+        color.setReferenceSystem(session.getDefaultValues().getColorReferenceSystem());
+        color.setKey(firstIdentificationColor);
+        insulationSpecification
+                .getFirstIdentificationColors()
+                .add(color);
+
+        return this;
+    }
+
+    public InsulationSpecificationBuilder withBaseColor(final VecColor color) {
+        insulationSpecification.getBaseColors().add(color);
+        return this;
+    }
+
     public InsulationSpecificationBuilder withThickness(final double thickness) {
         insulationSpecification.setThickness(value(thickness, session.mm()));
+        return this;
+    }
+
+    public InsulationSpecificationBuilder withDin76722WireType(final String wireType) {
+        insulationSpecification.getWireTypes().add(din76722(wireType));
+
+        return this;
+    }
+
+    public InsulationSpecificationBuilder withInsulationMaterial(final String materialName) {
+        insulationSpecification.getMaterials().add(
+                material(session.getDefaultValues().getMaterialReferenceSystem(), materialName));
+
+        return this;
+    }
+
+    public InsulationSpecificationBuilder withPrintedLabelIdentificationValue(final String labelIdentificationText) {
+        insulationSpecification.setLabelingTechnology("Printed");
+        insulationSpecification.setLabelIdentificationType("AlphaNumerical");
+        insulationSpecification.setLabelIdentificationValue(labelIdentificationText);
         return this;
     }
 

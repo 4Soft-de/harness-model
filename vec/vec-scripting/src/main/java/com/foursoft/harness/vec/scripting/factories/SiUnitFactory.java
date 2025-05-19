@@ -35,14 +35,22 @@ public class SiUnitFactory {
 
     private final VecSIUnit siUnit = new VecSIUnit();
 
-    private SiUnitFactory(VecSiUnitName unitName, VecSiPrefix prefix, BigInteger exponent) {
+    private SiUnitFactory(final VecSiUnitName unitName, final VecSiPrefix prefix, final BigInteger exponent) {
         this(unitName, prefix);
         siUnit.setExponent(exponent);
     }
 
-    private SiUnitFactory(VecSiUnitName unitName, VecSiPrefix prefix) {
+    private SiUnitFactory(final VecSiUnitName unitName, final VecSiPrefix prefix) {
         siUnit.setSiPrefix(prefix);
         siUnit.setSiUnitName(unitName);
+    }
+
+    private SiUnitFactory(final VecSiUnitName unitName) {
+        siUnit.setSiUnitName(unitName);
+    }
+
+    public static VecSIUnit degreeCelsius() {
+        return new SiUnitFactory(VecSiUnitName.DEGREE_CELSIUS).create();
     }
 
     private VecSIUnit create() {
@@ -61,12 +69,28 @@ public class SiUnitFactory {
         return new SiUnitFactory(VecSiUnitName.GRAM, null).create();
     }
 
+    public static VecSIUnit mOhm() {
+        return new SiUnitFactory(VecSiUnitName.OHM, VecSiPrefix.MILLI).create();
+    }
+
+    public static VecSIUnit ohm() {
+        return new SiUnitFactory(VecSiUnitName.OHM).create();
+    }
+
     public static VecSIUnit perMeter() {
         return new SiUnitFactory(VecSiUnitName.METRE, null, BigInteger.valueOf(-1)).create();
     }
 
     public static VecSIUnit newton() {
         return new SiUnitFactory(VecSiUnitName.NEWTON, null, null).create();
+    }
+
+    public static VecSIUnit ampere() {
+        return new SiUnitFactory(VecSiUnitName.AMPERE).create();
+    }
+
+    public static VecSIUnit volts() {
+        return new SiUnitFactory(VecSiUnitName.VOLT).create();
     }
 
 }
