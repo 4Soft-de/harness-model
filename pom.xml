@@ -6,7 +6,7 @@
 
     <groupId>com.foursoft.harness</groupId>
     <artifactId>harness-parent</artifactId>
-    <version>5.4.2-SNAPSHOT</version>
+    <version>5.5.0</version>
     <packaging>pom</packaging>
     <name>Harness Parent</name>
     <description>Parent POM of all 4Soft Harness Projects.</description>

@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.foursoft.harness.vec.rdf</groupId>
         <artifactId>vec-rdf-parent</artifactId>
-        <version>5.4.2-SNAPSHOT</version>
+        <version>5.5.0</version>
     </parent>
 
     <name>VEC RDF Common</name>
