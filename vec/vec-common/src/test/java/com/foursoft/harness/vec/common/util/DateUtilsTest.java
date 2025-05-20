@@ -53,7 +53,7 @@ class DateUtilsTest {
     void testCurrentDate() {
         final XMLGregorianCalendar calenderOfCurrentDate = DateUtils.currentDate();
 
-        final LocalDate now = LocalDate.now();
+        final LocalDate now = LocalDate.now(DateUtils.CLOCK);
         final LocalDate localDateFromCalendar = DateUtils.toLocalDate(calenderOfCurrentDate);
 
         assertThat(now).isAfterOrEqualTo(localDateFromCalendar);

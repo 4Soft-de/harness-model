@@ -69,7 +69,7 @@ public final class DateUtils {
      * @throws VecException In case the conversion fails.
      */
     public static XMLGregorianCalendar currentDate() {
-        return toXMLGregorianCalendar(Instant.now());
+        return toXMLGregorianCalendar(Instant.now(CLOCK));
     }
 
     /**
