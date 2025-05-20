@@ -505,5 +505,40 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>ci-environment</id>
+            <activation>
+                <property>
+                    <name>env.CI</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Check if all headers are present and up-to-date. -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>check-file-header</id>
+                                <goals>
+                                    <goal>check-file-header</goal>
+                                </goals>
+                                <phase>validate</phase>
+                                <configuration>
+                                    <licenseName>mit</licenseName>
+                                    <roots>
+                                        <root>src/main/java</root>
+                                        <root>src/test/java</root>
+                                    </roots>
+                                    <failOnMissingHeader>true</failOnMissingHeader>
+                                    <failOnNotUptodateHeader>true</failOnNotUptodateHeader>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>
