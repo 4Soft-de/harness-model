@@ -32,10 +32,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import java.time.*;
 
 /**
  * Utility class for date related operations.
@@ -44,6 +41,22 @@ import java.time.ZonedDateTime;
  * for date fields within the VEC.
  */
 public final class DateUtils {
+
+    /**
+     * {@link Clock} which either uses UTC time
+     * or a fixed UTC time, controlled by defining {@code overwrite.clock}.
+     */
+    public static final Clock CLOCK;
+
+    static {
+        final String overwriteClock = System.getProperty("overwrite.clock", null);
+        if (overwriteClock != null) {
+            final Instant instant = Instant.parse(overwriteClock); // e.g. "2025-05-01T00:00:00Z"
+            CLOCK = Clock.fixed(instant, ZoneOffset.UTC);
+        } else {
+            CLOCK = Clock.systemUTC();
+        }
+    }
 
     private DateUtils() {
         // hide default constructor

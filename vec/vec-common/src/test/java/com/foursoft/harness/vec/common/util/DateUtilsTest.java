@@ -35,6 +35,20 @@ import static org.assertj.core.api.Assertions.*;
 
 class DateUtilsTest {
 
+    static {
+        // Ensure this is set before DateUtils is initialized in case the Clock Test is not the first one.
+        System.setProperty("overwrite.clock", "2025-05-01T00:00:00Z");
+    }
+
+    @Test
+    void testClock() {
+        final LocalDate fixedNow = LocalDate.now(DateUtils.CLOCK);
+        assertThat(fixedNow)
+                .hasDayOfMonth(1)
+                .hasMonthValue(5)
+                .hasYear(2025);
+    }
+
     @Test
     void testCurrentDate() {
         final XMLGregorianCalendar calenderOfCurrentDate = DateUtils.currentDate();
