@@ -52,6 +52,11 @@ public class HarnessDocumentVersionTransformer implements Transformer<KblHarness
                                 VecDocumentVersion::getSpecifications)
                 .withDownstream(KblHarness.class, VecTopologySpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
+                .withDownstream(KblHarness.class, VecVariantConfigurationSpecification.class, Query.of(source),
+                                VecDocumentVersion::getSpecifications)
+                .withDownstream(KblHarness.class, VecConfigurationConstraintSpecification.class, Query.of(source),
+                                VecDocumentVersion::getSpecifications)
+
                 // Modules
                 .withDownstream(KblHarness.class, VecCompositionSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
