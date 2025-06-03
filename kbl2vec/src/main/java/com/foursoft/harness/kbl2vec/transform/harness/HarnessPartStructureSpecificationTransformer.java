@@ -34,13 +34,14 @@ import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 
-public class HarnessPartStructureSpecification implements
+public class HarnessPartStructureSpecificationTransformer implements
         Transformer<KblHarness, VecPartStructureSpecification> {
 
     @Override
     public TransformationResult<VecPartStructureSpecification> transform(final TransformationContext context,
                                                                          final KblHarness source) {
         final VecPartStructureSpecification element = new VecPartStructureSpecification();
+        element.setContent("Harness");
 
         return TransformationResult.from(element)
                 .withFragment(commonSpecificationAttributes(source))
