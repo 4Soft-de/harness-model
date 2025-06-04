@@ -8,12 +8,14 @@
 ## Repository Contents
 
 This repository consists of 4 libraries:
+
 - [KBL](https://github.com/4Soft-de/harness-model/tree/develop/kbl)
 - [VEC](https://github.com/4Soft-de/harness-model/tree/develop/vec)
 - [Navigation Extender](https://github.com/4Soft-de/harness-model/tree/develop/navext)
 - [Compatibility](https://github.com/4Soft-de/harness-model/tree/develop/compatibility)
 - [VEC RDF Tooling](https://github.com/4Soft-de/harness-model/tree/develop/vec-rdf)
 - [KBL to VEC Converter (Prototype)](https://github.com/4Soft-de/harness-model/tree/develop/kbl2vec)
+- [VEC to AAS Converter (Experimental)](https://github.com/4Soft-de/harness-model/tree/develop/vec-aas)
 - [VEC Scripting Api (Experimental)](https://github.com/4Soft-de/harness-model/tree/develop/vec/vec-scripting)
 
 For detailed information over a project, have a look at its own ReadMe.

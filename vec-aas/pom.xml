@@ -6,17 +6,17 @@
     <parent>
         <groupId>com.foursoft.harness</groupId>
         <artifactId>harness-parent</artifactId>
-        <version>5.4.2-SNAPSHOT</version>
+        <version>5.5.1-SNAPSHOT</version>
     </parent>
     <groupId>com.foursoft.harness.vec.aas</groupId>
-    <artifactId>vec-aas</artifactId>
+    <artifactId>vec-aas-experimental</artifactId>
 
     <properties>
         <aas4j.version>1.0.4</aas4j.version>
     </properties>
 
 
-    <name>VEC to AAS Converter</name>
+    <name>VEC to AAS Converter (Experimental)</name>
 
     <inceptionYear>2025</inceptionYear>
 
