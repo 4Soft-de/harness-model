@@ -22,7 +22,7 @@
         <logback-classic.version>1.5.18</logback-classic.version>
         <junit.jupiter.version>5.12.2</junit.jupiter.version>
         <assertj-core.version>3.27.3</assertj-core.version>
-        <maven-api.version>3.9.9</maven-api.version>
+        <maven-api.version>3.9.10</maven-api.version>
         <java-snapshot-testing.version>4.0.8</java-snapshot-testing.version>
         <jackson.version>2.19.0</jackson.version>
         <apache-jena.version>5.4.0</apache-jena.version>
