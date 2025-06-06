@@ -123,7 +123,7 @@ class AasPlaygroundTest {
 
     private SubmodelElement handleProperty(final Statement s) {
         final Property predicate = s.getPredicate();
-        if (predicate.getNameSpace().equals(VEC.URI)) {
+        if (predicate.getNameSpace().equals(VEC.NS)) {
             if (predicate.getProperty(RDF.type).getObject().equals(OWL.DatatypeProperty)) {
                 return new DefaultProperty.Builder().idShort(predicate.getProperty(RDFS.label).getString()).description(
                         descriptionForVecType(predicate)).value(

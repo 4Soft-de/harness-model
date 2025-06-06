@@ -85,7 +85,7 @@ public class VecAasSerializer {
     public Submodel serialize() {
 
         return new DefaultSubmodel.Builder()
-                .semanticId(referenceFactory.referenceFor(VEC.URI))
+                .semanticId(referenceFactory.referenceFor(VEC.NS))
                 .id(targetNamespace)
                 .idShort("VEC")
                 .submodelElements(handleVecObject(root))
