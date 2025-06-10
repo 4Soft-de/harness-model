@@ -79,6 +79,7 @@
         <module>compatibility</module>
         <module>vec-rdf</module>
         <module>kbl2vec</module>
+        <module>vec-aas</module>
     </modules>
 
     <scm>

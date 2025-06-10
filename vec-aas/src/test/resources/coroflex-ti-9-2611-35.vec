@@ -1,0 +1,354 @@
+<?xml version="1.0" ?>
+<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_00000" xsi:schemaLocation="">
+  <VecVersion>2.1.0</VecVersion>
+  <GeneratingSystemName>VEC Samples</GeneratingSystemName>
+  <DateOfCreation>2025-03-26T00:00:00</DateOfCreation>
+  <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
+  <DocumentVersion id="DocumentVersion_00001">
+    <CompanyName>VDA</CompanyName>
+    <DocumentNumber>LV216-2</DocumentNumber>
+    <DocumentType>RequirementsDescription</DocumentType>
+    <DocumentVersion></DocumentVersion>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_00002">
+    <CompanyName>BMW Group</CompanyName>
+    <DocumentNumber>GS 95007-6-2</DocumentNumber>
+    <DocumentType>RequirementsDescription</DocumentType>
+    <DocumentVersion></DocumentVersion>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_00003">
+    <CompanyName>Mercedes</CompanyName>
+    <DocumentNumber>C51 / 12.14</DocumentNumber>
+    <DocumentType>RequirementsDescription</DocumentType>
+    <DocumentVersion></DocumentVersion>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_00004">
+    <CompanyName>Daimler Truck</CompanyName>
+    <DocumentNumber>A0025460501</DocumentNumber>
+    <DocumentType>RequirementsDescription</DocumentType>
+    <DocumentVersion></DocumentVersion>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_00005">
+    <CompanyName>Volkswagen</CompanyName>
+    <DocumentNumber>N 107 777</DocumentNumber>
+    <DocumentType>RequirementsDescription</DocumentType>
+    <DocumentVersion></DocumentVersion>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_00006">
+    <CompanyName>Coroflex</CompanyName>
+    <DocumentNumber>TI_9-2611_FHLR2GCB2G_35</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>1</DocumentVersion>
+    <ReferencedPart>PartVersion_00066</ReferencedPart>
+    <Specification xsi:type="vec:RequirementsConformanceSpecification" id="RequirementsConformanceSpecification_00007">
+      <Identification>RCS-9-2611 / 35mm²</Identification>
+      <DescribedPart>PartVersion_00066</DescribedPart>
+      <ConformanceStatement id="RequirementsConformanceStatement_00008">
+        <Satisfies>true</Satisfies>
+        <DocumentVersion>DocumentVersion_00001</DocumentVersion>
+      </ConformanceStatement>
+      <ConformanceStatement id="RequirementsConformanceStatement_00009">
+        <Satisfies>true</Satisfies>
+        <DocumentVersion>DocumentVersion_00002</DocumentVersion>
+      </ConformanceStatement>
+      <ConformanceStatement id="RequirementsConformanceStatement_00010">
+        <Satisfies>true</Satisfies>
+        <DocumentVersion>DocumentVersion_00003</DocumentVersion>
+      </ConformanceStatement>
+      <ConformanceStatement id="RequirementsConformanceStatement_00011">
+        <Satisfies>true</Satisfies>
+        <DocumentVersion>DocumentVersion_00004</DocumentVersion>
+      </ConformanceStatement>
+      <ConformanceStatement id="RequirementsConformanceStatement_00012">
+        <Satisfies>true</Satisfies>
+        <DocumentVersion>DocumentVersion_00005</DocumentVersion>
+      </ConformanceStatement>
+    </Specification>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_00013">
+      <Identification>GTPS-9-2611 / 35mm²</Identification>
+      <DescribedPart>PartVersion_00066</DescribedPart>
+      <MassInformation id="MassInformation_00014">
+        <DeterminationType>Measured</DeterminationType>
+        <Value id="NumericalValue_00015">
+          <UnitComponent>CompositeUnit_00073</UnitComponent>
+          <ValueComponent>485.0</ValueComponent>
+        </Value>
+        <ValueSource>Series</ValueSource>
+      </MassInformation>
+      <TemperatureInformation id="TemperatureInformation_00016">
+        <TemperatureRange id="ValueRange_00017">
+          <UnitComponent>SIUnit_00074</UnitComponent>
+          <Minimum>-40.0</Minimum>
+          <Maximum>180.0</Maximum>
+        </TemperatureRange>
+        <TemperatureType>OperatingTemperature</TemperatureType>
+      </TemperatureInformation>
+      <TemperatureInformation id="TemperatureInformation_00018">
+        <TemperatureRange id="ValueRange_00019">
+          <UnitComponent>SIUnit_00074</UnitComponent>
+          <Minimum>NaN</Minimum>
+          <Maximum>205.0</Maximum>
+        </TemperatureRange>
+        <TemperatureType>ShortTermAgingTemperature</TemperatureType>
+      </TemperatureInformation>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_00020">
+      <Identification>Core Conductor</Identification>
+      <CrossSectionArea id="NumericalValue_00022">
+        <UnitComponent>SIUnit_00075</UnitComponent>
+        <ValueComponent>35.0</ValueComponent>
+      </CrossSectionArea>
+      <Material id="Material_00023">
+        <Key>Cu-ETP1</Key>
+        <ReferenceSystem>DIN EN 13602</ReferenceSystem>
+      </Material>
+      <Resistance id="NumericalValue_00024">
+        <UnitComponent>CompositeUnit_00078</UnitComponent>
+        <ValueComponent>0.527</ValueComponent>
+      </Resistance>
+      <Type>Stranded</Type>
+      <NumberOfStrands id="NumericalValue_00025">
+        <UnitComponent>OtherUnit_00079</UnitComponent>
+        <ValueComponent>1070.0</ValueComponent>
+        <Tolerance id="Tolerance_00026">
+          <LowerBoundary>-54.0</LowerBoundary>
+          <UpperBoundary>54.0</UpperBoundary>
+        </Tolerance>
+      </NumberOfStrands>
+      <StrandDiameter id="NumericalValue_00027">
+        <UnitComponent>SIUnit_00076</UnitComponent>
+        <ValueComponent>0.21</ValueComponent>
+      </StrandDiameter>
+      <OutsideDiameter id="NumericalValue_00021">
+        <UnitComponent>SIUnit_00076</UnitComponent>
+        <ValueComponent>8.5</ValueComponent>
+      </OutsideDiameter>
+    </Specification>
+    <Specification xsi:type="vec:ShieldSpecification" id="ShieldSpecification_00028">
+      <Identification>Foiled Shielding Conductor</Identification>
+      <Description xsi:type="vec:LocalizedString" id="LocalizedString_00030">
+        <LanguageCode>De</LanguageCode>
+        <Value>ALU-kaschierte PET-Folie, Metallseite innen, Überlappung min. 20%</Value>
+      </Description>
+      <Description xsi:type="vec:LocalizedString" id="LocalizedString_00031">
+        <LanguageCode>En</LanguageCode>
+        <Value>ALU-PET foil, Metal-side in contact to screen, overlap min. 20%</Value>
+      </Description>
+      <Material id="Material_00029">
+        <Key>ALU-PET foil</Key>
+        <ReferenceSystem>Coroflex</ReferenceSystem>
+      </Material>
+      <Type>Foil</Type>
+    </Specification>
+    <Specification xsi:type="vec:ShieldSpecification" id="ShieldSpecification_00032">
+      <Identification>Screening Braid Conductor</Identification>
+      <Description xsi:type="vec:LocalizedString" id="LocalizedString_00036">
+        <LanguageCode>De</LanguageCode>
+        <Value>Cu.-verzinnt max. 0,21mm optische Bedeckung min. 85%</Value>
+      </Description>
+      <Description xsi:type="vec:LocalizedString" id="LocalizedString_00037">
+        <LanguageCode>En</LanguageCode>
+        <Value>Tinned copper max. 0.21mm optical covering min. 85%</Value>
+      </Description>
+      <Material id="Material_00033">
+        <Key>Cu</Key>
+        <ReferenceSystem>Coroflex</ReferenceSystem>
+      </Material>
+      <Resistance id="NumericalValue_00034">
+        <UnitComponent>CompositeUnit_00078</UnitComponent>
+        <ValueComponent>3.8</ValueComponent>
+      </Resistance>
+      <Type>Braided</Type>
+      <PlatingMaterial id="Material_00035">
+        <Key>Tin</Key>
+        <ReferenceSystem>Coroflex</ReferenceSystem>
+      </PlatingMaterial>
+      <OpticalCoverage>0.85</OpticalCoverage>
+    </Specification>
+    <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_00038">
+      <Identification>Outer Sheath Insulation</Identification>
+      <BaseColor id="Color_00039">
+        <Key>orange</Key>
+        <ReferenceSystem>Coroflex</ReferenceSystem>
+      </BaseColor>
+      <BaseColor id="Color_00040">
+        <Key>2003</Key>
+        <ReferenceSystem>RAL</ReferenceSystem>
+      </BaseColor>
+      <LabelIdentificationType>AlphaNumerical</LabelIdentificationType>
+      <LabelIdentificationValue>COROFLEX [nnn] 9-2611 FHLR2GCB2G 35 mm²/T180 ATTENTION HIGH VOLTAGE MAX 600 V AC / 1000 V DC [xx…xx]</LabelIdentificationValue>
+      <Material id="Material_00041">
+        <Key>mod. Silicon Rubber SiR</Key>
+        <ReferenceSystem>Coroflex</ReferenceSystem>
+      </Material>
+      <Thickness id="NumericalValue_00042">
+        <UnitComponent>SIUnit_00076</UnitComponent>
+        <ValueComponent>0.8</ValueComponent>
+      </Thickness>
+      <LabelingTechnology>Printed</LabelingTechnology>
+    </Specification>
+    <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_00043">
+      <Identification>Core Insulation</Identification>
+      <BaseColor id="Color_00044">
+        <Key>orange</Key>
+        <ReferenceSystem>Coroflex</ReferenceSystem>
+      </BaseColor>
+      <BaseColor id="Color_00045">
+        <Key>2003</Key>
+        <ReferenceSystem>RAL</ReferenceSystem>
+      </BaseColor>
+      <Material id="Material_00046">
+        <Key>mod. Silicon Rubber SiR</Key>
+        <ReferenceSystem>Coroflex</ReferenceSystem>
+      </Material>
+      <Thickness id="NumericalValue_00047">
+        <UnitComponent>SIUnit_00076</UnitComponent>
+        <ValueComponent>0.64</ValueComponent>
+      </Thickness>
+    </Specification>
+    <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_00048">
+      <Identification>Core</Identification>
+      <OutsideDiameter id="NumericalValue_00049">
+        <UnitComponent>SIUnit_00076</UnitComponent>
+        <ValueComponent>10.5</ValueComponent>
+        <Tolerance id="Tolerance_00050">
+          <LowerBoundary>-0.7</LowerBoundary>
+          <UpperBoundary>0.0</UpperBoundary>
+        </Tolerance>
+      </OutsideDiameter>
+      <ConductorSpecification>CoreSpecification_00020</ConductorSpecification>
+      <InsulationSpecification>InsulationSpecification_00043</InsulationSpecification>
+    </Specification>
+    <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_00051">
+      <Identification>Foiled Shielding</Identification>
+      <ConductorSpecification>ShieldSpecification_00028</ConductorSpecification>
+    </Specification>
+    <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_00052">
+      <Identification>Screening Braid</Identification>
+      <ConductorSpecification>ShieldSpecification_00032</ConductorSpecification>
+    </Specification>
+    <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_00053">
+<!--Currently missing in VEC, could be represented with unit with a NumericalValueProperty-->
+      <CustomProperty xsi:type="vec:DoubleValueProperty" id="DoubleValueProperty_00059">
+        <PropertyType>Capacitance</PropertyType>
+        <Value>600.0</Value>
+      </CustomProperty>
+<!--Currently missing in VEC, could be represented with unit with a NumericalValueProperty-->
+      <CustomProperty xsi:type="vec:DoubleValueProperty" id="DoubleValueProperty_00060">
+        <PropertyType>Inductance</PropertyType>
+        <Value>100.0</Value>
+      </CustomProperty>
+      <Identification>Cable</Identification>
+      <MinBendRadiusDynamic id="NumericalValue_00054">
+        <UnitComponent>SIUnit_00076</UnitComponent>
+        <ValueComponent>86.4</ValueComponent>
+      </MinBendRadiusDynamic>
+      <MinBendRadiusStatic id="NumericalValue_00055">
+        <UnitComponent>SIUnit_00076</UnitComponent>
+        <ValueComponent>43.2</ValueComponent>
+      </MinBendRadiusStatic>
+      <OutsideDiameter id="NumericalValue_00056">
+        <UnitComponent>SIUnit_00076</UnitComponent>
+        <ValueComponent>14.4</ValueComponent>
+        <Tolerance id="Tolerance_00057">
+          <LowerBoundary>-0.6</LowerBoundary>
+          <UpperBoundary>0.0</UpperBoundary>
+        </Tolerance>
+      </OutsideDiameter>
+      <Impedance id="NumericalValue_00058">
+        <UnitComponent>SIUnit_00080</UnitComponent>
+        <ValueComponent>10.0</ValueComponent>
+      </Impedance>
+      <InsulationSpecification>InsulationSpecification_00038</InsulationSpecification>
+    </Specification>
+    <Specification xsi:type="vec:WireSpecification" id="WireSpecification_00061">
+      <Identification>WS-9-2611 / 35mm²</Identification>
+      <DescribedPart>PartVersion_00066</DescribedPart>
+      <WireElementSpecification>WireElementSpecification_00053</WireElementSpecification>
+      <WireElement id="WireElement_00062">
+        <Identification>Cable</Identification>
+        <WireElementSpecification>WireElementSpecification_00053</WireElementSpecification>
+        <SubWireElement id="WireElement_00063">
+          <Identification>Screening Braid</Identification>
+          <WireElementSpecification>WireElementSpecification_00052</WireElementSpecification>
+          <SubWireElement id="WireElement_00064">
+            <Identification>Foiled Shielding</Identification>
+            <WireElementSpecification>WireElementSpecification_00051</WireElementSpecification>
+            <SubWireElement id="WireElement_00065">
+              <Identification>Core</Identification>
+              <WireElementSpecification>WireElementSpecification_00048</WireElementSpecification>
+            </SubWireElement>
+          </SubWireElement>
+        </SubWireElement>
+      </WireElement>
+    </Specification>
+  </DocumentVersion>
+  <PartVersion id="PartVersion_00066">
+    <Abbreviation id="LocalizedString_00067">
+      <LanguageCode>En</LanguageCode>
+      <Value>FHLR2GCB2G 35 mm² / 0,21 T180 0,6/1,0 kV</Value>
+    </Abbreviation>
+    <Abbreviation id="LocalizedString_00068">
+      <LanguageCode>De</LanguageCode>
+      <Value>FHLR2GCB2G 35 mm² / 0,21 T180 0,6/1,0 kV</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedTypedString" id="LocalizedTypedString_00069">
+      <LanguageCode>En</LanguageCode>
+      <Value>Shielded Cable for automotive electric powertrain</Value>
+      <Type>ProductFamilyTitle</Type>
+    </Description>
+    <Description xsi:type="vec:LocalizedTypedString" id="LocalizedTypedString_00070">
+      <LanguageCode>De</LanguageCode>
+      <Value>Automotive Leitung geschirmt für elektrische Fahrzeugantriebe</Value>
+      <Type>ProductFamilyTitle</Type>
+    </Description>
+    <CompanyName>Coroflex</CompanyName>
+    <PartNumber>9-2611 / 35mm²</PartNumber>
+    <PartVersion>1</PartVersion>
+    <PrimaryPartType>Wire</PrimaryPartType>
+  </PartVersion>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00071">
+    <Exponent>-1</Exponent>
+    <SiUnitName>Metre</SiUnitName>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00072">
+    <UnEceCode>GRM</UnEceCode>
+    <SiUnitName>Gram</SiUnitName>
+  </Unit>
+  <Unit xsi:type="vec:CompositeUnit" id="CompositeUnit_00073">
+    <UnEceCode>GF</UnEceCode>
+    <Factors>SIUnit_00072 SIUnit_00071</Factors>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00074">
+    <UnEceCode>CEL</UnEceCode>
+    <SiUnitName>DegreeCelsius</SiUnitName>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00075">
+    <Exponent>2</Exponent>
+    <UnEceCode>MMK</UnEceCode>
+    <SiUnitName>Metre</SiUnitName>
+    <SiPrefix>Milli</SiPrefix>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00076">
+    <UnEceCode>MMT</UnEceCode>
+    <SiUnitName>Metre</SiUnitName>
+    <SiPrefix>Milli</SiPrefix>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00077">
+    <UnEceCode>E45</UnEceCode>
+    <SiUnitName>Ohm</SiUnitName>
+    <SiPrefix>Milli</SiPrefix>
+  </Unit>
+  <Unit xsi:type="vec:CompositeUnit" id="CompositeUnit_00078">
+    <UnEceCode>F54</UnEceCode>
+    <Factors>SIUnit_00077 SIUnit_00071</Factors>
+  </Unit>
+  <Unit xsi:type="vec:OtherUnit" id="OtherUnit_00079">
+    <UnEceCode>H87</UnEceCode>
+    <OtherUnitName>Piece</OtherUnitName>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00080">
+    <UnEceCode>OHM</UnEceCode>
+    <SiUnitName>Ohm</SiUnitName>
+  </Unit>
+</vec:VecContent>

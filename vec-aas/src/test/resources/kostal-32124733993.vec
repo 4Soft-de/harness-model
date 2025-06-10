@@ -1,0 +1,323 @@
+<?xml version="1.0" ?>
+<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_00000" xsi:schemaLocation="">
+  <VecVersion>2.1.0</VecVersion>
+  <GeneratingSystemName>VEC Samples</GeneratingSystemName>
+  <DateOfCreation>2025-03-27T00:00:00</DateOfCreation>
+  <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
+  <DocumentVersion id="DocumentVersion_00001">
+    <CompanyName>Kostal</CompanyName>
+    <DocumentNumber>DOC00079128-04</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>1</DocumentVersion>
+    <ReferencedPart>PartVersion_00070</ReferencedPart>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_00002">
+      <Identification>CORE-FL-A</Identification>
+      <WireType id="WireType_00003">
+        <Type>FL-A</Type>
+        <ReferenceSystem>DIN 76722</ReferenceSystem>
+      </WireType>
+      <CrossSectionArea id="NumericalValue_00004">
+        <UnitComponent>SIUnit_00072</UnitComponent>
+        <ValueComponent>0.14</ValueComponent>
+      </CrossSectionArea>
+      <Structure>Symmetric</Structure>
+    </Specification>
+    <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_00005">
+      <Identification>INS-FLR</Identification>
+      <WireType id="WireType_00006">
+        <Type>FLR</Type>
+        <ReferenceSystem>DIN 76722</ReferenceSystem>
+      </WireType>
+      <Material id="Material_00007">
+        <Key>PVC</Key>
+        <ReferenceSystem>Kostal</ReferenceSystem>
+      </Material>
+      <Thickness id="NumericalValue_00008">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>0.2</ValueComponent>
+      </Thickness>
+    </Specification>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_00009">
+      <Identification>GTPS-32124733993</Identification>
+      <DescribedPart>PartVersion_00070</DescribedPart>
+      <MaterialInformation id="Material_00010">
+        <Key>CuSn</Key>
+        <ReferenceSystem>Kostal</ReferenceSystem>
+      </MaterialInformation>
+      <TemperatureInformation id="TemperatureInformation_00011">
+        <TemperatureRange id="ValueRange_00012">
+          <UnitComponent>SIUnit_00074</UnitComponent>
+          <Minimum>NaN</Minimum>
+          <Maximum>150.0</Maximum>
+        </TemperatureRange>
+        <TemperatureType>OperatingTemperature</TemperatureType>
+      </TemperatureInformation>
+    </Specification>
+    <Specification xsi:type="vec:WireReceptionSpecification" id="WireReceptionSpecification_00013">
+      <Identification>WireRec-32124733993</Identification>
+      <CoreCrossSectionArea id="ValueRange_00014">
+        <UnitComponent>SIUnit_00072</UnitComponent>
+        <Minimum>0.12</Minimum>
+        <Maximum>0.14</Maximum>
+      </CoreCrossSectionArea>
+      <InsulationDisplacementLength id="NumericalValue_00015">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>3.1</ValueComponent>
+        <Tolerance id="Tolerance_00016">
+          <LowerBoundary>-0.5</LowerBoundary>
+          <UpperBoundary>0.5</UpperBoundary>
+        </Tolerance>
+      </InsulationDisplacementLength>
+      <WireReceptionType>Crimp</WireReceptionType>
+      <WireElementOutsideDiameter id="ValueRange_00017">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <Minimum>0.85</Minimum>
+        <Maximum>1.2</Maximum>
+      </WireElementOutsideDiameter>
+      <PlatingMaterial id="Material_00018">
+        <Key>frSn0,8-2</Key>
+        <ReferenceSystem>Kostal</ReferenceSystem>
+      </PlatingMaterial>
+      <Sealable>false</Sealable>
+      <ConductorCrimpLength id="NumericalValue_00019">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>2.6</ValueComponent>
+        <Tolerance id="Tolerance_00020">
+          <LowerBoundary>-0.2</LowerBoundary>
+          <UpperBoundary>0.2</UpperBoundary>
+        </Tolerance>
+      </ConductorCrimpLength>
+      <ConductorCrimpLegHeight id="NumericalValue_00021">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>1.55</ValueComponent>
+        <Tolerance id="Tolerance_00022">
+          <LowerBoundary>-0.2</LowerBoundary>
+          <UpperBoundary>0.2</UpperBoundary>
+        </Tolerance>
+      </ConductorCrimpLegHeight>
+      <CrimpConnectionLength id="NumericalValue_00023">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>5.8</ValueComponent>
+        <Tolerance id="Tolerance_00024">
+          <LowerBoundary>-0.2</LowerBoundary>
+          <UpperBoundary>0.2</UpperBoundary>
+        </Tolerance>
+      </CrimpConnectionLength>
+      <InsulationCrimpLength id="NumericalValue_00025">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>2.0</ValueComponent>
+        <Tolerance id="Tolerance_00026">
+          <LowerBoundary>-0.2</LowerBoundary>
+          <UpperBoundary>0.2</UpperBoundary>
+        </Tolerance>
+      </InsulationCrimpLength>
+      <InsulationCrimpLegHeight id="NumericalValue_00027">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>1.85</ValueComponent>
+        <Tolerance id="Tolerance_00028">
+          <LowerBoundary>-0.2</LowerBoundary>
+          <UpperBoundary>0.2</UpperBoundary>
+        </Tolerance>
+      </InsulationCrimpLegHeight>
+      <CoreCrimpDetails id="CoreCrimpDetail_00029">
+        <Size id="Size_00036">
+          <Width id="NumericalValue_00037">
+            <UnitComponent>SIUnit_00073</UnitComponent>
+            <ValueComponent>1.06</ValueComponent>
+            <Tolerance id="Tolerance_00038">
+              <LowerBoundary>-0.03</LowerBoundary>
+              <UpperBoundary>0.03</UpperBoundary>
+            </Tolerance>
+          </Width>
+          <Height id="NumericalValue_00039">
+            <UnitComponent>SIUnit_00073</UnitComponent>
+            <ValueComponent>0.74</ValueComponent>
+            <Tolerance id="Tolerance_00040">
+              <LowerBoundary>-0.03</LowerBoundary>
+              <UpperBoundary>0.03</UpperBoundary>
+            </Tolerance>
+          </Height>
+        </Size>
+        <AppliesTo>CoreSpecification_00002</AppliesTo>
+        <InsulationCrimpDetails id="InsulationCrimpDetail_00030">
+          <Size id="Size_00031">
+            <Width id="NumericalValue_00032">
+              <UnitComponent>SIUnit_00073</UnitComponent>
+              <ValueComponent>1.61</ValueComponent>
+              <Tolerance id="Tolerance_00033">
+                <LowerBoundary>-0.1</LowerBoundary>
+                <UpperBoundary>0.1</UpperBoundary>
+              </Tolerance>
+            </Width>
+            <Height id="NumericalValue_00034">
+              <UnitComponent>SIUnit_00073</UnitComponent>
+              <ValueComponent>1.3</ValueComponent>
+              <Tolerance id="Tolerance_00035">
+                <LowerBoundary>-0.1</LowerBoundary>
+                <UpperBoundary>0.1</UpperBoundary>
+              </Tolerance>
+            </Height>
+          </Size>
+          <AppliesTo>InsulationSpecification_00005</AppliesTo>
+        </InsulationCrimpDetails>
+      </CoreCrimpDetails>
+    </Specification>
+    <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_00041">
+      <Identification>TermRec-32124733993</Identification>
+      <PlatingMaterial id="Material_00042">
+        <Key>Ag3</Key>
+        <ReferenceSystem>Kostal</ReferenceSystem>
+      </PlatingMaterial>
+      <PullOutForce id="NumericalValue_00043">
+        <UnitComponent>SIUnit_00077</UnitComponent>
+        <ValueComponent>60.0</ValueComponent>
+      </PullOutForce>
+      <ContactRangeLength id="NumericalValue_00044">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>7.3</ValueComponent>
+        <Tolerance id="Tolerance_00045">
+          <LowerBoundary>-0.05</LowerBoundary>
+          <UpperBoundary>0.1</UpperBoundary>
+        </Tolerance>
+      </ContactRangeLength>
+      <TerminalType id="TerminalType_00046">
+        <Name>MLK</Name>
+        <NominalSize>1.2x0.6</NominalSize>
+      </TerminalType>
+    </Specification>
+    <Specification xsi:type="vec:PluggableTerminalSpecification" id="PluggableTerminalSpecification_00047">
+      <Identification>PTS-32124733993</Identification>
+      <DescribedPart>PartVersion_00070</DescribedPart>
+      <OverallLength id="NumericalValue_00048">
+        <UnitComponent>SIUnit_00073</UnitComponent>
+        <ValueComponent>15.0</ValueComponent>
+        <Tolerance id="Tolerance_00049">
+          <LowerBoundary>0.3</LowerBoundary>
+          <UpperBoundary>0.3</UpperBoundary>
+        </Tolerance>
+      </OverallLength>
+<!-- Current information is currently not temperature dependent (KBLFRM-1264): 20.0-->
+      <CurrentInformation id="TerminalCurrentInformation_00050">
+        <CurrentRange id="ValueRange_00051">
+          <UnitComponent>SIUnit_00075</UnitComponent>
+          <Minimum>0.0</Minimum>
+          <Maximum>23.0</Maximum>
+        </CurrentRange>
+        <NominalVoltage id="NumericalValue_00052">
+          <UnitComponent>SIUnit_00076</UnitComponent>
+          <ValueComponent>12.0</ValueComponent>
+        </NominalVoltage>
+        <CoreCrossSectionArea id="NumericalValue_00053">
+          <UnitComponent>SIUnit_00072</UnitComponent>
+          <ValueComponent>1.5</ValueComponent>
+        </CoreCrossSectionArea>
+      </CurrentInformation>
+<!-- Current information is currently not temperature dependent (KBLFRM-1264): 80.0-->
+      <CurrentInformation id="TerminalCurrentInformation_00054">
+        <CurrentRange id="ValueRange_00055">
+          <UnitComponent>SIUnit_00075</UnitComponent>
+          <Minimum>0.0</Minimum>
+          <Maximum>17.0</Maximum>
+        </CurrentRange>
+        <NominalVoltage id="NumericalValue_00056">
+          <UnitComponent>SIUnit_00076</UnitComponent>
+          <ValueComponent>12.0</ValueComponent>
+        </NominalVoltage>
+        <CoreCrossSectionArea id="NumericalValue_00057">
+          <UnitComponent>SIUnit_00072</UnitComponent>
+          <ValueComponent>1.5</ValueComponent>
+        </CoreCrossSectionArea>
+      </CurrentInformation>
+      <InternalTerminalConnection id="InternalTerminalConnection_00058">
+        <Identification>IntCon-32124733993</Identification>
+        <TerminalReception>TerminalReception_00059</TerminalReception>
+        <WireReception>WireReception_00060</WireReception>
+      </InternalTerminalConnection>
+      <TerminalReception id="TerminalReception_00059">
+        <Identification>TR1</Identification>
+        <TerminalReceptionSpecification>TerminalReceptionSpecification_00041</TerminalReceptionSpecification>
+      </TerminalReception>
+      <WireReception id="WireReception_00060">
+        <Identification>WR1</Identification>
+        <WireReceptionSpecification>WireReceptionSpecification_00013</WireReceptionSpecification>
+      </WireReception>
+      <TerminalType>Standard</TerminalType>
+    </Specification>
+    <Specification xsi:type="vec:TerminalPairingSpecification" id="TerminalPairingSpecification_00061">
+      <TerminalPairing id="TerminalPairing_00062">
+        <CustomProperty xsi:type="vec:IntegerValueProperty" id="IntegerValueProperty_00067">
+          <PropertyType>numberOfMatingCycles</PropertyType>
+          <Value>20</Value>
+        </CustomProperty>
+        <MatingForce id="NumericalValue_00063">
+          <UnitComponent>SIUnit_00077</UnitComponent>
+          <ValueComponent>3.4</ValueComponent>
+          <Tolerance id="Tolerance_00064">
+            <LowerBoundary>1.0</LowerBoundary>
+            <UpperBoundary>1.0</UpperBoundary>
+          </Tolerance>
+        </MatingForce>
+        <UnmatingForce id="NumericalValue_00065">
+          <UnitComponent>SIUnit_00077</UnitComponent>
+          <ValueComponent>3.4</ValueComponent>
+          <Tolerance id="Tolerance_00066">
+            <LowerBoundary>1.0</LowerBoundary>
+            <UpperBoundary>1.0</UpperBoundary>
+          </Tolerance>
+        </UnmatingForce>
+        <FirstTerminal>PartVersion_00070</FirstTerminal>
+        <SecondTerminal>PartVersion_00069</SecondTerminal>
+      </TerminalPairing>
+    </Specification>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_00068">
+    <CompanyName>Kostal</CompanyName>
+    <DocumentNumber>DOC00061540</DocumentNumber>
+    <DocumentType>ProcessingInstruction</DocumentType>
+    <DocumentVersion>22</DocumentVersion>
+    <ReferencedPart>PartVersion_00070</ReferencedPart>
+  </DocumentVersion>
+  <PartVersion id="PartVersion_00069">
+    <CompanyName>Kostal</CompanyName>
+    <PartNumber>10322345</PartNumber>
+    <PartVersion>1</PartVersion>
+    <PrimaryPartType>PluggableTerminal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_00070">
+    <Abbreviation id="LocalizedString_00071">
+      <LanguageCode>De</LanguageCode>
+      <Value>MLK 1,2 Sm - Standard</Value>
+    </Abbreviation>
+    <CompanyName>Kostal</CompanyName>
+    <PartNumber>32124733993</PartNumber>
+    <PartVersion>1</PartVersion>
+    <PrimaryPartType>PluggableTerminal</PrimaryPartType>
+  </PartVersion>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00072">
+    <Exponent>2</Exponent>
+    <UnEceCode>MMK</UnEceCode>
+    <SiUnitName>Metre</SiUnitName>
+    <SiPrefix>Milli</SiPrefix>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00073">
+    <UnEceCode>MMT</UnEceCode>
+    <SiUnitName>Metre</SiUnitName>
+    <SiPrefix>Milli</SiPrefix>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00074">
+    <UnEceCode>CEL</UnEceCode>
+    <SiUnitName>DegreeCelsius</SiUnitName>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00075">
+    <UnEceCode>AMP</UnEceCode>
+    <SiUnitName>Ampere</SiUnitName>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00076">
+    <UnEceCode>VLT</UnEceCode>
+    <SiUnitName>Volt</SiUnitName>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_00077">
+    <UnEceCode>NEW</UnEceCode>
+    <SiUnitName>Newton</SiUnitName>
+  </Unit>
+</vec:VecContent>
