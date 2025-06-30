@@ -42,6 +42,22 @@ import java.time.*;
  */
 public final class DateUtils {
 
+    /**
+     * {@link Clock} which either uses UTC time
+     * or a fixed UTC time, controlled by defining {@code overwrite.clock}.
+     */
+    public static final Clock CLOCK;
+
+    static {
+        final String overwriteClock = System.getProperty("overwrite.clock", null);
+        if (overwriteClock != null) {
+            final Instant instant = Instant.parse(overwriteClock); // e.g. "2025-05-01T00:00:00Z"
+            CLOCK = Clock.fixed(instant, ZoneOffset.UTC);
+        } else {
+            CLOCK = Clock.systemUTC();
+        }
+    }
+
     private DateUtils() {
         // hide default constructor
     }
@@ -53,40 +69,18 @@ public final class DateUtils {
      * @throws VecException In case the conversion fails.
      */
     public static XMLGregorianCalendar currentDate() {
-        final Instant date = Instant.now();
-        return toXMLGregorianCalendar(date.toString());
+        return toXMLGregorianCalendar(Instant.now(CLOCK));
     }
 
     /**
-     * Converts the passed {@link LocalDate} to an {@link XMLGregorianCalendar}.
-     * <b>To work with the VEC, midnight will be set as the time.</b>
+     * Converts the given {@link Instant} to an {@link XMLGregorianCalendar}.
      *
-     * @param date The LocalDate which should be converted.
+     * @param instant Instant to set.
      * @return A never-null {@link XMLGregorianCalendar} for the given date.
      * @throws VecException In case the conversion fails.
      */
-    public static XMLGregorianCalendar toXMLGregorianCalendar(final LocalDate date) {
-        return toXMLGregorianCalendar(LocalDateTime.of(date, LocalTime.MIDNIGHT));
-    }
-
-    /**
-     * Converts the passed {@link LocalDateTime} to an {@link XMLGregorianCalendar}.
-     *
-     * @param dateTime The LocalDateTime which should be converted.
-     * @return A never-null {@link XMLGregorianCalendar} for the given date.
-     * @throws VecException In case the conversion fails.
-     */
-    public static XMLGregorianCalendar toXMLGregorianCalendar(final LocalDateTime dateTime) {
-        String validDateTimeString = dateTime.toString();
-
-        // If seconds and nanos are both 0, the String cannot be parsed because the seconds are missing in it.
-        final int nanos = dateTime.getNano();
-        final int seconds = dateTime.getSecond();
-        if (seconds == 0 && nanos == 0) {
-            validDateTimeString += ":00";
-        }
-
-        return toXMLGregorianCalendar(validDateTimeString);
+    public static XMLGregorianCalendar toXMLGregorianCalendar(final Instant instant) {
+        return toXMLGregorianCalendar(instant.toString());
     }
 
     /**

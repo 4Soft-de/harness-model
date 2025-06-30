@@ -30,42 +30,33 @@ import org.junit.jupiter.api.Test;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 
 class DateUtilsTest {
 
+    static {
+        // Ensure this is set before DateUtils is initialized in case the Clock Test is not the first one.
+        System.setProperty("overwrite.clock", "2025-05-01T00:00:00Z");
+    }
+
+    @Test
+    void testClock() {
+        final LocalDate fixedNow = LocalDate.now(DateUtils.CLOCK);
+        assertThat(fixedNow)
+                .hasDayOfMonth(1)
+                .hasMonthValue(5)
+                .hasYear(2025);
+    }
+
     @Test
     void testCurrentDate() {
         final XMLGregorianCalendar calenderOfCurrentDate = DateUtils.currentDate();
 
-        final LocalDate now = LocalDate.now();
+        final LocalDate now = LocalDate.now(DateUtils.CLOCK);
         final LocalDate localDateFromCalendar = DateUtils.toLocalDate(calenderOfCurrentDate);
 
         assertThat(now).isAfterOrEqualTo(localDateFromCalendar);
-    }
-
-    @Test
-    void testToXMLGregorianCalendarWithDate() {
-        final LocalDate now = LocalDate.now();
-        final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(now);
-
-        assertThat(calenderOfDate.toString()).startsWith(now.toString());
-
-        final LocalDate localDateFromCalendar = DateUtils.toLocalDate(calenderOfDate);
-        assertThat(now).isEqualTo(localDateFromCalendar);
-    }
-
-    @Test
-    void testToXMLGregorianCalendarWithDateTime() {
-        final LocalDateTime now = LocalDateTime.now();
-        final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(now);
-
-        assertThat(now).hasToString(calenderOfDate.toString());
-
-        final LocalDateTime localDateTimeFromCalendar = DateUtils.toLocalDateTime(calenderOfDate);
-        assertThat(now).isEqualTo(localDateTimeFromCalendar);
     }
 
     @Test
