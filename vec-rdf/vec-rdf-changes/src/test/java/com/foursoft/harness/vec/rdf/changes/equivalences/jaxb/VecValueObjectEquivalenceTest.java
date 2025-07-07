@@ -157,53 +157,48 @@ class VecValueObjectEquivalenceTest {
     @Nested
     class EmbeddedList {
 
-        private VecTolerance a, b, c;
-        private final VecSimpleValueProperty w = new VecSimpleValueProperty();
-        private final VecSimpleValueProperty x = new VecSimpleValueProperty();
-        private final VecSimpleValueProperty y = new VecSimpleValueProperty();
-        private final VecSimpleValueProperty z = new VecSimpleValueProperty();
-        private final VecSimpleValueProperty v = new VecSimpleValueProperty();
+        private VecMaterialComposition a, b, c;
+        private final VecMassInformation w = new VecMassInformation();
+        private final VecMassInformation x = new VecMassInformation();
+        private final VecMassInformation y = new VecMassInformation();
+        private final VecMassInformation z = new VecMassInformation();
+        private final VecMassInformation v = new VecMassInformation();
 
         @BeforeEach
         void setup() {
 
             x.setXmlId("x");
-            x.setPropertyType("x");
-            x.setValue("a");
+            x.setDeterminationType(VecValueDetermination.CALCULATED);
             y.setXmlId("y");
-            y.setPropertyType("y");
-            y.setValue("b");
+            y.setDeterminationType(VecValueDetermination.ESTIMATED);
             z.setXmlId("z");
-            z.setPropertyType("z");
-            z.setValue("c");
+            z.setDeterminationType(VecValueDetermination.MEASURED);
 
             v.setXmlId("v");
-            v.setPropertyType("x");
-            v.setValue("a");
+            v.setDeterminationType(VecValueDetermination.CALCULATED);
             w.setXmlId("w");
-            w.setPropertyType("y");
-            w.setValue("b");
+            w.setDeterminationType(VecValueDetermination.ESTIMATED);
 
-            a = new VecTolerance();
+            a = new VecMaterialComposition();
             a.setXmlId("a");
-            b = new VecTolerance();
+            b = new VecMaterialComposition();
             b.setXmlId("b");
-            c = new VecTolerance();
+            c = new VecMaterialComposition();
             c.setXmlId("c");
 
-            a.getCustomProperties()
+            a.getMassInformations()
                     .add(x);
-            a.getCustomProperties()
+            a.getMassInformations()
                     .add(y);
 
-            b.getCustomProperties()
+            b.getMassInformations()
                     .add(x);
-            b.getCustomProperties()
+            b.getMassInformations()
                     .add(z);
 
-            c.getCustomProperties()
+            c.getMassInformations()
                     .add(w);
-            c.getCustomProperties()
+            c.getMassInformations()
                     .add(v);
 
         }

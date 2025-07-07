@@ -323,6 +323,14 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
+    @Override public O visitVecCoatingRole(final VecCoatingRole aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override public O visitVecCoatingSpecification(final VecCoatingSpecification aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
     @Override
     public O visitVecCoding(final VecCoding aBean) {
         return apply(aBean);
@@ -896,6 +904,15 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
+    @Override public O visitVecModularSlotConfiguration(final VecModularSlotConfiguration aBean)
+            throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override public O visitVecModularSlotLayout(final VecModularSlotLayout aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
     @Override
     public O visitVecModularSlotReference(final VecModularSlotReference aBean) {
         return apply(aBean);
@@ -1238,6 +1255,11 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
+    @Override public O visitVecReferenceSurfaceDefinition(final VecReferenceSurfaceDefinition aBean)
+            throws RuntimeException {
+        return apply(aBean);
+    }
+
     @Override public O visitVecRelayRole(final VecRelayRole aBean) throws RuntimeException {
         return apply(aBean);
     }
@@ -1258,6 +1280,14 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override public O visitVecResourceVersion(final VecResourceVersion aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override public O visitVecReusage(final VecReusage aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override public O visitVecReusageSpecification(final VecReusageSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1482,6 +1512,15 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
 
     @Override
     public O visitVecTerminalPairingSpecification(final VecTerminalPairingSpecification aBean) {
+        return apply(aBean);
+    }
+
+    @Override public O visitVecTerminalProtectionRole(final VecTerminalProtectionRole aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override public O visitVecTerminalProtectionSpecification(final VecTerminalProtectionSpecification aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
