@@ -23,8 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.files;
+package com.foursoft.harness.vec.files.guidelines;
 
+import com.foursoft.harness.vec.files.TestUtils;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
@@ -32,7 +33,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-class NewModellingApproachEeComponentTest {
+class EeComponentInternalConnectivityTest {
 
     @Test
     void create_ee_component_with_schematic() throws IOException {
@@ -82,7 +83,10 @@ class NewModellingApproachEeComponentTest {
                 .addHousingComponent("A", hc -> hc
                     .addPinComponents("1","2","3","4","5"))
                 .addHousingComponent("F2", hc -> hc
-                    .addPinComponents("1","2")))
+                    .addPinComponents("1","2"))
+                    .withComponentNode("EE-COMP")
+            )
+
             .addConductorSpecification("BUSBAR", spec -> spec.withCSA(5.0))
             .addWireSpecificationForPartUsage("BUSBAR", ws -> ws
                     .withWireElement("BUSBAR", we -> we
@@ -108,7 +112,8 @@ class NewModellingApproachEeComponentTest {
                                 .wireElementRef("BUSBAR", ref -> ref.withConnection("R1-Switch-B"))))
                 .addPartUsage("F1", pu -> {})
                 .addPartUsage("R1", pu -> {})
-            ));
+            ))
+        ;
 
 
 

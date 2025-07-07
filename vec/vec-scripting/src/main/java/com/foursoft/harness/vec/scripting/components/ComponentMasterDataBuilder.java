@@ -27,7 +27,6 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
-import com.foursoft.harness.vec.scripting.DefaultValues;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
@@ -227,7 +226,8 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     public ComponentMasterDataBuilder addEEComponentSpecification(
             final Customizer<EEComponentSpecificationBuilder> customizer) {
         final EEComponentSpecificationBuilder builder = new EEComponentSpecificationBuilder(
-                this.partNumber, this::addSpecification);
+                this.partNumber, this::addSpecification, nodeId -> SchematicQueries.findNode(
+                interalSchematic, nodeId));
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
     }
 

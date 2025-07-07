@@ -28,19 +28,22 @@ package com.foursoft.harness.vec.scripting.eecomponents;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
-import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
-import com.foursoft.harness.vec.v2x.VecPluggableTerminalSpecification;
+import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
+import com.foursoft.harness.vec.v2x.*;
 
 public class EEComponentSpecificationBuilder
         extends PartOrUsageRelatedSpecificationBuilder<VecEEComponentSpecification> {
 
     private final VecEEComponentSpecification eeComponentSpecification;
     private final SpecificationRegistry specificationRegistry;
+    private final ComponentNodeLookup componentNodeLookup;
     private final VecPluggableTerminalSpecification pin;
 
-    public EEComponentSpecificationBuilder(final String partNumber, SpecificationRegistry specificationRegistry) {
+    public EEComponentSpecificationBuilder(final String partNumber, final SpecificationRegistry specificationRegistry,
+                                           final ComponentNodeLookup componentNodeLookup) {
         eeComponentSpecification = initializeSpecification(VecEEComponentSpecification.class, partNumber);
         this.specificationRegistry = specificationRegistry;
+        this.componentNodeLookup = componentNodeLookup;
 
         pin = new VecPluggableTerminalSpecification();
         pin.setIdentification("PTC-EE-COMP-PIN");
@@ -49,13 +52,40 @@ public class EEComponentSpecificationBuilder
         specificationRegistry.register(pin);
     }
 
-    public EEComponentSpecificationBuilder addHousingComponent(String identification,
-                                                               Customizer<HousingComponentBuilder> customizer) {
-        HousingComponentBuilder builder = new HousingComponentBuilder(identification, pin, specificationRegistry);
+    public EEComponentSpecificationBuilder addHousingComponent(final String identification,
+                                                               final Customizer<HousingComponentBuilder> customizer) {
+        final HousingComponentBuilder builder = new HousingComponentBuilder(identification, pin, specificationRegistry);
 
         customizer.customize(builder);
 
         eeComponentSpecification.getHousingComponents().add(builder.build());
+
+        return this;
+    }
+
+    public EEComponentSpecificationBuilder withComponentNode(final String componentNode) {
+        final VecComponentNode node = componentNodeLookup.find(componentNode);
+        eeComponentSpecification.setComponentNode(node);
+
+        for (final VecHousingComponent housing : eeComponentSpecification.getHousingComponents()) {
+            final VecComponentConnector connector = node.getComponentConnectors()
+                    .stream()
+                    .filter(c -> housing.getIdentification().equals(c.getIdentification()))
+                    .findFirst()
+                    .orElseThrow();
+
+            housing.setComponentConnector(connector);
+
+            for (final VecPinComponent pin : housing.getPinComponents()) {
+                final VecComponentPort port = connector.getComponentPorts()
+                        .stream()
+                        .filter(p -> pin.getIdentification().equals(p.getIdentification()))
+                        .findFirst()
+                        .orElseThrow();
+
+                pin.setComponentPort(port);
+            }
+        }
 
         return this;
     }
