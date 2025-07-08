@@ -26,6 +26,8 @@
 package com.foursoft.harness.vec.common.util;
 
 import com.foursoft.harness.vec.common.exception.VecException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -48,11 +50,14 @@ public final class DateUtils {
      */
     public static final Clock CLOCK;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DateUtils.class);
+
     static {
         final String overwriteClock = System.getProperty("overwrite.clock", null);
         if (overwriteClock != null) {
             final Instant instant = Instant.parse(overwriteClock); // e.g. "2025-05-01T00:00:00Z"
             CLOCK = Clock.fixed(instant, ZoneOffset.UTC);
+            LOGGER.warn("The Clock used for Instant#now was overridden with the value '{}'.", overwriteClock);
         } else {
             CLOCK = Clock.systemUTC();
         }
