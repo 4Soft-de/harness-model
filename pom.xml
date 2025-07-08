@@ -45,7 +45,7 @@
         <cxf-xjc-javadoc.version>4.1.0</cxf-xjc-javadoc.version>
 
         <!-- Release Plugins -->
-        <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
 
         <!-- build and release properties -->
