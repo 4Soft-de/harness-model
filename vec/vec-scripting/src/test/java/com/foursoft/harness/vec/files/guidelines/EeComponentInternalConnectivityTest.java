@@ -86,7 +86,8 @@ class EeComponentInternalConnectivityTest {
                     .addPinComponents("1","2"))
                     .withComponentNode("EE-COMP")
             )
-
+            .addFuseSpecificationForPartUsage("F1",fuse -> fuse.withIMax(15))
+            .addRelaySpecificationForPartUsage("R1", rs -> rs.withLowNoise(true))
             .addConductorSpecification("BUSBAR", spec -> spec.withCSA(5.0))
             .addWireSpecificationForPartUsage("BUSBAR", ws -> ws
                     .withWireElement("BUSBAR", we -> we
@@ -110,10 +111,13 @@ class EeComponentInternalConnectivityTest {
                 .addPartUsage("R1-Switch-B", pu -> pu
                         .addWireSpecification("WS-BUSBAR", wr -> wr
                                 .wireElementRef("BUSBAR", ref -> ref.withConnection("R1-Switch-B"))))
-                .addPartUsage("F1", pu -> {})
-                .addPartUsage("R1", pu -> {})
-            ))
-        ;
+                .addPartUsage("F1", pu -> pu
+                        .addFuseSpecification("FS-F1", fr -> fr
+                                .withComponentNode("F1")))
+                .addPartUsage("R1", pu -> pu
+                        .addRelaySpecification("RS-R1",rr -> rr
+                                .withComponentNode("R1")))
+            ));
 
 
 

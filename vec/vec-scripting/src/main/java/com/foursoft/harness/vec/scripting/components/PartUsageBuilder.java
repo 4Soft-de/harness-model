@@ -30,6 +30,9 @@ import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.Locator;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
+import com.foursoft.harness.vec.scripting.eecomponents.FuseRoleBuilder;
+import com.foursoft.harness.vec.scripting.eecomponents.RelayRoleBuilder;
+import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
 import com.foursoft.harness.vec.v2x.*;
 
 public class PartUsageBuilder implements Builder<VecPartUsage> {
@@ -37,35 +40,88 @@ public class PartUsageBuilder implements Builder<VecPartUsage> {
     private final VecSession session;
     private final SpecificationLocator specificationLocator;
     private final Locator<VecConnection> connectionLookup;
+    private final ComponentNodeLookup componentNodeLookup;
     private final VecPartUsage partUsage = new VecPartUsage();
 
-    public PartUsageBuilder(VecSession session, String identification, SpecificationLocator specificationLocator,
-                            Locator<VecConnection> connectionLookup) {
+    public PartUsageBuilder(final VecSession session, final String identification,
+                            final SpecificationLocator specificationLocator,
+                            final Locator<VecConnection> connectionLookup,
+                            final ComponentNodeLookup componentNodeLookup) {
         this.session = session;
         this.specificationLocator = specificationLocator;
         this.connectionLookup = connectionLookup;
+        this.componentNodeLookup = componentNodeLookup;
         this.partUsage.setIdentification(identification);
 
     }
 
-    public PartUsageBuilder addWireSpecification(String specificationIdentification,
-                                                 Customizer<WireRoleBuilder> customizer) {
-        VecWireSpecification wireSpecification = specificationLocator.find(VecWireSpecification.class,
-                                                                           specificationIdentification).orElseThrow();
+    public PartUsageBuilder addWireSpecification(final String specificationIdentification,
+                                                 final Customizer<WireRoleBuilder> customizer) {
+        final VecWireSpecification wireSpecification = specificationLocator.find(VecWireSpecification.class,
+                                                                                 specificationIdentification)
+                .orElseThrow();
 
         partUsage.getPartOrUsageRelatedSpecification().add(wireSpecification);
 
-        WireRoleBuilder wireRoleBuilder = new WireRoleBuilder(session, partUsage.getIdentification(),
-                                                              wireSpecification, connectionLookup);
+        final WireRoleBuilder wireRoleBuilder = new WireRoleBuilder(session, partUsage.getIdentification(),
+                                                                    wireSpecification, connectionLookup);
 
         customizer.customize(wireRoleBuilder);
 
-        VecWireRole wireRole = wireRoleBuilder.build();
+        final VecWireRole wireRole = wireRoleBuilder.build();
 
         partUsage.getRoles().add(wireRole);
 
         if (partUsage.getPrimaryPartUsageType() == null) {
             partUsage.setPrimaryPartUsageType(VecPrimaryPartType.WIRE);
+        }
+
+        return this;
+    }
+
+    public PartUsageBuilder addFuseSpecification(final String specificationIdentification,
+                                                 final Customizer<FuseRoleBuilder> customizer) {
+        final VecFuseSpecification fuseSpecification = specificationLocator.find(VecFuseSpecification.class,
+                                                                                 specificationIdentification)
+                .orElseThrow();
+
+        partUsage.getPartOrUsageRelatedSpecification().add(fuseSpecification);
+
+        final FuseRoleBuilder fuseRoleBuilder = new FuseRoleBuilder(session, partUsage.getIdentification(),
+                                                                    fuseSpecification,
+                                                                    componentNodeLookup);
+
+        customizer.customize(fuseRoleBuilder);
+
+        final VecFuseRole fuseRole = fuseRoleBuilder.build();
+
+        partUsage.getRoles().add(fuseRole);
+
+        if (partUsage.getPrimaryPartUsageType() == null) {
+            partUsage.setPrimaryPartUsageType(VecPrimaryPartType.FUSE);
+        }
+
+        return this;
+    }
+
+    public PartUsageBuilder addRelaySpecification(final String specificationIdentification,
+                                                  final Customizer<RelayRoleBuilder> customizer) {
+        final VecRelaySpecification relaySpecification = specificationLocator.find(VecRelaySpecification.class,
+                                                                                   specificationIdentification)
+                .orElseThrow();
+
+        partUsage.getPartOrUsageRelatedSpecification().add(relaySpecification);
+
+        final RelayRoleBuilder relayRoleBuilder = new RelayRoleBuilder(session, partUsage.getIdentification(),
+                                                                       relaySpecification, componentNodeLookup);
+        customizer.customize(relayRoleBuilder);
+
+        final VecRelayRole fuseRole = relayRoleBuilder.build();
+
+        partUsage.getRoles().add(fuseRole);
+
+        if (partUsage.getPrimaryPartUsageType() == null) {
+            partUsage.setPrimaryPartUsageType(VecPrimaryPartType.RELAY);
         }
 
         return this;

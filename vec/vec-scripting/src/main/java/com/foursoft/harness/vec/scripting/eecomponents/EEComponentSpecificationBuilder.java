@@ -26,22 +26,27 @@
 package com.foursoft.harness.vec.scripting.eecomponents;
 
 import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
 import com.foursoft.harness.vec.v2x.*;
 
-public class EEComponentSpecificationBuilder
-        extends PartOrUsageRelatedSpecificationBuilder<VecEEComponentSpecification> {
+public class EEComponentSpecificationBuilder<T extends VecEEComponentSpecification>
+        extends PartOrUsageRelatedSpecificationBuilder<T> {
 
-    private final VecEEComponentSpecification eeComponentSpecification;
+    protected final T eeComponentSpecification;
     private final SpecificationRegistry specificationRegistry;
     private final ComponentNodeLookup componentNodeLookup;
     private final VecPluggableTerminalSpecification pin;
+    protected final VecSession session;
 
-    public EEComponentSpecificationBuilder(final String partNumber, final SpecificationRegistry specificationRegistry,
+    public EEComponentSpecificationBuilder(final VecSession session, final Class<T> eeComponentClass,
+                                           final String partNumber,
+                                           final SpecificationRegistry specificationRegistry,
                                            final ComponentNodeLookup componentNodeLookup) {
-        eeComponentSpecification = initializeSpecification(VecEEComponentSpecification.class, partNumber);
+        this.session = session;
+        eeComponentSpecification = initializeSpecification(eeComponentClass, partNumber);
         this.specificationRegistry = specificationRegistry;
         this.componentNodeLookup = componentNodeLookup;
 
@@ -52,8 +57,8 @@ public class EEComponentSpecificationBuilder
         specificationRegistry.register(pin);
     }
 
-    public EEComponentSpecificationBuilder addHousingComponent(final String identification,
-                                                               final Customizer<HousingComponentBuilder> customizer) {
+    public EEComponentSpecificationBuilder<T> addHousingComponent(final String identification,
+                                                                  final Customizer<HousingComponentBuilder> customizer) {
         final HousingComponentBuilder builder = new HousingComponentBuilder(identification, pin, specificationRegistry);
 
         customizer.customize(builder);
@@ -63,7 +68,7 @@ public class EEComponentSpecificationBuilder
         return this;
     }
 
-    public EEComponentSpecificationBuilder withComponentNode(final String componentNode) {
+    public EEComponentSpecificationBuilder<T> withComponentNode(final String componentNode) {
         final VecComponentNode node = componentNodeLookup.find(componentNode);
         eeComponentSpecification.setComponentNode(node);
 
@@ -90,7 +95,8 @@ public class EEComponentSpecificationBuilder
         return this;
     }
 
-    @Override public VecEEComponentSpecification build() {
+    @Override
+    public T build() {
         return this.eeComponentSpecification;
     }
 }

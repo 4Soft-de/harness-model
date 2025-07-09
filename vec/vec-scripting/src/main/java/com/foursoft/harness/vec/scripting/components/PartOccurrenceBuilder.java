@@ -31,6 +31,7 @@ import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.Locator;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
+import com.foursoft.harness.vec.scripting.eecomponents.FuseRoleBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
 import com.foursoft.harness.vec.v2x.*;
 import com.foursoft.harness.vec.v2x.visitor.StrictBaseVisitor;
@@ -132,7 +133,8 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
         @Override
         public Builder<? extends VecRole> visitVecEEComponentSpecification(
                 final VecEEComponentSpecification aBean) throws RuntimeException {
-            return new EEComponentRoleBuilder(session, partOccurrence.getIdentification(), aBean, componentNodeLookup);
+            return new EEComponentRoleBuilder(session, partOccurrence.getIdentification(),
+                                              aBean, componentNodeLookup);
         }
 
         @Override public Builder<? extends VecRole> visitVecPlaceableElementSpecification(
@@ -145,6 +147,11 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
                 throws RuntimeException {
             LOGGER.warn("Instantiating of PartStructures not supported at the moment!");
             return null;
+        }
+
+        @Override public Builder<? extends VecRole> visitVecFuseSpecification(final VecFuseSpecification aBean)
+                throws RuntimeException {
+            return new FuseRoleBuilder(session, partOccurrence.getIdentification(), aBean, componentNodeLookup);
         }
     }
 
