@@ -124,14 +124,8 @@ class EeComponentInternalConnectivityTest {
         session.document("SCHEMATIC","1", builder -> {});
 
         session.schematic("SCHEMATIC", schematic -> schematic
-                .addComponentNode("A200", a200 -> a200
-                .addPort("A","1","Power")
-                .addPort("A","2","F1")
-                .addPort("A","3","Switch-A")
-                .addPort("A","4","Switch-B")
-                .addPort("A","5", "Switched+F2")
-                .addPort("F2","1","F2 - Pluggable")
-                .addPort("F2","2", "F2 - Pluggable")));
+                .addComponentNodeReusage("DRAW-EE-COMP","SCHEMATIC", "EE-COMP", "A200")
+        );
 
         session.harness("HARNESS-1","1", harness -> harness
                 .withSchematic("SCHEMATIC")

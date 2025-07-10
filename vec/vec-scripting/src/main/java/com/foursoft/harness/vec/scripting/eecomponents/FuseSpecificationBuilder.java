@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,6 +26,7 @@
 package com.foursoft.harness.vec.scripting.eecomponents;
 
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
 import com.foursoft.harness.vec.scripting.factories.NumericalValueFactory;
 import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
@@ -33,9 +34,11 @@ import com.foursoft.harness.vec.v2x.VecFuseSpecification;
 
 public class FuseSpecificationBuilder extends EEComponentSpecificationBuilder<VecFuseSpecification> {
     public FuseSpecificationBuilder(final VecSession session, final String partNumber,
+                                    final SpecificationLocator specificationLocator,
                                     final SpecificationRegistry specificationRegistry,
                                     final ComponentNodeLookup componentNodeLookup) {
-        super(session, VecFuseSpecification.class, partNumber, specificationRegistry, componentNodeLookup);
+        super(session, VecFuseSpecification.class, partNumber, specificationLocator, specificationRegistry,
+              componentNodeLookup);
     }
 
     public FuseSpecificationBuilder withIMax(final double value) {

@@ -39,6 +39,7 @@ import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
 import com.foursoft.harness.vec.scripting.harness.HarnessBuilder;
 import com.foursoft.harness.vec.scripting.net.NetworkArchitectureBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
+import com.foursoft.harness.vec.scripting.schematic.SchematicResult;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGeneratingTraverser;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGenerator;
 import com.foursoft.harness.vec.v2x.*;
@@ -135,13 +136,15 @@ public class VecSession {
     public void schematic(final String containerDocumentNumber, final Customizer<SchematicBuilder> customizer) {
         final VecDocumentVersion containerDocument = findDocument(containerDocumentNumber);
 
-        final SchematicBuilder builder = new SchematicBuilder();
+        final SchematicBuilder builder = new SchematicBuilder(this);
 
         customizer.customize(builder);
 
-        final VecConnectionSpecification result = builder.build();
+        final SchematicResult schematicResult = builder.build();
 
-        containerDocument.getSpecifications().add(result);
+        containerDocument.getSpecifications().add(schematicResult.connectionSpecification());
+
+        schematicResult.reusageSpecification().forEach(containerDocument.getSpecifications()::add);
     }
 
     public void harness(final String documentNumber, final String version,
