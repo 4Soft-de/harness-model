@@ -31,8 +31,10 @@ import com.foursoft.harness.kbl.v25.KblSlot;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCoding;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecSlot;
+import org.apache.commons.lang3.StringUtils;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 
@@ -45,6 +47,11 @@ public class ConnectorHousingSpecificationTransformer
             final VecConnectorHousingSpecification specification = new VecConnectorHousingSpecification();
 
             specification.setSpecialPartType(connector.getHousingType());
+            if (StringUtils.isNotBlank(connector.getHousingCode())) {
+                final VecCoding coding = new VecCoding();
+                coding.setCoding(connector.getHousingCode());
+                specification.setCoding(coding);
+            }
 
             return TransformationResult.from(specification)
                     .withFragment(commonSpecificationAttributes(source))

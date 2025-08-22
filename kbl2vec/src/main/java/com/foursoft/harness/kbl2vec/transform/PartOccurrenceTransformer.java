@@ -73,7 +73,8 @@ public class PartOccurrenceTransformer implements Transformer<ConnectionOrOccurr
             return builder
                     .withDownstream(ConnectionOrOccurrence.class, VecPartWithSubComponentsRole.class, Query.of(source),
                                     VecOccurrenceOrUsage::getRoles)
-
+                    .withDownstream(ConnectionOrOccurrence.class, VecConnectorHousingRole.class, Query.of(source),
+                                    VecOccurrenceOrUsage::getRoles)
                     .build();
         }
         return TransformationResult.noResult();
