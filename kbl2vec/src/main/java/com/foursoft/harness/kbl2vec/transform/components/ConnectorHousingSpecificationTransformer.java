@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,14 +23,16 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform;
+package com.foursoft.harness.kbl2vec.transform.components;
 
 import com.foursoft.harness.kbl.v25.KblConnectorHousing;
 import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl.v25.KblSlot;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
+import com.foursoft.harness.vec.v2x.VecSlot;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 
@@ -46,6 +48,8 @@ public class ConnectorHousingSpecificationTransformer
 
             return TransformationResult.from(specification)
                     .withFragment(commonSpecificationAttributes(source))
+                    .withDownstream(KblSlot.class, VecSlot.class, connector::getSlots,
+                                    VecConnectorHousingSpecification::getSlots)
                     .build();
         }
         return TransformationResult.noResult();
