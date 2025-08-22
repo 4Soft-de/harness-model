@@ -25,12 +25,15 @@
  */
 package com.foursoft.harness.kbl2vec.transform;
 
+import com.foursoft.harness.kbl.v25.KblGeneralWire;
 import com.foursoft.harness.kbl.v25.KblPart;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.*;
+
+import java.util.Optional;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonDocumentAttributes;
 
@@ -44,7 +47,8 @@ public class PartMasterDocumentVersionTransformer implements Transformer<KblPart
         //TODO: Enums/Consts for OpenEnums.
         documentVersion.setDocumentType("PartMaster");
 
-        return TransformationResult.from(documentVersion)
+        TransformationResult.Builder<VecDocumentVersion> builder = TransformationResult.from(
+                        documentVersion)
                 .withFragment(commonDocumentAttributes(source, context))
                 .withDownstream(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
@@ -53,7 +57,26 @@ public class PartMasterDocumentVersionTransformer implements Transformer<KblPart
                 .withDownstream(KblPart.class, VecCompositionSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
                 .withDownstream(KblPart.class, VecPartStructureSpecification.class, Query.of(source),
-                                VecDocumentVersion::getSpecifications)
+                                VecDocumentVersion::getSpecifications);
+
+        //TODO: Discuss with @RainerGanss if it is better here, or if transformer should reject (like the
+        // COnnectorHOusing)
+        if (source instanceof final KblGeneralWire wire) {
+            final Optional<KblGeneralWire> singleCoreWire = Optional.of(wire).filter(w -> w.getCores().isEmpty());
+
+            builder = builder
+                    .withDownstream(KblGeneralWire.class, VecWireElementSpecification.class, Query.of(wire),
+                                    VecDocumentVersion::getSpecifications)
+                    .withDownstream(KblGeneralWire.class, VecInsulationSpecification.class, Query.of(wire),
+                                    VecDocumentVersion::getSpecifications)
+                    .withDownstream(KblGeneralWire.class, VecCoreSpecification.class,
+                                    () -> singleCoreWire.stream().toList(),
+                                    VecDocumentVersion::getSpecifications)
+                    .withDownstream(KblPart.class, VecWireSpecification.class, Query.of(source),
+                                    VecDocumentVersion::getSpecifications);
+        }
+
+        return builder
                 .build();
     }
 }

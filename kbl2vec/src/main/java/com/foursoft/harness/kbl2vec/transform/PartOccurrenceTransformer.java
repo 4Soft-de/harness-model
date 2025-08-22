@@ -28,9 +28,7 @@ package com.foursoft.harness.kbl2vec.transform;
 import com.foursoft.harness.kbl.common.HasDescription;
 import com.foursoft.harness.kbl.common.HasIdentification;
 import com.foursoft.harness.kbl.common.HasPart;
-import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
-import com.foursoft.harness.kbl.v25.HasRelatedAssembly;
-import com.foursoft.harness.kbl.v25.HasRelatedOccurrence;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.convert.Converter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -56,6 +54,10 @@ public class PartOccurrenceTransformer implements Transformer<ConnectionOrOccurr
             if (source instanceof final HasIdentification hasIdentification && StringUtils.isNotBlank(
                     hasIdentification.getId())) {
                 occurrence.setIdentification(hasIdentification.getId());
+            } else if (source instanceof final KblSpecialWireOccurrence specialWire) {
+                occurrence.setIdentification(specialWire.getSpecialWireId());
+            } else if (source instanceof final KblWireOccurrence wire) {
+                occurrence.setIdentification(wire.getWireNumber());
             } else {
                 builder.withComment("This occurence has no \"Id\" in the KBL data.");
                 occurrence.setIdentification("GenericIdentifier-" + idCounter++);
@@ -74,6 +76,8 @@ public class PartOccurrenceTransformer implements Transformer<ConnectionOrOccurr
                     .withDownstream(ConnectionOrOccurrence.class, VecPartWithSubComponentsRole.class, Query.of(source),
                                     VecOccurrenceOrUsage::getRoles)
                     .withDownstream(ConnectionOrOccurrence.class, VecConnectorHousingRole.class, Query.of(source),
+                                    VecOccurrenceOrUsage::getRoles)
+                    .withDownstream(ConnectionOrOccurrence.class, VecWireRole.class, Query.of(source),
                                     VecOccurrenceOrUsage::getRoles)
                     .build();
         }
