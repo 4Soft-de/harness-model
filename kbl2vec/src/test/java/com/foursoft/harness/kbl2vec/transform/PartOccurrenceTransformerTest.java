@@ -28,9 +28,7 @@ package com.foursoft.harness.kbl2vec.transform;
 import com.foursoft.harness.kbl.v25.KblConnectorHousing;
 import com.foursoft.harness.kbl.v25.KblConnectorOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
-import com.foursoft.harness.vec.v2x.VecPartWithSubComponentsRole;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,9 +49,13 @@ class PartOccurrenceTransformerTest {
         source.setId("A220");
 
         final VecPartWithSubComponentsRole vecSubComp = new VecPartWithSubComponentsRole();
+        final VecConnectorHousingRole connectorHousingRole = new VecConnectorHousingRole();
+        final VecWireRole wireRole = new VecWireRole();
         final VecPartVersion vecPart = new VecPartVersion();
 
         orchestrator.addMockMapping(source, vecSubComp);
+        orchestrator.addMockMapping(source, connectorHousingRole);
+        orchestrator.addMockMapping(source, wireRole);
         orchestrator.addMockMapping(kblPart, vecPart);
 
         // When
