@@ -59,7 +59,7 @@ public class PartOccurrenceTransformer implements Transformer<ConnectionOrOccurr
             } else if (source instanceof final KblWireOccurrence wire) {
                 occurrence.setIdentification(wire.getWireNumber());
             } else {
-                builder.withComment("This occurence has no \"Id\" in the KBL data.");
+                builder.withComment("This occurrence has no \"Id\" in the KBL data.");
                 occurrence.setIdentification("GenericIdentifier-" + idCounter++);
             }
             if (source instanceof final HasRelatedOccurrence hasRelatedOccurrence) {

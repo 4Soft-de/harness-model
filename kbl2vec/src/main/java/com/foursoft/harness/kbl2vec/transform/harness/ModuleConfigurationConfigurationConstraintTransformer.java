@@ -52,7 +52,7 @@ public class ModuleConfigurationConfigurationConstraintTransformer
                 v.setIdentification("ConfConstraint_" + source.getParentModule().getPartNumber());
             });
         } else {
-            builder.withComment("This occurence has no \"Id\" in the KBL data.");
+            builder.withComment("This occurrence has no \"Id\" in the KBL data.");
             builder.withFragment((v, b) -> {
                 v.setIdentification("GenericIdentifier-" + idCounter++);
             });
