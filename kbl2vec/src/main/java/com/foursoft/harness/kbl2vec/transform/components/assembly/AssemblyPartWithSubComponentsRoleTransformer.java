@@ -23,21 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.components.assembly;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblAssemblyPartOccurrence;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
+import com.foursoft.harness.vec.v2x.VecPartWithSubComponentsRole;
 
-public interface TransformationContext {
+public class AssemblyPartWithSubComponentsRoleTransformer
+        implements Transformer<KblAssemblyPartOccurrence, VecPartWithSubComponentsRole> {
+    @Override public TransformationResult<VecPartWithSubComponentsRole> transform(final TransformationContext context,
+                                                                                  final KblAssemblyPartOccurrence source) {
+        final VecPartWithSubComponentsRole role = new VecPartWithSubComponentsRole();
+        role.setIdentification(source.getId());
 
-    EntityMapping getEntityMapping();
-
-    ConversionProperties getConversionProperties();
-
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+        return TransformationResult.from(role)
+                .withLinker(Query.of(source::getPart), VecPartStructureSpecification.class,
+                            VecPartWithSubComponentsRole::setPartStructureSpecification)
+                .build();
+    }
 }

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,47 +23,28 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.core;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblInstallationInstruction;
+import com.foursoft.harness.kbl.v25.KblInstructionClassification;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCustomProperty;
+import com.foursoft.harness.vec.v2x.VecSimpleValueProperty;
 
-public class TransformationContextImpl implements TransformationContext {
-    private final ConversionProperties conversionProperties;
-    private final ConverterRegistry converterRegistry;
-    private final EntityMapping entityMapping;
-    private final Logger logger = Logging.TRANSFORM_LOGGER;
-    private int idCounter = 0;
-
-    public TransformationContextImpl(final ConversionProperties conversionProperties,
-                                     final ConverterRegistry converterRegistry, final EntityMapping entityMapping) {
-        this.conversionProperties = conversionProperties;
-        this.converterRegistry = converterRegistry;
-        this.entityMapping = entityMapping;
-    }
-
+public class InstallationInformationCustomPropertyTransformer
+        implements Transformer<KblInstallationInstruction, VecCustomProperty> {
     @Override
-    public ConverterRegistry getConverterRegistry() {
-        return converterRegistry;
-    }
-
-    @Override
-    public ConversionProperties getConversionProperties() {
-        return conversionProperties;
-    }
-
-    @Override
-    public EntityMapping getEntityMapping() {
-        return entityMapping;
-    }
-
-    @Override
-    public Logger getLogger() {
-        return logger;
-    }
-
-    @Override
-    public int getNewId() {
-        return idCounter++;
+    public TransformationResult<VecCustomProperty> transform(final TransformationContext context,
+                                                             final KblInstallationInstruction source) {
+        if (source.getClassification() == null ||
+                source.getClassification() == KblInstructionClassification.CUSTOM_PROPERTY) {
+            final VecSimpleValueProperty property = new VecSimpleValueProperty();
+            property.setPropertyType(source.getInstructionType());
+            property.setValue(source.getInstructionType());
+            return TransformationResult.of(property);
+        }
+        return TransformationResult.noResult();
     }
 }

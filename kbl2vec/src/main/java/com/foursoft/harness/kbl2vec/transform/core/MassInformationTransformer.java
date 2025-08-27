@@ -23,21 +23,28 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.core;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblNumericalValue;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecMassInformation;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
 
-public interface TransformationContext {
+public class MassInformationTransformer implements Transformer<KblNumericalValue, VecMassInformation> {
 
-    EntityMapping getEntityMapping();
+    @Override
+    public TransformationResult<VecMassInformation> transform(final TransformationContext context,
+                                                              final KblNumericalValue source) {
+        final VecMassInformation massInformation = new VecMassInformation();
 
-    ConversionProperties getConversionProperties();
+        return TransformationResult.from(massInformation).withDownstream(KblNumericalValue.class,
+                                                                         VecNumericalValue.class,
+                                                                         Query.of(source),
+                                                                         VecMassInformation::setValue)
+                .build();
 
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+    }
 }

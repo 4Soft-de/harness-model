@@ -23,21 +23,20 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.components.connector;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblCavity;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCavity;
 
-public interface TransformationContext {
+public class CavityTransformer implements Transformer<KblCavity, VecCavity> {
+    @Override
+    public TransformationResult<VecCavity> transform(final TransformationContext context, final KblCavity source) {
+        final VecCavity dest = new VecCavity();
+        dest.setCavityNumber(source.getCavityNumber());
 
-    EntityMapping getEntityMapping();
-
-    ConversionProperties getConversionProperties();
-
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+        return TransformationResult.of(dest);
+    }
 }

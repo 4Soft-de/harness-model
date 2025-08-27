@@ -23,21 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.core;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblMaterial;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecMaterial;
 
-public interface TransformationContext {
+public class MaterialTransformer implements Transformer<KblMaterial, VecMaterial> {
 
-    EntityMapping getEntityMapping();
+    @Override
+    public TransformationResult<VecMaterial> transform(final TransformationContext context,
+                                                       final KblMaterial source) {
+        context.getLogger().debug("Transforming {} to KblMaterial.", source);
+        final VecMaterial result = new VecMaterial();
+        result.setReferenceSystem(source.getMaterialReferenceSystem());
+        result.setKey(source.getMaterialKey());
 
-    ConversionProperties getConversionProperties();
-
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+        return TransformationResult.of(result);
+    }
 }

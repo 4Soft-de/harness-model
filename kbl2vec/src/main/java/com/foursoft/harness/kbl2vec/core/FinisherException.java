@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,19 +25,17 @@
  */
 package com.foursoft.harness.kbl2vec.core;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+public class FinisherException extends ConversionException {
 
-public interface TransformationContext {
+    public FinisherException(final Finisher finisher, final TransformationStackTrace stackTrace,
+                             final Throwable cause) {
+        super(buildMessage(finisher, stackTrace, cause), cause);
 
-    EntityMapping getEntityMapping();
+    }
 
-    ConversionProperties getConversionProperties();
-
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+    private static String buildMessage(final Finisher finisher, final TransformationStackTrace stackTrace,
+                                       final Throwable cause) {
+        return "Exception in finisher " + finisher.getClass().getSimpleName() + ": " + cause.getMessage() + "\n"
+                + "Finisher registered by:\n" + stackTrace;
+    }
 }

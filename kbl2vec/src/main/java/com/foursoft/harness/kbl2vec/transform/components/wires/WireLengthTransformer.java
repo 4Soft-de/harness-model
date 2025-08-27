@@ -23,21 +23,27 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.components.wires;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblNumericalValue;
+import com.foursoft.harness.kbl.v25.KblWireLength;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
+import com.foursoft.harness.vec.v2x.VecWireLength;
 
-public interface TransformationContext {
+public class WireLengthTransformer implements Transformer<KblWireLength, VecWireLength> {
+    @Override
+    public TransformationResult<VecWireLength> transform(final TransformationContext context,
+                                                         final KblWireLength source) {
+        final VecWireLength dest = new VecWireLength();
+        dest.setLengthType(source.getLengthType());
 
-    EntityMapping getEntityMapping();
-
-    ConversionProperties getConversionProperties();
-
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+        return TransformationResult.from(dest)
+                .withDownstream(KblNumericalValue.class, VecNumericalValue.class, Query.of(source::getLengthValue),
+                                VecWireLength::setLengthValue)
+                .build();
+    }
 }

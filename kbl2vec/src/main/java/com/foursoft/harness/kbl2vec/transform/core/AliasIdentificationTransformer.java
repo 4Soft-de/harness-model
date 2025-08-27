@@ -23,21 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.core;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblAliasIdentification;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 
-public interface TransformationContext {
-
-    EntityMapping getEntityMapping();
-
-    ConversionProperties getConversionProperties();
-
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+public class AliasIdentificationTransformer implements Transformer<KblAliasIdentification, VecAliasIdentification> {
+    @Override
+    public TransformationResult<VecAliasIdentification> transform(final TransformationContext context,
+                                                                  final KblAliasIdentification source) {
+        final VecAliasIdentification aliasIdentification = new VecAliasIdentification();
+        aliasIdentification.setIdentificationValue(source.getAliasId());
+        aliasIdentification.setScope(source.getScope());
+        aliasIdentification.setType(source.getDescription());
+        //TODO: LocalizedDescription missing
+        return TransformationResult.of(aliasIdentification);
+    }
 }

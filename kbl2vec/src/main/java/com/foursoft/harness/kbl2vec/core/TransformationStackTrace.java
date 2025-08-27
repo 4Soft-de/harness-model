@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,19 +25,29 @@
  */
 package com.foursoft.harness.kbl2vec.core;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import org.apache.commons.lang3.ArrayUtils;
 
-public interface TransformationContext {
+public record TransformationStackTrace(TransformationStackTraceElement<?, ?>[] elements) {
 
-    EntityMapping getEntityMapping();
+    public static TransformationStackTrace empty() {
+        return new TransformationStackTrace(new TransformationStackTraceElement[0]);
+    }
 
-    ConversionProperties getConversionProperties();
+    public <S, D> TransformationStackTrace addElement(final S sourceObject, final D targetObject,
+                                                      final Transformer<S, D> usedTransformer) {
+        final TransformationStackTraceElement<S, D> newElement = new TransformationStackTraceElement<>(sourceObject,
+                                                                                                       targetObject,
+                                                                                                       usedTransformer);
+        return new TransformationStackTrace(ArrayUtils.add(this.elements, newElement));
+    }
 
-    ConverterRegistry getConverterRegistry();
+    @Override public String toString() {
+        String result = "";
 
-    Logger getLogger();
+        for (int i = 0; i < elements.length; i++) {
+            result += "  ".repeat(i) + (i + 1) + ". " + elements[i] + "\n";
+        }
 
-    int getNewId();
-
+        return result;
+    }
 }

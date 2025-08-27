@@ -23,21 +23,27 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.components.wires;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblGeneralWire;
+import com.foursoft.harness.kbl.v25.KblNumericalValue;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCoreSpecification;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
 
-public interface TransformationContext {
+public class WireCoreSpecificationTransformer implements Transformer<KblGeneralWire, VecCoreSpecification> {
 
-    EntityMapping getEntityMapping();
-
-    ConversionProperties getConversionProperties();
-
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+    @Override
+    public TransformationResult<VecCoreSpecification> transform(final TransformationContext context,
+                                                                final KblGeneralWire source) {
+        final VecCoreSpecification dest = new VecCoreSpecification();
+        dest.setIdentification("WIRE-CORE");
+        return TransformationResult.from(dest)
+                .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
+                                Query.of(source::getCrossSectionArea), VecCoreSpecification::setCrossSectionArea)
+                .build();
+    }
 }

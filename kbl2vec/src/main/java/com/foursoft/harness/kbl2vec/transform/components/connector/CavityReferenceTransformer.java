@@ -23,21 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.components.connector;
 
-import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import org.slf4j.Logger;
+import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.vec.v2x.VecCavityReference;
 
-public interface TransformationContext {
+public class CavityReferenceTransformer implements Transformer<KblCavityOccurrence, VecCavityReference> {
 
-    EntityMapping getEntityMapping();
+    @Override
+    public TransformationResult<VecCavityReference> transform(final TransformationContext context,
+                                                              final KblCavityOccurrence source) {
+        final VecCavityReference dest = new VecCavityReference();
+        dest.setIdentification(source.getPart().getCavityNumber());
 
-    ConversionProperties getConversionProperties();
-
-    ConverterRegistry getConverterRegistry();
-
-    Logger getLogger();
-
-    int getNewId();
-
+        return TransformationResult.from(dest)
+                .withLinker(Query.of(source::getPart), VecCavity.class, VecCavityReference::setReferencedCavity)
+                .build();
+    }
 }
