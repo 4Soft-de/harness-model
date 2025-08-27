@@ -28,12 +28,14 @@ package com.foursoft.harness.kbl2vec.core;
 import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
 import org.slf4j.Logger;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class TransformationContextImpl implements TransformationContext {
     private final ConversionProperties conversionProperties;
     private final ConverterRegistry converterRegistry;
     private final EntityMapping entityMapping;
     private final Logger logger = Logging.TRANSFORM_LOGGER;
-    private int idCounter = 0;
+    private final AtomicInteger idCounter = new AtomicInteger(0);
 
     public TransformationContextImpl(final ConversionProperties conversionProperties,
                                      final ConverterRegistry converterRegistry, final EntityMapping entityMapping) {
@@ -64,6 +66,6 @@ public class TransformationContextImpl implements TransformationContext {
 
     @Override
     public int getNewId() {
-        return idCounter++;
+        return idCounter.getAndIncrement();
     }
 }

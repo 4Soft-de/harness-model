@@ -34,10 +34,9 @@ import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
 public class ModuleConfigurationVariantConfigurationTransformer
         implements Transformer<KblModuleConfiguration, VecVariantConfiguration> {
 
-    private int idCounter = 0;
-
-    @Override public TransformationResult<VecVariantConfiguration> transform(final TransformationContext context,
-                                                                             final KblModuleConfiguration source) {
+    @Override
+    public TransformationResult<VecVariantConfiguration> transform(final TransformationContext context,
+                                                                   final KblModuleConfiguration source) {
 
         final VecVariantConfiguration variantConfiguration = new VecVariantConfiguration();
         variantConfiguration.setConfigurationType("Logistic");
@@ -53,7 +52,7 @@ public class ModuleConfigurationVariantConfigurationTransformer
         } else {
             builder.withComment("This occurrence has no \"Id\" in the KBL data.");
             builder.withFragment((v, b) -> {
-                v.setIdentification("GenericIdentifier-" + idCounter++);
+                v.setIdentification("GenericIdentifier-" + context.getNewId());
             });
         }
 

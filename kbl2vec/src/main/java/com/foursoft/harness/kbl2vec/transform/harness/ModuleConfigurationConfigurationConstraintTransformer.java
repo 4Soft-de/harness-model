@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,10 +37,9 @@ import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
 public class ModuleConfigurationConfigurationConstraintTransformer
         implements Transformer<KblModuleConfiguration, VecConfigurationConstraint> {
 
-    private int idCounter = 0;
-
-    @Override public TransformationResult<VecConfigurationConstraint> transform(final TransformationContext context,
-                                                                                final KblModuleConfiguration source) {
+    @Override
+    public TransformationResult<VecConfigurationConstraint> transform(final TransformationContext context,
+                                                                      final KblModuleConfiguration source) {
 
         final VecConfigurationConstraint configurationConstraint = new VecConfigurationConstraint();
 
@@ -54,7 +53,7 @@ public class ModuleConfigurationConfigurationConstraintTransformer
         } else {
             builder.withComment("This occurrence has no \"Id\" in the KBL data.");
             builder.withFragment((v, b) -> {
-                v.setIdentification("GenericIdentifier-" + idCounter++);
+                v.setIdentification("GenericIdentifier-" + context.getNewId());
             });
         }
 
