@@ -36,8 +36,9 @@ import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 
 public class ComponentsCompositionSpecificationTransformer
         implements Transformer<KblPart, VecCompositionSpecification> {
-    @Override public TransformationResult<VecCompositionSpecification> transform(final TransformationContext context,
-                                                                                 final KblPart source) {
+    @Override
+    public TransformationResult<VecCompositionSpecification> transform(final TransformationContext context,
+                                                                       final KblPart source) {
         if (source instanceof final HasConnectionOrOccurrences container) {
             final VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
             compositionSpecification.setIdentification("COMPONENTS");

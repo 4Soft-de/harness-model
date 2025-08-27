@@ -40,8 +40,9 @@ import com.foursoft.harness.vec.v2x.VecWireElementSpecification;
 public class WireWireElementSpecificationTransformer
         implements Transformer<KblGeneralWire, VecWireElementSpecification> {
 
-    @Override public TransformationResult<VecWireElementSpecification> transform(final TransformationContext context,
-                                                                                 final KblGeneralWire source) {
+    @Override
+    public TransformationResult<VecWireElementSpecification> transform(final TransformationContext context,
+                                                                       final KblGeneralWire source) {
         final VecWireElementSpecification dest = new VecWireElementSpecification();
         dest.setIdentification("WIRE");
         final StringToWireTypeConverter wireTypeConverter =

@@ -36,8 +36,9 @@ import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments
 
 public class GenericPartOccurrenceTransformer implements Transformer<ConnectionOrOccurrence, VecPartOccurrence> {
 
-    @Override public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
-                                                                       final ConnectionOrOccurrence source) {
+    @Override
+    public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
+                                                             final ConnectionOrOccurrence source) {
         if (source instanceof KblConnection) {
             // KBL Connections do not have a direct representation in VEC
             return TransformationResult.noResult();

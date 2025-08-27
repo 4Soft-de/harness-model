@@ -90,7 +90,8 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
             return VecPrimaryPartType.OTHER;
         }
 
-        @Override public VecPrimaryPartType visitKblCoPackPart(final KblCoPackPart aBean) throws RuntimeException {
+        @Override
+        public VecPrimaryPartType visitKblCoPackPart(final KblCoPackPart aBean) throws RuntimeException {
             return VecPrimaryPartType.OTHER;
         }
 
@@ -134,7 +135,8 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
             return VecPrimaryPartType.PART_STRUCTURE;
         }
 
-        @Override public VecPrimaryPartType visitKblHarnessConfiguration(final KblHarnessConfiguration aBean)
+        @Override
+        public VecPrimaryPartType visitKblHarnessConfiguration(final KblHarnessConfiguration aBean)
                 throws RuntimeException {
             return VecPrimaryPartType.PART_STRUCTURE;
         }

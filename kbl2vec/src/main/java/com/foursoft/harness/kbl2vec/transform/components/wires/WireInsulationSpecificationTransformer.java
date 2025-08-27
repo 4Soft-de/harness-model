@@ -36,8 +36,9 @@ import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
 import java.util.Optional;
 
 public class WireInsulationSpecificationTransformer implements Transformer<KblGeneralWire, VecInsulationSpecification> {
-    @Override public TransformationResult<VecInsulationSpecification> transform(final TransformationContext context,
-                                                                                final KblGeneralWire source) {
+    @Override
+    public TransformationResult<VecInsulationSpecification> transform(final TransformationContext context,
+                                                                      final KblGeneralWire source) {
         final VecInsulationSpecification dest = new VecInsulationSpecification();
         dest.setIdentification("WIRE-INS");
 

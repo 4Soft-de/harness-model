@@ -35,8 +35,9 @@ import com.foursoft.harness.vec.v2x.VecPartWithSubComponentsRole;
 
 public class AssemblyPartWithSubComponentsRoleTransformer
         implements Transformer<KblAssemblyPartOccurrence, VecPartWithSubComponentsRole> {
-    @Override public TransformationResult<VecPartWithSubComponentsRole> transform(final TransformationContext context,
-                                                                                  final KblAssemblyPartOccurrence source) {
+    @Override
+    public TransformationResult<VecPartWithSubComponentsRole> transform(final TransformationContext context,
+                                                                        final KblAssemblyPartOccurrence source) {
         final VecPartWithSubComponentsRole role = new VecPartWithSubComponentsRole();
         role.setIdentification(source.getId());
 

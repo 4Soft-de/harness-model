@@ -40,8 +40,9 @@ import com.foursoft.harness.vec.v2x.VecWireLength;
 public class WireWireElementReferenceTransformer
         implements Transformer<KblGeneralWireOccurrence, VecWireElementReference> {
 
-    @Override public TransformationResult<VecWireElementReference> transform(final TransformationContext context,
-                                                                             final KblGeneralWireOccurrence source) {
+    @Override
+    public TransformationResult<VecWireElementReference> transform(final TransformationContext context,
+                                                                   final KblGeneralWireOccurrence source) {
         final VecWireElementReference dest = new VecWireElementReference();
         if (source instanceof final KblWireOccurrence wireOccurrence) {
             dest.setIdentification(wireOccurrence.getWireNumber());
