@@ -274,8 +274,7 @@ public class VecObjectWrapper {
             return l.getValue();
         }
 
-        @Override
-        public Object visitStmt(final Resource r, final Statement statement) {
+        @Override public Object visitStmt(final StatementTerm statementTerm, final Statement statement) {
             throw new VecRdfException("Statement resources are not support for XML mapping.");
         }
     }
