@@ -57,7 +57,8 @@ public final class DateUtils {
         if (overwriteClock != null) {
             final Instant instant = Instant.parse(overwriteClock); // e.g. "2025-05-01T00:00:00Z"
             CLOCK = Clock.fixed(instant, ZoneOffset.UTC);
-            LOGGER.warn("The Clock used for Instant#now was overridden with the value '{}'.", overwriteClock);
+            LOGGER.warn("The Clock to be used for Instant#now and similar methods was overridden with the value '{}'.",
+                        overwriteClock);
         } else {
             CLOCK = Clock.systemUTC();
         }
