@@ -193,7 +193,7 @@ public final class DateUtils {
 
         // The nanos are not respected while converting to the GregorianCalendar.
         final BigDecimal fractionalSecond = calendar.getFractionalSecond();
-        if (fractionalSecond != null) {
+        if (fractionalSecond != null && fractionalSecond.doubleValue() != 0.0) {
             // Sometimes issues occur with the nanos of the XMLGregorianCalender.
             // In LocalTime, the nanos are stored as an int (e.g. 163857000).
             // The XMLGregorianCalender stores them as a double (e.g. 0.163857).
@@ -203,7 +203,8 @@ public final class DateUtils {
             // The rounding mode doesn't matter since this is only checked if the new scale is less than the old scale.
             final BigDecimal fixedScaleDecimal = fractionalSecond.setScale(9, RoundingMode.UNNECESSARY);
 
-            final String fractionAsString = fixedScaleDecimal.toString();
+            // toString might return E notation (e.g. "0E-9"), thus using toPlainString.
+            final String fractionAsString = fixedScaleDecimal.toPlainString();
             // Highest possible value: 0.999999999 -> Can always be converted to a String.
             final int nanos = Integer.parseInt(fractionAsString.substring(2));  // cut of the "0."
             zonedDateTime = zonedDateTime.withNano(nanos);
