@@ -28,7 +28,9 @@ package com.foursoft.harness.vec.v2x;
 import com.foursoft.harness.vec.common.util.DateUtils;
 import org.junit.jupiter.api.Test;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,12 +38,8 @@ class BasicWritingTest {
 
     @Test
     void testWriteModel() {
-        final LocalDate testDate = LocalDate.of(2022, 3, 24);
-
-        final Instant exampleDate = testDate
-                .atStartOfDay(ZoneOffset.UTC).toInstant();
-        final Instant exampleDateTime = LocalDateTime.of(testDate, LocalTime.NOON)
-                .atZone(ZoneOffset.UTC).toInstant();
+        final LocalDate exampleDate = LocalDate.of(2022, 3, 24);
+        final LocalDateTime exampleDateTime = LocalDateTime.of(exampleDate, LocalTime.NOON);
 
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
