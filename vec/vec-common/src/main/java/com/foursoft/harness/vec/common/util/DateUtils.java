@@ -108,16 +108,7 @@ public final class DateUtils {
      * @throws VecException In case the conversion fails.
      */
     public static XMLGregorianCalendar toXMLGregorianCalendar(final LocalDateTime dateTime) {
-        String validDateTimeString = dateTime.toString();
-
-        // If seconds and nanos are both 0, the String cannot be parsed because the seconds are missing in it.
-        final int nanos = dateTime.getNano();
-        final int seconds = dateTime.getSecond();
-        if (seconds == 0 && nanos == 0) {
-            validDateTimeString += ":00";
-        }
-
-        return toXMLGregorianCalendar(validDateTimeString);
+        return toXMLGregorianCalendar(dateTime.atOffset(ZoneOffset.UTC).toInstant());
     }
 
     /**
