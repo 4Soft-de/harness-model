@@ -142,10 +142,7 @@ public final class DateUtils {
                 // With that, they will be restored but only in this special case.
                 // This has the advantage that toString will return a more similar format to the original input.
                 if (subCalendar.getFractionalSecond() == null) {
-                    final BigDecimal fractional = BigDecimal.valueOf(0.0)
-                            // Scale is actually important for the String format.
-                            .setScale(3, RoundingMode.UNNECESSARY);
-                    subCalendar.setFractionalSecond(fractional);
+                    subCalendar.setFractionalSecond(xmlGregorianCalendar.getFractionalSecond());
                 }
 
                 return subCalendar;
