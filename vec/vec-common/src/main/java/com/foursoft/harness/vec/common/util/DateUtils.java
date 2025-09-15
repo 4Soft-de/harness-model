@@ -128,6 +128,13 @@ public final class DateUtils {
             final XMLGregorianCalendar xmlGregorianCalendar =
                     DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTime);
 
+            if (xmlGregorianCalendar.getFractionalSecond() == null) {
+                final BigDecimal fractional = BigDecimal.valueOf(0.0)
+                        // Scale is actually important for the String format.
+                        .setScale(3, RoundingMode.UNNECESSARY);
+                xmlGregorianCalendar.setFractionalSecond(fractional);
+            }
+
             final int timezone = xmlGregorianCalendar.getTimezone();
             if (timezone == Integer.MIN_VALUE) {  // Missing "Z" in given String.
                 xmlGregorianCalendar.setTimezone(0);
