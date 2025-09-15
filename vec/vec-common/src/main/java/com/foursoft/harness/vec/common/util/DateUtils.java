@@ -134,7 +134,10 @@ public final class DateUtils {
         }
 
         try {
-            return DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTime);
+            final XMLGregorianCalendar xmlGregorianCalendar =
+                    DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTime);
+            xmlGregorianCalendar.setTimezone(0);  // With this, the calendar will use the UTC timezone.
+            return xmlGregorianCalendar;
         } catch (final DatatypeConfigurationException | IllegalArgumentException e) {
             throw new VecException(String.format("Failed to create date calender for datetime %s.", dateTime), e);
         }
