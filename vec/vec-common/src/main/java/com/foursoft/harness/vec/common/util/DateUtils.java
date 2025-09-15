@@ -128,13 +128,6 @@ public final class DateUtils {
             final XMLGregorianCalendar xmlGregorianCalendar =
                     DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTime);
 
-            if (xmlGregorianCalendar.getFractionalSecond() == null) {
-                final BigDecimal fractional = BigDecimal.valueOf(0.0)
-                        // Scale is actually important for the String format.
-                        .setScale(3, RoundingMode.UNNECESSARY);
-                xmlGregorianCalendar.setFractionalSecond(fractional);
-            }
-
             final int timezone = xmlGregorianCalendar.getTimezone();
             if (timezone == Integer.MIN_VALUE) {  // Missing "Z" in given String.
                 xmlGregorianCalendar.setTimezone(0);
@@ -142,7 +135,20 @@ public final class DateUtils {
                 // Instead of manually adjusting the day, hour and minute based on the offset, simply
                 // convert the String to an Instant and create another calendar.
                 // This performs the offset adjustment automatically and will return a calendar with no offset.
-                return toXMLGregorianCalendar(Instant.parse(dateTime));
+                final XMLGregorianCalendar subCalendar = toXMLGregorianCalendar(Instant.parse(dateTime));
+
+                // When creating another calendar from the parsed Instant, it may not contain
+                // the milliseconds anymore if they are zero even they were explicitly given in the original String.
+                // With that, they will be restored but only in this special case.
+                // This has the advantage that toString will return a more similar format to the original input.
+                if (subCalendar.getFractionalSecond() == null) {
+                    final BigDecimal fractional = BigDecimal.valueOf(0.0)
+                            // Scale is actually important for the String format.
+                            .setScale(3, RoundingMode.UNNECESSARY);
+                    subCalendar.setFractionalSecond(fractional);
+                }
+
+                return subCalendar;
             }
 
             return xmlGregorianCalendar;
