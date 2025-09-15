@@ -100,6 +100,8 @@ class DateUtilsTest {
     @CsvSource(value = {
             "2022-03-22T16:05:35.421337Z,2022-03-22T16:05:35.421337Z",
             "2022-03-22,2022-03-22Z",
+            "2025-09-15T13:37:00.000Z,2025-09-15T13:37:00.000Z",
+            "2025-09-15T13:37:00.420,2025-09-15T13:37:00.420Z",
     })
     void testToXMLGregorianCalendarWithString(final String inputString, final String calendarToString) {
         final XMLGregorianCalendar calenderOfDateTime = DateUtils.toXMLGregorianCalendar(inputString);

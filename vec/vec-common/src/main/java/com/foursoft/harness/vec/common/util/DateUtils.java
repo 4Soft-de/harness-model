@@ -127,7 +127,12 @@ public final class DateUtils {
         try {
             final XMLGregorianCalendar xmlGregorianCalendar =
                     DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTime);
-            xmlGregorianCalendar.setTimezone(0);  // With this, the calendar will use the UTC timezone.
+
+            final int timezone = xmlGregorianCalendar.getTimezone();
+            if (timezone == Integer.MIN_VALUE) {  // Missing "Z" in given String.
+                xmlGregorianCalendar.setTimezone(0);
+            }
+
             return xmlGregorianCalendar;
         } catch (final DatatypeConfigurationException | IllegalArgumentException e) {
             throw new VecException(String.format("Failed to create date calender for datetime %s.", dateTime), e);
