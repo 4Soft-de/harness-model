@@ -135,6 +135,17 @@ public final class DateUtils {
     }
 
     /**
+     * Converts the passed {@link XMLGregorianCalendar} to an {@link Instant}.
+     *
+     * @param calendar The calendar to convert.
+     * @return A never-null {@link Instant} for the given calendar.
+     * @throws IllegalArgumentException If the given calendar is {@code null}.
+     */
+    public static Instant toInstant(final XMLGregorianCalendar calendar) {
+        return toZonedDateTime(calendar).toInstant();
+    }
+
+    /**
      * Converts the passed {@link XMLGregorianCalendar} to a {@link LocalDate}.
      *
      * @param calendar The calendar to convert.

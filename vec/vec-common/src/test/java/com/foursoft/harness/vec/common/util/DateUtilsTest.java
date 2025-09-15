@@ -29,6 +29,7 @@ import com.foursoft.harness.vec.common.exception.VecException;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -80,6 +81,17 @@ class DateUtilsTest {
 
         final LocalDateTime localDateTimeFromCalendar = DateUtils.toLocalDateTime(calenderOfDate);
         assertThat(now).isEqualTo(localDateTimeFromCalendar);
+    }
+
+    @Test
+    void testToXMLGregorianCalendarWithInstant() {
+        final Instant now = Instant.now();
+        final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(now);
+
+        assertThat(calenderOfDate.toString()).startsWith(now.toString());
+
+        final Instant instantFromCalendar = DateUtils.toInstant(calenderOfDate);
+        assertThat(now).isEqualTo(instantFromCalendar);
     }
 
     @Test
