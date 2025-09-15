@@ -102,6 +102,9 @@ class DateUtilsTest {
             "2022-03-22,2022-03-22Z",
             "2025-09-15T13:37:00.000Z,2025-09-15T13:37:00.000Z",
             "2025-09-15T13:37:00.420,2025-09-15T13:37:00.420Z",
+            "2025-09-15T13:37:00.420+01:00,2025-09-15T12:37:00.420Z",
+            "2025-09-15T00:32:00.000+01:00,2025-09-14T23:32:00Z",
+            "2025-09-15T23:32:00.000-02:30,2025-09-16T02:02:00Z",
     })
     void testToXMLGregorianCalendarWithString(final String inputString, final String calendarToString) {
         final XMLGregorianCalendar calenderOfDateTime = DateUtils.toXMLGregorianCalendar(inputString);

@@ -131,6 +131,11 @@ public final class DateUtils {
             final int timezone = xmlGregorianCalendar.getTimezone();
             if (timezone == Integer.MIN_VALUE) {  // Missing "Z" in given String.
                 xmlGregorianCalendar.setTimezone(0);
+            } else if (timezone != 0) {
+                // Instead of manually adjusting the day, hour and minute based on the offset, simply
+                // convert the String to an Instant and create another calendar.
+                // This performs the offset adjustment automatically and will return a calendar with no offset.
+                return toXMLGregorianCalendar(Instant.parse(dateTime));
             }
 
             return xmlGregorianCalendar;
