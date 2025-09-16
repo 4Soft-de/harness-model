@@ -45,6 +45,10 @@ import static com.foursoft.harness.kbl2vec.transform.Fragments.commonPartDocumen
 
 public class Fragments {
 
+    private Fragments() {
+        throw new AssertionError("No instances of utility class");
+    }
+
     public static TransformationFragment<VecDocumentVersion, TransformationResult.Builder<VecDocumentVersion>> commonComponentInformation(
             final KblPart source,
             final TransformationContext context) {

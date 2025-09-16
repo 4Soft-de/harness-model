@@ -47,18 +47,19 @@ public class ModuleConfigurationConfigurationConstraintTransformer
                 configurationConstraint);
 
         if (source.getParentModule() != null) {
-            builder.withFragment((v, b) -> {
-                v.setIdentification("ConfConstraint_" + source.getParentModule().getPartNumber());
-            });
+            builder.withFragment((v, b) ->
+                                         v.setIdentification(
+                                                 "ConfConstraint_" + source.getParentModule().getPartNumber())
+            );
         } else {
             builder.withComment("This occurrence has no \"Id\" in the KBL data.");
-            builder.withFragment((v, b) -> {
-                v.setIdentification("GenericIdentifier-" + context.getNewId());
-            });
+            builder.withFragment((v, b) ->
+                                         v.setIdentification("GenericIdentifier-" + context.getNewId())
+            );
         }
 
         return builder
-                //TODO: only working for "non-standalone" module configurations
+
                 .withLinker(Query.of(source), VecVariantConfiguration.class, VecConfigurationConstraint::setConfigInfo)
                 .withLinker(Query.of(source.getParentModule()), VecPartOccurrence.class,
                             VecConfigurationConstraint::getConstrainedElements)

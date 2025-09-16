@@ -39,7 +39,6 @@ public class SlotTransformer implements Transformer<KblSlot, VecSlot> {
     public TransformationResult<VecSlot> transform(final TransformationContext context, final KblSlot source) {
         final VecSlot slot = new VecSlot();
         slot.setSlotNumber(source.getId());
-        //TODO: ProcessingInformation
         return TransformationResult.from(slot)
                 .withDownstream(KblCavity.class, VecCavity.class, source::getCavities, VecSlot::getCavities)
                 .build();

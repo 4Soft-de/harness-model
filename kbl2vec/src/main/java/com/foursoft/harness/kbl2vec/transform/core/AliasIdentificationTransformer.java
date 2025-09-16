@@ -39,7 +39,7 @@ public class AliasIdentificationTransformer implements Transformer<KblAliasIdent
         aliasIdentification.setIdentificationValue(source.getAliasId());
         aliasIdentification.setScope(source.getScope());
         aliasIdentification.setType(source.getDescription());
-        //TODO: LocalizedDescription missing
+        //TODO: The LocalizedDescription is currently not handled
         return TransformationResult.of(aliasIdentification);
     }
 }

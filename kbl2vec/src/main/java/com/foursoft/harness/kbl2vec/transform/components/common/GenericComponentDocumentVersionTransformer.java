@@ -51,9 +51,6 @@ public class GenericComponentDocumentVersionTransformer implements Transformer<K
                         "specific Specifications will be created.", source);
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
 
-        //TODO: Enums/Consts for OpenEnums.
-        documentVersion.setDocumentType("PartMaster");
-
         final TransformationResult.Builder<VecDocumentVersion> builder = TransformationResult.from(
                         documentVersion)
                 .withFragment(commonComponentInformation(source, context));

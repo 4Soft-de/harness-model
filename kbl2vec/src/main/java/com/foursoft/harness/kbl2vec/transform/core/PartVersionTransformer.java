@@ -71,18 +71,11 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
             resultBuilder.withComment("Part_number_type cannot be mapped at the moment (see KBLFRM-1267)");
         }
 
-        //TODO: Change
-        //TODO: Copyright is not that easy
-//        if (!StringUtils.isBlank(source.getCopyrightNote())) {
-//            resultBuilder.withLinker(Query.of(source), VecCopyrightInformation.class,
-//                                     partVersion::setCopyrightInformation);
-//        }
         return resultBuilder.withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
                                             source::getAliasIds, VecPartVersion::getAliasIds)
                 .build();
     }
 
-    //TODO: This should be a strategy, as it can become complex
     private static class PrimaryPartTypeVisitor extends StrictBaseVisitor<VecPrimaryPartType, RuntimeException> {
 
         @Override

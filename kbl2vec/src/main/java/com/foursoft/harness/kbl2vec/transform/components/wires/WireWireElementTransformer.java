@@ -39,7 +39,7 @@ public class WireWireElementTransformer implements Transformer<KblGeneralWire, V
                                                           final KblGeneralWire source) {
         final VecWireElement dest = new VecWireElement();
         dest.setIdentification("WIRE");
-        //TODO: Cores!
+        //TODO: Handle the cores of multi-core wires.
         return TransformationResult.from(dest)
                 .withLinker(Query.of(source), VecWireElementSpecification.class,
                             VecWireElement::setWireElementSpecification)

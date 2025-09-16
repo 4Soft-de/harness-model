@@ -43,7 +43,7 @@ public class HarnessDocumentVersionTransformer implements Transformer<KblHarness
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
                                                               final KblHarness source) {
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
-        //TODO: Enums/Consts for OpenEnums.
+        
         documentVersion.setDocumentType("HarnessDescription");
 
         return TransformationResult.from(documentVersion)
