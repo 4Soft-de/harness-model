@@ -64,19 +64,6 @@ public class VecContentTransformer implements Transformer<KBLContainer, VecConte
                                 VecContent::getPartVersions)
                 .withDownstream(KblPart.class, VecDocumentVersion.class, source::getParts,
                                 VecContent::getDocumentVersions)
-//                .withDownstream(KblAssemblyPart.class, VecDocumentVersion.class, source::getAssemblyParts,
-//                                VecContent::getDocumentVersions)
-//                .withDownstream(KblConnectorHousing.class, VecDocumentVersion.class, source::getConnectorHousings,
-//                                VecContent::getDocumentVersions)
-//                .withDownstream(KblGeneralWire.class, VecDocumentVersion.class, source::getGeneralWires,
-//                                VecContent::getDocumentVersions)
-//                .withDownstream(KblPart.class, VecDocumentVersion.class,
-//                                () -> source.getParts().stream()
-//                                        .filter(p -> !(p instanceof KblConnectorHousing))
-//                                        .filter(p -> !(p instanceof KblAssemblyPart))
-//                                        .filter(p -> !(p instanceof KblGeneralWire))
-//                                        .toList(),
-//                                VecContent::getDocumentVersions)
                 .withDownstream(KblHarness.class, VecDocumentVersion.class, Query.of(source::getHarness),
                                 VecContent::getDocumentVersions)
                 .build();

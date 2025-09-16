@@ -36,12 +36,18 @@ import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
 
+/**
+ * Transformer for generic KBL parts to VEC document versions.
+ * <p>
+ * Filters out KBL part types that are handled by specific transformers
+ * (such as {@link KblAssemblyPart}, {@link KblConnectorHousing}, and {@link KblGeneralWire}).
+ * For unsupported types, a generic PartMaster Document without specific specifications will be created.
+ */
 public class GenericComponentDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
 
     @Override
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
                                                               final KblPart source) {
-        //Those types are handled by specific transformers.
         if (source instanceof KblAssemblyPart || source instanceof KblConnectorHousing ||
                 source instanceof KblGeneralWire) {
             return TransformationResult.noResult();
