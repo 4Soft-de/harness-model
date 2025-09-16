@@ -27,6 +27,8 @@ package com.foursoft.harness.kbl2vec.core;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.util.Arrays;
+
 public record TransformationStackTrace(TransformationStackTraceElement<?, ?>[] elements) {
 
     public static TransformationStackTrace empty() {
@@ -43,12 +45,27 @@ public record TransformationStackTrace(TransformationStackTraceElement<?, ?>[] e
 
     @Override
     public String toString() {
-        String result = "";
+        final StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < elements.length; i++) {
-            result += "  ".repeat(i) + (i + 1) + ". " + elements[i] + "\n";
+            result.append("  ".repeat(i)).append(i + 1).append(". ").append(elements[i]).append("\n");
         }
 
-        return result;
+        return result.toString();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        final TransformationStackTrace that = (TransformationStackTrace) o;
+        return Arrays.equals(elements, that.elements);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(elements);
     }
 }
