@@ -81,13 +81,13 @@ class BasicWritingTest {
                         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                         <vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec">
                             <VecVersion>1.1.3</VecVersion>
-                            <DateOfCreation>2022-03-24T00:00:00Z</DateOfCreation>
+                            <DateOfCreation>2022-03-24T00:00:00</DateOfCreation>
                             <DocumentVersion id="id_1002_0">
                                 <Approval id="id_2014_0">
                                     <Status>Approved</Status>
                                     <Permission id="id_2185_0">
                                         <Permission>Released</Permission>
-                                        <PermissionDate>2022-03-24T12:00:00Z</PermissionDate>
+                                        <PermissionDate>2022-03-24T12:00:00</PermissionDate>
                                     </Permission>
                                 </Approval>
                                 <DocumentNumber>123_456_789</DocumentNumber>
