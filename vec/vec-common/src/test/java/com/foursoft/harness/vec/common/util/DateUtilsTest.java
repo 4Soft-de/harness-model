@@ -28,7 +28,7 @@ package com.foursoft.harness.vec.common.util;
 import com.foursoft.harness.vec.common.exception.VecException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.Instant;
@@ -97,17 +97,17 @@ class DateUtilsTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "2022-03-22T16:05:35.421337Z,2022-03-22T16:05:35.421337Z",
-            "2022-03-22Z,2022-03-22Z",
-            "2025-09-15T13:37:00.000Z,2025-09-15T13:37:00.000Z",
-            "2025-09-15T13:37:00.420+01:00,2025-09-15T13:37:00.420+01:00",
-            "2025-09-15T00:32:00.000+01:00,2025-09-15T00:32:00.000+01:00",
-            "2025-09-15T23:32:00.000-02:30,2025-09-15T23:32:00.000-02:30",
+    @ValueSource(strings = {
+            "2022-03-22T16:05:35.421337Z",
+            "2022-03-22Z",
+            "2025-09-15T13:37:00.000Z",
+            "2025-09-15T13:37:00.420+01:00",
+            "2025-09-15T00:32:00.000+01:00",
+            "2025-09-15T23:32:00.000-02:30",
     })
-    void testToXMLGregorianCalendarWithString(final String inputString, final String calendarToString) {
-        final XMLGregorianCalendar calenderOfDateTime = DateUtils.toXMLGregorianCalendar(inputString);
-        assertThat(calenderOfDateTime).hasToString(calendarToString);
+    void testToXMLGregorianCalendarWithString(final String inputString) {
+        final XMLGregorianCalendar calendar = DateUtils.toXMLGregorianCalendar(inputString);
+        assertThat(calendar).hasToString(inputString);
     }
 
     @Test
