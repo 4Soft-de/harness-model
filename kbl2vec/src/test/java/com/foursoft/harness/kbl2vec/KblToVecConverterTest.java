@@ -25,6 +25,8 @@
  */
 package com.foursoft.harness.kbl2vec;
 
+import au.com.origin.snapshots.Expect;
+import au.com.origin.snapshots.junit5.SnapshotExtension;
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblReader;
 import com.foursoft.harness.kbl2vec.core.ConversionOrchestrator;
@@ -35,13 +37,29 @@ import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.vec.v2x.VecContent;
 import jakarta.xml.bind.Marshaller;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
+@ExtendWith(SnapshotExtension.class)
 class KblToVecConverterTest {
 
+    private Expect expect;
+
+    /**
+     * Tests the conversion of a reference KBL sample file to VEC and compares the output to a stored snapshot.
+     * <ul>
+     *     <li>Ensures that no unintended changes to the conversion result are introduced during refactorings.</li>
+     *     <li>Highlights differences when new features are added to the converter, allowing inspection of changes in
+     *     {@code __snapshots__/KblToVecConverterTest.snap} during PR review without requiring local execution.</li>
+     * </ul>
+     *
+     * @throws IOException if reading or writing files fails
+     */
     @Test
     void test_conversion() throws IOException {
         final KblToVecConverter converter = new KblToVecConverter();
@@ -54,6 +72,13 @@ class KblToVecConverterTest {
             final ConversionOrchestrator.Result<VecContent> result = converter.convert(kblContainer);
 
             writeToStream(result, TestUtils.createTestFileStream("vobes_sample_kbl24"));
+
+            try (final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                writeToStream(result, baos);
+
+                expect.toMatchSnapshot(baos.toString(StandardCharsets.UTF_8));
+            }
+
         }
     }
 
