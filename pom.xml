@@ -24,7 +24,7 @@
         <assertj-core.version>3.27.4</assertj-core.version>
         <maven-api.version>3.9.11</maven-api.version>
         <java-snapshot-testing.version>4.0.8</java-snapshot-testing.version>
-        <jackson.version>2.19.2</jackson.version>
+        <jackson.version>2.20.0</jackson.version>
         <apache-jena.version>5.5.0</apache-jena.version>
 
         <!-- Plugins -->
