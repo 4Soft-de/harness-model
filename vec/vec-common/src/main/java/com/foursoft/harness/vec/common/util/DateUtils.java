@@ -26,6 +26,8 @@
 package com.foursoft.harness.vec.common.util;
 
 import com.foursoft.harness.vec.common.exception.VecException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -42,6 +44,26 @@ import java.time.*;
  */
 public final class DateUtils {
 
+    /**
+     * {@link Clock} which either uses UTC time
+     * or a fixed UTC time, controlled by defining {@code overwrite.clock}.
+     */
+    public static final Clock CLOCK;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DateUtils.class);
+
+    static {
+        final String overwriteClock = System.getProperty("overwrite.clock", null);
+        if (overwriteClock != null) {
+            final Instant instant = Instant.parse(overwriteClock); // e.g. "2025-05-01T00:00:00Z"
+            CLOCK = Clock.fixed(instant, ZoneOffset.UTC);
+            LOGGER.warn("The Clock to be used for Instant#now and similar methods was overridden with the value '{}'.",
+                        overwriteClock);
+        } else {
+            CLOCK = Clock.systemUTC();
+        }
+    }
+
     private DateUtils() {
         // hide default constructor
     }
@@ -53,8 +75,18 @@ public final class DateUtils {
      * @throws VecException In case the conversion fails.
      */
     public static XMLGregorianCalendar currentDate() {
-        final Instant date = Instant.now();
-        return toXMLGregorianCalendar(date.toString());
+        return toXMLGregorianCalendar(Instant.now(CLOCK));
+    }
+
+    /**
+     * Converts the given {@link Instant} to an {@link XMLGregorianCalendar}.
+     *
+     * @param instant Instant to set.
+     * @return A never-null {@link XMLGregorianCalendar} for the given date.
+     * @throws VecException In case the conversion fails.
+     */
+    public static XMLGregorianCalendar toXMLGregorianCalendar(final Instant instant) {
+        return toXMLGregorianCalendar(instant.toString());
     }
 
     /**
@@ -110,6 +142,17 @@ public final class DateUtils {
     }
 
     /**
+     * Converts the passed {@link XMLGregorianCalendar} to an {@link Instant}.
+     *
+     * @param calendar The calendar to convert.
+     * @return A never-null {@link Instant} for the given calendar.
+     * @throws IllegalArgumentException If the given calendar is {@code null}.
+     */
+    public static Instant toInstant(final XMLGregorianCalendar calendar) {
+        return toZonedDateTime(calendar).toInstant();
+    }
+
+    /**
      * Converts the passed {@link XMLGregorianCalendar} to a {@link LocalDate}.
      *
      * @param calendar The calendar to convert.
@@ -140,7 +183,7 @@ public final class DateUtils {
 
         // The nanos are not respected while converting to the GregorianCalendar.
         final BigDecimal fractionalSecond = calendar.getFractionalSecond();
-        if (fractionalSecond != null) {
+        if (fractionalSecond != null && fractionalSecond.doubleValue() != 0.0) {
             // Sometimes issues occur with the nanos of the XMLGregorianCalender.
             // In LocalTime, the nanos are stored as an int (e.g. 163857000).
             // The XMLGregorianCalender stores them as a double (e.g. 0.163857).
@@ -150,7 +193,8 @@ public final class DateUtils {
             // The rounding mode doesn't matter since this is only checked if the new scale is less than the old scale.
             final BigDecimal fixedScaleDecimal = fractionalSecond.setScale(9, RoundingMode.UNNECESSARY);
 
-            final String fractionAsString = fixedScaleDecimal.toString();
+            // toString might return E notation (e.g. "0E-9"), thus using toPlainString.
+            final String fractionAsString = fixedScaleDecimal.toPlainString();
             // Highest possible value: 0.999999999 -> Can always be converted to a String.
             final int nanos = Integer.parseInt(fractionAsString.substring(2));  // cut of the "0."
             zonedDateTime = zonedDateTime.withNano(nanos);
