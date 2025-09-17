@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,11 +28,14 @@ package com.foursoft.harness.kbl2vec.core;
 import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
 import org.slf4j.Logger;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class TransformationContextImpl implements TransformationContext {
     private final ConversionProperties conversionProperties;
     private final ConverterRegistry converterRegistry;
     private final EntityMapping entityMapping;
     private final Logger logger = Logging.TRANSFORM_LOGGER;
+    private final AtomicInteger idCounter = new AtomicInteger(0);
 
     public TransformationContextImpl(final ConversionProperties conversionProperties,
                                      final ConverterRegistry converterRegistry, final EntityMapping entityMapping) {
@@ -56,7 +59,13 @@ public class TransformationContextImpl implements TransformationContext {
         return entityMapping;
     }
 
-    @Override public Logger getLogger() {
+    @Override
+    public Logger getLogger() {
         return logger;
+    }
+
+    @Override
+    public int getNewId() {
+        return idCounter.getAndIncrement();
     }
 }

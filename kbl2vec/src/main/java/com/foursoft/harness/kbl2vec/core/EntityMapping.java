@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,11 +28,15 @@ package com.foursoft.harness.kbl2vec.core;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 import com.google.common.collect.Multimaps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
 
 public class EntityMapping {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(EntityMapping.class);
 
     Multimap<Object, Object> mappedElements = MultimapBuilder.hashKeys()
             .arrayListValues()
@@ -43,6 +47,14 @@ public class EntityMapping {
         Objects.requireNonNull(destinationEntity, "destinationEntity must not be null");
         mappedElements.put(sourceEntity, destinationEntity);
 
+        final List<?> mappedElementsByType = findMappedElementsByType(sourceEntity, destinationEntity.getClass());
+        if (mappedElementsByType.size() > 1) {
+            LOGGER.warn(
+                    "Created ambiguous mapping for source entity '{}' to destination type '{}'. This might result in " +
+                            "an error during linking.",
+                    sourceEntity,
+                    destinationEntity.getClass());
+        }
     }
 
     public Multimap<Object, Object> getContent() {
@@ -56,11 +68,7 @@ public class EntityMapping {
      */
     public <D> D getIfUniqueOrElseThrow(final Object sourceEntity, final Class<D> destinationClass) {
 
-        final List<D> result = mappedElements.get(sourceEntity)
-                .stream()
-                .filter(destinationClass::isInstance)
-                .map(destinationClass::cast)
-                .toList();
+        final List<D> result = findMappedElementsByType(sourceEntity, destinationClass);
 
         if (result.isEmpty()) {
             throw new ConversionException(
@@ -75,6 +83,14 @@ public class EntityMapping {
         }
 
         return result.get(0);
+    }
+
+    private <D> List<D> findMappedElementsByType(final Object sourceEntity, final Class<D> destinationClass) {
+        return mappedElements.get(sourceEntity)
+                .stream()
+                .filter(destinationClass::isInstance)
+                .map(destinationClass::cast)
+                .toList();
     }
 
 }

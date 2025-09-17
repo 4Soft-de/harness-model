@@ -43,9 +43,9 @@ public class ConversionOrchestrator<S, D> {
     private final TransformerRegistry transformerRegistry;
     private final TransformationContext transformationContext;
 
-    private final Queue<Transformation<?, ?>> transformations = new ConcurrentLinkedQueue<>();
+    private final Queue<TransformationHolder> transformations = new ConcurrentLinkedQueue<>();
 
-    private final Queue<Finisher> finisher = new ConcurrentLinkedQueue<>();
+    private final Queue<FinisherHolder> finisher = new ConcurrentLinkedQueue<>();
 
     private final List<Processor<D>> postProcessors = new ArrayList<>();
 
@@ -77,7 +77,7 @@ public class ConversionOrchestrator<S, D> {
                                                                                 Query.of(innerSource),
                                                                                 resultReference::set);
 
-        transformations.offer(initialTransformation);
+        transformations.offer(new TransformationHolder(initialTransformation, TransformationStackTrace.empty()));
 
         processTransformations();
 
@@ -101,16 +101,20 @@ public class ConversionOrchestrator<S, D> {
     }
 
     private void processFinalizer() {
-        Finisher currentFinisher;
-        while ((currentFinisher = finisher.poll()) != null) {
-            currentFinisher.finishTransformation(this.transformationContext);
+        FinisherHolder finisherHolder;
+        while ((finisherHolder = finisher.poll()) != null) {
+            try {
+                finisherHolder.finisher().finishTransformation(this.transformationContext);
+            } catch (final Exception e) {
+                throw new FinisherException(finisherHolder.finisher(), finisherHolder.currentStackTrace(), e);
+            }
         }
     }
 
     private void processTransformations() {
-        Transformation<?, ?> currentTransformation;
-        while ((currentTransformation = transformations.poll()) != null) {
-            handleSingleTransformation(currentTransformation);
+        TransformationHolder currentHolder = null;
+        while ((currentHolder = transformations.poll()) != null) {
+            handleSingleTransformation(currentHolder.transformation(), currentHolder.currentStackTrace());
         }
     }
 
@@ -130,37 +134,68 @@ public class ConversionOrchestrator<S, D> {
         return resultValue;
     }
 
-    private <FROM, TO> void handleSingleTransformation(final Transformation<FROM, TO> transformation) {
+    private <FROM, TO> void handleSingleTransformation(final Transformation<FROM, TO> transformation,
+                                                       final TransformationStackTrace parentStackTrace) {
         final Collection<Transformer<FROM, TO>> transformers = transformerRegistry.getTransformer(
                 transformation.sourceClass(),
                 transformation.destinationClass());
 
         transformation.sourceQuery()
                 .stream()
-                .flatMap(from -> handleElementTransformations(transformers, from))
+                .flatMap(from -> handleElementTransformations(transformers, from, parentStackTrace))
                 .filter(Objects::nonNull)
                 .forEach(transformation.accumulator());
 
     }
 
     private <FROM, TO> Stream<TO> handleElementTransformations(final Collection<Transformer<FROM, TO>> transformers,
-                                                               final FROM element) {
+                                                               final FROM element,
+                                                               final TransformationStackTrace parentStackTrace) {
         return transformers.stream()
-                .map(t -> handleElementTransformation(t, element));
+                .map(t -> handleElementTransformation(t, element, parentStackTrace));
     }
 
-    private <FROM, TO> TO handleElementTransformation(final Transformer<FROM, TO> transformer, final FROM element) {
-        final TransformationResult<TO> result = transformer.transform(this.transformationContext, element);
+    private <FROM, TO> TO handleElementTransformation(final Transformer<FROM, TO> transformer, final FROM element,
+                                                      final TransformationStackTrace parentStackTrace) {
+        TransformationResult<TO> result = null;
+        try {
+            result = transformer.transform(this.transformationContext, element);
+        } catch (final Exception e) {
+            throw new TransformerException(transformer, element, parentStackTrace, e);
+        }
+
         if (!result.isEmpty()) {
-            transformations.addAll(result.downstreamTransformations());
-            finisher.addAll(result.finisher());
+            final TransformationStackTrace currentStackTrace = parentStackTrace.addElement(element, result.element(),
+                                                                                           transformer);
+            transformations.addAll(wrapTransformations(result.downstreamTransformations(), currentStackTrace));
+            finisher.addAll(wrapFinishers(result.finisher(), currentStackTrace));
             transformationContext.getEntityMapping().put(element, result.element());
             comments.putAll(result.comments());
         }
         return result.element();
     }
 
+    private static List<TransformationHolder> wrapTransformations(
+            final Collection<Transformation<?, ?>> transformations,
+            final TransformationStackTrace currentStackTrace) {
+        return transformations.stream().map(t -> new TransformationHolder(t, currentStackTrace))
+                .toList();
+    }
+
+    private static List<FinisherHolder> wrapFinishers(final Collection<Finisher> finishers,
+                                                      final TransformationStackTrace currentStackTrace) {
+        return finishers.stream().map(f -> new FinisherHolder(f, currentStackTrace))
+                .toList();
+    }
+
     public record Result<D>(D resultValue, Map<Object, String> comments, Multimap<Object, Object> entityMapping) {
+    }
+
+    private record TransformationHolder(Transformation<?, ?> transformation,
+                                        TransformationStackTrace currentStackTrace) {
+    }
+
+    private record FinisherHolder(Finisher finisher, TransformationStackTrace currentStackTrace) {
     }
 
 }
