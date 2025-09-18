@@ -25,10 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.common;
 
-import com.foursoft.harness.kbl.v25.KblAssemblyPart;
-import com.foursoft.harness.kbl.v25.KblConnectorHousing;
-import com.foursoft.harness.kbl.v25.KblGeneralWire;
-import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
@@ -49,7 +46,7 @@ public class GenericComponentDocumentVersionTransformer implements Transformer<K
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
                                                               final KblPart source) {
         if (source instanceof KblAssemblyPart || source instanceof KblConnectorHousing ||
-                source instanceof KblGeneralWire) {
+                source instanceof KblGeneralWire || source instanceof KblCavitySeal) {
             return TransformationResult.noResult();
         }
         context.getLogger().warn(
