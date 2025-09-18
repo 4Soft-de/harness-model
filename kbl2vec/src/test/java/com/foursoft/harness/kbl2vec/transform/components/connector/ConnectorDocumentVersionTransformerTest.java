@@ -43,6 +43,9 @@ public class ConnectorDocumentVersionTransformerTest {
                 .returns("TestCompanyName", VecDocumentVersion::getCompanyName)
                 .returns("TestPartNumber", VecDocumentVersion::getDocumentNumber)
                 .returns("TestVersion", VecDocumentVersion::getDocumentVersion)
+                .satisfies(
+                        v -> assertThat(v.getReferencedPart()).contains(vecPartVersion)
+                )
                 .satisfies(vecDocumentVersion -> assertThat(vecDocumentVersion.getSpecifications())
                         .contains(vecConnectorHousingSpecification)
                 )
