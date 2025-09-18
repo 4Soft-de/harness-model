@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CavityTransformerTest {
+class CavityTransformerTest {
 
     @Test
-    public void should_transformCavity() {
+    void should_transformCavity() {
         // Given
         final CavityTransformer transformer = new CavityTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();

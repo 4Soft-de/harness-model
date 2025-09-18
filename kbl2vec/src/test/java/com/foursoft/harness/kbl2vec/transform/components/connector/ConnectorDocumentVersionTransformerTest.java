@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ConnectorDocumentVersionTransformerTest {
+class ConnectorDocumentVersionTransformerTest {
 
     @Test
-    public void should_transformConnectorDocumentVersion() {
+    void should_transformConnectorDocumentVersion() {
         // Given
         final ConnectorDocumentVersionTransformer transformer = new ConnectorDocumentVersionTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
@@ -47,10 +47,10 @@ public class ConnectorDocumentVersionTransformerTest {
                         v -> assertThat(v.getReferencedPart()).contains(vecPartVersion)
                 )
                 .satisfies(vecDocumentVersion -> assertThat(vecDocumentVersion.getSpecifications())
-                        .contains(vecConnectorHousingSpecification)
-                )
-                .satisfies(vecDocumentVersion -> assertThat(vecDocumentVersion.getSpecifications())
-                        .contains(vecGeneralTechnicalPartSpecification)
+                        .containsExactlyInAnyOrder(
+                                vecConnectorHousingSpecification,
+                                vecGeneralTechnicalPartSpecification
+                        )
                 );
     }
 }

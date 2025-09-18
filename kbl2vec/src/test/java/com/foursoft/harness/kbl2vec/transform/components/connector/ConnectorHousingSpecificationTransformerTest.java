@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ConnectorHousingSpecificationTransformerTest {
+class ConnectorHousingSpecificationTransformerTest {
 
     @Test
-    public void should_transformConnectorHousingSpecification() {
+    void should_transformConnectorHousingSpecification() {
+        // Given
         final ConnectorHousingSpecificationTransformer transformer = new ConnectorHousingSpecificationTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
@@ -31,8 +32,10 @@ public class ConnectorHousingSpecificationTransformerTest {
         orchestrator.addMockMapping(kblSlot, vecSlot);
         orchestrator.addMockMapping(source, vecPartVersion);
 
+        // When
         final VecConnectorHousingSpecification result = orchestrator.transform(transformer, source);
 
+        // Then
         assertThat(result).isNotNull()
                 .returns("TestHousingType", VecConnectorHousingSpecification::getSpecialPartType)
                 .satisfies(

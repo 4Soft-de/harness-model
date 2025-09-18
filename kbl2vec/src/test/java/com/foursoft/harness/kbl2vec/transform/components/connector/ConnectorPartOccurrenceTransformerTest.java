@@ -67,6 +67,4 @@ class ConnectorPartOccurrenceTransformerTest {
                         p -> assertThat(p.getRoles()).contains(connectorHousingRole)
                 );
     }
-
 }
-

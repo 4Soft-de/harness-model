@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ConnectorHousingRoleTransformerTest {
+class ConnectorHousingRoleTransformerTest {
 
     @Test
-    public void should_transformConnectorHousingRole() {
+    void should_transformConnectorHousingRole() {
         // Given
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
         final ConnectorHousingRoleTransformer transformer = new ConnectorHousingRoleTransformer();

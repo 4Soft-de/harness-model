@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CavityReferenceTransformerTest {
+class CavityReferenceTransformerTest {
 
     @Test
-    public void should_transformCavityReference() {
+    void should_transformCavityReference() {
         // Given
         final CavityReferenceTransformer transformer = new CavityReferenceTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
