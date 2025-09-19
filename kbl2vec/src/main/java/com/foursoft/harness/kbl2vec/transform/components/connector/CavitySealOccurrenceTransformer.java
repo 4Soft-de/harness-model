@@ -27,9 +27,12 @@ package com.foursoft.harness.kbl2vec.transform.components.connector;
 
 import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
 import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCavitySealRole;
+import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
@@ -46,6 +49,10 @@ public class CavitySealOccurrenceTransformer implements Transformer<ConnectionOr
             return TransformationResult
                     .from(destination)
                     .withFragment(commonOccurrenceInformation(source, context))
+                    .withDownstream(
+                            KblCavitySealOccurrence.class, VecCavitySealRole.class, Query.of(source),
+                            VecOccurrenceOrUsage::getRoles
+                    )
                     .build();
         }
         return TransformationResult.noResult();

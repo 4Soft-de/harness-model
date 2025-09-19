@@ -28,6 +28,7 @@ package com.foursoft.harness.kbl2vec.transform.components.connector;
 import com.foursoft.harness.kbl.v25.KblCavitySeal;
 import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecCavitySealRole;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import org.junit.jupiter.api.Test;
@@ -49,8 +50,10 @@ class CavitySealOccurrenceTransformerTest {
         source.setPart(part);
 
         final VecPartVersion vecPartVersion = new VecPartVersion();
+        final VecCavitySealRole vecCavitySealRole = new VecCavitySealRole();
 
         orchestrator.addMockMapping(part, vecPartVersion);
+        orchestrator.addMockMapping(source, vecCavitySealRole);
 
         // When
         final VecPartOccurrence result = orchestrator.transform(transformer, source);
@@ -59,6 +62,7 @@ class CavitySealOccurrenceTransformerTest {
         assertThat(result)
                 .isNotNull()
                 .returns("TestId", VecPartOccurrence::getIdentification)
-                .returns(vecPartVersion, VecPartOccurrence::getPart);
+                .returns(vecPartVersion, VecPartOccurrence::getPart)
+                .satisfies(v -> assertThat(v.getRoles()).containsExactly(vecCavitySealRole));
     }
 }

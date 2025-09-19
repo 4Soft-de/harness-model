@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,6 +27,7 @@ package com.foursoft.harness.kbl2vec.transform.components.connector;
 
 import com.foursoft.harness.kbl.v25.KblCavitySeal;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecCavitySealSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
@@ -48,10 +49,12 @@ class CavitySealDocumentVersionTransformerTest {
         source.setVersion("TestVersion");
 
         final VecPartVersion vecPartVersion = new VecPartVersion();
-        final VecGeneralTechnicalPartSpecification vecGeneralTechnicalPartSpecification = new VecGeneralTechnicalPartSpecification();
+        final VecGeneralTechnicalPartSpecification vecGeneralSpecification = new VecGeneralTechnicalPartSpecification();
+        final VecCavitySealSpecification vecCavitySealSpecification = new VecCavitySealSpecification();
 
         orchestrator.addMockMapping(source, vecPartVersion);
-        orchestrator.addMockMapping(source, vecGeneralTechnicalPartSpecification);
+        orchestrator.addMockMapping(source, vecGeneralSpecification);
+        orchestrator.addMockMapping(source, vecCavitySealSpecification);
 
         // When
         final VecDocumentVersion result = orchestrator.transform(transformer, source);
@@ -61,6 +64,9 @@ class CavitySealDocumentVersionTransformerTest {
                 .returns("TestCompany", VecDocumentVersion::getCompanyName)
                 .returns("TestPartNumber", VecDocumentVersion::getDocumentNumber)
                 .returns("TestVersion", VecDocumentVersion::getDocumentVersion)
-                .satisfies(v -> assertThat(v.getReferencedPart()).containsExactly(vecPartVersion));
+                .satisfies(v -> assertThat(v.getReferencedPart()).containsExactly(vecPartVersion))
+                .satisfies(v -> assertThat(v.getSpecifications()).containsExactlyInAnyOrder(
+                        vecCavitySealSpecification, vecGeneralSpecification)
+                );
     }
 }
