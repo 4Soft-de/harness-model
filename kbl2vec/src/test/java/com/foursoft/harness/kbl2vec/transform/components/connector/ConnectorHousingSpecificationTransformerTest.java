@@ -70,9 +70,7 @@ class ConnectorHousingSpecificationTransformerTest {
                         v -> assertThat(v.getSlots()).contains(vecSlot)
                 )
                 .satisfies(
-                        v -> {
-                            assertThat(v.getCoding().getCoding()).isEqualTo("TestHousingCode");
-                        }
+                        v -> assertThat(v.getCoding().getCoding()).isEqualTo("TestHousingCode")
                 );
     }
 }
