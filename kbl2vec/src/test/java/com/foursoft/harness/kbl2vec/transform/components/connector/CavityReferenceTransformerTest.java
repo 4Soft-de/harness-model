@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,46 +25,38 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.connector;
 
-import com.foursoft.harness.kbl.v25.KblConnectorHousing;
-import com.foursoft.harness.kbl.v25.KblConnectorOccurrence;
+import com.foursoft.harness.kbl.v25.KblCavity;
+import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.vec.v2x.VecCavityReference;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ConnectorPartOccurrenceTransformerTest {
+class CavityReferenceTransformerTest {
 
     @Test
-    void should_transformPartOccurrence() {
+    void should_transformCavityReference() {
         // Given
+        final CavityReferenceTransformer transformer = new CavityReferenceTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
-        final ConnectorPartOccurrenceTransformer transformer = new ConnectorPartOccurrenceTransformer();
 
-        final KblConnectorHousing kblPart = new KblConnectorHousing();
-        kblPart.setXmlId("TestPartId");
+        final KblCavity part = new KblCavity();
+        part.setCavityNumber("TestCavityNumber");
 
-        final KblConnectorOccurrence source = new KblConnectorOccurrence();
-        source.setPart(kblPart);
-        source.setId("A220");
+        final KblCavityOccurrence source = new KblCavityOccurrence();
+        source.setPart(part);
 
-        final VecConnectorHousingRole connectorHousingRole = new VecConnectorHousingRole();
-        final VecPartVersion vecPart = new VecPartVersion();
-
-        orchestrator.addMockMapping(source, connectorHousingRole);
-        orchestrator.addMockMapping(kblPart, vecPart);
+        final VecCavity vecCavity = new VecCavity();
+        orchestrator.addMockMapping(part, vecCavity);
 
         // When
-        final VecPartOccurrence result = orchestrator.transform(transformer, source);
+        final VecCavityReference result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("A220", VecPartOccurrence::getIdentification)
-                .returns(vecPart, VecPartOccurrence::getPart)
-                .satisfies(
-                        p -> assertThat(p.getRoles()).contains(connectorHousingRole)
-                );
+                .returns("TestCavityNumber", VecCavityReference::getIdentification)
+                .returns(vecCavity, VecCavityReference::getReferencedCavity);
     }
 }

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,45 +26,51 @@
 package com.foursoft.harness.kbl2vec.transform.components.connector;
 
 import com.foursoft.harness.kbl.v25.KblConnectorHousing;
-import com.foursoft.harness.kbl.v25.KblConnectorOccurrence;
+import com.foursoft.harness.kbl.v25.KblSlot;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecSlot;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ConnectorPartOccurrenceTransformerTest {
+class ConnectorHousingSpecificationTransformerTest {
 
     @Test
-    void should_transformPartOccurrence() {
+    void should_transformConnectorHousingSpecification() {
         // Given
+        final ConnectorHousingSpecificationTransformer transformer = new ConnectorHousingSpecificationTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
-        final ConnectorPartOccurrenceTransformer transformer = new ConnectorPartOccurrenceTransformer();
 
-        final KblConnectorHousing kblPart = new KblConnectorHousing();
-        kblPart.setXmlId("TestPartId");
+        final KblConnectorHousing source = new KblConnectorHousing();
+        source.setHousingType("TestHousingType");
+        source.setHousingCode("TestHousingCode");
 
-        final KblConnectorOccurrence source = new KblConnectorOccurrence();
-        source.setPart(kblPart);
-        source.setId("A220");
+        final KblSlot kblSlot = new KblSlot();
+        final VecSlot vecSlot = new VecSlot();
 
-        final VecConnectorHousingRole connectorHousingRole = new VecConnectorHousingRole();
-        final VecPartVersion vecPart = new VecPartVersion();
+        source.getSlots().add(kblSlot);
 
-        orchestrator.addMockMapping(source, connectorHousingRole);
-        orchestrator.addMockMapping(kblPart, vecPart);
+        final VecPartVersion vecPartVersion = new VecPartVersion();
+
+        orchestrator.addMockMapping(kblSlot, vecSlot);
+        orchestrator.addMockMapping(source, vecPartVersion);
 
         // When
-        final VecPartOccurrence result = orchestrator.transform(transformer, source);
+        final VecConnectorHousingSpecification result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("A220", VecPartOccurrence::getIdentification)
-                .returns(vecPart, VecPartOccurrence::getPart)
+                .returns("TestHousingType", VecConnectorHousingSpecification::getSpecialPartType)
                 .satisfies(
-                        p -> assertThat(p.getRoles()).contains(connectorHousingRole)
+                        v -> assertThat(v.getDescribedPart()).contains(vecPartVersion)
+                )
+                .satisfies(
+                        v -> assertThat(v.getSlots()).contains(vecSlot)
+                )
+                .satisfies(
+                        v -> assertThat(v.getCoding().getCoding()).isEqualTo("TestHousingCode")
                 );
     }
 }
