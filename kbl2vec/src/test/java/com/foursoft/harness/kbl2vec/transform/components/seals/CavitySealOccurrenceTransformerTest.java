@@ -23,23 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.connector;
+package com.foursoft.harness.kbl2vec.transform.components.seals;
 
 import com.foursoft.harness.kbl.v25.KblCavitySeal;
 import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecCavitySealRole;
-import com.foursoft.harness.vec.v2x.VecCavitySealSpecification;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CavitySealRoleTransformerTest {
+class CavitySealOccurrenceTransformerTest {
 
     @Test
-    void should_transformCavitySealRole() {
+    void should_transformCavitySealOccurrence() {
         // Given
-        final CavitySealRoleTransformer transformer = new CavitySealRoleTransformer();
+        final CavitySealOccurrenceTransformer transformer = new CavitySealOccurrenceTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblCavitySealOccurrence source = new KblCavitySealOccurrence();
@@ -48,17 +49,20 @@ class CavitySealRoleTransformerTest {
         final KblCavitySeal part = new KblCavitySeal();
         source.setPart(part);
 
-        final VecCavitySealSpecification vecCavitySealSpecification = new VecCavitySealSpecification();
+        final VecPartVersion vecPartVersion = new VecPartVersion();
+        final VecCavitySealRole vecCavitySealRole = new VecCavitySealRole();
 
-        orchestrator.addMockMapping(part, vecCavitySealSpecification);
+        orchestrator.addMockMapping(part, vecPartVersion);
+        orchestrator.addMockMapping(source, vecCavitySealRole);
 
         // When
-        final VecCavitySealRole result = orchestrator.transform(transformer, source);
+        final VecPartOccurrence result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result)
                 .isNotNull()
-                .returns("TestId", VecCavitySealRole::getIdentification)
-                .returns(vecCavitySealSpecification, VecCavitySealRole::getCavitySealSpecification);
+                .returns("TestId", VecPartOccurrence::getIdentification)
+                .returns(vecPartVersion, VecPartOccurrence::getPart)
+                .satisfies(v -> assertThat(v.getRoles()).containsExactly(vecCavitySealRole));
     }
 }

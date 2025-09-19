@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,40 +23,50 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.connector;
+package com.foursoft.harness.kbl2vec.transform.components.seals;
 
 import com.foursoft.harness.kbl.v25.KblCavitySeal;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecCavitySealSpecification;
+import com.foursoft.harness.vec.v2x.VecDocumentVersion;
+import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CavitySealSpecificationTransformerTest {
+class CavitySealDocumentVersionTransformerTest {
 
     @Test
-    void should_transformCavitySealSpecification() {
+    void should_transformCavitySealDocumentVersion() {
         // Given
-        final CavitySealSpecificationTransformer transformer = new CavitySealSpecificationTransformer();
+        final CavitySealDocumentVersionTransformer transformer = new CavitySealDocumentVersionTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblCavitySeal source = new KblCavitySeal();
-        source.setSealType("TestSealType");
+        source.setCompanyName("TestCompany");
         source.setPartNumber("TestPartNumber");
-        final String expectedIdentification = "CSS-TestPartNumber";
+        source.setVersion("TestVersion");
 
         final VecPartVersion vecPartVersion = new VecPartVersion();
+        final VecGeneralTechnicalPartSpecification vecGeneralSpecification = new VecGeneralTechnicalPartSpecification();
+        final VecCavitySealSpecification vecCavitySealSpecification = new VecCavitySealSpecification();
+
         orchestrator.addMockMapping(source, vecPartVersion);
+        orchestrator.addMockMapping(source, vecGeneralSpecification);
+        orchestrator.addMockMapping(source, vecCavitySealSpecification);
 
         // When
-        final VecCavitySealSpecification result = orchestrator.transform(transformer, source);
+        final VecDocumentVersion result = orchestrator.transform(transformer, source);
 
         // Then
-        assertThat(result)
-                .isNotNull()
-                .returns("TestSealType", VecCavitySealSpecification::getSpecialPartType)
-                .returns(expectedIdentification, VecCavitySealSpecification::getIdentification)
-                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion));
+        assertThat(result).isNotNull()
+                .returns("TestCompany", VecDocumentVersion::getCompanyName)
+                .returns("TestPartNumber", VecDocumentVersion::getDocumentNumber)
+                .returns("TestVersion", VecDocumentVersion::getDocumentVersion)
+                .satisfies(v -> assertThat(v.getReferencedPart()).containsExactly(vecPartVersion))
+                .satisfies(v -> assertThat(v.getSpecifications()).containsExactlyInAnyOrder(
+                        vecCavitySealSpecification, vecGeneralSpecification)
+                );
     }
 }

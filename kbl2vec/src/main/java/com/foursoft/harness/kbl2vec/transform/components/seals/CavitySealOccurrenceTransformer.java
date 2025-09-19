@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.connector;
+package com.foursoft.harness.kbl2vec.transform.components.seals;
 
 import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
 import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
