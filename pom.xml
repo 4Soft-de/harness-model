@@ -21,7 +21,7 @@
         <slf4j.version>2.0.17</slf4j.version>
         <logback-classic.version>1.5.18</logback-classic.version>
         <junit.jupiter.version>5.13.4</junit.jupiter.version>
-        <assertj-core.version>3.27.4</assertj-core.version>
+        <assertj-core.version>3.27.5</assertj-core.version>
         <maven-api.version>3.9.11</maven-api.version>
         <java-snapshot-testing.version>4.0.8</java-snapshot-testing.version>
         <jackson.version>2.20.0</jackson.version>
