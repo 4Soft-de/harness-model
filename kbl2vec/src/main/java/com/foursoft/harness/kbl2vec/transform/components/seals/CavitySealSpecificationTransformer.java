@@ -39,10 +39,8 @@ import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificati
 public class CavitySealSpecificationTransformer implements Transformer<KblCavitySeal, VecCavitySealSpecification> {
 
     @Override
-    public TransformationResult<VecCavitySealSpecification> transform(
-            final TransformationContext context,
-            final KblCavitySeal source
-    ) {
+    public TransformationResult<VecCavitySealSpecification> transform(final TransformationContext context,
+                                                                      final KblCavitySeal source) {
         final VecCavitySealSpecification destination = new VecCavitySealSpecification();
         destination.setSpecialPartType(source.getSealType());
 
