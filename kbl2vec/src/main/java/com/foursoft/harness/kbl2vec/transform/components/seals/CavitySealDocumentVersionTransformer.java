@@ -39,19 +39,17 @@ import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments
 public class CavitySealDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
 
     @Override
-    public TransformationResult<VecDocumentVersion> transform(
-            final TransformationContext context, final KblPart part
-    ) {
+    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context, final KblPart part) {
         if (part instanceof final KblCavitySeal source) {
             final VecDocumentVersion documentVersion = new VecDocumentVersion();
 
             return TransformationResult
                     .from(documentVersion)
+                    .withFragment(commonComponentInformation(source, context))
                     .withDownstream(
                             KblCavitySeal.class, VecCavitySealSpecification.class, Query.of(source),
                             VecDocumentVersion::getSpecifications
                     )
-                    .withFragment(commonComponentInformation(source, context))
                     .build();
         }
         return TransformationResult.noResult();
