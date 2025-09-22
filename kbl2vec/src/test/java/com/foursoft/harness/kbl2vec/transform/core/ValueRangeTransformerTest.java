@@ -23,11 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.core;
+package com.foursoft.harness.kbl2vec.transform.core;
 
 import com.foursoft.harness.kbl.v25.KblUnit;
 import com.foursoft.harness.kbl.v25.KblValueRange;
-import com.foursoft.harness.kbl2vec.transform.core.ValueRangeTransformer;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecOtherUnit;
 import com.foursoft.harness.vec.v2x.VecUnit;
 import com.foursoft.harness.vec.v2x.VecValueRange;
@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TestValueRangeTransformer {
+class ValueRangeTransformerTest {
 
     @Test
     void should_transformValueRange() {
