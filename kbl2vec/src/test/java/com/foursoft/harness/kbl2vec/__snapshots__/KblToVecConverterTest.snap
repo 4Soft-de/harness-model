@@ -80,12 +80,12 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>/NULL</DocumentVersion>
     <ReferencedPart>PartVersion_00604</ReferencedPart>
-    <Specification xsi:type="vec:CavityPlugSpecification" id="CavityPlugSpecification_00016">
-      <Identification>CPS-CPL001841</Identification>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_00016">
+      <Identification>GTPS-CPL001841</Identification>
       <DescribedPart>PartVersion_00604</DescribedPart>
     </Specification>
-    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_00017">
-      <Identification>GTPS-CPL001841</Identification>
+    <Specification xsi:type="vec:CavityPlugSpecification" id="CavityPlugSpecification_00017">
+      <Identification>CPS-CPL001841</Identification>
       <DescribedPart>PartVersion_00604</DescribedPart>
     </Specification>
   </DocumentVersion>
@@ -103,12 +103,12 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>/NULL</DocumentVersion>
     <ReferencedPart>PartVersion_00607</ReferencedPart>
-    <Specification xsi:type="vec:CavitySealSpecification" id="CavitySealSpecification_00021">
-      <Identification>CSS-CSE001742</Identification>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_00021">
+      <Identification>GTPS-CSE001742</Identification>
       <DescribedPart>PartVersion_00607</DescribedPart>
     </Specification>
-    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_00022">
-      <Identification>GTPS-CSE001742</Identification>
+    <Specification xsi:type="vec:CavitySealSpecification" id="CavitySealSpecification_00022">
+      <Identification>CSS-CSE001742</Identification>
       <DescribedPart>PartVersion_00607</DescribedPart>
     </Specification>
   </DocumentVersion>
@@ -126,12 +126,12 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>/NULL</DocumentVersion>
     <ReferencedPart>PartVersion_00610</ReferencedPart>
-    <Specification xsi:type="vec:CavitySealSpecification" id="CavitySealSpecification_00026">
-      <Identification>CSS-CSE001744A</Identification>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_00026">
+      <Identification>GTPS-CSE001744A</Identification>
       <DescribedPart>PartVersion_00610</DescribedPart>
     </Specification>
-    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_00027">
-      <Identification>GTPS-CSE001744A</Identification>
+    <Specification xsi:type="vec:CavitySealSpecification" id="CavitySealSpecification_00027">
+      <Identification>CSS-CSE001744A</Identification>
       <DescribedPart>PartVersion_00610</DescribedPart>
     </Specification>
   </DocumentVersion>
@@ -1759,7 +1759,7 @@ This is not intended for productive use and is not complete!
       <Component id="PartOccurrence_00414">
         <Identification>GenericIdentifier-0</Identification>
         <Role xsi:type="vec:CavityPlugRole" id="CavityPlugRole_00415">
-          <CavityPlugSpecification>CavityPlugSpecification_00016</CavityPlugSpecification>
+          <CavityPlugSpecification>CavityPlugSpecification_00017</CavityPlugSpecification>
         </Role>
         <Part>PartVersion_00604</Part>
       </Component>
@@ -1767,7 +1767,7 @@ This is not intended for productive use and is not complete!
       <Component id="PartOccurrence_00416">
         <Identification>GenericIdentifier-1</Identification>
         <Role xsi:type="vec:CavityPlugRole" id="CavityPlugRole_00417">
-          <CavityPlugSpecification>CavityPlugSpecification_00016</CavityPlugSpecification>
+          <CavityPlugSpecification>CavityPlugSpecification_00017</CavityPlugSpecification>
         </Role>
         <Part>PartVersion_00604</Part>
       </Component>
@@ -1775,7 +1775,7 @@ This is not intended for productive use and is not complete!
       <Component id="PartOccurrence_00418">
         <Identification>GenericIdentifier-2</Identification>
         <Role xsi:type="vec:CavitySealRole" id="CavitySealRole_00419">
-          <CavitySealSpecification>CavitySealSpecification_00021</CavitySealSpecification>
+          <CavitySealSpecification>CavitySealSpecification_00022</CavitySealSpecification>
         </Role>
         <Part>PartVersion_00607</Part>
       </Component>
@@ -1783,7 +1783,7 @@ This is not intended for productive use and is not complete!
       <Component id="PartOccurrence_00420">
         <Identification>GenericIdentifier-3</Identification>
         <Role xsi:type="vec:CavitySealRole" id="CavitySealRole_00421">
-          <CavitySealSpecification>CavitySealSpecification_00021</CavitySealSpecification>
+          <CavitySealSpecification>CavitySealSpecification_00022</CavitySealSpecification>
         </Role>
         <Part>PartVersion_00607</Part>
       </Component>
@@ -1791,7 +1791,7 @@ This is not intended for productive use and is not complete!
       <Component id="PartOccurrence_00422">
         <Identification>GenericIdentifier-4</Identification>
         <Role xsi:type="vec:CavitySealRole" id="CavitySealRole_00423">
-          <CavitySealSpecification>CavitySealSpecification_00026</CavitySealSpecification>
+          <CavitySealSpecification>CavitySealSpecification_00027</CavitySealSpecification>
         </Role>
         <Part>PartVersion_00610</Part>
       </Component>
