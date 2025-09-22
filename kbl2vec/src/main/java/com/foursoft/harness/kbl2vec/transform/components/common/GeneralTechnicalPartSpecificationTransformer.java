@@ -48,16 +48,14 @@ public class GeneralTechnicalPartSpecificationTransformer
                 context.getConverterRegistry().getStringToColorConverter();
 
         if (source instanceof final KblConnectorHousing connectorHousing) {
-            colorConverter.convert(connectorHousing.getHousingColour()).ifPresent(
-                    specification.getColorInformations()::add);
+            colorConverter.convert(connectorHousing.getHousingColour())
+                    .ifPresent(specification.getColorInformations()::add);
         } else if (source instanceof final KblCavitySeal kblCavitySeal) {
-            colorConverter.convert(kblCavitySeal.getColour()).ifPresent(
-                    specification.getColorInformations()::add
-            );
+            colorConverter.convert(kblCavitySeal.getColour())
+                    .ifPresent(specification.getColorInformations()::add);
         } else if (source instanceof final KblCavityPlug kblCavityPlug) {
-            colorConverter.convert(kblCavityPlug.getColour()).ifPresent(
-                    specification.getColorInformations()::add
-            );
+            colorConverter.convert(kblCavityPlug.getColour())
+                    .ifPresent(specification.getColorInformations()::add);
         }
 
         return TransformationResult.from(specification)
