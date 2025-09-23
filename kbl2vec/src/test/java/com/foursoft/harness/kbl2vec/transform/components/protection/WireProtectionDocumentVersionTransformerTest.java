@@ -1,4 +1,4 @@
-package com.foursoft.harness.kbl2vec.transform.components.wires;
+package com.foursoft.harness.kbl2vec.transform.components.protection;
 
 import com.foursoft.harness.kbl.v25.KblWireProtection;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
