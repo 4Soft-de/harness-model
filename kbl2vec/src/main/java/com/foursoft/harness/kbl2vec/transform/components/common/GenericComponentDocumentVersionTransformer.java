@@ -46,8 +46,8 @@ public class GenericComponentDocumentVersionTransformer implements Transformer<K
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
                                                               final KblPart source) {
         if (source instanceof KblAssemblyPart || source instanceof KblConnectorHousing ||
-                source instanceof KblGeneralWire || source instanceof KblCavitySeal ||
-                source instanceof KblCavityPlug) {
+                source instanceof KblGeneralWire || source instanceof KblWireProtection ||
+                source instanceof KblCoPackPart || source instanceof KblCavityPlug || source instanceof KblCavitySeal) {
             return TransformationResult.noResult();
         }
         context.getLogger().warn(

@@ -44,8 +44,9 @@ public class GenericPartOccurrenceTransformer implements Transformer<ConnectionO
             return TransformationResult.noResult();
         }
         if (source instanceof KblGeneralWireOccurrence || source instanceof KblConnectorOccurrence ||
-                source instanceof KblAssemblyPartOccurrence || source instanceof KblCavitySealOccurrence ||
-                source instanceof KblCavityPlugOccurrence) {
+                source instanceof KblAssemblyPartOccurrence || source instanceof KblWireProtectionOccurrence ||
+                source instanceof KblCoPackOccurrence || source instanceof KblCavityPlugOccurrence ||
+                source instanceof KblCavitySealOccurrence) {
             return TransformationResult.noResult();
         }
         context.getLogger().warn(

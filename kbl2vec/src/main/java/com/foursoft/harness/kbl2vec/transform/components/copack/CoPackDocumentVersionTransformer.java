@@ -2,10 +2,12 @@ package com.foursoft.harness.kbl2vec.transform.components.copack;
 
 import com.foursoft.harness.kbl.v25.KblCoPackPart;
 import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
+import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
 
@@ -18,6 +20,8 @@ public class CoPackDocumentVersionTransformer implements Transformer<KblPart, Ve
 
             return TransformationResult.from(destination)
                     .withFragment(commonComponentInformation(source, context))
+                    .withDownstream(KblCoPackPart.class, VecPartOrUsageRelatedSpecification.class, Query.of(source),
+                                    VecDocumentVersion::getSpecifications)
                     .build();
         }
         return TransformationResult.noResult();
