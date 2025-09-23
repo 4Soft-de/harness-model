@@ -25,10 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.common;
 
-import com.foursoft.harness.kbl.v25.KblConnectorHousing;
-import com.foursoft.harness.kbl.v25.KblMaterial;
-import com.foursoft.harness.kbl.v25.KblNumericalValue;
-import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.convert.StringToColorConverter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -47,12 +44,18 @@ public class GeneralTechnicalPartSpecificationTransformer
                                                                                 final KblPart source) {
         final VecGeneralTechnicalPartSpecification specification = new VecGeneralTechnicalPartSpecification();
 
-        if (source instanceof final KblConnectorHousing connectorHousing) {
-            final StringToColorConverter colorConverter =
-                    context.getConverterRegistry().getStringToColorConverter();
+        final StringToColorConverter colorConverter =
+                context.getConverterRegistry().getStringToColorConverter();
 
-            colorConverter.convert(connectorHousing.getHousingColour()).ifPresent(
-                    specification.getColorInformations()::add);
+        if (source instanceof final KblConnectorHousing connectorHousing) {
+            colorConverter.convert(connectorHousing.getHousingColour())
+                    .ifPresent(specification.getColorInformations()::add);
+        } else if (source instanceof final KblCavitySeal kblCavitySeal) {
+            colorConverter.convert(kblCavitySeal.getColour())
+                    .ifPresent(specification.getColorInformations()::add);
+        } else if (source instanceof final KblCavityPlug kblCavityPlug) {
+            colorConverter.convert(kblCavityPlug.getColour())
+                    .ifPresent(specification.getColorInformations()::add);
         }
 
         return TransformationResult.from(specification)

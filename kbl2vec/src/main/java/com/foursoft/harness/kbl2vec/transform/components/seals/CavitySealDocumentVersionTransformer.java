@@ -23,43 +23,35 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.common;
+package com.foursoft.harness.kbl2vec.transform.components.seals;
 
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.KblCavitySeal;
+import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCavitySealSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
 
-/**
- * Transformer for generic KBL parts to VEC document versions.
- * <p>
- * Filters out KBL part types that are handled by specific transformers
- * (such as {@link KblAssemblyPart}, {@link KblConnectorHousing}, and {@link KblGeneralWire}).
- * For unsupported types, a generic PartMaster Document without specific specifications will be created.
- */
-public class GenericComponentDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
+public class CavitySealDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
 
     @Override
-    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
-                                                              final KblPart source) {
-        if (source instanceof KblAssemblyPart || source instanceof KblConnectorHousing ||
-                source instanceof KblGeneralWire || source instanceof KblCavitySeal ||
-                source instanceof KblCavityPlug) {
-            return TransformationResult.noResult();
+    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context, final KblPart part) {
+        if (part instanceof final KblCavitySeal source) {
+            final VecDocumentVersion documentVersion = new VecDocumentVersion();
+
+            return TransformationResult
+                    .from(documentVersion)
+                    .withFragment(commonComponentInformation(source, context))
+                    .withDownstream(
+                            KblCavitySeal.class, VecCavitySealSpecification.class, Query.of(source),
+                            VecDocumentVersion::getSpecifications
+                    )
+                    .build();
         }
-        context.getLogger().warn(
-                "The class of {} is not supported specifically by KBL2VEC, a generic PartMasterDocument without " +
-                        "specific Specifications will be created.", source);
-        final VecDocumentVersion documentVersion = new VecDocumentVersion();
-
-        final TransformationResult.Builder<VecDocumentVersion> builder = TransformationResult.from(
-                        documentVersion)
-                .withFragment(commonComponentInformation(source, context));
-
-        return builder
-                .build();
+        return TransformationResult.noResult();
     }
 }

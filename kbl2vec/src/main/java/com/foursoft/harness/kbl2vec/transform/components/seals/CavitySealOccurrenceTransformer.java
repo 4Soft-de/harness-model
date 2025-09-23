@@ -23,40 +23,35 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.common;
+package com.foursoft.harness.kbl2vec.transform.components.seals;
 
-import com.foursoft.harness.kbl.common.HasPart;
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
+import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCavitySealRole;
+import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
 
-public class GenericPartOccurrenceTransformer implements Transformer<ConnectionOrOccurrence, VecPartOccurrence> {
+public class CavitySealOccurrenceTransformer implements Transformer<ConnectionOrOccurrence, VecPartOccurrence> {
 
     @Override
     public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
-                                                             final ConnectionOrOccurrence source) {
-        if (source instanceof KblConnection) {
-            // KBL Connections do not have a direct representation in VEC
-            return TransformationResult.noResult();
-        }
-        if (source instanceof KblGeneralWireOccurrence || source instanceof KblConnectorOccurrence ||
-                source instanceof KblAssemblyPartOccurrence || source instanceof KblCavitySealOccurrence ||
-                source instanceof KblCavityPlugOccurrence) {
-            return TransformationResult.noResult();
-        }
-        context.getLogger().warn(
-                "The class of {} is not supported specifically by KBL2VEC, a generic PartOccurrence without roles " +
-                        "will be created.", source);
-        if (source instanceof final HasPart<?> hasPart) {
-            final VecPartOccurrence occurrence = new VecPartOccurrence();
-            final TransformationResult.Builder<VecPartOccurrence> builder = TransformationResult.from(occurrence);
+                                                             final ConnectionOrOccurrence occurrence) {
+        if (occurrence instanceof final KblCavitySealOccurrence source) {
+            final VecPartOccurrence destination = new VecPartOccurrence();
 
-            return builder
-                    .withFragment(commonOccurrenceInformation(hasPart, context))
+            return TransformationResult
+                    .from(destination)
+                    .withFragment(commonOccurrenceInformation(source, context))
+                    .withDownstream(
+                            KblCavitySealOccurrence.class, VecCavitySealRole.class, Query.of(source),
+                            VecOccurrenceOrUsage::getRoles
+                    )
                     .build();
         }
         return TransformationResult.noResult();
