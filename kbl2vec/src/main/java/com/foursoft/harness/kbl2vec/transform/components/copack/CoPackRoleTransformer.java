@@ -25,34 +25,26 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.copack;
 
-import com.foursoft.harness.kbl.v25.KblCoPackPart;
-import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.kbl.v25.KblCoPackOccurrence;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
-import org.junit.jupiter.api.Test;
+import com.foursoft.harness.vec.v2x.VecSpecificRole;
 
-import static org.assertj.core.api.Assertions.assertThat;
+public class CoPackRoleTransformer implements Transformer<KblCoPackOccurrence, VecSpecificRole> {
 
-class CoPackSpecificationTransformerTest {
+    @Override
+    public TransformationResult<VecSpecificRole> transform(final TransformationContext context,
+                                                           final KblCoPackOccurrence source) {
+        final VecSpecificRole destination = new VecSpecificRole();
+        destination.setIdentification(source.getId());
+        destination.setSpecificRoleType("CoPackRole");
 
-    @Test
-    void should_transformCoPackSpecification() {
-        final CoPackSpecificaionTransformer transformer = new CoPackSpecificaionTransformer();
-        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
-
-        final KblCoPackPart source = new KblCoPackPart();
-        source.setPartType("TestPartType");
-        source.setPartNumber("TestPartNumber");
-        final String expectedIdentification = "POURS-TestPartNumber";
-
-        final VecPartVersion vecPartVersion = new VecPartVersion();
-        orchestrator.addMockMapping(source, vecPartVersion);
-
-        final VecPartOrUsageRelatedSpecification result = orchestrator.transform(transformer, source);
-
-        assertThat(result).isNotNull()
-                .returns("TestPartType", VecPartOrUsageRelatedSpecification::getSpecialPartType)
-                .returns(expectedIdentification, VecPartOrUsageRelatedSpecification::getIdentification)
-                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion));
+        return TransformationResult.from(destination)
+                .withLinker(Query.of(source::getPart), VecPartOrUsageRelatedSpecification.class,
+                            VecSpecificRole::setSpecification)
+                .build();
     }
 }

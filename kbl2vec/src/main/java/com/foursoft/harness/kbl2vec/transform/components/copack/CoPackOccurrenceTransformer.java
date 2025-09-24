@@ -25,24 +25,32 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.copack;
 
-import com.foursoft.harness.kbl.v25.KblCoPackPart;
+import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
+import com.foursoft.harness.kbl.v25.KblCoPackOccurrence;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
+import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecSpecificRole;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
 
-public class CoPackSpecificaionTransformer implements Transformer<KblCoPackPart, VecPartOrUsageRelatedSpecification> {
+public class CoPackOccurrenceTransformer implements Transformer<ConnectionOrOccurrence, VecPartOccurrence> {
 
     @Override
-    public TransformationResult<VecPartOrUsageRelatedSpecification> transform(final TransformationContext context,
-                                                                                final KblCoPackPart source) {
-        final VecPartOrUsageRelatedSpecification destination = new VecPartOrUsageRelatedSpecification();
-        destination.setSpecialPartType(source.getPartType());
+    public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
+                                                             final ConnectionOrOccurrence occurrence) {
+        if (occurrence instanceof final KblCoPackOccurrence source) {
+            final VecPartOccurrence destination = new VecPartOccurrence();
 
-        return TransformationResult.from(destination)
-                .withFragment(commonSpecificationAttributes(source))
-                .build();
+            return TransformationResult.from(destination)
+                    .withFragment(commonOccurrenceInformation(source, context))
+                    .withDownstream(KblCoPackOccurrence.class, VecSpecificRole.class, Query.of(source),
+                                    VecOccurrenceOrUsage::getRoles)
+                    .build();
+        }
+        return TransformationResult.noResult();
     }
 }
