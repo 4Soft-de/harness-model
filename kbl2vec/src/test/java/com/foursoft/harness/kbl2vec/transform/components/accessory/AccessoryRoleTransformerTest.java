@@ -23,24 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.accessory;
+package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
 import com.foursoft.harness.kbl.v25.KblAccessory;
 import com.foursoft.harness.kbl.v25.KblAccessoryOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 import com.foursoft.harness.vec.v2x.VecSpecificRole;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AccessoryOccurrenceTransformerTest {
+class AccessoryRoleTransformerTest {
 
     @Test
-    void should_transformAccessoryOccurrence() {
+    void should_transformAccessoryRole() {
         // Given
-        final AccessoryOccurrenceTransformer transformer = new AccessoryOccurrenceTransformer();
+        final AccessoryRoleTransformer transformer = new AccessoryRoleTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblAccessoryOccurrence source = new KblAccessoryOccurrence();
@@ -49,19 +48,16 @@ class AccessoryOccurrenceTransformerTest {
         final KblAccessory part = new KblAccessory();
         source.setPart(part);
 
-        final VecSpecificRole vecRole = new VecSpecificRole();
-        orchestrator.addMockMapping(source, vecRole);
-
-        final VecPartVersion vecPartVersion = new VecPartVersion();
-        orchestrator.addMockMapping(part, vecPartVersion);
+        final VecPartOrUsageRelatedSpecification vecPartOrUsageRelatedSpecification =
+                new VecPartOrUsageRelatedSpecification();
+        orchestrator.addMockMapping(part, vecPartOrUsageRelatedSpecification);
 
         // When
-        final VecPartOccurrence result = orchestrator.transform(transformer, source);
+        final VecSpecificRole result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecPartOccurrence::getIdentification)
-                .satisfies(v -> assertThat(v.getRoles()).containsExactly(vecRole))
-                .satisfies(v -> assertThat(v.getPart()).isEqualTo(vecPartVersion));
+                .returns("TestId", VecSpecificRole::getIdentification)
+                .returns(vecPartOrUsageRelatedSpecification, VecSpecificRole::getSpecification);
     }
 }

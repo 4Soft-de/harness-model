@@ -23,34 +23,27 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.accessory;
+package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
-import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
 import com.foursoft.harness.kbl.v25.KblAccessoryOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 import com.foursoft.harness.vec.v2x.VecSpecificRole;
 
-import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
-
-public class AccessoryOccurrenceTransformer implements Transformer<ConnectionOrOccurrence, VecPartOccurrence> {
-
+public class AccessoryRoleTransformer implements Transformer<KblAccessoryOccurrence, VecSpecificRole> {
     @Override
-    public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
-                                                             final ConnectionOrOccurrence occurrence) {
-        if (occurrence instanceof final KblAccessoryOccurrence source) {
-            final VecPartOccurrence destination = new VecPartOccurrence();
+    public TransformationResult<VecSpecificRole> transform(final TransformationContext context,
+                                                           final KblAccessoryOccurrence source) {
+        final VecSpecificRole destination = new VecSpecificRole();
+        destination.setIdentification(source.getId());
+        destination.setSpecificRoleType("Accessory");
 
-            return TransformationResult.from(destination)
-                    .withFragment(commonOccurrenceInformation(source, context))
-                    .withDownstream(KblAccessoryOccurrence.class, VecSpecificRole.class,
-                                    Query.of(source), VecOccurrenceOrUsage::getRoles)
-                    .build();
-        }
-        return TransformationResult.noResult();
+        return TransformationResult.from(destination)
+                .withLinker(Query.of(source::getPart), VecPartOrUsageRelatedSpecification.class,
+                            VecSpecificRole::setSpecification)
+                .build();
     }
 }

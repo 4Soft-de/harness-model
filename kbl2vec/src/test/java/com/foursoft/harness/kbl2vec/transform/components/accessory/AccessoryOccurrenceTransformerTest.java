@@ -23,45 +23,45 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.accessory;
+package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
 import com.foursoft.harness.kbl.v25.KblAccessory;
+import com.foursoft.harness.kbl.v25.KblAccessoryOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
-import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
+import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecSpecificRole;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AccessoryDocumentVersionTransformerTest {
+class AccessoryOccurrenceTransformerTest {
 
     @Test
-    void should_transformAccessoryDocumentVersion() {
+    void should_transformAccessoryOccurrence() {
         // Given
-        final AccessoryDocumentVersionTransformer transformer = new AccessoryDocumentVersionTransformer();
+        final AccessoryOccurrenceTransformer transformer = new AccessoryOccurrenceTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblAccessory source = new KblAccessory();
+        final KblAccessoryOccurrence source = new KblAccessoryOccurrence();
+        source.setId("TestId");
 
-        final VecPartOrUsageRelatedSpecification vecSpecification = new VecPartOrUsageRelatedSpecification();
-        final VecGeneralTechnicalPartSpecification vecGeneralTechnicalPartSpecification =
-                new VecGeneralTechnicalPartSpecification();
+        final KblAccessory part = new KblAccessory();
+        source.setPart(part);
+
+        final VecSpecificRole vecRole = new VecSpecificRole();
+        orchestrator.addMockMapping(source, vecRole);
+
         final VecPartVersion vecPartVersion = new VecPartVersion();
-
-        orchestrator.addMockMapping(source, vecSpecification);
-        orchestrator.addMockMapping(source, vecGeneralTechnicalPartSpecification);
-        orchestrator.addMockMapping(source, vecPartVersion);
+        orchestrator.addMockMapping(part, vecPartVersion);
 
         // When
-        final VecDocumentVersion result = orchestrator.transform(transformer, source);
+        final VecPartOccurrence result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("PartMaster", VecDocumentVersion::getDocumentType)
-                .satisfies(v -> assertThat(v.getReferencedPart()).containsExactlyInAnyOrder(vecPartVersion))
-                .satisfies(v -> assertThat(v.getSpecifications()).containsExactlyInAnyOrder(vecSpecification,
-                                                                                            vecGeneralTechnicalPartSpecification));
+                .returns("TestId", VecPartOccurrence::getIdentification)
+                .satisfies(v -> assertThat(v.getRoles()).containsExactly(vecRole))
+                .satisfies(v -> assertThat(v.getPart()).isEqualTo(vecPartVersion));
     }
 }

@@ -23,27 +23,36 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.accessory;
+package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
-import com.foursoft.harness.kbl.v25.KblAccessoryOccurrence;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl.v25.KblAccessory;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
-import com.foursoft.harness.vec.v2x.VecSpecificRole;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
+import org.junit.jupiter.api.Test;
 
-public class AccessoryRoleTransformer implements Transformer<KblAccessoryOccurrence, VecSpecificRole> {
-    @Override
-    public TransformationResult<VecSpecificRole> transform(final TransformationContext context,
-                                                           final KblAccessoryOccurrence source) {
-        final VecSpecificRole destination = new VecSpecificRole();
-        destination.setIdentification(source.getId());
-        destination.setSpecificRoleType("Accessory");
+import static org.assertj.core.api.Assertions.assertThat;
 
-        return TransformationResult.from(destination)
-                .withLinker(Query.of(source::getPart), VecPartOrUsageRelatedSpecification.class,
-                            VecSpecificRole::setSpecification)
-                .build();
+class AccessorySpecificationTransformerTest {
+
+    @Test
+    void should_transformAccessorySpecification() {
+        // Given
+        final AccessorySpecificationTransformer transformer = new AccessorySpecificationTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblAccessory source = new KblAccessory();
+        source.setAccessoryType("TestAccessoryType");
+
+        final VecPartVersion vecPartVersion = new VecPartVersion();
+        orchestrator.addMockMapping(source, vecPartVersion);
+
+        // When
+        final VecPartOrUsageRelatedSpecification result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns("TestAccessoryType", VecPartOrUsageRelatedSpecification::getSpecialPartType)
+                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion));
     }
 }

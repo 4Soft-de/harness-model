@@ -23,36 +23,32 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.accessory;
+package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
 import com.foursoft.harness.kbl.v25.KblAccessory;
-import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
-import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
 
-class AccessorySpecificationTransformerTest {
+public class AccessoryDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
 
-    @Test
-    void should_transformAccessorySpecification() {
-        // Given
-        final AccessorySpecificationTransformer transformer = new AccessorySpecificationTransformer();
-        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+    @Override
+    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context, final KblPart part) {
+        if (part instanceof final KblAccessory source) {
+            final VecDocumentVersion destination = new VecDocumentVersion();
 
-        final KblAccessory source = new KblAccessory();
-        source.setAccessoryType("TestAccessoryType");
-
-        final VecPartVersion vecPartVersion = new VecPartVersion();
-        orchestrator.addMockMapping(source, vecPartVersion);
-
-        // When
-        final VecPartOrUsageRelatedSpecification result = orchestrator.transform(transformer, source);
-
-        // Then
-        assertThat(result).isNotNull()
-                .returns("TestAccessoryType", VecPartOrUsageRelatedSpecification::getSpecialPartType)
-                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion));
+            return TransformationResult.from(destination)
+                    .withFragment(commonComponentInformation(source, context))
+                    .withDownstream(KblAccessory.class, VecPartOrUsageRelatedSpecification.class, Query.of(source),
+                                    VecDocumentVersion::getSpecifications)
+                    .build();
+        }
+        return TransformationResult.noResult();
     }
 }

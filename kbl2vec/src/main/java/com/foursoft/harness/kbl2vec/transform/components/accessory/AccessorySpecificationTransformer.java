@@ -23,32 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.accessory;
+package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
 import com.foursoft.harness.kbl.v25.KblAccessory;
-import com.foursoft.harness.kbl.v25.KblPart;
-import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 
-import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
+import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 
-public class AccessoryDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
-
+public class AccessorySpecificationTransformer implements
+        Transformer<KblAccessory, VecPartOrUsageRelatedSpecification> {
     @Override
-    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context, final KblPart part) {
-        if (part instanceof final KblAccessory source) {
-            final VecDocumentVersion destination = new VecDocumentVersion();
+    public TransformationResult<VecPartOrUsageRelatedSpecification> transform(final TransformationContext context,
+                                                                              final KblAccessory source) {
+        final VecPartOrUsageRelatedSpecification destination = new VecPartOrUsageRelatedSpecification();
+        destination.setSpecialPartType(source.getAccessoryType());
 
-            return TransformationResult.from(destination)
-                    .withFragment(commonComponentInformation(source, context))
-                    .withDownstream(KblAccessory.class, VecPartOrUsageRelatedSpecification.class, Query.of(source),
-                                    VecDocumentVersion::getSpecifications)
-                    .build();
-        }
-        return TransformationResult.noResult();
+        return TransformationResult.from(destination)
+                .withFragment(commonSpecificationAttributes(source))
+                .build();
     }
 }
