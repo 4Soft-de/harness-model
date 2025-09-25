@@ -36,6 +36,7 @@ public class ConverterRegistry {
     private final Converter<String, Optional<VecLocalizedString>> stringToLocalizedString;
     private final StringToColorConverter stringToColorConverter;
     private final StringToWireTypeConverter stringToWireTypeConverter;
+    private final StringToMaterialConverter stringToMaterialConverter;
 
     public ConverterRegistry(final ConversionProperties conversionProperties) {
         Objects.requireNonNull(conversionProperties);
@@ -44,6 +45,8 @@ public class ConverterRegistry {
         stringToColorConverter = new StringToColorConverter(conversionProperties.getDefaultColorReferenceSystem());
         stringToWireTypeConverter = new StringToWireTypeConverter(
                 conversionProperties.getDefaultWireTypeReferenceSystem());
+        stringToMaterialConverter = new StringToMaterialConverter(
+                conversionProperties.getDefaultMaterialReferenceSystem());
     }
 
     public Converter<String, Optional<VecLocalizedString>> getStringToLocalizedString() {
@@ -56,5 +59,9 @@ public class ConverterRegistry {
 
     public StringToWireTypeConverter getStringToWireTypeConverter() {
         return stringToWireTypeConverter;
+    }
+
+    public StringToMaterialConverter getStringToMaterialConverter() {
+        return stringToMaterialConverter;
     }
 }
