@@ -62,9 +62,12 @@ public class EntityMapping {
     }
 
     /**
-     * Returns an element from the cache, matching the {@code destinationClass} criteria.
+     * Returns a single element from the cache, matching the {@code destinationClass} criteria.
      * <p>
-     * If nothing is found, or if more than one element is found, the method throws an exception.
+     * If no match is found, a {@link ConversionException} is thrown, indicating that no transformation result exists.
+     * If multiple matches are found, the method attempts to narrow the results to those whose class exactly matches
+     * {@code destinationClass}. If this still results in zero or multiple matches, a {@link ConversionException} is
+     * thrown with a detailed explanation of the ambiguity.
      */
     public <D> D getIfUniqueOrElseThrow(final Object sourceEntity, final Class<D> destinationClass) {
 
