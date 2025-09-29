@@ -62,9 +62,12 @@ public class EntityMapping {
     }
 
     /**
-     * Returns an element from the cache, matching the {@code destinationClass} criteria.
+     * Returns a single element from the cache, matching the {@code destinationClass} criteria.
      * <p>
-     * If nothing is found, or if more than one element is found, the method throws an exception.
+     * If no match is found, a {@link ConversionException} is thrown, indicating that no transformation result exists.
+     * If multiple matches are found, the method attempts to narrow the results to those whose class exactly matches
+     * {@code destinationClass}. If this still results in zero or multiple matches, a {@link ConversionException} is
+     * thrown with a detailed explanation of the ambiguity.
      */
     public <D> D getIfUniqueOrElseThrow(final Object sourceEntity, final Class<D> destinationClass) {
 
@@ -75,13 +78,26 @@ public class EntityMapping {
                     String.format("No transformation result found for source: '%1s' and destination type: '%2s'",
                                   sourceEntity, destinationClass.getSimpleName()));
         }
-        if (result.size() > 1) {
-            throw new ConversionException(String.format(
-                    "Expected exactly one transformation result for source: '%1s' and destination type: '%2s', but " +
-                            "found: %3s",
-                    sourceEntity, destinationClass.getSimpleName(), result.size()));
-        }
 
+        if (result.size() > 1) {
+            final List<D> exactClassMatches = findExactClassMatches(result, destinationClass);
+            if (exactClassMatches.isEmpty()) {
+                throw new ConversionException(
+                        String.format(
+                                "No transformation result found for source: '%1s' and destination type: '%2s', where " +
+                                        "one out of '%3s' destination types found needs to match the source type.",
+                                sourceEntity, destinationClass.getSimpleName(), result.size()));
+            }
+
+            if (exactClassMatches.size() > 1) {
+                throw new ConversionException(String.format(
+                        "Expected exactly one transformation result for source: '%1s' and destination type: '%2s', " +
+                                "but " +
+                                "found: %3s",
+                        sourceEntity, destinationClass.getSimpleName(), result.size()));
+            }
+            return exactClassMatches.get(0);
+        }
         return result.get(0);
     }
 
@@ -93,4 +109,9 @@ public class EntityMapping {
                 .toList();
     }
 
+    private <D> List<D> findExactClassMatches(final List<D> elements, final Class<D> destinationClass) {
+        return elements.stream()
+                .filter(r -> r.getClass() == destinationClass)
+                .toList();
+    }
 }

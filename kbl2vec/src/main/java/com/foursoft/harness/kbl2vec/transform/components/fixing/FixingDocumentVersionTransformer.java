@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,44 +23,33 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.common;
+package com.foursoft.harness.kbl2vec.transform.components.fixing;
 
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.KblFixing;
+import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
+import com.foursoft.harness.vec.v2x.VecFixingSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
 
-/**
- * Transformer for generic KBL parts to VEC document versions.
- * <p>
- * Filters out KBL part types that are handled by specific transformers
- * (such as {@link KblAssemblyPart}, {@link KblConnectorHousing}, and {@link KblGeneralWire}).
- * For unsupported types, a generic PartMaster Document without specific specifications will be created.
- */
-public class GenericComponentDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
+public class FixingDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
 
     @Override
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
-                                                              final KblPart source) {
-        if (source instanceof KblAssemblyPart || source instanceof KblConnectorHousing ||
-                source instanceof KblGeneralWire || source instanceof KblWireProtection ||
-                source instanceof KblCoPackPart || source instanceof KblCavityPlug || source instanceof KblCavitySeal ||
-                source instanceof KblAccessory || source instanceof KblFixing || source instanceof KblGeneralTerminal) {
-            return TransformationResult.noResult();
+                                                              final KblPart kblPart) {
+        if (kblPart instanceof final KblFixing source) {
+            final VecDocumentVersion destination = new VecDocumentVersion();
+
+            return TransformationResult.from(destination)
+                    .withFragment(commonComponentInformation(source, context))
+                    .withDownstream(KblFixing.class, VecFixingSpecification.class, Query.of(source),
+                                    VecDocumentVersion::getSpecifications)
+                    .build();
         }
-        context.getLogger().warn(
-                "The class of {} is not supported specifically by KBL2VEC, a generic PartMasterDocument without " +
-                        "specific Specifications will be created.", source);
-        final VecDocumentVersion documentVersion = new VecDocumentVersion();
-
-        final TransformationResult.Builder<VecDocumentVersion> builder = TransformationResult.from(
-                        documentVersion)
-                .withFragment(commonComponentInformation(source, context));
-
-        return builder
-                .build();
+        return TransformationResult.noResult();
     }
 }

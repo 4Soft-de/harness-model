@@ -34,6 +34,7 @@ public class ConversionProperties {
     private VecValueDetermination defaultValueDetermination = VecValueDetermination.MEASURED;
     private String defaultColorReferenceSystem = "ACME Inc.";
     private String defaultWireTypeReferenceSystem = "ACME Inc.";
+    private String defaultMaterialReferenceSystem = "ACME Inc.";
 
     public VecLanguageCode getDefaultLanguageCode() {
         return defaultLanguageCode;
@@ -73,5 +74,13 @@ public class ConversionProperties {
 
     public void setDefaultWireTypeReferenceSystem(final String defaultWireTypeReferenceSystem) {
         this.defaultWireTypeReferenceSystem = defaultWireTypeReferenceSystem;
+    }
+
+    public String getDefaultMaterialReferenceSystem() {
+        return defaultMaterialReferenceSystem;
+    }
+
+    public void setDefaultMaterialReferenceSystem(final String defaultMaterialReferenceSystem) {
+        this.defaultMaterialReferenceSystem = defaultMaterialReferenceSystem;
     }
 }
