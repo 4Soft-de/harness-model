@@ -8,6 +8,7 @@ Currently unsupported features (future work):
 - Copyright Information for PartVersions
 - Changes for Parts & Documents
 - Standalone `Module_configuration`s that are not part of a `Module`.
+- Multi core wires
 
 ### Architecture
 

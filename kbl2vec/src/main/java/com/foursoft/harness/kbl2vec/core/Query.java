@@ -46,7 +46,13 @@ public interface Query<T> {
     }
 
     static <T> Query<T> of(final Supplier<T> supplier) {
-        return () -> List.of(supplier.get());
+        return () -> {
+            final T value = supplier.get();
+            if (value == null) {
+                return Collections.emptyList();
+            }
+            return List.of(value);
+        };
     }
 
     static <T> Query<T> of(final T element) {
@@ -55,5 +61,4 @@ public interface Query<T> {
         }
         return () -> List.of(element);
     }
-
 }
