@@ -28,6 +28,7 @@ package com.foursoft.harness.kbl2vec.transform.components.common;
 import com.foursoft.harness.kbl.common.HasDescription;
 import com.foursoft.harness.kbl.common.HasIdentification;
 import com.foursoft.harness.kbl.common.HasPart;
+import com.foursoft.harness.kbl.common.HasReferenceElement;
 import com.foursoft.harness.kbl.v25.HasRelatedAssembly;
 import com.foursoft.harness.kbl.v25.HasRelatedOccurrence;
 import com.foursoft.harness.kbl.v25.KblPart;
@@ -85,6 +86,10 @@ public class Fragments {
             if (source instanceof final HasRelatedAssembly hasRelatedAssembly) {
                 builder.withLinker(hasRelatedAssembly::getRelatedAssembly, VecPartWithSubComponentsRole.class,
                                    (occ, assembly) -> assembly.getSubComponent().add(occ));
+            }
+            if (source instanceof final HasReferenceElement<?> hasReferenceElement) {
+                builder.withLinker(hasReferenceElement::getReferenceElement, VecPartOccurrence.class,
+                                   VecPartOccurrence::getReferenceElement);
             }
             handleDescription(source, po, context);
         };

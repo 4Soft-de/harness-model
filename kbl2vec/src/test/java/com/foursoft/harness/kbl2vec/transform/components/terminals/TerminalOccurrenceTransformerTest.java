@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,6 +26,7 @@
 package com.foursoft.harness.kbl2vec.transform.components.terminals;
 
 import com.foursoft.harness.kbl.v25.KblGeneralTerminal;
+import com.foursoft.harness.kbl.v25.KblSlotOccurrence;
 import com.foursoft.harness.kbl.v25.KblTerminalOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
@@ -55,6 +56,12 @@ class TerminalOccurrenceTransformerTest {
         final VecTerminalRole vecTerminalRole = new VecTerminalRole();
         orchestrator.addMockMapping(source, vecTerminalRole);
 
+        final KblSlotOccurrence kblSlotOccurrence = new KblSlotOccurrence();
+        source.getReferenceElement().add(kblSlotOccurrence);
+
+        final VecPartOccurrence vecPartOccurrence = new VecPartOccurrence();
+        orchestrator.addMockMapping(kblSlotOccurrence, vecPartOccurrence);
+
         // When
         final VecPartOccurrence result = orchestrator.transform(transformer, source);
 
@@ -62,6 +69,7 @@ class TerminalOccurrenceTransformerTest {
         assertThat(result).isNotNull()
                 .returns("TestId", VecPartOccurrence::getIdentification)
                 .satisfies(v -> assertThat(v.getPart()).isEqualTo(vecPartVersion))
-                .satisfies(v -> assertThat(v.getRoles()).contains(vecTerminalRole));
+                .satisfies(v -> assertThat(v.getRoles()).contains(vecTerminalRole))
+                .satisfies(v -> assertThat(v.getReferenceElement()).containsExactly(vecPartOccurrence));
     }
 }
