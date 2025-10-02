@@ -29,18 +29,22 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DeterministicXmlIdGenerator extends XmlIdGenerator {
 
     private final TransformationContext context;
     private final Map<Object, Object> invertedEntityMapping;
+    private final Set<String> generatedIds;
 
     public DeterministicXmlIdGenerator(final TransformationContext context) {
         super();
         this.context = context;
         this.invertedEntityMapping = invertEntityMapping();
+        this.generatedIds = new HashSet<>();
     }
 
     private Map<Object, Object> invertEntityMapping() {
@@ -48,21 +52,14 @@ public class DeterministicXmlIdGenerator extends XmlIdGenerator {
                 .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 
-    private boolean xmlIdExists(final String xmlId) {
-        return invertedEntityMapping.keySet().stream()
-                .anyMatch(key -> key instanceof final ModifiableIdentifiable modifiableIdentifiable &&
-                        modifiableIdentifiable.getXmlId() != null &&
-                        modifiableIdentifiable.getXmlId().equals(xmlId));
-    }
-
     private String formatId(final String baseId, final int suffix) {
         return baseId + "_" + suffix;
     }
 
-    private String createIdWithCounter(final String baseId, final int suffix) {
+    private String createIdWithCounter(final String baseId, int suffix) {
         final String candidateId = formatId(baseId, suffix);
-        if (xmlIdExists(candidateId)) {
-            return createIdWithCounter(baseId, suffix + 1);
+        if (this.generatedIds.contains(candidateId)) {
+            return createIdWithCounter(baseId, ++suffix);
         }
         return candidateId;
     }
@@ -70,19 +67,20 @@ public class DeterministicXmlIdGenerator extends XmlIdGenerator {
     @Override
     protected void createIdForXmlBean(final ModifiableIdentifiable aBean, final String prefix) {
         final Object source = invertedEntityMapping.get(aBean);
-        if (source == null) {
+        if (!(source instanceof final Identifiable identifiable)) {
             super.createIdForXmlBean(aBean, prefix);
             return;
         }
-        if (source instanceof final Identifiable identifiable) {
-            final String vecXmlId = prefix + identifiable.getXmlId();
-            if (xmlIdExists(vecXmlId)) {
-                aBean.setXmlId(createIdWithCounter(vecXmlId, 0));
-                return;
-            }
+
+        final String vecXmlId = prefix + identifiable.getXmlId();
+        if (!this.generatedIds.contains(vecXmlId)) {
             aBean.setXmlId(vecXmlId);
+            this.generatedIds.add(vecXmlId);
             return;
         }
-        super.createIdForXmlBean(aBean, prefix);
+
+        final String generatedId = createIdWithCounter(vecXmlId, 0);
+        aBean.setXmlId(generatedId);
+        this.generatedIds.add(generatedId);
     }
 }
