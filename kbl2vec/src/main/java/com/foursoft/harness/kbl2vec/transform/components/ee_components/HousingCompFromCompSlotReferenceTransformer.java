@@ -9,7 +9,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
 
-public class HousingComponentFromComponentSlotReferenceTransformer
+public class HousingCompFromCompSlotReferenceTransformer
         implements Transformer<KblComponentSlotOccurrence, VecHousingComponentReference> {
 
     @Override

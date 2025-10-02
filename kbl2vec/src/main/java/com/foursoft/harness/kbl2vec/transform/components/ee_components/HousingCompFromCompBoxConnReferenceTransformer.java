@@ -12,7 +12,7 @@ import com.foursoft.harness.vec.v2x.VecPinComponentReference;
 
 import java.util.List;
 
-public class HousingComponentFromComponentBoxConnectorReferenceTransformer
+public class HousingCompFromCompBoxConnReferenceTransformer
         implements Transformer<KblComponentBoxConnectorOccurrence, VecHousingComponentReference> {
 
     @Override

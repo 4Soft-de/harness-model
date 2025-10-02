@@ -9,7 +9,7 @@ import com.foursoft.harness.vec.v2x.VecPinComponent;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
 import com.foursoft.harness.vec.v2x.VecTerminalRole;
 
-public class PinComponentFromComponentCavityReferenceTransformer
+public class PinCompFromCompCavityReferenceTransformer
         implements Transformer<KblComponentCavityOccurrence, VecPinComponentReference> {
 
     @Override

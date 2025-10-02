@@ -1,21 +1,21 @@
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
-import com.foursoft.harness.kbl.v25.KblCavity;
+import com.foursoft.harness.kbl.v25.KblComponentCavity;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPinComponent;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PinComponentFromCavityTransformerTest {
+class PinCompFromCompCavityTest {
 
     @Test
-    void should_transformPinComponentFromCavity() {
+    void should_transformPinComponentFromComponentCavity() {
         // Given
-        final PinComponentFromCavityTransformer transformer = new PinComponentFromCavityTransformer();
+        final PinCompFromCompCavityTransformer transformer = new PinCompFromCompCavityTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblCavity source = new KblCavity();
+        final KblComponentCavity source = new KblComponentCavity();
 
         // When
         final VecPinComponent result = orchestrator.transform(transformer, source);

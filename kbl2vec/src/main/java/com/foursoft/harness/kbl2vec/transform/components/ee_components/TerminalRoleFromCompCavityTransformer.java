@@ -6,7 +6,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecTerminalRole;
 
-public class TerminalRoleFromComponentCavityTransformer implements Transformer<KblComponentCavityOccurrence, VecTerminalRole> {
+public class TerminalRoleFromCompCavityTransformer implements Transformer<KblComponentCavityOccurrence, VecTerminalRole> {
 
     @Override
     public TransformationResult<VecTerminalRole> transform(final TransformationContext context,

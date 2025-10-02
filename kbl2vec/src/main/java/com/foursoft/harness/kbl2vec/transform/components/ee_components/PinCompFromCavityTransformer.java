@@ -6,7 +6,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPinComponent;
 
-public class PinComponentFromCavityTransformer implements Transformer<KblCavity, VecPinComponent> {
+public class PinCompFromCavityTransformer implements Transformer<KblCavity, VecPinComponent> {
 
     @Override
     public TransformationResult<VecPinComponent> transform(final TransformationContext context,

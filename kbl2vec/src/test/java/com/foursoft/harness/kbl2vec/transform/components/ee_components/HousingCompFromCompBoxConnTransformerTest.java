@@ -1,29 +1,23 @@
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
-import com.foursoft.harness.kbl.v25.KblComponentCavity;
-import com.foursoft.harness.kbl.v25.KblComponentSlot;
+import com.foursoft.harness.kbl.v25.KblComponentBoxConnector;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecHousingComponent;
-import com.foursoft.harness.vec.v2x.VecPinComponent;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class HousingComponentFromComponentSlotTransformerTest {
+class HousingCompFromCompBoxConnTransformerTest {
 
     @Test
-    void should_transformHousingComponent() {
+    void should_transformHousingComponentFromComponentBoxConnector() {
         // Given
-        final HousingComponentFromComponentSlotTransformer
-                transformer = new HousingComponentFromComponentSlotTransformer();
+        final HousingCompFromCompBoxConnTransformer transformer =
+                new HousingCompFromCompBoxConnTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblComponentSlot source = new KblComponentSlot();
+        final KblComponentBoxConnector source = new KblComponentBoxConnector();
         source.setId("TestId");
-
-        final KblComponentCavity cavity = new KblComponentCavity();
-        final VecPinComponent vecPinComponent = new VecPinComponent();
-        orchestrator.addMockMapping(cavity, vecPinComponent);
 
         // When
         final VecHousingComponent result = orchestrator.transform(transformer, source);
