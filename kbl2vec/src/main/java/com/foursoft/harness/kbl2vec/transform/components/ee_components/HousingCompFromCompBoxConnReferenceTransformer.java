@@ -7,6 +7,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
 
@@ -29,6 +30,8 @@ public class HousingCompFromCompBoxConnReferenceTransformer
         return TransformationResult.from(destination)
                 .withDownstream(KblCavityOccurrence.class, VecPinComponentReference.class,
                                 Query.fromLists(cavityOccurrences), VecHousingComponentReference::getPinComponentReves)
+                .withDownstream(KblComponentBoxConnectorOccurrence.class, VecConnectorHousingRole.class,
+                                Query.of(source), VecHousingComponentReference::setConnectorHousingRole)
                 .build();
     }
 }
