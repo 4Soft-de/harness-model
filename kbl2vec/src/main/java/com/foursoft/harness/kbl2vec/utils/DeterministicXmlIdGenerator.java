@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,29 +28,24 @@ package com.foursoft.harness.kbl2vec.utils;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
-public class DescriptiveXmlIdGenerator extends XmlIdGenerator {
+public class DeterministicXmlIdGenerator extends XmlIdGenerator {
 
     private final TransformationContext context;
-    private final Multimap<Object, Object> invertedEntityMapping;
+    private final Map<Object, Object> invertedEntityMapping;
 
-    public DescriptiveXmlIdGenerator(final TransformationContext context) {
+    public DeterministicXmlIdGenerator(final TransformationContext context) {
         super();
         this.context = context;
         this.invertedEntityMapping = invertEntityMapping();
     }
 
-    private Multimap<Object, Object> invertEntityMapping() {
-        final Multimap<Object, Object> invertedEntityMap = ArrayListMultimap.create();
-        for (final Map.Entry<Object, Object> entry : context.getEntityMapping().getContent().entries()) {
-            invertedEntityMap.put(entry.getValue(), entry.getKey());
-        }
-        return invertedEntityMap;
+    private Map<Object, Object> invertEntityMapping() {
+        return context.getEntityMapping().getContent().entries().stream()
+                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 
     private boolean xmlIdExists(final String xmlId) {
@@ -60,30 +55,33 @@ public class DescriptiveXmlIdGenerator extends XmlIdGenerator {
                         modifiableIdentifiable.getXmlId().equals(xmlId));
     }
 
-    private String createIdWithCounter(final String xmlId) {
-        final AtomicInteger counter = new AtomicInteger(0);
-        String xmlIdWithCounter = xmlId + "_" + counter.getAndIncrement();
-        while (xmlIdExists(xmlIdWithCounter)) {
-            xmlIdWithCounter = xmlId + "_" + counter.getAndIncrement();
+    private String formatId(final String baseId, final int suffix) {
+        return baseId + "_" + suffix;
+    }
+
+    private String createIdWithCounter(final String baseId, final int suffix) {
+        final String candidateId = formatId(baseId, suffix);
+        if (xmlIdExists(candidateId)) {
+            return createIdWithCounter(baseId, suffix + 1);
         }
-        return xmlIdWithCounter;
+        return candidateId;
     }
 
     @Override
     protected void createIdForXmlBean(final ModifiableIdentifiable aBean, final String prefix) {
-        if (invertedEntityMapping.get(aBean).isEmpty()) {
+        final Object source = invertedEntityMapping.get(aBean);
+        if (source == null) {
             super.createIdForXmlBean(aBean, prefix);
             return;
         }
-
-        final Object kblElement = invertedEntityMapping.get(aBean).stream().toList().get(0);
-        if (kblElement instanceof final Identifiable identifiable) {
+        if (source instanceof final Identifiable identifiable) {
             final String vecXmlId = prefix + identifiable.getXmlId();
             if (xmlIdExists(vecXmlId)) {
-                aBean.setXmlId(createIdWithCounter(vecXmlId));
+                aBean.setXmlId(createIdWithCounter(vecXmlId, 0));
                 return;
             }
             aBean.setXmlId(vecXmlId);
+            return;
         }
         super.createIdForXmlBean(aBean, prefix);
     }

@@ -32,7 +32,7 @@ import com.foursoft.harness.vec.v2x.visitor.TraversingVisitor;
 
 public class XmlIdGeneratingTraverser extends TraversingVisitor<Void, RuntimeException> {
 
-    public XmlIdGeneratingTraverser(final DescriptiveXmlIdGenerator generator) {
+    public XmlIdGeneratingTraverser(final DeterministicXmlIdGenerator generator) {
         super(new DepthFirstTraverserImpl<>(), new FunctionVisitor<>(x -> {
             if (x instanceof final ModifiableIdentifiable modifiableIdentifiable) {
                 generator.createIdForXmlBean(modifiableIdentifiable);
