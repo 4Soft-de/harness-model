@@ -129,7 +129,7 @@ public class ConversionOrchestrator<S, D> {
         T resultValue = initialValue;
 
         for (final Processor<T> processor : processors) {
-            resultValue = processor.apply(initialValue);
+            resultValue = processor.apply(initialValue, transformationContext);
         }
         return resultValue;
     }
