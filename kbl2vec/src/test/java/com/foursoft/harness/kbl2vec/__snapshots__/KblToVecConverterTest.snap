@@ -2033,7 +2033,7 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_331_0</Part>
       </Component>
     </Specification>
-    <Specification xsi:type="vec:CompositionSpecification" id="CompositionSpecification_id_328_0_0">
+    <Specification xsi:type="vec:CompositionSpecification" id="CompositionSpecification_id_328_0_1">
       <Identification>COMPONENTS</Identification>
 <!--This occurrence has no "Id" in the KBL data.-->
       <Component id="PartOccurrence_id_310_0">

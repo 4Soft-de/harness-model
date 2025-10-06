@@ -53,6 +53,9 @@ public class DeterministicXmlIdGenerator extends XmlIdGenerator {
     }
 
     private String formatId(final String baseId, final int suffix) {
+        if (suffix == 0) {
+            return baseId;
+        }
         return baseId + "_" + suffix;
     }
 
@@ -71,14 +74,7 @@ public class DeterministicXmlIdGenerator extends XmlIdGenerator {
             super.createIdForXmlBean(aBean, prefix);
             return;
         }
-
         final String vecXmlId = prefix + identifiable.getXmlId();
-        if (!this.generatedIds.contains(vecXmlId)) {
-            aBean.setXmlId(vecXmlId);
-            this.generatedIds.add(vecXmlId);
-            return;
-        }
-
         final String generatedId = createIdWithCounter(vecXmlId, 0);
         aBean.setXmlId(generatedId);
         this.generatedIds.add(generatedId);

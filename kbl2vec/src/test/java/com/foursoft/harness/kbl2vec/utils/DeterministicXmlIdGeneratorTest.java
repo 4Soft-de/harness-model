@@ -85,7 +85,7 @@ class DeterministicXmlIdGeneratorTest {
         xmlIdGenerator.createIdForXmlBean(vecSlot2, "TestPrefix_");
 
         // Then
-        assertThat(vecSlot2).returns("TestPrefix_TestXmlId_0", VecSlot::getXmlId);
+        assertThat(vecSlot2).returns("TestPrefix_TestXmlId_1", VecSlot::getXmlId);
     }
 
     @Test
