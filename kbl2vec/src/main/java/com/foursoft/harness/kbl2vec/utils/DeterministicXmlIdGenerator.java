@@ -56,10 +56,10 @@ public class DeterministicXmlIdGenerator extends XmlIdGenerator {
         return baseId + "_" + suffix;
     }
 
-    private String createIdWithCounter(final String baseId, int suffix) {
+    private String createIdWithCounter(final String baseId, final int suffix) {
         final String candidateId = formatId(baseId, suffix);
         if (this.generatedIds.contains(candidateId)) {
-            return createIdWithCounter(baseId, ++suffix);
+            return createIdWithCounter(baseId, suffix + 1);
         }
         return candidateId;
     }
