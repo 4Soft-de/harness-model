@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,46 +23,43 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.ee_components;
+package com.foursoft.harness.kbl2vec.transform.components.ee_components.connector;
 
 import com.foursoft.harness.kbl.v25.KblCavity;
-import com.foursoft.harness.kbl.v25.KblComponentBoxConnection;
-import com.foursoft.harness.kbl.v25.KblComponentCavity;
+import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecInternalComponentConnection;
 import com.foursoft.harness.vec.v2x.VecPinComponent;
+import com.foursoft.harness.vec.v2x.VecPinComponentReference;
+import com.foursoft.harness.vec.v2x.VecTerminalRole;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class InternalComponentConnectionTransformerTest {
+class PinComponentReferenceTransformerTest {
 
     @Test
-    void should_transformInternalComponentConnection() {
+    void should_transformPinComponentReference() {
         // Given
-        final InternalComponentConnectionTransformer transformer = new InternalComponentConnectionTransformer();
+        final PinComponentReferenceTransformer transformer = new PinComponentReferenceTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblComponentBoxConnection source = new KblComponentBoxConnection();
-        source.setId("TestId");
+        final KblCavityOccurrence source = new KblCavityOccurrence();
 
-        final KblComponentCavity kblComponentCavity = new KblComponentCavity();
-        final KblCavity kblCavity = new KblCavity();
-        source.getComponentCavities().add(kblComponentCavity);
-        source.getCavities().add(kblCavity);
+        final KblCavity part =  new KblCavity();
+        source.setPart(part);
 
-        final VecPinComponent vecPinComponentFromComponentCavity = new VecPinComponent();
-        final VecPinComponent vecPinComponentFromCavity = new VecPinComponent();
-        orchestrator.addMockMapping(kblComponentCavity, vecPinComponentFromComponentCavity);
-        orchestrator.addMockMapping(kblCavity, vecPinComponentFromCavity);
+        final VecTerminalRole role = new VecTerminalRole();
+        orchestrator.addMockMapping(source, role);
+
+        final VecPinComponent pinComponent = new VecPinComponent();
+        orchestrator.addMockMapping(part, pinComponent);
 
         // When
-        final VecInternalComponentConnection result = orchestrator.transform(transformer, source);
+        final VecPinComponentReference result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecInternalComponentConnection::getIdentification)
-                .satisfies(v -> assertThat(v.getPins()).containsExactlyInAnyOrder(vecPinComponentFromCavity,
-                                                                                  vecPinComponentFromComponentCavity));
+                .returns(role, VecPinComponentReference::getTerminalRole)
+                .returns(pinComponent, VecPinComponentReference::getPinComponent);
     }
 }

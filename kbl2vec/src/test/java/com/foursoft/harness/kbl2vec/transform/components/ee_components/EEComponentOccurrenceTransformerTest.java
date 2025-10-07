@@ -25,32 +25,32 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
-import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
 import com.foursoft.harness.kbl.v25.KblComponentBoxOccurrence;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecEEComponentRole;
-import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import org.junit.jupiter.api.Test;
 
-import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class EEComponentOccurrenceTransformer implements Transformer<ConnectionOrOccurrence, VecPartOccurrence> {
+class EEComponentOccurrenceTransformerTest {
 
-    @Override
-    public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
-                                                             final ConnectionOrOccurrence occurrence) {
-        if (occurrence instanceof final KblComponentBoxOccurrence source) {
-            final VecPartOccurrence destination = new VecPartOccurrence();
+    @Test
+    void should_transformEEComponentOccurrence() {
+        // Given
+        final EEComponentOccurrenceTransformer transformer = new EEComponentOccurrenceTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-            return TransformationResult.from(destination)
-                    .withFragment(commonOccurrenceInformation(source, context))
-                    .withDownstream(KblComponentBoxOccurrence.class, VecEEComponentRole.class, Query.of(source),
-                                    VecOccurrenceOrUsage::getRoles)
-                    .build();
-        }
-        return TransformationResult.noResult();
+        final KblComponentBoxOccurrence source = new KblComponentBoxOccurrence();
+
+        final VecEEComponentRole vecRole = new VecEEComponentRole();
+        orchestrator.addMockMapping(source, vecRole);
+
+        // When
+        final VecPartOccurrence destination = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(destination).isNotNull()
+                .satisfies(v -> assertThat(v.getRoles()).contains(vecRole));
     }
 }

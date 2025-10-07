@@ -23,36 +23,33 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.ee_components;
+package com.foursoft.harness.kbl2vec.transform.components.ee_components.slot;
 
-import com.foursoft.harness.kbl.v25.KblComponentBoxConnectorOccurrence;
-import com.foursoft.harness.kbl.v25.KblComponentBoxOccurrence;
-import com.foursoft.harness.kbl.v25.KblComponentSlotOccurrence;
+import com.foursoft.harness.kbl.v25.KblComponentCavity;
+import com.foursoft.harness.kbl.v25.KblComponentSlot;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecEEComponentRole;
-import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
-import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
+import com.foursoft.harness.vec.v2x.VecHousingComponent;
+import com.foursoft.harness.vec.v2x.VecPinComponent;
 
-public class EEComponentRoleTransformer implements Transformer<KblComponentBoxOccurrence, VecEEComponentRole> {
+public class HousingComponentTransformer
+        implements Transformer<KblComponentSlot, VecHousingComponent> {
 
     @Override
-    public TransformationResult<VecEEComponentRole> transform(final TransformationContext context,
-                                                              final KblComponentBoxOccurrence source) {
-        final VecEEComponentRole destination = new VecEEComponentRole();
+    public TransformationResult<VecHousingComponent> transform(final TransformationContext context,
+                                                               final KblComponentSlot source) {
+        final VecHousingComponent destination = new VecHousingComponent();
         destination.setIdentification(source.getId());
 
         return TransformationResult.from(destination)
-                .withDownstream(KblComponentSlotOccurrence.class, VecHousingComponentReference.class,
-                                Query.fromLists(source.getComponentSlots()),
-                                VecEEComponentRole::getHousingComponentReves)
-                .withDownstream(KblComponentBoxConnectorOccurrence.class, VecHousingComponentReference.class,
-                                Query.fromLists(source.getComponentBoxConnectors()),
-                                VecEEComponentRole::getHousingComponentReves)
-                .withLinker(Query.of(source.getPart()), VecEEComponentSpecification.class,
-                            VecEEComponentRole::setEEComponentSpecification)
+                .withDownstream(KblComponentCavity.class, VecPinComponent.class,
+                                Query.fromLists(source.getComponentCavities()),
+                                VecHousingComponent::getPinComponents)
+                .withLinker(Query.of(source), VecConnectorHousingSpecification.class,
+                            VecHousingComponent::setHousingSpecification)
                 .build();
     }
 }

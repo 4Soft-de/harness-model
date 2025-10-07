@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,46 +23,45 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.ee_components;
+package com.foursoft.harness.kbl2vec.transform.components.ee_components.slot;
 
-import com.foursoft.harness.kbl.v25.KblCavity;
-import com.foursoft.harness.kbl.v25.KblComponentBoxConnection;
 import com.foursoft.harness.kbl.v25.KblComponentCavity;
+import com.foursoft.harness.kbl.v25.KblComponentSlot;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecInternalComponentConnection;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
+import com.foursoft.harness.vec.v2x.VecHousingComponent;
 import com.foursoft.harness.vec.v2x.VecPinComponent;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class InternalComponentConnectionTransformerTest {
+class HousingComponentTransformerTest {
 
     @Test
-    void should_transformInternalComponentConnection() {
+    void should_transformHousingComponent() {
         // Given
-        final InternalComponentConnectionTransformer transformer = new InternalComponentConnectionTransformer();
+        final HousingComponentTransformer
+                transformer = new HousingComponentTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblComponentBoxConnection source = new KblComponentBoxConnection();
-        source.setId("TestId");
+        final KblComponentSlot source = new KblComponentSlot();
 
-        final KblComponentCavity kblComponentCavity = new KblComponentCavity();
-        final KblCavity kblCavity = new KblCavity();
-        source.getComponentCavities().add(kblComponentCavity);
-        source.getCavities().add(kblCavity);
+        final KblComponentCavity cavity = new KblComponentCavity();
+        source.getComponentCavities().add(cavity);
 
-        final VecPinComponent vecPinComponentFromComponentCavity = new VecPinComponent();
-        final VecPinComponent vecPinComponentFromCavity = new VecPinComponent();
-        orchestrator.addMockMapping(kblComponentCavity, vecPinComponentFromComponentCavity);
-        orchestrator.addMockMapping(kblCavity, vecPinComponentFromCavity);
+        final VecPinComponent vecPinComponent = new VecPinComponent();
+        orchestrator.addMockMapping(cavity, vecPinComponent);
+
+        final VecConnectorHousingSpecification vecConnectorHousingSpecification =
+                new VecConnectorHousingSpecification();
+        orchestrator.addMockMapping(source, vecConnectorHousingSpecification);
 
         // When
-        final VecInternalComponentConnection result = orchestrator.transform(transformer, source);
+        final VecHousingComponent result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecInternalComponentConnection::getIdentification)
-                .satisfies(v -> assertThat(v.getPins()).containsExactlyInAnyOrder(vecPinComponentFromCavity,
-                                                                                  vecPinComponentFromComponentCavity));
+                .returns(vecConnectorHousingSpecification, VecHousingComponent::getHousingSpecification)
+                .satisfies(v -> assertThat(v.getPinComponents()).containsExactly(vecPinComponent));
     }
 }

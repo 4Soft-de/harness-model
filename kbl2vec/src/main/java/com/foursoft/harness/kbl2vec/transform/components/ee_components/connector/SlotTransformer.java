@@ -23,35 +23,27 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.ee_components;
+package com.foursoft.harness.kbl2vec.transform.components.ee_components.connector;
 
-import com.foursoft.harness.kbl.v25.*;
-import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl.v25.KblAbstractSlot;
+import com.foursoft.harness.kbl.v25.KblCavity;
+import com.foursoft.harness.kbl.v25.KblSlot;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.vec.v2x.VecSlot;
 
-import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
-
-public class EEComponentDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
+public class SlotTransformer implements Transformer<KblAbstractSlot, VecSlot> {
 
     @Override
-    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
-                                                              final KblPart kblPart) {
-        if (kblPart instanceof final KblComponentBox source) {
-            final VecDocumentVersion destination = new VecDocumentVersion();
+    public TransformationResult<VecSlot> transform(final TransformationContext context,
+                                                   final KblAbstractSlot abstractSlot) {
+        if (abstractSlot instanceof final KblSlot source) {
+            final VecSlot destination = new VecSlot();
 
             return TransformationResult.from(destination)
-                    .withFragment(commonComponentInformation(source, context))
-                    .withDownstream(KblComponentBox.class, VecEEComponentSpecification.class, Query.of(source),
-                                    VecDocumentVersion::getSpecifications)
-                    .withDownstream(KblComponentBoxConnector.class, VecConnectorHousingSpecification.class,
-                                    Query.fromLists(source.getComponentBoxConnectors()),
-                                    VecDocumentVersion::getSpecifications)
-                    .withDownstream(KblComponentSlot.class, VecConnectorHousingSpecification.class,
-                                    Query.fromLists(source.getComponentSlots()),
-                                    VecDocumentVersion::getSpecifications)
+                    .withDownstream(KblCavity.class, VecCavity.class, source::getCavities, VecSlot::getCavities)
                     .build();
         }
         return TransformationResult.noResult();
