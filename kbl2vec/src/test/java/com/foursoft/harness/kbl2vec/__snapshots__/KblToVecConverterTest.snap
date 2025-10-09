@@ -251,11 +251,11 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0">
-    <Abbreviation id="LocalizedString_00019">
+    <Abbreviation id="LocalizedString_00021">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00020">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00022">
       <LanguageCode>De</LanguageCode>
       <Value>LTGS Batterie Plus</Value>
     </Description>
@@ -313,6 +313,83 @@ This is not intended for productive use and is not complete!
         <ConfigInfo>VariantConfiguration_id_353_0</ConfigInfo>
         <ConstrainedElements>PartOccurrence_id_331_0</ConstrainedElements>
       </ConfigurationConstraint>
+    </Specification>
+    <Specification xsi:type="vec:BuildingBlockSpecification3D" id="BuildingBlockSpecification3D_id_328_0">
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_1">
+        <X>2835.768688</X>
+        <Y>432.983286</Y>
+        <Z>312.981781</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_2">
+        <X>1744.378607</X>
+        <Y>298.122794</Y>
+        <Z>108.42673</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_3">
+        <X>-72992.624842</X>
+        <Y>-87163.253273</Y>
+        <Z>48243.877044</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_4">
+        <X>-6866.761167</X>
+        <Y>4821.907432</Y>
+        <Z>-16665.890871</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_5">
+        <X>10405.895905</X>
+        <Y>-126.757845</Y>
+        <Z>8512.999427</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_6">
+        <X>-4485.749332</X>
+        <Y>447.283456</Y>
+        <Z>-6767.988836</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_7">
+        <X>12943.88813</X>
+        <Y>589.766603</Y>
+        <Z>11244.317031</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_8">
+        <X>-44361.324327</X>
+        <Y>-3363.124837</Y>
+        <Z>-40397.248229</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_9">
+        <X>665128.246155</X>
+        <Y>80031.75633</Y>
+        <Z>557404.203109</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_10">
+        <X>2801.286879</X>
+        <Y>437.1358</Y>
+        <Z>313.625164</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_11">
+        <X>1773.833308</X>
+        <Y>276.554818</Y>
+        <Z>104.42673</Z>
+      </CartesianPoint>
+      <GeometryNode id="GeometryNode3D_Node_1">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_10</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_2">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_11</CartesianPoint>
+      </GeometryNode>
+      <GeometrySegment id="GeometrySegment3D_Segment_1">
+        <StartVector id="Cartesiantor3D_00017">
+          <X>-0.999473</X>
+          <Y>0.013345</Y>
+          <Z>-0.0296</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00018">
+          <X>-0.0</X>
+          <Y>0.0</Y>
+          <Z>1.0</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_2</EndNode>
+        <StartNode>GeometryNode3D_Node_1</StartNode>
+      </GeometrySegment>
     </Specification>
     <Specification xsi:type="vec:RoutingSpecification" id="RoutingSpecification_id_328_0">
       <Identification>RS-000971228</Identification>
@@ -396,7 +473,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_342_0">
         <Identification>XA.A.1.Last</Identification>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00017">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00019">
           <LanguageCode>De</LanguageCode>
           <Value>Batterie</Value>
         </Description>
@@ -404,7 +481,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_342_1">
         <Identification>XB.B.1</Identification>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00018">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00020">
           <LanguageCode>De</LanguageCode>
           <Value>Anlasser</Value>
         </Description>
@@ -425,11 +502,11 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <PartVersion id="PartVersion_id_315_1">
-    <Abbreviation id="LocalizedString_00021">
+    <Abbreviation id="LocalizedString_00023">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00022">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00024">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH</Value>
     </Description>
@@ -439,20 +516,6 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_0">
-    <Abbreviation id="LocalizedString_00023">
-      <LanguageCode>De</LanguageCode>
-      <Value>/NULL</Value>
-    </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00024">
-      <LanguageCode>De</LanguageCode>
-      <Value>KABSCHUHE_BATERIE</Value>
-    </Description>
-    <CompanyName>GCMC</CompanyName>
-    <PartNumber>7Ya102612461C</PartNumber>
-    <PartVersion>2</PartVersion>
-    <PrimaryPartType>ConnectorHousing</PrimaryPartType>
-  </PartVersion>
-  <PartVersion id="PartVersion_id_326_0">
     <Abbreviation id="LocalizedString_00025">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
@@ -464,14 +527,28 @@ This is not intended for productive use and is not complete!
     <CompanyName>GCMC</CompanyName>
     <PartNumber>7Ya102612461C</PartNumber>
     <PartVersion>2</PartVersion>
-    <PrimaryPartType>Terminal</PrimaryPartType>
+    <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
-  <PartVersion id="PartVersion_id_326_1">
+  <PartVersion id="PartVersion_id_326_0">
     <Abbreviation id="LocalizedString_00027">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
     <Description xsi:type="vec:LocalizedString" id="LocalizedString_00028">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABSCHUHE_BATERIE</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>7Ya102612461C</PartNumber>
+    <PartVersion>2</PartVersion>
+    <PrimaryPartType>Terminal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_326_1">
+    <Abbreviation id="LocalizedString_00029">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00030">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH</Value>
     </Description>
@@ -481,11 +558,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_0">
-    <Abbreviation id="LocalizedString_00029">
+    <Abbreviation id="LocalizedString_00031">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00030">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00032">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -495,11 +572,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_328_0">
-    <Abbreviation id="LocalizedString_00031">
+    <Abbreviation id="LocalizedString_00033">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00032">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00034">
       <LanguageCode>De</LanguageCode>
       <Value>LTGS Batterie Plus</Value>
     </Description>
@@ -509,11 +586,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>PartStructure</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_331_0">
-    <Abbreviation id="LocalizedString_00033">
+    <Abbreviation id="LocalizedString_00035">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00034">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00036">
       <LanguageCode>De</LanguageCode>
       <Value>Variante</Value>
     </Description>
@@ -1316,11 +1393,11 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0">
-    <Abbreviation id="LocalizedString_00058">
+    <Abbreviation id="LocalizedString_00064">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00059">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00065">
       <LanguageCode>De</LanguageCode>
       <Value>LTGS Generator</Value>
     </Description>
@@ -1426,6 +1503,277 @@ This is not intended for productive use and is not complete!
         <ConfigInfo>VariantConfiguration_id_353_0</ConfigInfo>
         <ConstrainedElements>PartOccurrence_id_331_0</ConstrainedElements>
       </ConfigurationConstraint>
+    </Specification>
+    <Specification xsi:type="vec:BuildingBlockSpecification3D" id="BuildingBlockSpecification3D_id_328_0">
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_1">
+        <X>2620.48151</X>
+        <Y>-108.840669</Y>
+        <Z>518.295202</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_2">
+        <X>2497.897437</X>
+        <Y>155.396631</Y>
+        <Z>501.749223</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_3">
+        <X>2454.646017</X>
+        <Y>153.721817</Y>
+        <Z>504.804123</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_4">
+        <X>2520.098253</X>
+        <Y>85.376448</Y>
+        <Z>495.960064</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_5">
+        <X>-71526.932889</X>
+        <Y>-4617.126573</Y>
+        <Z>-6470.593117</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_6">
+        <X>7405.061756</X>
+        <Y>275.387302</Y>
+        <Z>888.196766</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_7">
+        <X>1428.158146</X>
+        <Y>-356.067006</Y>
+        <Z>425.627974</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_8">
+        <X>3410.498095</X>
+        <Y>182.997181</Y>
+        <Z>556.315993</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_9">
+        <X>1461.409198</X>
+        <Y>-108.738891</Y>
+        <Z>448.118965</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_10">
+        <X>4602.962272</X>
+        <Y>1186.74392</Y>
+        <Z>539.616687</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_11">
+        <X>-7508.048828</X>
+        <Y>-13160.198319</Y>
+        <Z>2366.36007</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_12">
+        <X>2538.51984</X>
+        <Y>61.363011</Y>
+        <Z>502.240083</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_13">
+        <X>2531.437948</X>
+        <Y>68.423238</Y>
+        <Z>502.240083</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_14">
+        <X>2524.356056</X>
+        <Y>75.483465</Y>
+        <Z>502.240083</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_15">
+        <X>2517.274164</X>
+        <Y>82.543692</Y>
+        <Z>502.240083</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_16">
+        <X>2510.192272</X>
+        <Y>89.60392</Y>
+        <Z>502.240083</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_17">
+        <X>2503.11038</X>
+        <Y>96.664147</Y>
+        <Z>502.240083</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_18">
+        <X>2496.028489</X>
+        <Y>103.724374</Y>
+        <Z>502.240083</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_19">
+        <X>2565.031514</X>
+        <Y>45.67132</Y>
+        <Z>399.868952</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_20">
+        <X>2525.9963</X>
+        <Y>67.929974</Y>
+        <Z>558.657463</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_21">
+        <X>2524.957456</X>
+        <Y>77.675654</Y>
+        <Z>475.627021</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_22">
+        <X>2503.420453</X>
+        <Y>94.171792</Y>
+        <Z>523.052293</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_23">
+        <X>2496.399139</X>
+        <Y>105.88762</Y>
+        <Z>478.095874</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_24">
+        <X>2476.217106</X>
+        <Y>121.937539</Y>
+        <Z>516.89776</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_25">
+        <X>2461.537065</X>
+        <Y>136.175541</Y>
+        <Z>520.683508</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_26">
+        <X>4074.844786</X>
+        <Y>1699.22745</Y>
+        <Z>-714.187262</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_27">
+        <X>2487.602461</X>
+        <Y>216.585288</Y>
+        <Z>468.436452</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_28">
+        <X>2432.903635</X>
+        <Y>115.612728</Y>
+        <Z>530.818046</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_29">
+        <X>2479.28257</X>
+        <Y>107.499728</Y>
+        <Z>500.077614</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_30">
+        <X>2534.537275</X>
+        <Y>106.165283</Y>
+        <Z>476.433386</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_31">
+        <X>2510.197748</X>
+        <Y>28.378562</Y>
+        <Z>563.087307</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_32">
+        <X>1582.025395</X>
+        <Y>-950.922242</Y>
+        <Z>2272.636487</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_33">
+        <X>-68230.207284</X>
+        <Y>-6274.323628</Y>
+        <Z>71236.161464</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_34">
+        <X>10613.997319</X>
+        <Y>2124.930917</Y>
+        <Z>-9342.480199</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_35">
+        <X>75.054772</X>
+        <Y>-903.8336</Y>
+        <Z>4328.618278</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_36">
+        <X>3828.367547</X>
+        <Y>901.162855</Y>
+        <Z>-2444.283996</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_37">
+        <X>1415.942412</X>
+        <Y>-780.933975</Y>
+        <Z>4615.287213</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_38">
+        <X>3690.102554</X>
+        <Y>2473.062996</Y>
+        <Z>-10855.114327</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_39">
+        <X>4598.377983</X>
+        <Y>-15712.912627</Y>
+        <Z>87745.765845</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_40">
+        <X>2638.52647</X>
+        <Y>-64.164598</Y>
+        <Z>509.425137</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_41">
+        <X>2500.0</X>
+        <Y>100.0</Y>
+        <Z>500.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_42">
+        <X>2467.121169</X>
+        <Y>121.53382</Y>
+        <Z>506.995792</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_43">
+        <X>2518.899931</X>
+        <Y>155.787799</Y>
+        <Z>502.827753</Z>
+      </CartesianPoint>
+      <GeometryNode id="GeometryNode3D_Node_1">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_40</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_2">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_41</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_3">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_42</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_4">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_43</CartesianPoint>
+      </GeometryNode>
+      <GeometrySegment id="GeometrySegment3D_Segment_1">
+        <StartVector id="Cartesiantor3D_00055">
+          <X>0.358231</X>
+          <Y>0.931382</Y>
+          <Z>0.064796</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00056">
+          <X>-0.649703</X>
+          <Y>0.682776</Y>
+          <Z>-0.334221</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_2</EndNode>
+        <StartNode>GeometryNode3D_Node_1</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_2">
+        <StartVector id="Cartesiantor3D_00057">
+          <X>0.293821</X>
+          <Y>-0.954568</Y>
+          <Z>0.049693</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00058">
+          <X>0.649703</X>
+          <Y>-0.682776</Y>
+          <Z>0.334221</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_2</EndNode>
+        <StartNode>GeometryNode3D_Node_3</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_3">
+        <StartVector id="Cartesiantor3D_00059">
+          <X>-0.649703</X>
+          <Y>0.682776</Y>
+          <Z>-0.334221</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00060">
+          <X>-0.998294</X>
+          <Y>-0.057522</Y>
+          <Z>-0.010053</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_4</EndNode>
+        <StartNode>GeometryNode3D_Node_2</StartNode>
+      </GeometrySegment>
     </Specification>
     <Specification xsi:type="vec:RoutingSpecification" id="RoutingSpecification_id_328_0">
       <Identification>RS-000971230</Identification>
@@ -1544,7 +1892,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_316_0">
         <Identification>TMM.2A1</Identification>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00055">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00061">
           <LanguageCode>De</LanguageCode>
           <Value>Koppelstelle im Motorraum Mitte</Value>
         </Description>
@@ -1592,7 +1940,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_316_1">
         <Identification>XA.C.1</Identification>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00056">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00062">
           <LanguageCode>De</LanguageCode>
           <Value>Drehstromgenerator</Value>
         </Description>
@@ -1699,7 +2047,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_342_0">
         <Identification>XB.C.1</Identification>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00057">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00063">
           <LanguageCode>De</LanguageCode>
           <Value>Drehstromgenerator</Value>
         </Description>
@@ -1800,48 +2148,6 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <PartVersion id="PartVersion_id_309_0">
-    <Abbreviation id="LocalizedString_00060">
-      <LanguageCode>De</LanguageCode>
-      <Value>/NULL</Value>
-    </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00061">
-      <LanguageCode>De</LanguageCode>
-      <Value>Dichtung</Value>
-    </Description>
-    <CompanyName>GCMC</CompanyName>
-    <PartNumber>2Ka10831955</PartNumber>
-    <PartVersion>2</PartVersion>
-    <PrimaryPartType>CavityPlug</PrimaryPartType>
-  </PartVersion>
-  <PartVersion id="PartVersion_id_309_1">
-    <Abbreviation id="LocalizedString_00062">
-      <LanguageCode>De</LanguageCode>
-      <Value>/NULL</Value>
-    </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00063">
-      <LanguageCode>De</LanguageCode>
-      <Value>Dichtung</Value>
-    </Description>
-    <CompanyName>GCMC</CompanyName>
-    <PartNumber>46810831953</PartNumber>
-    <PartVersion>3</PartVersion>
-    <PrimaryPartType>CavityPlug</PrimaryPartType>
-  </PartVersion>
-  <PartVersion id="PartVersion_id_309_2">
-    <Abbreviation id="LocalizedString_00064">
-      <LanguageCode>De</LanguageCode>
-      <Value>/NULL</Value>
-    </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00065">
-      <LanguageCode>De</LanguageCode>
-      <Value>Dichtung</Value>
-    </Description>
-    <CompanyName>GCMC</CompanyName>
-    <PartNumber>46810831952</PartNumber>
-    <PartVersion>3</PartVersion>
-    <PrimaryPartType>CavityPlug</PrimaryPartType>
-  </PartVersion>
-  <PartVersion id="PartVersion_id_311_0">
     <Abbreviation id="LocalizedString_00066">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
@@ -1851,11 +2157,11 @@ This is not intended for productive use and is not complete!
       <Value>Dichtung</Value>
     </Description>
     <CompanyName>GCMC</CompanyName>
-    <PartNumber>2Ka10831855</PartNumber>
+    <PartNumber>2Ka10831955</PartNumber>
     <PartVersion>2</PartVersion>
-    <PrimaryPartType>CavitySeal</PrimaryPartType>
+    <PrimaryPartType>CavityPlug</PrimaryPartType>
   </PartVersion>
-  <PartVersion id="PartVersion_id_311_1">
+  <PartVersion id="PartVersion_id_309_1">
     <Abbreviation id="LocalizedString_00068">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
@@ -1865,11 +2171,11 @@ This is not intended for productive use and is not complete!
       <Value>Dichtung</Value>
     </Description>
     <CompanyName>GCMC</CompanyName>
-    <PartNumber>46810831853</PartNumber>
-    <PartVersion>2</PartVersion>
-    <PrimaryPartType>CavitySeal</PrimaryPartType>
+    <PartNumber>46810831953</PartNumber>
+    <PartVersion>3</PartVersion>
+    <PrimaryPartType>CavityPlug</PrimaryPartType>
   </PartVersion>
-  <PartVersion id="PartVersion_id_311_2">
+  <PartVersion id="PartVersion_id_309_2">
     <Abbreviation id="LocalizedString_00070">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
@@ -1879,16 +2185,58 @@ This is not intended for productive use and is not complete!
       <Value>Dichtung</Value>
     </Description>
     <CompanyName>GCMC</CompanyName>
-    <PartNumber>46810831852</PartNumber>
+    <PartNumber>46810831952</PartNumber>
     <PartVersion>3</PartVersion>
-    <PrimaryPartType>CavitySeal</PrimaryPartType>
+    <PrimaryPartType>CavityPlug</PrimaryPartType>
   </PartVersion>
-  <PartVersion id="PartVersion_id_315_0">
+  <PartVersion id="PartVersion_id_311_0">
     <Abbreviation id="LocalizedString_00072">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
     <Description xsi:type="vec:LocalizedString" id="LocalizedString_00073">
+      <LanguageCode>De</LanguageCode>
+      <Value>Dichtung</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>2Ka10831855</PartNumber>
+    <PartVersion>2</PartVersion>
+    <PrimaryPartType>CavitySeal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_311_1">
+    <Abbreviation id="LocalizedString_00074">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00075">
+      <LanguageCode>De</LanguageCode>
+      <Value>Dichtung</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>46810831853</PartNumber>
+    <PartVersion>2</PartVersion>
+    <PrimaryPartType>CavitySeal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_311_2">
+    <Abbreviation id="LocalizedString_00076">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00077">
+      <LanguageCode>De</LanguageCode>
+      <Value>Dichtung</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>46810831852</PartNumber>
+    <PartVersion>3</PartVersion>
+    <PrimaryPartType>CavitySeal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_315_0">
+    <Abbreviation id="LocalizedString_00078">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00079">
       <LanguageCode>De</LanguageCode>
       <Value>FLACHKONTAKTGEHAEUSE_4-POLIG_4.8_9.5MM</Value>
     </Description>
@@ -1898,11 +2246,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_2">
-    <Abbreviation id="LocalizedString_00074">
+    <Abbreviation id="LocalizedString_00080">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00075">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00081">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH_A8_1</Value>
     </Description>
@@ -1912,11 +2260,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_1">
-    <Abbreviation id="LocalizedString_00076">
+    <Abbreviation id="LocalizedString_00082">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00077">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00083">
       <LanguageCode>De</LanguageCode>
       <Value>FLACHKONTAKTGEH_2POL_KOD_A_VIOLETT</Value>
     </Description>
@@ -1926,11 +2274,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_Fixing_1">
-    <Abbreviation id="LocalizedString_00078">
+    <Abbreviation id="LocalizedString_00084">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00079">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00085">
       <LanguageCode>De</LanguageCode>
       <Value>LEITUNGSCLIP LOCHBEFESTIGUNG 6,5</Value>
     </Description>
@@ -1940,11 +2288,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fixing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_0">
-    <Abbreviation id="LocalizedString_00080">
+    <Abbreviation id="LocalizedString_00086">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00081">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00087">
       <LanguageCode>De</LanguageCode>
       <Value>-</Value>
     </Description>
@@ -1954,11 +2302,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_1">
-    <Abbreviation id="LocalizedString_00082">
+    <Abbreviation id="LocalizedString_00088">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00083">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00089">
       <LanguageCode>De</LanguageCode>
       <Value>FLACHKONTAKT_4.8-1</Value>
     </Description>
@@ -1968,11 +2316,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_2">
-    <Abbreviation id="LocalizedString_00084">
+    <Abbreviation id="LocalizedString_00090">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00085">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00091">
       <LanguageCode>De</LanguageCode>
       <Value>Hochdruck</Value>
     </Description>
@@ -1982,11 +2330,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_3">
-    <Abbreviation id="LocalizedString_00086">
+    <Abbreviation id="LocalizedString_00092">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00087">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00093">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH_A8_1</Value>
     </Description>
@@ -1996,11 +2344,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_0">
-    <Abbreviation id="LocalizedString_00088">
+    <Abbreviation id="LocalizedString_00094">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00089">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00095">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -2010,11 +2358,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_1">
-    <Abbreviation id="LocalizedString_00090">
+    <Abbreviation id="LocalizedString_00096">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00091">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00097">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -2024,11 +2372,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_2">
-    <Abbreviation id="LocalizedString_00092">
+    <Abbreviation id="LocalizedString_00098">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00093">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00099">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -2038,11 +2386,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_Wire_protection_1">
-    <Abbreviation id="LocalizedString_00094">
+    <Abbreviation id="LocalizedString_00100">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00095">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00101">
       <LanguageCode>De</LanguageCode>
       <Value>PET Vlies</Value>
     </Description>
@@ -2052,11 +2400,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>WireProtection</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_328_0">
-    <Abbreviation id="LocalizedString_00096">
+    <Abbreviation id="LocalizedString_00102">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00097">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00103">
       <LanguageCode>De</LanguageCode>
       <Value>LTGS Generator</Value>
     </Description>
@@ -2066,11 +2414,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>PartStructure</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_331_0">
-    <Abbreviation id="LocalizedString_00098">
+    <Abbreviation id="LocalizedString_00104">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00099">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00105">
       <LanguageCode>De</LanguageCode>
       <Value>Variante</Value>
     </Description>
@@ -49870,11 +50218,11 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0">
-    <Abbreviation id="LocalizedString_00164">
+    <Abbreviation id="LocalizedString_00208">
       <LanguageCode>De</LanguageCode>
       <Value>LTGS</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00165">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00209">
       <LanguageCode>De</LanguageCode>
       <Value>Leitungsstrang</Value>
     </Description>
@@ -50437,6 +50785,1345 @@ This is not intended for productive use and is not complete!
         <ConstrainedElements>PartOccurrence_id_331_0</ConstrainedElements>
       </ConfigurationConstraint>
     </Specification>
+    <Specification xsi:type="vec:BuildingBlockSpecification3D" id="BuildingBlockSpecification3D_id_328_0">
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_1">
+        <X>-5.503691</X>
+        <Y>0.0</Y>
+        <Z>20.31862</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_2">
+        <X>-22.632465</X>
+        <Y>200.333199</Y>
+        <Z>0.252248</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_3">
+        <X>-11.76223</X>
+        <Y>103.010602</Y>
+        <Z>18.891256</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_4">
+        <X>0.0</X>
+        <Y>300.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_5">
+        <X>-10.194799</X>
+        <Y>400.0</Y>
+        <Z>18.418188</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_6">
+        <X>-0.998613</X>
+        <Y>500.0</Y>
+        <Z>1.052653</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_7">
+        <X>-57.788081</X>
+        <Y>575.978007</Y>
+        <Z>20.921686</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_8">
+        <X>994.212054</X>
+        <Y>50.002566</Y>
+        <Z>-96.99925</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_9">
+        <X>1001.386959</X>
+        <Y>350.002566</Y>
+        <Z>-99.409406</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_10">
+        <X>1009.518727</X>
+        <Y>462.843337</Y>
+        <Z>-96.99925</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_11">
+        <X>1019.82362</X>
+        <Y>223.833753</Y>
+        <Z>-96.99925</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_12">
+        <X>1245.336923</X>
+        <Y>166.378105</Y>
+        <Z>-30.264113</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_13">
+        <X>1009.779999</X>
+        <Y>537.314641</Y>
+        <Z>-97.917767</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_14">
+        <X>300.0</X>
+        <Y>6.931422</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_15">
+        <X>300.0</X>
+        <Y>310.795415</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_16">
+        <X>-451.043813</X>
+        <Y>21.490557</Y>
+        <Z>88.13797</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_17">
+        <X>-271.976518</X>
+        <Y>103.247059</Y>
+        <Z>83.416151</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_18">
+        <X>-75.193621</X>
+        <Y>-2.760346</Y>
+        <Z>26.541813</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_19">
+        <X>112.054815</X>
+        <Y>-7.714031</Y>
+        <Z>-2.29591</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_20">
+        <X>287.918573</X>
+        <Y>107.996077</Y>
+        <Z>2.373602</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_21">
+        <X>475.367968</X>
+        <Y>100.912479</Y>
+        <Z>-27.050855</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_22">
+        <X>670.075322</X>
+        <Y>16.903319</Y>
+        <Z>-77.863793</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_23">
+        <X>-3151.290828</X>
+        <Y>-13682.826897</Y>
+        <Z>-3633.057479</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_24">
+        <X>-168.598491</X>
+        <Y>756.701872</Y>
+        <Z>190.669395</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_25">
+        <X>-112.90053</X>
+        <Y>-2.351416</Y>
+        <Z>-11.794059</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_26">
+        <X>128.78801</X>
+        <Y>204.361791</Y>
+        <Z>41.582542</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_27">
+        <X>265.703539</X>
+        <Y>-132.964731</Y>
+        <Z>-49.160123</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_28">
+        <X>549.098212</X>
+        <Y>290.309905</Y>
+        <Z>61.588572</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_29">
+        <X>168.882797</X>
+        <Y>-2732.247974</Y>
+        <Z>-740.526989</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_30">
+        <X>-249.50779</X>
+        <Y>50.0</Y>
+        <Z>106.903605</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_31">
+        <X>67.243935</X>
+        <Y>50.0</Y>
+        <Z>-59.939706</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_32">
+        <X>146.872847</X>
+        <Y>50.0</Y>
+        <Z>55.599642</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_33">
+        <X>250.0</X>
+        <Y>50.0</Y>
+        <Z>-54.936001</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_34">
+        <X>353.127153</X>
+        <Y>50.0</Y>
+        <Z>55.599642</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_35">
+        <X>432.756065</X>
+        <Y>50.0</Y>
+        <Z>-59.939706</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_36">
+        <X>749.50779</X>
+        <Y>50.0</Y>
+        <Z>106.903605</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_37">
+        <X>-4204.241903</X>
+        <Y>-3967.641359</Y>
+        <Z>-640.453074</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_38">
+        <X>316.646665</X>
+        <Y>118.541643</Y>
+        <Z>2.367001</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_39">
+        <X>297.237961</X>
+        <Y>61.425222</Y>
+        <Z>-0.392736</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_40">
+        <X>320.21113</X>
+        <Y>53.880129</Y>
+        <Z>2.873797</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_41">
+        <X>269.1826</X>
+        <Y>-28.410989</Y>
+        <Z>-4.381892</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_42">
+        <X>342.348321</X>
+        <Y>7.978151</Y>
+        <Z>6.021486</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_43">
+        <X>1230.028863</X>
+        <Y>424.40947</Y>
+        <Z>132.239011</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_44">
+        <X>-192.168712</X>
+        <Y>50.0</Y>
+        <Z>-221.505482</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_45">
+        <X>-4.32426</X>
+        <Y>50.0</Y>
+        <Z>122.310985</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_46">
+        <X>203.964818</X>
+        <Y>50.0</Y>
+        <Z>-112.15641</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_47">
+        <X>396.093425</X>
+        <Y>50.0</Y>
+        <Z>110.512021</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_48">
+        <X>603.95319</X>
+        <Y>50.0</Y>
+        <Z>-111.831601</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_49">
+        <X>795.730336</X>
+        <Y>50.0</Y>
+        <Z>120.786043</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_50">
+        <X>1007.622855</X>
+        <Y>50.0</Y>
+        <Z>-215.686911</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_51">
+        <X>-2497.742095</X>
+        <Y>14053.622289</Y>
+        <Z>-11961.205211</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_52">
+        <X>-60.351682</X>
+        <Y>-497.663521</Y>
+        <Z>739.883597</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_53">
+        <X>-57.291587</X>
+        <Y>486.478701</Y>
+        <Z>-119.125935</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_54">
+        <X>148.021922</X>
+        <Y>179.878519</Y>
+        <Z>148.490369</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_55">
+        <X>246.369416</X>
+        <Y>555.914879</Y>
+        <Z>-179.732863</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_56">
+        <X>494.170123</X>
+        <Y>-21.830427</Y>
+        <Z>324.554152</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_57">
+        <X>52.090874</X>
+        <Y>3803.105504</Y>
+        <Z>-3014.058716</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_58">
+        <X>-1920.290413</X>
+        <Y>-7412.566566</Y>
+        <Z>-2915.556125</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_59">
+        <X>-210.999621</X>
+        <Y>644.981139</Y>
+        <Z>111.420332</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_60">
+        <X>-73.600738</X>
+        <Y>384.099973</Y>
+        <Z>13.167063</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_61">
+        <X>122.218038</X>
+        <Y>432.376021</Y>
+        <Z>31.066888</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_62">
+        <X>275.469345</X>
+        <Y>255.385644</Y>
+        <Z>-35.66527</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_63">
+        <X>488.789529</X>
+        <Y>396.278885</Y>
+        <Z>17.034122</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_64">
+        <X>443.648883</X>
+        <Y>-830.598784</Y>
+        <Z>-444.17658</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_65">
+        <X>3164.685992</X>
+        <Y>10948.881967</Y>
+        <Z>4018.47973</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_66">
+        <X>-120.057848</X>
+        <Y>-210.684018</Y>
+        <Z>-212.578492</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_67">
+        <X>197.909978</X>
+        <Y>507.960127</Y>
+        <Z>59.889254</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_68">
+        <X>215.870573</X>
+        <Y>237.474619</Y>
+        <Z>-42.663086</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_69">
+        <X>392.447129</X>
+        <Y>489.949005</Y>
+        <Z>53.060475</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_70">
+        <X>347.398381</X>
+        <Y>11.720474</Y>
+        <Z>-128.255532</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_71">
+        <X>1325.535407</X>
+        <Y>2906.955255</Y>
+        <Z>969.444827</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_72">
+        <X>300.0</X>
+        <Y>2175.077518</Y>
+        <Z>-107.439614</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_73">
+        <X>300.0</X>
+        <Y>255.868972</Y>
+        <Z>-21.590942</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_74">
+        <X>300.0</X>
+        <Y>377.978001</Y>
+        <Z>25.352441</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_75">
+        <X>300.0</X>
+        <Y>349.760875</Y>
+        <Z>-28.244329</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_76">
+        <X>300.0</X>
+        <Y>263.414468</Y>
+        <Z>40.424656</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_77">
+        <X>300.0</X>
+        <Y>448.625864</Y>
+        <Z>-92.731796</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_78">
+        <X>300.0</X>
+        <Y>-1578.544312</Y>
+        <Z>183.755576</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_79">
+        <X>-229.520712</X>
+        <Y>-436.153855</Y>
+        <Z>-297.764522</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_80">
+        <X>14.578359</X>
+        <Y>738.23025</Y>
+        <Z>147.123487</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_81">
+        <X>192.620609</X>
+        <Y>153.482483</Y>
+        <Z>-74.479863</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_82">
+        <X>405.724435</X>
+        <Y>502.445065</Y>
+        <Z>57.779224</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_83">
+        <X>594.617509</X>
+        <Y>206.661114</Y>
+        <Z>-54.327878</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_84">
+        <X>805.152964</X>
+        <Y>487.226452</Y>
+        <Z>52.007866</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_85">
+        <X>1009.060797</X>
+        <Y>591.29434</Y>
+        <Z>91.473951</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_86">
+        <X>-4361.941767</X>
+        <Y>-17955.838261</Y>
+        <Z>250.799217</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_87">
+        <X>-714.571109</X>
+        <Y>586.163122</Y>
+        <Z>-1.640346</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_88">
+        <X>-253.971604</X>
+        <Y>222.022268</Y>
+        <Z>0.987504</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_89">
+        <X>271.538443</X>
+        <Y>242.97588</Y>
+        <Z>-1.510802</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_90">
+        <X>724.406359</X>
+        <Y>-167.034133</Y>
+        <Z>1.825138</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_91">
+        <X>1280.59878</X>
+        <Y>35.948654</Y>
+        <Z>-3.052284</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_92">
+        <X>1421.491827</X>
+        <Y>-2224.913205</Y>
+        <Z>24.403528</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_93">
+        <X>-3962.19769</X>
+        <Y>-16080.315175</Y>
+        <Z>3011.333209</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_94">
+        <X>-739.63613</X>
+        <Y>789.789777</Y>
+        <Z>-8.914308</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_95">
+        <X>-255.840078</X>
+        <Y>538.490725</Y>
+        <Z>7.972933</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_96">
+        <X>266.514664</X>
+        <Y>528.241489</Y>
+        <Z>-17.826438</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_97">
+        <X>730.178623</X>
+        <Y>151.086577</Y>
+        <Z>21.482828</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_98">
+        <X>1277.550855</X>
+        <Y>297.234287</Y>
+        <Z>-31.980371</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_99">
+        <X>1500.749365</X>
+        <Y>-1583.191386</Y>
+        <Z>273.108657</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_100">
+        <X>-817.922765</X>
+        <Y>-81374.573093</Y>
+        <Z>-16399.285468</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_101">
+        <X>-877.276497</X>
+        <Y>5780.447782</Y>
+        <Z>923.665666</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_102">
+        <X>-297.056158</X>
+        <Y>-681.932926</Y>
+        <Z>-295.565794</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_103">
+        <X>224.634986</X>
+        <Y>1422.874071</Y>
+        <Z>182.105818</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_104">
+        <X>776.984016</X>
+        <Y>-959.854769</Y>
+        <Z>-229.052786</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_105">
+        <X>1286.406921</X>
+        <Y>2940.710791</Y>
+        <Z>604.365727</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_106">
+        <X>1995.344571</X>
+        <Y>-22362.615343</Y>
+        <Z>-4347.277709</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_107">
+        <X>17434.396164</X>
+        <Y>87944.060541</Y>
+        <Z>14166.00104</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_108">
+        <X>-1084.808639</X>
+        <Y>-6679.891278</Y>
+        <Z>-1043.945451</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_109">
+        <X>781.748232</X>
+        <Y>1907.763115</Y>
+        <Z>310.18209</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_110">
+        <X>344.928762</X>
+        <Y>-1166.406844</Y>
+        <Z>-207.253345</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_111">
+        <X>1122.235662</X>
+        <Y>1906.455365</Y>
+        <Z>261.826039</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_112">
+        <X>175.811174</X>
+        <Y>-3747.807172</Y>
+        <Z>-669.67569</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_113">
+        <X>7420.266352</X>
+        <Y>32067.749276</Y>
+        <Z>5054.127083</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_114">
+        <X>95.780132</X>
+        <Y>868.964259</Y>
+        <Z>10.840487</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_115">
+        <X>181.679074</X>
+        <Y>547.462363</Y>
+        <Z>-2.107187</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_116">
+        <X>358.559858</X>
+        <Y>362.712559</Y>
+        <Z>-4.681039</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_117">
+        <X>654.975332</X>
+        <Y>357.631781</Y>
+        <Z>6.219013</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_118">
+        <X>744.093917</X>
+        <Y>40.969234</Y>
+        <Z>-6.325964</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_119">
+        <X>1047.532103</X>
+        <Y>46.444086</Y>
+        <Z>5.380994</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_120">
+        <X>1152.166079</X>
+        <Y>-246.89774</Y>
+        <Z>-5.491128</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_121">
+        <X>23622.684727</X>
+        <Y>27571.507391</Y>
+        <Z>324.882781</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_122">
+        <X>-1070.350895</X>
+        <Y>-1713.953735</Y>
+        <Z>-22.71726</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_123">
+        <X>1125.950001</X>
+        <Y>762.190749</Y>
+        <Z>6.67282</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_124">
+        <X>430.670093</X>
+        <Y>-177.191552</Y>
+        <Z>-4.477021</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_125">
+        <X>1251.887224</X>
+        <Y>674.708013</Y>
+        <Z>5.634441</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_126">
+        <X>-69.523979</X>
+        <Y>-1004.25874</Y>
+        <Z>-14.293515</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_127">
+        <X>8721.757738</X>
+        <Y>9261.85779</Y>
+        <Z>107.555869</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_128">
+        <X>-336.810458</X>
+        <Y>72.286523</Y>
+        <Z>14.17935</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_129">
+        <X>187.764465</X>
+        <Y>335.937002</Y>
+        <Z>220.018955</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_130">
+        <X>605.489305</X>
+        <Y>274.428474</Y>
+        <Z>102.273741</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_131">
+        <X>994.521465</X>
+        <Y>125.604303</Y>
+        <Z>-102.248871</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_132">
+        <X>1412.164919</X>
+        <Y>63.848104</Y>
+        <Z>-220.182449</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_133">
+        <X>1937.582854</X>
+        <Y>330.06398</Y>
+        <Z>-12.371088</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_134">
+        <X>2732.079352</X>
+        <Y>1415.121699</Y>
+        <Z>1008.238461</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_135">
+        <X>23482.457227</X>
+        <Y>-44760.703243</Y>
+        <Z>-11651.277633</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_136">
+        <X>-759.234218</X>
+        <Y>1594.701551</Y>
+        <Z>-0.905011</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_137">
+        <X>976.939501</X>
+        <Y>411.650286</Y>
+        <Z>315.856608</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_138">
+        <X>771.423548</X>
+        <Y>-226.633426</Y>
+        <Z>-346.281844</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_139">
+        <X>1162.626047</X>
+        <Y>811.164011</Y>
+        <Z>411.353599</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_140">
+        <X>1518.56769</X>
+        <Y>-4248.725582</Y>
+        <Z>-2555.870768</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_141">
+        <X>-10445.587539</X>
+        <Y>76592.200754</Y>
+        <Z>38306.466426</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_142">
+        <X>-1313.546192</X>
+        <Y>-4907.1704</Y>
+        <Z>12192.722512</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_143">
+        <X>733.265499</X>
+        <Y>832.110451</Y>
+        <Z>-1454.197857</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_144">
+        <X>618.081226</X>
+        <Y>-80.576785</Y>
+        <Z>680.843363</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_145">
+        <X>964.339742</X>
+        <Y>426.490115</Y>
+        <Z>-552.521506</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_146">
+        <X>982.420744</X>
+        <Y>-76.170289</Y>
+        <Z>609.721643</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_147">
+        <X>1628.298053</X>
+        <Y>1352.755245</Y>
+        <Z>-2810.779238</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_148">
+        <X>-3969.602573</X>
+        <Y>-16428.998725</Y>
+        <Z>39346.641212</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_149">
+        <X>-2981.868001</X>
+        <Y>-41661.935868</Y>
+        <Z>17195.820536</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_150">
+        <X>967.201738</X>
+        <Y>5419.987915</Y>
+        <Z>-2095.684037</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_151">
+        <X>538.189042</X>
+        <Y>-2014.080727</Y>
+        <Z>919.346014</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_152">
+        <X>1025.786937</X>
+        <Y>1965.50872</Y>
+        <Z>-735.802126</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_153">
+        <X>870.196589</X>
+        <Y>-2063.897981</Y>
+        <Z>886.129548</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_154">
+        <X>1929.4175</X>
+        <Y>9033.555619</Y>
+        <Z>-3681.468881</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_155">
+        <X>-7429.398873</X>
+        <Y>-109594.652668</Y>
+        <Z>44831.432348</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_156">
+        <X>2598.155122</X>
+        <Y>-75189.688105</Y>
+        <Z>27757.150286</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_157">
+        <X>235.231501</X>
+        <Y>9633.608391</Y>
+        <Z>-3480.807466</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_158">
+        <X>824.331978</X>
+        <Y>-3726.046911</Y>
+        <Z>1443.969406</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_159">
+        <X>800.078623</X>
+        <Y>3314.161636</Y>
+        <Z>-1144.936203</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_160">
+        <X>1203.804568</X>
+        <Y>-3880.022749</Y>
+        <Z>1508.977137</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_161">
+        <X>804.787305</X>
+        <Y>15624.659531</Y>
+        <Z>-5670.848896</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_162">
+        <X>7024.760674</X>
+        <Y>-185015.21551</Y>
+        <Z>68233.116498</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_163">
+        <X>10161.676185</X>
+        <Y>-83380.116052</Y>
+        <Z>28243.765799</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_164">
+        <X>-761.133736</X>
+        <Y>10584.830461</Y>
+        <Z>-3543.160639</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_165">
+        <X>1208.128215</X>
+        <Y>-4168.436762</Y>
+        <Z>1469.296062</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_166">
+        <X>498.470631</X>
+        <Y>3669.493887</Y>
+        <Z>-1165.018702</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_167">
+        <X>1658.225195</X>
+        <Y>-4257.236998</Y>
+        <Z>1536.767576</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_168">
+        <X>-688.740941</X>
+        <Y>17388.036865</Y>
+        <Z>-5771.12381</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_169">
+        <X>25893.107591</X>
+        <Y>-204921.973387</Y>
+        <Z>69496.23855</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_170">
+        <X>16.757086</X>
+        <Y>12.5</Y>
+        <Z>17.046341</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_171">
+        <X>200.0</X>
+        <Y>50.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_172">
+        <X>10.737242</X>
+        <Y>115.510602</Y>
+        <Z>18.737058</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_173">
+        <X>300.0</X>
+        <Y>50.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_174">
+        <X>300.0</X>
+        <Y>16.931422</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_175">
+        <X>500.0</X>
+        <Y>50.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_176">
+        <X>50.0</X>
+        <Y>303.6</Y>
+        <Z>40.5</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_177">
+        <X>200.0</X>
+        <Y>350.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_178">
+        <X>23.507914</X>
+        <Y>404.000513</Y>
+        <Z>20.525236</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_179">
+        <X>300.0</X>
+        <Y>350.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_180">
+        <X>300.0</X>
+        <Y>320.795415</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_181">
+        <X>500.0</X>
+        <Y>350.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_182">
+        <X>3.867294</X>
+        <Y>203.333199</Y>
+        <Z>0.139228</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_183">
+        <X>0.0</X>
+        <Y>500.0</Y>
+        <Z>1.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_184">
+        <X>-37.665807</X>
+        <Y>583.478007</Y>
+        <Z>-14.537359</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_185">
+        <X>700.0</X>
+        <Y>200.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_186">
+        <X>800.0</X>
+        <Y>200.0</Y>
+        <Z>0.0</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_187">
+        <X>1214.853118</X>
+        <Y>129.752438</Y>
+        <Z>-126.418819</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_188">
+        <X>993.225091</X>
+        <Y>50.002566</Y>
+        <Z>-96.838299</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_189">
+        <X>989.901317</X>
+        <Y>225.991488</Y>
+        <Z>-91.99925</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_190">
+        <X>981.636668</X>
+        <Y>369.752566</Y>
+        <Z>-96.258852</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_191">
+        <X>979.572938</X>
+        <Y>461.040634</Y>
+        <Z>-91.99925</Z>
+      </CartesianPoint>
+      <CartesianPoint id="CartesianPoint3D_Cartesian_point_192">
+        <X>980.637761</X>
+        <Y>530.113394</Y>
+        <Z>-93.031866</Z>
+      </CartesianPoint>
+      <GeometryNode id="GeometryNode3D_Node_1">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_170</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_2">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_171</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_3">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_172</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_4">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_173</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_5">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_174</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_6">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_175</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_7">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_176</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_8">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_177</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_9">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_178</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_10">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_179</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_11">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_180</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_12">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_181</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_13">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_182</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_14">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_183</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_15">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_184</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_16">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_185</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_17">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_186</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_18">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_187</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_19">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_188</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_20">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_189</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_21">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_190</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_22">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_191</CartesianPoint>
+      </GeometryNode>
+      <GeometryNode id="GeometryNode3D_Node_23">
+        <CartesianPoint>CartesianPoint3D_Cartesian_point_192</CartesianPoint>
+      </GeometryNode>
+      <GeometrySegment id="GeometrySegment3D_Segment_1">
+        <StartVector id="Cartesiantor3D_00141">
+          <X>0.989368</X>
+          <Y>0.0</Y>
+          <Z>-0.145435</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00142">
+          <X>0.948591</X>
+          <Y>0.311267</Y>
+          <Z>-0.057346</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_2</EndNode>
+        <StartNode>GeometryNode3D_Node_1</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_2">
+        <StartVector id="Cartesiantor3D_00143">
+          <X>0.999977</X>
+          <Y>-0.0</Y>
+          <Z>-0.006853</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00144">
+          <X>0.912245</X>
+          <Y>-0.394261</Y>
+          <Z>-0.111209</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_2</EndNode>
+        <StartNode>GeometryNode3D_Node_3</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_3">
+        <StartVector id="Cartesiantor3D_00145">
+          <X>0.990042</X>
+          <Y>0.0</Y>
+          <Z>-0.140773</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00146">
+          <X>0.990042</X>
+          <Y>0.0</Y>
+          <Z>0.140773</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_4</EndNode>
+        <StartNode>GeometryNode3D_Node_2</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_4">
+        <StartVector id="Cartesiantor3D_00147">
+          <X>0.990042</X>
+          <Y>0.0</Y>
+          <Z>0.140773</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00148">
+          <X>0.0</X>
+          <Y>-1.0</Y>
+          <Z>0.0</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_5</EndNode>
+        <StartNode>GeometryNode3D_Node_4</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_5">
+        <StartVector id="Cartesiantor3D_00149">
+          <X>0.990042</X>
+          <Y>0.0</Y>
+          <Z>0.140773</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00150">
+          <X>0.990164</X>
+          <Y>0.0</Y>
+          <Z>-0.139909</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_6</EndNode>
+        <StartNode>GeometryNode3D_Node_4</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_6">
+        <StartVector id="Cartesiantor3D_00151">
+          <X>1.0</X>
+          <Y>-0.0</Y>
+          <Z>-0.0</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00152">
+          <X>0.896632</X>
+          <Y>0.33358</Y>
+          <Z>-0.291163</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_8</EndNode>
+        <StartNode>GeometryNode3D_Node_7</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_7">
+        <StartVector id="Cartesiantor3D_00153">
+          <X>0.999999</X>
+          <Y>-0.0</Y>
+          <Z>-0.001275</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00154">
+          <X>0.920888</X>
+          <Y>-0.364509</Y>
+          <Z>-0.138201</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_8</EndNode>
+        <StartNode>GeometryNode3D_Node_9</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_8">
+        <StartVector id="Cartesiantor3D_00155">
+          <X>0.920888</X>
+          <Y>-0.364509</Y>
+          <Z>-0.138201</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00156">
+          <X>0.997503</X>
+          <Y>0.06603</Y>
+          <Z>0.025035</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_10</EndNode>
+        <StartNode>GeometryNode3D_Node_8</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_9">
+        <StartVector id="Cartesiantor3D_00157">
+          <X>-0.0</X>
+          <Y>-0.977245</Y>
+          <Z>-0.212114</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00158">
+          <X>-0.0</X>
+          <Y>-1.0</Y>
+          <Z>-0.0</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_11</EndNode>
+        <StartNode>GeometryNode3D_Node_10</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_10">
+        <StartVector id="Cartesiantor3D_00159">
+          <X>0.997503</X>
+          <Y>0.06603</Y>
+          <Z>0.025035</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00160">
+          <X>0.986992</X>
+          <Y>-0.150331</Y>
+          <Z>-0.056983</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_12</EndNode>
+        <StartNode>GeometryNode3D_Node_10</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_11">
+        <StartVector id="Cartesiantor3D_00161">
+          <X>0.999991</X>
+          <Y>-0.0</Y>
+          <Z>-0.004265</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00162">
+          <X>0.926185</X>
+          <Y>-0.377068</Y>
+          <Z>9.24E-4</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_6</EndNode>
+        <StartNode>GeometryNode3D_Node_13</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_12">
+        <StartVector id="Cartesiantor3D_00163">
+          <X>0.998613</X>
+          <Y>0.0</Y>
+          <Z>-0.052653</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00164">
+          <X>0.929247</X>
+          <Y>-0.369214</Y>
+          <Z>0.013447</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_12</EndNode>
+        <StartNode>GeometryNode3D_Node_14</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_13">
+        <StartVector id="Cartesiantor3D_00165">
+          <X>0.993636</X>
+          <Y>0.0</Y>
+          <Z>0.112643</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00166">
+          <X>0.890985</X>
+          <Y>-0.453905</Y>
+          <Z>0.01078</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_12</EndNode>
+        <StartNode>GeometryNode3D_Node_15</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_14">
+        <StartVector id="Cartesiantor3D_00167">
+          <X>0.990164</X>
+          <Y>0.0</Y>
+          <Z>-0.139909</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00168">
+          <X>0.769736</X>
+          <Y>0.638259</Y>
+          <Z>0.011485</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_16</EndNode>
+        <StartNode>GeometryNode3D_Node_6</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_15">
+        <StartVector id="Cartesiantor3D_00169">
+          <X>0.890985</X>
+          <Y>-0.453905</Y>
+          <Z>0.01078</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00170">
+          <X>0.713479</X>
+          <Y>-0.700627</Y>
+          <Z>-0.008316</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_16</EndNode>
+        <StartNode>GeometryNode3D_Node_12</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_16">
+        <StartVector id="Cartesiantor3D_00171">
+          <X>0.713479</X>
+          <Y>-0.700627</Y>
+          <Z>-0.008316</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00172">
+          <X>0.997571</X>
+          <Y>0.069656</Y>
+          <Z>8.27E-4</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_17</EndNode>
+        <StartNode>GeometryNode3D_Node_16</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_17">
+        <StartVector id="Cartesiantor3D_00173">
+          <X>0.903943</X>
+          <Y>-0.233188</Y>
+          <Z>-0.358484</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00174">
+          <X>0.991744</X>
+          <Y>-3.0E-6</Y>
+          <Z>-0.128237</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_18</EndNode>
+        <StartNode>GeometryNode3D_Node_17</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_18">
+        <StartVector id="Cartesiantor3D_00175">
+          <X>0.903943</X>
+          <Y>-0.233188</Y>
+          <Z>-0.358484</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00176">
+          <X>0.986962</X>
+          <Y>-0.0</Y>
+          <Z>-0.160951</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_19</EndNode>
+        <StartNode>GeometryNode3D_Node_17</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_19">
+        <StartVector id="Cartesiantor3D_00177">
+          <X>0.865801</X>
+          <Y>0.144253</Y>
+          <Z>-0.479144</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00178">
+          <X>0.99741</X>
+          <Y>-0.071925</Y>
+          <Z>-0.0</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_20</EndNode>
+        <StartNode>GeometryNode3D_Node_17</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_20">
+        <StartVector id="Cartesiantor3D_00179">
+          <X>0.645713</X>
+          <Y>0.668964</Y>
+          <Z>-0.36816</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00180">
+          <X>0.987515</X>
+          <Y>0.0</Y>
+          <Z>-0.157528</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_21</EndNode>
+        <StartNode>GeometryNode3D_Node_17</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_21">
+        <StartVector id="Cartesiantor3D_00181">
+          <X>0.504781</X>
+          <Y>0.813781</Y>
+          <Z>-0.288022</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00182">
+          <X>0.998193</X>
+          <Y>0.06009</Y>
+          <Z>-0.0</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_22</EndNode>
+        <StartNode>GeometryNode3D_Node_17</StartNode>
+      </GeometrySegment>
+      <GeometrySegment id="GeometrySegment3D_Segment_22">
+        <StartVector id="Cartesiantor3D_00183">
+          <X>0.427164</X>
+          <Y>0.869189</Y>
+          <Z>-0.249079</Z>
+        </StartVector>
+        <EndVector id="Cartesiantor3D_00184">
+          <X>0.970755</X>
+          <Y>0.240042</Y>
+          <Z>0.003802</Z>
+        </EndVector>
+        <EndNode>GeometryNode3D_Node_23</EndNode>
+        <StartNode>GeometryNode3D_Node_17</StartNode>
+      </GeometrySegment>
+    </Specification>
     <Specification xsi:type="vec:RoutingSpecification" id="RoutingSpecification_id_328_0">
       <Identification>RS-LTG0011200</Identification>
       <Routing id="Routing_id_338_0">
@@ -50582,7 +52269,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00141">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00185">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger</Value>
         </Description>
@@ -50595,7 +52282,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00142">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00186">
           <LanguageCode>De</LanguageCode>
           <Value>Tetrathrow</Value>
         </Description>
@@ -50609,7 +52296,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00143">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00187">
           <LanguageCode>De</LanguageCode>
           <Value>Hydraulikpumpe</Value>
         </Description>
@@ -50623,7 +52310,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00144">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00188">
           <LanguageCode>De</LanguageCode>
           <Value>Ölablass</Value>
         </Description>
@@ -50637,7 +52324,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00145">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00189">
           <LanguageCode>De</LanguageCode>
           <Value>Heckscheibenmotor</Value>
         </Description>
@@ -50651,7 +52338,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00146">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00190">
           <LanguageCode>De</LanguageCode>
           <Value>Kompressor</Value>
         </Description>
@@ -50665,7 +52352,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00147">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00191">
           <LanguageCode>De</LanguageCode>
           <Value>Beifahrersitz</Value>
         </Description>
@@ -50679,7 +52366,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00148">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00192">
           <LanguageCode>De</LanguageCode>
           <Value>Plusverbindung (30) Ltgs. Motorraum</Value>
         </Description>
@@ -50713,7 +52400,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00149">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00193">
           <LanguageCode>De</LanguageCode>
           <Value>2-Faden-Lampe für Scheinwerfer rechts</Value>
         </Description>
@@ -50779,7 +52466,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00150">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00194">
           <LanguageCode>De</LanguageCode>
           <Value>Hydraulikpumpe für ABS</Value>
         </Description>
@@ -50829,7 +52516,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00151">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00195">
           <LanguageCode>De</LanguageCode>
           <Value>2-Faden-Lampe für Scheinwerfer links</Value>
         </Description>
@@ -50891,7 +52578,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00152">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00196">
           <LanguageCode>De</LanguageCode>
           <Value>Klimakompressor</Value>
         </Description>
@@ -50949,7 +52636,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00153">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00197">
           <LanguageCode>De</LanguageCode>
           <Value>Motor für Faltschiebedach</Value>
         </Description>
@@ -51003,7 +52690,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00154">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00198">
           <LanguageCode>De</LanguageCode>
           <Value>beheizbare Heckscheibe</Value>
         </Description>
@@ -51073,7 +52760,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00155">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00199">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -51223,7 +52910,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00156">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00200">
           <LanguageCode>De</LanguageCode>
           <Value>Plusverbindung (30) im Leitungsstrang Motorraum</Value>
         </Description>
@@ -51261,7 +52948,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00157">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00201">
           <LanguageCode>De</LanguageCode>
           <Value>Verbindung (15a) im Leitungsstrang hinten</Value>
         </Description>
@@ -51572,7 +53259,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00158">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00202">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -51597,7 +53284,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00159">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00203">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -51622,7 +53309,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00160">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00204">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -51647,7 +53334,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00161">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00205">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -51672,7 +53359,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00162">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00206">
           <LanguageCode>De</LanguageCode>
           <Value>Batterie</Value>
         </Description>
@@ -51825,7 +53512,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00163">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00207">
           <LanguageCode>De</LanguageCode>
           <Value>Test</Value>
         </Description>
@@ -51863,11 +53550,11 @@ This is not intended for productive use and is not complete!
       <PropertyType>partcolour</PropertyType>
       <Value>zinn</Value>
     </CustomProperty>
-    <Abbreviation id="LocalizedString_00166">
+    <Abbreviation id="LocalizedString_00210">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00167">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00211">
       <LanguageCode>De</LanguageCode>
       <Value>Multifuse</Value>
     </Description>
@@ -51882,11 +53569,11 @@ This is not intended for productive use and is not complete!
     </AliasId>
   </PartVersion>
   <PartVersion id="PartVersion_id_309_0">
-    <Abbreviation id="LocalizedString_00168">
+    <Abbreviation id="LocalizedString_00212">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00169">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00213">
       <LanguageCode>De</LanguageCode>
       <Value>Dichtung</Value>
     </Description>
@@ -51896,11 +53583,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>CavityPlug</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_311_0">
-    <Abbreviation id="LocalizedString_00170">
+    <Abbreviation id="LocalizedString_00214">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00171">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00215">
       <LanguageCode>De</LanguageCode>
       <Value>Dichtung</Value>
     </Description>
@@ -51910,11 +53597,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>CavitySeal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_311_1">
-    <Abbreviation id="LocalizedString_00172">
+    <Abbreviation id="LocalizedString_00216">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00173">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00217">
       <LanguageCode>De</LanguageCode>
       <Value>Dichtung</Value>
     </Description>
@@ -51924,11 +53611,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>CavitySeal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_0">
-    <Abbreviation id="LocalizedString_00174">
+    <Abbreviation id="LocalizedString_00218">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00175">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00219">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 150A</Value>
     </Description>
@@ -51938,11 +53625,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_1">
-    <Abbreviation id="LocalizedString_00176">
+    <Abbreviation id="LocalizedString_00220">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00177">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00221">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 110A</Value>
     </Description>
@@ -51952,11 +53639,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_2">
-    <Abbreviation id="LocalizedString_00178">
+    <Abbreviation id="LocalizedString_00222">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00179">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00223">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 80A</Value>
     </Description>
@@ -51966,11 +53653,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_3">
-    <Abbreviation id="LocalizedString_00180">
+    <Abbreviation id="LocalizedString_00224">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00181">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00225">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 40A</Value>
     </Description>
@@ -51980,11 +53667,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_4">
-    <Abbreviation id="LocalizedString_00182">
+    <Abbreviation id="LocalizedString_00226">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00183">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00227">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 50A</Value>
     </Description>
@@ -51994,11 +53681,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_5">
-    <Abbreviation id="LocalizedString_00184">
+    <Abbreviation id="LocalizedString_00228">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00185">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00229">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 60A</Value>
     </Description>
@@ -52008,11 +53695,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_6">
-    <Abbreviation id="LocalizedString_00186">
+    <Abbreviation id="LocalizedString_00230">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00187">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00231">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_C 25A</Value>
     </Description>
@@ -52022,11 +53709,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_413_0">
-    <Abbreviation id="LocalizedString_00188">
+    <Abbreviation id="LocalizedString_00232">
       <LanguageCode>De</LanguageCode>
       <Value>HSB30V</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00189">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00233">
       <LanguageCode>De</LanguageCode>
       <Value>Hauptsicherungsbox</Value>
     </Description>
@@ -52036,11 +53723,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>EEComponent</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_0">
-    <Abbreviation id="LocalizedString_00190">
+    <Abbreviation id="LocalizedString_00234">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00191">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00235">
       <LanguageCode>De</LanguageCode>
       <Value>BUCHSENGEHAEUSE_6-POL</Value>
     </Description>
@@ -52055,11 +53742,11 @@ This is not intended for productive use and is not complete!
     </AliasId>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_8">
-    <Abbreviation id="LocalizedString_00192">
+    <Abbreviation id="LocalizedString_00236">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00193">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00237">
       <LanguageCode>De</LanguageCode>
       <Value>RD-FLACHSTECKERGEHAEUSE 2-POLIG 2,8MM SCHWARZ</Value>
     </Description>
@@ -52074,11 +53761,11 @@ This is not intended for productive use and is not complete!
     </AliasId>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_2">
-    <Abbreviation id="LocalizedString_00194">
+    <Abbreviation id="LocalizedString_00238">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00195">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00239">
       <LanguageCode>De</LanguageCode>
       <Value>Steckgehaeuse_5Pol_Klima</Value>
     </Description>
@@ -52088,11 +53775,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_3">
-    <Abbreviation id="LocalizedString_00196">
+    <Abbreviation id="LocalizedString_00240">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00197">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00241">
       <LanguageCode>De</LanguageCode>
       <Value>FLACHKONTAKTGEH_4POL</Value>
     </Description>
@@ -52102,11 +53789,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_5">
-    <Abbreviation id="LocalizedString_00198">
+    <Abbreviation id="LocalizedString_00242">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00199">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00243">
       <LanguageCode>De</LanguageCode>
       <Value>DUMMY_BUCHSENGEH_1POL</Value>
     </Description>
@@ -52116,11 +53803,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_9">
-    <Abbreviation id="LocalizedString_00200">
+    <Abbreviation id="LocalizedString_00244">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00201">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00245">
       <LanguageCode>De</LanguageCode>
       <Value>BATTERIEKLEMME_PLUS</Value>
     </Description>
@@ -52130,11 +53817,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_7">
-    <Abbreviation id="LocalizedString_00202">
+    <Abbreviation id="LocalizedString_00246">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00203">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00247">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH</Value>
     </Description>
@@ -52144,11 +53831,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_4">
-    <Abbreviation id="LocalizedString_00204">
+    <Abbreviation id="LocalizedString_00248">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00205">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00249">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH_M6-10MM2</Value>
     </Description>
@@ -52158,11 +53845,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_1">
-    <Abbreviation id="LocalizedString_00206">
+    <Abbreviation id="LocalizedString_00250">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00207">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00251">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH</Value>
     </Description>
@@ -52172,11 +53859,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_10">
-    <Abbreviation id="LocalizedString_00208">
+    <Abbreviation id="LocalizedString_00252">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00209">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00253">
       <LanguageCode>De</LanguageCode>
       <Value>Verbinder</Value>
     </Description>
@@ -52186,11 +53873,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_0">
-    <Abbreviation id="LocalizedString_00210">
+    <Abbreviation id="LocalizedString_00254">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00211">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00255">
       <LanguageCode>De</LanguageCode>
       <Value>box</Value>
     </Description>
@@ -52200,11 +53887,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_1">
-    <Abbreviation id="LocalizedString_00212">
+    <Abbreviation id="LocalizedString_00256">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00213">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00257">
       <LanguageCode>De</LanguageCode>
       <Value>flat</Value>
     </Description>
@@ -52214,11 +53901,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_2">
-    <Abbreviation id="LocalizedString_00214">
+    <Abbreviation id="LocalizedString_00258">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00215">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00259">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -52228,11 +53915,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_3">
-    <Abbreviation id="LocalizedString_00216">
+    <Abbreviation id="LocalizedString_00260">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00217">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00261">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -52242,11 +53929,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_4">
-    <Abbreviation id="LocalizedString_00218">
+    <Abbreviation id="LocalizedString_00262">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00219">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00263">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -52256,11 +53943,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_5">
-    <Abbreviation id="LocalizedString_00220">
+    <Abbreviation id="LocalizedString_00264">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00221">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00265">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -52270,11 +53957,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_6">
-    <Abbreviation id="LocalizedString_00222">
+    <Abbreviation id="LocalizedString_00266">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00223">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00267">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -52284,11 +53971,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_7">
-    <Abbreviation id="LocalizedString_00224">
+    <Abbreviation id="LocalizedString_00268">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00225">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00269">
       <LanguageCode>De</LanguageCode>
       <Value>box</Value>
     </Description>
@@ -52298,11 +53985,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_8">
-    <Abbreviation id="LocalizedString_00226">
+    <Abbreviation id="LocalizedString_00270">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00227">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00271">
       <LanguageCode>De</LanguageCode>
       <Value>flat</Value>
     </Description>
@@ -52312,11 +53999,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_9">
-    <Abbreviation id="LocalizedString_00228">
+    <Abbreviation id="LocalizedString_00272">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00229">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00273">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -52326,11 +54013,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_10">
-    <Abbreviation id="LocalizedString_00230">
+    <Abbreviation id="LocalizedString_00274">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00231">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00275">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -52340,11 +54027,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_11">
-    <Abbreviation id="LocalizedString_00232">
+    <Abbreviation id="LocalizedString_00276">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00233">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00277">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -52354,11 +54041,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_0">
-    <Abbreviation id="LocalizedString_00234">
+    <Abbreviation id="LocalizedString_00278">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00235">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00279">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -52368,11 +54055,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_1">
-    <Abbreviation id="LocalizedString_00236">
+    <Abbreviation id="LocalizedString_00280">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00237">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00281">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -52382,11 +54069,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_2">
-    <Abbreviation id="LocalizedString_00238">
+    <Abbreviation id="LocalizedString_00282">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00239">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00283">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -52396,11 +54083,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_3">
-    <Abbreviation id="LocalizedString_00240">
+    <Abbreviation id="LocalizedString_00284">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00241">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00285">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -52410,11 +54097,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_4">
-    <Abbreviation id="LocalizedString_00242">
+    <Abbreviation id="LocalizedString_00286">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00243">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00287">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -52424,11 +54111,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_5">
-    <Abbreviation id="LocalizedString_00244">
+    <Abbreviation id="LocalizedString_00288">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00245">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00289">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -52438,11 +54125,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_6">
-    <Abbreviation id="LocalizedString_00246">
+    <Abbreviation id="LocalizedString_00290">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00247">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00291">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -52452,11 +54139,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_7">
-    <Abbreviation id="LocalizedString_00248">
+    <Abbreviation id="LocalizedString_00292">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00249">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00293">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -52466,11 +54153,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_328_0">
-    <Abbreviation id="LocalizedString_00250">
+    <Abbreviation id="LocalizedString_00294">
       <LanguageCode>De</LanguageCode>
       <Value>LTGS</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00251">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00295">
       <LanguageCode>De</LanguageCode>
       <Value>Leitungsstrang</Value>
     </Description>
@@ -52485,11 +54172,11 @@ This is not intended for productive use and is not complete!
     </AliasId>
   </PartVersion>
   <PartVersion id="PartVersion_id_331_0">
-    <Abbreviation id="LocalizedString_00252">
+    <Abbreviation id="LocalizedString_00296">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00253">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00297">
       <LanguageCode>De</LanguageCode>
       <Value>Modul</Value>
     </Description>
