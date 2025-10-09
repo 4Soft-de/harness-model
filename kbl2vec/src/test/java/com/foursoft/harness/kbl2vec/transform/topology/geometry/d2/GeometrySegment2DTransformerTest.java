@@ -1,14 +1,11 @@
-package com.foursoft.harness.kbl2vec.transform.topology.geometry;
+package com.foursoft.harness.kbl2vec.transform.topology.geometry.d2;
 
 import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecCartesianVector2D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,15 +19,10 @@ class GeometrySegment2DTransformerTest {
 
         final KblSegment source = new KblSegment();
 
-        final List<Double> startVectors = source.getStartVectors();
-        startVectors.add(1.0);
-        final List<Double> endVectors = source.getEndVectors();
-        endVectors.add(2.0);
-
-        final VecCartesianVector2D vecStartVector = new VecCartesianVector2D();
-        final VecCartesianVector2D vecEndVector = new VecCartesianVector2D();
-        orchestrator.addMockMapping(startVectors, vecStartVector);
-        orchestrator.addMockMapping(endVectors, vecEndVector);
+        source.getStartVectors().add(1.0);
+        source.getStartVectors().add(2.0);
+        source.getEndVectors().add(1.0);
+        source.getEndVectors().add(2.0);
 
         final KblNode startNode = new KblNode();
         final KblNode endNode = new KblNode();
@@ -49,7 +41,9 @@ class GeometrySegment2DTransformerTest {
         assertThat(result).isNotNull()
                 .returns(vecEndNode, VecGeometrySegment2D::getEndNode)
                 .returns(vecStartNode, VecGeometrySegment2D::getStartNode)
-                .returns(vecEndVector, VecGeometrySegment2D::getEndVector)
-                .returns(vecStartVector, VecGeometrySegment2D::getStartVector);
+                .satisfies(v -> assertThat(v.getStartVector().getX()).isEqualTo(1.0))
+                .satisfies(v -> assertThat(v.getStartVector().getY()).isEqualTo(2.0))
+                .satisfies(v -> assertThat(v.getEndVector().getX()).isEqualTo(1.0))
+                .satisfies(v -> assertThat(v.getEndVector().getY()).isEqualTo(2.0));
     }
 }

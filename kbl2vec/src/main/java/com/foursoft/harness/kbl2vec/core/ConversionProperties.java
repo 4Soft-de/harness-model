@@ -35,6 +35,7 @@ public class ConversionProperties {
     private String defaultColorReferenceSystem = "ACME Inc.";
     private String defaultWireTypeReferenceSystem = "ACME Inc.";
     private String defaultMaterialReferenceSystem = "ACME Inc.";
+    private String defaultCartesianVector2DReferenceSystem = "ACME Inc.";
 
     public VecLanguageCode getDefaultLanguageCode() {
         return defaultLanguageCode;
@@ -82,5 +83,13 @@ public class ConversionProperties {
 
     public void setDefaultMaterialReferenceSystem(final String defaultMaterialReferenceSystem) {
         this.defaultMaterialReferenceSystem = defaultMaterialReferenceSystem;
+    }
+
+    public String getDefaultCartesianVector2DReferenceSystem() {
+        return defaultCartesianVector2DReferenceSystem;
+    }
+
+    public void setDefaultCartesianVector2DReferenceSystem(final String defaultCartesianVector2DReferenceSystem) {
+        this.defaultCartesianVector2DReferenceSystem = defaultCartesianVector2DReferenceSystem;
     }
 }

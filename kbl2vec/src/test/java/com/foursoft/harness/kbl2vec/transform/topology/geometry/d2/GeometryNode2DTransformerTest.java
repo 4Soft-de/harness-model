@@ -1,4 +1,4 @@
-package com.foursoft.harness.kbl2vec.transform.topology.geometry;
+package com.foursoft.harness.kbl2vec.transform.topology.geometry.d2;
 
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import com.foursoft.harness.kbl.v25.KblNode;

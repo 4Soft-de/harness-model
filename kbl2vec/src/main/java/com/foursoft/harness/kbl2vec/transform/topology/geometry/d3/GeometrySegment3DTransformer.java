@@ -1,6 +1,7 @@
-package com.foursoft.harness.kbl2vec.transform.topology.geometry;
+package com.foursoft.harness.kbl2vec.transform.topology.geometry.d3;
 
 import com.foursoft.harness.kbl.v25.KblSegment;
+import com.foursoft.harness.kbl2vec.convert.DoublesToCartesianVector3DConverter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
@@ -18,11 +19,12 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
                                                                 final KblSegment source) {
         final VecGeometrySegment3D destination = new VecGeometrySegment3D();
 
+        final DoublesToCartesianVector3DConverter converter =
+                context.getConverterRegistry().getDoublesToCartesianVector3DConverter();
+        converter.convert(source.getStartVectors()).ifPresent(destination::setStartVector);
+        converter.convert(source.getEndVectors()).ifPresent(destination::setEndVector);
+
         return TransformationResult.from(destination)
-                .withDownstream(List.class, VecCartesianVector3D.class, Query.of(source.getStartVectors()),
-                                VecGeometrySegment3D::setStartVector)
-                .withDownstream(List.class, VecCartesianVector3D.class, Query.of(source.getEndVectors()),
-                                VecGeometrySegment3D::setEndVector)
                 .withLinker(Query.of(source.getStartNode()), VecGeometryNode3D.class,
                             VecGeometrySegment3D::setStartNode)
                 .withLinker(Query.of(source.getEndNode()), VecGeometryNode3D.class, VecGeometrySegment3D::setEndNode)
