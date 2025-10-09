@@ -5,6 +5,8 @@ import com.foursoft.harness.vec.v2x.VecCartesianVector2D;
 import java.util.List;
 import java.util.Optional;
 
+import static com.foursoft.harness.kbl2vec.utils.CoordinateGenerator.getCoordinateOrDefault;
+
 public class DoublesToCartesianVector2DConverter implements Converter<List<Double>, Optional<VecCartesianVector2D>> {
 
     @Override
@@ -14,9 +16,7 @@ public class DoublesToCartesianVector2DConverter implements Converter<List<Doubl
         }
         final VecCartesianVector2D destination = new VecCartesianVector2D();
         destination.setX(source.get(0));
-        if (source.size() > 1) {
-            destination.setY(source.get(1));
-        }
+        destination.setY(getCoordinateOrDefault(source, 1));
         return Optional.of(destination);
     }
 }
