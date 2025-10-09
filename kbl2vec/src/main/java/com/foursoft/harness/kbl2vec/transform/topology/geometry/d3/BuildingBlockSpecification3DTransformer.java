@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,22 +33,27 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification3D;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BuildingBlockSpecification3DTransformer
         implements Transformer<KblHarness, VecBuildingBlockSpecification3D> {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BuildingBlockSpecification3DTransformer.class);
+
     @Override
     public TransformationResult<VecBuildingBlockSpecification3D> transform(final TransformationContext context,
                                                                            final KblHarness source) {
-        final int dimensions = 3;
-        final boolean isNot3D = source.getParentKBLContainer().getCartesianPoints().stream()
-                .anyMatch(p -> p.getCoordinates().size() != dimensions);
+        final GeometryDimensionDetector.DIMENSION dimensions = GeometryDimensionDetector.getNumberOfDimensions(
+                source.getParentKBLContainer().getCartesianPoints());
 
-        if (source.getParentKBLContainer().getCartesianPoints().isEmpty() || isNot3D) {
+        if (!dimensions.equals(GeometryDimensionDetector.DIMENSION.THREE_D)) {
+            LOGGER.warn("Dimensional shape is not 3D. Skipping transformation.");
             return TransformationResult.noResult();
         }
 

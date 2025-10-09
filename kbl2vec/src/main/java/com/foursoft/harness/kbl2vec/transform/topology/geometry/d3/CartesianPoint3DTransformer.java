@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,6 +29,7 @@ import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,18 +41,17 @@ import static com.foursoft.harness.kbl2vec.utils.CoordinateGenerator.getCoordina
 public class CartesianPoint3DTransformer implements Transformer<KblCartesianPoint, VecCartesianPoint3D> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CartesianPoint3DTransformer.class);
-    private static final byte DIMENSIONS = 3;
 
     @Override
     public TransformationResult<VecCartesianPoint3D> transform(final TransformationContext context,
                                                                final KblCartesianPoint source) {
-        if (source.getCoordinates().size() != DIMENSIONS) {
-            LOGGER.warn("Wrong number of coordinates provided for the transformation. Expected {} but found {} ",
-                        DIMENSIONS, source.getCoordinates().size());
+        if (source == null || source.getCoordinates().isEmpty()) {
+            return TransformationResult.noResult();
         }
 
-        if (source.getCoordinates().isEmpty()) {
-            return TransformationResult.noResult();
+        if (!GeometryDimensionDetector.isThreeDimensional(source)) {
+            LOGGER.warn("Wrong number of coordinates provided for the transformation. Expected 3 but found {} ",
+                        source.getCoordinates().size());
         }
 
         final List<Double> coordinates = source.getCoordinates();

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,6 +31,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
 import org.slf4j.Logger;
@@ -39,23 +40,24 @@ import org.slf4j.LoggerFactory;
 public class GeometrySegment3DTransformer implements Transformer<KblSegment, VecGeometrySegment3D> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GeometrySegment3DTransformer.class);
-    private static final byte DIMENSIONS = 3;
 
     @Override
     public TransformationResult<VecGeometrySegment3D> transform(final TransformationContext context,
                                                                 final KblSegment source) {
         final VecGeometrySegment3D destination = new VecGeometrySegment3D();
 
-        if (source.getStartVectors().size() != DIMENSIONS) {
+        if (!GeometryDimensionDetector.isThreeDimensional(source.getStartVectors())) {
             LOGGER.warn(
-                    "Wrong number of coordinates provided for start vectors. Expected {} but found {} ",
-                    DIMENSIONS, source.getStartVectors().size());
+                    "Wrong number of coordinates provided for the transformation of start vectors. Expected 3 but " +
+                            "found {}.",
+                    source.getStartVectors().size());
         }
 
-        if (source.getEndVectors().size() != DIMENSIONS) {
+        if (!GeometryDimensionDetector.isThreeDimensional(source.getEndVectors())) {
             LOGGER.warn(
-                    "Wrong number of coordinates provided for end vectors. Expected {} but found {} ",
-                    DIMENSIONS, source.getEndVectors().size());
+                    "Wrong number of coordinates provided for the transformation of end vectors. Expected 3 but " +
+                            "found {}.",
+                    source.getStartVectors().size());
         }
 
         final DoublesToCartesianVector3DConverter converter =

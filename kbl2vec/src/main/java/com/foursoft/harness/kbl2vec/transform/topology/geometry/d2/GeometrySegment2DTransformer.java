@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,6 +31,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
 import org.slf4j.Logger;
@@ -39,25 +40,24 @@ import org.slf4j.LoggerFactory;
 public class GeometrySegment2DTransformer implements Transformer<KblSegment, VecGeometrySegment2D> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GeometrySegment2DTransformer.class);
-    private static final byte DIMENSIONS = 2;
 
     @Override
     public TransformationResult<VecGeometrySegment2D> transform(final TransformationContext context,
                                                                 final KblSegment source) {
         final VecGeometrySegment2D destination = new VecGeometrySegment2D();
 
-        if (source.getStartVectors().size() != DIMENSIONS) {
+        if (!GeometryDimensionDetector.isTwoDimensional(source.getStartVectors())) {
             LOGGER.warn(
-                    "Wrong number of coordinates provided for the transformation of start vectors. Expected {} but " +
-                            "found {} ",
-                    DIMENSIONS, source.getStartVectors().size());
+                    "Wrong number of coordinates provided for the transformation of start vectors. Expected 2 but " +
+                            "found {}.",
+                    source.getStartVectors().size());
         }
 
-        if (source.getEndVectors().size() != DIMENSIONS) {
+        if (!GeometryDimensionDetector.isTwoDimensional(source.getEndVectors())) {
             LOGGER.warn(
-                    "Wrong number of coordinates provided for the transformation of end vectors. Expected {} but " +
-                            "found {} ",
-                    DIMENSIONS, source.getStartVectors().size());
+                    "Wrong number of coordinates provided for the transformation of end vectors. Expected 2 but " +
+                            "found {}.",
+                    source.getEndVectors().size());
         }
 
         final DoublesToCartesianVector2DConverter converter =
