@@ -1,0 +1,25 @@
+<configuration>
+    <appender name="SYSTEM_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [SYS] %logger{36} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APP_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [APP] %logger{36} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.foursoft.harness.kbl2vec.TRANSFORMATION_LOG" level="DEBUG" additivity="false">
+        <appender-ref ref="APP_LOG"/>
+    </logger>
+
+    <logger name="com.foursoft.harness.kbl2vec.SYSTEM_LOG" level="DEBUG" additivity="false">
+        <appender-ref ref="SYSTEM_LOG"/>
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="SYSTEM_LOG"/>
+    </root>
+</configuration>
