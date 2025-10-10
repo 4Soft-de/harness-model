@@ -25,23 +25,39 @@
  */
 package com.foursoft.harness.kbl2vec.transform.topology.routing;
 
+import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblRouting;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl.v25.KblSegment;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPath;
 import com.foursoft.harness.vec.v2x.VecTopologySegment;
+import org.junit.jupiter.api.Test;
 
-public class PathTransformer implements Transformer<KblRouting, VecPath> {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    @Override
-    public TransformationResult<VecPath> transform(final TransformationContext context, final KblRouting source) {
-        final VecPath destination = new VecPath();
+class PathTransformerTest {
 
-        return TransformationResult.from(destination)
-                .withLinker(Query.fromLists(source.getParentKBLContainer().getSegments()), VecTopologySegment.class,
-                            VecPath::getSegment)
-                .build();
+    @Test
+    void should_transformPath() {
+        // Given
+        final PathTransformer transformer = new PathTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblRouting source = new KblRouting();
+
+        final KBLContainer kblContainer = new KBLContainer();
+        final KblSegment kblSegment = new KblSegment();
+        kblContainer.getSegments().add(kblSegment);
+        source.setParentKBLContainer(kblContainer);
+
+        final VecTopologySegment vecTopologySegment = new VecTopologySegment();
+        orchestrator.addMockMapping(kblSegment, vecTopologySegment);
+
+        // When
+        final VecPath result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .satisfies(v -> assertThat(v.getSegment()).containsExactly(vecTopologySegment));
     }
 }

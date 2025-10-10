@@ -25,29 +25,42 @@
  */
 package com.foursoft.harness.kbl2vec.transform.topology.routing;
 
+import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblRouting;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecRouting;
 import com.foursoft.harness.vec.v2x.VecRoutingSpecification;
+import org.junit.jupiter.api.Test;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.abbreviatedClassName;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class RoutingSpecificationTransformer implements Transformer<KblHarness, VecRoutingSpecification> {
+class RoutingSpecificationTransformerTest {
 
-    @Override
-    public TransformationResult<VecRoutingSpecification> transform(final TransformationContext context,
-                                                                   final KblHarness source) {
-        final VecRoutingSpecification destination = new VecRoutingSpecification();
-        destination.setIdentification(abbreviatedClassName(destination.getClass()) + "-" + source.getPartNumber());
+    @Test
+    void should_transformRoutingSpecification() {
+        // Given
+        final RoutingSpecificationTransformer transformer = new RoutingSpecificationTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        return TransformationResult.from(destination)
-                .withDownstream(KblRouting.class, VecRouting.class,
-                                Query.fromLists(source.getParentKBLContainer().getRoutings()),
-                                VecRoutingSpecification::getRoutings)
-                .build();
+        final KblHarness source = new KblHarness();
+        source.setPartNumber("TestPartNumber");
+        final String expectedIdentification = "RS-TestPartNumber";
+
+        final KBLContainer kblContainer = new KBLContainer();
+        final KblRouting kblRouting = new KblRouting();
+        kblContainer.getRoutings().add(kblRouting);
+        source.setParentKBLContainer(kblContainer);
+
+        final VecRouting vecRouting = new VecRouting();
+        orchestrator.addMockMapping(kblRouting, vecRouting);
+
+        // When
+        final VecRoutingSpecification result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns(expectedIdentification, VecRoutingSpecification::getIdentification)
+                .satisfies(v -> assertThat(v.getRoutings()).containsExactly(vecRouting));
     }
 }

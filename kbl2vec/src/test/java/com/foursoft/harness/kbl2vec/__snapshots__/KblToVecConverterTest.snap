@@ -46818,6 +46818,79 @@ This is not intended for productive use and is not complete!
         <ConstrainedElements>PartOccurrence_id_331_0</ConstrainedElements>
       </ConfigurationConstraint>
     </Specification>
+    <Specification xsi:type="vec:RoutingSpecification" id="RoutingSpecification_id_328_0">
+      <Identification>RS-LTG0011200</Identification>
+      <Routing id="Routing_id_338_0">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_0</RoutedElement>
+        <Path id="Path_id_338_0">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_1">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_1</RoutedElement>
+        <Path id="Path_id_338_1">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_2">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_2</RoutedElement>
+        <Path id="Path_id_338_2">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_3">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_3</RoutedElement>
+        <Path id="Path_id_338_3">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_4">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_4</RoutedElement>
+        <Path id="Path_id_338_4">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_5">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_5</RoutedElement>
+        <Path id="Path_id_338_5">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_6">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_6</RoutedElement>
+        <Path id="Path_id_338_6">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_7">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_7</RoutedElement>
+        <Path id="Path_id_338_7">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_8">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_8</RoutedElement>
+        <Path id="Path_id_338_8">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+      <Routing id="Routing_id_338_9">
+        <MandatorySegment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</MandatorySegment>
+        <RoutedElement>WireElementReference_id_350_9</RoutedElement>
+        <Path id="Path_id_338_9">
+          <Segment>TopologySegment_Segment_1 TopologySegment_Segment_2 TopologySegment_Segment_3 TopologySegment_Segment_4 TopologySegment_Segment_5 TopologySegment_Segment_6 TopologySegment_Segment_7 TopologySegment_Segment_8 TopologySegment_Segment_9 TopologySegment_Segment_10 TopologySegment_Segment_11 TopologySegment_Segment_12 TopologySegment_Segment_13 TopologySegment_Segment_14 TopologySegment_Segment_15 TopologySegment_Segment_16 TopologySegment_Segment_17 TopologySegment_Segment_18 TopologySegment_Segment_19 TopologySegment_Segment_20 TopologySegment_Segment_21 TopologySegment_Segment_22</Segment>
+        </Path>
+      </Routing>
+    </Specification>
     <Specification xsi:type="vec:CompositionSpecification" id="CompositionSpecification_id_328_0">
       <Identification>MODULES</Identification>
       <Component id="PartOccurrence_id_331_0">
