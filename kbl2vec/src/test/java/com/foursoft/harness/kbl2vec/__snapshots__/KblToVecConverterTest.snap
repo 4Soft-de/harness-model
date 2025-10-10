@@ -1,4 +1,524 @@
-com.foursoft.harness.kbl2vec.KblToVecConverterTest.test_conversion=[
+com.foursoft.harness.kbl2vec.KblToVecConverterTest.test_conversion[vobes_sample_kbl24_battery_plus_cable]=[
+<?xml version="1.0" ?>
+<!--WARNING:
+This file was created with KBL2VEC PoC Converter (https://github.com/4Soft-de/harness-model).
+This is just a showcase implementation for KBL mapping in the VEC.
+This is not intended for productive use and is not complete!
+-->
+<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
+  <VecVersion>2.1.0</VecVersion>
+  <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
+  <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
+  <DocumentVersion id="DocumentVersion_id_315_1">
+    <Abbreviation id="LocalizedString_00001">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00002">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABELSCHUH</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <DocumentNumber>2Da10221248</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>3</DocumentVersion>
+    <ReferencedPart>PartVersion_id_315_1</ReferencedPart>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_315_1">
+      <Identification>CHS-2Da10221248</Identification>
+      <DescribedPart>PartVersion_id_315_1</DescribedPart>
+      <Slot xsi:type="vec:Slot" id="Slot_id_341_2">
+        <SlotNumber>none</SlotNumber>
+        <Cavity id="Cavity_id_370_2">
+          <CavityNumber>1</CavityNumber>
+        </Cavity>
+      </Slot>
+    </Specification>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_315_1">
+      <Identification>GTPS-2Da10221248</Identification>
+      <DescribedPart>PartVersion_id_315_1</DescribedPart>
+      <ColorInformation id="Color_00000">
+        <Key>nd</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+      <MassInformation id="MassInformation_id_380_3">
+        <Value id="NumericalValue_id_380_3">
+          <UnitComponent>SIUnit_id_346_2</UnitComponent>
+          <ValueComponent>17.0</ValueComponent>
+        </Value>
+      </MassInformation>
+    </Specification>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_id_315_0">
+    <Abbreviation id="LocalizedString_00004">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00005">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABSCHUHE_BATERIE</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <DocumentNumber>7Ya102612461C</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>2</DocumentVersion>
+    <ReferencedPart>PartVersion_id_315_0</ReferencedPart>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_315_0">
+      <Identification>CHS-7Ya102612461C</Identification>
+      <DescribedPart>PartVersion_id_315_0</DescribedPart>
+      <Slot xsi:type="vec:Slot" id="Slot_id_341_0">
+        <SlotNumber>none</SlotNumber>
+        <Cavity id="Cavity_id_370_0">
+          <CavityNumber>1</CavityNumber>
+        </Cavity>
+      </Slot>
+    </Specification>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_315_0">
+      <Identification>GTPS-7Ya102612461C</Identification>
+      <DescribedPart>PartVersion_id_315_0</DescribedPart>
+      <ColorInformation id="Color_00003">
+        <Key>nd</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+      <MassInformation id="MassInformation_id_380_5">
+        <Value id="NumericalValue_id_380_5">
+          <UnitComponent>SIUnit_id_346_2</UnitComponent>
+          <ValueComponent>109.0</ValueComponent>
+        </Value>
+      </MassInformation>
+    </Specification>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_id_326_0">
+    <Abbreviation id="LocalizedString_00007">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00008">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABSCHUHE_BATERIE</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <DocumentNumber>7Ya102612461C</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>2</DocumentVersion>
+    <ReferencedPart>PartVersion_id_326_0</ReferencedPart>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_326_0">
+      <Identification>GTPS-7Ya102612461C</Identification>
+      <DescribedPart>PartVersion_id_326_0</DescribedPart>
+      <MassInformation id="MassInformation_id_380_4">
+        <Value id="NumericalValue_id_380_4">
+          <UnitComponent>SIUnit_id_346_2</UnitComponent>
+          <ValueComponent>109.0</ValueComponent>
+        </Value>
+      </MassInformation>
+    </Specification>
+    <Specification xsi:type="vec:TerminalSpecification" id="TerminalSpecification_id_326_0">
+      <Identification>TS-7Ya102612461C</Identification>
+      <SpecialPartType>special</SpecialPartType>
+      <DescribedPart>PartVersion_id_326_0</DescribedPart>
+      <InternalTerminalConnection id="InternalTerminalConnection_id_326_0">
+        <Identification>ITC</Identification>
+        <TerminalReception>TerminalReception_id_326_0</TerminalReception>
+        <WireReception>WireReception_id_326_0</WireReception>
+      </InternalTerminalConnection>
+      <TerminalReception id="TerminalReception_id_326_0">
+        <Identification>TR</Identification>
+        <TerminalReceptionSpecification>TerminalReceptionSpecification_id_326_0</TerminalReceptionSpecification>
+      </TerminalReception>
+      <WireReception id="WireReception_id_326_0">
+        <Identification>WR</Identification>
+        <WireReceptionSpecification>WireReceptionSpecification_id_326_0</WireReceptionSpecification>
+      </WireReception>
+    </Specification>
+    <Specification xsi:type="vec:WireReceptionSpecification" id="WireReceptionSpecification_id_326_0"></Specification>
+    <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_0">
+      <PlatingMaterial id="Material_00006">
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </PlatingMaterial>
+    </Specification>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_id_326_1">
+    <Abbreviation id="LocalizedString_00010">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00011">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABELSCHUH</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <DocumentNumber>2Da10221248</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>3</DocumentVersion>
+    <ReferencedPart>PartVersion_id_326_1</ReferencedPart>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_326_1">
+      <Identification>GTPS-2Da10221248</Identification>
+      <DescribedPart>PartVersion_id_326_1</DescribedPart>
+      <MassInformation id="MassInformation_id_380_2">
+        <Value id="NumericalValue_id_380_2">
+          <UnitComponent>SIUnit_id_346_2</UnitComponent>
+          <ValueComponent>17.0</ValueComponent>
+        </Value>
+      </MassInformation>
+    </Specification>
+    <Specification xsi:type="vec:TerminalSpecification" id="TerminalSpecification_id_326_1">
+      <Identification>TS-2Da10221248</Identification>
+      <SpecialPartType>special</SpecialPartType>
+      <DescribedPart>PartVersion_id_326_1</DescribedPart>
+      <InternalTerminalConnection id="InternalTerminalConnection_id_326_1">
+        <Identification>ITC</Identification>
+        <TerminalReception>TerminalReception_id_326_1</TerminalReception>
+        <WireReception>WireReception_id_326_1</WireReception>
+      </InternalTerminalConnection>
+      <TerminalReception id="TerminalReception_id_326_1">
+        <Identification>TR</Identification>
+        <TerminalReceptionSpecification>TerminalReceptionSpecification_id_326_1</TerminalReceptionSpecification>
+      </TerminalReception>
+      <WireReception id="WireReception_id_326_1">
+        <Identification>WR</Identification>
+        <WireReceptionSpecification>WireReceptionSpecification_id_326_1</WireReceptionSpecification>
+      </WireReception>
+    </Specification>
+    <Specification xsi:type="vec:WireReceptionSpecification" id="WireReceptionSpecification_id_326_1"></Specification>
+    <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_1">
+      <PlatingMaterial id="Material_00009">
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </PlatingMaterial>
+    </Specification>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_id_327_0">
+    <Abbreviation id="LocalizedString_00014">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00015">
+      <LanguageCode>De</LanguageCode>
+      <Value>Unspezifizierter Draht</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <DocumentNumber>O10a210601a2</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>2</DocumentVersion>
+    <ReferencedPart>PartVersion_id_327_0</ReferencedPart>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_327_0">
+      <Identification>GTPS-O10a210601a2</Identification>
+      <DescribedPart>PartVersion_id_327_0</DescribedPart>
+      <MassInformation id="MassInformation_id_380_1">
+        <Value id="NumericalValue_id_380_1">
+          <UnitComponent>CustomUnit_id_346_3</UnitComponent>
+          <ValueComponent>266.0</ValueComponent>
+        </Value>
+      </MassInformation>
+    </Specification>
+    <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_0">
+      <Identification>WIRE</Identification>
+      <Type id="WireType_00012">
+        <Type>individual wire</Type>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </Type>
+      <MinBendRadiusStatic id="NumericalValue_id_369_0">
+        <UnitComponent>SIUnit_id_346_1</UnitComponent>
+        <ValueComponent>29.4</ValueComponent>
+      </MinBendRadiusStatic>
+      <OutsideDiameter id="NumericalValue_id_381_0">
+        <UnitComponent>SIUnit_id_346_1</UnitComponent>
+        <ValueComponent>9.8</ValueComponent>
+      </OutsideDiameter>
+      <ConductorSpecification>CoreSpecification_id_327_0</ConductorSpecification>
+      <InsulationSpecification>InsulationSpecification_id_327_0</InsulationSpecification>
+    </Specification>
+    <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_0">
+      <Identification>WIRE-INS</Identification>
+<!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
+      <BaseColor id="Color_00013">
+        <Key>sw</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </BaseColor>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_0">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_0">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>25.0</ValueComponent>
+      </CrossSectionArea>
+    </Specification>
+    <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_0">
+      <Identification>WS-O10a210601a2</Identification>
+      <DescribedPart>PartVersion_id_327_0</DescribedPart>
+      <WireElement id="WireElement_id_327_0">
+        <Identification>WIRE</Identification>
+        <WireElementSpecification>WireElementSpecification_id_327_0</WireElementSpecification>
+      </WireElement>
+    </Specification>
+  </DocumentVersion>
+  <DocumentVersion id="DocumentVersion_id_328_0">
+    <Abbreviation id="LocalizedString_00019">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00020">
+      <LanguageCode>De</LanguageCode>
+      <Value>LTGS Batterie Plus</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <DocumentNumber>000971228</DocumentNumber>
+    <DocumentType>HarnessDescription</DocumentType>
+    <DocumentVersion>/NULL</DocumentVersion>
+    <ReferencedPart>PartVersion_id_328_0</ReferencedPart>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_328_0">
+      <Identification>GTPS-000971228</Identification>
+      <DescribedPart>PartVersion_id_328_0</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:TopologySpecification" id="TopologySpecification_id_328_0">
+      <Identification>TS-000971228</Identification>
+      <TopologyNode id="TopologyNode_Node_1">
+        <Identification>PNID1</Identification>
+      </TopologyNode>
+      <TopologyNode id="TopologyNode_Node_2">
+        <Identification>PNID2</Identification>
+      </TopologyNode>
+      <TopologySegment id="TopologySegment_Segment_1">
+        <Identification>ROUTING_BAUKST_BATTERIE_PLUS-Multi-branchable1/ElecRouteBody.1/Flexible Curve.1</Identification>
+        <Form>Circular</Form>
+        <EndNode>TopologyNode_Node_2</EndNode>
+        <StartNode>TopologyNode_Node_1</StartNode>
+        <LengthInformation id="SegmentLength_00016">
+          <Length id="NumericalValue_Virtual_length_1">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>1082.076241</ValueComponent>
+          </Length>
+          <Classification>Designed</Classification>
+        </LengthInformation>
+      </TopologySegment>
+    </Specification>
+    <Specification xsi:type="vec:VariantConfigurationSpecification" id="VariantConfigurationSpecification_id_328_0">
+      <Identification>VCS-000971228</Identification>
+      <VariantConfiguration id="VariantConfiguration_id_353_0">
+        <Identification>VarConf_aaa10821339</Identification>
+        <LogisticControlExpression>L0L</LogisticControlExpression>
+        <ConfigurationType>Logistic</ConfigurationType>
+      </VariantConfiguration>
+    </Specification>
+    <Specification xsi:type="vec:ConfigurationConstraintSpecification" id="ConfigurationConstraintSpecification_id_328_0">
+      <Identification>CCS-000971228</Identification>
+      <ConfigurationConstraint id="ConfigurationConstraint_id_353_0">
+        <Identification>ConfConstraint_aaa10821339</Identification>
+        <ConfigInfo>VariantConfiguration_id_353_0</ConfigInfo>
+        <ConstrainedElements>PartOccurrence_id_331_0</ConstrainedElements>
+      </ConfigurationConstraint>
+    </Specification>
+    <Specification xsi:type="vec:CompositionSpecification" id="CompositionSpecification_id_328_0">
+      <Identification>MODULES</Identification>
+      <Component id="PartOccurrence_id_331_0">
+        <Identification>aaa10821339</Identification>
+        <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_0">
+          <Identification>aaa10821339</Identification>
+          <PartStructureSpecification>PartStructureSpecification_id_353_0</PartStructureSpecification>
+          <SubComponent>PartOccurrence_id_342_1 PartOccurrence_id_342_0 PartOccurrence_id_350_0</SubComponent>
+        </Role>
+        <Part>PartVersion_id_331_0</Part>
+      </Component>
+    </Specification>
+    <Specification xsi:type="vec:CompositionSpecification" id="CompositionSpecification_id_328_0_1">
+      <Identification>COMPONENTS</Identification>
+      <Component id="PartOccurrence_id_316_1">
+        <Identification>XB.B.1</Identification>
+        <Role xsi:type="vec:ConnectorHousingRole" id="ConnectorHousingRole_id_316_1">
+          <Identification>XB.B.1</Identification>
+          <ConnectorHousingSpecification>ConnectorHousingSpecification_id_315_1</ConnectorHousingSpecification>
+          <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_3">
+            <Identification>none</Identification>
+            <ReferencedSlot>Slot_id_341_2</ReferencedSlot>
+            <CavityReference id="CavityReference_id_370_3">
+              <Identification>1</Identification>
+              <ReferencedCavity>Cavity_id_370_2</ReferencedCavity>
+            </CavityReference>
+          </SlotReference>
+        </Role>
+        <Part>PartVersion_id_315_1</Part>
+      </Component>
+      <Component id="PartOccurrence_id_316_0">
+        <Identification>XA.A.1.Last</Identification>
+        <Role xsi:type="vec:ConnectorHousingRole" id="ConnectorHousingRole_id_316_0">
+          <Identification>XA.A.1.Last</Identification>
+          <ConnectorHousingSpecification>ConnectorHousingSpecification_id_315_0</ConnectorHousingSpecification>
+          <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_1">
+            <Identification>none</Identification>
+            <ReferencedSlot>Slot_id_341_0</ReferencedSlot>
+            <CavityReference id="CavityReference_id_370_1">
+              <Identification>1</Identification>
+              <ReferencedCavity>Cavity_id_370_0</ReferencedCavity>
+            </CavityReference>
+          </SlotReference>
+        </Role>
+        <Part>PartVersion_id_315_0</Part>
+      </Component>
+      <Component id="PartOccurrence_id_350_0">
+        <Identification>1</Identification>
+        <Role xsi:type="vec:WireRole" id="WireRole_id_350_0">
+          <Identification>1</Identification>
+          <WireSpecification>WireSpecification_id_327_0</WireSpecification>
+          <WireElementReference id="WireElementReference_id_350_0">
+            <Identification>1</Identification>
+            <ReferencedWireElement>WireElement_id_327_0</ReferencedWireElement>
+            <WireLength id="WireLength_id_388_0">
+              <LengthType>DMU</LengthType>
+              <LengthValue id="NumericalValue_id_387_0">
+                <UnitComponent>SIUnit_id_346_1</UnitComponent>
+                <ValueComponent>1082.07</ValueComponent>
+              </LengthValue>
+            </WireLength>
+          </WireElementReference>
+        </Role>
+        <Part>PartVersion_id_327_0</Part>
+      </Component>
+      <Component id="PartOccurrence_id_342_0">
+        <Identification>XA.A.1.Last</Identification>
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00017">
+          <LanguageCode>De</LanguageCode>
+          <Value>Batterie</Value>
+        </Description>
+        <Part>PartVersion_id_326_0</Part>
+      </Component>
+      <Component id="PartOccurrence_id_342_1">
+        <Identification>XB.B.1</Identification>
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00018">
+          <LanguageCode>De</LanguageCode>
+          <Value>Anlasser</Value>
+        </Description>
+        <Part>PartVersion_id_326_1</Part>
+      </Component>
+    </Specification>
+    <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_328_0">
+      <Identification>PSS-000971228</Identification>
+      <DescribedPart>PartVersion_id_328_0</DescribedPart>
+      <Content>Harness</Content>
+      <InBillOfMaterial>PartOccurrence_id_331_0</InBillOfMaterial>
+    </Specification>
+    <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_353_0">
+      <Identification>PSS-aaa10821339</Identification>
+      <DescribedPart>PartVersion_id_331_0</DescribedPart>
+      <Content>Variant</Content>
+      <InBillOfMaterial>PartOccurrence_id_342_1 PartOccurrence_id_342_0 PartOccurrence_id_350_0</InBillOfMaterial>
+    </Specification>
+  </DocumentVersion>
+  <PartVersion id="PartVersion_id_315_1">
+    <Abbreviation id="LocalizedString_00021">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00022">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABELSCHUH</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>2Da10221248</PartNumber>
+    <PartVersion>3</PartVersion>
+    <PrimaryPartType>ConnectorHousing</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_315_0">
+    <Abbreviation id="LocalizedString_00023">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00024">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABSCHUHE_BATERIE</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>7Ya102612461C</PartNumber>
+    <PartVersion>2</PartVersion>
+    <PrimaryPartType>ConnectorHousing</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_326_0">
+    <Abbreviation id="LocalizedString_00025">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00026">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABSCHUHE_BATERIE</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>7Ya102612461C</PartNumber>
+    <PartVersion>2</PartVersion>
+    <PrimaryPartType>Terminal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_326_1">
+    <Abbreviation id="LocalizedString_00027">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00028">
+      <LanguageCode>De</LanguageCode>
+      <Value>KABELSCHUH</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>2Da10221248</PartNumber>
+    <PartVersion>3</PartVersion>
+    <PrimaryPartType>Terminal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_327_0">
+    <Abbreviation id="LocalizedString_00029">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00030">
+      <LanguageCode>De</LanguageCode>
+      <Value>Unspezifizierter Draht</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>O10a210601a2</PartNumber>
+    <PartVersion>2</PartVersion>
+    <PrimaryPartType>Wire</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_328_0">
+    <Abbreviation id="LocalizedString_00031">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00032">
+      <LanguageCode>De</LanguageCode>
+      <Value>LTGS Batterie Plus</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>000971228</PartNumber>
+    <PartVersion>/NULL</PartVersion>
+    <PrimaryPartType>PartStructure</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="PartVersion_id_331_0">
+    <Abbreviation id="LocalizedString_00033">
+      <LanguageCode>De</LanguageCode>
+      <Value>/NULL</Value>
+    </Abbreviation>
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00034">
+      <LanguageCode>De</LanguageCode>
+      <Value>Variante</Value>
+    </Description>
+    <CompanyName>GCMC</CompanyName>
+    <PartNumber>aaa10821339</PartNumber>
+    <PartVersion>/NULL</PartVersion>
+    <PrimaryPartType>PartStructure</PrimaryPartType>
+  </PartVersion>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_id_346_2">
+    <SiUnitName>Gram</SiUnitName>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_id_346_1">
+    <SiUnitName>Metre</SiUnitName>
+    <SiPrefix>Milli</SiPrefix>
+  </Unit>
+  <Unit xsi:type="vec:SIUnit" id="SIUnit_id_346_0">
+    <Exponent>2</Exponent>
+    <SiUnitName>Metre</SiUnitName>
+    <SiPrefix>Milli</SiPrefix>
+  </Unit>
+  <Unit xsi:type="vec:CustomUnit" id="CustomUnit_id_346_3">
+    <Identification>GramPerMetre</Identification>
+  </Unit>
+</vec:VecContent>
+]
+
+
+com.foursoft.harness.kbl2vec.KblToVecConverterTest.test_conversion[vobes_sample_kbl24_mit_sicherungstraeger]=[
 <?xml version="1.0" ?>
 <!--WARNING:
 This file was created with KBL2VEC PoC Converter (https://github.com/4Soft-de/harness-model).
