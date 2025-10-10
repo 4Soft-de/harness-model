@@ -38,13 +38,9 @@ import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification2D;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class BuildingBlockSpecification2DTransformer
         implements Transformer<KblHarness, VecBuildingBlockSpecification2D> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(BuildingBlockSpecification2DTransformer.class);
 
     @Override
     public TransformationResult<VecBuildingBlockSpecification2D> transform(final TransformationContext context,
@@ -53,7 +49,7 @@ public class BuildingBlockSpecification2DTransformer
                 source.getParentKBLContainer().getCartesianPoints());
 
         if (!dimensions.equals(GeometryDimensionDetector.DIMENSION.TWO_D)) {
-            LOGGER.warn("Dimensional shape is not 2D. Skipping transformation.");
+            context.getLogger().warn("Dimensional shape is not 2D. Skipping transformation.");
             return TransformationResult.noResult();
         }
 

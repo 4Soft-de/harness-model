@@ -31,14 +31,10 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.foursoft.harness.kbl2vec.utils.CoordinateGenerator.getCoordinateOrDefault;
 
 public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoint, VecCartesianPoint2D> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CartesianPoint2DTransformer.class);
 
     @Override
     public TransformationResult<VecCartesianPoint2D> transform(final TransformationContext context,
@@ -48,8 +44,9 @@ public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoin
         }
 
         if (!GeometryDimensionDetector.isTwoDimensional(source)) {
-            LOGGER.warn("Wrong number of coordinates provided for the transformation. Expected 2 but found {} ",
-                        source.getCoordinates().size());
+            context.getLogger().warn(
+                    "Wrong number of coordinates provided for the transformation. Expected 2 but found {}.",
+                    source.getCoordinates().size());
         }
 
         final VecCartesianPoint2D destination = new VecCartesianPoint2D();

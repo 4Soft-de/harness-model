@@ -38,13 +38,9 @@ import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification3D;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class BuildingBlockSpecification3DTransformer
         implements Transformer<KblHarness, VecBuildingBlockSpecification3D> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(BuildingBlockSpecification3DTransformer.class);
 
     @Override
     public TransformationResult<VecBuildingBlockSpecification3D> transform(final TransformationContext context,
@@ -53,7 +49,7 @@ public class BuildingBlockSpecification3DTransformer
                 source.getParentKBLContainer().getCartesianPoints());
 
         if (!dimensions.equals(GeometryDimensionDetector.DIMENSION.THREE_D)) {
-            LOGGER.warn("Dimensional shape is not 3D. Skipping transformation.");
+            context.getLogger().warn("Dimensional shape is not 3D. Skipping transformation.");
             return TransformationResult.noResult();
         }
 

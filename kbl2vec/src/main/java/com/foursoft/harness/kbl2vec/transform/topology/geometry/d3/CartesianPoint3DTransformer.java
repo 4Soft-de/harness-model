@@ -31,16 +31,12 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 import static com.foursoft.harness.kbl2vec.utils.CoordinateGenerator.getCoordinateOrDefault;
 
 public class CartesianPoint3DTransformer implements Transformer<KblCartesianPoint, VecCartesianPoint3D> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CartesianPoint3DTransformer.class);
 
     @Override
     public TransformationResult<VecCartesianPoint3D> transform(final TransformationContext context,
@@ -50,8 +46,9 @@ public class CartesianPoint3DTransformer implements Transformer<KblCartesianPoin
         }
 
         if (!GeometryDimensionDetector.isThreeDimensional(source)) {
-            LOGGER.warn("Wrong number of coordinates provided for the transformation. Expected 3 but found {} ",
-                        source.getCoordinates().size());
+            context.getLogger().warn(
+                    "Wrong number of coordinates provided for the transformation. Expected 3 but found {}.",
+                    source.getCoordinates().size());
         }
 
         final List<Double> coordinates = source.getCoordinates();

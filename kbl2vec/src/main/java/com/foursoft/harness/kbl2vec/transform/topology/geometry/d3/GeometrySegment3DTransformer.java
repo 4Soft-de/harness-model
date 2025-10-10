@@ -34,12 +34,8 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class GeometrySegment3DTransformer implements Transformer<KblSegment, VecGeometrySegment3D> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(GeometrySegment3DTransformer.class);
 
     @Override
     public TransformationResult<VecGeometrySegment3D> transform(final TransformationContext context,
@@ -47,17 +43,17 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
         final VecGeometrySegment3D destination = new VecGeometrySegment3D();
 
         if (!GeometryDimensionDetector.isThreeDimensional(source.getStartVectors())) {
-            LOGGER.warn(
+            context.getLogger().warn(
                     "Wrong number of coordinates provided for the transformation of start vectors. Expected 3 but " +
                             "found {}.",
                     source.getStartVectors().size());
         }
 
         if (!GeometryDimensionDetector.isThreeDimensional(source.getEndVectors())) {
-            LOGGER.warn(
+            context.getLogger().warn(
                     "Wrong number of coordinates provided for the transformation of end vectors. Expected 3 but " +
                             "found {}.",
-                    source.getStartVectors().size());
+                    source.getEndVectors().size());
         }
 
         final DoublesToCartesianVector3DConverter converter =
