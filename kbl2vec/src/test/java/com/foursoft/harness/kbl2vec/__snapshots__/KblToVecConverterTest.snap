@@ -46289,6 +46289,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_0">
             <Identification>1</Identification>
             <ReferencedWireElement>WireElement_id_327_0</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_0">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_1">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_0">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_0">
@@ -46308,6 +46314,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_1">
             <Identification>2</Identification>
             <ReferencedWireElement>WireElement_id_327_1</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_2">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_3">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_1">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_1">
@@ -46327,6 +46339,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_2">
             <Identification>3</Identification>
             <ReferencedWireElement>WireElement_id_327_2</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_4">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_5">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_2">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_2">
@@ -46346,6 +46364,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_3">
             <Identification>4</Identification>
             <ReferencedWireElement>WireElement_id_327_3</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_6">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_7">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_3">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_3">
@@ -46365,6 +46389,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_4">
             <Identification>5</Identification>
             <ReferencedWireElement>WireElement_id_327_3</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_8">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_9">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_4">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_4">
@@ -46384,6 +46414,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_5">
             <Identification>6</Identification>
             <ReferencedWireElement>WireElement_id_327_4</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_10">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_11">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_5">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_5">
@@ -46403,6 +46439,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_6">
             <Identification>7</Identification>
             <ReferencedWireElement>WireElement_id_327_3</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_12">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_13">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_6">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_6">
@@ -46422,6 +46464,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_7">
             <Identification>8</Identification>
             <ReferencedWireElement>WireElement_id_327_5</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_14">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_15">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_7">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_7">
@@ -46441,6 +46489,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_8">
             <Identification>9</Identification>
             <ReferencedWireElement>WireElement_id_327_6</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_16">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_17">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_8">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_8">
@@ -46460,6 +46514,12 @@ This is not intended for productive use and is not complete!
           <WireElementReference id="WireElementReference_id_350_9">
             <Identification>100</Identification>
             <ReferencedWireElement>WireElement_id_327_7</ReferencedWireElement>
+            <WireEnd id="WireEnd_id_377_18">
+              <PositionOnWire>0.0</PositionOnWire>
+            </WireEnd>
+            <WireEnd id="WireEnd_id_377_19">
+              <PositionOnWire>1.0</PositionOnWire>
+            </WireEnd>
             <WireLength id="WireLength_id_388_9">
               <LengthType>DMU</LengthType>
               <LengthValue id="NumericalValue_id_387_9">
