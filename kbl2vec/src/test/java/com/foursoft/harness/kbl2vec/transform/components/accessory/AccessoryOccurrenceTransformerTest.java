@@ -27,7 +27,9 @@ package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
 import com.foursoft.harness.kbl.v25.KblAccessory;
 import com.foursoft.harness.kbl.v25.KblAccessoryOccurrence;
+import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecSpecificRole;
@@ -46,11 +48,18 @@ class AccessoryOccurrenceTransformerTest {
         final KblAccessoryOccurrence source = new KblAccessoryOccurrence();
         source.setId("TestId");
 
-        final KblAccessory part = new KblAccessory();
-        source.setPart(part);
+        final KblAliasIdentification aliasId = new KblAliasIdentification();
+        aliasId.setAliasId("TestAliasId");
+        source.getAliasIds().add(aliasId);
+
+        final VecAliasIdentification vecAliasId = new VecAliasIdentification();
+        orchestrator.addMockMapping(aliasId, vecAliasId);
 
         final VecSpecificRole vecRole = new VecSpecificRole();
         orchestrator.addMockMapping(source, vecRole);
+
+        final KblAccessory part = new KblAccessory();
+        source.setPart(part);
 
         final VecPartVersion vecPartVersion = new VecPartVersion();
         orchestrator.addMockMapping(part, vecPartVersion);
@@ -61,6 +70,7 @@ class AccessoryOccurrenceTransformerTest {
         // Then
         assertThat(result).isNotNull()
                 .returns("TestId", VecPartOccurrence::getIdentification)
+                .satisfies(v -> assertThat(v.getAliasIds()).containsExactly(vecAliasId))
                 .satisfies(v -> assertThat(v.getRoles()).containsExactly(vecRole))
                 .satisfies(v -> assertThat(v.getPart()).isEqualTo(vecPartVersion));
     }
