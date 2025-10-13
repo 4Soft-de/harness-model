@@ -42,7 +42,7 @@ public class InstallationInformationCustomPropertyTransformer
                 source.getClassification() == KblInstructionClassification.CUSTOM_PROPERTY) {
             final VecSimpleValueProperty property = new VecSimpleValueProperty();
             property.setPropertyType(source.getInstructionType());
-            property.setValue(source.getInstructionType());
+            property.setValue(source.getInstructionValue());
             return TransformationResult.of(property);
         }
         return TransformationResult.noResult();
