@@ -26,18 +26,28 @@
 package com.foursoft.harness.kbl2vec.transform.components.wires;
 
 import com.foursoft.harness.kbl.v25.KblExtremity;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecWireEnd;
+import org.junit.jupiter.api.Test;
 
-public class WireEndTransformer implements Transformer<KblExtremity, VecWireEnd> {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    @Override
-    public TransformationResult<VecWireEnd> transform(final TransformationContext context, final KblExtremity source) {
-        final VecWireEnd destination = new VecWireEnd();
-        destination.setPositionOnWire(source.getPositionOnWire());
+class WireEndTransformerTest {
 
-        return TransformationResult.of(destination);
+    @Test
+    void should_transformWireEnd() {
+        // Given
+        final WireEndTransformer transformer = new WireEndTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblExtremity source = new KblExtremity();
+        source.setPositionOnWire(1.0);
+
+        // When
+        final VecWireEnd result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns(1.0, VecWireEnd::getPositionOnWire);
     }
 }
