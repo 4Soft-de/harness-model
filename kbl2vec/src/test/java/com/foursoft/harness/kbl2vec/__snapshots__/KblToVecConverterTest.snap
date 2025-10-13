@@ -1723,6 +1723,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_2</EndNode>
         <StartNode>TopologyNode_Node_1</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_1">
+          <Area id="NumericalValue_Area_1">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00119">
           <Length id="NumericalValue_Virtual_length_1">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1736,6 +1744,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_2</EndNode>
         <StartNode>TopologyNode_Node_3</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_2">
+          <Area id="NumericalValue_Area_2">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00120">
           <Length id="NumericalValue_Virtual_length_2">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1749,6 +1765,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_4</EndNode>
         <StartNode>TopologyNode_Node_2</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_3">
+          <Area id="NumericalValue_Area_3">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00121">
           <Length id="NumericalValue_Virtual_length_3">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1762,6 +1786,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_5</EndNode>
         <StartNode>TopologyNode_Node_4</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_4">
+          <Area id="NumericalValue_Area_4">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00122">
           <Length id="NumericalValue_Virtual_length_4">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1775,6 +1807,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_6</EndNode>
         <StartNode>TopologyNode_Node_4</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_5">
+          <Area id="NumericalValue_Area_5">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00123">
           <Length id="NumericalValue_Virtual_length_5">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1788,6 +1828,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_8</EndNode>
         <StartNode>TopologyNode_Node_7</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_6">
+          <Area id="NumericalValue_Area_6">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00124">
           <Length id="NumericalValue_Virtual_length_6">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1801,6 +1849,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_8</EndNode>
         <StartNode>TopologyNode_Node_9</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_7">
+          <Area id="NumericalValue_Area_7">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00125">
           <Length id="NumericalValue_Virtual_length_7">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1814,6 +1870,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_10</EndNode>
         <StartNode>TopologyNode_Node_8</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_8">
+          <Area id="NumericalValue_Area_8">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00126">
           <Length id="NumericalValue_Virtual_length_8">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1827,6 +1891,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_11</EndNode>
         <StartNode>TopologyNode_Node_10</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_9">
+          <Area id="NumericalValue_Area_9">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00127">
           <Length id="NumericalValue_Virtual_length_9">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1840,6 +1912,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_12</EndNode>
         <StartNode>TopologyNode_Node_10</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_10">
+          <Area id="NumericalValue_Area_10">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00128">
           <Length id="NumericalValue_Virtual_length_10">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1853,6 +1933,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_6</EndNode>
         <StartNode>TopologyNode_Node_13</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_11">
+          <Area id="NumericalValue_Area_11">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00129">
           <Length id="NumericalValue_Virtual_length_11">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1866,6 +1954,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_12</EndNode>
         <StartNode>TopologyNode_Node_14</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_12">
+          <Area id="NumericalValue_Area_12">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00130">
           <Length id="NumericalValue_Virtual_length_12">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1879,6 +1975,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_12</EndNode>
         <StartNode>TopologyNode_Node_15</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_13">
+          <Area id="NumericalValue_Area_13">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00131">
           <Length id="NumericalValue_Virtual_length_13">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1892,6 +1996,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_16</EndNode>
         <StartNode>TopologyNode_Node_6</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_14">
+          <Area id="NumericalValue_Area_14">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00132">
           <Length id="NumericalValue_Virtual_length_14">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1905,6 +2017,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_16</EndNode>
         <StartNode>TopologyNode_Node_12</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_15">
+          <Area id="NumericalValue_Area_15">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00133">
           <Length id="NumericalValue_Virtual_length_15">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1918,6 +2038,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_17</EndNode>
         <StartNode>TopologyNode_Node_16</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_16">
+          <Area id="NumericalValue_Area_16">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00134">
           <Length id="NumericalValue_Virtual_length_16">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1931,6 +2059,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_18</EndNode>
         <StartNode>TopologyNode_Node_17</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_17">
+          <Area id="NumericalValue_Area_17">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00135">
           <Length id="NumericalValue_Virtual_length_17">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1944,6 +2080,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_19</EndNode>
         <StartNode>TopologyNode_Node_17</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_18">
+          <Area id="NumericalValue_Area_18">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00136">
           <Length id="NumericalValue_Virtual_length_18">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1957,6 +2101,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_20</EndNode>
         <StartNode>TopologyNode_Node_17</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_19">
+          <Area id="NumericalValue_Area_19">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00137">
           <Length id="NumericalValue_Virtual_length_19">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1970,6 +2122,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_21</EndNode>
         <StartNode>TopologyNode_Node_17</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_20">
+          <Area id="NumericalValue_Area_20">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00138">
           <Length id="NumericalValue_Virtual_length_20">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1983,6 +2143,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_22</EndNode>
         <StartNode>TopologyNode_Node_17</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_21">
+          <Area id="NumericalValue_Area_21">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00139">
           <Length id="NumericalValue_Virtual_length_21">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
@@ -1996,6 +2164,14 @@ This is not intended for productive use and is not complete!
         <Form>Circular</Form>
         <EndNode>TopologyNode_Node_23</EndNode>
         <StartNode>TopologyNode_Node_17</StartNode>
+        <CrossSectionAreaInformation id="SegmentCrossSectionArea_Cross_section_area_22">
+          <Area id="NumericalValue_Area_22">
+            <UnitComponent>SIUnit_id_346_0</UnitComponent>
+            <ValueComponent>7.068583</ValueComponent>
+          </Area>
+          <ValueDetermination>Calculated</ValueDetermination>
+          <CrossSectionAreaType>reserved</CrossSectionAreaType>
+        </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00140">
           <Length id="NumericalValue_Virtual_length_22">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
