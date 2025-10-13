@@ -25,12 +25,10 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.common;
 
-import com.foursoft.harness.kbl.common.HasDescription;
-import com.foursoft.harness.kbl.common.HasIdentification;
-import com.foursoft.harness.kbl.common.HasPart;
-import com.foursoft.harness.kbl.common.HasReferenceElement;
+import com.foursoft.harness.kbl.common.*;
 import com.foursoft.harness.kbl.v25.HasRelatedAssembly;
 import com.foursoft.harness.kbl.v25.HasRelatedOccurrence;
+import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblPart;
 import com.foursoft.harness.kbl2vec.convert.Converter;
 import com.foursoft.harness.kbl2vec.core.Query;
@@ -40,6 +38,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.vec.v2x.*;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonPartDocumentAttributes;
@@ -91,6 +90,13 @@ public class Fragments {
                 builder.withLinker(hasReferenceElement::getReferenceElement, VecPartOccurrence.class,
                                    VecPartOccurrence::getReferenceElement);
             }
+            if (source instanceof final HasAliasId<?> hasAliasId) {
+                final List<KblAliasIdentification> aliasIds = hasAliasId.getAliasIds().stream()
+                        .map(KblAliasIdentification.class::cast)
+                        .toList();
+                builder.withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
+                                       Query.fromLists(aliasIds), VecPartOccurrence::getAliasIds);
+            }
             handleDescription(source, po, context);
         };
     }
@@ -107,5 +113,4 @@ public class Fragments {
 
         }
     }
-
 }
