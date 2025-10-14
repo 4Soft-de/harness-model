@@ -26,11 +26,13 @@
 package com.foursoft.harness.kbl2vec.transform.components.connector;
 
 import com.foursoft.harness.kbl.v25.KblCavity;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl.v25.KblSlot;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.vec.v2x.VecCustomProperty;
 import com.foursoft.harness.vec.v2x.VecSlot;
 
 public class SlotTransformer implements Transformer<KblSlot, VecSlot> {
@@ -41,6 +43,8 @@ public class SlotTransformer implements Transformer<KblSlot, VecSlot> {
         slot.setSlotNumber(source.getId());
         return TransformationResult.from(slot)
                 .withDownstream(KblCavity.class, VecCavity.class, source::getCavities, VecSlot::getCavities)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecSlot::getCustomProperties)
                 .build();
     }
 }

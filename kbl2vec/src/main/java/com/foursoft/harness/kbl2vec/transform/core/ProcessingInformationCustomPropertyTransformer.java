@@ -18,7 +18,7 @@ public class ProcessingInformationCustomPropertyTransformer
                 source.getClassification() == KblInstructionClassification.CUSTOM_PROPERTY) {
             final VecSimpleValueProperty destination = new VecSimpleValueProperty();
             destination.setPropertyType(source.getInstructionType());
-            destination.setPropertyType(source.getInstructionValue());
+            destination.setValue(source.getInstructionValue());
             return TransformationResult.of(destination);
         }
         return TransformationResult.noResult();

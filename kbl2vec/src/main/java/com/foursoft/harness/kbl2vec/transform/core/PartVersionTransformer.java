@@ -32,10 +32,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.TransformationResult.Builder;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecAliasIdentification;
-import com.foursoft.harness.vec.v2x.VecLocalizedString;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
-import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
+import com.foursoft.harness.vec.v2x.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
@@ -71,8 +68,11 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
             resultBuilder.withComment("Part_number_type cannot be mapped at the moment (see KBLFRM-1267)");
         }
 
-        return resultBuilder.withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
-                                            source::getAliasIds, VecPartVersion::getAliasIds)
+        return resultBuilder
+                .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class, source::getAliasIds,
+                                VecPartVersion::getAliasIds)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecPartVersion::getCustomProperties)
                 .build();
     }
 

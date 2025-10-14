@@ -26,17 +26,23 @@
 package com.foursoft.harness.kbl2vec.transform.components.connector;
 
 import com.foursoft.harness.kbl.v25.KblCavity;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.vec.v2x.VecCustomProperty;
 
 public class CavityTransformer implements Transformer<KblCavity, VecCavity> {
+
     @Override
     public TransformationResult<VecCavity> transform(final TransformationContext context, final KblCavity source) {
-        final VecCavity dest = new VecCavity();
-        dest.setCavityNumber(source.getCavityNumber());
+        final VecCavity destination = new VecCavity();
+        destination.setCavityNumber(source.getCavityNumber());
 
-        return TransformationResult.of(dest);
+        return TransformationResult.from(destination)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecCavity::getCustomProperties)
+                .build();
     }
 }

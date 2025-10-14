@@ -25,10 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.topology;
 
-import com.foursoft.harness.kbl.v25.KblAliasIdentification;
-import com.foursoft.harness.kbl.v25.KblNumericalValue;
-import com.foursoft.harness.kbl.v25.KblSegment;
-import com.foursoft.harness.kbl.v25.KblSegmentForm;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
@@ -50,6 +47,8 @@ public class TopologySegmentTransformer implements Transformer<KblSegment, VecTo
         return TransformationResult.from(topologySegment)
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
                                 source::getAliasIds, VecTopologySegment::getAliasIds)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecTopologySegment::getCustomProperties)
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
                                 Query.of(source.getVirtualLength()), appendLengthInformation("Designed"))
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
