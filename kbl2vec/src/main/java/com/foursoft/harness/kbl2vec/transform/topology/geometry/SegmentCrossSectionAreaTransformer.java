@@ -48,10 +48,10 @@ public class SegmentCrossSectionAreaTransformer
         if (valueDetermination == KblValueDetermination.CALCULATED ||
                 valueDetermination == KblValueDetermination.RESERVED) {
             destination.setValueDetermination(VecValueDetermination.CALCULATED);
-            destination.setCrossSectionAreaType("reserved");
+            destination.setCrossSectionAreaType("Reserved");
         } else if (valueDetermination == KblValueDetermination.MEASURED) {
             destination.setValueDetermination(VecValueDetermination.MEASURED);
-            destination.setCrossSectionAreaType("real");
+            destination.setCrossSectionAreaType("Real");
         }
 
         return TransformationResult.from(destination)

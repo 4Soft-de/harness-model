@@ -58,7 +58,7 @@ class SegmentCrossSectionAreaTransformerTest {
         // Then
         assertThat(result).isNotNull()
                 .returns(vecNumericalValue, VecSegmentCrossSectionArea::getArea)
-                .returns("reserved", VecSegmentCrossSectionArea::getCrossSectionAreaType)
+                .returns("Reserved", VecSegmentCrossSectionArea::getCrossSectionAreaType)
                 .returns(VecValueDetermination.CALCULATED, VecSegmentCrossSectionArea::getValueDetermination);
     }
 
@@ -83,7 +83,7 @@ class SegmentCrossSectionAreaTransformerTest {
         // Then
         assertThat(result).isNotNull()
                 .returns(vecNumericalValue, VecSegmentCrossSectionArea::getArea)
-                .returns("real", VecSegmentCrossSectionArea::getCrossSectionAreaType)
+                .returns("Real", VecSegmentCrossSectionArea::getCrossSectionAreaType)
                 .returns(VecValueDetermination.MEASURED, VecSegmentCrossSectionArea::getValueDetermination);
     }
 }
