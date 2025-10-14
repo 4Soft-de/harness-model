@@ -229,6 +229,12 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>io.github.origin-energy</groupId>
                 <artifactId>java-snapshot-testing-plugin-jackson</artifactId>
                 <version>${java-snapshot-testing.version}</version>

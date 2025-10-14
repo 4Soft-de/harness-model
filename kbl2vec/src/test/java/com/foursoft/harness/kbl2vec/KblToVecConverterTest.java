@@ -36,8 +36,9 @@ import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.vec.v2x.VecContent;
 import jakarta.xml.bind.Marshaller;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -51,7 +52,7 @@ class KblToVecConverterTest {
     private Expect expect;
 
     /**
-     * Tests the conversion of a reference KBL sample file to VEC and compares the output to a stored snapshot.
+     * Tests the conversion of some reference KBL sample files to VEC and compares the output to a stored snapshot.
      * <ul>
      *     <li>Ensures that no unintended changes to the conversion result are introduced during refactorings.</li>
      *     <li>Highlights differences when new features are added to the converter, allowing inspection of changes in
@@ -60,25 +61,26 @@ class KblToVecConverterTest {
      *
      * @throws IOException if reading or writing files fails
      */
-    @Test
-    void test_conversion() throws IOException {
+    @ParameterizedTest
+    @ValueSource(strings = {"vobes_sample_kbl24_mit_sicherungstraeger", "vobes_sample_kbl24_battery_plus_cable",
+            "vobes_sample_kbl24_generator_cable", "vobes_sample_kbl24_ksk_main_harness"})
+    void should_convertKblToVec(final String kblFileName) throws IOException {
         final KblToVecConverter converter = new KblToVecConverter();
+        final String kblFile = "/" + kblFileName + ".kbl";
 
         try (final InputStream is = getClass()
-                .getResourceAsStream("/vobes_sample_kbl24_mit_sicherungstraeger.kbl")) {
+                .getResourceAsStream(kblFile)) {
 
             final KBLContainer kblContainer = new KblReader(new ValidationEventLogger()).read(is);
 
             final ConversionOrchestrator.Result<VecContent> result = converter.convert(kblContainer);
 
-            writeToStream(result, TestUtils.createTestFileStream("vobes_sample_kbl24"));
+            writeToStream(result, TestUtils.createTestFileStream(kblFileName));
 
             try (final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
                 writeToStream(result, baos);
-
-                expect.toMatchSnapshot(baos.toString(StandardCharsets.UTF_8));
+                expect.scenario(kblFileName).toMatchSnapshot(baos.toString(StandardCharsets.UTF_8));
             }
-
         }
     }
 
@@ -103,5 +105,4 @@ class KblToVecConverterTest {
             }
         };
     }
-
 }
