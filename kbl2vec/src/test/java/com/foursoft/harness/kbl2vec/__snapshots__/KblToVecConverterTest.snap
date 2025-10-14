@@ -3040,6 +3040,18 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <PartVersion id="PartVersion_id_304_1">
+    <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_385_0">
+      <PropertyType>fusetype</PropertyType>
+      <Value>Type_SF30</Value>
+    </CustomProperty>
+    <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_385_1">
+      <PropertyType>nominal_current</PropertyType>
+      <Value>490</Value>
+    </CustomProperty>
+    <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_385_2">
+      <PropertyType>partcolour</PropertyType>
+      <Value>zinn</Value>
+    </CustomProperty>
     <Abbreviation id="LocalizedString_00166">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>
