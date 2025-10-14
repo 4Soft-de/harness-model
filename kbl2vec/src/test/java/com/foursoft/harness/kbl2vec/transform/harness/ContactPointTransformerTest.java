@@ -26,28 +26,28 @@
 package com.foursoft.harness.kbl2vec.transform.harness;
 
 import com.foursoft.harness.kbl.v25.KblContactPoint;
-import com.foursoft.harness.kbl.v25.KblHarness;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecContactPoint;
-import com.foursoft.harness.vec.v2x.VecContactingSpecification;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class ContactingSpecificationTransfomer implements Transformer<KblHarness, VecContactingSpecification> {
+class ContactPointTransformerTest {
 
-    @Override
-    public TransformationResult<VecContactingSpecification> transform(final TransformationContext context,
-                                                                      final KblHarness source) {
-        final VecContactingSpecification destination = new VecContactingSpecification();
+    @Test
+    void should_transformContactPoint() {
+        // Given
+        final ContactPointTransformer transformer = new ContactPointTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final List<KblContactPoint> contactPoints = source.getConnectorOccurrences().stream().flatMap(
-                c -> c.getContactPoints().stream()).toList();
-        return TransformationResult.from(destination)
-                .withDownstream(KblContactPoint.class, VecContactPoint.class, Query.fromLists(contactPoints),
-                                VecContactingSpecification::getContactPoints)
-                .build();
+        final KblContactPoint source = new KblContactPoint();
+        source.setId("TestId");
+
+        // When
+        final VecContactPoint result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns("TestId", VecContactPoint::getIdentification);
     }
 }

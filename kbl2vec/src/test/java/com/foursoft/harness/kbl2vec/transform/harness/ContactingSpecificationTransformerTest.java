@@ -23,13 +23,12 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.core;
+package com.foursoft.harness.kbl2vec.transform.harness;
 
 import com.foursoft.harness.kbl.v25.KblConnectorOccurrence;
 import com.foursoft.harness.kbl.v25.KblContactPoint;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.kbl2vec.transform.harness.ContactingSpecificationTransfomer;
 import com.foursoft.harness.vec.v2x.VecContactPoint;
 import com.foursoft.harness.vec.v2x.VecContactingSpecification;
 import org.junit.jupiter.api.Test;
@@ -41,7 +40,7 @@ class ContactingSpecificationTransformerTest {
     @Test
     void should_transformContactingSpecification() {
         // Given
-        final ContactingSpecificationTransfomer transformer = new ContactingSpecificationTransfomer();
+        final ContactingSpecificationTransformer transformer = new ContactingSpecificationTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblHarness source = new KblHarness();
