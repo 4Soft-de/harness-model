@@ -23,31 +23,42 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.harness;
+package com.foursoft.harness.kbl2vec.transform.core;
 
+import com.foursoft.harness.kbl.v25.KblConnectorOccurrence;
 import com.foursoft.harness.kbl.v25.KblContactPoint;
 import com.foursoft.harness.kbl.v25.KblHarness;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.kbl2vec.transform.harness.ContactingSpecificationTransfomer;
 import com.foursoft.harness.vec.v2x.VecContactPoint;
 import com.foursoft.harness.vec.v2x.VecContactingSpecification;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class ContactingSpecificationTransfomer implements Transformer<KblHarness, VecContactingSpecification> {
+class ContactingSpecificationTransformerTest {
 
-    @Override
-    public TransformationResult<VecContactingSpecification> transform(final TransformationContext context,
-                                                                      final KblHarness source) {
-        final VecContactingSpecification destination = new VecContactingSpecification();
+    @Test
+    void should_transformContactingSpecification() {
+        // Given
+        final ContactingSpecificationTransfomer transformer = new ContactingSpecificationTransfomer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final List<KblContactPoint> contactPoints = source.getConnectorOccurrences().stream().flatMap(
-                c -> c.getContactPoints().stream()).toList();
-        return TransformationResult.from(destination)
-                .withDownstream(KblContactPoint.class, VecContactPoint.class, Query.fromLists(contactPoints),
-                                VecContactingSpecification::getContactPoints)
-                .build();
+        final KblHarness source = new KblHarness();
+
+        final KblConnectorOccurrence connectorOccurrence = new KblConnectorOccurrence();
+        final KblContactPoint contactPoint = new KblContactPoint();
+        connectorOccurrence.getContactPoints().add(contactPoint);
+        source.getConnectorOccurrences().add(connectorOccurrence);
+
+        final VecContactPoint vecContactPoint = new VecContactPoint();
+        orchestrator.addMockMapping(contactPoint, vecContactPoint);
+
+        // When
+        final VecContactingSpecification result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .satisfies(v -> assertThat(v.getContactPoints()).containsExactly(vecContactPoint));
     }
 }

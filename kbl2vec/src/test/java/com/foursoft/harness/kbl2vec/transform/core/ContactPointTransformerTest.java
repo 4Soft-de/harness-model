@@ -23,21 +23,32 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.harness;
+package com.foursoft.harness.kbl2vec.transform.core;
 
 import com.foursoft.harness.kbl.v25.KblContactPoint;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.kbl2vec.transform.harness.ContactPointTransformer;
 import com.foursoft.harness.vec.v2x.VecContactPoint;
+import org.junit.jupiter.api.Test;
 
-public class ContactPointTransformer implements Transformer<KblContactPoint, VecContactPoint> {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    @Override
-    public TransformationResult<VecContactPoint> transform(final TransformationContext context,
-                                                           final KblContactPoint source) {
-        final VecContactPoint destination = new VecContactPoint();
-        destination.setIdentification(source.getId());
-        return TransformationResult.of(destination);
+class ContactPointTransformerTest {
+
+    @Test
+    void should_transformContactPoint() {
+        // Given
+        final ContactPointTransformer transformer = new ContactPointTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblContactPoint source = new KblContactPoint();
+        source.setId("TestId");
+
+        // When
+        final VecContactPoint result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns("TestId", VecContactPoint::getIdentification);
     }
 }
