@@ -46,8 +46,6 @@ public class WireWireElementReferenceTransformer
                                                                    final KblGeneralWireOccurrence source) {
         final VecWireElementReference dest = new VecWireElementReference();
 
-        final List<KblExtremity> extremities = getExtremities(source);
-
         if (source instanceof final KblWireOccurrence wireOccurrence) {
             dest.setIdentification(wireOccurrence.getWireNumber());
         } else if (source instanceof final KblSpecialWireOccurrence specialWireOccurrence) {
@@ -59,7 +57,7 @@ public class WireWireElementReferenceTransformer
         return TransformationResult.from(dest)
                 .withDownstream(KblWireLength.class, VecWireLength.class, source::getLengthInformations,
                                 VecWireElementReference::getWireLengths)
-                .withDownstream(KblExtremity.class, VecWireEnd.class, Query.fromLists(extremities),
+                .withDownstream(KblExtremity.class, VecWireEnd.class, () -> getExtremities(source),
                                 VecWireElementReference::getWireEnds)
                 .withLinker(Query.of(source::getPart), VecWireElement.class,
                             VecWireElementReference::setReferencedWireElement)
