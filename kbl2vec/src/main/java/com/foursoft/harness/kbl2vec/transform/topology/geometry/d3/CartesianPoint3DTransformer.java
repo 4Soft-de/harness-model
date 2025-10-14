@@ -54,7 +54,7 @@ public class CartesianPoint3DTransformer implements Transformer<KblCartesianPoin
         final List<Double> coordinates = source.getCoordinates();
         final VecCartesianPoint3D destination = new VecCartesianPoint3D();
 
-        destination.setX(source.getCoordinates().get(0));
+        destination.setX(getCoordinateOrDefault(coordinates, 0));
         destination.setY(getCoordinateOrDefault(coordinates, 1));
         destination.setZ(getCoordinateOrDefault(coordinates, 2));
 

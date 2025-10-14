@@ -40,7 +40,7 @@ public class DoublesToCartesianVector3DConverter implements Converter<List<Doubl
             return Optional.empty();
         }
         final VecCartesianVector3D destination = new VecCartesianVector3D();
-        destination.setX(source.get(0));
+        destination.setX(getCoordinateOrDefault(source, 0));
         destination.setY(getCoordinateOrDefault(source, 1));
         destination.setZ(getCoordinateOrDefault(source, 2));
         return Optional.of(destination);
