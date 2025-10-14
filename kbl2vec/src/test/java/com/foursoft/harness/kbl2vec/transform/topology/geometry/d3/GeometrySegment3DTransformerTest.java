@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -74,5 +74,69 @@ class GeometrySegment3DTransformerTest {
                 .satisfies(v -> assertThat(v.getEndVector().getX()).isEqualTo(1.0))
                 .satisfies(v -> assertThat(v.getEndVector().getY()).isEqualTo(2.0))
                 .satisfies(v -> assertThat(v.getEndVector().getZ()).isEqualTo(3.0));
+    }
+
+    @Test
+    void should_fillMissingCoordinatesWithZero() {
+        // Given
+        final GeometrySegment3DTransformer transformer = new GeometrySegment3DTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblSegment source = new KblSegment();
+
+        source.getStartVectors().add(1.0);
+        source.getStartVectors().add(2.0);
+        source.getEndVectors().add(1.0);
+
+        final KblNode startNode = new KblNode();
+        final KblNode endNode = new KblNode();
+        source.setStartNode(startNode);
+        source.setEndNode(endNode);
+
+        final VecGeometryNode3D vecStartNode = new VecGeometryNode3D();
+        final VecGeometryNode3D vecEndNode = new VecGeometryNode3D();
+        orchestrator.addMockMapping(startNode, vecStartNode);
+        orchestrator.addMockMapping(endNode, vecEndNode);
+
+        // When
+        final VecGeometrySegment3D result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns(vecEndNode, VecGeometrySegment3D::getEndNode)
+                .returns(vecStartNode, VecGeometrySegment3D::getStartNode)
+                .satisfies(v -> assertThat(v.getStartVector().getX()).isEqualTo(1.0))
+                .satisfies(v -> assertThat(v.getStartVector().getY()).isEqualTo(2.0))
+                .satisfies(v -> assertThat(v.getStartVector().getZ()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getEndVector().getX()).isEqualTo(1.0))
+                .satisfies(v -> assertThat(v.getEndVector().getY()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getEndVector().getZ()).isEqualTo(0.0));
+    }
+
+    @Test
+    void should_requireAtLeastOneCoordinate() {
+        // Given
+        final GeometrySegment3DTransformer transformer = new GeometrySegment3DTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblSegment source = new KblSegment();
+
+        final KblNode startNode = new KblNode();
+        final KblNode endNode = new KblNode();
+        source.setStartNode(startNode);
+        source.setEndNode(endNode);
+
+        final VecGeometryNode3D vecStartNode = new VecGeometryNode3D();
+        final VecGeometryNode3D vecEndNode = new VecGeometryNode3D();
+        orchestrator.addMockMapping(startNode, vecStartNode);
+        orchestrator.addMockMapping(endNode, vecEndNode);
+
+        // When
+        final VecGeometrySegment3D result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns(null, VecGeometrySegment3D::getStartVector)
+                .returns(null, VecGeometrySegment3D::getEndVector);
     }
 }
