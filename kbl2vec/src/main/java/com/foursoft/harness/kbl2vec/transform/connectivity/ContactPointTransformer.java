@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.harness;
+package com.foursoft.harness.kbl2vec.transform.connectivity;
 
 import com.foursoft.harness.kbl.v25.KblContactPoint;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
