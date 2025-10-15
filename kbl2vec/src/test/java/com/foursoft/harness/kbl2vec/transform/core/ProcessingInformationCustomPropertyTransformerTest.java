@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,26 +23,37 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.connector;
+package com.foursoft.harness.kbl2vec.transform.core;
 
-import com.foursoft.harness.kbl.v25.KblCavity;
+import com.foursoft.harness.kbl.v25.KblInstructionClassification;
 import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecCustomProperty;
+import com.foursoft.harness.vec.v2x.VecSimpleValueProperty;
+import org.junit.jupiter.api.Test;
 
-public class CavityTransformer implements Transformer<KblCavity, VecCavity> {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    @Override
-    public TransformationResult<VecCavity> transform(final TransformationContext context, final KblCavity source) {
-        final VecCavity destination = new VecCavity();
-        destination.setCavityNumber(source.getCavityNumber());
+class ProcessingInformationCustomPropertyTransformerTest {
 
-        return TransformationResult.from(destination)
-                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
-                                source::getProcessingInformations, VecCavity::getCustomProperties)
-                .build();
+    @Test
+    void should_transformCustomProperty() {
+        // Given
+        final ProcessingInformationCustomPropertyTransformer transformer =
+                new ProcessingInformationCustomPropertyTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblProcessingInstruction source = new KblProcessingInstruction();
+        source.setClassification(KblInstructionClassification.CUSTOM_PROPERTY);
+        source.setInstructionType("TestInstructionType");
+        source.setInstructionValue("TestInstructionValue");
+
+        // When
+        final VecSimpleValueProperty result = (VecSimpleValueProperty) orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns("TestInstructionType", VecCustomProperty::getPropertyType)
+                .returns("TestInstructionValue", VecSimpleValueProperty::getValue);
     }
 }

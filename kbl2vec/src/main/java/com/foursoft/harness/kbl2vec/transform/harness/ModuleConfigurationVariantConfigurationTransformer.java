@@ -26,9 +26,11 @@
 package com.foursoft.harness.kbl2vec.transform.harness;
 
 import com.foursoft.harness.kbl.v25.KblModuleConfiguration;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecCustomProperty;
 import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
 
 public class ModuleConfigurationVariantConfigurationTransformer
@@ -55,6 +57,9 @@ public class ModuleConfigurationVariantConfigurationTransformer
                 v.setIdentification("GenericIdentifier-" + context.getNewId());
             });
         }
+
+        builder.withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                               source::getProcessingInstructions, VecVariantConfiguration::getCustomProperties);
 
         return builder.build();
     }

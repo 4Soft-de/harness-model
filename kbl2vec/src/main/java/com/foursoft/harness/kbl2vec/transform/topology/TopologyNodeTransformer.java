@@ -27,10 +27,12 @@ package com.foursoft.harness.kbl2vec.transform.topology;
 
 import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblNode;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecAliasIdentification;
+import com.foursoft.harness.vec.v2x.VecCustomProperty;
 import com.foursoft.harness.vec.v2x.VecTopologyNode;
 
 public class TopologyNodeTransformer implements Transformer<KblNode, VecTopologyNode> {
@@ -42,6 +44,8 @@ public class TopologyNodeTransformer implements Transformer<KblNode, VecTopology
         return TransformationResult.from(topologyNode)
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
                                 source::getAliasIds, VecTopologyNode::getAliasIds)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecTopologyNode::getCustomProperties)
                 .build();
     }
 }

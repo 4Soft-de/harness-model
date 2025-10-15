@@ -26,12 +26,14 @@
 package com.foursoft.harness.kbl2vec.transform.components.connector;
 
 import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl.v25.KblSlotOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCavityReference;
+import com.foursoft.harness.vec.v2x.VecCustomProperty;
 import com.foursoft.harness.vec.v2x.VecSlot;
 import com.foursoft.harness.vec.v2x.VecSlotReference;
 
@@ -46,6 +48,8 @@ public class SlotReferenceTransformer implements Transformer<KblSlotOccurrence, 
                 .from(dest)
                 .withDownstream(KblCavityOccurrence.class, VecCavityReference.class, source::getCavities,
                                 VecSlotReference::getCavityReferences)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecSlotReference::getCustomProperties)
                 .withLinker(Query.of(source::getPart), VecSlot.class, VecSlotReference::setReferencedSlot)
                 .build();
     }

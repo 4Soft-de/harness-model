@@ -45745,6 +45745,22 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_311_1</Part>
       </Component>
       <Component id="PartOccurrence_id_417_0">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_27">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_28">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_29">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_61">
+          <PropertyType>carrier_type</PropertyType>
+          <Value>multi_slot</Value>
+        </CustomProperty>
         <Identification>XJ.SR1.1</Identification>
         <AliasId id="AliasIdentification_id_368_13">
           <IdentificationValue>SR1.1</IdentificationValue>
@@ -45860,6 +45876,22 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_302_6</Part>
       </Component>
       <Component id="PartOccurrence_id_316_0">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_0">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>L2.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_1">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>2-Faden-Lampe für Scheinwerfer rechts</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_2">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['1K8_945_095_C','']</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_54">
+          <PropertyType>TAB_NUMBER</PropertyType>
+          <Value>TAB_016_038_B</Value>
+        </CustomProperty>
         <Identification>XA.L2.1</Identification>
         <AliasId id="AliasIdentification_id_368_1">
           <IdentificationValue>XA.L2.1</IdentificationValue>
@@ -45910,6 +45942,22 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_0</Part>
       </Component>
       <Component id="PartOccurrence_id_316_10">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_42">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>V64.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_43">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Hydraulikpumpe für ABS</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_44">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['4Z7_323_169','']</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_56">
+          <PropertyType>TAB_NUMBER</PropertyType>
+          <Value>TAB_016_007_B</Value>
+        </CustomProperty>
         <Identification>XA.V64.1</Identification>
         <AliasId id="AliasIdentification_id_368_18">
           <IdentificationValue>XA.V64.1</IdentificationValue>
@@ -45944,6 +45992,22 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_8</Part>
       </Component>
       <Component id="PartOccurrence_id_316_1">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_3">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>L1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_4">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>2-Faden-Lampe für Scheinwerfer links</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_5">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['1K8_945_095_C','']</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_55">
+          <PropertyType>TAB_NUMBER</PropertyType>
+          <Value>TAB_016_038_B</Value>
+        </CustomProperty>
         <Identification>XA.L1.1</Identification>
         <AliasId id="AliasIdentification_id_368_3">
           <IdentificationValue>XA.L1.1</IdentificationValue>
@@ -45994,6 +46058,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_0</Part>
       </Component>
       <Component id="PartOccurrence_id_316_3">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_12">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>V454.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_13">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Klimakompressor</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_14">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['7P0_820_803_B','']</Value>
+        </CustomProperty>
         <Identification>XB.V454.1</Identification>
         <AliasId id="AliasIdentification_id_368_6">
           <IdentificationValue>XB.V454.1</IdentificationValue>
@@ -46040,6 +46116,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_2</Part>
       </Component>
       <Component id="PartOccurrence_id_316_4">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_15">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>V86.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_16">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Motor für Faltschiebedach</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_17">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['3B0_959_761_AJ','']</Value>
+        </CustomProperty>
         <Identification>XA.V86.1</Identification>
         <AliasId id="AliasIdentification_id_368_8">
           <IdentificationValue>XA.V86.1</IdentificationValue>
@@ -46082,6 +46170,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_3</Part>
       </Component>
       <Component id="PartOccurrence_id_316_6">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_24">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>Z1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_25">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>beheizbare Heckscheibe</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_26">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['5M0_845_051','']</Value>
+        </CustomProperty>
         <Identification>XA.Z1.1</Identification>
         <AliasId id="AliasIdentification_id_368_11">
           <IdentificationValue>XA.Z1.1</IdentificationValue>
@@ -46112,6 +46212,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_5</Part>
       </Component>
       <Component id="PartOccurrence_id_316_12">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_48">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>A.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_49">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Batterie</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_50">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['1J0_915_105_C','']</Value>
+        </CustomProperty>
         <Identification>XA.A.1</Identification>
         <Role xsi:type="vec:ConnectorHousingRole" id="ConnectorHousingRole_id_316_12">
           <Identification>XA.A.1</Identification>
@@ -46128,6 +46240,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_9</Part>
       </Component>
       <Component id="PartOccurrence_id_316_11">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_45">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_46">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_47">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XA.SR1.1</Identification>
         <AliasId id="AliasIdentification_id_368_20">
           <IdentificationValue>XA.SR1.1</IdentificationValue>
@@ -46158,6 +46282,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_5</Part>
       </Component>
       <Component id="PartOccurrence_id_316_9">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_36">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_37">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_38">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XD.SR1.1</Identification>
         <Role xsi:type="vec:ConnectorHousingRole" id="ConnectorHousingRole_id_316_9">
           <Identification>XD.SR1.1</Identification>
@@ -46174,6 +46310,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_7</Part>
       </Component>
       <Component id="PartOccurrence_id_316_5">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_18">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_19">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_20">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XF.SR1.1</Identification>
         <Role xsi:type="vec:ConnectorHousingRole" id="ConnectorHousingRole_id_316_5">
           <Identification>XF.SR1.1</Identification>
@@ -46190,6 +46338,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_4</Part>
       </Component>
       <Component id="PartOccurrence_id_316_2">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_6">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_7">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_8">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XG.SR1.1</Identification>
         <Role xsi:type="vec:ConnectorHousingRole" id="ConnectorHousingRole_id_316_2">
           <Identification>XG.SR1.1</Identification>
@@ -46206,6 +46366,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_1</Part>
       </Component>
       <Component id="PartOccurrence_id_316_8">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_30">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_31">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_32">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XH.SR1.1</Identification>
         <Role xsi:type="vec:ConnectorHousingRole" id="ConnectorHousingRole_id_316_8">
           <Identification>XH.SR1.1</Identification>
@@ -46222,6 +46394,14 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_4</Part>
       </Component>
       <Component id="PartOccurrence_id_316_13">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_59">
+          <PropertyType>ECPSPLICE_type</PropertyType>
+          <Value>unspec_ECPSPLICE</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_60">
+          <PropertyType>seal_state</PropertyType>
+          <Value>unsealed</Value>
+        </CustomProperty>
         <Identification>D50</Identification>
         <AliasId id="AliasIdentification_id_368_23">
           <IdentificationValue>D50</IdentificationValue>
@@ -46252,6 +46432,14 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_315_10</Part>
       </Component>
       <Component id="PartOccurrence_id_316_14">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_57">
+          <PropertyType>ECPSPLICE_type</PropertyType>
+          <Value>unspec_ECPSPLICE</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_58">
+          <PropertyType>seal_state</PropertyType>
+          <Value>unsealed</Value>
+        </CustomProperty>
         <Identification>W8</Identification>
         <AliasId id="AliasIdentification_id_368_25">
           <IdentificationValue>W8</IdentificationValue>
@@ -46320,6 +46508,10 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_327_1</Part>
       </Component>
       <Component id="PartOccurrence_id_350_2">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_65">
+          <PropertyType>Ambient_temperature</PropertyType>
+          <Value>70</Value>
+        </CustomProperty>
         <Identification>3</Identification>
         <Role xsi:type="vec:WireRole" id="WireRole_id_350_2">
           <Identification>3</Identification>
@@ -46339,6 +46531,10 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_327_2</Part>
       </Component>
       <Component id="PartOccurrence_id_350_3">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_66">
+          <PropertyType>Ambient_temperature</PropertyType>
+          <Value>70</Value>
+        </CustomProperty>
         <Identification>4</Identification>
         <Role xsi:type="vec:WireRole" id="WireRole_id_350_3">
           <Identification>4</Identification>
@@ -46358,6 +46554,10 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_327_3</Part>
       </Component>
       <Component id="PartOccurrence_id_350_4">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_64">
+          <PropertyType>Ambient_temperature</PropertyType>
+          <Value>70</Value>
+        </CustomProperty>
         <Identification>5</Identification>
         <Role xsi:type="vec:WireRole" id="WireRole_id_350_4">
           <Identification>5</Identification>
@@ -46396,6 +46596,10 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_327_4</Part>
       </Component>
       <Component id="PartOccurrence_id_350_6">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_67">
+          <PropertyType>Ambient_temperature</PropertyType>
+          <Value>70</Value>
+        </CustomProperty>
         <Identification>7</Identification>
         <Role xsi:type="vec:WireRole" id="WireRole_id_350_6">
           <Identification>7</Identification>
@@ -46415,6 +46619,10 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_327_3</Part>
       </Component>
       <Component id="PartOccurrence_id_350_7">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_63">
+          <PropertyType>Ambient_temperature</PropertyType>
+          <Value>70</Value>
+        </CustomProperty>
         <Identification>8</Identification>
         <Role xsi:type="vec:WireRole" id="WireRole_id_350_7">
           <Identification>8</Identification>
@@ -46434,6 +46642,10 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_327_5</Part>
       </Component>
       <Component id="PartOccurrence_id_350_8">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_68">
+          <PropertyType>Ambient_temperature</PropertyType>
+          <Value>70</Value>
+        </CustomProperty>
         <Identification>9</Identification>
         <Role xsi:type="vec:WireRole" id="WireRole_id_350_8">
           <Identification>9</Identification>
@@ -46472,6 +46684,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_327_7</Part>
       </Component>
       <Component id="PartOccurrence_id_342_0">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_9">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_10">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_11">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XG.SR1.1</Identification>
         <AliasId id="AliasIdentification_id_368_5">
           <IdentificationValue>ST_SIDO_5</IdentificationValue>
@@ -46485,6 +46709,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_326_2</Part>
       </Component>
       <Component id="PartOccurrence_id_342_1">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_21">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_22">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_23">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XF.SR1.1</Identification>
         <AliasId id="AliasIdentification_id_368_10">
           <IdentificationValue>ST_SIDO_2</IdentificationValue>
@@ -46498,6 +46734,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_326_6</Part>
       </Component>
       <Component id="PartOccurrence_id_342_2">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_33">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_34">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_35">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XH.SR1.1</Identification>
         <AliasId id="AliasIdentification_id_368_15">
           <IdentificationValue>ST_SIDO_3</IdentificationValue>
@@ -46511,6 +46759,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_326_6</Part>
       </Component>
       <Component id="PartOccurrence_id_342_3">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_39">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>SR1.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_40">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Relais- und Sicherungsträger 1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_41">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['FBX001546','']</Value>
+        </CustomProperty>
         <Identification>XD.SR1.1</Identification>
         <AliasId id="AliasIdentification_id_368_16">
           <IdentificationValue>ST_SIDO_6</IdentificationValue>
@@ -46524,6 +46784,18 @@ This is not intended for productive use and is not complete!
         <Part>PartVersion_id_326_9</Part>
       </Component>
       <Component id="PartOccurrence_id_342_4">
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_51">
+          <PropertyType>eqt_reference_id</PropertyType>
+          <Value>A.1</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_52">
+          <PropertyType>ADD_ON_TEXT_EQT</PropertyType>
+          <Value>Batterie</Value>
+        </CustomProperty>
+        <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_379_53">
+          <PropertyType>eqt_validity</PropertyType>
+          <Value>['CMP001105C','']</Value>
+        </CustomProperty>
         <Identification>XA.A.1</Identification>
         <AliasId id="AliasIdentification_id_368_22">
           <IdentificationValue>ST_BATT</IdentificationValue>
@@ -46709,6 +46981,18 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <PartVersion id="PartVersion_id_304_1">
+    <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_385_0">
+      <PropertyType>fusetype</PropertyType>
+      <Value>Type_SF30</Value>
+    </CustomProperty>
+    <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_385_1">
+      <PropertyType>nominal_current</PropertyType>
+      <Value>490</Value>
+    </CustomProperty>
+    <CustomProperty xsi:type="vec:SimpleValueProperty" id="SimpleValueProperty_id_385_2">
+      <PropertyType>partcolour</PropertyType>
+      <Value>zinn</Value>
+    </CustomProperty>
     <Abbreviation id="LocalizedString_00166">
       <LanguageCode>De</LanguageCode>
       <Value>/NULL</Value>

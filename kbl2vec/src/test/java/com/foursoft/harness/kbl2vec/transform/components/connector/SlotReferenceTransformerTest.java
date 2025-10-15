@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,12 +26,11 @@
 package com.foursoft.harness.kbl2vec.transform.components.connector;
 
 import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl.v25.KblSlot;
 import com.foursoft.harness.kbl.v25.KblSlotOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecCavityReference;
-import com.foursoft.harness.vec.v2x.VecSlot;
-import com.foursoft.harness.vec.v2x.VecSlotReference;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,6 +57,12 @@ class SlotReferenceTransformerTest {
         orchestrator.addMockMapping(kblCavityOccurrence, vecCavityReference);
         orchestrator.addMockMapping(part, vecSlot);
 
+        final KblProcessingInstruction processingInstruction = new KblProcessingInstruction();
+        source.getProcessingInformations().add(processingInstruction);
+
+        final VecCustomProperty customProperty = new VecSimpleValueProperty();
+        orchestrator.addMockMapping(processingInstruction, customProperty);
+
         // When
         final VecSlotReference result = orchestrator.transform(transformer, source);
 
@@ -65,8 +70,7 @@ class SlotReferenceTransformerTest {
         assertThat(result).isNotNull()
                 .returns("TestPartId", VecSlotReference::getIdentification)
                 .returns(vecSlot, VecSlotReference::getReferencedSlot)
-                .satisfies(
-                        v -> assertThat(v.getCavityReferences()).contains(vecCavityReference)
-                );
+                .satisfies(v -> assertThat(v.getCavityReferences()).containsExactly(vecCavityReference))
+                .satisfies(v -> assertThat(v.getCustomProperties()).containsExactly(customProperty));
     }
 }

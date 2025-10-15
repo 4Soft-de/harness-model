@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,26 +23,29 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.connector;
+package com.foursoft.harness.kbl2vec.transform.core;
 
-import com.foursoft.harness.kbl.v25.KblCavity;
+import com.foursoft.harness.kbl.v25.KblInstructionClassification;
 import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecCavity;
 import com.foursoft.harness.vec.v2x.VecCustomProperty;
+import com.foursoft.harness.vec.v2x.VecSimpleValueProperty;
 
-public class CavityTransformer implements Transformer<KblCavity, VecCavity> {
+public class ProcessingInformationCustomPropertyTransformer
+        implements Transformer<KblProcessingInstruction, VecCustomProperty> {
 
     @Override
-    public TransformationResult<VecCavity> transform(final TransformationContext context, final KblCavity source) {
-        final VecCavity destination = new VecCavity();
-        destination.setCavityNumber(source.getCavityNumber());
-
-        return TransformationResult.from(destination)
-                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
-                                source::getProcessingInformations, VecCavity::getCustomProperties)
-                .build();
+    public TransformationResult<VecCustomProperty> transform(final TransformationContext context,
+                                                             final KblProcessingInstruction source) {
+        if (source.getClassification() == null ||
+                source.getClassification() == KblInstructionClassification.CUSTOM_PROPERTY) {
+            final VecSimpleValueProperty destination = new VecSimpleValueProperty();
+            destination.setPropertyType(source.getInstructionType());
+            destination.setValue(source.getInstructionValue());
+            return TransformationResult.of(destination);
+        }
+        return TransformationResult.noResult();
     }
 }

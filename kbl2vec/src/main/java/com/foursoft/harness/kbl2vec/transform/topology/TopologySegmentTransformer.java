@@ -47,6 +47,8 @@ public class TopologySegmentTransformer implements Transformer<KblSegment, VecTo
         return TransformationResult.from(topologySegment)
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
                                 source::getAliasIds, VecTopologySegment::getAliasIds)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecTopologySegment::getCustomProperties)
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
                                 Query.of(source.getVirtualLength()), appendLengthInformation("Designed"))
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,

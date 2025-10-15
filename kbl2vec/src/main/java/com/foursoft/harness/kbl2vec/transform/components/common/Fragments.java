@@ -28,6 +28,7 @@ package com.foursoft.harness.kbl2vec.transform.components.common;
 import com.foursoft.harness.kbl.common.*;
 import com.foursoft.harness.kbl.v25.HasRelatedAssembly;
 import com.foursoft.harness.kbl.v25.HasRelatedOccurrence;
+import com.foursoft.harness.kbl.v25.KblInstallationInstruction;
 import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblPart;
 import com.foursoft.harness.kbl2vec.convert.Converter;
@@ -96,6 +97,15 @@ public class Fragments {
                         .toList();
                 builder.withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
                                        Query.fromLists(aliasIds), VecPartOccurrence::getAliasIds);
+            }
+            if (source instanceof final HasInstallationInformation<?> hasInstallationInformation) {
+                final List<KblInstallationInstruction> installationInstructions =
+                        hasInstallationInformation.getInstallationInformations().stream()
+                                .map(KblInstallationInstruction.class::cast)
+                                .toList();
+                builder.withDownstream(KblInstallationInstruction.class, VecCustomProperty.class,
+                                       Query.fromLists(installationInstructions),
+                                       VecPartOccurrence::getCustomProperties);
             }
             handleDescription(source, po, context);
         };
