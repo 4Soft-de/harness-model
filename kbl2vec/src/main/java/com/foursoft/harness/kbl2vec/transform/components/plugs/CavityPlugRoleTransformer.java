@@ -46,7 +46,7 @@ public class CavityPlugRoleTransformer implements Transformer<KblCavityPlugOccur
                 .from(dest)
                 .withLinker(Query.of(source::getPart), VecCavityPlugSpecification.class,
                             VecCavityPlugRole::setCavityPlugSpecification)
-                .withLinker(Query.of(source.getRefCavityOccurrence()), VecCavityReference.class,
+                .withLinker(source.getRefCavityOccurrence().stream()::toList, VecCavityReference.class,
                             VecCavityPlugRole::getPluggedCavityRef)
                 .build();
     }

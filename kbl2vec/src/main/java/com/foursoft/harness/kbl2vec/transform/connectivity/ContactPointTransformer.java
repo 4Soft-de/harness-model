@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,10 +26,18 @@
 package com.foursoft.harness.kbl2vec.transform.connectivity;
 
 import com.foursoft.harness.kbl.v25.KblContactPoint;
+import com.foursoft.harness.kbl.v25.KblTerminalOccurrence;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.v2x.VecCavityMounting;
 import com.foursoft.harness.vec.v2x.VecContactPoint;
+import com.foursoft.harness.vec.v2x.VecTerminalRole;
+import com.foursoft.harness.vec.v2x.VecWireMounting;
+
+import java.util.List;
 
 public class ContactPointTransformer implements Transformer<KblContactPoint, VecContactPoint> {
 
@@ -38,6 +46,28 @@ public class ContactPointTransformer implements Transformer<KblContactPoint, Vec
                                                            final KblContactPoint source) {
         final VecContactPoint destination = new VecContactPoint();
         destination.setIdentification(source.getId());
-        return TransformationResult.of(destination);
+
+        return TransformationResult.from(destination)
+                .withDownstream(KblContactPoint.class, VecCavityMounting.class, Query.of(source),
+                                VecContactPoint::getCavityMountings)
+                .withDownstream(KblContactPoint.class, VecWireMounting.class, Query.of(source),
+                                VecContactPoint::getWireMountings)
+                .withLinker(Query.fromLists(getTerminalOccurrence(source, context)), VecTerminalRole.class,
+                            VecContactPoint::setMountedTerminal)
+                .build();
+    }
+
+    private List<KblTerminalOccurrence> getTerminalOccurrence(final KblContactPoint contactPoint,
+                                                              final TransformationContext context) {
+        final List<KblTerminalOccurrence> terminalOccurrences = contactPoint.getAssociatedParts().stream()
+                .flatMap(StreamUtils.ofClass(KblTerminalOccurrence.class))
+                .toList();
+
+        if (terminalOccurrences.size() > 1) {
+            context.getLogger().warn("Multiple terminal occurrences found for '{}-{}'.",
+                                     contactPoint.getClass().getSimpleName(), contactPoint.getId());
+            return List.of(terminalOccurrences.get(0));
+        }
+        return terminalOccurrences;
     }
 }
