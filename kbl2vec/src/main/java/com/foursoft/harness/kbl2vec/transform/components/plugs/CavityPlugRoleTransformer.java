@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCavityPlugRole;
 import com.foursoft.harness.vec.v2x.VecCavityPlugSpecification;
+import com.foursoft.harness.vec.v2x.VecCavityReference;
 
 public class CavityPlugRoleTransformer implements Transformer<KblCavityPlugOccurrence, VecCavityPlugRole> {
 
@@ -43,11 +44,10 @@ public class CavityPlugRoleTransformer implements Transformer<KblCavityPlugOccur
 
         return TransformationResult
                 .from(dest)
-                .withLinker(
-                        Query.of(source::getPart),
-                        VecCavityPlugSpecification.class,
-                        VecCavityPlugRole::setCavityPlugSpecification
-                )
+                .withLinker(Query.of(source::getPart), VecCavityPlugSpecification.class,
+                            VecCavityPlugRole::setCavityPlugSpecification)
+                .withLinker(Query.of(source.getRefCavityOccurrence()), VecCavityReference.class,
+                            VecCavityPlugRole::getPluggedCavityRef)
                 .build();
     }
 }
