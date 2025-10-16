@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,14 +27,15 @@ package com.foursoft.harness.kbl2vec.utils;
 
 import java.util.List;
 
-public class CoordinateGenerator {
+public class ListUtils {
 
-    private CoordinateGenerator() {}
+    private ListUtils() {
+    }
 
-    public static double getCoordinateOrDefault(final List<Double> coordinates, final int index) {
-        if (coordinates == null || index >= coordinates.size() || coordinates.get(index) == null) {
-            return 0.0;
+    public static <T> T getElementOrDefault(final List<T> list, final int index, final T defaultValue) {
+        if (list == null || index >= list.size() || list.get(index) == null) {
+            return defaultValue;
         }
-        return coordinates.get(index);
+        return list.get(index);
     }
 }

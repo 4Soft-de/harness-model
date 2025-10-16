@@ -34,7 +34,7 @@ import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
 
 import java.util.List;
 
-import static com.foursoft.harness.kbl2vec.utils.CoordinateGenerator.getCoordinateOrDefault;
+import static com.foursoft.harness.kbl2vec.utils.ListUtils.getElementOrDefault;
 
 public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoint, VecCartesianPoint2D> {
 
@@ -54,8 +54,8 @@ public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoin
         final List<Double> coordinates = source.getCoordinates();
         final VecCartesianPoint2D destination = new VecCartesianPoint2D();
 
-        destination.setX(getCoordinateOrDefault(coordinates, 0));
-        destination.setY(getCoordinateOrDefault(coordinates, 1));
+        destination.setX(getElementOrDefault(coordinates, 0, 0.0));
+        destination.setY(getElementOrDefault(coordinates, 1, 0.0));
 
         return TransformationResult.of(destination);
     }

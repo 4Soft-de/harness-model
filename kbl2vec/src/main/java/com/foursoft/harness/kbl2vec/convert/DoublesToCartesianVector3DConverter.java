@@ -30,7 +30,7 @@ import com.foursoft.harness.vec.v2x.VecCartesianVector3D;
 import java.util.List;
 import java.util.Optional;
 
-import static com.foursoft.harness.kbl2vec.utils.CoordinateGenerator.getCoordinateOrDefault;
+import static com.foursoft.harness.kbl2vec.utils.ListUtils.getElementOrDefault;
 
 public class DoublesToCartesianVector3DConverter implements Converter<List<Double>, Optional<VecCartesianVector3D>> {
 
@@ -40,9 +40,9 @@ public class DoublesToCartesianVector3DConverter implements Converter<List<Doubl
             return Optional.empty();
         }
         final VecCartesianVector3D destination = new VecCartesianVector3D();
-        destination.setX(getCoordinateOrDefault(source, 0));
-        destination.setY(getCoordinateOrDefault(source, 1));
-        destination.setZ(getCoordinateOrDefault(source, 2));
+        destination.setX(getElementOrDefault(source, 0, 0.0));
+        destination.setY(getElementOrDefault(source, 1, 0.0));
+        destination.setZ(getElementOrDefault(source, 2, 0.0));
         return Optional.of(destination);
     }
 }

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,33 +30,38 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.foursoft.harness.kbl2vec.utils.ListUtils.getElementOrDefault;
 import static org.assertj.core.api.Assertions.assertThat;
-import static com.foursoft.harness.kbl2vec.utils.CoordinateGenerator.getCoordinateOrDefault;
 
-class CoordinateGeneratorTest {
+class ListUtilsTest {
 
     @Test
-    void should_returnZeroWhenNoCoordinateCanBeRetrieved() {
+    void should_returnDefaultValue() {
         // Given
-        final List<Double> coordinates = new ArrayList<>();
+        final List<Double> elements = new ArrayList<>();
+        final double defaultValue = 0.0;
+        final int index = 0;
 
         // When
-        final double result = getCoordinateOrDefault(coordinates, 0);
+        final double result = getElementOrDefault(elements, index, defaultValue);
 
         // Then
-        assertThat(result).isEqualTo(0.0);
+        assertThat(result).isEqualTo(defaultValue);
     }
 
     @Test
-    void should_returnCoordinate() {
+    void should_returnElement() {
         // Given
-        final List<Double> coordinates = new ArrayList<>();
-        coordinates.add(1.0);
+        final List<Double> elements = new ArrayList<>();
+        final double defaultValue = 0.0;
+        final int index = 0;
+        final double element = 1.0;
+        elements.add(element);
 
         // When
-        final double result = getCoordinateOrDefault(coordinates, 0);
+        final double result = getElementOrDefault(elements, index, defaultValue);
 
         // Then
-        assertThat(result).isEqualTo(1.0);
+        assertThat(result).isEqualTo(element);
     }
 }
