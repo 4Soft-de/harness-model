@@ -25,15 +25,13 @@
  */
 package com.foursoft.harness.kbl2vec.transform.topology.routing;
 
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl.v25.KblRouting;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecPath;
-import com.foursoft.harness.vec.v2x.VecRouting;
-import com.foursoft.harness.vec.v2x.VecTopologySegment;
-import com.foursoft.harness.vec.v2x.VecWireElementReference;
+import com.foursoft.harness.vec.v2x.*;
 
 public class RoutingTransformer implements Transformer<KblRouting, VecRouting> {
 
@@ -44,6 +42,8 @@ public class RoutingTransformer implements Transformer<KblRouting, VecRouting> {
 
         return TransformationResult.from(destination)
                 .withDownstream(KblRouting.class, VecPath.class, Query.of(source), VecRouting::setPath)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecRouting::getCustomProperties)
                 .withLinker(source::getMandatorySegments, VecTopologySegment.class, VecRouting::getMandatorySegment)
                 .withLinker(Query.of(source.getRoutedWire().getWire()), VecWireElementReference.class,
                             VecRouting::setRoutedElement)
