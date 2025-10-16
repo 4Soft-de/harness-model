@@ -26,12 +26,10 @@
 package com.foursoft.harness.kbl2vec.transform.connectivity;
 
 import com.foursoft.harness.kbl.v25.KblContactPoint;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl.v25.KblTerminalOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecCavityMounting;
-import com.foursoft.harness.vec.v2x.VecContactPoint;
-import com.foursoft.harness.vec.v2x.VecTerminalRole;
-import com.foursoft.harness.vec.v2x.VecWireMounting;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,6 +56,12 @@ class ContactPointTransformerTest {
         orchestrator.addMockMapping(source, cavityMounting);
         orchestrator.addMockMapping(source, wireMounting);
 
+        final KblProcessingInstruction processingInstruction = new KblProcessingInstruction();
+        source.getProcessingInformations().add(processingInstruction);
+
+        final VecCustomProperty customProperty = new VecSimpleValueProperty();
+        orchestrator.addMockMapping(processingInstruction, customProperty);
+
         // When
         final VecContactPoint result = orchestrator.transform(transformer, source);
 
@@ -66,6 +70,7 @@ class ContactPointTransformerTest {
                 .returns("TestId", VecContactPoint::getIdentification)
                 .returns(vecTerminalRole, VecContactPoint::getMountedTerminal)
                 .satisfies(v -> assertThat(v.getCavityMountings()).containsExactly(cavityMounting))
-                .satisfies(v -> assertThat(v.getWireMountings()).containsExactly(wireMounting));
+                .satisfies(v -> assertThat(v.getWireMountings()).containsExactly(wireMounting))
+                .satisfies(v -> assertThat(v.getCustomProperties()).containsExactly(customProperty));
     }
 }

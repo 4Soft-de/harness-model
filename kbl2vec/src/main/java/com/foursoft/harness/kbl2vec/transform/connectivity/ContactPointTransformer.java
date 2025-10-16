@@ -26,16 +26,14 @@
 package com.foursoft.harness.kbl2vec.transform.connectivity;
 
 import com.foursoft.harness.kbl.v25.KblContactPoint;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl.v25.KblTerminalOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.common.util.StreamUtils;
-import com.foursoft.harness.vec.v2x.VecCavityMounting;
-import com.foursoft.harness.vec.v2x.VecContactPoint;
-import com.foursoft.harness.vec.v2x.VecTerminalRole;
-import com.foursoft.harness.vec.v2x.VecWireMounting;
+import com.foursoft.harness.vec.v2x.*;
 
 import java.util.List;
 
@@ -50,6 +48,8 @@ public class ContactPointTransformer implements Transformer<KblContactPoint, Vec
         return TransformationResult.from(destination)
                 .withDownstream(KblContactPoint.class, VecCavityMounting.class, Query.of(source),
                                 VecContactPoint::getCavityMountings)
+                .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
+                                source::getProcessingInformations, VecContactPoint::getCustomProperties)
                 .withDownstream(KblContactPoint.class, VecWireMounting.class, Query.of(source),
                                 VecContactPoint::getWireMountings)
                 .withLinker(Query.fromLists(getTerminalOccurrence(source, context)), VecTerminalRole.class,
