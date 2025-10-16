@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.kbl2vec.transform.topology.routing;
 
-import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblRouting;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
@@ -45,10 +44,8 @@ class PathTransformerTest {
 
         final KblRouting source = new KblRouting();
 
-        final KBLContainer kblContainer = new KBLContainer();
         final KblSegment kblSegment = new KblSegment();
-        kblContainer.getSegments().add(kblSegment);
-        source.setParentKBLContainer(kblContainer);
+        source.getSegments().add(kblSegment);
 
         final VecTopologySegment vecTopologySegment = new VecTopologySegment();
         orchestrator.addMockMapping(kblSegment, vecTopologySegment);

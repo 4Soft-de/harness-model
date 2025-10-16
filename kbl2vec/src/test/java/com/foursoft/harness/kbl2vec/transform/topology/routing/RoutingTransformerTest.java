@@ -46,10 +46,8 @@ class RoutingTransformerTest {
         final KblRouting source = new KblRouting();
         source.setId("TestId");
 
-        final KBLContainer kblContainer = new KBLContainer();
         final KblSegment kblSegment = new KblSegment();
-        kblContainer.getSegments().add(kblSegment);
-        source.setParentKBLContainer(kblContainer);
+        source.getMandatorySegments().add(kblSegment);
 
         final VecTopologySegment vecTopologySegment = new VecTopologySegment();
         orchestrator.addMockMapping(kblSegment, vecTopologySegment);
