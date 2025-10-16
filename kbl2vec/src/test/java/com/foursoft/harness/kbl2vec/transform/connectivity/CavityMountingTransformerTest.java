@@ -30,7 +30,7 @@ class CavityMountingTransformerTest {
         orchestrator.addMockMapping(cavityPlugOccurrence, vecCavityPlugRole);
 
         final VecCavityReference vecCavityReference = new VecCavityReference();
-        orchestrator.addMockMapping(cavityPlugOccurrence, vecCavityReference);
+        orchestrator.addMockMapping(cavityOccurrence, vecCavityReference);
 
         // When
         final VecCavityMounting result = orchestrator.transform(transformer, source);

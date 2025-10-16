@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,8 +26,12 @@
 package com.foursoft.harness.kbl2vec.transform.connectivity;
 
 import com.foursoft.harness.kbl.v25.KblContactPoint;
+import com.foursoft.harness.kbl.v25.KblTerminalOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecCavityMounting;
 import com.foursoft.harness.vec.v2x.VecContactPoint;
+import com.foursoft.harness.vec.v2x.VecTerminalRole;
+import com.foursoft.harness.vec.v2x.VecWireMounting;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,11 +47,25 @@ class ContactPointTransformerTest {
         final KblContactPoint source = new KblContactPoint();
         source.setId("TestId");
 
+        final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
+        source.getAssociatedParts().add(terminalOccurrence);
+
+        final VecTerminalRole vecTerminalRole = new VecTerminalRole();
+        orchestrator.addMockMapping(terminalOccurrence, vecTerminalRole);
+
+        final VecCavityMounting cavityMounting = new VecCavityMounting();
+        final VecWireMounting wireMounting = new VecWireMounting();
+        orchestrator.addMockMapping(source, cavityMounting);
+        orchestrator.addMockMapping(source, wireMounting);
+
         // When
         final VecContactPoint result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecContactPoint::getIdentification);
+                .returns("TestId", VecContactPoint::getIdentification)
+                .returns(vecTerminalRole, VecContactPoint::getMountedTerminal)
+                .satisfies(v -> assertThat(v.getCavityMountings()).containsExactly(cavityMounting))
+                .satisfies(v -> assertThat(v.getWireMountings()).containsExactly(wireMounting));
     }
 }
