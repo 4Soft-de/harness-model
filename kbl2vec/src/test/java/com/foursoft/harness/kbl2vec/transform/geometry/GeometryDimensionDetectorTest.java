@@ -36,21 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class GeometryDimensionDetectorTest {
 
     @Test
-    void should_returnTrueWhenPointHasTwoDimensions() {
-        // Given
-        final KblCartesianPoint point = new KblCartesianPoint();
-        point.getCoordinates().add(1.0);
-        point.getCoordinates().add(2.0);
-
-        // When
-        final boolean result = GeometryDimensionDetector.isTwoDimensional(point);
-
-        // Then
-        assertThat(result).isTrue();
-    }
-
-    @Test
-    void should_returnTrueWhenPointHasThreeDimensions() {
+    void should_returnTrueWhenCartesianPointHasExpectedDimensions() {
         // Given
         final KblCartesianPoint point = new KblCartesianPoint();
         point.getCoordinates().add(1.0);
@@ -58,28 +44,14 @@ class GeometryDimensionDetectorTest {
         point.getCoordinates().add(3.0);
 
         // When
-        final boolean result = GeometryDimensionDetector.isThreeDimensional(point);
+        final boolean result = GeometryDimensionDetector.hasDimensions(point, 3);
 
         // Then
         assertThat(result).isTrue();
     }
 
     @Test
-    void should_returnTrueWhenVectorHasTwoDimensions() {
-        // Given
-        final List<Double> vectors = new ArrayList<>();
-        vectors.add(1.0);
-        vectors.add(2.0);
-
-        // When
-        final boolean result = GeometryDimensionDetector.isTwoDimensional(vectors);
-
-        // Then
-        assertThat(result).isTrue();
-    }
-
-    @Test
-    void should_returnTrueWhenVectorHasThreeDimensions() {
+    void should_returnTrueWhenVectorHasExpectedDimensions() {
         // Given
         final List<Double> vectors = new ArrayList<>();
         vectors.add(1.0);
@@ -87,47 +59,27 @@ class GeometryDimensionDetectorTest {
         vectors.add(3.0);
 
         // When
-        final boolean result = GeometryDimensionDetector.isThreeDimensional(vectors);
+        final boolean result = GeometryDimensionDetector.hasDimensions(vectors, 3);
 
         // Then
         assertThat(result).isTrue();
     }
 
     @Test
-    void should_detectTwoDimensions() {
-        // When
-        final KblCartesianPoint firstPoint = new KblCartesianPoint();
-        firstPoint.getCoordinates().add(1.0);
-        firstPoint.getCoordinates().add(2.0);
-
-        final List<KblCartesianPoint> cartesianPoints = new ArrayList<>();
-        cartesianPoints.add(firstPoint);
-
-        // When
-        final GeometryDimensionDetector.DIMENSION result = GeometryDimensionDetector.getNumberOfDimensions(
-                cartesianPoints);
-
-        // Then
-        assertThat(result).isEqualTo(GeometryDimensionDetector.DIMENSION.TWO_D);
-    }
-
-    @Test
-    void should_detectThreeDimensions() {
+    void should_returnTrueWhenFirstCartesianPointHasExpectedDimensions() {
         // Given
-        final KblCartesianPoint firstPoint = new KblCartesianPoint();
-        firstPoint.getCoordinates().add(1.0);
-        firstPoint.getCoordinates().add(2.0);
-        firstPoint.getCoordinates().add(3.0);
+        final KblCartesianPoint point = new KblCartesianPoint();
+        point.getCoordinates().add(1.0);
+        point.getCoordinates().add(2.0);
 
-        final List<KblCartesianPoint> cartesianPoints = new ArrayList<>();
-        cartesianPoints.add(firstPoint);
+        final List<KblCartesianPoint> vectors = new ArrayList<>();
+        vectors.add(point);
 
         // When
-        final GeometryDimensionDetector.DIMENSION result = GeometryDimensionDetector.getNumberOfDimensions(
-                cartesianPoints);
+        final boolean result = GeometryDimensionDetector.hasDimensions(vectors, 2);
 
         // Then
-        assertThat(result).isEqualTo(GeometryDimensionDetector.DIMENSION.THREE_D);
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -137,7 +89,7 @@ class GeometryDimensionDetectorTest {
         point.getCoordinates().add(1.0);
 
         // When
-        final boolean result = GeometryDimensionDetector.isTwoDimensional(point);
+        final boolean result = GeometryDimensionDetector.hasDimensions(point, 2);
 
         // Then
         assertThat(result).isFalse();

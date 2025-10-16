@@ -41,19 +41,20 @@ public class CartesianPoint3DTransformer implements Transformer<KblCartesianPoin
     @Override
     public TransformationResult<VecCartesianPoint3D> transform(final TransformationContext context,
                                                                final KblCartesianPoint source) {
-        if (source == null || source.getCoordinates().isEmpty()) {
+        final VecCartesianPoint3D destination = new VecCartesianPoint3D();
+        final int DIMENSIONS = 3;
+
+        final List<Double> coordinates = source.getCoordinates();
+        if (source.getCoordinates().isEmpty()) {
             return TransformationResult.noResult();
         }
 
-        if (!GeometryDimensionDetector.isThreeDimensional(source)) {
+        if (!GeometryDimensionDetector.hasDimensions(source, DIMENSIONS)) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation. Expected 3 but found {}.",
+                    "Wrong number of coordinates provided for the transformation. Expected {} but found {}.",
+                    DIMENSIONS,
                     source.getCoordinates().size());
         }
-
-        final List<Double> coordinates = source.getCoordinates();
-        final VecCartesianPoint3D destination = new VecCartesianPoint3D();
-
         destination.setX(getElementOrDefault(coordinates, 0, 0.0));
         destination.setY(getElementOrDefault(coordinates, 1, 0.0));
         destination.setZ(getElementOrDefault(coordinates, 2, 0.0));

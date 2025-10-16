@@ -41,18 +41,21 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
     public TransformationResult<VecGeometrySegment3D> transform(final TransformationContext context,
                                                                 final KblSegment source) {
         final VecGeometrySegment3D destination = new VecGeometrySegment3D();
+        final int DIMENSIONS = 3;
 
-        if (!GeometryDimensionDetector.isThreeDimensional(source.getStartVectors())) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), DIMENSIONS)) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of start vectors. Expected 3 but " +
+                    "Wrong number of coordinates provided for the transformation of start vectors. Expected {} but " +
                             "found {}.",
+                    DIMENSIONS,
                     source.getStartVectors().size());
         }
 
-        if (!GeometryDimensionDetector.isThreeDimensional(source.getEndVectors())) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getEndVectors(), DIMENSIONS)) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of end vectors. Expected 3 but " +
+                    "Wrong number of coordinates provided for the transformation of end vectors. Expected {} but " +
                             "found {}.",
+                    DIMENSIONS,
                     source.getEndVectors().size());
         }
 

@@ -45,15 +45,13 @@ public class BuildingBlockSpecification2DTransformer
     @Override
     public TransformationResult<VecBuildingBlockSpecification2D> transform(final TransformationContext context,
                                                                            final KblHarness source) {
-        final GeometryDimensionDetector.DIMENSION dimensions = GeometryDimensionDetector.getNumberOfDimensions(
-                source.getParentKBLContainer().getCartesianPoints());
+        final VecBuildingBlockSpecification2D destination = new VecBuildingBlockSpecification2D();
+        final int DIMENSIONS = 2;
 
-        if (!dimensions.equals(GeometryDimensionDetector.DIMENSION.TWO_D)) {
-            context.getLogger().warn("Dimensional shape is not 2D. Skipping transformation.");
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
             return TransformationResult.noResult();
         }
-
-        final VecBuildingBlockSpecification2D destination = new VecBuildingBlockSpecification2D();
+        context.getLogger().info("Detected 2D data. Creating VEC 2D specifications.");
 
         return TransformationResult.from(destination)
                 .withDownstream(KblNode.class, VecGeometryNode2D.class,

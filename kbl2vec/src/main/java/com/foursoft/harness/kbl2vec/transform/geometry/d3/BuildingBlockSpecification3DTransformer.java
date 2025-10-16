@@ -45,15 +45,13 @@ public class BuildingBlockSpecification3DTransformer
     @Override
     public TransformationResult<VecBuildingBlockSpecification3D> transform(final TransformationContext context,
                                                                            final KblHarness source) {
-        final GeometryDimensionDetector.DIMENSION dimensions = GeometryDimensionDetector.getNumberOfDimensions(
-                source.getParentKBLContainer().getCartesianPoints());
+        final VecBuildingBlockSpecification3D destination = new VecBuildingBlockSpecification3D();
+        final int DIMENSIONS = 3;
 
-        if (!dimensions.equals(GeometryDimensionDetector.DIMENSION.THREE_D)) {
-            context.getLogger().warn("Dimensional shape is not 3D. Skipping transformation.");
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
             return TransformationResult.noResult();
         }
-
-        final VecBuildingBlockSpecification3D destination = new VecBuildingBlockSpecification3D();
+        context.getLogger().info("Detected 3D data. Creating VEC 3D specifications.");
 
         return TransformationResult.from(destination)
                 .withDownstream(KblNode.class, VecGeometryNode3D.class,

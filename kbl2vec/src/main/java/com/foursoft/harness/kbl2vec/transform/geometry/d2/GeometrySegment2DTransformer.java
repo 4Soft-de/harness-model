@@ -41,18 +41,21 @@ public class GeometrySegment2DTransformer implements Transformer<KblSegment, Vec
     public TransformationResult<VecGeometrySegment2D> transform(final TransformationContext context,
                                                                 final KblSegment source) {
         final VecGeometrySegment2D destination = new VecGeometrySegment2D();
+        final int DIMENSIONS = 2;
 
-        if (!GeometryDimensionDetector.isTwoDimensional(source.getStartVectors())) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), DIMENSIONS)) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of start vectors. Expected 2 but " +
+                    "Wrong number of coordinates provided for the transformation of start vectors. Expected {} but " +
                             "found {}.",
+                    DIMENSIONS,
                     source.getStartVectors().size());
         }
 
-        if (!GeometryDimensionDetector.isTwoDimensional(source.getEndVectors())) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getEndVectors(), DIMENSIONS)) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of end vectors. Expected 2 but " +
+                    "Wrong number of coordinates provided for the transformation of end vectors. Expected {} but " +
                             "found {}.",
+                    DIMENSIONS,
                     source.getEndVectors().size());
         }
 
