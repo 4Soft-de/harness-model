@@ -23,13 +23,13 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.geometry.d3;
+package com.foursoft.harness.kbl2vec.transform.geometry.d3;
 
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
+import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
 
 import java.util.List;

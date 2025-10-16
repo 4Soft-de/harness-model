@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,40 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.geometry.d2;
+package com.foursoft.harness.kbl2vec.transform.geometry.d2;
 
-import com.foursoft.harness.kbl.v25.KblCartesianPoint;
+import com.foursoft.harness.kbl.v25.KblNode;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
+import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 
-import java.util.List;
-
-import static com.foursoft.harness.kbl2vec.utils.CoordinateGenerator.getCoordinateOrDefault;
-
-public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoint, VecCartesianPoint2D> {
+public class GeometryNode2DTransformer implements Transformer<KblNode, VecGeometryNode2D> {
 
     @Override
-    public TransformationResult<VecCartesianPoint2D> transform(final TransformationContext context,
-                                                               final KblCartesianPoint source) {
-        if (source == null || source.getCoordinates().isEmpty()) {
-            return TransformationResult.noResult();
-        }
+    public TransformationResult<VecGeometryNode2D> transform(final TransformationContext context,
+                                                             final KblNode source) {
+        final VecGeometryNode2D destination = new VecGeometryNode2D();
 
-        if (!GeometryDimensionDetector.isTwoDimensional(source)) {
-            context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation. Expected 2 but found {}.",
-                    source.getCoordinates().size());
-        }
-
-        final List<Double> coordinates = source.getCoordinates();
-        final VecCartesianPoint2D destination = new VecCartesianPoint2D();
-
-        destination.setX(getCoordinateOrDefault(coordinates, 0));
-        destination.setY(getCoordinateOrDefault(coordinates, 1));
-
-        return TransformationResult.of(destination);
+        return TransformationResult.from(destination)
+                .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint2D.class,
+                            VecGeometryNode2D::setCartesianPoint)
+                .build();
     }
 }

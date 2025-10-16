@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.utils;
+package com.foursoft.harness.kbl2vec.transform.geometry;
 
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import org.junit.jupiter.api.Test;

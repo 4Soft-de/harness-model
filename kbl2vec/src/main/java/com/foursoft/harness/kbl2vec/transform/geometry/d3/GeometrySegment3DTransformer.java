@@ -23,48 +23,48 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.geometry.d2;
+package com.foursoft.harness.kbl2vec.transform.geometry.d3;
 
 import com.foursoft.harness.kbl.v25.KblSegment;
-import com.foursoft.harness.kbl2vec.convert.DoublesToCartesianVector2DConverter;
+import com.foursoft.harness.kbl2vec.convert.DoublesToCartesianVector3DConverter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.kbl2vec.utils.GeometryDimensionDetector;
-import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
-import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
+import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
+import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
+import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
 
-public class GeometrySegment2DTransformer implements Transformer<KblSegment, VecGeometrySegment2D> {
+public class GeometrySegment3DTransformer implements Transformer<KblSegment, VecGeometrySegment3D> {
 
     @Override
-    public TransformationResult<VecGeometrySegment2D> transform(final TransformationContext context,
+    public TransformationResult<VecGeometrySegment3D> transform(final TransformationContext context,
                                                                 final KblSegment source) {
-        final VecGeometrySegment2D destination = new VecGeometrySegment2D();
+        final VecGeometrySegment3D destination = new VecGeometrySegment3D();
 
-        if (!GeometryDimensionDetector.isTwoDimensional(source.getStartVectors())) {
+        if (!GeometryDimensionDetector.isThreeDimensional(source.getStartVectors())) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of start vectors. Expected 2 but " +
+                    "Wrong number of coordinates provided for the transformation of start vectors. Expected 3 but " +
                             "found {}.",
                     source.getStartVectors().size());
         }
 
-        if (!GeometryDimensionDetector.isTwoDimensional(source.getEndVectors())) {
+        if (!GeometryDimensionDetector.isThreeDimensional(source.getEndVectors())) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of end vectors. Expected 2 but " +
+                    "Wrong number of coordinates provided for the transformation of end vectors. Expected 3 but " +
                             "found {}.",
                     source.getEndVectors().size());
         }
 
-        final DoublesToCartesianVector2DConverter converter =
-                context.getConverterRegistry().getDoublesToCartesianVector2DConverter();
+        final DoublesToCartesianVector3DConverter converter =
+                context.getConverterRegistry().getDoublesToCartesianVector3DConverter();
         converter.convert(source.getStartVectors()).ifPresent(destination::setStartVector);
         converter.convert(source.getEndVectors()).ifPresent(destination::setEndVector);
 
         return TransformationResult.from(destination)
-                .withLinker(Query.of(source.getStartNode()), VecGeometryNode2D.class,
-                            VecGeometrySegment2D::setStartNode)
-                .withLinker(Query.of(source.getEndNode()), VecGeometryNode2D.class, VecGeometrySegment2D::setEndNode)
+                .withLinker(Query.of(source.getStartNode()), VecGeometryNode3D.class,
+                            VecGeometrySegment3D::setStartNode)
+                .withLinker(Query.of(source.getEndNode()), VecGeometryNode3D.class, VecGeometrySegment3D::setEndNode)
                 .build();
     }
 }

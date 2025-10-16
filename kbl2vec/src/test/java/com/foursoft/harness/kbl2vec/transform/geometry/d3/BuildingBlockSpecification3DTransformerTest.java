@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.geometry.d3;
+package com.foursoft.harness.kbl2vec.transform.geometry.d3;
 
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;

@@ -23,51 +23,37 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.utils;
+package com.foursoft.harness.kbl2vec.transform.geometry.d2;
 
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
+import com.foursoft.harness.kbl.v25.KblNode;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
+import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class GeometryDimensionDetector {
+class GeometryNode2DTransformerTest {
 
-    private GeometryDimensionDetector() {
-    }
+    @Test
+    void should_transformGeometryNode2D() {
+        // Given
+        final GeometryNode2DTransformer transformer = new GeometryNode2DTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-    public enum DIMENSION {
-        TWO_D,
-        THREE_D,
-        NONE
-    }
+        final KblNode source = new KblNode();
+        final KblCartesianPoint cartesianPoint = new KblCartesianPoint();
+        source.setCartesianPoint(cartesianPoint);
 
-    public static boolean isTwoDimensional(final KblCartesianPoint cartesianPoint) {
-        return cartesianPoint.getCoordinates().size() == 2;
-    }
+        final VecCartesianPoint2D vecCartesianPoint2D = new VecCartesianPoint2D();
+        orchestrator.addMockMapping(cartesianPoint, vecCartesianPoint2D);
 
-    public static boolean isThreeDimensional(final KblCartesianPoint cartesianPoint) {
-        return cartesianPoint.getCoordinates().size() >= 3;
-    }
+        // When
+        final VecGeometryNode2D result = orchestrator.transform(transformer, source);
 
-    public static boolean isTwoDimensional(final List<Double> vectors) {
-        return vectors.size() == 2;
-    }
-
-    public static boolean isThreeDimensional(final List<Double> vectors) {
-        return vectors.size() >= 3;
-    }
-
-    public static DIMENSION getNumberOfDimensions(final List<KblCartesianPoint> cartesianPoints) {
-        if (cartesianPoints == null || cartesianPoints.isEmpty()) {
-            return DIMENSION.NONE;
-        }
-
-        final KblCartesianPoint firstCartesianPoint = cartesianPoints.get(0);
-        if (isTwoDimensional(firstCartesianPoint)) {
-            return DIMENSION.TWO_D;
-        } else if (isThreeDimensional(firstCartesianPoint)) {
-            return DIMENSION.THREE_D;
-        } else {
-            return DIMENSION.NONE;
-        }
+        // Then
+        assertThat(result).isNotNull()
+                .returns(vecCartesianPoint2D, VecGeometryNode2D::getCartesianPoint);
     }
 }
