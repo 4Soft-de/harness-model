@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.wires;
 
+import com.foursoft.harness.kbl.v25.KblCore;
 import com.foursoft.harness.kbl.v25.KblGeneralWire;
 import com.foursoft.harness.kbl.v25.KblPart;
 import com.foursoft.harness.kbl2vec.core.Query;
@@ -48,30 +49,33 @@ public class WireDocumentVersionTransformer implements Transformer<KblPart, VecD
 
             final TransformationResult.Builder<VecDocumentVersion> builder =
                     TransformationResult.from(documentVersion)
-
-                            .withFragment(commonComponentInformation(source, context));
+                            .withFragment(commonComponentInformation(source, context))
+                            .withDownstream(KblGeneralWire.class, VecWireElementSpecification.class, Query.of(wire),
+                                            VecDocumentVersion::getSpecifications)
+                            .withDownstream(KblGeneralWire.class, VecInsulationSpecification.class, Query.of(wire),
+                                            VecDocumentVersion::getSpecifications)
+                            .withDownstream(KblGeneralWire.class, VecWireSpecification.class, Query.of(wire),
+                                            VecDocumentVersion::getSpecifications);
 
             final Optional<KblGeneralWire> singleCoreWire = Optional.of(wire).filter(w -> w.getCores().isEmpty());
-
-            if (!wire.getCores().isEmpty()) {
-                context.getLogger().warn(
-                        "{} has cores defined. Multicores are currently not supported by KBL2VEC will be handled " +
-                                "incorrectly.",
-                        wire);
+            if (singleCoreWire.isPresent()) {
+                return builder
+                        .withDownstream(KblGeneralWire.class, VecCoreSpecification.class,
+                                        () -> singleCoreWire.stream().toList(), VecDocumentVersion::getSpecifications)
+                        .build();
             }
 
-            builder
-                    .withDownstream(KblGeneralWire.class, VecWireElementSpecification.class, Query.of(wire),
+            // Multi-Core
+            return builder
+                    .withDownstream(KblCore.class, VecWireElementSpecification.class, wire::getCores,
                                     VecDocumentVersion::getSpecifications)
-                    .withDownstream(KblGeneralWire.class, VecInsulationSpecification.class, Query.of(wire),
+                    .withDownstream(KblCore.class, VecInsulationSpecification.class, wire::getCores,
                                     VecDocumentVersion::getSpecifications)
-                    .withDownstream(KblGeneralWire.class, VecCoreSpecification.class,
-                                    () -> singleCoreWire.stream().toList(),
+                    .withDownstream(KblCore.class, VecWireSpecification.class, wire::getCores,
                                     VecDocumentVersion::getSpecifications)
-                    .withDownstream(KblGeneralWire.class, VecWireSpecification.class, Query.of(wire),
-                                    VecDocumentVersion::getSpecifications);
-
-            return builder.build();
+                    .withDownstream(KblCore.class, VecCoreSpecification.class, wire::getCores,
+                                    VecDocumentVersion::getSpecifications)
+                    .build();
         }
         return TransformationResult.noResult();
     }
