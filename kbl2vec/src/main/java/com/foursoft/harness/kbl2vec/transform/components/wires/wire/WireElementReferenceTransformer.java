@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires;
+package com.foursoft.harness.kbl2vec.transform.components.wires.wire;
 
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
@@ -38,7 +38,7 @@ import com.foursoft.harness.vec.v2x.VecWireLength;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WireWireElementReferenceTransformer
+public class WireElementReferenceTransformer
         implements Transformer<KblGeneralWireOccurrence, VecWireElementReference> {
 
     @Override

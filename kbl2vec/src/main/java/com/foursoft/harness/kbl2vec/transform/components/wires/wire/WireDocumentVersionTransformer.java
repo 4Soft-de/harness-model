@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires;
+package com.foursoft.harness.kbl2vec.transform.components.wires.wire;
 
 import com.foursoft.harness.kbl.v25.KblCore;
 import com.foursoft.harness.kbl.v25.KblGeneralWire;

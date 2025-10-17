@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires;
+package com.foursoft.harness.kbl2vec.transform.components.wires.wire;
 
 import com.foursoft.harness.kbl.v25.KblGeneralWire;
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
@@ -37,7 +37,7 @@ import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecWireElementSpecification;
 
-public class WireWireElementSpecificationTransformer
+public class WireElementSpecificationTransformer
         implements Transformer<KblGeneralWire, VecWireElementSpecification> {
 
     @Override
