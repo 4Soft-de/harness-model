@@ -42,19 +42,19 @@ public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoin
     public TransformationResult<VecCartesianPoint2D> transform(final TransformationContext context,
                                                                final KblCartesianPoint source) {
         final VecCartesianPoint2D destination = new VecCartesianPoint2D();
-        final int DIMENSIONS = 2;
 
         final List<Double> coordinates = source.getCoordinates();
         if (source.getCoordinates().isEmpty()) {
             return TransformationResult.noResult();
         }
 
-        if (!GeometryDimensionDetector.hasDimensions(source, DIMENSIONS)) {
+        if (!GeometryDimensionDetector.hasDimensions(source, GeometryDimensionDetector.GEO_2D)) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation. Expected {} but found {}.",
-                    DIMENSIONS,
-                    source.getCoordinates().size());
+                    "Failed to transform KblCartesianPoint (xmlId: {}). Expected 2 coordinates for 2D " +
+                            "transformation, but found {}: {}",
+                    source.getXmlId(), source.getCoordinates().size(), source.getCoordinates());
         }
+
         destination.setX(getElementOrDefault(coordinates, 0, 0.0));
         destination.setY(getElementOrDefault(coordinates, 1, 0.0));
 

@@ -41,22 +41,19 @@ public class GeometrySegment2DTransformer implements Transformer<KblSegment, Vec
     public TransformationResult<VecGeometrySegment2D> transform(final TransformationContext context,
                                                                 final KblSegment source) {
         final VecGeometrySegment2D destination = new VecGeometrySegment2D();
-        final int DIMENSIONS = 2;
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), DIMENSIONS)) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), GeometryDimensionDetector.GEO_2D)) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of start vectors. Expected {} but " +
-                            "found {}.",
-                    DIMENSIONS,
-                    source.getStartVectors().size());
+                    "Failed to transform start vectors of KblSegment (ID: {}). Expected 2 coordinates for 2D " +
+                            "transformation, but found {}: {}",
+                    source.getId(), source.getStartVectors().size(), source.getStartVectors());
         }
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getEndVectors(), DIMENSIONS)) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getEndVectors(), GeometryDimensionDetector.GEO_2D)) {
             context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of end vectors. Expected {} but " +
-                            "found {}.",
-                    DIMENSIONS,
-                    source.getEndVectors().size());
+                    "Failed to transform end vectors of KblSegment (ID: {}). Expected 2 coordinates for 2D " +
+                            "transformation, but found {}: {}",
+                    source.getId(), source.getEndVectors().size(), source.getEndVectors());
         }
 
         final DoublesToCartesianVector2DConverter converter =
