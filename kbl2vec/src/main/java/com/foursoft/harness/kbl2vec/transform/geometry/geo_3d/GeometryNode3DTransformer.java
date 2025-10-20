@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
+import com.foursoft.harness.vec.v2x.VecTopologyNode;
 
 public class GeometryNode3DTransformer implements Transformer<KblNode, VecGeometryNode3D> {
 
@@ -44,6 +45,7 @@ public class GeometryNode3DTransformer implements Transformer<KblNode, VecGeomet
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint3D.class,
                             VecGeometryNode3D::setCartesianPoint)
+                .withLinker(Query.of(source), VecTopologyNode.class, VecGeometryNode3D::setReferenceNode)
                 .build();
     }
 }

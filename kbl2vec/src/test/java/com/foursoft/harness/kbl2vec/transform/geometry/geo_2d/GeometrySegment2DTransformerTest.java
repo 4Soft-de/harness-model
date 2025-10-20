@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
+import com.foursoft.harness.vec.v2x.VecTopologySegment;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -60,6 +61,9 @@ class GeometrySegment2DTransformerTest {
         orchestrator.addMockMapping(startNode, vecStartNode);
         orchestrator.addMockMapping(endNode, vecEndNode);
 
+        final VecTopologySegment vecTopologySegment = new VecTopologySegment();
+        orchestrator.addMockMapping(source, vecTopologySegment);
+
         // When
         final VecGeometrySegment2D result = orchestrator.transform(transformer, source);
 
@@ -68,6 +72,7 @@ class GeometrySegment2DTransformerTest {
                 .returns("TestId", VecGeometrySegment2D::getIdentification)
                 .returns(vecEndNode, VecGeometrySegment2D::getEndNode)
                 .returns(vecStartNode, VecGeometrySegment2D::getStartNode)
+                .returns(vecTopologySegment, VecGeometrySegment2D::getReferenceSegment)
                 .satisfies(v -> assertThat(v.getStartVector().getX()).isEqualTo(1.0))
                 .satisfies(v -> assertThat(v.getStartVector().getY()).isEqualTo(2.0))
                 .satisfies(v -> assertThat(v.getEndVector().getX()).isEqualTo(1.0))

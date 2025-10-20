@@ -29,7 +29,9 @@ import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
+import com.foursoft.harness.vec.v2x.VecGeometrySegment;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
+import com.foursoft.harness.vec.v2x.VecTopologySegment;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -62,6 +64,9 @@ class GeometrySegment3DTransformerTest {
         orchestrator.addMockMapping(startNode, vecStartNode);
         orchestrator.addMockMapping(endNode, vecEndNode);
 
+        final VecTopologySegment vecTopologySegment = new VecTopologySegment();
+        orchestrator.addMockMapping(source, vecTopologySegment);
+
         // When
         final VecGeometrySegment3D result = orchestrator.transform(transformer, source);
 
@@ -70,6 +75,7 @@ class GeometrySegment3DTransformerTest {
                 .returns("TestId", VecGeometrySegment3D::getIdentification)
                 .returns(vecEndNode, VecGeometrySegment3D::getEndNode)
                 .returns(vecStartNode, VecGeometrySegment3D::getStartNode)
+                .returns(vecTopologySegment, VecGeometrySegment3D::getReferenceSegment)
                 .satisfies(v -> assertThat(v.getStartVector().getX()).isEqualTo(1.0))
                 .satisfies(v -> assertThat(v.getStartVector().getY()).isEqualTo(2.0))
                 .satisfies(v -> assertThat(v.getStartVector().getZ()).isEqualTo(3.0))

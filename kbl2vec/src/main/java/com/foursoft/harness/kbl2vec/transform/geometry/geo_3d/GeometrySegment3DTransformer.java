@@ -34,6 +34,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
+import com.foursoft.harness.vec.v2x.VecTopologySegment;
 
 public class GeometrySegment3DTransformer implements Transformer<KblSegment, VecGeometrySegment3D> {
 
@@ -66,6 +67,7 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
                 .withLinker(Query.of(source.getStartNode()), VecGeometryNode3D.class,
                             VecGeometrySegment3D::setStartNode)
                 .withLinker(Query.of(source.getEndNode()), VecGeometryNode3D.class, VecGeometrySegment3D::setEndNode)
+                .withLinker(Query.of(source), VecTopologySegment.class, VecGeometrySegment3D::setReferenceSegment)
                 .build();
     }
 }
