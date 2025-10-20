@@ -60,8 +60,10 @@ public class ConversionOrchestrator<S, D> {
         this.sourceClass = sourceRootClass;
         this.destinationClass = destinationRootClass;
         this.transformerRegistry = transformerRegistry;
-        this.transformationContext = new TransformationContextImpl(conversionProperties,
-                                                                   new ConverterRegistry(conversionProperties),
+        final Logger transformLogger = Logging.TRANSFORM_LOGGER;
+        this.transformationContext = new TransformationContextImpl(transformLogger, conversionProperties,
+                                                                   new ConverterRegistry(transformLogger,
+                                                                                         conversionProperties),
                                                                    new EntityMapping());
         LOGGER.debug("Created orchestrator for conversion pipeline.");
     }

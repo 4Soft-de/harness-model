@@ -34,11 +34,12 @@ public class TransformationContextImpl implements TransformationContext {
     private final ConversionProperties conversionProperties;
     private final ConverterRegistry converterRegistry;
     private final EntityMapping entityMapping;
-    private final Logger logger = Logging.TRANSFORM_LOGGER;
+    private final Logger logger;
     private final AtomicInteger idCounter = new AtomicInteger(0);
 
-    public TransformationContextImpl(final ConversionProperties conversionProperties,
+    public TransformationContextImpl(final Logger transformationLog, final ConversionProperties conversionProperties,
                                      final ConverterRegistry converterRegistry, final EntityMapping entityMapping) {
+        this.logger = transformationLog;
         this.conversionProperties = conversionProperties;
         this.converterRegistry = converterRegistry;
         this.entityMapping = entityMapping;

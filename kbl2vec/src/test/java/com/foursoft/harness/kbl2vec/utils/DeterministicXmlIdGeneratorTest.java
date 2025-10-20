@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,14 +27,12 @@ package com.foursoft.harness.kbl2vec.utils;
 
 import com.foursoft.harness.kbl.v25.KblSlot;
 import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
-import com.foursoft.harness.kbl2vec.core.ConversionProperties;
-import com.foursoft.harness.kbl2vec.core.EntityMapping;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationContextImpl;
+import com.foursoft.harness.kbl2vec.core.*;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecSlot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -44,8 +42,9 @@ class DeterministicXmlIdGeneratorTest {
     @BeforeEach
     void setUp() {
         final ConversionProperties conversionProperties = new ConversionProperties();
-        this.context = new TransformationContextImpl(conversionProperties,
-                                                     new ConverterRegistry(conversionProperties),
+        final Logger transformLogger = Logging.TRANSFORM_LOGGER;
+        this.context = new TransformationContextImpl(transformLogger, conversionProperties,
+                                                     new ConverterRegistry(transformLogger, conversionProperties),
                                                      new EntityMapping());
     }
 

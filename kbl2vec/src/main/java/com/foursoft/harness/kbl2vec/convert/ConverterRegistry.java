@@ -27,6 +27,7 @@ package com.foursoft.harness.kbl2vec.convert;
 
 import com.foursoft.harness.kbl2vec.core.ConversionProperties;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
+import org.slf4j.Logger;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -37,8 +38,10 @@ public class ConverterRegistry {
     private final StringToColorConverter stringToColorConverter;
     private final StringToWireTypeConverter stringToWireTypeConverter;
     private final StringToMaterialConverter stringToMaterialConverter;
+    private final Logger transformLogger;
 
-    public ConverterRegistry(final ConversionProperties conversionProperties) {
+    public ConverterRegistry(final Logger transformLogger, final ConversionProperties conversionProperties) {
+        this.transformLogger = transformLogger;
         Objects.requireNonNull(conversionProperties);
         this.stringToLocalizedString = new StringToLocalizedStringConverter(conversionProperties
                                                                                     .getDefaultLanguageCode());

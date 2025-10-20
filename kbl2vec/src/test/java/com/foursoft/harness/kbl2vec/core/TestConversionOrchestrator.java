@@ -26,14 +26,17 @@
 package com.foursoft.harness.kbl2vec.core;
 
 import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
+import org.slf4j.Logger;
 
 public class TestConversionOrchestrator {
     private final TransformationContext transformationContext;
 
     public TestConversionOrchestrator() {
         final ConversionProperties conversionProperties = new ConversionProperties();
-        this.transformationContext = new TransformationContextImpl(conversionProperties,
-                                                                   new ConverterRegistry(conversionProperties),
+        final Logger transformLogger = Logging.TRANSFORM_LOGGER;
+        this.transformationContext = new TransformationContextImpl(transformLogger, conversionProperties,
+                                                                   new ConverterRegistry(transformLogger,
+                                                                                         conversionProperties),
                                                                    new EntityMapping());
     }
 
