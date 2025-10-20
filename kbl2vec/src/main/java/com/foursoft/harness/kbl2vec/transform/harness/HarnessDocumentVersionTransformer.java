@@ -43,7 +43,7 @@ public class HarnessDocumentVersionTransformer implements Transformer<KblHarness
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
                                                               final KblHarness source) {
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
-        
+
         documentVersion.setDocumentType("HarnessDescription");
 
         return TransformationResult.from(documentVersion)
@@ -56,7 +56,8 @@ public class HarnessDocumentVersionTransformer implements Transformer<KblHarness
                                 VecDocumentVersion::getSpecifications)
                 .withDownstream(KblHarness.class, VecConfigurationConstraintSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
-
+                .withDownstream(KblHarness.class, VecRoutingSpecification.class, Query.of(source),
+                                VecDocumentVersion::getSpecifications)
                 // Modules
                 .withDownstream(KblHarness.class, VecCompositionSpecification.class, Query.of(source),
                                 VecDocumentVersion::getSpecifications)
