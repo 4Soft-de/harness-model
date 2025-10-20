@@ -39,6 +39,7 @@ public class GeometryNode2DTransformer implements Transformer<KblNode, VecGeomet
     public TransformationResult<VecGeometryNode2D> transform(final TransformationContext context,
                                                              final KblNode source) {
         final VecGeometryNode2D destination = new VecGeometryNode2D();
+        destination.setIdentification(source.getId());
 
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint2D.class,

@@ -43,6 +43,7 @@ class GeometrySegment2DTransformerTest {
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblSegment source = new KblSegment();
+        source.setId("TestId");
 
         source.getStartVectors().add(1.0);
         source.getStartVectors().add(2.0);
@@ -64,6 +65,7 @@ class GeometrySegment2DTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
+                .returns("TestId", VecGeometrySegment2D::getIdentification)
                 .returns(vecEndNode, VecGeometrySegment2D::getEndNode)
                 .returns(vecStartNode, VecGeometrySegment2D::getStartNode)
                 .satisfies(v -> assertThat(v.getStartVector().getX()).isEqualTo(1.0))

@@ -39,6 +39,7 @@ public class GeometryNode3DTransformer implements Transformer<KblNode, VecGeomet
     public TransformationResult<VecGeometryNode3D> transform(final TransformationContext context,
                                                              final KblNode source) {
         final VecGeometryNode3D destination = new VecGeometryNode3D();
+        destination.setIdentification(source.getId());
 
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint3D.class,

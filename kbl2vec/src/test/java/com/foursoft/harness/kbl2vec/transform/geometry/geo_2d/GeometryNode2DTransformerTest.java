@@ -43,6 +43,8 @@ class GeometryNode2DTransformerTest {
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblNode source = new KblNode();
+        source.setId("TestId");
+
         final KblCartesianPoint cartesianPoint = new KblCartesianPoint();
         source.setCartesianPoint(cartesianPoint);
 
@@ -54,6 +56,7 @@ class GeometryNode2DTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
+                .returns("TestId", VecGeometryNode2D::getIdentification)
                 .returns(vecCartesianPoint2D, VecGeometryNode2D::getCartesianPoint);
     }
 }

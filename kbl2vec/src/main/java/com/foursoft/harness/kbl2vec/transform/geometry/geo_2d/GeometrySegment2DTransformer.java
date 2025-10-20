@@ -41,6 +41,7 @@ public class GeometrySegment2DTransformer implements Transformer<KblSegment, Vec
     public TransformationResult<VecGeometrySegment2D> transform(final TransformationContext context,
                                                                 final KblSegment source) {
         final VecGeometrySegment2D destination = new VecGeometrySegment2D();
+        destination.setIdentification(source.getId());
 
         if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), GeometryDimensionDetector.GEO_2D)) {
             context.getLogger().warn(

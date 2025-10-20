@@ -41,6 +41,7 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
     public TransformationResult<VecGeometrySegment3D> transform(final TransformationContext context,
                                                                 final KblSegment source) {
         final VecGeometrySegment3D destination = new VecGeometrySegment3D();
+        destination.setIdentification(source.getId());
 
         if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), GeometryDimensionDetector.GEO_3D)) {
             context.getLogger().warn(
