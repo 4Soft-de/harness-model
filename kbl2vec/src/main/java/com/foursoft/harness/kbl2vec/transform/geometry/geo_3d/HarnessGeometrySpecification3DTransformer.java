@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecBuildingBlockPositioning3D;
 import com.foursoft.harness.vec.v2x.VecHarnessGeometrySpecification3D;
 
@@ -40,8 +41,14 @@ public class HarnessGeometrySpecification3DTransformer
     public TransformationResult<VecHarnessGeometrySpecification3D> transform(final TransformationContext context,
                                                                              final KblHarness source) {
         final VecHarnessGeometrySpecification3D destination = new VecHarnessGeometrySpecification3D();
-        destination.setType("Dmu");
+        final int DIMENSIONS = 3;
 
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
+            return TransformationResult.noResult();
+        }
+        context.getLogger().info("Detected 3D data. Creating 3D geometry specification.");
+
+        destination.setType("Dmu");
         return TransformationResult.from(destination)
                 .withDownstream(KblHarness.class, VecBuildingBlockPositioning3D.class, Query.of(source),
                                 VecHarnessGeometrySpecification3D::getBuildingBlockPositionings)

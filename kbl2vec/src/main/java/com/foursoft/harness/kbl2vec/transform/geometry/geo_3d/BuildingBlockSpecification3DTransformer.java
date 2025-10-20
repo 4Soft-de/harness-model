@@ -51,7 +51,7 @@ public class BuildingBlockSpecification3DTransformer
         if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
             return TransformationResult.noResult();
         }
-        context.getLogger().info("Detected 3D data. Creating VEC 3D specifications.");
+        context.getLogger().info("Detected 3D data. Creating 3D building block specification.");
 
         return TransformationResult.from(destination)
                 .withDownstream(KblNode.class, VecGeometryNode3D.class,

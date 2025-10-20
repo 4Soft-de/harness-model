@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecBuildingBlockPositioning2D;
 import com.foursoft.harness.vec.v2x.VecHarnessDrawingSpecification2D;
 
@@ -40,6 +41,12 @@ public class HarnessDrawingSpecification2DTransformer
     public TransformationResult<VecHarnessDrawingSpecification2D> transform(final TransformationContext context,
                                                                             final KblHarness source) {
         final VecHarnessDrawingSpecification2D destination = new VecHarnessDrawingSpecification2D();
+        final int DIMENSIONS = 2;
+
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
+            return TransformationResult.noResult();
+        }
+        context.getLogger().info("Detected 2D data. Creating 2D drawing specification.");
 
         return TransformationResult.from(destination)
                 .withDownstream(KblHarness.class, VecBuildingBlockPositioning2D.class, Query.of(source),

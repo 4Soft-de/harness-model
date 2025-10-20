@@ -314,6 +314,12 @@ This is not intended for productive use and is not complete!
         <ConstrainedElements>PartOccurrence_id_331_0</ConstrainedElements>
       </ConfigurationConstraint>
     </Specification>
+    <Specification xsi:type="vec:HarnessGeometrySpecification3D" id="HarnessGeometrySpecification3D_id_328_0">
+      <Type>Dmu</Type>
+      <BuildingBlockPositionings id="BuildingBlockPositioning3D_id_328_0">
+        <Referenced3DBuildingBlock>BuildingBlockSpecification3D_id_328_0</Referenced3DBuildingBlock>
+      </BuildingBlockPositionings>
+    </Specification>
     <Specification xsi:type="vec:BuildingBlockSpecification3D" id="BuildingBlockSpecification3D_id_328_0">
       <CartesianPoint id="CartesianPoint3D_Cartesian_point_1">
         <X>2835.768688</X>
@@ -1503,6 +1509,12 @@ This is not intended for productive use and is not complete!
         <ConfigInfo>VariantConfiguration_id_353_0</ConfigInfo>
         <ConstrainedElements>PartOccurrence_id_331_0</ConstrainedElements>
       </ConfigurationConstraint>
+    </Specification>
+    <Specification xsi:type="vec:HarnessGeometrySpecification3D" id="HarnessGeometrySpecification3D_id_328_0">
+      <Type>Dmu</Type>
+      <BuildingBlockPositionings id="BuildingBlockPositioning3D_id_328_0">
+        <Referenced3DBuildingBlock>BuildingBlockSpecification3D_id_328_0</Referenced3DBuildingBlock>
+      </BuildingBlockPositionings>
     </Specification>
     <Specification xsi:type="vec:BuildingBlockSpecification3D" id="BuildingBlockSpecification3D_id_328_0">
       <CartesianPoint id="CartesianPoint3D_Cartesian_point_1">
@@ -50784,6 +50796,12 @@ This is not intended for productive use and is not complete!
         <ConfigInfo>VariantConfiguration_id_353_0</ConfigInfo>
         <ConstrainedElements>PartOccurrence_id_331_0</ConstrainedElements>
       </ConfigurationConstraint>
+    </Specification>
+    <Specification xsi:type="vec:HarnessGeometrySpecification3D" id="HarnessGeometrySpecification3D_id_328_0">
+      <Type>Dmu</Type>
+      <BuildingBlockPositionings id="BuildingBlockPositioning3D_id_328_0">
+        <Referenced3DBuildingBlock>BuildingBlockSpecification3D_id_328_0</Referenced3DBuildingBlock>
+      </BuildingBlockPositionings>
     </Specification>
     <Specification xsi:type="vec:BuildingBlockSpecification3D" id="BuildingBlockSpecification3D_id_328_0">
       <CartesianPoint id="CartesianPoint3D_Cartesian_point_1">
