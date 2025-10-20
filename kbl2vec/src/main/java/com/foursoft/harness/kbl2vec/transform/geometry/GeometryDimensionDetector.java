@@ -30,6 +30,8 @@ import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import java.util.List;
 
 public class GeometryDimensionDetector {
+    public static final int GEO_2D = 2;
+    public static final int GEO_3D = 3;
 
     private GeometryDimensionDetector() {
     }

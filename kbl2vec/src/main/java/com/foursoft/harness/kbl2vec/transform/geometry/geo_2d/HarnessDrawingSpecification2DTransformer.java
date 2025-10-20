@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -41,9 +41,9 @@ public class HarnessDrawingSpecification2DTransformer
     public TransformationResult<VecHarnessDrawingSpecification2D> transform(final TransformationContext context,
                                                                             final KblHarness source) {
         final VecHarnessDrawingSpecification2D destination = new VecHarnessDrawingSpecification2D();
-        final int DIMENSIONS = 2;
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
+                                                     GeometryDimensionDetector.GEO_2D)) {
             return TransformationResult.noResult();
         }
         context.getLogger().info("Detected 2D data. Creating 2D drawing specification.");

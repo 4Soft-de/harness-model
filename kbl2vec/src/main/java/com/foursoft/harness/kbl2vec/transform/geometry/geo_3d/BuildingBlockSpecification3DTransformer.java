@@ -46,9 +46,9 @@ public class BuildingBlockSpecification3DTransformer
     public TransformationResult<VecBuildingBlockSpecification3D> transform(final TransformationContext context,
                                                                            final KblHarness source) {
         final VecBuildingBlockSpecification3D destination = new VecBuildingBlockSpecification3D();
-        final int DIMENSIONS = 3;
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
+                                                     GeometryDimensionDetector.GEO_3D)) {
             return TransformationResult.noResult();
         }
         context.getLogger().info("Detected 3D data. Creating 3D building block specification.");

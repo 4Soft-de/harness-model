@@ -46,9 +46,9 @@ public class BuildingBlockSpecification2DTransformer
     public TransformationResult<VecBuildingBlockSpecification2D> transform(final TransformationContext context,
                                                                            final KblHarness source) {
         final VecBuildingBlockSpecification2D destination = new VecBuildingBlockSpecification2D();
-        final int DIMENSIONS = 2;
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
+                                                     GeometryDimensionDetector.GEO_2D)) {
             return TransformationResult.noResult();
         }
         context.getLogger().info("Detected 2D data. Creating 2D building block specification.");
