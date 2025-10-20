@@ -25,6 +25,8 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
+import com.foursoft.harness.kbl.v25.KBLContainer;
+import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecBuildingBlockPositioning2D;
@@ -42,6 +44,14 @@ class HarnessDrawingSpecification2DTransformerTest {
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblHarness source = new KblHarness();
+
+        final KblCartesianPoint cartesianPoint = new KblCartesianPoint();
+        cartesianPoint.getCoordinates().add(1.0);
+        cartesianPoint.getCoordinates().add(2.0);
+
+        final KBLContainer kblContainer = new KBLContainer();
+        source.setParentKBLContainer(kblContainer);
+        source.getParentKBLContainer().getCartesianPoints().add(cartesianPoint);
 
         final VecBuildingBlockPositioning2D vecBuildingBlockPositioning2D = new VecBuildingBlockPositioning2D();
         orchestrator.addMockMapping(source, vecBuildingBlockPositioning2D);
