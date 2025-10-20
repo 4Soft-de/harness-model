@@ -27,9 +27,10 @@ package com.foursoft.harness.kbl2vec.utils;
 
 import java.util.List;
 
-public class ListUtils {
+public final class ListUtils {
 
     private ListUtils() {
+        throw new AssertionError("Utility class allows no instantiation.");
     }
 
     public static <T> T getElementOrDefault(final List<T> list, final int index, final T defaultValue) {
