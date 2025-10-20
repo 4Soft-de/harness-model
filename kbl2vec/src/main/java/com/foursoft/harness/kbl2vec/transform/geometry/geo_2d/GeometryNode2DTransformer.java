@@ -23,26 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.geometry.d3;
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
 import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
-import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
+import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
+import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 
-public class GeometryNode3DTransformer implements Transformer<KblNode, VecGeometryNode3D> {
+public class GeometryNode2DTransformer implements Transformer<KblNode, VecGeometryNode2D> {
 
     @Override
-    public TransformationResult<VecGeometryNode3D> transform(final TransformationContext context,
+    public TransformationResult<VecGeometryNode2D> transform(final TransformationContext context,
                                                              final KblNode source) {
-        final VecGeometryNode3D destination = new VecGeometryNode3D();
+        final VecGeometryNode2D destination = new VecGeometryNode2D();
 
         return TransformationResult.from(destination)
-                .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint3D.class,
-                            VecGeometryNode3D::setCartesianPoint)
+                .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint2D.class,
+                            VecGeometryNode2D::setCartesianPoint)
                 .build();
     }
 }

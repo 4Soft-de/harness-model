@@ -1,4 +1,4 @@
-package com.foursoft.harness.kbl2vec.transform.geometry.d2;
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl2vec.core.Query;

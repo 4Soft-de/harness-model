@@ -23,51 +23,46 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.geometry.d3;
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
 
+import com.foursoft.harness.kbl.v25.KblCartesianPoint;
+import com.foursoft.harness.kbl.v25.KblHarness;
+import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl.v25.KblSegment;
-import com.foursoft.harness.kbl2vec.convert.DoublesToCartesianVector3DConverter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
+import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification3D;
+import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
 
-public class GeometrySegment3DTransformer implements Transformer<KblSegment, VecGeometrySegment3D> {
+public class BuildingBlockSpecification3DTransformer
+        implements Transformer<KblHarness, VecBuildingBlockSpecification3D> {
 
     @Override
-    public TransformationResult<VecGeometrySegment3D> transform(final TransformationContext context,
-                                                                final KblSegment source) {
-        final VecGeometrySegment3D destination = new VecGeometrySegment3D();
+    public TransformationResult<VecBuildingBlockSpecification3D> transform(final TransformationContext context,
+                                                                           final KblHarness source) {
+        final VecBuildingBlockSpecification3D destination = new VecBuildingBlockSpecification3D();
         final int DIMENSIONS = 3;
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), DIMENSIONS)) {
-            context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of start vectors. Expected {} but " +
-                            "found {}.",
-                    DIMENSIONS,
-                    source.getStartVectors().size());
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
+            return TransformationResult.noResult();
         }
-
-        if (!GeometryDimensionDetector.hasDimensions(source.getEndVectors(), DIMENSIONS)) {
-            context.getLogger().warn(
-                    "Wrong number of coordinates provided for the transformation of end vectors. Expected {} but " +
-                            "found {}.",
-                    DIMENSIONS,
-                    source.getEndVectors().size());
-        }
-
-        final DoublesToCartesianVector3DConverter converter =
-                context.getConverterRegistry().getDoublesToCartesianVector3DConverter();
-        converter.convert(source.getStartVectors()).ifPresent(destination::setStartVector);
-        converter.convert(source.getEndVectors()).ifPresent(destination::setEndVector);
+        context.getLogger().info("Detected 3D data. Creating VEC 3D specifications.");
 
         return TransformationResult.from(destination)
-                .withLinker(Query.of(source.getStartNode()), VecGeometryNode3D.class,
-                            VecGeometrySegment3D::setStartNode)
-                .withLinker(Query.of(source.getEndNode()), VecGeometryNode3D.class, VecGeometrySegment3D::setEndNode)
+                .withDownstream(KblNode.class, VecGeometryNode3D.class,
+                                Query.fromLists(source.getParentKBLContainer().getNodes()),
+                                VecBuildingBlockSpecification3D::getGeometryNodes)
+                .withDownstream(KblCartesianPoint.class, VecCartesianPoint3D.class,
+                                Query.fromLists(source.getParentKBLContainer().getCartesianPoints()),
+                                VecBuildingBlockSpecification3D::getCartesianPoints)
+                .withDownstream(KblSegment.class, VecGeometrySegment3D.class,
+                                Query.fromLists(source.getParentKBLContainer().getSegments()),
+                                VecBuildingBlockSpecification3D::getGeometrySegments)
                 .build();
     }
 }

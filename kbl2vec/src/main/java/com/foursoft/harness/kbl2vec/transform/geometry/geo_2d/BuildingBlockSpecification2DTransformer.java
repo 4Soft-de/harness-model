@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.geometry.d3;
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import com.foursoft.harness.kbl.v25.KblHarness;
@@ -34,35 +34,35 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
-import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification3D;
-import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
-import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
-import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
+import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification2D;
+import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
+import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
+import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
 
-public class BuildingBlockSpecification3DTransformer
-        implements Transformer<KblHarness, VecBuildingBlockSpecification3D> {
+public class BuildingBlockSpecification2DTransformer
+        implements Transformer<KblHarness, VecBuildingBlockSpecification2D> {
 
     @Override
-    public TransformationResult<VecBuildingBlockSpecification3D> transform(final TransformationContext context,
+    public TransformationResult<VecBuildingBlockSpecification2D> transform(final TransformationContext context,
                                                                            final KblHarness source) {
-        final VecBuildingBlockSpecification3D destination = new VecBuildingBlockSpecification3D();
-        final int DIMENSIONS = 3;
+        final VecBuildingBlockSpecification2D destination = new VecBuildingBlockSpecification2D();
+        final int DIMENSIONS = 2;
 
         if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
             return TransformationResult.noResult();
         }
-        context.getLogger().info("Detected 3D data. Creating VEC 3D specifications.");
+        context.getLogger().info("Detected 2D data. Creating VEC 2D specifications.");
 
         return TransformationResult.from(destination)
-                .withDownstream(KblNode.class, VecGeometryNode3D.class,
+                .withDownstream(KblNode.class, VecGeometryNode2D.class,
                                 Query.fromLists(source.getParentKBLContainer().getNodes()),
-                                VecBuildingBlockSpecification3D::getGeometryNodes)
-                .withDownstream(KblCartesianPoint.class, VecCartesianPoint3D.class,
+                                VecBuildingBlockSpecification2D::getGeometryNodes)
+                .withDownstream(KblCartesianPoint.class, VecCartesianPoint2D.class,
                                 Query.fromLists(source.getParentKBLContainer().getCartesianPoints()),
-                                VecBuildingBlockSpecification3D::getCartesianPoints)
-                .withDownstream(KblSegment.class, VecGeometrySegment3D.class,
+                                VecBuildingBlockSpecification2D::getCartesianPoints)
+                .withDownstream(KblSegment.class, VecGeometrySegment2D.class,
                                 Query.fromLists(source.getParentKBLContainer().getSegments()),
-                                VecBuildingBlockSpecification3D::getGeometrySegments)
+                                VecBuildingBlockSpecification2D::getGeometrySegments)
                 .build();
     }
 }

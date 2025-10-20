@@ -23,33 +23,37 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.geometry.d2;
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
+import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
+import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CartesianPoint2DTransformerTest {
+class GeometryNode2DTransformerTest {
 
     @Test
-    void should_transformCartesianPoint2D() {
+    void should_transformGeometryNode2D() {
         // Given
-        final CartesianPoint2DTransformer transformer = new CartesianPoint2DTransformer();
+        final GeometryNode2DTransformer transformer = new GeometryNode2DTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblCartesianPoint source = new KblCartesianPoint();
-        source.getCoordinates().add(1.0);
-        source.getCoordinates().add(2.0);
+        final KblNode source = new KblNode();
+        final KblCartesianPoint cartesianPoint = new KblCartesianPoint();
+        source.setCartesianPoint(cartesianPoint);
+
+        final VecCartesianPoint2D vecCartesianPoint2D = new VecCartesianPoint2D();
+        orchestrator.addMockMapping(cartesianPoint, vecCartesianPoint2D);
 
         // When
-        final VecCartesianPoint2D result = orchestrator.transform(transformer, source);
+        final VecGeometryNode2D result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns(1.0, VecCartesianPoint2D::getX)
-                .returns(2.0, VecCartesianPoint2D::getY);
+                .returns(vecCartesianPoint2D, VecGeometryNode2D::getCartesianPoint);
     }
 }

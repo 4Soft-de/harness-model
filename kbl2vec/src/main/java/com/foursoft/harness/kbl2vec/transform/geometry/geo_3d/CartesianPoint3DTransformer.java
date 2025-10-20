@@ -23,26 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.geometry.d2;
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
 
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
-import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
+import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
 
 import java.util.List;
 
 import static com.foursoft.harness.kbl2vec.utils.ListUtils.getElementOrDefault;
 
-public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoint, VecCartesianPoint2D> {
+public class CartesianPoint3DTransformer implements Transformer<KblCartesianPoint, VecCartesianPoint3D> {
 
     @Override
-    public TransformationResult<VecCartesianPoint2D> transform(final TransformationContext context,
+    public TransformationResult<VecCartesianPoint3D> transform(final TransformationContext context,
                                                                final KblCartesianPoint source) {
-        final VecCartesianPoint2D destination = new VecCartesianPoint2D();
-        final int DIMENSIONS = 2;
+        final VecCartesianPoint3D destination = new VecCartesianPoint3D();
+        final int DIMENSIONS = 3;
 
         final List<Double> coordinates = source.getCoordinates();
         if (source.getCoordinates().isEmpty()) {
@@ -57,6 +57,7 @@ public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoin
         }
         destination.setX(getElementOrDefault(coordinates, 0, 0.0));
         destination.setY(getElementOrDefault(coordinates, 1, 0.0));
+        destination.setZ(getElementOrDefault(coordinates, 2, 0.0));
 
         return TransformationResult.of(destination);
     }

@@ -23,46 +23,51 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.geometry.d2;
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
-import com.foursoft.harness.kbl.v25.KblCartesianPoint;
-import com.foursoft.harness.kbl.v25.KblHarness;
-import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl.v25.KblSegment;
+import com.foursoft.harness.kbl2vec.convert.DoublesToCartesianVector2DConverter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
-import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification2D;
-import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
 
-public class BuildingBlockSpecification2DTransformer
-        implements Transformer<KblHarness, VecBuildingBlockSpecification2D> {
+public class GeometrySegment2DTransformer implements Transformer<KblSegment, VecGeometrySegment2D> {
 
     @Override
-    public TransformationResult<VecBuildingBlockSpecification2D> transform(final TransformationContext context,
-                                                                           final KblHarness source) {
-        final VecBuildingBlockSpecification2D destination = new VecBuildingBlockSpecification2D();
+    public TransformationResult<VecGeometrySegment2D> transform(final TransformationContext context,
+                                                                final KblSegment source) {
+        final VecGeometrySegment2D destination = new VecGeometrySegment2D();
         final int DIMENSIONS = 2;
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(), DIMENSIONS)) {
-            return TransformationResult.noResult();
+        if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), DIMENSIONS)) {
+            context.getLogger().warn(
+                    "Wrong number of coordinates provided for the transformation of start vectors. Expected {} but " +
+                            "found {}.",
+                    DIMENSIONS,
+                    source.getStartVectors().size());
         }
-        context.getLogger().info("Detected 2D data. Creating VEC 2D specifications.");
+
+        if (!GeometryDimensionDetector.hasDimensions(source.getEndVectors(), DIMENSIONS)) {
+            context.getLogger().warn(
+                    "Wrong number of coordinates provided for the transformation of end vectors. Expected {} but " +
+                            "found {}.",
+                    DIMENSIONS,
+                    source.getEndVectors().size());
+        }
+
+        final DoublesToCartesianVector2DConverter converter =
+                context.getConverterRegistry().getDoublesToCartesianVector2DConverter();
+        converter.convert(source.getStartVectors()).ifPresent(destination::setStartVector);
+        converter.convert(source.getEndVectors()).ifPresent(destination::setEndVector);
 
         return TransformationResult.from(destination)
-                .withDownstream(KblNode.class, VecGeometryNode2D.class,
-                                Query.fromLists(source.getParentKBLContainer().getNodes()),
-                                VecBuildingBlockSpecification2D::getGeometryNodes)
-                .withDownstream(KblCartesianPoint.class, VecCartesianPoint2D.class,
-                                Query.fromLists(source.getParentKBLContainer().getCartesianPoints()),
-                                VecBuildingBlockSpecification2D::getCartesianPoints)
-                .withDownstream(KblSegment.class, VecGeometrySegment2D.class,
-                                Query.fromLists(source.getParentKBLContainer().getSegments()),
-                                VecBuildingBlockSpecification2D::getGeometrySegments)
+                .withLinker(Query.of(source.getStartNode()), VecGeometryNode2D.class,
+                            VecGeometrySegment2D::setStartNode)
+                .withLinker(Query.of(source.getEndNode()), VecGeometryNode2D.class, VecGeometrySegment2D::setEndNode)
                 .build();
     }
 }
