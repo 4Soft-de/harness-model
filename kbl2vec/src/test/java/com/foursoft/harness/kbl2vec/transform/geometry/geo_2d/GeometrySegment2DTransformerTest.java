@@ -100,6 +100,9 @@ class GeometrySegment2DTransformerTest {
         orchestrator.addMockMapping(startNode, vecStartNode);
         orchestrator.addMockMapping(endNode, vecEndNode);
 
+        final VecTopologySegment vecTopologySegment = new VecTopologySegment();
+        orchestrator.addMockMapping(source, vecTopologySegment);
+
         // When
         final VecGeometrySegment2D result = orchestrator.transform(transformer, source);
 
@@ -130,6 +133,9 @@ class GeometrySegment2DTransformerTest {
         final VecGeometryNode2D vecEndNode = new VecGeometryNode2D();
         orchestrator.addMockMapping(startNode, vecStartNode);
         orchestrator.addMockMapping(endNode, vecEndNode);
+
+        final VecTopologySegment vecTopologySegment = new VecTopologySegment();
+        orchestrator.addMockMapping(source, vecTopologySegment);
 
         // When
         final VecGeometrySegment2D result = orchestrator.transform(transformer, source);

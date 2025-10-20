@@ -29,7 +29,6 @@ import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
-import com.foursoft.harness.vec.v2x.VecGeometrySegment;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
 import com.foursoft.harness.vec.v2x.VecTopologySegment;
 import org.junit.jupiter.api.Test;
@@ -106,6 +105,9 @@ class GeometrySegment3DTransformerTest {
         orchestrator.addMockMapping(startNode, vecStartNode);
         orchestrator.addMockMapping(endNode, vecEndNode);
 
+        final VecTopologySegment vecTopologySegment = new VecTopologySegment();
+        orchestrator.addMockMapping(source, vecTopologySegment);
+
         // When
         final VecGeometrySegment3D result = orchestrator.transform(transformer, source);
 
@@ -138,6 +140,9 @@ class GeometrySegment3DTransformerTest {
         final VecGeometryNode3D vecEndNode = new VecGeometryNode3D();
         orchestrator.addMockMapping(startNode, vecStartNode);
         orchestrator.addMockMapping(endNode, vecEndNode);
+
+        final VecTopologySegment vecTopologySegment = new VecTopologySegment();
+        orchestrator.addMockMapping(source, vecTopologySegment);
 
         // When
         final VecGeometrySegment3D result = orchestrator.transform(transformer, source);
