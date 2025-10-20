@@ -378,14 +378,17 @@ This is not intended for productive use and is not complete!
       </CartesianPoint>
       <GeometryNode id="GeometryNode3D_Node_1">
         <Identification>PNID1</Identification>
+        <ReferenceNode>TopologyNode_Node_1</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_10</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_2">
         <Identification>PNID2</Identification>
+        <ReferenceNode>TopologyNode_Node_2</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_11</CartesianPoint>
       </GeometryNode>
       <GeometrySegment id="GeometrySegment3D_Segment_1">
         <Identification>ROUTING_BAUKST_BATTERIE_PLUS-Multi-branchable1/ElecRouteBody.1/Flexible Curve.1</Identification>
+        <ReferenceSegment>TopologySegment_Segment_1</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00017">
           <X>-0.999473</X>
           <Y>0.013345</Y>
@@ -1737,22 +1740,27 @@ This is not intended for productive use and is not complete!
       </CartesianPoint>
       <GeometryNode id="GeometryNode3D_Node_1">
         <Identification>PNID1</Identification>
+        <ReferenceNode>TopologyNode_Node_1</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_40</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_2">
         <Identification>PNID2</Identification>
+        <ReferenceNode>TopologyNode_Node_2</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_41</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_3">
         <Identification>PNID3</Identification>
+        <ReferenceNode>TopologyNode_Node_3</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_42</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_4">
         <Identification>PNID4</Identification>
+        <ReferenceNode>TopologyNode_Node_4</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_43</CartesianPoint>
       </GeometryNode>
       <GeometrySegment id="GeometrySegment3D_Segment_1">
         <Identification>ROUTING_BAUKST_LTGS_GENERATOR-Multi-branchable142/ElecRouteBody.1/Flexible Curve.1</Identification>
+        <ReferenceSegment>TopologySegment_Segment_1</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00055">
           <X>0.358231</X>
           <Y>0.931382</Y>
@@ -1768,6 +1776,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_2">
         <Identification>ROUTING_BAUKST_LTGS_GENERATOR-Multi-branchable142/ElecRouteBody.2/Flexible Curve.2</Identification>
+        <ReferenceSegment>TopologySegment_Segment_2</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00057">
           <X>0.293821</X>
           <Y>-0.954568</Y>
@@ -1783,6 +1792,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_3">
         <Identification>ROUTING_BAUKST_LTGS_GENERATOR-Multi-branchable142/ElecRouteBody.3/Flexible Curve.3</Identification>
+        <ReferenceSegment>TopologySegment_Segment_3</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00059">
           <X>-0.649703</X>
           <Y>0.682776</Y>
@@ -51776,98 +51786,122 @@ This is not intended for productive use and is not complete!
       </CartesianPoint>
       <GeometryNode id="GeometryNode3D_Node_1">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.1 ST_SBBR_1</Identification>
+        <ReferenceNode>TopologyNode_Node_1</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_170</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_2">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.2 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.2/Flexible Curve.2/ElecBundleSegmentExtremity.4 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.3/Flexible Curve.3/ElecBundleSegmentExtremity.5</Identification>
+        <ReferenceNode>TopologyNode_Node_2</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_171</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_3">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.2/Flexible Curve.2/ElecBundleSegmentExtremity.3 ST_SBBR_2</Identification>
+        <ReferenceNode>TopologyNode_Node_3</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_172</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_4">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.3/Flexible Curve.3/ElecBundleSegmentExtremity.6 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.4/Flexible Curve.4/ElecBundleSegmentExtremity.7 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.5/Flexible Curve.5/ElecBundleSegmentExtremity.9</Identification>
+        <ReferenceNode>TopologyNode_Node_4</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_173</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_5">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.4/Flexible Curve.4/ElecBundleSegmentExtremity.8 SI_SP</Identification>
+        <ReferenceNode>TopologyNode_Node_5</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_174</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_6">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.5/Flexible Curve.5/ElecBundleSegmentExtremity.10 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable3/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.2 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.1</Identification>
+        <ReferenceNode>TopologyNode_Node_6</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_175</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_7">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.1 ST_KLIMA_1</Identification>
+        <ReferenceNode>TopologyNode_Node_7</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_176</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_8">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.2 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.2/Flexible Curve.2/ElecBundleSegmentExtremity.4 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.3/Flexible Curve.3/ElecBundleSegmentExtremity.5</Identification>
+        <ReferenceNode>TopologyNode_Node_8</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_177</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_9">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.2/Flexible Curve.2/ElecBundleSegmentExtremity.3 ST_SCHDACH_1</Identification>
+        <ReferenceNode>TopologyNode_Node_9</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_178</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_10">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.3/Flexible Curve.3/ElecBundleSegmentExtremity.6 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.4/Flexible Curve.4/ElecBundleSegmentExtremity.7 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.5/Flexible Curve.5/ElecBundleSegmentExtremity.9</Identification>
+        <ReferenceNode>TopologyNode_Node_10</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_179</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_11">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.4/Flexible Curve.4/ElecBundleSegmentExtremity.8 SP_SI_X</Identification>
+        <ReferenceNode>TopologyNode_Node_11</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_180</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_12">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.5/Flexible Curve.5/ElecBundleSegmentExtremity.10 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.2 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.2/Flexible Curve.2/ElecBundleSegmentExtremity.4 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.2/Flexible Curve.2/ElecBundleSegmentExtremity.3</Identification>
+        <ReferenceNode>TopologyNode_Node_12</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_181</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_13">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable3/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.1 ST_PUMPE</Identification>
+        <ReferenceNode>TopologyNode_Node_13</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_182</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_14">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.1 ST_BEHECK_1</Identification>
+        <ReferenceNode>TopologyNode_Node_14</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_183</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_15">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.2/Flexible Curve.2/ElecBundleSegmentExtremity.3 ST_BATT</Identification>
+        <ReferenceNode>TopologyNode_Node_15</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_184</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_16">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.1/Flexible Curve.1/ElecBundleSegmentExtremity.2 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.2/Flexible Curve.2/ElecBundleSegmentExtremity.4 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.3/Flexible Curve.3/ElecBundleSegmentExtremity.5</Identification>
+        <ReferenceNode>TopologyNode_Node_16</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_185</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_17">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.3/Flexible Curve.3/ElecBundleSegmentExtremity.6 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.4/Flexible Curve.4/ElecBundleSegmentExtremity.7 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.5/Flexible Curve.5/ElecBundleSegmentExtremity.9 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.6/Flexible Curve.6/ElecBundleSegmentExtremity.11 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.7/Flexible Curve.7/ElecBundleSegmentExtremity.13 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.8/Flexible Curve.8/ElecBundleSegmentExtremity.15 ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.9/Flexible Curve.9/ElecBundleSegmentExtremity.17</Identification>
+        <ReferenceNode>TopologyNode_Node_17</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_186</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_18">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.4/Flexible Curve.4/ElecBundleSegmentExtremity.8 ST_SIDO_4</Identification>
+        <ReferenceNode>TopologyNode_Node_18</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_187</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_19">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.5/Flexible Curve.5/ElecBundleSegmentExtremity.10 ST_SIDO_1</Identification>
+        <ReferenceNode>TopologyNode_Node_19</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_188</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_20">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.6/Flexible Curve.6/ElecBundleSegmentExtremity.12 ST_SIDO_5</Identification>
+        <ReferenceNode>TopologyNode_Node_20</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_189</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_21">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.7/Flexible Curve.7/ElecBundleSegmentExtremity.14 ST_SIDO_6</Identification>
+        <ReferenceNode>TopologyNode_Node_21</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_190</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_22">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.8/Flexible Curve.8/ElecBundleSegmentExtremity.16 ST_SIDO_2</Identification>
+        <ReferenceNode>TopologyNode_Node_22</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_191</CartesianPoint>
       </GeometryNode>
       <GeometryNode id="GeometryNode3D_Node_23">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.9/Flexible Curve.9/ElecBundleSegmentExtremity.18 ST_SIDO_3</Identification>
+        <ReferenceNode>TopologyNode_Node_23</ReferenceNode>
         <CartesianPoint>CartesianPoint3D_Cartesian_point_192</CartesianPoint>
       </GeometryNode>
       <GeometrySegment id="GeometrySegment3D_Segment_1">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.1/Flexible Curve.1</Identification>
+        <ReferenceSegment>TopologySegment_Segment_1</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00141">
           <X>0.989368</X>
           <Y>0.0</Y>
@@ -51883,6 +51917,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_2">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.2/Flexible Curve.2</Identification>
+        <ReferenceSegment>TopologySegment_Segment_2</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00143">
           <X>0.999977</X>
           <Y>-0.0</Y>
@@ -51898,6 +51933,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_3">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.3/Flexible Curve.3</Identification>
+        <ReferenceSegment>TopologySegment_Segment_3</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00145">
           <X>0.990042</X>
           <Y>0.0</Y>
@@ -51913,6 +51949,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_4">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.4/Flexible Curve.4</Identification>
+        <ReferenceSegment>TopologySegment_Segment_4</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00147">
           <X>0.990042</X>
           <Y>0.0</Y>
@@ -51928,6 +51965,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_5">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.5/Flexible Curve.5</Identification>
+        <ReferenceSegment>TopologySegment_Segment_5</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00149">
           <X>0.990042</X>
           <Y>0.0</Y>
@@ -51943,6 +51981,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_6">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.1/Flexible Curve.1</Identification>
+        <ReferenceSegment>TopologySegment_Segment_6</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00151">
           <X>1.0</X>
           <Y>-0.0</Y>
@@ -51958,6 +51997,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_7">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.2/Flexible Curve.2</Identification>
+        <ReferenceSegment>TopologySegment_Segment_7</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00153">
           <X>0.999999</X>
           <Y>-0.0</Y>
@@ -51973,6 +52013,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_8">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.3/Flexible Curve.3</Identification>
+        <ReferenceSegment>TopologySegment_Segment_8</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00155">
           <X>0.920888</X>
           <Y>-0.364509</Y>
@@ -51988,6 +52029,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_9">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.4/Flexible Curve.4</Identification>
+        <ReferenceSegment>TopologySegment_Segment_9</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00157">
           <X>-0.0</X>
           <Y>-0.977245</Y>
@@ -52003,6 +52045,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_10">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.5/Flexible Curve.5</Identification>
+        <ReferenceSegment>TopologySegment_Segment_10</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00159">
           <X>0.997503</X>
           <Y>0.06603</Y>
@@ -52018,6 +52061,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_11">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable3/ElecRouteBody.1/Flexible Curve.1</Identification>
+        <ReferenceSegment>TopologySegment_Segment_11</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00161">
           <X>0.999991</X>
           <Y>-0.0</Y>
@@ -52033,6 +52077,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_12">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.1/Flexible Curve.1</Identification>
+        <ReferenceSegment>TopologySegment_Segment_12</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00163">
           <X>0.998613</X>
           <Y>0.0</Y>
@@ -52048,6 +52093,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_13">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.2/Flexible Curve.2</Identification>
+        <ReferenceSegment>TopologySegment_Segment_13</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00165">
           <X>0.993636</X>
           <Y>0.0</Y>
@@ -52063,6 +52109,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_14">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.1/Flexible Curve.1</Identification>
+        <ReferenceSegment>TopologySegment_Segment_14</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00167">
           <X>0.990164</X>
           <Y>0.0</Y>
@@ -52078,6 +52125,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_15">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.2/Flexible Curve.2</Identification>
+        <ReferenceSegment>TopologySegment_Segment_15</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00169">
           <X>0.890985</X>
           <Y>-0.453905</Y>
@@ -52093,6 +52141,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_16">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.3/Flexible Curve.3</Identification>
+        <ReferenceSegment>TopologySegment_Segment_16</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00171">
           <X>0.713479</X>
           <Y>-0.700627</Y>
@@ -52108,6 +52157,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_17">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.4/Flexible Curve.4</Identification>
+        <ReferenceSegment>TopologySegment_Segment_17</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00173">
           <X>0.903943</X>
           <Y>-0.233188</Y>
@@ -52123,6 +52173,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_18">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.5/Flexible Curve.5</Identification>
+        <ReferenceSegment>TopologySegment_Segment_18</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00175">
           <X>0.903943</X>
           <Y>-0.233188</Y>
@@ -52138,6 +52189,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_19">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.6/Flexible Curve.6</Identification>
+        <ReferenceSegment>TopologySegment_Segment_19</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00177">
           <X>0.865801</X>
           <Y>0.144253</Y>
@@ -52153,6 +52205,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_20">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.7/Flexible Curve.7</Identification>
+        <ReferenceSegment>TopologySegment_Segment_20</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00179">
           <X>0.645713</X>
           <Y>0.668964</Y>
@@ -52168,6 +52221,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_21">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.8/Flexible Curve.8</Identification>
+        <ReferenceSegment>TopologySegment_Segment_21</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00181">
           <X>0.504781</X>
           <Y>0.813781</Y>
@@ -52183,6 +52237,7 @@ This is not intended for productive use and is not complete!
       </GeometrySegment>
       <GeometrySegment id="GeometrySegment3D_Segment_22">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.9/Flexible Curve.9</Identification>
+        <ReferenceSegment>TopologySegment_Segment_22</ReferenceSegment>
         <StartVector id="Cartesiantor3D_00183">
           <X>0.427164</X>
           <Y>0.869189</Y>
