@@ -45,6 +45,7 @@ public class WireElementSpecificationTransformer
                                                                        final KblGeneralWire source) {
         final VecWireElementSpecification dest = new VecWireElementSpecification();
         dest.setIdentification("WIRE");
+
         final StringToWireTypeConverter wireTypeConverter =
                 context.getConverterRegistry().getStringToWireTypeConverter();
         wireTypeConverter.convert(source.getWireType()).ifPresent(dest.getTypes()::add);
@@ -59,13 +60,12 @@ public class WireElementSpecificationTransformer
                                         VecWireElementSpecification::setMinBendRadiusStatic)
                         .withLinker(Query.of(source), VecInsulationSpecification.class,
                                     VecWireElementSpecification::setInsulationSpecification);
-        // Single Core Wire
+
         if (source.getCores().isEmpty()) {
             builder.withLinker(Query.of(source), VecCoreSpecification.class,
                                VecWireElementSpecification::setConductorSpecification);
         }
 
-        return builder
-                .build();
+        return builder.build();
     }
 }

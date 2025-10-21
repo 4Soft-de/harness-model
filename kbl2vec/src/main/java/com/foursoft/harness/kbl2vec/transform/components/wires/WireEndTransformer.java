@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,27 +23,21 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
+package com.foursoft.harness.kbl2vec.transform.components.wires;
 
-import com.foursoft.harness.kbl.v25.KblNumericalValue;
-import com.foursoft.harness.kbl.v25.KblWireLength;
-import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl.v25.KblExtremity;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecNumericalValue;
-import com.foursoft.harness.vec.v2x.VecWireLength;
+import com.foursoft.harness.vec.v2x.VecWireEnd;
 
-public class WireLengthTransformer implements Transformer<KblWireLength, VecWireLength> {
+public class WireEndTransformer implements Transformer<KblExtremity, VecWireEnd> {
+
     @Override
-    public TransformationResult<VecWireLength> transform(final TransformationContext context,
-                                                         final KblWireLength source) {
-        final VecWireLength dest = new VecWireLength();
-        dest.setLengthType(source.getLengthType());
+    public TransformationResult<VecWireEnd> transform(final TransformationContext context, final KblExtremity source) {
+        final VecWireEnd destination = new VecWireEnd();
+        destination.setPositionOnWire(source.getPositionOnWire());
 
-        return TransformationResult.from(dest)
-                .withDownstream(KblNumericalValue.class, VecNumericalValue.class, Query.of(source::getLengthValue),
-                                VecWireLength::setLengthValue)
-                .build();
+        return TransformationResult.of(destination);
     }
 }
