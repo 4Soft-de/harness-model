@@ -25,9 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.wires;
 
-import com.foursoft.harness.kbl.v25.KblGeneralWireOccurrence;
-import com.foursoft.harness.kbl.v25.KblSpecialWireOccurrence;
-import com.foursoft.harness.kbl.v25.KblWireOccurrence;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
@@ -42,22 +40,23 @@ public class WireRoleTransformer implements Transformer<KblGeneralWireOccurrence
                                                        final KblGeneralWireOccurrence sourceWireOccurrence) {
 
         final VecWireRole dest = new VecWireRole();
+        final TransformationResult.Builder<VecWireRole> builder = TransformationResult.from(dest);
 
         if (sourceWireOccurrence instanceof final KblWireOccurrence wireOccurrence) {
             dest.setIdentification(wireOccurrence.getWireNumber());
         } else if (sourceWireOccurrence instanceof final KblSpecialWireOccurrence specialWireOccurrence) {
             dest.setIdentification(specialWireOccurrence.getSpecialWireId());
+            builder.withDownstream(KblCoreOccurrence.class, VecWireElementReference.class,
+                                   specialWireOccurrence::getCoreOccurrences, VecWireRole::getWireElementReferences);
         } else {
             context.getLogger().warn("'{}' has a unsupported wire class type", sourceWireOccurrence);
         }
 
-        return TransformationResult
-                .from(dest)
+        return builder
                 .withDownstream(KblGeneralWireOccurrence.class, VecWireElementReference.class,
                                 Query.of(sourceWireOccurrence), VecWireRole::getWireElementReferences)
                 .withLinker(Query.of(sourceWireOccurrence::getPart), VecWireSpecification.class,
                             VecWireRole::setWireSpecification)
                 .build();
-
     }
 }
