@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires;
+package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
 
 import com.foursoft.harness.kbl.v25.KblGeneralWire;
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
@@ -37,7 +37,7 @@ import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecWireElementSpecification;
 
-public class WireWireElementSpecificationTransformer
+public class WireElementSpecificationTransformer
         implements Transformer<KblGeneralWire, VecWireElementSpecification> {
 
     @Override
@@ -45,6 +45,7 @@ public class WireWireElementSpecificationTransformer
                                                                        final KblGeneralWire source) {
         final VecWireElementSpecification dest = new VecWireElementSpecification();
         dest.setIdentification("WIRE");
+
         final StringToWireTypeConverter wireTypeConverter =
                 context.getConverterRegistry().getStringToWireTypeConverter();
         wireTypeConverter.convert(source.getWireType()).ifPresent(dest.getTypes()::add);
@@ -59,13 +60,12 @@ public class WireWireElementSpecificationTransformer
                                         VecWireElementSpecification::setMinBendRadiusStatic)
                         .withLinker(Query.of(source), VecInsulationSpecification.class,
                                     VecWireElementSpecification::setInsulationSpecification);
-        // Single Core Wire
+
         if (source.getCores().isEmpty()) {
             builder.withLinker(Query.of(source), VecCoreSpecification.class,
                                VecWireElementSpecification::setConductorSpecification);
         }
 
-        return builder
-                .build();
+        return builder.build();
     }
 }

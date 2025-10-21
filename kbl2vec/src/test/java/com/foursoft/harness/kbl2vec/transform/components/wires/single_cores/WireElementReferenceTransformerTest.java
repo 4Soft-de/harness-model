@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires;
+package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
 
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
@@ -35,12 +35,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WireWireElementReferenceTransformerTest {
+class WireElementReferenceTransformerTest {
 
     @Test
     void should_transformWireOccurrence() {
         // Given
-        final WireWireElementReferenceTransformer transformer = new WireWireElementReferenceTransformer();
+        final WireElementReferenceTransformer transformer = new WireElementReferenceTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblWireOccurrence source = new KblWireOccurrence();
