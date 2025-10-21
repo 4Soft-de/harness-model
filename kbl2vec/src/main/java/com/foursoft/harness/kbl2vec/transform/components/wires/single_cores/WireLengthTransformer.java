@@ -23,27 +23,27 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires.wire;
+package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
 
-import com.foursoft.harness.kbl.v25.KblGeneralWire;
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
+import com.foursoft.harness.kbl.v25.KblWireLength;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecCoreSpecification;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
+import com.foursoft.harness.vec.v2x.VecWireLength;
 
-public class CoreSpecificationTransformer implements Transformer<KblGeneralWire, VecCoreSpecification> {
-
+public class WireLengthTransformer implements Transformer<KblWireLength, VecWireLength> {
     @Override
-    public TransformationResult<VecCoreSpecification> transform(final TransformationContext context,
-                                                                final KblGeneralWire source) {
-        final VecCoreSpecification dest = new VecCoreSpecification();
-        dest.setIdentification("WIRE-CORE");
+    public TransformationResult<VecWireLength> transform(final TransformationContext context,
+                                                         final KblWireLength source) {
+        final VecWireLength dest = new VecWireLength();
+        dest.setLengthType(source.getLengthType());
+
         return TransformationResult.from(dest)
-                .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
-                                Query.of(source::getCrossSectionArea), VecCoreSpecification::setCrossSectionArea)
+                .withDownstream(KblNumericalValue.class, VecNumericalValue.class, Query.of(source::getLengthValue),
+                                VecWireLength::setLengthValue)
                 .build();
     }
 }

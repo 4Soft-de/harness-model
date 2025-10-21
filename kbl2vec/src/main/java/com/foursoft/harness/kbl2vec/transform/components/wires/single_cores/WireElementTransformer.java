@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,31 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires.wire;
+package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
 
-import com.foursoft.harness.kbl.v25.KblExtremity;
-import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecWireEnd;
-import org.junit.jupiter.api.Test;
+import com.foursoft.harness.kbl.v25.KblGeneralWire;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecWireElement;
+import com.foursoft.harness.vec.v2x.VecWireElementSpecification;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class WireEndTransformerTest {
-
-    @Test
-    void should_transformWireEnd() {
-        // Given
-        final WireEndTransformer transformer = new WireEndTransformer();
-        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
-
-        final KblExtremity source = new KblExtremity();
-        source.setPositionOnWire(1.0);
-
-        // When
-        final VecWireEnd result = orchestrator.transform(transformer, source);
-
-        // Then
-        assertThat(result).isNotNull()
-                .returns(1.0, VecWireEnd::getPositionOnWire);
+public class WireElementTransformer implements Transformer<KblGeneralWire, VecWireElement> {
+    @Override
+    public TransformationResult<VecWireElement> transform(final TransformationContext context,
+                                                          final KblGeneralWire source) {
+        final VecWireElement dest = new VecWireElement();
+        dest.setIdentification("WIRE");
+        //TODO: Handle the cores of multi-core wires.
+        return TransformationResult.from(dest)
+                .withLinker(Query.of(source), VecWireElementSpecification.class,
+                            VecWireElement::setWireElementSpecification)
+                .build();
     }
 }

@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires.wire;
+package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
 
 import com.foursoft.harness.kbl.v25.KblGeneralWireOccurrence;
 import com.foursoft.harness.kbl.v25.KblSpecialWireOccurrence;

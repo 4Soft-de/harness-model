@@ -23,26 +23,27 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires.wire;
+package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
 
 import com.foursoft.harness.kbl.v25.KblGeneralWire;
+import com.foursoft.harness.kbl.v25.KblNumericalValue;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecWireElement;
-import com.foursoft.harness.vec.v2x.VecWireElementSpecification;
+import com.foursoft.harness.vec.v2x.VecCoreSpecification;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
 
-public class WireElementTransformer implements Transformer<KblGeneralWire, VecWireElement> {
+public class CoreSpecificationTransformer implements Transformer<KblGeneralWire, VecCoreSpecification> {
+
     @Override
-    public TransformationResult<VecWireElement> transform(final TransformationContext context,
-                                                          final KblGeneralWire source) {
-        final VecWireElement dest = new VecWireElement();
-        dest.setIdentification("WIRE");
-        //TODO: Handle the cores of multi-core wires.
+    public TransformationResult<VecCoreSpecification> transform(final TransformationContext context,
+                                                                final KblGeneralWire source) {
+        final VecCoreSpecification dest = new VecCoreSpecification();
+        dest.setIdentification("WIRE-CORE");
         return TransformationResult.from(dest)
-                .withLinker(Query.of(source), VecWireElementSpecification.class,
-                            VecWireElement::setWireElementSpecification)
+                .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
+                                Query.of(source::getCrossSectionArea), VecCoreSpecification::setCrossSectionArea)
                 .build();
     }
 }

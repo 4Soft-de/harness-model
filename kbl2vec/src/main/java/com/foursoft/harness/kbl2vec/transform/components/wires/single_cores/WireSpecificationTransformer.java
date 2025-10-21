@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,21 +23,29 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires.wire;
+package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
 
-import com.foursoft.harness.kbl.v25.KblExtremity;
+import com.foursoft.harness.kbl.v25.KblGeneralWire;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecWireEnd;
+import com.foursoft.harness.kbl2vec.transform.Fragments;
+import com.foursoft.harness.vec.v2x.VecWireElement;
+import com.foursoft.harness.vec.v2x.VecWireSpecification;
 
-public class WireEndTransformer implements Transformer<KblExtremity, VecWireEnd> {
-
+public class WireSpecificationTransformer implements Transformer<KblGeneralWire, VecWireSpecification> {
     @Override
-    public TransformationResult<VecWireEnd> transform(final TransformationContext context, final KblExtremity source) {
-        final VecWireEnd destination = new VecWireEnd();
-        destination.setPositionOnWire(source.getPositionOnWire());
+    public TransformationResult<VecWireSpecification> transform(final TransformationContext context,
+                                                                final KblGeneralWire source) {
+        final VecWireSpecification dest = new VecWireSpecification();
 
-        return TransformationResult.of(destination);
+        return TransformationResult
+                .from(dest)
+                .withFragment(Fragments.commonSpecificationAttributes(source))
+                .withDownstream(KblGeneralWire.class, VecWireElement.class, Query.of(source),
+                                VecWireSpecification::setWireElement)
+                .build();
     }
+
 }
