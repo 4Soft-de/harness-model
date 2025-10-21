@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.wires.single_cores;
 
+import com.foursoft.harness.kbl.v25.KblCore;
 import com.foursoft.harness.kbl.v25.KblGeneralWire;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -39,8 +40,10 @@ public class WireElementTransformer implements Transformer<KblGeneralWire, VecWi
                                                           final KblGeneralWire source) {
         final VecWireElement dest = new VecWireElement();
         dest.setIdentification("WIRE");
-        //TODO: Handle the cores of multi-core wires.
+
         return TransformationResult.from(dest)
+                .withDownstream(KblCore.class, VecWireElement.class, source::getCores,
+                                VecWireElement::getSubWireElements)
                 .withLinker(Query.of(source), VecWireElementSpecification.class,
                             VecWireElement::setWireElementSpecification)
                 .build();
