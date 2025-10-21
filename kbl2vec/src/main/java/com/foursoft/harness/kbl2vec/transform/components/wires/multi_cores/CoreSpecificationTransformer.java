@@ -9,7 +9,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCoreSpecification;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 
-public class CoreSpecification implements Transformer<KblCore, VecCoreSpecification> {
+public class CoreSpecificationTransformer implements Transformer<KblCore, VecCoreSpecification> {
 
     @Override
     public TransformationResult<VecCoreSpecification> transform(final TransformationContext context,

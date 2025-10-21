@@ -10,7 +10,7 @@ import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
 
 import java.util.Optional;
 
-public class InsulationSpecification implements Transformer<KblCore, VecInsulationSpecification> {
+public class InsulationSpecificationTransformer implements Transformer<KblCore, VecInsulationSpecification> {
 
     @Override
     public TransformationResult<VecInsulationSpecification> transform(final TransformationContext context,

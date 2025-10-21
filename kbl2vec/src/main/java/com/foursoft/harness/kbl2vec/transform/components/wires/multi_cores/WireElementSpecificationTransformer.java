@@ -12,7 +12,7 @@ import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecWireElementSpecification;
 
-public class WireElementSpecification implements Transformer<KblCore, VecWireElementSpecification> {
+public class WireElementSpecificationTransformer implements Transformer<KblCore, VecWireElementSpecification> {
 
     @Override
     public TransformationResult<VecWireElementSpecification> transform(final TransformationContext context,
