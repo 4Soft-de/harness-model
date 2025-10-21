@@ -234,13 +234,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_0">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_0">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>25.0</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_0">
       <Identification>WS-O10a210601a2</Identification>
       <DescribedPart>PartVersion_id_327_0</DescribedPart>
@@ -248,6 +241,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_0</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_0">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_0">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>25.0</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0">
@@ -1131,13 +1131,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_0">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_0">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>0.5</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_0">
       <Identification>WS-O1a481aa015</Identification>
       <DescribedPart>PartVersion_id_327_0</DescribedPart>
@@ -1145,6 +1138,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_0</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_0">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_0">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>0.5</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_1">
@@ -1200,13 +1200,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_1">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_1">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>0.5</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_1">
       <Identification>WS-O1a481aa412</Identification>
       <DescribedPart>PartVersion_id_327_1</DescribedPart>
@@ -1214,6 +1207,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_1</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_1">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_1">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>0.5</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_2">
@@ -1269,13 +1269,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_2">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_2">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>6.0</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_2">
       <Identification>WS-O1a2913741a</Identification>
       <DescribedPart>PartVersion_id_327_2</DescribedPart>
@@ -1283,6 +1276,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_2</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_2">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_2">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>6.0</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Wire_protection_1">
@@ -3288,13 +3288,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_0">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_0">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>0.5</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_0">
       <Identification>WS-WIR0017055</Identification>
       <DescribedPart>PartVersion_id_327_0</DescribedPart>
@@ -3302,6 +3295,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_0</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_0">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_0">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>0.5</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_1">
@@ -3351,13 +3351,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_1">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_1">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>0.5</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_1">
       <Identification>WS-WIR0010006</Identification>
       <DescribedPart>PartVersion_id_327_1</DescribedPart>
@@ -3365,6 +3358,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_1</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_1">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_1">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>0.5</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_2">
@@ -3410,13 +3410,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_2">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_2">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>12.0</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_2">
       <Identification>WS-WIR00111701</Identification>
       <DescribedPart>PartVersion_id_327_2</DescribedPart>
@@ -3424,6 +3417,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_2</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_2">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_2">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>12.0</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_3">
@@ -3469,13 +3469,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_3">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_3">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>10.0</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_3">
       <Identification>WS-WIR00121103</Identification>
       <DescribedPart>PartVersion_id_327_3</DescribedPart>
@@ -3483,6 +3476,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_3</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_3">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_3">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>10.0</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_4">
@@ -3532,13 +3532,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_4">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_4">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>0.5</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_4">
       <Identification>WS-WIR0010005</Identification>
       <DescribedPart>PartVersion_id_327_4</DescribedPart>
@@ -3546,6 +3539,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_4</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_4">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_4">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>0.5</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_5">
@@ -3591,13 +3591,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_5">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_5">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>16.0</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_5">
       <Identification>WS-WIR00180202</Identification>
       <DescribedPart>PartVersion_id_327_5</DescribedPart>
@@ -3605,6 +3598,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_5</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_5">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_5">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>16.0</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_6">
@@ -3654,13 +3654,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_6">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_6">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>10.0</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_6">
       <Identification>WS-WIR00162703</Identification>
       <DescribedPart>PartVersion_id_327_6</DescribedPart>
@@ -3668,6 +3661,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_6</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_6">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_6">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>10.0</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_7">
@@ -3713,13 +3713,6 @@ This is not intended for productive use and is not complete!
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
     </Specification>
-    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_7">
-      <Identification>WIRE-CORE</Identification>
-      <CrossSectionArea id="NumericalValue_id_375_7">
-        <UnitComponent>SIUnit_id_346_0</UnitComponent>
-        <ValueComponent>35.0</ValueComponent>
-      </CrossSectionArea>
-    </Specification>
     <Specification xsi:type="vec:WireSpecification" id="WireSpecification_id_327_7">
       <Identification>WS-WIR00198202</Identification>
       <DescribedPart>PartVersion_id_327_7</DescribedPart>
@@ -3727,6 +3720,13 @@ This is not intended for productive use and is not complete!
         <Identification>WIRE</Identification>
         <WireElementSpecification>WireElementSpecification_id_327_7</WireElementSpecification>
       </WireElement>
+    </Specification>
+    <Specification xsi:type="vec:CoreSpecification" id="CoreSpecification_id_327_7">
+      <Identification>WIRE-CORE</Identification>
+      <CrossSectionArea id="NumericalValue_id_375_7">
+        <UnitComponent>SIUnit_id_346_0</UnitComponent>
+        <ValueComponent>35.0</ValueComponent>
+      </CrossSectionArea>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0">
