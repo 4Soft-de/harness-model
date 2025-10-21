@@ -63,7 +63,7 @@ class KblToVecConverterTest {
      */
     @ParameterizedTest
     @ValueSource(strings = {"vobes_sample_kbl24_mit_sicherungstraeger", "vobes_sample_kbl24_battery_plus_cable",
-            "vobes_sample_kbl24_generator_cable"})
+            "vobes_sample_kbl24_generator_cable", "vobes_sample_kbl24_ksk_main_harness"})
     void should_convertKblToVec(final String kblFileName) throws IOException {
         final KblToVecConverter converter = new KblToVecConverter();
         final String kblFile = "/" + kblFileName + ".kbl";
