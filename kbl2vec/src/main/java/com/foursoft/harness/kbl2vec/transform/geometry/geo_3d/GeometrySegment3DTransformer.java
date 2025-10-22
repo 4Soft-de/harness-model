@@ -46,14 +46,14 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
 
         if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), GeometryDimensionDetector.GEO_3D)) {
             context.getLogger().warn(
-                    "Failed to transform start vectors of KblSegment (ID: {}). Expected 2 coordinates for 2D " +
+                    "Unexpected format for start vectors of KblSegment (ID: {}). Expected 2 coordinates for 2D " +
                             "transformation, but found {}: {}",
                     source.getId(), source.getStartVectors().size(), source.getStartVectors());
         }
 
         if (!GeometryDimensionDetector.hasDimensions(source.getEndVectors(), GeometryDimensionDetector.GEO_3D)) {
             context.getLogger().warn(
-                    "Failed to transform end vectors of KblSegment (ID: {}). Expected 2 coordinates for 2D " +
+                    "Unexpected format for end vectors of KblSegment (ID: {}). Expected 2 coordinates for 2D " +
                             "transformation, but found {}: {}",
                     source.getId(), source.getEndVectors().size(), source.getEndVectors());
         }

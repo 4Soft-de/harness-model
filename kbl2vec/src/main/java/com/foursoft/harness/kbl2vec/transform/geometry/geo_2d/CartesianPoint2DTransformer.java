@@ -50,7 +50,7 @@ public class CartesianPoint2DTransformer implements Transformer<KblCartesianPoin
 
         if (!GeometryDimensionDetector.hasDimensions(source, GeometryDimensionDetector.GEO_2D)) {
             context.getLogger().warn(
-                    "Failed to transform KblCartesianPoint (xmlId: {}). Expected 2 coordinates for 2D " +
+                    "Unexpected format for KblCartesianPoint (xmlId: {}). Expected 2 coordinates for 2D " +
                             "transformation, but found {}: {}",
                     source.getXmlId(), source.getCoordinates().size(), source.getCoordinates());
         }

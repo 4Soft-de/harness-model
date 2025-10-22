@@ -50,7 +50,7 @@ public class CartesianPoint3DTransformer implements Transformer<KblCartesianPoin
 
         if (!GeometryDimensionDetector.hasDimensions(source, GeometryDimensionDetector.GEO_3D)) {
             context.getLogger().warn(
-                    "Failed to transform KblCartesianPoint (xmlId: {}). Expected 3 coordinates for 3D " +
+                    "Unexpected format for KblCartesianPoint (xmlId: {}). Expected 3 coordinates for 3D " +
                             "transformation, but found {}: {}",
                     source.getXmlId(), source.getCoordinates().size(), source.getCoordinates());
         }
