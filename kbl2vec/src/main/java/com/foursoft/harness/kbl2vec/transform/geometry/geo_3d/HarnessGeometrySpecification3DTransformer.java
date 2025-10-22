@@ -41,6 +41,7 @@ public class HarnessGeometrySpecification3DTransformer
     public TransformationResult<VecHarnessGeometrySpecification3D> transform(final TransformationContext context,
                                                                              final KblHarness source) {
         final VecHarnessGeometrySpecification3D destination = new VecHarnessGeometrySpecification3D();
+        destination.setIdentification("GEOMETRY");
 
         if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
                                                      GeometryDimensionDetector.GEO_3D)) {

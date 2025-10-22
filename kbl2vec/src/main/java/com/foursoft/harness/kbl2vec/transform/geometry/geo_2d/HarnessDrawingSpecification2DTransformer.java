@@ -41,6 +41,7 @@ public class HarnessDrawingSpecification2DTransformer
     public TransformationResult<VecHarnessDrawingSpecification2D> transform(final TransformationContext context,
                                                                             final KblHarness source) {
         final VecHarnessDrawingSpecification2D destination = new VecHarnessDrawingSpecification2D();
+        destination.setIdentification("DRAWING");
 
         if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
                                                      GeometryDimensionDetector.GEO_2D)) {
