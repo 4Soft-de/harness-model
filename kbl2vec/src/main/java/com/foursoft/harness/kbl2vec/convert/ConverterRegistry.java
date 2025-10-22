@@ -37,6 +37,8 @@ public class ConverterRegistry {
     private final StringToColorConverter stringToColorConverter;
     private final StringToWireTypeConverter stringToWireTypeConverter;
     private final StringToMaterialConverter stringToMaterialConverter;
+    private final DoublesToCartesianVector2DConverter doublesToCartesianVector2DConverter;
+    private final DoublesToCartesianVector3DConverter doublesToCartesianVector3DConverter;
 
     public ConverterRegistry(final ConversionProperties conversionProperties) {
         Objects.requireNonNull(conversionProperties);
@@ -47,6 +49,8 @@ public class ConverterRegistry {
                 conversionProperties.getDefaultWireTypeReferenceSystem());
         stringToMaterialConverter = new StringToMaterialConverter(
                 conversionProperties.getDefaultMaterialReferenceSystem());
+        doublesToCartesianVector2DConverter = new DoublesToCartesianVector2DConverter();
+        doublesToCartesianVector3DConverter = new DoublesToCartesianVector3DConverter();
     }
 
     public Converter<String, Optional<VecLocalizedString>> getStringToLocalizedString() {
@@ -63,5 +67,13 @@ public class ConverterRegistry {
 
     public StringToMaterialConverter getStringToMaterialConverter() {
         return stringToMaterialConverter;
+    }
+
+    public DoublesToCartesianVector2DConverter getDoublesToCartesianVector2DConverter() {
+        return doublesToCartesianVector2DConverter;
+    }
+
+    public DoublesToCartesianVector3DConverter getDoublesToCartesianVector3DConverter() {
+        return doublesToCartesianVector3DConverter;
     }
 }

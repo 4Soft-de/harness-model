@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,40 +23,35 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.geometry;
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
-import com.foursoft.harness.kbl.v25.KblCrossSectionArea;
-import com.foursoft.harness.kbl.v25.KblNumericalValue;
-import com.foursoft.harness.kbl.v25.KblValueDetermination;
+import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecNumericalValue;
-import com.foursoft.harness.vec.v2x.VecSegmentCrossSectionArea;
-import com.foursoft.harness.vec.v2x.VecValueDetermination;
+import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
+import com.foursoft.harness.vec.v2x.VecBuildingBlockPositioning2D;
+import com.foursoft.harness.vec.v2x.VecHarnessDrawingSpecification2D;
 
-public class SegmentCrossSectionAreaTransformer
-        implements Transformer<KblCrossSectionArea, VecSegmentCrossSectionArea> {
+public class HarnessDrawingSpecification2DTransformer
+        implements Transformer<KblHarness, VecHarnessDrawingSpecification2D> {
 
     @Override
-    public TransformationResult<VecSegmentCrossSectionArea> transform(final TransformationContext context,
-                                                                      final KblCrossSectionArea source) {
-        final VecSegmentCrossSectionArea destination = new VecSegmentCrossSectionArea();
+    public TransformationResult<VecHarnessDrawingSpecification2D> transform(final TransformationContext context,
+                                                                            final KblHarness source) {
+        final VecHarnessDrawingSpecification2D destination = new VecHarnessDrawingSpecification2D();
+        destination.setIdentification("DRAWING");
 
-        final KblValueDetermination valueDetermination = source.getValueDetermination();
-        if (valueDetermination == KblValueDetermination.CALCULATED ||
-                valueDetermination == KblValueDetermination.RESERVED) {
-            destination.setValueDetermination(VecValueDetermination.CALCULATED);
-            destination.setCrossSectionAreaType("Reserved");
-        } else if (valueDetermination == KblValueDetermination.MEASURED) {
-            destination.setValueDetermination(VecValueDetermination.MEASURED);
-            destination.setCrossSectionAreaType("Real");
+        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
+                                                     GeometryDimensionDetector.GEO_2D)) {
+            return TransformationResult.noResult();
         }
+        context.getLogger().info("Detected 2D data. Creating 2D drawing specification.");
 
         return TransformationResult.from(destination)
-                .withDownstream(KblNumericalValue.class, VecNumericalValue.class, Query.of(source.getArea()),
-                                VecSegmentCrossSectionArea::setArea)
+                .withDownstream(KblHarness.class, VecBuildingBlockPositioning2D.class, Query.of(source),
+                                VecHarnessDrawingSpecification2D::getBuildingBlockPositionings)
                 .build();
     }
 }

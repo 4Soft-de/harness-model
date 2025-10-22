@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.geometry;
+package com.foursoft.harness.kbl2vec.transform.topology;
 
 import com.foursoft.harness.kbl.v25.KblCrossSectionArea;
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
