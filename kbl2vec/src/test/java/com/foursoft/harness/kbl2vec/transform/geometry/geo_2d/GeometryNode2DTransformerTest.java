@@ -25,9 +25,11 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
+import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecTopologyNode;
@@ -55,6 +57,12 @@ class GeometryNode2DTransformerTest {
         final VecTopologyNode vecTopologyNode = new VecTopologyNode();
         orchestrator.addMockMapping(source, vecTopologyNode);
 
+        final KblAliasIdentification aliasIdentification = new KblAliasIdentification();
+        source.getAliasIds().add(aliasIdentification);
+
+        final VecAliasIdentification vecAliasIdentification = new VecAliasIdentification();
+        orchestrator.addMockMapping(aliasIdentification, vecAliasIdentification);
+
         // When
         final VecGeometryNode2D result = orchestrator.transform(transformer, source);
 
@@ -62,6 +70,7 @@ class GeometryNode2DTransformerTest {
         assertThat(result).isNotNull()
                 .returns(vecTopologyNode, VecGeometryNode2D::getReferenceNode)
                 .returns("TestId", VecGeometryNode2D::getIdentification)
-                .returns(vecCartesianPoint2D, VecGeometryNode2D::getCartesianPoint);
+                .returns(vecCartesianPoint2D, VecGeometryNode2D::getCartesianPoint)
+                .satisfies(v -> assertThat(v.getAliasIds()).containsExactly(vecAliasIdentification));
     }
 }

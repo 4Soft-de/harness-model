@@ -25,11 +25,13 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
+import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecTopologyNode;
@@ -43,6 +45,8 @@ public class GeometryNode2DTransformer implements Transformer<KblNode, VecGeomet
         destination.setIdentification(source.getId());
 
         return TransformationResult.from(destination)
+                .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class, source::getAliasIds,
+                                VecGeometryNode2D::getAliasIds)
                 .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint2D.class,
                             VecGeometryNode2D::setCartesianPoint)
                 .withLinker(Query.of(source), VecTopologyNode.class, VecGeometryNode2D::setReferenceNode)

@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
+import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.convert.DoublesToCartesianVector2DConverter;
 import com.foursoft.harness.kbl2vec.core.Query;
@@ -32,6 +33,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
+import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
 import com.foursoft.harness.vec.v2x.VecTopologySegment;
@@ -64,6 +66,8 @@ public class GeometrySegment2DTransformer implements Transformer<KblSegment, Vec
         converter.convert(source.getEndVectors()).ifPresent(destination::setEndVector);
 
         return TransformationResult.from(destination)
+                .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class, source::getAliasIds,
+                                VecGeometrySegment2D::getAliasIds)
                 .withLinker(Query.of(source.getStartNode()), VecGeometryNode2D.class,
                             VecGeometrySegment2D::setStartNode)
                 .withLinker(Query.of(source.getEndNode()), VecGeometryNode2D.class, VecGeometrySegment2D::setEndNode)

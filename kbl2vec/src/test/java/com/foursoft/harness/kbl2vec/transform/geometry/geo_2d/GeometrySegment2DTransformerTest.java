@@ -25,9 +25,11 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
+import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
 import com.foursoft.harness.vec.v2x.VecTopologySegment;
@@ -64,6 +66,12 @@ class GeometrySegment2DTransformerTest {
         final VecTopologySegment vecTopologySegment = new VecTopologySegment();
         orchestrator.addMockMapping(source, vecTopologySegment);
 
+        final KblAliasIdentification aliasIdentification = new KblAliasIdentification();
+        source.getAliasIds().add(aliasIdentification);
+
+        final VecAliasIdentification vecAliasIdentification = new VecAliasIdentification();
+        orchestrator.addMockMapping(aliasIdentification, vecAliasIdentification);
+
         // When
         final VecGeometrySegment2D result = orchestrator.transform(transformer, source);
 
@@ -76,7 +84,8 @@ class GeometrySegment2DTransformerTest {
                 .satisfies(v -> assertThat(v.getStartVector().getX()).isEqualTo(1.0))
                 .satisfies(v -> assertThat(v.getStartVector().getY()).isEqualTo(2.0))
                 .satisfies(v -> assertThat(v.getEndVector().getX()).isEqualTo(1.0))
-                .satisfies(v -> assertThat(v.getEndVector().getY()).isEqualTo(2.0));
+                .satisfies(v -> assertThat(v.getEndVector().getY()).isEqualTo(2.0))
+                .satisfies(v -> assertThat(v.getAliasIds()).containsExactly(vecAliasIdentification));
     }
 
     @Test
