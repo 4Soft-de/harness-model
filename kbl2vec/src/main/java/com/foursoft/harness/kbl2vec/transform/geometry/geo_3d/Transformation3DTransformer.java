@@ -1,0 +1,68 @@
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
+
+import com.foursoft.harness.kbl.v25.KblTransformation;
+import com.foursoft.harness.kbl2vec.core.Query;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
+import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
+import com.foursoft.harness.vec.v2x.VecTransformation3D;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Transformation3DTransformer implements Transformer<KblTransformation, VecTransformation3D> {
+
+    @Override
+    public TransformationResult<VecTransformation3D> transform(final TransformationContext context,
+                                                               final KblTransformation source) {
+        final VecTransformation3D destination = new VecTransformation3D();
+
+        final List<Double> u = source.getUS();
+        final List<Double> v = source.getVS();
+
+        if (!GeometryDimensionDetector.hasDimensions(u, GeometryDimensionDetector.GEO_3D)) {
+            context.getLogger().warn(
+                    "Unexpected format for U vector of KblTransformation (xmlId: {}). Expected 3 coordinates but " +
+                            "found {}: {}.", source.getXmlId(), u.size(), u);
+        }
+
+        if (!GeometryDimensionDetector.hasDimensions(v, GeometryDimensionDetector.GEO_3D)) {
+            context.getLogger().warn(
+                    "Unexpected format for V vector of KblTransformation (xmlId: {}). Expected 3 coordinates but " +
+                            "found {}: {}.", source.getXmlId(), v.size(), v);
+        }
+
+        final List<Double> w = crossVectors(u, v);
+        destination.setA11(u.get(0));
+        destination.setA12(v.get(0));
+        destination.setA13(w.get(0));
+        destination.setA21(u.get(1));
+        destination.setA22(v.get(1));
+        destination.setA23(w.get(1));
+        destination.setA31(u.get(2));
+        destination.setA32(v.get(2));
+        destination.setA33(w.get(2));
+
+        return TransformationResult.from(destination)
+                .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint3D.class,
+                            VecTransformation3D::setOrigin)
+                .build();
+    }
+
+    private List<Double> crossVectors(final List<Double> us, final List<Double> vs) {
+        final double ux = us.get(0);
+        final double uy = us.get(1);
+        final double uz = us.get(2);
+        final double vx = vs.get(0);
+        final double vy = vs.get(1);
+        final double vz = vs.get(2);
+
+        final double x = uy * vz - uz * vy;
+        final double y = uz * vx - ux * vz;
+        final double z = ux * vy - uy * vx;
+
+        return Arrays.asList(x, y, z);
+    }
+}
