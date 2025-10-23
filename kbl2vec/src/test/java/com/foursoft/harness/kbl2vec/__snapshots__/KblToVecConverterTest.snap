@@ -490,6 +490,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Batterie</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_0">
+          <Identification>XA.A.1.Last</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_0</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_0</Part>
       </Component>
       <Component id="PartOccurrence_id_342_1">
@@ -498,6 +502,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Anlasser</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_1">
+          <Identification>XB.B.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_1</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_1</Part>
       </Component>
     </Specification>
@@ -2085,6 +2093,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Drehstromgenerator</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_0">
+          <Identification>XB.C.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_3</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_3</Part>
       </Component>
 <!--This occurrence has no "Id" in the KBL data.-->
@@ -55561,6 +55573,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt Säule A rechts unten</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_0">
+          <Identification>XA.43.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_9</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_9</Part>
       </Component>
       <Component id="PartOccurrence_id_342_1">
@@ -55569,6 +55585,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt Säule A links unten</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_1">
+          <Identification>XA.44.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_9</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_9</Part>
       </Component>
       <Component id="PartOccurrence_id_342_2">
@@ -55577,6 +55597,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt hinter Schalttafel Mitte</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_2">
+          <Identification>XA.45.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_10</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_10</Part>
       </Component>
       <Component id="PartOccurrence_id_342_3">
@@ -55585,6 +55609,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt am Scheinwerfer links</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_3">
+          <Identification>XA.655.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_10</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_10</Part>
       </Component>
       <Component id="PartOccurrence_id_342_4">
@@ -55593,6 +55621,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt am Scheinwerfer rechts</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_4">
+          <Identification>XA.656.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_11</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_11</Part>
       </Component>
       <Component id="PartOccurrence_id_342_5">
@@ -55601,6 +55633,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt 1 Nähe Heckscheibe links</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_5">
+          <Identification>XA.657.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_11</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_11</Part>
       </Component>
       <Component id="PartOccurrence_id_342_6">
@@ -55609,6 +55645,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt am Radhaus hinten links</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_6">
+          <Identification>XA.729.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_12</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_12</Part>
       </Component>
       <Component id="PartOccurrence_id_342_7">
@@ -55617,6 +55657,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt 1 am Radhaus hinten rechts</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_7">
+          <Identification>XA.730.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_9</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_9</Part>
       </Component>
       <Component id="PartOccurrence_id_342_8">
@@ -55625,6 +55669,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Batterie</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_8">
+          <Identification>XA.A.1.REF</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_13</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_13</Part>
       </Component>
       <Component id="PartOccurrence_id_342_9">
@@ -55633,6 +55681,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Anlasser</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_9">
+          <Identification>XA.B.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_14</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_14</Part>
       </Component>
       <Component id="PartOccurrence_id_342_10">
@@ -55641,6 +55693,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt Säule A links unten</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_10">
+          <Identification>XB.44.1_113011</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_10</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_10</Part>
       </Component>
       <Component id="PartOccurrence_id_342_11">
@@ -55649,6 +55705,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt Säule A links unten</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_11">
+          <Identification>XB.44.1_113003</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_9</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_9</Part>
       </Component>
       <Component id="PartOccurrence_id_342_12">
@@ -55657,6 +55717,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt hinter Schalttafel Mitte</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_12">
+          <Identification>XB.45.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_11</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_11</Part>
       </Component>
       <Component id="PartOccurrence_id_342_13">
@@ -55665,6 +55729,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt am Scheinwerfer links</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_13">
+          <Identification>XB.655.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_11</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_11</Part>
       </Component>
       <Component id="PartOccurrence_id_342_14">
@@ -55673,6 +55741,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt am Scheinwerfer rechts</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_14">
+          <Identification>XB.656.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_10</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_10</Part>
       </Component>
       <Component id="PartOccurrence_id_342_15">
@@ -55681,6 +55753,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt 1 Nähe Heckscheibe links</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_15">
+          <Identification>XB.657.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_13</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_13</Part>
       </Component>
       <Component id="PartOccurrence_id_342_16">
@@ -55689,6 +55765,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt 1 am Radhaus hinten rechts</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_16">
+          <Identification>XB.730.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_12</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_12</Part>
       </Component>
       <Component id="PartOccurrence_id_342_17">
@@ -55697,6 +55777,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Batterie</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_17">
+          <Identification>XB.A.1.REF</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_10</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_10</Part>
       </Component>
       <Component id="PartOccurrence_id_342_18">
@@ -55705,6 +55789,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt hinter Schalttafel Mitte</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_18">
+          <Identification>XC.45.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_14</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_14</Part>
       </Component>
       <Component id="PartOccurrence_id_342_19">
@@ -55713,6 +55801,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt hinter Schalttafel Mitte</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_19">
+          <Identification>XD.45.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_10</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_10</Part>
       </Component>
       <Component id="PartOccurrence_id_342_20">
@@ -55721,6 +55813,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Scheibenwaschpumpe</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_20">
+          <Identification>XW.V5.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_44</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_44</Part>
       </Component>
       <Component id="PartOccurrence_id_342_21">
@@ -55729,6 +55825,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Heizwiderstand für Spritzdüse links</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_21">
+          <Identification>XW.Z20.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_45</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_45</Part>
       </Component>
 <!--This occurrence has no "Id" in the KBL data.-->
@@ -70527,10 +70627,19 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
+        <AliasId id="AliasIdentification_id_368_5_1">
+          <IdentificationValue>ST_SIDO_5</IdentificationValue>
+          <Type>Alias-Ref</Type>
+          <Scope>VOBES</Scope>
+        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00202">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_0">
+          <Identification>XG.SR1.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_2</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_2</Part>
       </Component>
       <Component id="PartOccurrence_id_342_1">
@@ -70552,10 +70661,19 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
+        <AliasId id="AliasIdentification_id_368_10_1">
+          <IdentificationValue>ST_SIDO_2</IdentificationValue>
+          <Type>Alias-Ref</Type>
+          <Scope>VOBES</Scope>
+        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00203">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_1">
+          <Identification>XF.SR1.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_6</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_6</Part>
       </Component>
       <Component id="PartOccurrence_id_342_2">
@@ -70577,10 +70695,19 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
+        <AliasId id="AliasIdentification_id_368_15_1">
+          <IdentificationValue>ST_SIDO_3</IdentificationValue>
+          <Type>Alias-Ref</Type>
+          <Scope>VOBES</Scope>
+        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00204">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_2">
+          <Identification>XH.SR1.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_6</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_6</Part>
       </Component>
       <Component id="PartOccurrence_id_342_3">
@@ -70602,10 +70729,19 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
+        <AliasId id="AliasIdentification_id_368_16_1">
+          <IdentificationValue>ST_SIDO_6</IdentificationValue>
+          <Type>Alias-Ref</Type>
+          <Scope>VOBES</Scope>
+        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00205">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_3">
+          <Identification>XD.SR1.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_9</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_9</Part>
       </Component>
       <Component id="PartOccurrence_id_342_4">
@@ -70627,10 +70763,19 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
+        <AliasId id="AliasIdentification_id_368_22_1">
+          <IdentificationValue>ST_BATT</IdentificationValue>
+          <Type>Alias-Ref</Type>
+          <Scope>VOBES</Scope>
+        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00206">
           <LanguageCode>De</LanguageCode>
           <Value>Batterie</Value>
         </Description>
+        <Role xsi:type="vec:TerminalRole" id="TerminalRole_id_342_4">
+          <Identification>XA.A.1</Identification>
+          <TerminalSpecification>TerminalSpecification_id_326_11</TerminalSpecification>
+        </Role>
         <Part>PartVersion_id_326_11</Part>
       </Component>
 <!--This occurrence has no "Id" in the KBL data.-->
