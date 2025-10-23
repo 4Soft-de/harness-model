@@ -1,0 +1,48 @@
+package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
+
+import com.foursoft.harness.kbl.v25.KblCartesianPoint;
+import com.foursoft.harness.kbl.v25.KblTransformation;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
+import com.foursoft.harness.vec.v2x.VecTransformation3D;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class Transformation3DTransformerTest {
+
+    @Test
+    void should_transformTransformation3D() {
+        final Transformation3DTransformer transformer = new Transformation3DTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblTransformation source = new KblTransformation();
+
+        final KblCartesianPoint cartesianPoint = new KblCartesianPoint();
+        source.setCartesianPoint(cartesianPoint);
+
+        source.getUS().add(1.0);
+        source.getUS().add(1.0);
+        source.getUS().add(1.0);
+        source.getVS().add(1.0);
+        source.getVS().add(1.0);
+        source.getVS().add(1.0);
+
+        final VecCartesianPoint3D vecCartesianPoint3D = new VecCartesianPoint3D();
+        orchestrator.addMockMapping(cartesianPoint, vecCartesianPoint3D);
+
+        final VecTransformation3D result = orchestrator.transform(transformer, source);
+
+        assertThat(result).isNotNull()
+                .returns(vecCartesianPoint3D, VecTransformation3D::getOrigin)
+                .returns(1.0, VecTransformation3D::getA11)
+                .returns(1.0, VecTransformation3D::getA12)
+                .returns(0.0, VecTransformation3D::getA13)
+                .returns(1.0, VecTransformation3D::getA21)
+                .returns(1.0, VecTransformation3D::getA22)
+                .returns(0.0, VecTransformation3D::getA23)
+                .returns(1.0, VecTransformation3D::getA31)
+                .returns(1.0, VecTransformation3D::getA32)
+                .returns(0.0, VecTransformation3D::getA33);
+    }
+}

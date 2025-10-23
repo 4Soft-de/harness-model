@@ -12,6 +12,8 @@ import com.foursoft.harness.vec.v2x.VecTransformation3D;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.foursoft.harness.kbl2vec.utils.ListUtils.getElementOrDefault;
+
 public class Transformation3DTransformer implements Transformer<KblTransformation, VecTransformation3D> {
 
     @Override
@@ -35,15 +37,16 @@ public class Transformation3DTransformer implements Transformer<KblTransformatio
         }
 
         final List<Double> w = crossVectors(u, v);
-        destination.setA11(u.get(0));
-        destination.setA12(v.get(0));
-        destination.setA13(w.get(0));
-        destination.setA21(u.get(1));
-        destination.setA22(v.get(1));
-        destination.setA23(w.get(1));
-        destination.setA31(u.get(2));
-        destination.setA32(v.get(2));
-        destination.setA33(w.get(2));
+
+        destination.setA11(getElementOrDefault(u, 0, 0.0));
+        destination.setA12(getElementOrDefault(v, 0, 0.0));
+        destination.setA13(getElementOrDefault(w, 0, 0.0));
+        destination.setA21(getElementOrDefault(u, 1, 0.0));
+        destination.setA22(getElementOrDefault(v, 1, 0.0));
+        destination.setA23(getElementOrDefault(w, 1, 0.0));
+        destination.setA31(getElementOrDefault(u, 2, 0.0));
+        destination.setA32(getElementOrDefault(v, 2, 0.0));
+        destination.setA33(getElementOrDefault(w, 2, 0.0));
 
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source.getCartesianPoint()), VecCartesianPoint3D.class,
