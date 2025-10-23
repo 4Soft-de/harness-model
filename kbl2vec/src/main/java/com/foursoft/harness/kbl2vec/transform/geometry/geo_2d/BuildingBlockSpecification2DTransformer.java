@@ -25,19 +25,16 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
-import com.foursoft.harness.kbl.v25.KblCartesianPoint;
-import com.foursoft.harness.kbl.v25.KblHarness;
-import com.foursoft.harness.kbl.v25.KblNode;
-import com.foursoft.harness.kbl.v25.KblSegment;
+import com.foursoft.harness.kbl.common.HasPlacement;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
-import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification2D;
-import com.foursoft.harness.vec.v2x.VecCartesianPoint2D;
-import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
-import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
+import com.foursoft.harness.vec.v2x.*;
+
+import java.util.List;
 
 public class BuildingBlockSpecification2DTransformer
         implements Transformer<KblHarness, VecBuildingBlockSpecification2D> {
@@ -63,6 +60,15 @@ public class BuildingBlockSpecification2DTransformer
                 .withDownstream(KblSegment.class, VecGeometrySegment2D.class,
                                 Query.fromLists(source.getParentKBLContainer().getSegments()),
                                 VecBuildingBlockSpecification2D::getGeometrySegments)
+                .withDownstream(ConnectionOrOccurrence.class, VecOccurrenceOrUsageViewItem2D.class,
+                                () -> getPlaceableOccurrences(source),
+                                VecBuildingBlockSpecification2D::getPlacedElementViewItems)
                 .build();
+    }
+
+    private List<ConnectionOrOccurrence> getPlaceableOccurrences(final KblHarness kblHarness) {
+        return kblHarness.getConnectionOrOccurrences().stream()
+                .filter(HasPlacement.class::isInstance)
+                .toList();
     }
 }
