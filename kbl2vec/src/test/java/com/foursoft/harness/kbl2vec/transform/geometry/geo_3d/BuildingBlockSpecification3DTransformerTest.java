@@ -80,7 +80,6 @@ class BuildingBlockSpecification3DTransformerTest {
                 .satisfies(v -> assertThat(v.getGeometryNodes()).containsExactly(vecGeometryNode3D))
                 .satisfies(v -> assertThat(v.getGeometrySegments()).containsExactly(vecGeometrySegment3D))
                 .satisfies(v -> assertThat(v.getCartesianPoints()).containsExactly(vecCartesianPoint3D))
-                .satisfies(v -> assertThat(v.getCartesianPoints()).containsExactly(vecCartesianPoint3D))
                 .satisfies(v -> assertThat(v.getPlacedElementViewItem3Ds()).containsExactly(viewItem3D));
     }
 }
