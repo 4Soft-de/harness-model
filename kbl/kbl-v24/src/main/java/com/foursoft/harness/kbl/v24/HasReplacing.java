@@ -30,5 +30,4 @@ import java.util.List;
 public interface HasReplacing {
 
     List<KblPartSubstitution> getReplacings();
-    
 }
