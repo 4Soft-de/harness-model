@@ -26,11 +26,7 @@
 package com.foursoft.harness.kbl2vec.transform.components.common;
 
 import com.foursoft.harness.kbl.common.*;
-import com.foursoft.harness.kbl.v25.HasRelatedAssembly;
-import com.foursoft.harness.kbl.v25.HasRelatedOccurrence;
-import com.foursoft.harness.kbl.v25.KblInstallationInstruction;
-import com.foursoft.harness.kbl.v25.KblAliasIdentification;
-import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.convert.Converter;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -56,6 +52,11 @@ public class Fragments {
         return (dv, builder) -> {
             dv.setDocumentType("PartMaster");
             commonPartDocumentAttributes(source, context).performFragment(dv, builder);
+
+            if (source instanceof final KblWireProtection wireProtection) {
+                builder.withDownstream(KblWireProtection.class, VecPlaceableElementSpecification.class,
+                                       Query.of(wireProtection), VecDocumentVersion::getSpecifications);
+            }
 
             builder.withDownstream(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
                                    VecDocumentVersion::getSpecifications);

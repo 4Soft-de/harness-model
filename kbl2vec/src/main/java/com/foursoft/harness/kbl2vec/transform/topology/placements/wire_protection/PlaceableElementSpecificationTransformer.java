@@ -1,0 +1,27 @@
+package com.foursoft.harness.kbl2vec.transform.topology.placements.wire_protection;
+
+import com.foursoft.harness.kbl.v25.KblWireProtection;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
+import com.foursoft.harness.vec.v2x.VecPlacementType;
+
+import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+
+public class PlaceableElementSpecificationTransformer
+        implements Transformer<KblWireProtection, VecPlaceableElementSpecification> {
+
+    @Override
+    public TransformationResult<VecPlaceableElementSpecification> transform(final TransformationContext context,
+                                                                            final KblWireProtection source) {
+        final VecPlaceableElementSpecification destination = new VecPlaceableElementSpecification();
+
+        destination.getValidPlacementTypes().add(VecPlacementType.ON_WAY);
+        destination.getValidPlacementTypes().add(VecPlacementType.ON_POINT);
+
+        return TransformationResult.from(destination)
+                .withFragment(commonSpecificationAttributes(source))
+                .build();
+    }
+}
