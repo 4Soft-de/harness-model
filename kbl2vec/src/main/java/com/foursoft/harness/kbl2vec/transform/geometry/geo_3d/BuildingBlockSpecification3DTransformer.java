@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
 
-import com.foursoft.harness.kbl.common.HasPlacement;
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -34,7 +33,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.*;
 
-import java.util.List;
+import static com.foursoft.harness.kbl2vec.transform.Queries.placeablePartOccurrences;
 
 public class BuildingBlockSpecification3DTransformer
         implements Transformer<KblHarness, VecBuildingBlockSpecification3D> {
@@ -61,14 +60,8 @@ public class BuildingBlockSpecification3DTransformer
                                 Query.fromLists(source.getParentKBLContainer().getSegments()),
                                 VecBuildingBlockSpecification3D::getGeometrySegments)
                 .withDownstream(ConnectionOrOccurrence.class, VecOccurrenceOrUsageViewItem3D.class,
-                                () -> getPlaceableOccurrences(source),
+                                placeablePartOccurrences(source),
                                 VecBuildingBlockSpecification3D::getPlacedElementViewItem3Ds)
                 .build();
-    }
-
-    private List<ConnectionOrOccurrence> getPlaceableOccurrences(final KblHarness kblHarness) {
-        return kblHarness.getConnectionOrOccurrences().stream()
-                .filter(HasPlacement.class::isInstance)
-                .toList();
     }
 }
