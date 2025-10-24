@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,45 +23,40 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.connectivity;
+package com.foursoft.harness.kbl2vec.transform.contacting;
 
-import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
-import com.foursoft.harness.kbl.v25.KblContactPoint;
-import com.foursoft.harness.kbl.v25.KblExtremity;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.common.util.StreamUtils;
-import com.foursoft.harness.vec.v2x.VecCavitySealRole;
-import com.foursoft.harness.vec.v2x.VecWireEnd;
-import com.foursoft.harness.vec.v2x.VecWireMounting;
+import com.foursoft.harness.vec.v2x.VecCavityMounting;
+import com.foursoft.harness.vec.v2x.VecCavityPlugRole;
+import com.foursoft.harness.vec.v2x.VecCavityReference;
 
-import java.util.Comparator;
 import java.util.List;
 
-public class WireMountingTransformer implements Transformer<KblContactPoint, VecWireMounting> {
+public class CavityMountingTransformer implements Transformer<KblContactPoint, VecCavityMounting> {
 
     @Override
-    public TransformationResult<VecWireMounting> transform(final TransformationContext context,
-                                                           final KblContactPoint source) {
-        final VecWireMounting destination = new VecWireMounting();
+    public TransformationResult<VecCavityMounting> transform(final TransformationContext context,
+                                                             final KblContactPoint source) {
+        final VecCavityMounting destination = new VecCavityMounting();
 
         return TransformationResult.from(destination)
-                .withLinker(Query.fromLists(getCavitySealOccurrences(source)), VecCavitySealRole.class,
-                            VecWireMounting::setMountedCavitySeal)
-                .withLinker(Query.fromLists(getSortedExtremities(source)), VecWireEnd.class,
-                            VecWireMounting::getReferencedWireEnd)
+                .withLinker(Query.fromLists(getCavityPlugOccurrences(source)), VecCavityPlugRole.class,
+                            VecCavityMounting::getReplacedPlug)
+                .withLinker(Query.fromLists(source.getContactedCavity()), VecCavityReference.class,
+                            VecCavityMounting::getEquippedCavityRef)
                 .build();
     }
 
-    private List<KblExtremity> getSortedExtremities(final KblContactPoint contactPoint) {
-        return contactPoint.getRefExtremity().stream()
-                .sorted(Comparator.comparing(KblExtremity::getXmlId))
+    private List<KblCavityPlugOccurrence> getCavityPlugOccurrences(final KblContactPoint contactPoint) {
+        return contactPoint.getAssociatedParts().stream()
+                .flatMap(StreamUtils.ofClass(HasReplacing.class))
+                .flatMap(hasReplacing -> hasReplacing.getReplacings().stream())
+                .map(KblPartSubstitution::getReplaced)
                 .toList();
-    }
-
-    private List<KblCavitySealOccurrence> getCavitySealOccurrences(final KblContactPoint contactPoint) {
-        return StreamUtils.checkAndCast(contactPoint.getAssociatedParts(), KblCavitySealOccurrence.class).toList();
     }
 }

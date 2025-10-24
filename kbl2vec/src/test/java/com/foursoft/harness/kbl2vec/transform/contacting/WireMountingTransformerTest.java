@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,49 +23,47 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.connectivity;
+package com.foursoft.harness.kbl2vec.transform.contacting;
 
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
+import com.foursoft.harness.kbl.v25.KblContactPoint;
+import com.foursoft.harness.kbl.v25.KblExtremity;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecCavityMounting;
-import com.foursoft.harness.vec.v2x.VecCavityPlugRole;
-import com.foursoft.harness.vec.v2x.VecCavityReference;
+import com.foursoft.harness.vec.v2x.VecCavitySealRole;
+import com.foursoft.harness.vec.v2x.VecWireEnd;
+import com.foursoft.harness.vec.v2x.VecWireMounting;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CavityMountingTransformerTest {
+class WireMountingTransformerTest {
 
     @Test
-    void should_transformCavityMounting() {
+    void should_transformWireMounting() {
         // Given
-        final CavityMountingTransformer transformer = new CavityMountingTransformer();
+        final WireMountingTransformer transformer = new WireMountingTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblContactPoint source = new KblContactPoint();
 
-        final KblCavityPlugOccurrence cavityPlugOccurrence = new KblCavityPlugOccurrence();
-        final KblPartSubstitution partSubstitution = new KblPartSubstitution();
-        final KblTerminalOccurrence hasReplacing = new KblTerminalOccurrence();
-        partSubstitution.setReplaced(cavityPlugOccurrence);
-        hasReplacing.getReplacings().add(partSubstitution);
-        source.getAssociatedParts().add(hasReplacing);
+        final KblCavitySealOccurrence cavitySeal = new KblCavitySealOccurrence();
+        source.getAssociatedParts().add(cavitySeal);
 
-        final VecCavityPlugRole vecCavityPlugRole = new VecCavityPlugRole();
-        orchestrator.addMockMapping(cavityPlugOccurrence, vecCavityPlugRole);
+        final VecCavitySealRole vecCavitySealRole = new VecCavitySealRole();
+        orchestrator.addMockMapping(cavitySeal, vecCavitySealRole);
 
-        final KblCavityOccurrence cavityOccurrence = new KblCavityOccurrence();
-        source.getContactedCavity().add(cavityOccurrence);
+        final KblExtremity extremity = new KblExtremity();
+        source.getRefExtremity().add(extremity);
 
-        final VecCavityReference vecCavityReference = new VecCavityReference();
-        orchestrator.addMockMapping(cavityOccurrence, vecCavityReference);
+        final VecWireEnd vecWireEnd = new VecWireEnd();
+        orchestrator.addMockMapping(extremity, vecWireEnd);
 
         // When
-        final VecCavityMounting result = orchestrator.transform(transformer, source);
+        final VecWireMounting result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .satisfies(v -> assertThat(v.getReplacedPlug()).containsExactly(vecCavityPlugRole))
-                .satisfies(v -> assertThat(v.getEquippedCavityRef()).containsExactly(vecCavityReference));
+                .returns(vecCavitySealRole, VecWireMounting::getMountedCavitySeal)
+                .satisfies(v -> assertThat(v.getReferencedWireEnd()).containsExactly(vecWireEnd));
     }
 }

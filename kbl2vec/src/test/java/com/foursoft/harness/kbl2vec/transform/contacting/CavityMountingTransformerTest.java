@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,47 +23,49 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.connectivity;
+package com.foursoft.harness.kbl2vec.transform.contacting;
 
-import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
-import com.foursoft.harness.kbl.v25.KblContactPoint;
-import com.foursoft.harness.kbl.v25.KblExtremity;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecCavitySealRole;
-import com.foursoft.harness.vec.v2x.VecWireEnd;
-import com.foursoft.harness.vec.v2x.VecWireMounting;
+import com.foursoft.harness.vec.v2x.VecCavityMounting;
+import com.foursoft.harness.vec.v2x.VecCavityPlugRole;
+import com.foursoft.harness.vec.v2x.VecCavityReference;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WireMountingTransformerTest {
+class CavityMountingTransformerTest {
 
     @Test
-    void should_transformWireMounting() {
+    void should_transformCavityMounting() {
         // Given
-        final WireMountingTransformer transformer = new WireMountingTransformer();
+        final CavityMountingTransformer transformer = new CavityMountingTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblContactPoint source = new KblContactPoint();
 
-        final KblCavitySealOccurrence cavitySeal = new KblCavitySealOccurrence();
-        source.getAssociatedParts().add(cavitySeal);
+        final KblCavityPlugOccurrence cavityPlugOccurrence = new KblCavityPlugOccurrence();
+        final KblPartSubstitution partSubstitution = new KblPartSubstitution();
+        final KblTerminalOccurrence hasReplacing = new KblTerminalOccurrence();
+        partSubstitution.setReplaced(cavityPlugOccurrence);
+        hasReplacing.getReplacings().add(partSubstitution);
+        source.getAssociatedParts().add(hasReplacing);
 
-        final VecCavitySealRole vecCavitySealRole = new VecCavitySealRole();
-        orchestrator.addMockMapping(cavitySeal, vecCavitySealRole);
+        final VecCavityPlugRole vecCavityPlugRole = new VecCavityPlugRole();
+        orchestrator.addMockMapping(cavityPlugOccurrence, vecCavityPlugRole);
 
-        final KblExtremity extremity = new KblExtremity();
-        source.getRefExtremity().add(extremity);
+        final KblCavityOccurrence cavityOccurrence = new KblCavityOccurrence();
+        source.getContactedCavity().add(cavityOccurrence);
 
-        final VecWireEnd vecWireEnd = new VecWireEnd();
-        orchestrator.addMockMapping(extremity, vecWireEnd);
+        final VecCavityReference vecCavityReference = new VecCavityReference();
+        orchestrator.addMockMapping(cavityOccurrence, vecCavityReference);
 
         // When
-        final VecWireMounting result = orchestrator.transform(transformer, source);
+        final VecCavityMounting result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns(vecCavitySealRole, VecWireMounting::getMountedCavitySeal)
-                .satisfies(v -> assertThat(v.getReferencedWireEnd()).containsExactly(vecWireEnd));
+                .satisfies(v -> assertThat(v.getReplacedPlug()).containsExactly(vecCavityPlugRole))
+                .satisfies(v -> assertThat(v.getEquippedCavityRef()).containsExactly(vecCavityReference));
     }
 }
