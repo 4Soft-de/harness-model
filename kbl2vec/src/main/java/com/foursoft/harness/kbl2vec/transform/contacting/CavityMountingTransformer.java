@@ -23,31 +23,40 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.plugs;
+package com.foursoft.harness.kbl2vec.transform.contacting;
 
-import com.foursoft.harness.kbl.v25.KblCavityPlugOccurrence;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.v2x.VecCavityMounting;
 import com.foursoft.harness.vec.v2x.VecCavityPlugRole;
-import com.foursoft.harness.vec.v2x.VecCavityPlugSpecification;
 import com.foursoft.harness.vec.v2x.VecCavityReference;
 
-public class CavityPlugRoleTransformer implements Transformer<KblCavityPlugOccurrence, VecCavityPlugRole> {
+import java.util.List;
+
+public class CavityMountingTransformer implements Transformer<KblContactPoint, VecCavityMounting> {
 
     @Override
-    public TransformationResult<VecCavityPlugRole> transform(final TransformationContext context,
-                                                             final KblCavityPlugOccurrence source) {
-        final VecCavityPlugRole dest = new VecCavityPlugRole();
-        dest.setIdentification(source.getId());
+    public TransformationResult<VecCavityMounting> transform(final TransformationContext context,
+                                                             final KblContactPoint source) {
+        final VecCavityMounting destination = new VecCavityMounting();
 
-        return TransformationResult
-                .from(dest)
-                .withLinker(Query.of(source::getPart), VecCavityPlugSpecification.class,
-                            VecCavityPlugRole::setCavityPlugSpecification)
-                .withLinker(source.getRefCavityOccurrence().stream()::toList, VecCavityReference.class,
-                            VecCavityPlugRole::getPluggedCavityRef)
+        return TransformationResult.from(destination)
+                .withLinker(Query.fromLists(getCavityPlugOccurrences(source)), VecCavityPlugRole.class,
+                            VecCavityMounting::getReplacedPlug)
+                .withLinker(Query.fromLists(source.getContactedCavity()), VecCavityReference.class,
+                            VecCavityMounting::getEquippedCavityRef)
                 .build();
+    }
+
+    private List<KblCavityPlugOccurrence> getCavityPlugOccurrences(final KblContactPoint contactPoint) {
+        return contactPoint.getAssociatedParts().stream()
+                .flatMap(StreamUtils.ofClass(HasReplacing.class))
+                .flatMap(hasReplacing -> hasReplacing.getReplacings().stream())
+                .map(KblPartSubstitution::getReplaced)
+                .toList();
     }
 }

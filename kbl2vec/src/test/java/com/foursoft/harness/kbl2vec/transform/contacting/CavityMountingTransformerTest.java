@@ -23,50 +23,49 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.plugs;
+package com.foursoft.harness.kbl2vec.transform.contacting;
 
-import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
-import com.foursoft.harness.kbl.v25.KblCavityPlug;
-import com.foursoft.harness.kbl.v25.KblCavityPlugOccurrence;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecCavityMounting;
 import com.foursoft.harness.vec.v2x.VecCavityPlugRole;
-import com.foursoft.harness.vec.v2x.VecCavityPlugSpecification;
 import com.foursoft.harness.vec.v2x.VecCavityReference;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CavityPlugRoleTransformerTest {
+class CavityMountingTransformerTest {
 
     @Test
-    void should_transformCavityPlugRole() {
+    void should_transformCavityMounting() {
         // Given
-        final CavityPlugRoleTransformer transformer = new CavityPlugRoleTransformer();
+        final CavityMountingTransformer transformer = new CavityMountingTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblCavityPlugOccurrence source = new KblCavityPlugOccurrence();
-        source.setId("TestId");
+        final KblContactPoint source = new KblContactPoint();
 
-        final KblCavityPlug part = new KblCavityPlug();
-        source.setPart(part);
+        final KblCavityPlugOccurrence cavityPlugOccurrence = new KblCavityPlugOccurrence();
+        final KblPartSubstitution partSubstitution = new KblPartSubstitution();
+        final KblTerminalOccurrence hasReplacing = new KblTerminalOccurrence();
+        partSubstitution.setReplaced(cavityPlugOccurrence);
+        hasReplacing.getReplacings().add(partSubstitution);
+        source.getAssociatedParts().add(hasReplacing);
 
-        final VecCavityPlugSpecification vecCavityPlugSpecification = new VecCavityPlugSpecification();
-        orchestrator.addMockMapping(part, vecCavityPlugSpecification);
+        final VecCavityPlugRole vecCavityPlugRole = new VecCavityPlugRole();
+        orchestrator.addMockMapping(cavityPlugOccurrence, vecCavityPlugRole);
 
         final KblCavityOccurrence cavityOccurrence = new KblCavityOccurrence();
-        source.getRefCavityOccurrence().add(cavityOccurrence);
+        source.getContactedCavity().add(cavityOccurrence);
 
         final VecCavityReference vecCavityReference = new VecCavityReference();
         orchestrator.addMockMapping(cavityOccurrence, vecCavityReference);
 
         // When
-        final VecCavityPlugRole result = orchestrator.transform(transformer, source);
+        final VecCavityMounting result = orchestrator.transform(transformer, source);
 
         // Then
-        assertThat(result)
-                .isNotNull()
-                .returns("TestId", VecCavityPlugRole::getIdentification)
-                .returns(vecCavityPlugSpecification, VecCavityPlugRole::getCavityPlugSpecification)
-                .satisfies(v -> assertThat(v.getPluggedCavityRef()).contains(vecCavityReference));
+        assertThat(result).isNotNull()
+                .satisfies(v -> assertThat(v.getReplacedPlug()).containsExactly(vecCavityPlugRole))
+                .satisfies(v -> assertThat(v.getEquippedCavityRef()).containsExactly(vecCavityReference));
     }
 }

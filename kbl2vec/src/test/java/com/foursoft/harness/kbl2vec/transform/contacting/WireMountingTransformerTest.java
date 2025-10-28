@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,41 +23,47 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires;
+package com.foursoft.harness.kbl2vec.transform.contacting;
 
+import com.foursoft.harness.kbl.v25.KblCavitySealOccurrence;
+import com.foursoft.harness.kbl.v25.KblContactPoint;
 import com.foursoft.harness.kbl.v25.KblExtremity;
-import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecCustomProperty;
-import com.foursoft.harness.vec.v2x.VecSimpleValueProperty;
+import com.foursoft.harness.vec.v2x.VecCavitySealRole;
 import com.foursoft.harness.vec.v2x.VecWireEnd;
+import com.foursoft.harness.vec.v2x.VecWireMounting;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WireEndTransformerTest {
+class WireMountingTransformerTest {
 
     @Test
-    void should_transformWireEnd() {
+    void should_transformWireMounting() {
         // Given
-        final WireEndTransformer transformer = new WireEndTransformer();
+        final WireMountingTransformer transformer = new WireMountingTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblExtremity source = new KblExtremity();
-        source.setPositionOnWire(1.0);
+        final KblContactPoint source = new KblContactPoint();
 
-        final KblProcessingInstruction processingInstruction = new KblProcessingInstruction();
-        source.getProcessingInformations().add(processingInstruction);
+        final KblCavitySealOccurrence cavitySeal = new KblCavitySealOccurrence();
+        source.getAssociatedParts().add(cavitySeal);
 
-        final VecCustomProperty customProperty = new VecSimpleValueProperty();
-        orchestrator.addMockMapping(processingInstruction, customProperty);
+        final VecCavitySealRole vecCavitySealRole = new VecCavitySealRole();
+        orchestrator.addMockMapping(cavitySeal, vecCavitySealRole);
+
+        final KblExtremity extremity = new KblExtremity();
+        source.getRefExtremity().add(extremity);
+
+        final VecWireEnd vecWireEnd = new VecWireEnd();
+        orchestrator.addMockMapping(extremity, vecWireEnd);
 
         // When
-        final VecWireEnd result = orchestrator.transform(transformer, source);
+        final VecWireMounting result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns(1.0, VecWireEnd::getPositionOnWire)
-                .satisfies(v -> assertThat(v.getCustomProperties()).contains(customProperty));
+                .returns(vecCavitySealRole, VecWireMounting::getMountedCavitySeal)
+                .satisfies(v -> assertThat(v.getReferencedWireEnd()).containsExactly(vecWireEnd));
     }
 }

@@ -23,28 +23,38 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.wires;
+package com.foursoft.harness.kbl2vec.transform.contacting;
 
-import com.foursoft.harness.kbl.v25.KblExtremity;
+import com.foursoft.harness.kbl.v25.KblContactPoint;
 import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
+import com.foursoft.harness.kbl.v25.KblTerminalOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecCustomProperty;
-import com.foursoft.harness.vec.v2x.VecSimpleValueProperty;
-import com.foursoft.harness.vec.v2x.VecWireEnd;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WireEndTransformerTest {
+class ContactPointTransformerTest {
 
     @Test
-    void should_transformWireEnd() {
+    void should_transformContactPoint() {
         // Given
-        final WireEndTransformer transformer = new WireEndTransformer();
+        final ContactPointTransformer transformer = new ContactPointTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblExtremity source = new KblExtremity();
-        source.setPositionOnWire(1.0);
+        final KblContactPoint source = new KblContactPoint();
+        source.setId("TestId");
+
+        final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
+        source.getAssociatedParts().add(terminalOccurrence);
+
+        final VecTerminalRole vecTerminalRole = new VecTerminalRole();
+        orchestrator.addMockMapping(terminalOccurrence, vecTerminalRole);
+
+        final VecCavityMounting cavityMounting = new VecCavityMounting();
+        final VecWireMounting wireMounting = new VecWireMounting();
+        orchestrator.addMockMapping(source, cavityMounting);
+        orchestrator.addMockMapping(source, wireMounting);
 
         final KblProcessingInstruction processingInstruction = new KblProcessingInstruction();
         source.getProcessingInformations().add(processingInstruction);
@@ -53,11 +63,14 @@ class WireEndTransformerTest {
         orchestrator.addMockMapping(processingInstruction, customProperty);
 
         // When
-        final VecWireEnd result = orchestrator.transform(transformer, source);
+        final VecContactPoint result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns(1.0, VecWireEnd::getPositionOnWire)
-                .satisfies(v -> assertThat(v.getCustomProperties()).contains(customProperty));
+                .returns("TestId", VecContactPoint::getIdentification)
+                .returns(vecTerminalRole, VecContactPoint::getMountedTerminal)
+                .satisfies(v -> assertThat(v.getCavityMountings()).containsExactly(cavityMounting))
+                .satisfies(v -> assertThat(v.getWireMountings()).containsExactly(wireMounting))
+                .satisfies(v -> assertThat(v.getCustomProperties()).containsExactly(customProperty));
     }
 }
