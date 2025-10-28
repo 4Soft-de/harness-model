@@ -25,12 +25,14 @@
  */
 package com.foursoft.harness.kbl2vec.transform.placements;
 
+import com.foursoft.harness.kbl.v25.KblFixingAssignment;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblProtectionArea;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
 import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
 import com.foursoft.harness.vec.v2x.VecPlacementSpecification;
 
@@ -47,12 +49,20 @@ public class PlacementSpecificationTransformer implements Transformer<KblHarness
         return TransformationResult.from(destination)
                 .withDownstream(KblProtectionArea.class, VecOnWayPlacement.class,
                                 Query.fromLists(protectionAreas(source)), VecPlacementSpecification::getPlacements)
+                .withDownstream(KblFixingAssignment.class, VecOnPointPlacement.class,
+                                Query.fromLists(fixingAssignments(source)), VecPlacementSpecification::getPlacements)
                 .build();
     }
 
     private List<KblProtectionArea> protectionAreas(final KblHarness source) {
         return source.getParentKBLContainer().getSegments().stream()
                 .flatMap(s -> s.getProtectionAreas().stream())
+                .toList();
+    }
+
+    private List<KblFixingAssignment> fixingAssignments(final KblHarness harness) {
+        return harness.getParentKBLContainer().getSegments().stream()
+                .flatMap(s -> s.getFixingAssignments().stream())
                 .toList();
     }
 }
