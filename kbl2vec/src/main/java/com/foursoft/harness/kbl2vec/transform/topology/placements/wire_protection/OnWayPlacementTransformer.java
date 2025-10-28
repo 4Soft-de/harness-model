@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,24 +25,34 @@
  */
 package com.foursoft.harness.kbl2vec.transform.topology.placements.wire_protection;
 
-import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
+import com.foursoft.harness.kbl.v25.KblProtectionArea;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
+import com.foursoft.harness.vec.v2x.VecSegmentLocation;
 
-public class OnWayPlacementTransformer implements Transformer<KblWireProtectionOccurrence, VecOnWayPlacement> {
+public class OnWayPlacementTransformer implements Transformer<KblProtectionArea, VecOnWayPlacement> {
 
     @Override
     public TransformationResult<VecOnWayPlacement> transform(final TransformationContext context,
-                                                             final KblWireProtectionOccurrence source) {
+                                                             final KblProtectionArea source) {
         final VecOnWayPlacement destination = new VecOnWayPlacement();
-        destination.setIdentification(source.getId());
 
         return TransformationResult.from(destination)
+                .withDownstream(KblProtectionArea.class, VecSegmentLocation.class, Query.of(source),
+                                this::setLocation)
                 .withLinker(Query.of(source), VecPlaceableElementRole.class, VecOnWayPlacement::getPlacedElement)
                 .build();
+    }
+
+    final void setLocation(final VecOnWayPlacement destination, final VecSegmentLocation location) {
+        if (location.getIdentification().equals("START")) {
+            destination.setStartLocation(location);
+        } else if (location.getIdentification().equals("END")) {
+            destination.setEndLocation(location);
+        }
     }
 }
