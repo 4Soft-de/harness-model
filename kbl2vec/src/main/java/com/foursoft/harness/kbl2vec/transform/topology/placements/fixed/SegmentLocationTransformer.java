@@ -1,4 +1,4 @@
-package com.foursoft.harness.kbl2vec.transform.topology.placements.fixing;
+package com.foursoft.harness.kbl2vec.transform.topology.placements.fixed;
 
 import com.foursoft.harness.kbl.v25.KblFixingAssignment;
 import com.foursoft.harness.kbl2vec.core.Transformer;

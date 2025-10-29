@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,6 +33,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import com.foursoft.harness.vec.v2x.VecSpecificRole;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
@@ -49,6 +50,8 @@ public class AccessoryOccurrenceTransformer implements Transformer<ConnectionOrO
                     .withFragment(commonOccurrenceInformation(source, context))
                     .withDownstream(KblAccessoryOccurrence.class, VecSpecificRole.class,
                                     Query.of(source), VecOccurrenceOrUsage::getRoles)
+                    .withDownstream(KblAccessoryOccurrence.class, VecPlaceableElementRole.class, Query.of(source),
+                                    VecOccurrenceOrUsage::getRoles)
                     .build();
         }
         return TransformationResult.noResult();
