@@ -26,7 +26,6 @@
 package com.foursoft.harness.kbl2vec.transform.topology.placements.wire_protection;
 
 import com.foursoft.harness.kbl.v25.KblWireProtection;
-import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
@@ -44,9 +43,6 @@ class PlaceableElementSpecificationTransformerTest {
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblWireProtection source = new KblWireProtection();
-
-        final KblWireProtectionOccurrence occurrence = new KblWireProtectionOccurrence();
-        source.getRefWireProtectionOccurrence().add(occurrence);
 
         final VecPartVersion vecPartVersion = new VecPartVersion();
         orchestrator.addMockMapping(source, vecPartVersion);

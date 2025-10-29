@@ -44,7 +44,8 @@ public class OnWayPlacementTransformer implements Transformer<KblProtectionArea,
         return TransformationResult.from(destination)
                 .withDownstream(KblProtectionArea.class, VecSegmentLocation.class, Query.of(source),
                                 this::setLocation)
-                .withLinker(Query.of(source), VecPlaceableElementRole.class, VecOnWayPlacement::getPlacedElement)
+                .withLinker(Query.of(source::getAssociatedProtection), VecPlaceableElementRole.class,
+                            VecOnWayPlacement::getPlacedElement)
                 .build();
     }
 

@@ -39,6 +39,10 @@ public class PlaceableElementRoleTransformer
     @Override
     public TransformationResult<VecPlaceableElementRole> transform(final TransformationContext context,
                                                                    final KblWireProtectionOccurrence source) {
+        if (source.getRefProtectionArea().isEmpty()) {
+            return TransformationResult.noResult();
+        }
+
         final VecPlaceableElementRole destination = new VecPlaceableElementRole();
         destination.setIdentification(source.getId());
 

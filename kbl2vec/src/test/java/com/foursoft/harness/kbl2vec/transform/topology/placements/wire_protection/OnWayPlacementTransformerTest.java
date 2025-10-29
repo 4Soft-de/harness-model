@@ -26,6 +26,7 @@
 package com.foursoft.harness.kbl2vec.transform.topology.placements.wire_protection;
 
 import com.foursoft.harness.kbl.v25.KblProtectionArea;
+import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
@@ -44,8 +45,11 @@ class OnWayPlacementTransformerTest {
 
         final KblProtectionArea source = new KblProtectionArea();
 
+        final KblWireProtectionOccurrence protectionOccurrence = new KblWireProtectionOccurrence();
+        source.setAssociatedProtection(protectionOccurrence);
+
         final VecPlaceableElementRole placeableElementRole = new VecPlaceableElementRole();
-        orchestrator.addMockMapping(source, placeableElementRole);
+        orchestrator.addMockMapping(protectionOccurrence, placeableElementRole);
 
         final VecSegmentLocation startSegmentLocation = new VecSegmentLocation();
         startSegmentLocation.setIdentification("START");
@@ -68,8 +72,11 @@ class OnWayPlacementTransformerTest {
 
         final KblProtectionArea source = new KblProtectionArea();
 
+        final KblWireProtectionOccurrence protectionOccurrence = new KblWireProtectionOccurrence();
+        source.setAssociatedProtection(protectionOccurrence);
+
         final VecPlaceableElementRole placeableElementRole = new VecPlaceableElementRole();
-        orchestrator.addMockMapping(source, placeableElementRole);
+        orchestrator.addMockMapping(protectionOccurrence, placeableElementRole);
 
         final VecSegmentLocation endSegmentLocation = new VecSegmentLocation();
         endSegmentLocation.setIdentification("END");
