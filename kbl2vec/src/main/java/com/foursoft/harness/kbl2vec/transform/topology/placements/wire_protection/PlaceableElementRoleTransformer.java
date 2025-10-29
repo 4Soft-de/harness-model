@@ -47,7 +47,7 @@ public class PlaceableElementRoleTransformer
         destination.setIdentification(source.getId());
 
         return TransformationResult.from(destination)
-                .withLinker(Query.of(source.getPart()), VecPlaceableElementSpecification.class,
+                .withLinker(Query.of(source::getPart), VecPlaceableElementSpecification.class,
                             VecPlaceableElementRole::setPlaceableElementSpecification)
                 .build();
     }
