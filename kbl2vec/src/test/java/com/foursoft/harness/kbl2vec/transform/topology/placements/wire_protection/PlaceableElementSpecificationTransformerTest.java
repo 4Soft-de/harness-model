@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,6 +26,7 @@
 package com.foursoft.harness.kbl2vec.transform.topology.placements.wire_protection;
 
 import com.foursoft.harness.kbl.v25.KblWireProtection;
+import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
@@ -44,6 +45,9 @@ class PlaceableElementSpecificationTransformerTest {
 
         final KblWireProtection source = new KblWireProtection();
 
+        final KblWireProtectionOccurrence occurrence = new KblWireProtectionOccurrence();
+        source.getRefWireProtectionOccurrence().add(occurrence);
+
         final VecPartVersion vecPartVersion = new VecPartVersion();
         orchestrator.addMockMapping(source, vecPartVersion);
 
@@ -54,7 +58,6 @@ class PlaceableElementSpecificationTransformerTest {
         assertThat(result).isNotNull()
                 .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion))
                 .satisfies(
-                        v -> assertThat(v.getValidPlacementTypes()).containsExactlyInAnyOrder(VecPlacementType.ON_WAY,
-                                                                                              VecPlacementType.ON_POINT));
+                        v -> assertThat(v.getValidPlacementTypes()).containsExactly(VecPlacementType.ON_WAY));
     }
 }
