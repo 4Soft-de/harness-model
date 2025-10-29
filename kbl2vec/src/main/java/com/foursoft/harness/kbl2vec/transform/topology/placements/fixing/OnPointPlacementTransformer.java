@@ -19,7 +19,8 @@ public class OnPointPlacementTransformer implements Transformer<KblFixingAssignm
         return TransformationResult.from(destination)
                 .withDownstream(KblFixingAssignment.class, VecSegmentLocation.class, Query.of(source),
                                 VecOnPointPlacement::getLocations)
-                .withLinker(Query.of(source), VecPlaceableElementRole.class, VecOnPointPlacement::getPlacedElement)
+                .withLinker(Query.of(source::getFixing), VecPlaceableElementRole.class,
+                            VecOnPointPlacement::getPlacedElement)
                 .build();
     }
 }

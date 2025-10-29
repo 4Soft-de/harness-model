@@ -60,8 +60,8 @@ public class PlacementSpecificationTransformer implements Transformer<KblHarness
                 .toList();
     }
 
-    private List<KblFixingAssignment> fixingAssignments(final KblHarness harness) {
-        return harness.getParentKBLContainer().getSegments().stream()
+    private List<KblFixingAssignment> fixingAssignments(final KblHarness source) {
+        return source.getParentKBLContainer().getSegments().stream()
                 .flatMap(s -> s.getFixingAssignments().stream())
                 .toList();
     }

@@ -7,6 +7,8 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
 import com.foursoft.harness.vec.v2x.VecPlacementType;
 
+import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+
 public class PlaceableElementSpecificationTransformer
         implements Transformer<KblFixing, VecPlaceableElementSpecification> {
 
@@ -16,6 +18,8 @@ public class PlaceableElementSpecificationTransformer
         final VecPlaceableElementSpecification destination = new VecPlaceableElementSpecification();
         destination.getValidPlacementTypes().add(VecPlacementType.ON_POINT);
 
-        return TransformationResult.of(destination);
+        return TransformationResult.from(destination)
+                .withFragment(commonSpecificationAttributes(source))
+                .build();
     }
 }

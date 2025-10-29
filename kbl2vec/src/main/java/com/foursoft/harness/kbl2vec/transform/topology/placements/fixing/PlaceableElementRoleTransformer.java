@@ -13,6 +13,10 @@ public class PlaceableElementRoleTransformer implements Transformer<KblFixingOcc
     @Override
     public TransformationResult<VecPlaceableElementRole> transform(final TransformationContext context,
                                                                    final KblFixingOccurrence source) {
+        if (source.getRefFixingAssignment().isEmpty()) {
+            return TransformationResult.noResult();
+        }
+
         final VecPlaceableElementRole destination = new VecPlaceableElementRole();
         destination.setIdentification(source.getId());
 

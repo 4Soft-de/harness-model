@@ -46,16 +46,11 @@ public class FixingOccurrenceTransformer implements Transformer<ConnectionOrOccu
         if (occurrence instanceof final KblFixingOccurrence source) {
             final VecPartOccurrence destination = new VecPartOccurrence();
 
-            final TransformationResult.Builder<VecPartOccurrence> builder = TransformationResult.from(destination);
-
-            if (!source.getRefFixingOccurrence().isEmpty()) {
-                builder.withDownstream(KblFixingOccurrence.class, VecPlaceableElementRole.class, Query.of(source),
-                                       VecOccurrenceOrUsage::getRoles);
-            }
-
             return TransformationResult.from(destination)
                     .withFragment(commonOccurrenceInformation(source, context))
                     .withDownstream(KblFixingOccurrence.class, VecFixingRole.class, Query.of(source),
+                                    VecOccurrenceOrUsage::getRoles)
+                    .withDownstream(KblFixingOccurrence.class, VecPlaceableElementRole.class, Query.of(source),
                                     VecOccurrenceOrUsage::getRoles)
                     .build();
         }
