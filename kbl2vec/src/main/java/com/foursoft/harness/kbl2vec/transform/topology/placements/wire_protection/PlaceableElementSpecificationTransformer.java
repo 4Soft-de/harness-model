@@ -40,10 +40,6 @@ public class PlaceableElementSpecificationTransformer
     @Override
     public TransformationResult<VecPlaceableElementSpecification> transform(final TransformationContext context,
                                                                             final KblWireProtection source) {
-        if (source.getRefWireProtectionOccurrence().isEmpty()) {
-            return TransformationResult.noResult();
-        }
-
         final VecPlaceableElementSpecification destination = new VecPlaceableElementSpecification();
         destination.getValidPlacementTypes().add(VecPlacementType.ON_WAY);
 
