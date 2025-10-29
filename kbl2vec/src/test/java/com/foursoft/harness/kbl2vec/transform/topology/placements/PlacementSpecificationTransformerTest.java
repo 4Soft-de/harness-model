@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,10 +25,8 @@
  */
 package com.foursoft.harness.kbl2vec.transform.topology.placements;
 
-import com.foursoft.harness.kbl.v25.KblHarness;
-import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
 import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
 import com.foursoft.harness.vec.v2x.VecPlacementSpecification;
 import org.junit.jupiter.api.Test;
@@ -45,20 +43,23 @@ class PlacementSpecificationTransformerTest {
 
         final KblHarness source = new KblHarness();
 
-        final KblWireProtectionOccurrence wireProtectionOccurrence = new KblWireProtectionOccurrence();
-        source.getWireProtectionOccurrences().add(wireProtectionOccurrence);
+        final KBLContainer container = new KBLContainer();
+        source.setParentKBLContainer(container);
 
-        final VecOnPointPlacement vecOnPointPlacement = new VecOnPointPlacement();
-        orchestrator.addMockMapping(wireProtectionOccurrence, vecOnPointPlacement);
+        final KblSegment segment = new KblSegment();
+        source.getParentKBLContainer().getSegments().add(segment);
+
+        final KblProtectionArea protectionArea = new KblProtectionArea();
+        segment.getProtectionAreas().add(protectionArea);
 
         final VecOnWayPlacement vecOnWayPlacement = new VecOnWayPlacement();
-        orchestrator.addMockMapping(wireProtectionOccurrence, vecOnWayPlacement);
+        orchestrator.addMockMapping(protectionArea, vecOnWayPlacement);
 
         // When
         final VecPlacementSpecification result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .satisfies(v -> assertThat(v.getPlacements()).contains(vecOnPointPlacement, vecOnWayPlacement));
+                .satisfies(v -> assertThat(v.getPlacements()).contains(vecOnWayPlacement));
     }
 }
