@@ -18,6 +18,10 @@ public class SegmentLocationTransformer extends AbstractSegmentLocationTransform
     private KblUnit extractUnit(final KblProtectionArea source) {
         final KblSegment parentSegment = source.getParentSegment();
 
+        if (source.getAbsoluteEndLocation() != null) {
+            return source.getAbsoluteEndLocation().getUnitComponent();
+        }
+
         if (parentSegment.getPhysicalLength() != null) {
             return parentSegment.getPhysicalLength().getUnitComponent();
         }

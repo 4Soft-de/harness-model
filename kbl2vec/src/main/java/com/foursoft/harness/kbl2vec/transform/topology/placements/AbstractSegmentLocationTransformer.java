@@ -24,13 +24,13 @@ public abstract class AbstractSegmentLocationTransformer<S> implements Transform
         final TransformationResult.Builder<VecSegmentLocation> builder = TransformationResult.from(destination);
 
         if (source instanceof final KblProtectionArea protectionArea) {
-            builder.withLinker(Query.of(protectionArea.getParentSegment()), VecTopologySegment.class,
+            builder.withLinker(Query.of(protectionArea::getParentSegment), VecTopologySegment.class,
                                VecSegmentLocation::setReferencedSegment);
 
             if (locationData.absoluteLocation != null) {
                 return builder
                         .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
-                                        Query.of(protectionArea.getAbsoluteStartLocation()),
+                                        Query.of(locationData.absoluteLocation),
                                         VecSegmentLocation::setOffset)
                         .build();
             }
