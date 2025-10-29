@@ -1,10 +1,8 @@
 package com.foursoft.harness.kbl2vec.transform.topology.placements.wire_protection.end;
 
-import com.foursoft.harness.kbl.v25.KblNumericalValue;
 import com.foursoft.harness.kbl.v25.KblProtectionArea;
+import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl.v25.KblUnit;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.topology.placements.AbstractSegmentLocationTransformer;
 import com.foursoft.harness.vec.v2x.VecSegmentLocation;
@@ -13,24 +11,21 @@ public class SegmentLocationTransformer extends AbstractSegmentLocationTransform
         implements Transformer<KblProtectionArea, VecSegmentLocation> {
 
     @Override
-    public TransformationResult<VecSegmentLocation> transform(final TransformationContext context,
-                                                              final KblProtectionArea source) {
-        return super.transform(context, source);
+    protected LocationData extractLocationData(final KblProtectionArea source) {
+        return new LocationData(source.getEndLocation(), source.getAbsoluteEndLocation(), extractUnit(source), "END");
     }
 
-    @Override
-    protected LocationData extractLocationData(final KblProtectionArea source) {
-        final KblNumericalValue absoluteEndLocation = source.getAbsoluteEndLocation();
-        final double relativeEndLocation = source.getEndLocation();
-        final KblUnit baseUnit;
+    private KblUnit extractUnit(final KblProtectionArea source) {
+        final KblSegment parentSegment = source.getParentSegment();
 
-        if (source.getParentSegment().getPhysicalLength() != null) {
-            baseUnit = source.getParentSegment().getPhysicalLength().getUnitComponent();
-        } else if (source.getParentSegment().getVirtualLength() != null) {
-            baseUnit = source.getParentSegment().getVirtualLength().getUnitComponent();
-        } else {
-            baseUnit = new KblUnit();
+        if (parentSegment.getPhysicalLength() != null) {
+            return parentSegment.getPhysicalLength().getUnitComponent();
         }
-        return new LocationData(relativeEndLocation, absoluteEndLocation, baseUnit, "END");
+
+        if (parentSegment.getVirtualLength() != null) {
+            return parentSegment.getVirtualLength().getUnitComponent();
+        }
+
+        return new KblUnit();
     }
 }
