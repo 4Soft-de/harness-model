@@ -27,7 +27,6 @@ package com.foursoft.harness.kbl2vec.transform.placements;
 
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.kbl2vec.transform.placements.PlacementSpecificationTransformer;
 import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
 import com.foursoft.harness.vec.v2x.VecPlacementSpecification;
 import org.junit.jupiter.api.Test;
