@@ -64,47 +64,33 @@ public abstract class AbstractSegmentLocationTransformer<S> implements Transform
                     .build();
         }
 
-        destination.setOffset(calculateAbsoluteLocation(locationData));
+        final AbsoluteLocationResult result = calculateAbsoluteLocation(locationData);
+        destination.setOffset(result.location);
         return builder
-                .withLinker(Query.of(extractUnit(locationData)), VecUnit.class,
+                .withLinker(Query.of(result.unit), VecUnit.class,
                             (dest, unit) -> dest.getOffset().setUnitComponent(unit))
                 .build();
     }
 
-    private VecNumericalValue calculateAbsoluteLocation(final LocationData locationData) {
+    private record AbsoluteLocationResult(VecNumericalValue location, KblUnit unit) {
+    }
+
+    private AbsoluteLocationResult calculateAbsoluteLocation(final LocationData locationData) {
         final VecNumericalValue absoluteLocation = new VecNumericalValue();
         absoluteLocation.setValueComponent(Double.NaN);
 
-        if (Double.isNaN(locationData.relativeLocation)) {
-            return absoluteLocation;
-        }
-
         if (locationData.segment.getPhysicalLength() != null) {
-            absoluteLocation.setValueComponent(
-                    locationData.segment.getPhysicalLength().getValueComponent() *
-                            locationData.relativeLocation);
-        } else if (locationData.segment.getVirtualLength() != null) {
-            absoluteLocation.setValueComponent(
-                    locationData.segment.getVirtualLength().getValueComponent() *
-                            locationData.relativeLocation);
-        }
-
-        return absoluteLocation;
-    }
-
-    private KblUnit extractUnit(final LocationData locationData) {
-        if (locationData.absoluteLocation != null) {
-            return locationData.absoluteLocation.getUnitComponent();
-        }
-
-        if (locationData.segment.getPhysicalLength() != null) {
-            return locationData.segment.getPhysicalLength().getUnitComponent();
+            final KblNumericalValue physicalLength = locationData.segment.getPhysicalLength();
+            absoluteLocation.setValueComponent(physicalLength.getValueComponent() * locationData.relativeLocation);
+            return new AbsoluteLocationResult(absoluteLocation, physicalLength.getUnitComponent());
         }
 
         if (locationData.segment.getVirtualLength() != null) {
-            return locationData.segment.getVirtualLength().getUnitComponent();
+            final KblNumericalValue virtualLength = locationData.segment.getVirtualLength();
+            absoluteLocation.setValueComponent(virtualLength.getValueComponent() * locationData.relativeLocation);
+            return new AbsoluteLocationResult(absoluteLocation, virtualLength.getUnitComponent());
         }
 
-        return null;
+        return new AbsoluteLocationResult(absoluteLocation, null);
     }
 }
