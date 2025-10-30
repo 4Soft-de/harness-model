@@ -1,6 +1,6 @@
-package com.foursoft.harness.kbl2vec.transform.topology.placements.fixed.accessory;
+package com.foursoft.harness.kbl2vec.transform.components.fixing;
 
-import com.foursoft.harness.kbl.v25.KblAccessoryOccurrence;
+import com.foursoft.harness.kbl.v25.KblFixingOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
@@ -8,11 +8,11 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
 
-public class PlaceableElementRoleTransformer implements Transformer<KblAccessoryOccurrence, VecPlaceableElementRole> {
+public class PlaceableElementRoleTransformer implements Transformer<KblFixingOccurrence, VecPlaceableElementRole> {
 
     @Override
     public TransformationResult<VecPlaceableElementRole> transform(final TransformationContext context,
-                                                                   final KblAccessoryOccurrence source) {
+                                                                   final KblFixingOccurrence source) {
         if (source.getRefFixingAssignment().isEmpty()) {
             return TransformationResult.noResult();
         }
