@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,8 +26,6 @@
 package com.foursoft.harness.kbl2vec.transform.placements;
 
 import com.foursoft.harness.kbl.v25.KblProtectionArea;
-import com.foursoft.harness.kbl.v25.KblSegment;
-import com.foursoft.harness.kbl.v25.KblUnit;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecSegmentLocation;
 
@@ -36,24 +34,7 @@ public class EndSegmentLocationTransformer extends AbstractSegmentLocationTransf
 
     @Override
     protected LocationData extractLocationData(final KblProtectionArea source) {
-        return new LocationData(source.getEndLocation(), source.getAbsoluteEndLocation(), extractUnit(source), "END");
-    }
-
-    private KblUnit extractUnit(final KblProtectionArea source) {
-        final KblSegment parentSegment = source.getParentSegment();
-
-        if (source.getAbsoluteEndLocation() != null) {
-            return source.getAbsoluteEndLocation().getUnitComponent();
-        }
-
-        if (parentSegment.getPhysicalLength() != null) {
-            return parentSegment.getPhysicalLength().getUnitComponent();
-        }
-
-        if (parentSegment.getVirtualLength() != null) {
-            return parentSegment.getVirtualLength().getUnitComponent();
-        }
-
-        return new KblUnit();
+        return new LocationData(source.getEndLocation(), source.getAbsoluteEndLocation(), Constants.END,
+                                source.getParentSegment());
     }
 }

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 package com.foursoft.harness.kbl2vec.transform.placements;
 
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
-import com.foursoft.harness.kbl.v25.KblProtectionArea;
+import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl.v25.KblUnit;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -39,6 +39,12 @@ import com.foursoft.harness.vec.v2x.VecUnit;
 
 public abstract class AbstractSegmentLocationTransformer<S> implements Transformer<S, VecSegmentLocation> {
 
+    protected abstract LocationData extractLocationData(S source);
+
+    public record LocationData(double relativeLocation, KblNumericalValue absoluteLocation, String identification,
+                               KblSegment segment) {
+    }
+
     @Override
     public TransformationResult<VecSegmentLocation> transform(final TransformationContext context, final S source) {
         final VecSegmentLocation destination = new VecSegmentLocation();
@@ -46,54 +52,59 @@ public abstract class AbstractSegmentLocationTransformer<S> implements Transform
         final LocationData locationData = extractLocationData(source);
         destination.setIdentification(locationData.identification);
 
-        final TransformationResult.Builder<VecSegmentLocation> builder = TransformationResult.from(destination);
+        final TransformationResult.Builder<VecSegmentLocation> builder = TransformationResult.from(destination)
+                .withLinker(Query.of(locationData.segment), VecTopologySegment.class,
+                            VecSegmentLocation::setReferencedSegment);
 
-        if (source instanceof final KblProtectionArea protectionArea) {
-            builder.withLinker(Query.of(protectionArea::getParentSegment), VecTopologySegment.class,
-                               VecSegmentLocation::setReferencedSegment);
-
-            if (locationData.absoluteLocation != null) {
-                return builder
-                        .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
-                                        Query.of(locationData.absoluteLocation),
-                                        VecSegmentLocation::setOffset)
-                        .build();
-            }
-
-            destination.setOffset(calculateAbsoluteLocation(source, locationData));
+        if (locationData.absoluteLocation != null) {
             return builder
-                    .withLinker(Query.of(locationData::baseUnit), VecUnit.class,
-                                (dest, unit) -> dest.getOffset().setUnitComponent(unit))
+                    .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
+                                    Query.of(locationData.absoluteLocation),
+                                    VecSegmentLocation::setOffset)
                     .build();
         }
-        return TransformationResult.noResult();
+
+        destination.setOffset(calculateAbsoluteLocation(locationData));
+        return builder
+                .withLinker(Query.of(extractUnit(locationData)), VecUnit.class,
+                            (dest, unit) -> dest.getOffset().setUnitComponent(unit))
+                .build();
     }
 
-    private VecNumericalValue calculateAbsoluteLocation(final S source, final LocationData locationData) {
+    private VecNumericalValue calculateAbsoluteLocation(final LocationData locationData) {
         final VecNumericalValue absoluteLocation = new VecNumericalValue();
+        absoluteLocation.setValueComponent(Double.NaN);
 
         if (Double.isNaN(locationData.relativeLocation)) {
             return absoluteLocation;
         }
 
-        if (source instanceof final KblProtectionArea protectionArea) {
-
-            if (protectionArea.getParentSegment().getPhysicalLength() != null) {
-                absoluteLocation.setValueComponent(
-                        protectionArea.getParentSegment().getPhysicalLength().getValueComponent() *
-                                locationData.relativeLocation);
-            } else if (protectionArea.getParentSegment().getVirtualLength() != null) {
-                absoluteLocation.setValueComponent(
-                        protectionArea.getParentSegment().getVirtualLength().getValueComponent() *
-                                locationData.relativeLocation);
-            }
+        if (locationData.segment.getPhysicalLength() != null) {
+            absoluteLocation.setValueComponent(
+                    locationData.segment.getPhysicalLength().getValueComponent() *
+                            locationData.relativeLocation);
+        } else if (locationData.segment.getVirtualLength() != null) {
+            absoluteLocation.setValueComponent(
+                    locationData.segment.getVirtualLength().getValueComponent() *
+                            locationData.relativeLocation);
         }
+
         return absoluteLocation;
     }
 
-    protected abstract LocationData extractLocationData(S source);
+    private KblUnit extractUnit(final LocationData locationData) {
+        if (locationData.absoluteLocation != null) {
+            return locationData.absoluteLocation.getUnitComponent();
+        }
 
-    public record LocationData(double relativeLocation, KblNumericalValue absoluteLocation, KblUnit baseUnit,
-                               String identification) {
+        if (locationData.segment.getPhysicalLength() != null) {
+            return locationData.segment.getPhysicalLength().getUnitComponent();
+        }
+
+        if (locationData.segment.getVirtualLength() != null) {
+            return locationData.segment.getVirtualLength().getUnitComponent();
+        }
+
+        return null;
     }
 }

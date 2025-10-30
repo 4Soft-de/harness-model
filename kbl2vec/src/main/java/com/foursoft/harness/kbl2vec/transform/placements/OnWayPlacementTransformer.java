@@ -50,9 +50,9 @@ public class OnWayPlacementTransformer implements Transformer<KblProtectionArea,
     }
 
     final void setLocation(final VecOnWayPlacement destination, final VecSegmentLocation location) {
-        if (location.getIdentification().equals("START")) {
+        if (location.getIdentification().equals(Constants.START)) {
             destination.setStartLocation(location);
-        } else if (location.getIdentification().equals("END")) {
+        } else if (location.getIdentification().equals(Constants.END)) {
             destination.setEndLocation(location);
         }
     }
