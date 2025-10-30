@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,28 +23,32 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.placements.wire_protection;
+package com.foursoft.harness.kbl2vec.transform.components.protection;
 
-import com.foursoft.harness.kbl.v25.KblWireProtection;
+import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
-import com.foursoft.harness.vec.v2x.VecPlacementType;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
-
-public class PlaceableElementSpecificationTransformer
-        implements Transformer<KblWireProtection, VecPlaceableElementSpecification> {
+public class PlaceableElementRoleTransformer
+        implements Transformer<KblWireProtectionOccurrence, VecPlaceableElementRole> {
 
     @Override
-    public TransformationResult<VecPlaceableElementSpecification> transform(final TransformationContext context,
-                                                                            final KblWireProtection source) {
-        final VecPlaceableElementSpecification destination = new VecPlaceableElementSpecification();
-        destination.getValidPlacementTypes().add(VecPlacementType.ON_WAY);
+    public TransformationResult<VecPlaceableElementRole> transform(final TransformationContext context,
+                                                                   final KblWireProtectionOccurrence source) {
+        if (source.getRefProtectionArea().isEmpty()) {
+            return TransformationResult.noResult();
+        }
+
+        final VecPlaceableElementRole destination = new VecPlaceableElementRole();
+        destination.setIdentification(source.getId());
 
         return TransformationResult.from(destination)
-                .withFragment(commonSpecificationAttributes(source))
+                .withLinker(Query.of(source::getPart), VecPlaceableElementSpecification.class,
+                            VecPlaceableElementRole::setPlaceableElementSpecification)
                 .build();
     }
 }

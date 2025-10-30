@@ -23,32 +23,38 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.placements.wire_protection;
+package com.foursoft.harness.kbl2vec.transform.placements;
 
-import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl.v25.KblProtectionArea;
+import com.foursoft.harness.kbl.v25.KblSegment;
+import com.foursoft.harness.kbl.v25.KblUnit;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
-import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
+import com.foursoft.harness.vec.v2x.VecSegmentLocation;
 
-public class PlaceableElementRoleTransformer
-        implements Transformer<KblWireProtectionOccurrence, VecPlaceableElementRole> {
+public class StartSegmentLocationTransformer extends AbstractSegmentLocationTransformer<KblProtectionArea>
+        implements Transformer<KblProtectionArea, VecSegmentLocation> {
 
     @Override
-    public TransformationResult<VecPlaceableElementRole> transform(final TransformationContext context,
-                                                                   final KblWireProtectionOccurrence source) {
-        if (source.getRefProtectionArea().isEmpty()) {
-            return TransformationResult.noResult();
+    protected LocationData extractLocationData(final KblProtectionArea source) {
+        return new LocationData(source.getStartLocation(), source.getAbsoluteStartLocation(), extractUnit(source),
+                                "START");
+    }
+
+    private KblUnit extractUnit(final KblProtectionArea source) {
+        final KblSegment parentSegment = source.getParentSegment();
+
+        if (source.getAbsoluteStartLocation() != null) {
+            return source.getAbsoluteStartLocation().getUnitComponent();
         }
 
-        final VecPlaceableElementRole destination = new VecPlaceableElementRole();
-        destination.setIdentification(source.getId());
+        if (parentSegment.getPhysicalLength() != null) {
+            return parentSegment.getPhysicalLength().getUnitComponent();
+        }
 
-        return TransformationResult.from(destination)
-                .withLinker(Query.of(source::getPart), VecPlaceableElementSpecification.class,
-                            VecPlaceableElementRole::setPlaceableElementSpecification)
-                .build();
+        if (parentSegment.getVirtualLength() != null) {
+            return parentSegment.getVirtualLength().getUnitComponent();
+        }
+
+        return new KblUnit();
     }
 }

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,43 +23,44 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.topology.placements;
+package com.foursoft.harness.kbl2vec.transform.components.protection;
 
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.KblProtectionArea;
+import com.foursoft.harness.kbl.v25.KblWireProtection;
+import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
-import com.foursoft.harness.vec.v2x.VecPlacementSpecification;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PlacementSpecificationTransformerTest {
+class PlaceableElementRoleTransformerTest {
 
     @Test
-    void should_transformPlacementSpecification() {
+    void should_transformPlaceableElementRole() {
         // Given
-        final PlacementSpecificationTransformer transformer = new PlacementSpecificationTransformer();
+        final PlaceableElementRoleTransformer transformer = new PlaceableElementRoleTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblHarness source = new KblHarness();
-
-        final KBLContainer container = new KBLContainer();
-        source.setParentKBLContainer(container);
-
-        final KblSegment segment = new KblSegment();
-        source.getParentKBLContainer().getSegments().add(segment);
+        final KblWireProtectionOccurrence source = new KblWireProtectionOccurrence();
+        source.setId("TestId");
 
         final KblProtectionArea protectionArea = new KblProtectionArea();
-        segment.getProtectionAreas().add(protectionArea);
+        source.getRefProtectionArea().add(protectionArea);
 
-        final VecOnWayPlacement vecOnWayPlacement = new VecOnWayPlacement();
-        orchestrator.addMockMapping(protectionArea, vecOnWayPlacement);
+        final KblWireProtection part = new KblWireProtection();
+        source.setPart(part);
+
+        final VecPlaceableElementSpecification specification = new VecPlaceableElementSpecification();
+        orchestrator.addMockMapping(part, specification);
 
         // When
-        final VecPlacementSpecification result = orchestrator.transform(transformer, source);
+        final VecPlaceableElementRole result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .satisfies(v -> assertThat(v.getPlacements()).contains(vecOnWayPlacement));
+                .returns("TestId", VecPlaceableElementRole::getIdentification)
+                .returns(specification, VecPlaceableElementRole::getPlaceableElementSpecification);
     }
 }
