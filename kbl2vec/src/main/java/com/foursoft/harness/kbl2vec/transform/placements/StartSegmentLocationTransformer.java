@@ -34,7 +34,7 @@ public class StartSegmentLocationTransformer extends AbstractSegmentLocationTran
 
     @Override
     protected LocationData extractLocationData(final KblProtectionArea source) {
-        return new LocationData(source.getStartLocation(), source.getAbsoluteStartLocation(), Constants.START,
-                                source.getParentSegment());
+        return new LocationData(source.getStartLocation(), source.getAbsoluteStartLocation(),
+                                Constants.START_LOCATION_ID, source.getParentSegment());
     }
 }

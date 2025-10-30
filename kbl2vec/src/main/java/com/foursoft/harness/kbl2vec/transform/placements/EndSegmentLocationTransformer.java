@@ -34,7 +34,7 @@ public class EndSegmentLocationTransformer extends AbstractSegmentLocationTransf
 
     @Override
     protected LocationData extractLocationData(final KblProtectionArea source) {
-        return new LocationData(source.getEndLocation(), source.getAbsoluteEndLocation(), Constants.END,
+        return new LocationData(source.getEndLocation(), source.getAbsoluteEndLocation(), Constants.END_LOCATION_ID,
                                 source.getParentSegment());
     }
 }

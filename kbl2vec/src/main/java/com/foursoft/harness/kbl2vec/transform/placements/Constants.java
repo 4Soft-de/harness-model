@@ -30,6 +30,6 @@ public final class Constants {
         throw new AssertionError("Constants class should not be instantiated.");
     }
 
-    public static final String START = "START";
-    public static final String END = "END";
+    public static final String START_LOCATION_ID = "START";
+    public static final String END_LOCATION_ID = "END";
 }
