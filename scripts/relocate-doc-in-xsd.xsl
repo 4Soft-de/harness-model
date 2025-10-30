@@ -8,6 +8,7 @@
 
     <xsl:template match="xs:documentation">
         <xs:documentation>
+            <xsl:copy-of select="@*"/>
             <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
             <xsl:copy-of select="*|text()"/>
             <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>

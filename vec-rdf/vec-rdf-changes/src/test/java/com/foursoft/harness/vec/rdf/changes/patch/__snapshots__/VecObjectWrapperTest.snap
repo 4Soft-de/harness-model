@@ -1,10 +1,14 @@
 com.foursoft.harness.vec.rdf.changes.patch.VecObjectWrapperTest.should_load_values=[
   {
     "refExternalMapping": [ ],
+    "refReusage": [ ],
     "lengthType": "DMU",
     "lengthValue": {
       "unitComponent": {
         "xmlId": "id_00102 ",
+        "refExternalMapping": [ ],
+        "refReusage": [ ],
+        "refQuantityKind": [ ],
         "refBuildingBlockSpecification2D": [ ],
         "refBuildingBlockSpecification3D": [ ],
         "refCavityPositionDetail": [ ],
@@ -22,6 +26,7 @@ com.foursoft.harness.vec.rdf.changes.patch.VecObjectWrapperTest.should_load_valu
 com.foursoft.harness.vec.rdf.changes.patch.VecObjectWrapperTest.should_unload_values=[
   {
     "xmlId": "id_00074",
-    "refExternalMapping": [ ]
+    "refExternalMapping": [ ],
+    "refReusage": [ ]
   }
 ]

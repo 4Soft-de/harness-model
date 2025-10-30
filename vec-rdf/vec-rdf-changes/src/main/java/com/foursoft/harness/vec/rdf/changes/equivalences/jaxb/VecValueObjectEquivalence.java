@@ -58,6 +58,9 @@ public class VecValueObjectEquivalence extends Equivalence<Object> {
         if (a == b) {
             return true;
         }
+        if (a instanceof Enum<?> && b instanceof Enum<?>) {
+            return false;
+        }
 
         final Optional<VecField> unequivalentField = relevantFields(a.getClass()).filter(f -> !new VecFieldEquivalence(
                         f, this)
@@ -69,6 +72,10 @@ public class VecValueObjectEquivalence extends Equivalence<Object> {
 
     @Override
     protected int doHash(final Object o) {
+        if (o instanceof Enum<?>) {
+            return o.hashCode();
+        }
+
         final HashCodeBuilder hcb = new HashCodeBuilder(215893, 383261);
 
         relevantFields(o.getClass()).map(f -> new VecFieldEquivalence(f, this)

@@ -41,7 +41,7 @@ class VecClassTest {
         final VecField[] connectorHousingFields = VecClass.analyzeClass(VecConnectorHousingSpecification.class)
                 .getFields();
 
-        assertThat(connectorHousingFields).hasSize(17);
+        assertThat(connectorHousingFields).hasSize(19);
     }
 
     @Test
