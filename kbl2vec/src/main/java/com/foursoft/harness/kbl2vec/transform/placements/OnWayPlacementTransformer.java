@@ -40,6 +40,7 @@ public class OnWayPlacementTransformer implements Transformer<KblProtectionArea,
     public TransformationResult<VecOnWayPlacement> transform(final TransformationContext context,
                                                              final KblProtectionArea source) {
         final VecOnWayPlacement destination = new VecOnWayPlacement();
+        destination.setIdentification(source.getAssociatedProtection().getId());
 
         return TransformationResult.from(destination)
                 .withDownstream(KblProtectionArea.class, VecSegmentLocation.class, Query.of(source),
