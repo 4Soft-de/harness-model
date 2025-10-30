@@ -39,6 +39,7 @@ public class TerminalReceptionSpecificationTransformer
     public TransformationResult<VecTerminalReceptionSpecification> transform(final TransformationContext context,
                                                                              final KblGeneralTerminal source) {
         final VecTerminalReceptionSpecification destination = new VecTerminalReceptionSpecification();
+        destination.setIdentification("TRS");
 
         final StringToMaterialConverter converter = context.getConverterRegistry().getStringToMaterialConverter();
         converter.convert(source.getPlatingMaterial())

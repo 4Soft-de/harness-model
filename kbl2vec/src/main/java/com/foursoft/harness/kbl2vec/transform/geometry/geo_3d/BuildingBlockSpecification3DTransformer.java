@@ -42,6 +42,7 @@ public class BuildingBlockSpecification3DTransformer
     public TransformationResult<VecBuildingBlockSpecification3D> transform(final TransformationContext context,
                                                                            final KblHarness source) {
         final VecBuildingBlockSpecification3D destination = new VecBuildingBlockSpecification3D();
+        destination.setIdentification("BB_SPEC_3D");
 
         if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
                                                      GeometryDimensionDetector.GEO_3D)) {
