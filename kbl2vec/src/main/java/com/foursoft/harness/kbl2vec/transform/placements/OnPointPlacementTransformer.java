@@ -40,6 +40,7 @@ public class OnPointPlacementTransformer implements Transformer<KblFixingAssignm
     public TransformationResult<VecOnPointPlacement> transform(final TransformationContext context,
                                                                final KblFixingAssignment source) {
         final VecOnPointPlacement destination = new VecOnPointPlacement();
+        destination.setIdentification(source.getId());
 
         return TransformationResult.from(destination)
                 .withDownstream(KblFixingAssignment.class, VecSegmentLocation.class, Query.of(source),

@@ -27,6 +27,7 @@ package com.foursoft.harness.kbl2vec.transform.placements;
 
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
 import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
 import com.foursoft.harness.vec.v2x.VecPlacementSpecification;
 import org.junit.jupiter.api.Test;
@@ -52,14 +53,21 @@ class PlacementSpecificationTransformerTest {
         final KblProtectionArea protectionArea = new KblProtectionArea();
         segment.getProtectionAreas().add(protectionArea);
 
+        final KblFixingAssignment fixingAssignment = new KblFixingAssignment();
+        segment.getFixingAssignments().add(fixingAssignment);
+
         final VecOnWayPlacement vecOnWayPlacement = new VecOnWayPlacement();
         orchestrator.addMockMapping(protectionArea, vecOnWayPlacement);
+
+        final VecOnPointPlacement vecOnPointPlacement = new VecOnPointPlacement();
+        orchestrator.addMockMapping(fixingAssignment, vecOnPointPlacement);
 
         // When
         final VecPlacementSpecification result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .satisfies(v -> assertThat(v.getPlacements()).contains(vecOnWayPlacement));
+                .satisfies(v -> assertThat(v.getPlacements()).containsExactlyInAnyOrder(vecOnWayPlacement,
+                                                                                        vecOnPointPlacement));
     }
 }
