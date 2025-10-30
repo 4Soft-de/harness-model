@@ -32,4 +32,5 @@ public final class Constants {
 
     public static final String START_LOCATION_ID = "START";
     public static final String END_LOCATION_ID = "END";
+    public static final String FIXING_LOCATION_ID = "FIXING";
 }
