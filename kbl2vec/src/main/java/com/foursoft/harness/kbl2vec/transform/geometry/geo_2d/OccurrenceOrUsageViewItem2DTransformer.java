@@ -50,7 +50,7 @@ public class OccurrenceOrUsageViewItem2DTransformer
     @Override
     public TransformationResult<VecOccurrenceOrUsageViewItem2D> transform(final TransformationContext context,
                                                                           final ConnectionOrOccurrence source) {
-        if (source instanceof final HasPlacement<?> hasPlacement) {
+        if (source instanceof final HasPlacement<?> hasPlacement && hasPlacement.getPlacement() != null) {
             final VecOccurrenceOrUsageViewItem2D destination = new VecOccurrenceOrUsageViewItem2D();
 
             if (source instanceof final HasIdentification hasIdentification && StringUtils.isNotBlank(
