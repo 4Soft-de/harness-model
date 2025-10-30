@@ -403,14 +403,6 @@ This is not intended for productive use and is not complete!
         <EndNode>GeometryNode3D_Node_2</EndNode>
         <StartNode>GeometryNode3D_Node_1</StartNode>
       </GeometrySegment>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_1">
-        <Identification>XB.B.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_1</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_0">
-        <Identification>XA.A.1.Last</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_0</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_342_0">
         <Identification>XA.A.1.Last</Identification>
         <OccurrenceOrUsage>PartOccurrence_id_342_0</OccurrenceOrUsage>
@@ -1871,10 +1863,6 @@ This is not intended for productive use and is not complete!
           <A33>0.06479631784200002</A33>
           <Origin>CartesianPoint3D_Cartesian_point_1</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_2">
-        <Identification>XB.C.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_2</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_1">
         <Identification>XA.C.1</Identification>
@@ -41774,14 +41762,6 @@ This is not intended for productive use and is not complete!
           <Origin>CartesianPoint3D_Cartesian_point_20</Origin>
         </Orientation>
       </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_132">
-        <Identification>XB.44.1_113011</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_132</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_9">
-        <Identification>XA.656.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_9</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_40">
         <Identification>XA.H1.1</Identification>
         <OccurrenceOrUsage>PartOccurrence_id_316_40</OccurrenceOrUsage>
@@ -41878,10 +41858,6 @@ This is not intended for productive use and is not complete!
           <Origin>CartesianPoint3D_Cartesian_point_8</Origin>
         </Orientation>
       </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_10">
-        <Identification>XA.657.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_10</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_126">
         <Identification>B631</Identification>
         <OccurrenceOrUsage>PartOccurrence_id_316_126</OccurrenceOrUsage>
@@ -41897,10 +41873,6 @@ This is not intended for productive use and is not complete!
           <A33>0.962058412252</A33>
           <Origin>CartesianPoint3D_Cartesian_point_10</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_5">
-        <Identification>XA.43.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_5</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_39">
         <Identification>XA.G.1</Identification>
@@ -42029,18 +42001,6 @@ This is not intended for productive use and is not complete!
           <A33>-0.151931</A33>
           <Origin>CartesianPoint3D_Cartesian_point_21</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_93">
-        <Identification>XW.V5.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_93</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_94">
-        <Identification>XW.Z20.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_94</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_6">
-        <Identification>XA.44.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_6</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_23">
         <Identification>XA.F2.1</Identification>
@@ -42329,14 +42289,6 @@ This is not intended for productive use and is not complete!
           <A33>0.0</A33>
           <Origin>CartesianPoint3D_Cartesian_point_42</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_88">
-        <Identification>XD.45.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_88</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_76">
-        <Identification>XB.44.1_113003</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_76</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_108">
         <Identification>B169</Identification>
@@ -42658,18 +42610,6 @@ This is not intended for productive use and is not complete!
           <Origin>CartesianPoint3D_Cartesian_point_64</Origin>
         </Orientation>
       </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_79">
-        <Identification>XB.656.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_79</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_77">
-        <Identification>XB.45.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_77</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_7">
-        <Identification>XA.45.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_7</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_49">
         <Identification>XA.K7.1</Identification>
         <OccurrenceOrUsage>PartOccurrence_id_316_49</OccurrenceOrUsage>
@@ -42685,10 +42625,6 @@ This is not intended for productive use and is not complete!
           <A33>-0.0</A33>
           <Origin>CartesianPoint3D_Cartesian_point_68</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_87">
-        <Identification>XC.45.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_87</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_43">
         <Identification>XA.J415.1</Identification>
@@ -43074,26 +43010,6 @@ This is not intended for productive use and is not complete!
           <Origin>CartesianPoint3D_Cartesian_point_96</Origin>
         </Orientation>
       </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_13">
-        <Identification>XA.A.1.REF</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_13</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_82">
-        <Identification>XB.A.1.REF</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_82</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_14">
-        <Identification>XA.B.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_14</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_12">
-        <Identification>XA.730.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_12</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_81">
-        <Identification>XB.730.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_81</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_44">
         <Identification>XA.J533.1</Identification>
         <OccurrenceOrUsage>PartOccurrence_id_316_44</OccurrenceOrUsage>
@@ -43141,10 +43057,6 @@ This is not intended for productive use and is not complete!
           <A33>0.0</A33>
           <Origin>CartesianPoint3D_Cartesian_point_104</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_80">
-        <Identification>XB.657.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_80</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_4">
         <Identification>TMR.1A1</Identification>
@@ -43209,14 +43121,6 @@ This is not intended for productive use and is not complete!
           <A33>-0.851481818372</A33>
           <Origin>CartesianPoint3D_Cartesian_point_109</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_11">
-        <Identification>XA.729.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_11</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_78">
-        <Identification>XB.655.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_78</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_74">
         <Identification>XA.X.1</Identification>
@@ -43297,10 +43201,6 @@ This is not intended for productive use and is not complete!
           <A33>-0.98732</A33>
           <Origin>CartesianPoint3D_Cartesian_point_116</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_8">
-        <Identification>XA.655.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_8</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_58">
         <Identification>XA.N336.1</Identification>
@@ -43557,58 +43457,6 @@ This is not intended for productive use and is not complete!
           <A33>0.009475</A33>
           <Origin>CartesianPoint3D_Cartesian_point_133</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_307">
-        <Identification>XA.G46.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_307</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_308">
-        <Identification>XA.G233.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_308</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_309">
-        <Identification>XA.V282.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_309</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_310">
-        <Identification>XA.G46.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_310</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_311">
-        <Identification>XA.V282.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_311</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_312">
-        <Identification>XA.V283.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_312</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_313">
-        <Identification>XA.G44.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_313</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_314">
-        <Identification>XA.N336.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_314</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_315">
-        <Identification>XA.G47.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_315</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_316">
-        <Identification>XA.N337.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_316</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_317">
-        <Identification>XA.G45.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_317</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_318">
-        <Identification>XA.N336.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_318</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_319">
-        <Identification>XA.G47.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_319</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_Fixing_occurrence_4">
         <Identification>1J0_957_818.1</Identification>
@@ -72449,10 +72297,6 @@ This is not intended for productive use and is not complete!
           <Origin>CartesianPoint3D_Cartesian_point_6</Origin>
         </Orientation>
       </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_12">
-        <Identification>XA.A.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_12</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_11">
         <Identification>XA.SR1.1</Identification>
         <AliasId id="AliasIdentification_id_368_20">
@@ -72478,22 +72322,6 @@ This is not intended for productive use and is not complete!
           <A33>0.160951</A33>
           <Origin>CartesianPoint3D_Cartesian_point_8</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_9">
-        <Identification>XD.SR1.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_9</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_5">
-        <Identification>XF.SR1.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_5</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_2">
-        <Identification>XG.SR1.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_2</OccurrenceOrUsage>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_8">
-        <Identification>XH.SR1.1</Identification>
-        <OccurrenceOrUsage>PartOccurrence_id_316_8</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
       <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_316_13">
         <Identification>D50</Identification>
@@ -72651,15 +72479,6 @@ This is not intended for productive use and is not complete!
           <A33>-0.112643</A33>
           <Origin>CartesianPoint3D_Cartesian_point_7</Origin>
         </Orientation>
-      </PlacedElementViewItem3D>
-      <PlacedElementViewItem3D id="OccurrenceOrUsageViewItem3D_id_305_0">
-        <Identification>MF1</Identification>
-        <AliasId id="AliasIdentification_id_368_30">
-          <IdentificationValue>MF1</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <OccurrenceOrUsage>PartOccurrence_id_305_0</OccurrenceOrUsage>
       </PlacedElementViewItem3D>
     </Specification>
     <Specification xsi:type="vec:RoutingSpecification" id="RoutingSpecification_id_328_0">
@@ -74090,7 +73909,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_305_0">
         <Identification>MF1</Identification>
-        <AliasId id="AliasIdentification_id_368_30_1">
+        <AliasId id="AliasIdentification_id_368_30">
           <IdentificationValue>MF1</IdentificationValue>
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
