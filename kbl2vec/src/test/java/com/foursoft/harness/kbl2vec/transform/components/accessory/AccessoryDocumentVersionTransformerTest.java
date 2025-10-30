@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,10 +27,7 @@ package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
 import com.foursoft.harness.kbl.v25.KblAccessory;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
-import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,13 +43,18 @@ class AccessoryDocumentVersionTransformerTest {
         final KblAccessory source = new KblAccessory();
 
         final VecPartOrUsageRelatedSpecification vecSpecification = new VecPartOrUsageRelatedSpecification();
+        orchestrator.addMockMapping(source, vecSpecification);
+
         final VecGeneralTechnicalPartSpecification vecGeneralTechnicalPartSpecification =
                 new VecGeneralTechnicalPartSpecification();
-        final VecPartVersion vecPartVersion = new VecPartVersion();
-
-        orchestrator.addMockMapping(source, vecSpecification);
         orchestrator.addMockMapping(source, vecGeneralTechnicalPartSpecification);
+
+        final VecPartVersion vecPartVersion = new VecPartVersion();
         orchestrator.addMockMapping(source, vecPartVersion);
+
+        final VecPlaceableElementSpecification vecPlaceableElementSpecification =
+                new VecPlaceableElementSpecification();
+        orchestrator.addMockMapping(source, vecPlaceableElementSpecification);
 
         // When
         final VecDocumentVersion result = orchestrator.transform(transformer, source);
@@ -62,6 +64,7 @@ class AccessoryDocumentVersionTransformerTest {
                 .returns("PartMaster", VecDocumentVersion::getDocumentType)
                 .satisfies(v -> assertThat(v.getReferencedPart()).containsExactlyInAnyOrder(vecPartVersion))
                 .satisfies(v -> assertThat(v.getSpecifications()).containsExactlyInAnyOrder(vecSpecification,
-                                                                                            vecGeneralTechnicalPartSpecification));
+                                                                                            vecGeneralTechnicalPartSpecification,
+                                                                                            vecPlaceableElementSpecification));
     }
 }
