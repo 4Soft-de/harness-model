@@ -39,7 +39,8 @@ public enum VecVersion {
     V200("2.0.0", Packages.V2X, false),
     V201("2.0.1", Packages.V2X, false),
     V202("2.0.2", Packages.V2X, false),
-    V210("2.1.0", Packages.V2X, true);
+    V210("2.1.0", Packages.V2X, true),
+    V220("2.2.0", Packages.V2X, true);
 
     public static final VecVersion LATEST = V210;
 

@@ -209,6 +209,22 @@
         <jxb:bindings node=".//xs:element[@name='PlacementPoint']">
             <nav:ext-reference schema-type="PlacementPoint" inverse="refCableLeadThroughOutlet"/>
         </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='SupplementaryParts']">
+            <nav:ext-reference schema-type="PartRelation" inverse="refCableLeadThroughOutlet"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='CableLeadThroughOutletReference']">
+        <nav:parent name="parentCableLeadThroughReference"
+                schema-type="CableLeadThroughReference"/>
+        <jxb:bindings node=".//xs:element[@name='Identification']"/>
+        <jxb:bindings node=".//xs:element[@name='CableLeadThroughOutlet']">
+            <nav:ext-reference schema-type="CableLeadThroughOutlet"
+                    inverse="refCableLeadThroughOutletReference"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='UsedSupplementaryParts']">
+            <nav:ext-reference schema-type="OccurrenceOrUsage"
+                    inverse="refCableLeadThroughOutletReference"/>
+        </jxb:bindings>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='CableLeadThroughReference']">
         <nav:parent name="parentGrommetRole" schema-type="GrommetRole"/>
@@ -217,11 +233,14 @@
             <nav:ext-reference schema-type="CableLeadThrough" inverse="refCableLeadThroughReference"/>
         </jxb:bindings>
         <jxb:bindings node=".//xs:element[@name='UsedPlugs']">
+            <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
             <nav:ext-reference schema-type="CavityPlugRole" inverse="refCableLeadThroughReference"/>
         </jxb:bindings>
         <jxb:bindings node=".//xs:element[@name='UsedSeals']">
+            <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
             <nav:ext-reference schema-type="CavitySealRole" inverse="refCableLeadThroughReference"/>
         </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='CableLeadThroughOutletReference']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='CableLeadThroughSpecification']">
         <jxb:bindings node=".//xs:element[@name='Type']"/>
@@ -230,6 +249,48 @@
         <jxb:bindings node=".//xs:element[@name='MinSegmentOutsideDiameter']"/>
         <jxb:bindings node=".//xs:element[@name='MaxSegmentOutsideDiameter']"/>
         <jxb:bindings node=".//xs:element[@name='Sealable']"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='CableSealEntry']">
+        <nav:parent name="parentCableSealSpecification"
+                schema-type="CableSealSpecification"/>
+        <jxb:bindings node=".//xs:element[@name='Identification']"/>
+        <jxb:bindings node=".//xs:element[@name='WireElementOutsideDiameter']"/>
+        <jxb:bindings node=".//xs:element[@name='InsideDiameter']"/>
+        <jxb:bindings node=".//xs:element[@name='Position']">
+            <nav:ext-reference schema-type="Cavity" inverse="refCableSealEntry"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='CableSealEntryReference']">
+        <nav:parent name="parentCableSealRole" schema-type="CableSealRole"/>
+        <jxb:bindings node=".//xs:element[@name='Identification']"/>
+        <jxb:bindings node=".//xs:element[@name='PositionOnWire']"/>
+        <jxb:bindings node=".//xs:element[@name='SealInsertionDepth']"/>
+        <jxb:bindings node=".//xs:element[@name='AssociatedWireElementRef']">
+            <nav:ext-reference schema-type="WireElementReference" inverse="refCableSealEntryReference"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='CableSealEntry']">
+            <nav:ext-reference schema-type="CableSealEntry" inverse="refCableSealEntryReference"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='CableSealPlugRole']">
+        <jxb:bindings node=".//xs:element[@name='CableSealPlugSpecification']">
+            <nav:ext-reference schema-type="CableSealPlugSpecification" inverse="refCableSealPlugRole"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='SealingPinReference']"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='CableSealPlugSpecification']">
+        <jxb:bindings node=".//xs:element[@name='CavityLayout']"/>
+        <jxb:bindings node=".//xs:element[@name='SealingPin']"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='CableSealRole']">
+        <jxb:bindings node=".//xs:element[@name='CableSealSpecification']">
+            <nav:ext-reference schema-type="CableSealSpecification" inverse="refCableSealRole"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='CableSealEntryReference']"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='CableSealSpecification']">
+        <jxb:bindings node=".//xs:element[@name='CableSealEntry']"/>
+        <jxb:bindings node=".//xs:element[@name='CavityLayout']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='CableTieRole']">
         <jxb:bindings node=".//xs:element[@name='CableTieSpecification']">
@@ -287,7 +348,7 @@
         <jxb:bindings node=".//xs:element[@name='Z']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='Cavity']">
-        <nav:parent name="parentModularSlotLayout" schema-type="ModularSlotLayout"/>
+        <nav:parent name="parentCavityLayout" schema-type="CavityLayout"/>
         <nav:parent name="parentSlot" schema-type="Slot"/>
         <jxb:bindings node=".//xs:element[@name='Available']"/>
         <jxb:bindings node=".//xs:element[@name='CavityNumber']"/>
@@ -328,6 +389,15 @@
         <jxb:bindings node=".//xs:element[@name='SecondCavity']">
             <nav:ext-reference schema-type="CavityReference" inverse="refCavityCoupling"/>
         </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='CavityLayout']">
+        <nav:parent name="parentCableSealPlugSpecification"
+                schema-type="CableSealPlugSpecification"/>
+        <nav:parent name="parentCableSealSpecification"
+                schema-type="CableSealSpecification"/>
+        <nav:parent name="parentModularSlot" schema-type="ModularSlot"/>
+        <jxb:bindings node=".//xs:element[@name='Identification']"/>
+        <jxb:bindings node=".//xs:element[@name='VirtualCavity']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='CavityMapping']">
         <nav:parent name="parentSlotMapping" schema-type="SlotMapping"/>
@@ -780,6 +850,17 @@
     <jxb:bindings node="//xs:complexType[@name='CustomUnit']">
         <jxb:bindings node=".//xs:element[@name='Identification']"/>
     </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='DataPoint']">
+        <nav:parent name="parentMultiDimensionalValue" schema-type="MultiDimensionalValue"/>
+        <jxb:bindings node=".//xs:element[@name='DataPointValue']"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='DataPointValue']">
+        <nav:parent name="parentDataPoint" schema-type="DataPoint"/>
+        <jxb:bindings node=".//xs:element[@name='Value']"/>
+        <jxb:bindings node=".//xs:element[@name='Dimension']">
+            <nav:ext-reference schema-type="QuantityKind" inverse="refDataPointValue"/>
+        </jxb:bindings>
+    </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='DateValueProperty']">
         <jxb:bindings node=".//xs:element[@name='Value']"/>
     </jxb:bindings>
@@ -1013,6 +1094,14 @@
     <jxb:bindings node="//xs:complexType[@name='FunctionalStructureSpecification']">
         <jxb:bindings node=".//xs:element[@name='RootNode']"/>
     </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='FuseCharacteristic']">
+        <jxb:bindings node=".//xs:element[@name='Time']">
+            <nav:ext-reference schema-type="QuantityKind" inverse="refFuseCharacteristic"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='TrippingCurrent']">
+            <nav:ext-reference schema-type="QuantityKind" inverse="refFuseCharacteristic"/>
+        </jxb:bindings>
+    </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='FuseComponent']">
         <annox:annotate>@java.lang.Deprecated(forRemoval=true)</annox:annotate>
         <nav:parent name="parentMultiFuseSpecification"
@@ -1029,6 +1118,7 @@
     <jxb:bindings node="//xs:complexType[@name='FuseSpecification']">
         <jxb:bindings node=".//xs:element[@name='FuseType']"/>
         <jxb:bindings node=".//xs:element[@name='IMax']"/>
+        <jxb:bindings node=".//xs:element[@name='Characteristic']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='GeneralTechnicalPartSpecification']">
         <jxb:bindings node=".//xs:element[@name='ColorInformation']"/>
@@ -1244,6 +1334,7 @@
         <jxb:bindings node=".//xs:element[@name='Description']"/>
         <jxb:bindings node=".//xs:element[@name='CompanyName']"/>
         <jxb:bindings node=".//xs:element[@name='ProcessingInstruction']"/>
+        <jxb:bindings node=".//xs:element[@name='ChangeRestriction']"/>
         <jxb:bindings node=".//xs:element[@name='Contract']">
             <nav:ext-reference schema-type="Contract" inverse="refItemVersion"/>
         </jxb:bindings>
@@ -1395,13 +1486,8 @@
                 schema-type="ConnectorHousingSpecification"/>
         <jxb:bindings node=".//xs:element[@name='Identification']"/>
         <jxb:bindings node=".//xs:element[@name='ValidLayoutCombination']">
-            <nav:ext-reference schema-type="ModularSlotLayout" inverse="refModularSlotConfiguration"/>
+            <nav:ext-reference schema-type="CavityLayout" inverse="refModularSlotConfiguration"/>
         </jxb:bindings>
-    </jxb:bindings>
-    <jxb:bindings node="//xs:complexType[@name='ModularSlotLayout']">
-        <nav:parent name="parentModularSlot" schema-type="ModularSlot"/>
-        <jxb:bindings node=".//xs:element[@name='Identification']"/>
-        <jxb:bindings node=".//xs:element[@name='VirtualCavity']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='ModularSlotReference']">
         <jxb:bindings node=".//xs:element[@name='UsedInserts']">
@@ -1436,13 +1522,28 @@
     <jxb:bindings node="//xs:complexType[@name='ModuleListSpecification']">
         <jxb:bindings node=".//xs:element[@name='ModuleListConfiguration']"/>
     </jxb:bindings>
-    <jxb:bindings node="//xs:complexType[@name='MultiCavityPlugRole']"/>
+    <jxb:bindings node="//xs:complexType[@name='MultiCavityPlugRole']">
+        <annox:annotate>@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+    </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='MultiCavityPlugSpecification']">
+        <annox:annotate>@java.lang.Deprecated(forRemoval=true)</annox:annotate>
         <jxb:bindings node=".//xs:element[@name='Assignment']"/>
     </jxb:bindings>
-    <jxb:bindings node="//xs:complexType[@name='MultiCavitySealRole']"/>
+    <jxb:bindings node="//xs:complexType[@name='MultiCavitySealRole']">
+        <annox:annotate>@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+    </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='MultiCavitySealSpecification']">
+        <annox:annotate>@java.lang.Deprecated(forRemoval=true)</annox:annotate>
         <jxb:bindings node=".//xs:element[@name='Assignment']"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='MultiDimensionalValue']">
+        <jxb:bindings node=".//xs:element[@name='Dimension']">
+            <nav:ext-reference schema-type="QuantityKind" inverse="refMultiDimensionalValue"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='DataPoint']"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='MultiDimensionalValueProperty']">
+        <jxb:bindings node=".//xs:element[@name='Value']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='MultiFuseRole']"/>
     <jxb:bindings node="//xs:complexType[@name='MultiFuseSpecification']">
@@ -1607,6 +1708,7 @@
         <jxb:bindings node=".//xs:element[@name='StartLocation']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='OpenCavitiesAssignment']">
+        <annox:annotate>@java.lang.Deprecated(forRemoval=true)</annox:annotate>
         <nav:parent name="parentMultiCavitySealSpecification"
                 schema-type="MultiCavitySealSpecification"/>
         <jxb:bindings node=".//xs:element[@name='OpenCavities']">
@@ -1675,6 +1777,8 @@
             <nav:ext-reference schema-type="PartOrUsageRelatedSpecification" inverse="refPartUsage"/>
         </jxb:bindings>
         <jxb:bindings node=".//xs:element[@name='PartSubstitution']">
+            <annox:annotate target="getter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
+            <annox:annotate target="setter">@java.lang.Deprecated(forRemoval=true)</annox:annotate>
             <nav:ext-reference schema-type="PartSubstitutionSpecification" inverse="refPartUsage"/>
         </jxb:bindings>
     </jxb:bindings>
@@ -1781,6 +1885,7 @@
         <nav:parent name="parentPinComponentBehavior" schema-type="PinComponentBehavior"/>
         <jxb:bindings node=".//xs:element[@name='Type']"/>
         <jxb:bindings node=".//xs:element[@name='Current']"/>
+        <jxb:bindings node=".//xs:element[@name='DeterminationType']"/>
         <jxb:bindings node=".//xs:element[@name='Timing']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='PinOpticalInformation']">
@@ -1798,6 +1903,7 @@
         <nav:parent name="parentPinComponentBehavior" schema-type="PinComponentBehavior"/>
         <jxb:bindings node=".//xs:element[@name='Type']"/>
         <jxb:bindings node=".//xs:element[@name='Voltage']"/>
+        <jxb:bindings node=".//xs:element[@name='DeterminationType']"/>
         <jxb:bindings node=".//xs:element[@name='Timing']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='PinWireMappingPoint']">
@@ -1900,6 +2006,14 @@
         <jxb:bindings node=".//xs:element[@name='LengthValue']"/>
         <jxb:bindings node=".//xs:element[@name='ValueDetermination']"/>
     </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='QuantityKind']">
+        <nav:parent name="parentVecContent" schema-type="VecContent"/>
+        <jxb:bindings node=".//xs:element[@name='Identification']"/>
+        <jxb:bindings node=".//xs:element[@name='Name']"/>
+        <jxb:bindings node=".//xs:element[@name='Unit']">
+            <nav:ext-reference schema-type="Unit" inverse="refQuantityKind"/>
+        </jxb:bindings>
+    </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='ReferenceSurfaceDefinition']">
         <nav:parent name="parentConnectorHousingSpecification"
                 schema-type="ConnectorHousingSpecification"/>
@@ -1988,10 +2102,30 @@
         <jxb:bindings node=".//xs:element[@name='SiPrefix']"/>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='SealedCavitiesAssignment']">
+        <annox:annotate>@java.lang.Deprecated(forRemoval=true)</annox:annotate>
         <nav:parent name="parentMultiCavityPlugSpecification"
                 schema-type="MultiCavityPlugSpecification"/>
         <jxb:bindings node=".//xs:element[@name='SealedCavities']">
             <nav:ext-reference schema-type="Cavity" inverse="refSealedCavitiesAssignment"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='SealingPin']">
+        <nav:parent name="parentCableSealPlugSpecification"
+                schema-type="CableSealPlugSpecification"/>
+        <jxb:bindings node=".//xs:element[@name='Identification']"/>
+        <jxb:bindings node=".//xs:element[@name='OutsideDiameter']"/>
+        <jxb:bindings node=".//xs:element[@name='Position']">
+            <nav:ext-reference schema-type="Cavity" inverse="refSealingPin"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='SealingPinReference']">
+        <nav:parent name="parentCableSealPlugRole" schema-type="CableSealPlugRole"/>
+        <jxb:bindings node=".//xs:element[@name='Identification']"/>
+        <jxb:bindings node=".//xs:element[@name='PluggedEntry']">
+            <nav:ext-reference schema-type="CableSealEntryReference" inverse="refSealingPinReference"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='SealingPin']">
+            <nav:ext-reference schema-type="SealingPin" inverse="refSealingPinReference"/>
         </jxb:bindings>
     </jxb:bindings>
     <jxb:bindings node="//xs:complexType[@name='SegmentConnectionPoint']">
@@ -2660,6 +2794,7 @@
         <jxb:bindings node=".//xs:element[@name='ItemHistoryEntry']"/>
         <jxb:bindings node=".//xs:element[@name='PartVersion']"/>
         <jxb:bindings node=".//xs:element[@name='Project']"/>
+        <jxb:bindings node=".//xs:element[@name='QuantityKind']"/>
         <jxb:bindings node=".//xs:element[@name='ResourceVersion']"/>
         <jxb:bindings node=".//xs:element[@name='Unit']"/>
     </jxb:bindings>

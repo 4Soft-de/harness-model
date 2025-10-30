@@ -8,6 +8,7 @@ com.foursoft.harness.vec.rdf.changes.patch.VecObjectWrapperTest.should_load_valu
         "xmlId": "id_00102 ",
         "refExternalMapping": [ ],
         "refReusage": [ ],
+        "refQuantityKind": [ ],
         "refBuildingBlockSpecification2D": [ ],
         "refBuildingBlockSpecification3D": [ ],
         "refCavityPositionDetail": [ ],

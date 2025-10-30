@@ -57,7 +57,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecAntennaRole(final VecAntennaRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecAntennaRole(final VecAntennaRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -96,7 +97,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecBatteryRole(final VecBatteryRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecBatteryRole(final VecBatteryRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -105,7 +107,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecBoltMountedFixingRole(final VecBoltMountedFixingRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecBoltMountedFixingRole(final VecBoltMountedFixingRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -185,7 +188,13 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecCableLeadThroughOutlet(VecCableLeadThroughOutlet aBean) throws RuntimeException {
+    public O visitVecCableLeadThroughOutlet(final VecCableLeadThroughOutlet aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecCableLeadThroughOutletReference(final VecCableLeadThroughOutletReference aBean)
+            throws RuntimeException {
         return apply(aBean);
     }
 
@@ -200,6 +209,36 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
+    public O visitVecCableSealEntry(final VecCableSealEntry aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecCableSealEntryReference(final VecCableSealEntryReference aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecCableSealPlugRole(final VecCableSealPlugRole aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecCableSealPlugSpecification(final VecCableSealPlugSpecification aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecCableSealRole(final VecCableSealRole aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecCableSealSpecification(final VecCableSealSpecification aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
     public O visitVecCableTieRole(final VecCableTieRole aBean) {
         return apply(aBean);
     }
@@ -209,7 +248,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecCapacitorRole(final VecCapacitorRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecCapacitorRole(final VecCapacitorRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -269,6 +309,11 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
+    public O visitVecCavityLayout(final VecCavityLayout aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
     public O visitVecCavityMapping(final VecCavityMapping aBean) {
         return apply(aBean);
     }
@@ -294,7 +339,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecCavityPositionDetail(VecCavityPositionDetail aBean) throws RuntimeException {
+    public O visitVecCavityPositionDetail(final VecCavityPositionDetail aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -323,11 +368,13 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecCoatingRole(final VecCoatingRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecCoatingRole(final VecCoatingRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecCoatingSpecification(final VecCoatingSpecification aBean) throws RuntimeException {
+    @Override
+    public O visitVecCoatingSpecification(final VecCoatingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -356,7 +403,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecComponentNodeViewItem(final VecComponentNodeViewItem aBean) {
+    @Override
+    public O visitVecComponentNodeViewItem(final VecComponentNodeViewItem aBean) {
         return apply(aBean);
     }
 
@@ -366,7 +414,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecComponentPortViewItem(VecComponentPortViewItem aBean) throws RuntimeException {
+    public O visitVecComponentPortViewItem(final VecComponentPortViewItem aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -391,7 +439,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecConfigurationConstraint(VecConfigurationConstraint aBean) throws RuntimeException {
+    public O visitVecConfigurationConstraint(final VecConfigurationConstraint aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -416,7 +464,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecConnectionNodeViewItem(VecConnectionNodeViewItem aBean) throws RuntimeException {
+    public O visitVecConnectionNodeViewItem(final VecConnectionNodeViewItem aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -426,7 +474,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecConnectionViewSpecification(VecConnectionViewSpecification aBean) throws RuntimeException {
+    public O visitVecConnectionViewSpecification(final VecConnectionViewSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -440,12 +488,14 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecConnectorHousingCoverRole(final VecConnectorHousingCoverRole aBean)
+    @Override
+    public O visitVecConnectorHousingCoverRole(final VecConnectorHousingCoverRole aBean)
             throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecConnectorHousingCoverSpecification(final VecConnectorHousingCoverSpecification aBean)
+    @Override
+    public O visitVecConnectorHousingCoverSpecification(final VecConnectorHousingCoverSpecification aBean)
             throws RuntimeException {
         return apply(aBean);
     }
@@ -485,7 +535,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecCoreCrimpDetail(final VecCoreCrimpDetail aBean) throws RuntimeException {
+    @Override
+    public O visitVecCoreCrimpDetail(final VecCoreCrimpDetail aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -494,7 +545,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecCorrugatedPipeRole(final VecCorrugatedPipeRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecCorrugatedPipeRole(final VecCorrugatedPipeRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -524,6 +576,16 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
+    public O visitVecDataPoint(final VecDataPoint aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecDataPointValue(final VecDataPointValue aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
     public O visitVecDateValueProperty(final VecDateValueProperty aBean) {
         return apply(aBean);
     }
@@ -543,7 +605,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecDiodeRole(final VecDiodeRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecDiodeRole(final VecDiodeRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -557,7 +620,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecDocumentClassification(final VecDocumentClassification aBean) throws RuntimeException {
+    @Override
+    public O visitVecDocumentClassification(final VecDocumentClassification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -586,7 +650,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecEdgeMountedFixingRole(final VecEdgeMountedFixingRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecEdgeMountedFixingRole(final VecEdgeMountedFixingRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -640,7 +705,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecFittingRole(final VecFittingRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecFittingRole(final VecFittingRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -685,11 +751,17 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
+    public O visitVecFuseCharacteristic(final VecFuseCharacteristic aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
     public O visitVecFuseComponent(final VecFuseComponent aBean) {
         return apply(aBean);
     }
 
-    @Override public O visitVecFuseRole(final VecFuseRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecFuseRole(final VecFuseRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -743,7 +815,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecHoleMountedFixingRole(final VecHoleMountedFixingRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecHoleMountedFixingRole(final VecHoleMountedFixingRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -752,11 +825,13 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecHoleTerminalRole(final VecHoleTerminalRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecHoleTerminalRole(final VecHoleTerminalRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecHoleTerminalSpecification(final VecHoleTerminalSpecification aBean)
+    @Override
+    public O visitVecHoleTerminalSpecification(final VecHoleTerminalSpecification aBean)
             throws RuntimeException {
         return apply(aBean);
     }
@@ -781,7 +856,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecInsulationCrimpDetail(final VecInsulationCrimpDetail aBean) throws RuntimeException {
+    @Override
+    public O visitVecInsulationCrimpDetail(final VecInsulationCrimpDetail aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -816,12 +892,12 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecLabelingRole(VecLabelingRole aBean) throws RuntimeException {
+    public O visitVecLabelingRole(final VecLabelingRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecLabelingSpecification(VecLabelingSpecification aBean) throws RuntimeException {
+    public O visitVecLabelingSpecification(final VecLabelingSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -865,7 +941,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecMaterialComposition(final VecMaterialComposition aBean) throws RuntimeException {
+    @Override
+    public O visitVecMaterialComposition(final VecMaterialComposition aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -904,12 +981,9 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecModularSlotConfiguration(final VecModularSlotConfiguration aBean)
+    @Override
+    public O visitVecModularSlotConfiguration(final VecModularSlotConfiguration aBean)
             throws RuntimeException {
-        return apply(aBean);
-    }
-
-    @Override public O visitVecModularSlotLayout(final VecModularSlotLayout aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -938,7 +1012,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecMultiCavityPlugRole(final VecMultiCavityPlugRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecMultiCavityPlugRole(final VecMultiCavityPlugRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -947,7 +1022,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecMultiCavitySealRole(final VecMultiCavitySealRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecMultiCavitySealRole(final VecMultiCavitySealRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -956,7 +1032,19 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecMultiFuseRole(final VecMultiFuseRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecMultiDimensionalValue(final VecMultiDimensionalValue aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecMultiDimensionalValueProperty(final VecMultiDimensionalValueProperty aBean)
+            throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecMultiFuseRole(final VecMultiFuseRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -996,7 +1084,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecNetViewSpecification(VecNetViewSpecification aBean) throws RuntimeException {
+    public O visitVecNetViewSpecification(final VecNetViewSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1006,7 +1094,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecNetworkNodeViewItem(VecNetworkNodeViewItem aBean) throws RuntimeException {
+    public O visitVecNetworkNodeViewItem(final VecNetworkNodeViewItem aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1016,7 +1104,7 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecNetworkPortViewItem(VecNetworkPortViewItem aBean) throws RuntimeException {
+    public O visitVecNetworkPortViewItem(final VecNetworkPortViewItem aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1230,7 +1318,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecPotentialDistributorRole(final VecPotentialDistributorRole aBean)
+    @Override
+    public O visitVecPotentialDistributorRole(final VecPotentialDistributorRole aBean)
             throws RuntimeException {
         return apply(aBean);
     }
@@ -1251,16 +1340,23 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecProtectionMaterialLength(VecProtectionMaterialLength aBean) throws RuntimeException {
+    public O visitVecProtectionMaterialLength(final VecProtectionMaterialLength aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecReferenceSurfaceDefinition(final VecReferenceSurfaceDefinition aBean)
+    @Override
+    public O visitVecQuantityKind(final VecQuantityKind aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecReferenceSurfaceDefinition(final VecReferenceSurfaceDefinition aBean)
             throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecRelayRole(final VecRelayRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecRelayRole(final VecRelayRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1279,15 +1375,18 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecResourceVersion(final VecResourceVersion aBean) throws RuntimeException {
+    @Override
+    public O visitVecResourceVersion(final VecResourceVersion aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecReusage(final VecReusage aBean) throws RuntimeException {
+    @Override
+    public O visitVecReusage(final VecReusage aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecReusageSpecification(final VecReusageSpecification aBean) throws RuntimeException {
+    @Override
+    public O visitVecReusageSpecification(final VecReusageSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1327,12 +1426,22 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
+    public O visitVecSealingPin(final VecSealingPin aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
+    public O visitVecSealingPinReference(final VecSealingPinReference aBean) throws RuntimeException {
+        return apply(aBean);
+    }
+
+    @Override
     public O visitVecSegmentConnectionPoint(final VecSegmentConnectionPoint aBean) {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecSegmentConnectionPointHC(VecSegmentConnectionPointHC aBean) throws RuntimeException {
+    public O visitVecSegmentConnectionPointHC(final VecSegmentConnectionPointHC aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1366,7 +1475,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecShrinkableTubeRole(final VecShrinkableTubeRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecShrinkableTubeRole(final VecShrinkableTubeRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1380,23 +1490,28 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecSignalGraph(final VecSignalGraph aBean) throws RuntimeException {
+    @Override
+    public O visitVecSignalGraph(final VecSignalGraph aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecSignalGraphEdge(final VecSignalGraphEdge aBean) throws RuntimeException {
+    @Override
+    public O visitVecSignalGraphEdge(final VecSignalGraphEdge aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecSignalGraphNode(final VecSignalGraphNode aBean) throws RuntimeException {
+    @Override
+    public O visitVecSignalGraphNode(final VecSignalGraphNode aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecSignalGraphRelation(final VecSignalGraphRelation aBean) throws RuntimeException {
+    @Override
+    public O visitVecSignalGraphRelation(final VecSignalGraphRelation aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecSignalGraphSpecification(final VecSignalGraphSpecification aBean)
+    @Override
+    public O visitVecSignalGraphSpecification(final VecSignalGraphSpecification aBean)
             throws RuntimeException {
         return apply(aBean);
     }
@@ -1466,7 +1581,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecStripeRole(final VecStripeRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecStripeRole(final VecStripeRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1500,7 +1616,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecTerminalDistanceInformation(final VecTerminalDistanceInformation aBean)
+    @Override
+    public O visitVecTerminalDistanceInformation(final VecTerminalDistanceInformation aBean)
             throws RuntimeException {
         return apply(aBean);
     }
@@ -1515,11 +1632,13 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecTerminalProtectionRole(final VecTerminalProtectionRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecTerminalProtectionRole(final VecTerminalProtectionRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecTerminalProtectionSpecification(final VecTerminalProtectionSpecification aBean)
+    @Override
+    public O visitVecTerminalProtectionSpecification(final VecTerminalProtectionSpecification aBean)
             throws RuntimeException {
         return apply(aBean);
     }
@@ -1619,7 +1738,8 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecTubeRole(final VecTubeRole aBean) throws RuntimeException {
+    @Override
+    public O visitVecTubeRole(final VecTubeRole aBean) throws RuntimeException {
         return apply(aBean);
     }
 
@@ -1763,11 +1883,13 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
         return apply(aBean);
     }
 
-    @Override public O visitVecWireProtectionGroup(final VecWireProtectionGroup aBean) throws RuntimeException {
+    @Override
+    public O visitVecWireProtectionGroup(final VecWireProtectionGroup aBean) throws RuntimeException {
         return apply(aBean);
     }
 
-    @Override public O visitVecWireProtectionGroupSpecification(final VecWireProtectionGroupSpecification aBean)
+    @Override
+    public O visitVecWireProtectionGroupSpecification(final VecWireProtectionGroupSpecification aBean)
             throws RuntimeException {
         return apply(aBean);
     }
@@ -1813,17 +1935,17 @@ public class FunctionVisitor<I extends Identifiable, O> implements Visitor<O, Ru
     }
 
     @Override
-    public O visitVecWireTupleSpecification(VecWireTupleSpecification aBean) throws RuntimeException {
+    public O visitVecWireTupleSpecification(final VecWireTupleSpecification aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireTupleTermination(VecWireTupleTermination aBean) throws RuntimeException {
+    public O visitVecWireTupleTermination(final VecWireTupleTermination aBean) throws RuntimeException {
         return apply(aBean);
     }
 
     @Override
-    public O visitVecWireTupleTerminationSpecification(VecWireTupleTerminationSpecification aBean)
+    public O visitVecWireTupleTerminationSpecification(final VecWireTupleTerminationSpecification aBean)
             throws RuntimeException {
         return apply(aBean);
     }
