@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform;
 
+import com.foursoft.harness.kbl.common.HasPlacement;
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
 
@@ -60,4 +61,9 @@ public final class Queries {
         return partOccurrences(source.getControlledComponents());
     }
 
+    public static Query<ConnectionOrOccurrence> placeablePartOccurrences(final KblHarness harness) {
+        return () -> harness.getConnectionOrOccurrences().stream()
+                .filter(HasPlacement.class::isInstance)
+                .toList();
+    }
 }

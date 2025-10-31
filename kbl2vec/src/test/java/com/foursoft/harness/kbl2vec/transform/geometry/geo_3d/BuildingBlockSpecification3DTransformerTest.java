@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,10 +27,7 @@ package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
 
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecBuildingBlockSpecification3D;
-import com.foursoft.harness.vec.v2x.VecCartesianPoint3D;
-import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
-import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,6 +66,12 @@ class BuildingBlockSpecification3DTransformerTest {
         final VecGeometrySegment3D vecGeometrySegment3D = new VecGeometrySegment3D();
         orchestrator.addMockMapping(segment, vecGeometrySegment3D);
 
+        final KblAssemblyPartOccurrence placeableOccurrence = new KblAssemblyPartOccurrence();
+        source.getAssemblyPartOccurrences().add(placeableOccurrence);
+
+        final VecOccurrenceOrUsageViewItem3D viewItem3D = new VecOccurrenceOrUsageViewItem3D();
+        orchestrator.addMockMapping(placeableOccurrence, viewItem3D);
+
         // When
         final VecBuildingBlockSpecification3D result = orchestrator.transform(transformer, source);
 
@@ -76,6 +79,7 @@ class BuildingBlockSpecification3DTransformerTest {
         assertThat(result).isNotNull()
                 .satisfies(v -> assertThat(v.getGeometryNodes()).containsExactly(vecGeometryNode3D))
                 .satisfies(v -> assertThat(v.getGeometrySegments()).containsExactly(vecGeometrySegment3D))
-                .satisfies(v -> assertThat(v.getCartesianPoints()).containsExactly(vecCartesianPoint3D));
+                .satisfies(v -> assertThat(v.getCartesianPoints()).containsExactly(vecCartesianPoint3D))
+                .satisfies(v -> assertThat(v.getPlacedElementViewItem3Ds()).containsExactly(viewItem3D));
     }
 }
