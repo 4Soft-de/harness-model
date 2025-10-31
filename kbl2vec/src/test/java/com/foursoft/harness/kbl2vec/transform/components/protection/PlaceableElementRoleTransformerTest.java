@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.protection;
 
-import com.foursoft.harness.kbl.v25.KblProtectionArea;
 import com.foursoft.harness.kbl.v25.KblWireProtection;
 import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
@@ -45,9 +44,6 @@ class PlaceableElementRoleTransformerTest {
 
         final KblWireProtectionOccurrence source = new KblWireProtectionOccurrence();
         source.setId("TestId");
-
-        final KblProtectionArea protectionArea = new KblProtectionArea();
-        source.getRefProtectionArea().add(protectionArea);
 
         final KblWireProtection part = new KblWireProtection();
         source.setPart(part);
