@@ -27,11 +27,7 @@ package com.foursoft.harness.kbl2vec.transform.placements;
 
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
 import com.foursoft.harness.kbl.v25.KblSegment;
-import com.foursoft.harness.kbl.v25.KblUnit;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.*;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecSegmentLocation;
 import com.foursoft.harness.vec.v2x.VecTopologySegment;
@@ -40,10 +36,6 @@ import com.foursoft.harness.vec.v2x.VecUnit;
 public abstract class AbstractSegmentLocationTransformer<S> implements Transformer<S, VecSegmentLocation> {
 
     protected abstract LocationData extractLocationData(S source);
-
-    public record LocationData(double relativeLocation, KblNumericalValue absoluteLocation, String identification,
-                               KblSegment segment) {
-    }
 
     @Override
     public TransformationResult<VecSegmentLocation> transform(final TransformationContext context, final S source) {
@@ -64,33 +56,41 @@ public abstract class AbstractSegmentLocationTransformer<S> implements Transform
                     .build();
         }
 
-        final AbsoluteLocationResult result = calculateAbsoluteLocation(locationData);
-        destination.setOffset(result.location);
-        return builder
-                .withLinker(Query.of(result.unit), VecUnit.class,
-                            (dest, unit) -> dest.getOffset().setUnitComponent(unit))
+        return builder.withFragment(deriveAbsoluteLocation(locationData))
                 .build();
     }
 
-    private record AbsoluteLocationResult(VecNumericalValue location, KblUnit unit) {
+    private static TransformationFragment<VecSegmentLocation, TransformationResult.Builder<VecSegmentLocation>> deriveAbsoluteLocation(
+            final LocationData locationData) {
+        return (location, builder) -> {
+            final VecNumericalValue absoluteLocation = new VecNumericalValue();
+            absoluteLocation.setValueComponent(Double.NaN);
+            location.setOffset(absoluteLocation);
+
+            final KblNumericalValue segmentLength = resolveSegmentLength(locationData.segment());
+            if (segmentLength != null) {
+                builder.withLinker(Query.of(segmentLength.getUnitComponent()), VecUnit.class,
+                                   (dest, unit) -> dest.getOffset().setUnitComponent(unit));
+
+                if (!Double.isNaN(locationData.relativeLocation())) {
+                    absoluteLocation.setValueComponent(
+                            locationData.relativeLocation() * segmentLength.getValueComponent());
+                }
+            }
+        };
     }
 
-    private AbsoluteLocationResult calculateAbsoluteLocation(final LocationData locationData) {
-        final VecNumericalValue absoluteLocation = new VecNumericalValue();
-        absoluteLocation.setValueComponent(Double.NaN);
-
-        if (locationData.segment.getPhysicalLength() != null) {
-            final KblNumericalValue physicalLength = locationData.segment.getPhysicalLength();
-            absoluteLocation.setValueComponent(physicalLength.getValueComponent() * locationData.relativeLocation);
-            return new AbsoluteLocationResult(absoluteLocation, physicalLength.getUnitComponent());
+    private static KblNumericalValue resolveSegmentLength(final KblSegment segment) {
+        if (segment.getPhysicalLength() != null) {
+            return segment.getPhysicalLength();
         }
-
-        if (locationData.segment.getVirtualLength() != null) {
-            final KblNumericalValue virtualLength = locationData.segment.getVirtualLength();
-            absoluteLocation.setValueComponent(virtualLength.getValueComponent() * locationData.relativeLocation);
-            return new AbsoluteLocationResult(absoluteLocation, virtualLength.getUnitComponent());
+        if (segment.getVirtualLength() != null) {
+            return segment.getVirtualLength();
         }
+        return null;
+    }
 
-        return new AbsoluteLocationResult(absoluteLocation, null);
+    public record LocationData(double relativeLocation, KblNumericalValue absoluteLocation, String identification,
+                               KblSegment segment) {
     }
 }
