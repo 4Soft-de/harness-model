@@ -35,7 +35,6 @@ import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.kbl2vec.transform.Queries.placeablePartOccurrences;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryUnitDetector;
-import com.foursoft.harness.vec.v2x.*;
 
 public class BuildingBlockSpecification2DTransformer
         implements Transformer<KblHarness, VecBuildingBlockSpecification2D> {
