@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,10 +27,7 @@ package com.foursoft.harness.kbl2vec.transform.components.protection;
 
 import com.foursoft.harness.kbl.v25.KblWireProtection;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecGeneralTechnicalPartSpecification;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
-import com.foursoft.harness.vec.v2x.VecWireProtectionSpecification;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -54,8 +51,11 @@ class WireProtectionDocumentVersionTransformerTest {
         orchestrator.addMockMapping(source, vecWireProtectionSpecification);
 
         final VecPartVersion vecPartVersion = new VecPartVersion();
-
         orchestrator.addMockMapping(source, vecPartVersion);
+
+        final VecPlaceableElementSpecification vecPlaceableElementSpecification =
+                new VecPlaceableElementSpecification();
+        orchestrator.addMockMapping(source, vecPlaceableElementSpecification);
 
         // When
         final VecDocumentVersion result = orchestrator.transform(transformer, source);
@@ -66,7 +66,8 @@ class WireProtectionDocumentVersionTransformerTest {
                 .returns("TestCompany", VecDocumentVersion::getCompanyName)
                 .returns("TestVersion", VecDocumentVersion::getDocumentVersion)
                 .satisfies(v -> assertThat(v.getSpecifications()).containsExactlyInAnyOrder(vecGeneralSpecification,
-                                                                                            vecWireProtectionSpecification))
+                                                                                            vecWireProtectionSpecification,
+                                                                                            vecPlaceableElementSpecification))
                 .satisfies(v -> assertThat(v.getReferencedPart()).containsExactly(vecPartVersion));
     }
 }

@@ -26,43 +26,35 @@
 package com.foursoft.harness.kbl2vec.transform.components.protection;
 
 import com.foursoft.harness.kbl.v25.KblWireProtection;
-import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
-import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
-import com.foursoft.harness.vec.v2x.VecWireProtectionRole;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
+import com.foursoft.harness.vec.v2x.VecPlacementType;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WireProtectionOccurrenceTransformerTest {
+class PlaceableElementSpecificationTransformerTest {
 
     @Test
-    void should_transformWireProtectionOccurrence() {
-        final WireProtectionOccurrenceTransformer transformer = new WireProtectionOccurrenceTransformer();
+    void shouldTransformPlaceableElementSpecification() {
+        // Given
+        final PlaceableElementSpecificationTransformer transformer = new PlaceableElementSpecificationTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblWireProtectionOccurrence source = new KblWireProtectionOccurrence();
-        final KblWireProtection part = new KblWireProtection();
-        source.setId("TestId");
-        source.setPart(part);
+        final KblWireProtection source = new KblWireProtection();
 
         final VecPartVersion vecPartVersion = new VecPartVersion();
-        orchestrator.addMockMapping(part, vecPartVersion);
+        orchestrator.addMockMapping(source, vecPartVersion);
 
-        final VecWireProtectionRole vecWireProtectionRole = new VecWireProtectionRole();
-        orchestrator.addMockMapping(source, vecWireProtectionRole);
+        // When
+        final VecPlaceableElementSpecification result = orchestrator.transform(transformer, source);
 
-        final VecPlaceableElementRole vecPlaceableElementRole = new VecPlaceableElementRole();
-        orchestrator.addMockMapping(source, vecPlaceableElementRole);
-
-        final VecPartOccurrence result = orchestrator.transform(transformer, source);
-
+        // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecPartOccurrence::getIdentification)
-                .returns(vecPartVersion, VecPartOccurrence::getPart)
-                .satisfies(v -> assertThat(v.getRoles()).containsExactlyInAnyOrder(vecPlaceableElementRole,
-                                                                                   vecWireProtectionRole));
+                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion))
+                .satisfies(
+                        v -> assertThat(v.getValidPlacementTypes()).containsExactlyInAnyOrder(VecPlacementType.ON_WAY,
+                                                                                              VecPlacementType.ON_POINT));
     }
 }

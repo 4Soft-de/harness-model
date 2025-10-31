@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,41 +28,35 @@ package com.foursoft.harness.kbl2vec.transform.components.protection;
 import com.foursoft.harness.kbl.v25.KblWireProtection;
 import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
-import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
-import com.foursoft.harness.vec.v2x.VecWireProtectionRole;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WireProtectionOccurrenceTransformerTest {
+class PlaceableElementRoleTransformerTest {
 
     @Test
-    void should_transformWireProtectionOccurrence() {
-        final WireProtectionOccurrenceTransformer transformer = new WireProtectionOccurrenceTransformer();
+    void should_transformPlaceableElementRole() {
+        // Given
+        final PlaceableElementRoleTransformer transformer = new PlaceableElementRoleTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblWireProtectionOccurrence source = new KblWireProtectionOccurrence();
-        final KblWireProtection part = new KblWireProtection();
         source.setId("TestId");
+
+        final KblWireProtection part = new KblWireProtection();
         source.setPart(part);
 
-        final VecPartVersion vecPartVersion = new VecPartVersion();
-        orchestrator.addMockMapping(part, vecPartVersion);
+        final VecPlaceableElementSpecification specification = new VecPlaceableElementSpecification();
+        orchestrator.addMockMapping(part, specification);
 
-        final VecWireProtectionRole vecWireProtectionRole = new VecWireProtectionRole();
-        orchestrator.addMockMapping(source, vecWireProtectionRole);
+        // When
+        final VecPlaceableElementRole result = orchestrator.transform(transformer, source);
 
-        final VecPlaceableElementRole vecPlaceableElementRole = new VecPlaceableElementRole();
-        orchestrator.addMockMapping(source, vecPlaceableElementRole);
-
-        final VecPartOccurrence result = orchestrator.transform(transformer, source);
-
+        // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecPartOccurrence::getIdentification)
-                .returns(vecPartVersion, VecPartOccurrence::getPart)
-                .satisfies(v -> assertThat(v.getRoles()).containsExactlyInAnyOrder(vecPlaceableElementRole,
-                                                                                   vecWireProtectionRole));
+                .returns("TestId", VecPlaceableElementRole::getIdentification)
+                .returns(specification, VecPlaceableElementRole::getPlaceableElementSpecification);
     }
 }

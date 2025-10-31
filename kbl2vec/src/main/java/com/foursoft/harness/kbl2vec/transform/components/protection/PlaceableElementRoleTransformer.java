@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,32 +25,26 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.protection;
 
-import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
 import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
 
-import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
-
-public class WireProtectionOccurrenceTransformer implements Transformer<ConnectionOrOccurrence, VecPartOccurrence> {
+public class PlaceableElementRoleTransformer
+        implements Transformer<KblWireProtectionOccurrence, VecPlaceableElementRole> {
 
     @Override
-    public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
-                                                             final ConnectionOrOccurrence occurrence) {
-        if (occurrence instanceof final KblWireProtectionOccurrence source) {
-            final VecPartOccurrence destination = new VecPartOccurrence();
+    public TransformationResult<VecPlaceableElementRole> transform(final TransformationContext context,
+                                                                   final KblWireProtectionOccurrence source) {
+        final VecPlaceableElementRole destination = new VecPlaceableElementRole();
+        destination.setIdentification(source.getId());
 
-            return TransformationResult.from(destination)
-                    .withFragment(commonOccurrenceInformation(source, context))
-                    .withDownstream(KblWireProtectionOccurrence.class, VecWireProtectionRole.class, Query.of(source),
-                                    VecOccurrenceOrUsage::getRoles)
-                    .withDownstream(KblWireProtectionOccurrence.class, VecPlaceableElementRole.class, Query.of(source),
-                                    VecOccurrenceOrUsage::getRoles)
-                    .build();
-        }
-        return TransformationResult.noResult();
+        return TransformationResult.from(destination)
+                .withLinker(Query.of(source::getPart), VecPlaceableElementSpecification.class,
+                            VecPlaceableElementRole::setPlaceableElementSpecification)
+                .build();
     }
 }

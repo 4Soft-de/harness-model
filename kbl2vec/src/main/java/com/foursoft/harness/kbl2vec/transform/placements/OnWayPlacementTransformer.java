@@ -23,34 +23,38 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.protection;
+package com.foursoft.harness.kbl2vec.transform.placements;
 
-import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
-import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
+import com.foursoft.harness.kbl.v25.KblProtectionArea;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
+import com.foursoft.harness.vec.v2x.VecSegmentLocation;
 
-import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
-
-public class WireProtectionOccurrenceTransformer implements Transformer<ConnectionOrOccurrence, VecPartOccurrence> {
+public class OnWayPlacementTransformer implements Transformer<KblProtectionArea, VecOnWayPlacement> {
 
     @Override
-    public TransformationResult<VecPartOccurrence> transform(final TransformationContext context,
-                                                             final ConnectionOrOccurrence occurrence) {
-        if (occurrence instanceof final KblWireProtectionOccurrence source) {
-            final VecPartOccurrence destination = new VecPartOccurrence();
+    public TransformationResult<VecOnWayPlacement> transform(final TransformationContext context,
+                                                             final KblProtectionArea source) {
+        final VecOnWayPlacement destination = new VecOnWayPlacement();
+        destination.setIdentification(source.getAssociatedProtection().getId());
 
-            return TransformationResult.from(destination)
-                    .withFragment(commonOccurrenceInformation(source, context))
-                    .withDownstream(KblWireProtectionOccurrence.class, VecWireProtectionRole.class, Query.of(source),
-                                    VecOccurrenceOrUsage::getRoles)
-                    .withDownstream(KblWireProtectionOccurrence.class, VecPlaceableElementRole.class, Query.of(source),
-                                    VecOccurrenceOrUsage::getRoles)
-                    .build();
+        return TransformationResult.from(destination)
+                .withDownstream(KblProtectionArea.class, VecSegmentLocation.class, Query.of(source),
+                                this::setLocation)
+                .withLinker(Query.of(source::getAssociatedProtection), VecPlaceableElementRole.class,
+                            VecOnWayPlacement::getPlacedElement)
+                .build();
+    }
+
+    final void setLocation(final VecOnWayPlacement destination, final VecSegmentLocation location) {
+        if (Constants.START_LOCATION_ID.equals(location.getIdentification())) {
+            destination.setStartLocation(location);
+        } else if (Constants.END_LOCATION_ID.equals(location.getIdentification())) {
+            destination.setEndLocation(location);
         }
-        return TransformationResult.noResult();
     }
 }
