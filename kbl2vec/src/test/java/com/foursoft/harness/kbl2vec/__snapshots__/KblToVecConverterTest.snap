@@ -1023,11 +1023,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>2</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_1</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_1">
-      <Identification>PES-2Da10821959</Identification>
-      <DescribedPart>PartVersion_Fixing_1</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_1">
       <Identification>GTPS-2Da10821959</Identification>
       <DescribedPart>PartVersion_Fixing_1</DescribedPart>
@@ -1042,6 +1037,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-2Da10821959</Identification>
       <SpecialPartType>SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_1</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_1">
+      <Identification>PES-2Da10821959</Identification>
+      <DescribedPart>PartVersion_Fixing_1</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_0">
@@ -1458,12 +1458,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>6</DocumentVersion>
     <ReferencedPart>PartVersion_Wire_protection_1</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_1">
-      <Identification>PES-O1112a614541a2</Identification>
-      <DescribedPart>PartVersion_Wire_protection_1</DescribedPart>
-      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Wire_protection_1">
       <Identification>GTPS-O1112a614541a2</Identification>
       <DescribedPart>PartVersion_Wire_protection_1</DescribedPart>
@@ -1478,6 +1472,12 @@ This is not intended for productive use and is not complete!
       <Identification>WPS-O1112a614541a2</Identification>
       <SpecialPartType>TAPE</SpecialPartType>
       <DescribedPart>PartVersion_Wire_protection_1</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_1">
+      <Identification>PES-O1112a614541a2</Identification>
+      <DescribedPart>PartVersion_Wire_protection_1</DescribedPart>
+      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0">
@@ -9519,11 +9519,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>2</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_1</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_1">
-      <Identification>PES-9La108219351T</Identification>
-      <DescribedPart>PartVersion_Fixing_1</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_1">
       <Identification>GTPS-9La108219351T</Identification>
       <DescribedPart>PartVersion_Fixing_1</DescribedPart>
@@ -9538,6 +9533,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-9La108219351T</Identification>
       <SpecialPartType>CABLE_DUCT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_1</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_1">
+      <Identification>PES-9La108219351T</Identification>
+      <DescribedPart>PartVersion_Fixing_1</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_2">
@@ -9554,11 +9554,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>2</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_2</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_2">
-      <Identification>PES-9501082196a</Identification>
-      <DescribedPart>PartVersion_Fixing_2</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_2">
       <Identification>GTPS-9501082196a</Identification>
       <DescribedPart>PartVersion_Fixing_2</DescribedPart>
@@ -9573,6 +9568,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-9501082196a</Identification>
       <SpecialPartType>SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_2</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_2">
+      <Identification>PES-9501082196a</Identification>
+      <DescribedPart>PartVersion_Fixing_2</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_3">
@@ -9589,11 +9589,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>1</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_3</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_3">
-      <Identification>PES-5Ma108219591H</Identification>
-      <DescribedPart>PartVersion_Fixing_3</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_3">
       <Identification>GTPS-5Ma108219591H</Identification>
       <DescribedPart>PartVersion_Fixing_3</DescribedPart>
@@ -9608,6 +9603,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-5Ma108219591H</Identification>
       <SpecialPartType>SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_3</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_3">
+      <Identification>PES-5Ma108219591H</Identification>
+      <DescribedPart>PartVersion_Fixing_3</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_4">
@@ -9624,11 +9624,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>1</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_4</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_4">
-      <Identification>PES-2Ka10681929</Identification>
-      <DescribedPart>PartVersion_Fixing_4</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_4">
       <Identification>GTPS-2Ka10681929</Identification>
       <DescribedPart>PartVersion_Fixing_4</DescribedPart>
@@ -9643,6 +9638,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-2Ka10681929</Identification>
       <SpecialPartType>SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_4</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_4">
+      <Identification>PES-2Ka10681929</Identification>
+      <DescribedPart>PartVersion_Fixing_4</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_5">
@@ -9659,11 +9659,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>3</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_5</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_5">
-      <Identification>PES-YYY1Ba21aa71B</Identification>
-      <DescribedPart>PartVersion_Fixing_5</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_5">
       <Identification>GTPS-YYY1Ba21aa71B</Identification>
       <DescribedPart>PartVersion_Fixing_5</DescribedPart>
@@ -9678,6 +9673,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-YYY1Ba21aa71B</Identification>
       <SpecialPartType>CB_SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_5</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_5">
+      <Identification>PES-YYY1Ba21aa71B</Identification>
+      <DescribedPart>PartVersion_Fixing_5</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_6">
@@ -9694,11 +9694,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>3</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_6</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_6">
-      <Identification>PES-YYY1Fa21aa5</Identification>
-      <DescribedPart>PartVersion_Fixing_6</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_6">
       <Identification>GTPS-YYY1Fa21aa5</Identification>
       <DescribedPart>PartVersion_Fixing_6</DescribedPart>
@@ -9713,6 +9708,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-YYY1Fa21aa5</Identification>
       <SpecialPartType>CB_SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_6</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_6">
+      <Identification>PES-YYY1Fa21aa5</Identification>
+      <DescribedPart>PartVersion_Fixing_6</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_7">
@@ -9729,11 +9729,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>3</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_7</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_7">
-      <Identification>PES-YYY1D281aa21B</Identification>
-      <DescribedPart>PartVersion_Fixing_7</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_7">
       <Identification>GTPS-YYY1D281aa21B</Identification>
       <DescribedPart>PartVersion_Fixing_7</DescribedPart>
@@ -9748,6 +9743,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-YYY1D281aa21B</Identification>
       <SpecialPartType>CB_SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_7</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_7">
+      <Identification>PES-YYY1D281aa21B</Identification>
+      <DescribedPart>PartVersion_Fixing_7</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_8">
@@ -9764,11 +9764,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>2</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_8</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_8">
-      <Identification>PES-O102a15771a2</Identification>
-      <DescribedPart>PartVersion_Fixing_8</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_8">
       <Identification>GTPS-O102a15771a2</Identification>
       <DescribedPart>PartVersion_Fixing_8</DescribedPart>
@@ -9783,6 +9778,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-O102a15771a2</Identification>
       <SpecialPartType>/NULL</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_8</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_8">
+      <Identification>PES-O102a15771a2</Identification>
+      <DescribedPart>PartVersion_Fixing_8</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_9">
@@ -9799,11 +9799,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>3</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_9</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_9">
-      <Identification>PES-2Da108219591E</Identification>
-      <DescribedPart>PartVersion_Fixing_9</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_9">
       <Identification>GTPS-2Da108219591E</Identification>
       <DescribedPart>PartVersion_Fixing_9</DescribedPart>
@@ -9818,6 +9813,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-2Da108219591E</Identification>
       <SpecialPartType>SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_9</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_9">
+      <Identification>PES-2Da108219591E</Identification>
+      <DescribedPart>PartVersion_Fixing_9</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Fixing_10">
@@ -9834,11 +9834,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>2</DocumentVersion>
     <ReferencedPart>PartVersion_Fixing_10</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_10">
-      <Identification>PES-2Da10821959</Identification>
-      <DescribedPart>PartVersion_Fixing_10</DescribedPart>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Fixing_10">
       <Identification>GTPS-2Da10821959</Identification>
       <DescribedPart>PartVersion_Fixing_10</DescribedPart>
@@ -9853,6 +9848,11 @@ This is not intended for productive use and is not complete!
       <Identification>FS-2Da10821959</Identification>
       <SpecialPartType>SPT</SpecialPartType>
       <DescribedPart>PartVersion_Fixing_10</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Fixing_10">
+      <Identification>PES-2Da10821959</Identification>
+      <DescribedPart>PartVersion_Fixing_10</DescribedPart>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_0">
@@ -19493,12 +19493,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>7</DocumentVersion>
     <ReferencedPart>PartVersion_Wire_protection_1</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_1">
-      <Identification>PES-O1112a412241a2</Identification>
-      <DescribedPart>PartVersion_Wire_protection_1</DescribedPart>
-      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Wire_protection_1">
       <Identification>GTPS-O1112a412241a2</Identification>
       <DescribedPart>PartVersion_Wire_protection_1</DescribedPart>
@@ -19513,6 +19507,12 @@ This is not intended for productive use and is not complete!
       <Identification>WPS-O1112a412241a2</Identification>
       <SpecialPartType>TAPE</SpecialPartType>
       <DescribedPart>PartVersion_Wire_protection_1</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_1">
+      <Identification>PES-O1112a412241a2</Identification>
+      <DescribedPart>PartVersion_Wire_protection_1</DescribedPart>
+      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Wire_protection_2">
@@ -19529,12 +19529,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>2</DocumentVersion>
     <ReferencedPart>PartVersion_Wire_protection_2</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_2">
-      <Identification>PES-O1112a814371a2</Identification>
-      <DescribedPart>PartVersion_Wire_protection_2</DescribedPart>
-      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Wire_protection_2">
       <Identification>GTPS-O1112a814371a2</Identification>
       <DescribedPart>PartVersion_Wire_protection_2</DescribedPart>
@@ -19549,6 +19543,12 @@ This is not intended for productive use and is not complete!
       <Identification>WPS-O1112a814371a2</Identification>
       <SpecialPartType>WELLROHR</SpecialPartType>
       <DescribedPart>PartVersion_Wire_protection_2</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_2">
+      <Identification>PES-O1112a814371a2</Identification>
+      <DescribedPart>PartVersion_Wire_protection_2</DescribedPart>
+      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Wire_protection_3">
@@ -19565,12 +19565,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>8</DocumentVersion>
     <ReferencedPart>PartVersion_Wire_protection_3</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_3">
-      <Identification>PES-O1112a412241a6</Identification>
-      <DescribedPart>PartVersion_Wire_protection_3</DescribedPart>
-      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Wire_protection_3">
       <Identification>GTPS-O1112a412241a6</Identification>
       <DescribedPart>PartVersion_Wire_protection_3</DescribedPart>
@@ -19585,6 +19579,12 @@ This is not intended for productive use and is not complete!
       <Identification>WPS-O1112a412241a6</Identification>
       <SpecialPartType>TAPE</SpecialPartType>
       <DescribedPart>PartVersion_Wire_protection_3</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_3">
+      <Identification>PES-O1112a412241a6</Identification>
+      <DescribedPart>PartVersion_Wire_protection_3</DescribedPart>
+      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Wire_protection_4">
@@ -19601,12 +19601,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>7</DocumentVersion>
     <ReferencedPart>PartVersion_Wire_protection_4</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_4">
-      <Identification>PES-O1112a61a061a2</Identification>
-      <DescribedPart>PartVersion_Wire_protection_4</DescribedPart>
-      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Wire_protection_4">
       <Identification>GTPS-O1112a61a061a2</Identification>
       <DescribedPart>PartVersion_Wire_protection_4</DescribedPart>
@@ -19621,6 +19615,12 @@ This is not intended for productive use and is not complete!
       <Identification>WPS-O1112a61a061a2</Identification>
       <SpecialPartType>TAPE</SpecialPartType>
       <DescribedPart>PartVersion_Wire_protection_4</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_4">
+      <Identification>PES-O1112a61a061a2</Identification>
+      <DescribedPart>PartVersion_Wire_protection_4</DescribedPart>
+      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Wire_protection_5">
@@ -19637,12 +19637,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>2</DocumentVersion>
     <ReferencedPart>PartVersion_Wire_protection_5</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_5">
-      <Identification>PES-O1112a814391a2</Identification>
-      <DescribedPart>PartVersion_Wire_protection_5</DescribedPart>
-      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Wire_protection_5">
       <Identification>GTPS-O1112a814391a2</Identification>
       <DescribedPart>PartVersion_Wire_protection_5</DescribedPart>
@@ -19657,6 +19651,12 @@ This is not intended for productive use and is not complete!
       <Identification>WPS-O1112a814391a2</Identification>
       <SpecialPartType>WELLROHR</SpecialPartType>
       <DescribedPart>PartVersion_Wire_protection_5</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_5">
+      <Identification>PES-O1112a814391a2</Identification>
+      <DescribedPart>PartVersion_Wire_protection_5</DescribedPart>
+      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_Wire_protection_6">
@@ -19673,12 +19673,6 @@ This is not intended for productive use and is not complete!
     <DocumentType>PartMaster</DocumentType>
     <DocumentVersion>3</DocumentVersion>
     <ReferencedPart>PartVersion_Wire_protection_6</ReferencedPart>
-    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_6">
-      <Identification>PES-O1112a319821a2</Identification>
-      <DescribedPart>PartVersion_Wire_protection_6</DescribedPart>
-      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
-      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
-    </Specification>
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_Wire_protection_6">
       <Identification>GTPS-O1112a319821a2</Identification>
       <DescribedPart>PartVersion_Wire_protection_6</DescribedPart>
@@ -19693,6 +19687,12 @@ This is not intended for productive use and is not complete!
       <Identification>WPS-O1112a319821a2</Identification>
       <SpecialPartType>WELLROHR</SpecialPartType>
       <DescribedPart>PartVersion_Wire_protection_6</DescribedPart>
+    </Specification>
+    <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Wire_protection_6">
+      <Identification>PES-O1112a319821a2</Identification>
+      <DescribedPart>PartVersion_Wire_protection_6</DescribedPart>
+      <ValidPlacementTypes>OnWay</ValidPlacementTypes>
+      <ValidPlacementTypes>OnPoint</ValidPlacementTypes>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0">
