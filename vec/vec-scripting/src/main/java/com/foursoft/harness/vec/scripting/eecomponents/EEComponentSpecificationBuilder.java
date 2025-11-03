@@ -39,9 +39,8 @@ public class EEComponentSpecificationBuilder<T extends VecEEComponentSpecificati
     protected final T eeComponentSpecification;
     private final SpecificationRegistry specificationRegistry;
     private final ComponentNodeLookup componentNodeLookup;
-    private final VecPluggableTerminalSpecification pin;
+    private final VecPluggableTerminalSpecification pinSpecification;
     protected final VecSession session;
-    private final SpecificationLocator specificationLocator;
 
     public EEComponentSpecificationBuilder(final VecSession session, final Class<T> eeComponentClass,
                                            final String partNumber,
@@ -49,24 +48,26 @@ public class EEComponentSpecificationBuilder<T extends VecEEComponentSpecificati
                                            final SpecificationRegistry specificationRegistry,
                                            final ComponentNodeLookup componentNodeLookup) {
         this.session = session;
-        this.specificationLocator = specificationLocator;
+
         eeComponentSpecification = initializeSpecification(eeComponentClass, partNumber);
         this.specificationRegistry = specificationRegistry;
         this.componentNodeLookup = componentNodeLookup;
 
-        pin = specificationLocator.find(VecPluggableTerminalSpecification.class, "PTC-EE-COMP-PIN").orElseGet(() -> {
-            final VecPluggableTerminalSpecification pin = new VecPluggableTerminalSpecification();
-            pin.setIdentification("PTC-EE-COMP-PIN");
-            pin.setTerminalType("Integrated");
-            specificationRegistry.register(pin);
-            return pin;
-        });
+        pinSpecification = specificationLocator.find(VecPluggableTerminalSpecification.class, "PTC-EE-COMP-PIN")
+                .orElseGet(() -> {
+                    final VecPluggableTerminalSpecification result = new VecPluggableTerminalSpecification();
+                    result.setIdentification("PTC-EE-COMP-PIN");
+                    result.setTerminalType("Integrated");
+                    specificationRegistry.register(result);
+                    return result;
+                });
 
     }
 
     public EEComponentSpecificationBuilder<T> addHousingComponent(final String identification,
                                                                   final Customizer<HousingComponentBuilder> customizer) {
-        final HousingComponentBuilder builder = new HousingComponentBuilder(identification, pin, specificationRegistry);
+        final HousingComponentBuilder builder = new HousingComponentBuilder(identification, pinSpecification,
+                                                                            specificationRegistry);
 
         customizer.customize(builder);
 

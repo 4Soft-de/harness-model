@@ -52,9 +52,9 @@ public class SchematicBuilder implements Builder<SchematicResult> {
     }
 
     private VecConnectionSpecification initializeConnectionSpecification() {
-        final VecConnectionSpecification connectionSpecification = new VecConnectionSpecification();
-        connectionSpecification.setIdentification(DefaultValues.CONNECTION_SPEC_IDENTIFICATION);
-        return connectionSpecification;
+        final VecConnectionSpecification result = new VecConnectionSpecification();
+        result.setIdentification(DefaultValues.CONNECTION_SPEC_IDENTIFICATION);
+        return result;
     }
 
     public SchematicBuilder addComponentNodeReusage(final String schematicDocumentNumber,

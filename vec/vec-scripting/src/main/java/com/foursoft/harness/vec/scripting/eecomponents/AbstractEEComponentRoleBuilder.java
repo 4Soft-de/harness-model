@@ -39,35 +39,36 @@ public abstract class AbstractEEComponentRoleBuilder<T extends VecEEComponentRol
     private final VecSession session;
     private final ComponentNodeLookup componentNodeLookup;
 
-    public AbstractEEComponentRoleBuilder(final VecSession session, final Class<T> eeComponentClass,
-                                          final String identification,
-                                          final VecEEComponentSpecification specification,
-                                          final ComponentNodeLookup componentNodeLookup) {
+    AbstractEEComponentRoleBuilder(final VecSession session, final Class<T> eeComponentClass,
+                                   final String identification,
+                                   final VecEEComponentSpecification specification,
+                                   final ComponentNodeLookup componentNodeLookup) {
         this.session = session;
         this.componentNodeLookup = componentNodeLookup;
-        eeComponentRole = eeComponentRole(identification, eeComponentClass, specification);
+        eeComponentRole = createEeComponentRole(identification, eeComponentClass, specification);
 
     }
 
-    @Override public T build() {
+    @Override
+    public T build() {
         return eeComponentRole;
     }
 
-    private T eeComponentRole(final String identification,
-                              final Class<T> eeComponentClass,
-                              final VecEEComponentSpecification specification) {
+    private T createEeComponentRole(final String identification,
+                                    final Class<T> eeComponentClass,
+                                    final VecEEComponentSpecification specification) {
 
         try {
-            final T eeComponentRole = eeComponentClass.getConstructor().newInstance();
-            eeComponentRole.setIdentification(identification);
-            eeComponentRole.setEEComponentSpecification(specification);
-            eeComponentRole.getHousingComponentReves().addAll(
+            final T result = eeComponentClass.getConstructor().newInstance();
+            result.setIdentification(identification);
+            result.setEEComponentSpecification(specification);
+            result.getHousingComponentReves().addAll(
                     specification.getHousingComponents()
                             .stream()
                             .map(this::toHousingComponentReference)
                             .toList());
 
-            return eeComponentRole;
+            return result;
         } catch (final InstantiationException | NoSuchMethodException | IllegalAccessException |
                        InvocationTargetException e) {
             throw new VecScriptingException("Error creating EEComponentRole", e);
