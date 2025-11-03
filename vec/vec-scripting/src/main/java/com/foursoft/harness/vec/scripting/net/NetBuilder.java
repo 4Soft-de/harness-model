@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,22 +23,42 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.vec.scripting.net;
 
-public enum DocumentType {
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.v2x.VecNet;
+import com.foursoft.harness.vec.v2x.VecNetType;
+import com.foursoft.harness.vec.v2x.VecNetworkPort;
 
-    HARNESS_DESCRIPTION("HarnessDescription"), NETWORK_ARCHITECTURE("NetworkArchitecture"),
-    PART_MASTER("PartMaster"), PROCESSING_INSTRUCTION("ProcessingInstruction"),
-    REQUIREMENTS_DESCRIPTION("RequirementsDescription"), SYSTEM_SCHEMATIC("SystemSchematic"),
-    ;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
-    private final String value;
+public class NetBuilder implements Builder<VecNet> {
 
-    DocumentType(final String value) {
-        this.value = value;
+    private final VecNet net = new VecNet();
+    private final BiFunction<String, String, VecNetworkPort> portLookup;
+    private final Function<String, VecNetType> netTypeLookup;
+
+    public NetBuilder(final BiFunction<String, String, VecNetworkPort> portLookup,
+                      final Function<String, VecNetType> netTypeLookup, final String identification) {
+        this.portLookup = portLookup;
+        this.netTypeLookup = netTypeLookup;
+        this.net.setIdentification(identification);
     }
 
-    public String value() {
-        return value;
+    public NetBuilder addPort(final String nodeId, final String portId) {
+        final VecNetworkPort port = portLookup.apply(nodeId, portId);
+        net.getNetworkPort().add(port);
+        return this;
+    }
+
+    public NetBuilder withNetType(final String netTypeIdentification) {
+        this.net.setNetType(netTypeLookup.apply(netTypeIdentification));
+        return this;
+    }
+
+    @Override
+    public VecNet build() {
+        return net;
     }
 }
