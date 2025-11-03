@@ -26,6 +26,7 @@
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
 
 import com.foursoft.harness.kbl.v25.KblAliasIdentification;
+import com.foursoft.harness.kbl.v25.KblBSplineCurve;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.convert.DoublesToCartesianVector3DConverter;
 import com.foursoft.harness.kbl2vec.core.Query;
@@ -33,10 +34,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
-import com.foursoft.harness.vec.v2x.VecAliasIdentification;
-import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
-import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
-import com.foursoft.harness.vec.v2x.VecTopologySegment;
+import com.foursoft.harness.vec.v2x.*;
 
 public class GeometrySegment3DTransformer implements Transformer<KblSegment, VecGeometrySegment3D> {
 
@@ -68,6 +66,8 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
         return TransformationResult.from(destination)
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class, source::getAliasIds,
                                 VecGeometrySegment3D::getAliasIds)
+                .withDownstream(KblBSplineCurve.class, VecNURBSCurve.class, source::getCenterCurves,
+                                VecGeometrySegment3D::getCurves)
                 .withLinker(Query.of(source.getStartNode()), VecGeometryNode3D.class,
                             VecGeometrySegment3D::setStartNode)
                 .withLinker(Query.of(source.getEndNode()), VecGeometryNode3D.class, VecGeometrySegment3D::setEndNode)
