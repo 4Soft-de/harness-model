@@ -6,6 +6,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.geometry.KnotVector;
 import com.foursoft.harness.vec.v2x.VecNURBSControlPoint;
 import com.foursoft.harness.vec.v2x.VecNURBSCurve;
 
@@ -27,6 +28,19 @@ public class NurbsCurveTransformer implements Transformer<KblBSplineCurve, VecNU
     }
 
     private List<Double> deriveKnots(final KblBSplineCurve source, final TransformationContext context) {
-        return new ArrayList<>();
+        final int degree = source.getDegree().intValue();
+        final int numberOfControlPoints = source.getControlPoints().size();
+
+        if (numberOfControlPoints <= degree) {
+            context.getLogger().warn(
+                    "Number of control points '{}' must be greater than degree '{}' of KblBSplineCurve (xml ID: {})",
+                    numberOfControlPoints, degree, source.getXmlId());
+            return new ArrayList<>();
+        }
+
+        final int order = degree + 1;
+        final String clamping = context.getConversionProperties().getDefault3DCurveClamping();
+        final KnotVector knotVector = new KnotVector(order, numberOfControlPoints, clamping);
+        return knotVector.getKnots();
     }
 }
