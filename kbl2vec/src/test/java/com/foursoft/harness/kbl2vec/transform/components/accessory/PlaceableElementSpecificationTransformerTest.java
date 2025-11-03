@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,25 +25,36 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
-import com.foursoft.harness.kbl.v25.KblAccessoryOccurrence;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
+import com.foursoft.harness.kbl.v25.KblAccessory;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
+import com.foursoft.harness.vec.v2x.VecPlacementType;
+import org.junit.jupiter.api.Test;
 
-public class PlaceableElementRoleTransformer implements Transformer<KblAccessoryOccurrence, VecPlaceableElementRole> {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    @Override
-    public TransformationResult<VecPlaceableElementRole> transform(final TransformationContext context,
-                                                                   final KblAccessoryOccurrence source) {
-        final VecPlaceableElementRole destination = new VecPlaceableElementRole();
-        destination.setIdentification(source.getId());
+class PlaceableElementSpecificationTransformerTest {
 
-        return TransformationResult.from(destination)
-                .withLinker(Query.of(source::getPart), VecPlaceableElementSpecification.class,
-                            VecPlaceableElementRole::setPlaceableElementSpecification)
-                .build();
+    @Test
+    void shouldTransformPlaceableElementSpecification() {
+        // Given
+        final PlaceableElementSpecificationTransformer transformer = new PlaceableElementSpecificationTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblAccessory source = new KblAccessory();
+
+        final VecPartVersion vecPartVersion = new VecPartVersion();
+        orchestrator.addMockMapping(source, vecPartVersion);
+
+        // When
+        final VecPlaceableElementSpecification result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion))
+                .satisfies(
+                        v -> assertThat(v.getValidPlacementTypes()).containsExactlyInAnyOrder(
+                                VecPlacementType.ON_POINT));
     }
 }

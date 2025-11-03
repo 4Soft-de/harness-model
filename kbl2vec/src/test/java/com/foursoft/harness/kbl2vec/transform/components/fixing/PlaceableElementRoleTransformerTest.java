@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,25 +25,38 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.fixing;
 
+import com.foursoft.harness.kbl.v25.KblFixing;
 import com.foursoft.harness.kbl.v25.KblFixingOccurrence;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
+import org.junit.jupiter.api.Test;
 
-public class PlaceableElementRoleTransformer implements Transformer<KblFixingOccurrence, VecPlaceableElementRole> {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    @Override
-    public TransformationResult<VecPlaceableElementRole> transform(final TransformationContext context,
-                                                                   final KblFixingOccurrence source) {
-        final VecPlaceableElementRole destination = new VecPlaceableElementRole();
-        destination.setIdentification(source.getId());
+class PlaceableElementRoleTransformerTest {
 
-        return TransformationResult.from(destination)
-                .withLinker(Query.of(source::getPart), VecPlaceableElementSpecification.class,
-                            VecPlaceableElementRole::setPlaceableElementSpecification)
-                .build();
+    @Test
+    void should_transformPlaceableElementRole() {
+        // Given
+        final PlaceableElementRoleTransformer transformer = new PlaceableElementRoleTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblFixingOccurrence source = new KblFixingOccurrence();
+        source.setId("TestId");
+
+        final KblFixing part = new KblFixing();
+        source.setPart(part);
+
+        final VecPlaceableElementSpecification specification = new VecPlaceableElementSpecification();
+        orchestrator.addMockMapping(part, specification);
+
+        // When
+        final VecPlaceableElementRole result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns("TestId", VecPlaceableElementRole::getIdentification)
+                .returns(specification, VecPlaceableElementRole::getPlaceableElementSpecification);
     }
 }
