@@ -37,6 +37,7 @@ import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
 import com.foursoft.harness.vec.scripting.harness.HarnessBuilder;
+import com.foursoft.harness.vec.scripting.net.NetworkArchitectureBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGeneratingTraverser;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGenerator;
@@ -116,6 +117,19 @@ public class VecSession {
 
         vecContentRoot.getDocumentVersions().addAll(result.documentVersions());
         vecContentRoot.getPartVersions().add(result.partVersion());
+    }
+
+    public void networkArchitecture(final String containerDocumentNumber,
+                                    final Customizer<NetworkArchitectureBuilder> customizer) {
+        final VecDocumentVersion containerDocument = findDocument(containerDocumentNumber);
+
+        final NetworkArchitectureBuilder builder = new NetworkArchitectureBuilder();
+
+        customizer.customize(builder);
+
+        final VecNetSpecification result = builder.build();
+
+        containerDocument.getSpecifications().add(result);
     }
 
     public void schematic(final String containerDocumentNumber, final Customizer<SchematicBuilder> customizer) {

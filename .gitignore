@@ -176,3 +176,7 @@ buildNumber.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,intellij,git
 /.idea/sonarlint.xml
+/.idea/copilot.data.migration.edit.xml
+/.idea/copilot.data.migration.agent.xml
+/.idea/copilot.data.migration.ask.xml
+/.idea/copilot.data.migration.ask2agent.xml

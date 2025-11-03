@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,22 +23,41 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.vec.scripting.net;
 
-public enum DocumentType {
+import com.foursoft.harness.vec.common.util.StringUtils;
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.v2x.VecNetType;
+import com.foursoft.harness.vec.v2x.VecNetworkNode;
+import com.foursoft.harness.vec.v2x.VecNetworkPort;
 
-    HARNESS_DESCRIPTION("HarnessDescription"), NETWORK_ARCHITECTURE("NetworkArchitecture"),
-    PART_MASTER("PartMaster"), PROCESSING_INSTRUCTION("ProcessingInstruction"),
-    REQUIREMENTS_DESCRIPTION("RequirementsDescription"), SYSTEM_SCHEMATIC("SystemSchematic"),
-    ;
+import java.util.function.Function;
 
-    private final String value;
+public class NetworkNodeBuilder implements Builder<VecNetworkNode> {
 
-    DocumentType(final String value) {
-        this.value = value;
+    private final VecNetworkNode networkNode = new VecNetworkNode();
+    private final Function<String, VecNetType> netTypeLoopup;
+
+    public NetworkNodeBuilder(final Function<String, VecNetType> netTypeLoopup, final String identification) {
+        this.netTypeLoopup = netTypeLoopup;
+        networkNode.setIdentification(identification);
     }
 
-    public String value() {
-        return value;
+    public NetworkNodeBuilder addPort(final String identification, final String netType) {
+        final VecNetworkPort port = new VecNetworkPort();
+
+        port.setIdentification(identification);
+        if (StringUtils.isNotEmpty(netType)) {
+            port.setNetType(netTypeLoopup.apply(netType));
+        }
+
+        networkNode.getPorts().add(port);
+
+        return this;
+    }
+
+    @Override
+    public VecNetworkNode build() {
+        return networkNode;
     }
 }
