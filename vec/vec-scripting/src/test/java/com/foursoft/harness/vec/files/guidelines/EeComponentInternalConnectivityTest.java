@@ -31,12 +31,12 @@ import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 class EeComponentInternalConnectivityTest {
 
     @Test
-    void create_ee_component_with_schematic() throws IOException {
+    void create_ee_component_with_schematic() {
         final VecSession session = new VecSession();
 
         // @formatter:off
@@ -134,7 +134,9 @@ class EeComponentInternalConnectivityTest {
                             .withComponentNode("A200"))));
         // @formatter:on
 
-        System.out.println(session.writeToString());
-        session.writeToStream(TestUtils.createTestFileStream("ee-component-with-schematic"));
+        assertThatCode(() -> {
+            session.writeToStream(TestUtils.createTestFileStream("ecad-wiki-guideline-ee-component-with-schematic"));
+        }).doesNotThrowAnyException();
+
     }
 }
