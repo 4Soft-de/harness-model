@@ -52,22 +52,6 @@ public class Fragments {
         return (dv, builder) -> {
             dv.setDocumentType("PartMaster");
             commonPartDocumentAttributes(source, context).performFragment(dv, builder);
-
-            if (source instanceof final KblFixing fixing) {
-                builder.withDownstream(KblFixing.class, VecPlaceableElementSpecification.class, Query.of(fixing),
-                                       VecDocumentVersion::getSpecifications);
-            }
-
-            if (source instanceof final KblAccessory accessory) {
-                builder.withDownstream(KblAccessory.class, VecPlaceableElementSpecification.class, Query.of(accessory),
-                                       VecDocumentVersion::getSpecifications);
-            }
-
-            if (source instanceof final KblWireProtection wireProtection) {
-                builder.withDownstream(KblWireProtection.class, VecPlaceableElementSpecification.class,
-                                       Query.of(wireProtection), VecDocumentVersion::getSpecifications);
-            }
-
             builder.withDownstream(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
                                    VecDocumentVersion::getSpecifications);
         };
