@@ -2808,6 +2808,10 @@ This is not intended for productive use and is not complete!
           <Identification>XXX_C17_001_A_1</Identification>
           <FixingSpecification>FixingSpecification_Fixing_7</FixingSpecification>
         </Role>
+        <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Fixing_occurrence_1">
+          <Identification>XXX_C17_001_A_1</Identification>
+          <PlaceableElementSpecification>PlaceableElementSpecification_Fixing_7</PlaceableElementSpecification>
+        </Role>
         <Part>PartVersion_Fixing_7</Part>
       </Component>
       <Component id="PartOccurrence_Fixing_occurrence_2">
@@ -2816,6 +2820,10 @@ This is not intended for productive use and is not complete!
           <Identification>XXX_E01_004_1</Identification>
           <FixingSpecification>FixingSpecification_Fixing_6</FixingSpecification>
         </Role>
+        <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Fixing_occurrence_2">
+          <Identification>XXX_E01_004_1</Identification>
+          <PlaceableElementSpecification>PlaceableElementSpecification_Fixing_6</PlaceableElementSpecification>
+        </Role>
         <Part>PartVersion_Fixing_6</Part>
       </Component>
       <Component id="PartOccurrence_Fixing_occurrence_3">
@@ -2823,6 +2831,10 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:FixingRole" id="FixingRole_Fixing_occurrence_3">
           <Identification>XXX_A01_006_A_1</Identification>
           <FixingSpecification>FixingSpecification_Fixing_5</FixingSpecification>
+        </Role>
+        <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Fixing_occurrence_3">
+          <Identification>XXX_A01_006_A_1</Identification>
+          <PlaceableElementSpecification>PlaceableElementSpecification_Fixing_5</PlaceableElementSpecification>
         </Role>
         <Part>PartVersion_Fixing_5</Part>
       </Component>
@@ -58397,6 +58409,10 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:FixingRole" id="FixingRole_Fixing_occurrence_17">
           <Identification>CB01_1</Identification>
           <FixingSpecification>FixingSpecification_Fixing_7</FixingSpecification>
+        </Role>
+        <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Fixing_occurrence_17">
+          <Identification>CB01_1</Identification>
+          <PlaceableElementSpecification>PlaceableElementSpecification_Fixing_7</PlaceableElementSpecification>
         </Role>
         <InstanciatedOccurrence>PartOccurrence_Fixing_occurrence_1</InstanciatedOccurrence>
         <Part>PartVersion_Fixing_7</Part>
