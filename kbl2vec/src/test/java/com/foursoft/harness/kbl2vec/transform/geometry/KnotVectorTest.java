@@ -1,0 +1,99 @@
+package com.foursoft.harness.kbl2vec.transform.geometry;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class KnotVectorTest {
+
+    @Test
+    void should_returnClampedUniformKnots() {
+        // Given
+        final int degree = 6;
+        final int order = 7;
+        final int numberOfControlPoints = 7;
+        final int expectedKnotVectorSize = order + numberOfControlPoints;
+
+        final KnotVector knotVector = new KnotVector(degree, order, numberOfControlPoints, Constants.CLAMPED);
+
+        // When
+        final List<Double> result = knotVector.getKnots();
+
+        // Then
+        assertThat(result).isNotNull()
+                .hasSize(expectedKnotVectorSize)
+                .containsExactly(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0);
+    }
+
+    @Test
+    void should_returnUnclampedUniformKnots() {
+        // Given
+        final int degree = 6;
+        final int order = 7;
+        final int numberOfControlPoints = 7;
+        final int expectedKnotVectorSize = order + numberOfControlPoints;
+
+        final KnotVector knotVector = new KnotVector(degree, order, numberOfControlPoints, Constants.UNCLAMPED);
+
+        // When
+        final List<Double> result = knotVector.getKnots();
+
+        // Then
+        assertThat(result).isNotNull()
+                .hasSize(expectedKnotVectorSize)
+                .containsExactly(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0);
+    }
+
+    @Test
+    void should_returnClampedKnotsWithMiddleVector() {
+        // Given
+        final int degree = 2;
+        final int order = 3;
+        final int numberOfControlPoints = 7;
+        final int expectedKnotVectorSize = order + numberOfControlPoints;
+
+        final KnotVector knotVector = new KnotVector(degree, order, numberOfControlPoints, Constants.CLAMPED);
+
+        // When
+        final List<Double> result = knotVector.getKnots();
+
+        // Then
+        assertThat(result).isNotNull()
+                .hasSize(expectedKnotVectorSize)
+                .containsExactly(0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 5.0, 5.0);
+    }
+
+    @Test
+    void should_returnEmptyList_whenNumberOfControlPointsNotGreaterThanOrder() {
+        // Given
+        final int degree = 6;
+        final int order = 7;
+        final int numberOfControlPoints = 5;
+
+        final KnotVector knotVector = new KnotVector(degree, order, numberOfControlPoints, Constants.CLAMPED);
+
+        // When
+        final List<Double> result = knotVector.getKnots();
+
+        // Then
+        assertThat(result).isNotNull().isEmpty();
+    }
+
+    @Test
+    void should_returnEmptyList_whenOrderIsNotDegreePlusOne() {
+        // Given
+        final int degree = 6;
+        final int oder = 10;
+        final int numberOfControlPoints = 7;
+
+        final KnotVector knotVector = new KnotVector(degree, oder, numberOfControlPoints, Constants.CLAMPED);
+
+        // When
+        final List<Double> result = knotVector.getKnots();
+
+        // Then
+        assertThat(result).isNotNull().isEmpty();
+    }
+}
