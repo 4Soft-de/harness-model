@@ -25,43 +25,43 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.ee_components.slot;
 
-import com.foursoft.harness.kbl.v25.KblComponentCavityOccurrence;
-import com.foursoft.harness.kbl.v25.KblComponentSlotOccurrence;
+import com.foursoft.harness.kbl.v25.KblComponentCavity;
+import com.foursoft.harness.kbl.v25.KblComponentSlot;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
-import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
-import com.foursoft.harness.vec.v2x.VecPinComponentReference;
+import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
+import com.foursoft.harness.vec.v2x.VecSlot;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class HousingComponentReferenceTransformerTest {
+class ComponentSlotHousingSpecificationTransformerTest {
 
     @Test
-    void should_transformHousingComponentReference() {
+    void should_transformHousingSpecificationFromComponentSlot() {
         // Given
-        final ComponentSlotHousingReferenceTransformer transformer = new ComponentSlotHousingReferenceTransformer();
+        final ComponentSlotHousingSpecificationTransformer
+                transformer = new ComponentSlotHousingSpecificationTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblComponentSlotOccurrence source = new KblComponentSlotOccurrence();
+        final KblComponentSlot source = new KblComponentSlot();
         source.setId("TestId");
 
-        final KblComponentCavityOccurrence cavityOccurrence = new KblComponentCavityOccurrence();
-        source.getComponentCavities().add(cavityOccurrence);
+        final KblComponentCavity kblComponentCavity = new KblComponentCavity();
+        source.getComponentCavities().add(kblComponentCavity);
 
-        final VecPinComponentReference vecPinComponentReference = new VecPinComponentReference();
-        orchestrator.addMockMapping(cavityOccurrence, vecPinComponentReference);
+        final VecCavity vecCavity = new VecCavity();
+        orchestrator.addMockMapping(kblComponentCavity, vecCavity);
 
-        final VecConnectorHousingRole vecConnectorHousingRole = new VecConnectorHousingRole();
-        orchestrator.addMockMapping(source, vecConnectorHousingRole);
+        final VecSlot vecSlot = new VecSlot();
+        orchestrator.addMockMapping(source, vecSlot);
 
         // When
-        final VecHousingComponentReference result = orchestrator.transform(transformer, source);
+        final VecConnectorHousingSpecification result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecHousingComponentReference::getIdentification)
-                .returns(vecConnectorHousingRole, VecHousingComponentReference::getConnectorHousingRole)
-                .satisfies(v -> assertThat(v.getPinComponentReves()).containsExactly(vecPinComponentReference));
+                .returns("TestId", VecConnectorHousingSpecification::getIdentification)
+                .satisfies(v -> assertThat(v.getSlots()).contains(vecSlot));
     }
 }

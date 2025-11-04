@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,45 +23,47 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.ee_components.slot;
+package com.foursoft.harness.kbl2vec.transform.components.ee_components.connector;
 
-import com.foursoft.harness.kbl.v25.KblComponentCavityOccurrence;
-import com.foursoft.harness.kbl.v25.KblComponentSlotOccurrence;
+import com.foursoft.harness.kbl.v25.KblComponentBoxConnector;
+import com.foursoft.harness.kbl.v25.KblComponentBoxConnectorOccurrence;
+import com.foursoft.harness.kbl.v25.KblSlotOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
-import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
-import com.foursoft.harness.vec.v2x.VecPinComponentReference;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
+import com.foursoft.harness.vec.v2x.VecSlotReference;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class HousingComponentReferenceTransformerTest {
+class ComponentBoxHousingRoleTransformerTest {
 
     @Test
-    void should_transformHousingComponentReference() {
+    void should_transformConnectorHousingRole() {
         // Given
-        final ComponentSlotHousingReferenceTransformer transformer = new ComponentSlotHousingReferenceTransformer();
+        final ComponentBoxHousingRoleTransformer transformer = new ComponentBoxHousingRoleTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblComponentSlotOccurrence source = new KblComponentSlotOccurrence();
-        source.setId("TestId");
+        final KblComponentBoxConnectorOccurrence source = new KblComponentBoxConnectorOccurrence();
 
-        final KblComponentCavityOccurrence cavityOccurrence = new KblComponentCavityOccurrence();
-        source.getComponentCavities().add(cavityOccurrence);
+        final KblComponentBoxConnector part = new KblComponentBoxConnector();
+        source.setPart(part);
 
-        final VecPinComponentReference vecPinComponentReference = new VecPinComponentReference();
-        orchestrator.addMockMapping(cavityOccurrence, vecPinComponentReference);
+        final VecConnectorHousingSpecification specification = new VecConnectorHousingSpecification();
+        orchestrator.addMockMapping(part, specification);
 
-        final VecConnectorHousingRole vecConnectorHousingRole = new VecConnectorHousingRole();
-        orchestrator.addMockMapping(source, vecConnectorHousingRole);
+        final KblSlotOccurrence slotOccurrence = new KblSlotOccurrence();
+        source.getSlots().add(slotOccurrence);
+
+        final VecSlotReference vecSlotReference = new VecSlotReference();
+        orchestrator.addMockMapping(slotOccurrence, vecSlotReference);
 
         // When
-        final VecHousingComponentReference result = orchestrator.transform(transformer, source);
+        final VecConnectorHousingRole result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecHousingComponentReference::getIdentification)
-                .returns(vecConnectorHousingRole, VecHousingComponentReference::getConnectorHousingRole)
-                .satisfies(v -> assertThat(v.getPinComponentReves()).containsExactly(vecPinComponentReference));
+                .returns(specification, VecConnectorHousingRole::getConnectorHousingSpecification)
+                .satisfies(v -> assertThat(v.getSlotReferences()).containsExactly(vecSlotReference));
     }
 }
