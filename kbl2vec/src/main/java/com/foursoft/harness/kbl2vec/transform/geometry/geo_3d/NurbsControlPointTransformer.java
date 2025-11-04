@@ -14,6 +14,7 @@ public class NurbsControlPointTransformer implements Transformer<KblCartesianPoi
     public TransformationResult<VecNURBSControlPoint> transform(final TransformationContext context,
                                                                 final KblCartesianPoint source) {
         final VecNURBSControlPoint destination = new VecNURBSControlPoint();
+        destination.setWeight(1.0);
 
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source), VecCartesianPoint3D.class, VecNURBSControlPoint::setCartesianPoint3D)
