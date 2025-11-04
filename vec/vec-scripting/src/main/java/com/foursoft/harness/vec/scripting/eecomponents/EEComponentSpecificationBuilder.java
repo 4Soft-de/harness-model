@@ -26,32 +26,48 @@
 package com.foursoft.harness.vec.scripting.eecomponents;
 
 import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
-import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
-import com.foursoft.harness.vec.v2x.VecPluggableTerminalSpecification;
+import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
+import com.foursoft.harness.vec.v2x.*;
 
-public class EEComponentSpecificationBuilder
-        extends PartOrUsageRelatedSpecificationBuilder<VecEEComponentSpecification> {
+public class EEComponentSpecificationBuilder<T extends VecEEComponentSpecification>
+        extends PartOrUsageRelatedSpecificationBuilder<T> {
 
-    private final VecEEComponentSpecification eeComponentSpecification;
+    protected final T eeComponentSpecification;
     private final SpecificationRegistry specificationRegistry;
-    private final VecPluggableTerminalSpecification pin;
+    private final ComponentNodeLookup componentNodeLookup;
+    private final VecPluggableTerminalSpecification pinSpecification;
+    protected final VecSession session;
 
-    public EEComponentSpecificationBuilder(final String partNumber, SpecificationRegistry specificationRegistry) {
-        eeComponentSpecification = initializeSpecification(VecEEComponentSpecification.class, partNumber);
+    public EEComponentSpecificationBuilder(final VecSession session, final Class<T> eeComponentClass,
+                                           final String partNumber,
+                                           final SpecificationLocator specificationLocator,
+                                           final SpecificationRegistry specificationRegistry,
+                                           final ComponentNodeLookup componentNodeLookup) {
+        this.session = session;
+
+        eeComponentSpecification = initializeSpecification(eeComponentClass, partNumber);
         this.specificationRegistry = specificationRegistry;
+        this.componentNodeLookup = componentNodeLookup;
 
-        pin = new VecPluggableTerminalSpecification();
-        pin.setIdentification("PTC-EE-COMP-PIN");
-        pin.setTerminalType("Integrated");
+        pinSpecification = specificationLocator.find(VecPluggableTerminalSpecification.class, "PTC-EE-COMP-PIN")
+                .orElseGet(() -> {
+                    final VecPluggableTerminalSpecification result = new VecPluggableTerminalSpecification();
+                    result.setIdentification("PTC-EE-COMP-PIN");
+                    result.setTerminalType("Integrated");
+                    specificationRegistry.register(result);
+                    return result;
+                });
 
-        specificationRegistry.register(pin);
     }
 
-    public EEComponentSpecificationBuilder addHousingComponent(String identification,
-                                                               Customizer<HousingComponentBuilder> customizer) {
-        HousingComponentBuilder builder = new HousingComponentBuilder(identification, pin, specificationRegistry);
+    public EEComponentSpecificationBuilder<T> addHousingComponent(final String identification,
+                                                                  final Customizer<HousingComponentBuilder> customizer) {
+        final HousingComponentBuilder builder = new HousingComponentBuilder(identification, pinSpecification,
+                                                                            specificationRegistry);
 
         customizer.customize(builder);
 
@@ -60,7 +76,35 @@ public class EEComponentSpecificationBuilder
         return this;
     }
 
-    @Override public VecEEComponentSpecification build() {
+    public EEComponentSpecificationBuilder<T> withComponentNode(final String componentNode) {
+        final VecComponentNode node = componentNodeLookup.find(componentNode);
+        eeComponentSpecification.setComponentNode(node);
+
+        for (final VecHousingComponent housing : eeComponentSpecification.getHousingComponents()) {
+            final VecComponentConnector connector = node.getComponentConnectors()
+                    .stream()
+                    .filter(c -> housing.getIdentification().equals(c.getIdentification()))
+                    .findFirst()
+                    .orElseThrow();
+
+            housing.setComponentConnector(connector);
+
+            for (final VecPinComponent pin : housing.getPinComponents()) {
+                final VecComponentPort port = connector.getComponentPorts()
+                        .stream()
+                        .filter(p -> pin.getIdentification().equals(p.getIdentification()))
+                        .findFirst()
+                        .orElseThrow();
+
+                pin.setComponentPort(port);
+            }
+        }
+
+        return this;
+    }
+
+    @Override
+    public T build() {
         return this.eeComponentSpecification;
     }
 }

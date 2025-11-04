@@ -27,16 +27,18 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
-import com.foursoft.harness.vec.scripting.DefaultValues;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.eecomponents.FuseSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.eecomponents.RelaySpecificationBuilder;
 import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.harness.VirtualPartStructureBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
+import com.foursoft.harness.vec.scripting.schematic.SchematicResult;
 import com.foursoft.harness.vec.v2x.*;
 
 import java.util.ArrayList;
@@ -145,7 +147,10 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
                                                                                     partMasterDocument::getSpecificationWith,
                                                                                     connectionID -> SchematicQueries.findConnection(
                                                                                             interalSchematic,
-                                                                                            connectionID));
+                                                                                            connectionID),
+                                                                                    nodeId -> SchematicQueries.findNode(
+                                                                                            interalSchematic, nodeId)
+        );
 
         customizer.customize(builder);
 
@@ -159,13 +164,17 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     }
 
     public ComponentMasterDataBuilder addSchematic(final Customizer<SchematicBuilder> customizer) {
-        final SchematicBuilder builder = new SchematicBuilder();
+        final SchematicBuilder builder = new SchematicBuilder(this.session);
 
         customizer.customize(builder);
 
-        interalSchematic = builder.build();
+        final SchematicResult result = builder.build();
+
+        interalSchematic = result.connectionSpecification();
 
         partMasterDocument.addSpecification(interalSchematic);
+
+        result.reusageSpecification().forEach(partMasterDocument::addSpecification);
 
         return this;
     }
@@ -225,10 +234,45 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     }
 
     public ComponentMasterDataBuilder addEEComponentSpecification(
-            final Customizer<EEComponentSpecificationBuilder> customizer) {
-        final EEComponentSpecificationBuilder builder = new EEComponentSpecificationBuilder(
-                this.partNumber, this::addSpecification);
+            final Customizer<EEComponentSpecificationBuilder<VecEEComponentSpecification>> customizer) {
+        final EEComponentSpecificationBuilder<VecEEComponentSpecification> builder =
+                new EEComponentSpecificationBuilder<>(this.session,
+                                                      VecEEComponentSpecification.class,
+                                                      this.partNumber, this.partMasterDocument::getSpecificationWith,
+                                                      this::addSpecification,
+                                                      nodeId -> SchematicQueries.findNode(
+                                                              interalSchematic, nodeId));
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
+    }
+
+    public ComponentMasterDataBuilder addFuseSpecification(
+            final Customizer<FuseSpecificationBuilder> customizer) {
+        final FuseSpecificationBuilder builder =
+                new FuseSpecificationBuilder(this.session, this.partNumber,
+                                             this.partMasterDocument::getSpecificationWith, this::addSpecification,
+                                             nodeId -> SchematicQueries.findNode(
+                                                     interalSchematic, nodeId));
+        return addPartOrUsageRelatedSpecification(builder, customizer, true);
+    }
+
+    public ComponentMasterDataBuilder addFuseSpecificationForPartUsage(final String identification,
+                                                                       final Customizer<FuseSpecificationBuilder> customizer) {
+        final FuseSpecificationBuilder builder = new FuseSpecificationBuilder(this.session, identification,
+                                                                              this.partMasterDocument::getSpecificationWith,
+                                                                              this::addSpecification,
+                                                                              nodeId -> SchematicQueries.findNode(
+                                                                                      interalSchematic, nodeId));
+        return addPartOrUsageRelatedSpecification(builder, customizer, false);
+    }
+
+    public ComponentMasterDataBuilder addRelaySpecificationForPartUsage(final String identification,
+                                                                        final Customizer<RelaySpecificationBuilder> customizer) {
+        final RelaySpecificationBuilder builder = new RelaySpecificationBuilder(this.session, identification,
+                                                                                this.partMasterDocument::getSpecificationWith,
+                                                                                this::addSpecification,
+                                                                                nodeId -> SchematicQueries.findNode(
+                                                                                        interalSchematic, nodeId));
+        return addPartOrUsageRelatedSpecification(builder, customizer, false);
     }
 
     public ComponentMasterDataBuilder addSingleCore(final Customizer<WireSingleCoreBuilder> customizer) {

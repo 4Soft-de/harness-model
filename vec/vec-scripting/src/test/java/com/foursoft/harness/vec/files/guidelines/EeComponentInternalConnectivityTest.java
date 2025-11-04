@@ -23,19 +23,20 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.files;
+package com.foursoft.harness.vec.files.guidelines;
 
+import com.foursoft.harness.vec.files.TestUtils;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
-class NewModellingApproachEeComponentTest {
+class EeComponentInternalConnectivityTest {
 
     @Test
-    void create_ee_component_with_schematic() throws IOException {
+    void create_ee_component_with_schematic() {
         final VecSession session = new VecSession();
 
         // @formatter:off
@@ -82,7 +83,11 @@ class NewModellingApproachEeComponentTest {
                 .addHousingComponent("A", hc -> hc
                     .addPinComponents("1","2","3","4","5"))
                 .addHousingComponent("F2", hc -> hc
-                    .addPinComponents("1","2")))
+                    .addPinComponents("1","2"))
+                    .withComponentNode("EE-COMP")
+            )
+            .addFuseSpecificationForPartUsage("F1",fuse -> fuse.withIMax(15))
+            .addRelaySpecificationForPartUsage("R1", rs -> rs.withLowNoise(true))
             .addConductorSpecification("BUSBAR", spec -> spec.withCSA(5.0))
             .addWireSpecificationForPartUsage("BUSBAR", ws -> ws
                     .withWireElement("BUSBAR", we -> we
@@ -106,8 +111,12 @@ class NewModellingApproachEeComponentTest {
                 .addPartUsage("R1-Switch-B", pu -> pu
                         .addWireSpecification("WS-BUSBAR", wr -> wr
                                 .wireElementRef("BUSBAR", ref -> ref.withConnection("R1-Switch-B"))))
-                .addPartUsage("F1", pu -> {})
-                .addPartUsage("R1", pu -> {})
+                .addPartUsage("F1", pu -> pu
+                        .addFuseSpecification("FS-F1", fr -> fr
+                                .withComponentNode("F1")))
+                .addPartUsage("R1", pu -> pu
+                        .addRelaySpecification("RS-R1",rr -> rr
+                                .withComponentNode("R1")))
             ));
 
 
@@ -115,14 +124,8 @@ class NewModellingApproachEeComponentTest {
         session.document("SCHEMATIC","1", builder -> {});
 
         session.schematic("SCHEMATIC", schematic -> schematic
-                .addComponentNode("A200", a200 -> a200
-                .addPort("A","1","Power")
-                .addPort("A","2","F1")
-                .addPort("A","3","Switch-A")
-                .addPort("A","4","Switch-B")
-                .addPort("A","5", "Switched+F2")
-                .addPort("F2","1","F2 - Pluggable")
-                .addPort("F2","2", "F2 - Pluggable")));
+                .addComponentNodeReusage("DRAW-EE-COMP","SCHEMATIC", "EE-COMP", "A200")
+        );
 
         session.harness("HARNESS-1","1", harness -> harness
                 .withSchematic("SCHEMATIC")
@@ -131,7 +134,9 @@ class NewModellingApproachEeComponentTest {
                             .withComponentNode("A200"))));
         // @formatter:on
 
-        System.out.println(session.writeToString());
-        session.writeToStream(TestUtils.createTestFileStream("ee-component-with-schematic"));
+        assertThatCode(() -> {
+            session.writeToStream(TestUtils.createTestFileStream("ecad-wiki-guideline-ee-component-with-schematic"));
+        }).doesNotThrowAnyException();
+
     }
 }

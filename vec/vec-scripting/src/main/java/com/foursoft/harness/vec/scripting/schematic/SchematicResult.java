@@ -23,19 +23,14 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.eecomponents;
+package com.foursoft.harness.vec.scripting.schematic;
 
-import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
-import com.foursoft.harness.vec.v2x.VecEEComponentRole;
-import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
+import com.foursoft.harness.vec.v2x.VecConnectionSpecification;
+import com.foursoft.harness.vec.v2x.VecReusageSpecification;
+import jakarta.annotation.Nonnull;
 
-public class EEComponentRoleBuilder extends AbstractEEComponentRoleBuilder<VecEEComponentRole> {
+import java.util.List;
 
-    public EEComponentRoleBuilder(final VecSession session,
-                                  final String identification,
-                                  final VecEEComponentSpecification specification,
-                                  final ComponentNodeLookup componentNodeLookup) {
-        super(session, VecEEComponentRole.class, identification, specification, componentNodeLookup);
-    }
+public record SchematicResult(@Nonnull VecConnectionSpecification connectionSpecification,
+                              List<VecReusageSpecification> reusageSpecification) {
 }
