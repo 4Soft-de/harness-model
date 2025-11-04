@@ -77430,16 +77430,6 @@ This is not intended for productive use and is not complete!
           <Value>multi_slot</Value>
         </CustomProperty>
         <Identification>XJ.SR1.1</Identification>
-        <AliasId id="AliasIdentification_id_368_13_1">
-          <IdentificationValue>SR1.1</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_14_1">
-          <IdentificationValue>ST_SIDO_1</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00185">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger</Value>
@@ -78129,16 +78119,6 @@ This is not intended for productive use and is not complete!
           <Value>TAB_016_038_B</Value>
         </CustomProperty>
         <Identification>XA.L2.1</Identification>
-        <AliasId id="AliasIdentification_id_368_1_1">
-          <IdentificationValue>XA.L2.1</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_2_1">
-          <IdentificationValue>ST_SBBR_1</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00193">
           <LanguageCode>De</LanguageCode>
           <Value>2-Faden-Lampe für Scheinwerfer rechts</Value>
@@ -78195,16 +78175,6 @@ This is not intended for productive use and is not complete!
           <Value>TAB_016_007_B</Value>
         </CustomProperty>
         <Identification>XA.V64.1</Identification>
-        <AliasId id="AliasIdentification_id_368_18_1">
-          <IdentificationValue>XA.V64.1</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_19_1">
-          <IdentificationValue>ST_PUMPE</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00194">
           <LanguageCode>De</LanguageCode>
           <Value>Hydraulikpumpe für ABS</Value>
@@ -78245,16 +78215,6 @@ This is not intended for productive use and is not complete!
           <Value>TAB_016_038_B</Value>
         </CustomProperty>
         <Identification>XA.L1.1</Identification>
-        <AliasId id="AliasIdentification_id_368_3_1">
-          <IdentificationValue>XA.L1.1</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_4_1">
-          <IdentificationValue>ST_SBBR_2</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00195">
           <LanguageCode>De</LanguageCode>
           <Value>2-Faden-Lampe für Scheinwerfer links</Value>
@@ -78307,16 +78267,6 @@ This is not intended for productive use and is not complete!
           <Value>['7P0_820_803_B','']</Value>
         </CustomProperty>
         <Identification>XB.V454.1</Identification>
-        <AliasId id="AliasIdentification_id_368_6_1">
-          <IdentificationValue>XB.V454.1</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_7_1">
-          <IdentificationValue>ST_KLIMA_1</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00196">
           <LanguageCode>De</LanguageCode>
           <Value>Klimakompressor</Value>
@@ -78365,16 +78315,6 @@ This is not intended for productive use and is not complete!
           <Value>['3B0_959_761_AJ','']</Value>
         </CustomProperty>
         <Identification>XA.V86.1</Identification>
-        <AliasId id="AliasIdentification_id_368_8_1">
-          <IdentificationValue>XA.V86.1</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_9_1">
-          <IdentificationValue>ST_SCHDACH_1</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00197">
           <LanguageCode>De</LanguageCode>
           <Value>Motor für Faltschiebedach</Value>
@@ -78419,16 +78359,6 @@ This is not intended for productive use and is not complete!
           <Value>['5M0_845_051','']</Value>
         </CustomProperty>
         <Identification>XA.Z1.1</Identification>
-        <AliasId id="AliasIdentification_id_368_11_1">
-          <IdentificationValue>XA.Z1.1</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_12_1">
-          <IdentificationValue>ST_BEHECK_1</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00198">
           <LanguageCode>De</LanguageCode>
           <Value>beheizbare Heckscheibe</Value>
@@ -78489,16 +78419,6 @@ This is not intended for productive use and is not complete!
           <Value>['FBX001546','']</Value>
         </CustomProperty>
         <Identification>XA.SR1.1</Identification>
-        <AliasId id="AliasIdentification_id_368_20_1">
-          <IdentificationValue>XA.SR1.1</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_21_1">
-          <IdentificationValue>ST_SIDO_1</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00199">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
@@ -78639,16 +78559,6 @@ This is not intended for productive use and is not complete!
           <Value>unsealed</Value>
         </CustomProperty>
         <Identification>D50</Identification>
-        <AliasId id="AliasIdentification_id_368_23_1">
-          <IdentificationValue>D50</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_24_1">
-          <IdentificationValue>SI_SP</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00200">
           <LanguageCode>De</LanguageCode>
           <Value>Plusverbindung (30) im Leitungsstrang Motorraum</Value>
@@ -78677,16 +78587,6 @@ This is not intended for productive use and is not complete!
           <Value>unsealed</Value>
         </CustomProperty>
         <Identification>W8</Identification>
-        <AliasId id="AliasIdentification_id_368_25_1">
-          <IdentificationValue>W8</IdentificationValue>
-          <Type>UL_ID</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
-        <AliasId id="AliasIdentification_id_368_26_1">
-          <IdentificationValue>SP_SI_X</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00201">
           <LanguageCode>De</LanguageCode>
           <Value>Verbindung (15a) im Leitungsstrang hinten</Value>
@@ -78993,11 +78893,6 @@ This is not intended for productive use and is not complete!
           <Value>['FBX001546','']</Value>
         </CustomProperty>
         <Identification>XG.SR1.1</Identification>
-        <AliasId id="AliasIdentification_id_368_5_1">
-          <IdentificationValue>ST_SIDO_5</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00202">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
@@ -79022,11 +78917,6 @@ This is not intended for productive use and is not complete!
           <Value>['FBX001546','']</Value>
         </CustomProperty>
         <Identification>XF.SR1.1</Identification>
-        <AliasId id="AliasIdentification_id_368_10_1">
-          <IdentificationValue>ST_SIDO_2</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00203">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
@@ -79051,11 +78941,6 @@ This is not intended for productive use and is not complete!
           <Value>['FBX001546','']</Value>
         </CustomProperty>
         <Identification>XH.SR1.1</Identification>
-        <AliasId id="AliasIdentification_id_368_15_1">
-          <IdentificationValue>ST_SIDO_3</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00204">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
@@ -79080,11 +78965,6 @@ This is not intended for productive use and is not complete!
           <Value>['FBX001546','']</Value>
         </CustomProperty>
         <Identification>XD.SR1.1</Identification>
-        <AliasId id="AliasIdentification_id_368_16_1">
-          <IdentificationValue>ST_SIDO_6</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00205">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
@@ -79109,11 +78989,6 @@ This is not intended for productive use and is not complete!
           <Value>['CMP001105C','']</Value>
         </CustomProperty>
         <Identification>XA.A.1</Identification>
-        <AliasId id="AliasIdentification_id_368_22_1">
-          <IdentificationValue>ST_BATT</IdentificationValue>
-          <Type>Alias-Ref</Type>
-          <Scope>VOBES</Scope>
-        </AliasId>
         <Description xsi:type="vec:LocalizedString" id="LocalizedString_00206">
           <LanguageCode>De</LanguageCode>
           <Value>Batterie</Value>

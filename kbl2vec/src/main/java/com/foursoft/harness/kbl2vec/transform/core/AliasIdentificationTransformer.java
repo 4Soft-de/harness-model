@@ -35,6 +35,9 @@ public class AliasIdentificationTransformer implements Transformer<KblAliasIdent
     @Override
     public TransformationResult<VecAliasIdentification> transform(final TransformationContext context,
                                                                   final KblAliasIdentification source) {
+        if (context.getEntityMapping().getContent().containsKey(source)) {
+            return TransformationResult.noResult();
+        }
         final VecAliasIdentification aliasIdentification = new VecAliasIdentification();
         aliasIdentification.setIdentificationValue(source.getAliasId());
         aliasIdentification.setScope(source.getScope());
