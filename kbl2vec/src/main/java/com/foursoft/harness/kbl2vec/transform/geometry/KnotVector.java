@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public record KnotVector(int order, int numberOfControlPoints, String clamping) {
+public record KnotVector(int degree, int order, int numberOfControlPoints, String clamping) {
 
     public List<Double> getKnots() {
+        if (numberOfControlPoints <= degree || order != degree + 1) {
+            return new ArrayList<>();
+        }
+
         final int knotLength = numberOfControlPoints + order;
 
         if (Constants.CLAMPED.equals(clamping)) {
