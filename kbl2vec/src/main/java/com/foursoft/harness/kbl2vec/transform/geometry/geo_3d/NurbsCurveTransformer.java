@@ -18,6 +18,7 @@ public class NurbsCurveTransformer implements Transformer<KblBSplineCurve, VecNU
     public TransformationResult<VecNURBSCurve> transform(final TransformationContext context,
                                                          final KblBSplineCurve source) {
         final VecNURBSCurve destination = new VecNURBSCurve();
+        destination.setDegree(source.getDegree());
         destination.getKnots().addAll(deriveKnots(source, context));
 
         return TransformationResult.from(destination)
