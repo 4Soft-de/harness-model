@@ -39,6 +39,8 @@ public class PinComponentTransformer implements Transformer<KblComponentCavity, 
     public TransformationResult<VecPinComponent> transform(final TransformationContext context,
                                                            final KblComponentCavity source) {
         final VecPinComponent destination = new VecPinComponent();
+        destination.setIdentification(source.getCavityNumber());
+
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source), VecCavity.class, VecPinComponent::setReferencedCavity)
                 .build();

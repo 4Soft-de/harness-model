@@ -41,6 +41,7 @@ public class PinComponentReferenceTransformer
     public TransformationResult<VecPinComponentReference> transform(final TransformationContext context,
                                                                     final KblComponentCavityOccurrence source) {
         final VecPinComponentReference destination = new VecPinComponentReference();
+        destination.setIdentification(source.getPart().getCavityNumber());
 
         return TransformationResult.from(destination)
                 .withDownstream(KblComponentCavityOccurrence.class, VecTerminalRole.class, Query.of(source),

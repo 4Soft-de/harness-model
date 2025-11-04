@@ -40,6 +40,7 @@ public class SlotTransformer implements Transformer<KblComponentSlot, VecSlot> {
     public TransformationResult<VecSlot> transform(final TransformationContext context,
                                                    final KblComponentSlot source) {
         final VecSlot destination = new VecSlot();
+        destination.setSlotNumber(source.getId());
 
         return TransformationResult.from(destination)
                 .withDownstream(KblComponentCavity.class, VecCavity.class,

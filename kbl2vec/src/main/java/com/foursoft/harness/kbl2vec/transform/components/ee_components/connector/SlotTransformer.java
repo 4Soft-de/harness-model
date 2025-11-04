@@ -41,6 +41,7 @@ public class SlotTransformer implements Transformer<KblAbstractSlot, VecSlot> {
                                                    final KblAbstractSlot abstractSlot) {
         if (abstractSlot instanceof final KblSlot source) {
             final VecSlot destination = new VecSlot();
+            destination.setSlotNumber(source.getId());
 
             return TransformationResult.from(destination)
                     .withDownstream(KblCavity.class, VecCavity.class, source::getCavities, VecSlot::getCavities)
