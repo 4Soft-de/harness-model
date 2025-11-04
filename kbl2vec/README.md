@@ -8,6 +8,7 @@ Currently unsupported features (future work):
 - Copyright Information for PartVersions
 - Changes for Parts & Documents
 - Standalone `Module_configuration`s that are not part of a `Module`.
+- `TerminalRole` without Specification; can't be derived from KBL data
 
 ### Architecture
 
