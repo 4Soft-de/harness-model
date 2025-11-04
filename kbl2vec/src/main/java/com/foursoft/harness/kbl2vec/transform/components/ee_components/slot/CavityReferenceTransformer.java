@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,29 +25,24 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.ee_components.slot;
 
-import com.foursoft.harness.kbl.v25.KblComponentSlotOccurrence;
+import com.foursoft.harness.kbl.v25.KblComponentCavityOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
-import com.foursoft.harness.vec.v2x.VecSlotReference;
+import com.foursoft.harness.vec.v2x.VecCavity;
+import com.foursoft.harness.vec.v2x.VecCavityReference;
 
-public class ConnectorHousingRoleTransformer
-        implements Transformer<KblComponentSlotOccurrence, VecConnectorHousingRole> {
+public class CavityReferenceTransformer implements Transformer<KblComponentCavityOccurrence, VecCavityReference> {
 
     @Override
-    public TransformationResult<VecConnectorHousingRole> transform(final TransformationContext context,
-                                                                   final KblComponentSlotOccurrence source) {
-        final VecConnectorHousingRole destination = new VecConnectorHousingRole();
-        destination.setIdentification(source.getId());
+    public TransformationResult<VecCavityReference> transform(final TransformationContext context,
+                                                              final KblComponentCavityOccurrence source) {
+        final VecCavityReference destination = new VecCavityReference();
+        destination.setIdentification(source.getPart().getCavityNumber());
 
         return TransformationResult.from(destination)
-                .withDownstream(KblComponentSlotOccurrence.class, VecSlotReference.class, Query.of(source),
-                                VecConnectorHousingRole::getSlotReferences)
-                .withLinker(Query.of(source::getPart), VecConnectorHousingSpecification.class,
-                            VecConnectorHousingRole::setConnectorHousingSpecification)
+                .withLinker(Query.of(source::getPart), VecCavity.class, VecCavityReference::setReferencedCavity)
                 .build();
     }
 }

@@ -75589,9 +75589,11 @@ This is not intended for productive use and is not complete!
         <Identification>F1</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_0</HousingSpecification>
         <PinComponent id="PinComponent_id_370_114">
+          <Identification>F1-1</Identification>
           <ReferencedCavity>Cavity_id_370_114</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_115">
+          <Identification>F1-1A</Identification>
           <ReferencedCavity>Cavity_id_370_115</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75599,9 +75601,11 @@ This is not intended for productive use and is not complete!
         <Identification>F2</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_1</HousingSpecification>
         <PinComponent id="PinComponent_id_370_116">
+          <Identification>F2-1</Identification>
           <ReferencedCavity>Cavity_id_370_116</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_117">
+          <Identification>F2-1A</Identification>
           <ReferencedCavity>Cavity_id_370_117</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75609,9 +75613,11 @@ This is not intended for productive use and is not complete!
         <Identification>F3</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_2</HousingSpecification>
         <PinComponent id="PinComponent_id_370_118">
+          <Identification>F3-1</Identification>
           <ReferencedCavity>Cavity_id_370_118</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_119">
+          <Identification>F3-1A</Identification>
           <ReferencedCavity>Cavity_id_370_119</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75619,9 +75625,11 @@ This is not intended for productive use and is not complete!
         <Identification>F4</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_3</HousingSpecification>
         <PinComponent id="PinComponent_id_370_120">
+          <Identification>F4-1</Identification>
           <ReferencedCavity>Cavity_id_370_120</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_121">
+          <Identification>F4-1A</Identification>
           <ReferencedCavity>Cavity_id_370_121</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75629,9 +75637,11 @@ This is not intended for productive use and is not complete!
         <Identification>F5</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_4</HousingSpecification>
         <PinComponent id="PinComponent_id_370_122">
+          <Identification>F5-1</Identification>
           <ReferencedCavity>Cavity_id_370_122</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_123">
+          <Identification>F5-1A</Identification>
           <ReferencedCavity>Cavity_id_370_123</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75639,9 +75649,11 @@ This is not intended for productive use and is not complete!
         <Identification>F6</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_5</HousingSpecification>
         <PinComponent id="PinComponent_id_370_124">
+          <Identification>F6-1</Identification>
           <ReferencedCavity>Cavity_id_370_124</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_125">
+          <Identification>F6-1A</Identification>
           <ReferencedCavity>Cavity_id_370_125</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75649,9 +75661,11 @@ This is not intended for productive use and is not complete!
         <Identification>FS1</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_6</HousingSpecification>
         <PinComponent id="PinComponent_id_370_126">
+          <Identification>FS1-1</Identification>
           <ReferencedCavity>Cavity_id_370_126</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_127">
+          <Identification>FS1-1A</Identification>
           <ReferencedCavity>Cavity_id_370_127</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75659,9 +75673,11 @@ This is not intended for productive use and is not complete!
         <Identification>FS2</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_7</HousingSpecification>
         <PinComponent id="PinComponent_id_370_128">
+          <Identification>FS2-1</Identification>
           <ReferencedCavity>Cavity_id_370_128</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_129">
+          <Identification>FS2-1A</Identification>
           <ReferencedCavity>Cavity_id_370_129</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75669,9 +75685,11 @@ This is not intended for productive use and is not complete!
         <Identification>FS3</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_8</HousingSpecification>
         <PinComponent id="PinComponent_id_370_130">
+          <Identification>FS3-1</Identification>
           <ReferencedCavity>Cavity_id_370_130</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_131">
+          <Identification>FS3-1A</Identification>
           <ReferencedCavity>Cavity_id_370_131</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75679,9 +75697,11 @@ This is not intended for productive use and is not complete!
         <Identification>FS4</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_9</HousingSpecification>
         <PinComponent id="PinComponent_id_370_132">
+          <Identification>FS4-1</Identification>
           <ReferencedCavity>Cavity_id_370_132</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_133">
+          <Identification>FS4-1A</Identification>
           <ReferencedCavity>Cavity_id_370_133</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75689,9 +75709,11 @@ This is not intended for productive use and is not complete!
         <Identification>FS5</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_10</HousingSpecification>
         <PinComponent id="PinComponent_id_370_134">
+          <Identification>FS5-1</Identification>
           <ReferencedCavity>Cavity_id_370_134</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_135">
+          <Identification>FS5-1A</Identification>
           <ReferencedCavity>Cavity_id_370_135</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75699,9 +75721,11 @@ This is not intended for productive use and is not complete!
         <Identification>FS6</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_441_11</HousingSpecification>
         <PinComponent id="PinComponent_id_370_136">
+          <Identification>FS6-1</Identification>
           <ReferencedCavity>Cavity_id_370_136</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_137">
+          <Identification>FS6-1A</Identification>
           <ReferencedCavity>Cavity_id_370_137</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75709,6 +75733,7 @@ This is not intended for productive use and is not complete!
         <Identification>A</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_0</HousingSpecification>
         <PinComponent id="PinComponent_id_370_100">
+          <Identification>1</Identification>
           <ReferencedCavity>Cavity_id_370_100</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75716,6 +75741,7 @@ This is not intended for productive use and is not complete!
         <Identification>B</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_1</HousingSpecification>
         <PinComponent id="PinComponent_id_370_101">
+          <Identification>1A</Identification>
           <ReferencedCavity>Cavity_id_370_101</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75723,6 +75749,7 @@ This is not intended for productive use and is not complete!
         <Identification>C</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_2</HousingSpecification>
         <PinComponent id="PinComponent_id_370_102">
+          <Identification>1A</Identification>
           <ReferencedCavity>Cavity_id_370_102</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75730,6 +75757,7 @@ This is not intended for productive use and is not complete!
         <Identification>D</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_3</HousingSpecification>
         <PinComponent id="PinComponent_id_370_103">
+          <Identification>1A</Identification>
           <ReferencedCavity>Cavity_id_370_103</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75737,6 +75765,7 @@ This is not intended for productive use and is not complete!
         <Identification>E</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_4</HousingSpecification>
         <PinComponent id="PinComponent_id_370_104">
+          <Identification>1A</Identification>
           <ReferencedCavity>Cavity_id_370_104</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75744,6 +75773,7 @@ This is not intended for productive use and is not complete!
         <Identification>F</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_5</HousingSpecification>
         <PinComponent id="PinComponent_id_370_105">
+          <Identification>1A</Identification>
           <ReferencedCavity>Cavity_id_370_105</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75751,6 +75781,7 @@ This is not intended for productive use and is not complete!
         <Identification>G</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_6</HousingSpecification>
         <PinComponent id="PinComponent_id_370_106">
+          <Identification>1A</Identification>
           <ReferencedCavity>Cavity_id_370_106</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75758,6 +75789,7 @@ This is not intended for productive use and is not complete!
         <Identification>H</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_7</HousingSpecification>
         <PinComponent id="PinComponent_id_370_107">
+          <Identification>1A</Identification>
           <ReferencedCavity>Cavity_id_370_107</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75765,21 +75797,27 @@ This is not intended for productive use and is not complete!
         <Identification>J</Identification>
         <HousingSpecification>ConnectorHousingSpecification_id_415_8</HousingSpecification>
         <PinComponent id="PinComponent_id_370_108">
+          <Identification>1</Identification>
           <ReferencedCavity>Cavity_id_370_108</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_109">
+          <Identification>2</Identification>
           <ReferencedCavity>Cavity_id_370_109</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_110">
+          <Identification>3</Identification>
           <ReferencedCavity>Cavity_id_370_110</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_111">
+          <Identification>4</Identification>
           <ReferencedCavity>Cavity_id_370_111</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_112">
+          <Identification>5</Identification>
           <ReferencedCavity>Cavity_id_370_112</ReferencedCavity>
         </PinComponent>
         <PinComponent id="PinComponent_id_370_113">
+          <Identification>6</Identification>
           <ReferencedCavity>Cavity_id_370_113</ReferencedCavity>
         </PinComponent>
       </HousingComponent>
@@ -75787,6 +75825,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_0">
       <Identification>A</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_50">
+        <SlotNumber>KL30 Batt+</SlotNumber>
         <Cavity id="Cavity_id_370_100">
           <CavityNumber>1</CavityNumber>
         </Cavity>
@@ -75795,6 +75834,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_1">
       <Identification>B</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_51">
+        <SlotNumber>B</SlotNumber>
         <Cavity id="Cavity_id_370_101">
           <CavityNumber>1A</CavityNumber>
         </Cavity>
@@ -75803,6 +75843,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_2">
       <Identification>C</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_52">
+        <SlotNumber>Reserve</SlotNumber>
         <Cavity id="Cavity_id_370_102">
           <CavityNumber>1A</CavityNumber>
         </Cavity>
@@ -75811,6 +75852,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_3">
       <Identification>D</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_53">
+        <SlotNumber>D</SlotNumber>
         <Cavity id="Cavity_id_370_103">
           <CavityNumber>1A</CavityNumber>
         </Cavity>
@@ -75819,6 +75861,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_4">
       <Identification>E</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_54">
+        <SlotNumber>E</SlotNumber>
         <Cavity id="Cavity_id_370_104">
           <CavityNumber>1A</CavityNumber>
         </Cavity>
@@ -75827,6 +75870,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_5">
       <Identification>F</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_55">
+        <SlotNumber>F</SlotNumber>
         <Cavity id="Cavity_id_370_105">
           <CavityNumber>1A</CavityNumber>
         </Cavity>
@@ -75835,6 +75879,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_6">
       <Identification>G</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_56">
+        <SlotNumber>G</SlotNumber>
         <Cavity id="Cavity_id_370_106">
           <CavityNumber>1A</CavityNumber>
         </Cavity>
@@ -75843,6 +75888,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_7">
       <Identification>H</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_57">
+        <SlotNumber>H</SlotNumber>
         <Cavity id="Cavity_id_370_107">
           <CavityNumber>1A</CavityNumber>
         </Cavity>
@@ -75851,6 +75897,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_415_8">
       <Identification>J</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_58">
+        <SlotNumber>J</SlotNumber>
         <Cavity id="Cavity_id_370_108">
           <CavityNumber>1</CavityNumber>
         </Cavity>
@@ -75874,6 +75921,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_0">
       <Identification>F1</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_0">
+        <SlotNumber>F1</SlotNumber>
         <Cavity id="Cavity_id_370_114">
           <CavityNumber>F1-1</CavityNumber>
         </Cavity>
@@ -75885,6 +75933,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_1">
       <Identification>F2</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_1">
+        <SlotNumber>F2</SlotNumber>
         <Cavity id="Cavity_id_370_116">
           <CavityNumber>F2-1</CavityNumber>
         </Cavity>
@@ -75896,6 +75945,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_2">
       <Identification>F3</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_2">
+        <SlotNumber>F3</SlotNumber>
         <Cavity id="Cavity_id_370_118">
           <CavityNumber>F3-1</CavityNumber>
         </Cavity>
@@ -75907,6 +75957,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_3">
       <Identification>F4</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_3">
+        <SlotNumber>F4</SlotNumber>
         <Cavity id="Cavity_id_370_120">
           <CavityNumber>F4-1</CavityNumber>
         </Cavity>
@@ -75918,6 +75969,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_4">
       <Identification>F5</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_4">
+        <SlotNumber>F5</SlotNumber>
         <Cavity id="Cavity_id_370_122">
           <CavityNumber>F5-1</CavityNumber>
         </Cavity>
@@ -75929,6 +75981,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_5">
       <Identification>F6</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_5">
+        <SlotNumber>F6</SlotNumber>
         <Cavity id="Cavity_id_370_124">
           <CavityNumber>F6-1</CavityNumber>
         </Cavity>
@@ -75940,6 +75993,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_6">
       <Identification>FS1</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_6">
+        <SlotNumber>FS1</SlotNumber>
         <Cavity id="Cavity_id_370_126">
           <CavityNumber>FS1-1</CavityNumber>
         </Cavity>
@@ -75951,6 +76005,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_7">
       <Identification>FS2</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_7">
+        <SlotNumber>FS2</SlotNumber>
         <Cavity id="Cavity_id_370_128">
           <CavityNumber>FS2-1</CavityNumber>
         </Cavity>
@@ -75962,6 +76017,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_8">
       <Identification>FS3</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_8">
+        <SlotNumber>FS3</SlotNumber>
         <Cavity id="Cavity_id_370_130">
           <CavityNumber>FS3-1</CavityNumber>
         </Cavity>
@@ -75973,6 +76029,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_9">
       <Identification>FS4</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_9">
+        <SlotNumber>FS4</SlotNumber>
         <Cavity id="Cavity_id_370_132">
           <CavityNumber>FS4-1</CavityNumber>
         </Cavity>
@@ -75984,6 +76041,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_10">
       <Identification>FS5</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_10">
+        <SlotNumber>FS5</SlotNumber>
         <Cavity id="Cavity_id_370_134">
           <CavityNumber>FS5-1</CavityNumber>
         </Cavity>
@@ -75995,6 +76053,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_441_11">
       <Identification>FS6</Identification>
       <Slot xsi:type="vec:Slot" id="Slot_id_441_11">
+        <SlotNumber>FS6</SlotNumber>
         <Cavity id="Cavity_id_370_136">
           <CavityNumber>FS6-1</CavityNumber>
         </Cavity>
@@ -80017,12 +80076,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-F1</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_0">
               <Identification>SR1.1-F1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_0</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_0">
+                <Identification>SR1.1-F1</Identification>
+                <ReferencedSlot>Slot_id_441_0</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_138">
+                  <Identification>F1-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_114</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_139">
+                  <Identification>F1-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_115</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_138">
+              <Identification>F1-1</Identification>
               <PinComponent>PinComponent_id_370_114</PinComponent>
               <TerminalRole id="TerminalRole_id_370_138"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_139">
+              <Identification>F1-1A</Identification>
               <PinComponent>PinComponent_id_370_115</PinComponent>
               <TerminalRole id="TerminalRole_id_370_139"></TerminalRole>
             </PinComponentRef>
@@ -80031,12 +80105,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-F2</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_1">
               <Identification>SR1.1-F2</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_1</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_1">
+                <Identification>SR1.1-F2</Identification>
+                <ReferencedSlot>Slot_id_441_1</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_140">
+                  <Identification>F2-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_116</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_141">
+                  <Identification>F2-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_117</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_140">
+              <Identification>F2-1</Identification>
               <PinComponent>PinComponent_id_370_116</PinComponent>
               <TerminalRole id="TerminalRole_id_370_140"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_141">
+              <Identification>F2-1A</Identification>
               <PinComponent>PinComponent_id_370_117</PinComponent>
               <TerminalRole id="TerminalRole_id_370_141"></TerminalRole>
             </PinComponentRef>
@@ -80045,12 +80134,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-F3</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_2">
               <Identification>SR1.1-F3</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_2</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_2">
+                <Identification>SR1.1-F3</Identification>
+                <ReferencedSlot>Slot_id_441_2</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_142">
+                  <Identification>F3-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_118</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_143">
+                  <Identification>F3-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_119</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_142">
+              <Identification>F3-1</Identification>
               <PinComponent>PinComponent_id_370_118</PinComponent>
               <TerminalRole id="TerminalRole_id_370_142"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_143">
+              <Identification>F3-1A</Identification>
               <PinComponent>PinComponent_id_370_119</PinComponent>
               <TerminalRole id="TerminalRole_id_370_143"></TerminalRole>
             </PinComponentRef>
@@ -80059,12 +80163,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-F4</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_3">
               <Identification>SR1.1-F4</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_3</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_3">
+                <Identification>SR1.1-F4</Identification>
+                <ReferencedSlot>Slot_id_441_3</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_144">
+                  <Identification>F4-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_120</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_145">
+                  <Identification>F4-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_121</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_144">
+              <Identification>F4-1</Identification>
               <PinComponent>PinComponent_id_370_120</PinComponent>
               <TerminalRole id="TerminalRole_id_370_144"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_145">
+              <Identification>F4-1A</Identification>
               <PinComponent>PinComponent_id_370_121</PinComponent>
               <TerminalRole id="TerminalRole_id_370_145"></TerminalRole>
             </PinComponentRef>
@@ -80073,12 +80192,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-F5</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_4">
               <Identification>SR1.1-F5</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_4</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_4">
+                <Identification>SR1.1-F5</Identification>
+                <ReferencedSlot>Slot_id_441_4</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_146">
+                  <Identification>F5-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_122</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_147">
+                  <Identification>F5-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_123</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_146">
+              <Identification>F5-1</Identification>
               <PinComponent>PinComponent_id_370_122</PinComponent>
               <TerminalRole id="TerminalRole_id_370_146"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_147">
+              <Identification>F5-1A</Identification>
               <PinComponent>PinComponent_id_370_123</PinComponent>
               <TerminalRole id="TerminalRole_id_370_147"></TerminalRole>
             </PinComponentRef>
@@ -80087,12 +80221,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-F6</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_5">
               <Identification>SR1.1-F6</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_5</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_5">
+                <Identification>SR1.1-F6</Identification>
+                <ReferencedSlot>Slot_id_441_5</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_148">
+                  <Identification>F6-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_124</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_149">
+                  <Identification>F6-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_125</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_148">
+              <Identification>F6-1</Identification>
               <PinComponent>PinComponent_id_370_124</PinComponent>
               <TerminalRole id="TerminalRole_id_370_148"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_149">
+              <Identification>F6-1A</Identification>
               <PinComponent>PinComponent_id_370_125</PinComponent>
               <TerminalRole id="TerminalRole_id_370_149"></TerminalRole>
             </PinComponentRef>
@@ -80101,12 +80250,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-FS1</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_6">
               <Identification>SR1.1-FS1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_6</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_6">
+                <Identification>SR1.1-FS1</Identification>
+                <ReferencedSlot>Slot_id_441_6</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_150">
+                  <Identification>FS1-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_126</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_151">
+                  <Identification>FS1-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_127</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_150">
+              <Identification>FS1-1</Identification>
               <PinComponent>PinComponent_id_370_126</PinComponent>
               <TerminalRole id="TerminalRole_id_370_150"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_151">
+              <Identification>FS1-1A</Identification>
               <PinComponent>PinComponent_id_370_127</PinComponent>
               <TerminalRole id="TerminalRole_id_370_151"></TerminalRole>
             </PinComponentRef>
@@ -80115,12 +80279,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-FS2</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_7">
               <Identification>SR1.1-FS2</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_7</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_7">
+                <Identification>SR1.1-FS2</Identification>
+                <ReferencedSlot>Slot_id_441_7</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_152">
+                  <Identification>FS2-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_128</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_153">
+                  <Identification>FS2-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_129</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_152">
+              <Identification>FS2-1</Identification>
               <PinComponent>PinComponent_id_370_128</PinComponent>
               <TerminalRole id="TerminalRole_id_370_152"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_153">
+              <Identification>FS2-1A</Identification>
               <PinComponent>PinComponent_id_370_129</PinComponent>
               <TerminalRole id="TerminalRole_id_370_153"></TerminalRole>
             </PinComponentRef>
@@ -80129,12 +80308,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-FS3</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_8">
               <Identification>SR1.1-FS3</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_8</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_8">
+                <Identification>SR1.1-FS3</Identification>
+                <ReferencedSlot>Slot_id_441_8</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_154">
+                  <Identification>FS3-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_130</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_155">
+                  <Identification>FS3-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_131</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_154">
+              <Identification>FS3-1</Identification>
               <PinComponent>PinComponent_id_370_130</PinComponent>
               <TerminalRole id="TerminalRole_id_370_154"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_155">
+              <Identification>FS3-1A</Identification>
               <PinComponent>PinComponent_id_370_131</PinComponent>
               <TerminalRole id="TerminalRole_id_370_155"></TerminalRole>
             </PinComponentRef>
@@ -80143,12 +80337,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-FS4</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_9">
               <Identification>SR1.1-FS4</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_9</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_9">
+                <Identification>SR1.1-FS4</Identification>
+                <ReferencedSlot>Slot_id_441_9</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_156">
+                  <Identification>FS4-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_132</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_157">
+                  <Identification>FS4-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_133</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_156">
+              <Identification>FS4-1</Identification>
               <PinComponent>PinComponent_id_370_132</PinComponent>
               <TerminalRole id="TerminalRole_id_370_156"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_157">
+              <Identification>FS4-1A</Identification>
               <PinComponent>PinComponent_id_370_133</PinComponent>
               <TerminalRole id="TerminalRole_id_370_157"></TerminalRole>
             </PinComponentRef>
@@ -80157,12 +80366,27 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-FS5</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_10">
               <Identification>SR1.1-FS5</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_10</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_10">
+                <Identification>SR1.1-FS5</Identification>
+                <ReferencedSlot>Slot_id_441_10</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_158">
+                  <Identification>FS5-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_134</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_159">
+                  <Identification>FS5-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_135</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_158">
+              <Identification>FS5-1</Identification>
               <PinComponent>PinComponent_id_370_134</PinComponent>
               <TerminalRole id="TerminalRole_id_370_158"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_159">
+              <Identification>FS5-1A</Identification>
               <PinComponent>PinComponent_id_370_135</PinComponent>
               <TerminalRole id="TerminalRole_id_370_159"></TerminalRole>
             </PinComponentRef>
@@ -80171,95 +80395,243 @@ This is not intended for productive use and is not complete!
             <Identification>SR1.1-FS6</Identification>
             <ConnectorHousingRole id="ConnectorHousingRole_id_442_11">
               <Identification>SR1.1-FS6</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_441_11</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_442_11">
+                <Identification>SR1.1-FS6</Identification>
+                <ReferencedSlot>Slot_id_441_11</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_160">
+                  <Identification>FS6-1</Identification>
+                  <ReferencedCavity>Cavity_id_370_136</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_161">
+                  <Identification>FS6-1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_137</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
             </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_160">
+              <Identification>FS6-1</Identification>
               <PinComponent>PinComponent_id_370_136</PinComponent>
               <TerminalRole id="TerminalRole_id_370_160"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_161">
+              <Identification>FS6-1A</Identification>
               <PinComponent>PinComponent_id_370_137</PinComponent>
               <TerminalRole id="TerminalRole_id_370_161"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_0">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_0"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_0">
+              <Identification>A</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_0</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_59">
+                <Identification>KL30 Batt+</Identification>
+                <ReferencedSlot>Slot_id_341_50</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_162">
+                  <Identification>1</Identification>
+                  <ReferencedCavity>Cavity_id_370_100</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_162">
+              <Identification>1</Identification>
               <PinComponent>PinComponent_id_370_100</PinComponent>
               <TerminalRole id="TerminalRole_id_370_162"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_1">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_1"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_1">
+              <Identification>B</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_1</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_60">
+                <Identification>B</Identification>
+                <ReferencedSlot>Slot_id_341_51</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_163">
+                  <Identification>1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_101</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_163">
+              <Identification>1A</Identification>
               <PinComponent>PinComponent_id_370_101</PinComponent>
               <TerminalRole id="TerminalRole_id_370_163"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_2">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_2"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_2">
+              <Identification>C</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_2</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_61">
+                <Identification>Reserve</Identification>
+                <ReferencedSlot>Slot_id_341_52</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_164">
+                  <Identification>1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_102</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_164">
+              <Identification>1A</Identification>
               <PinComponent>PinComponent_id_370_102</PinComponent>
               <TerminalRole id="TerminalRole_id_370_164"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_3">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_3"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_3">
+              <Identification>D</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_3</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_62">
+                <Identification>D</Identification>
+                <ReferencedSlot>Slot_id_341_53</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_165">
+                  <Identification>1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_103</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_165">
+              <Identification>1A</Identification>
               <PinComponent>PinComponent_id_370_103</PinComponent>
               <TerminalRole id="TerminalRole_id_370_165"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_4">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_4"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_4">
+              <Identification>E</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_4</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_63">
+                <Identification>E</Identification>
+                <ReferencedSlot>Slot_id_341_54</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_166">
+                  <Identification>1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_104</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_166">
+              <Identification>1A</Identification>
               <PinComponent>PinComponent_id_370_104</PinComponent>
               <TerminalRole id="TerminalRole_id_370_166"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_5">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_5"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_5">
+              <Identification>F</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_5</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_64">
+                <Identification>F</Identification>
+                <ReferencedSlot>Slot_id_341_55</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_167">
+                  <Identification>1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_105</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_167">
+              <Identification>1A</Identification>
               <PinComponent>PinComponent_id_370_105</PinComponent>
               <TerminalRole id="TerminalRole_id_370_167"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_6">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_6"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_6">
+              <Identification>G</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_6</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_65">
+                <Identification>G</Identification>
+                <ReferencedSlot>Slot_id_341_56</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_168">
+                  <Identification>1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_106</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_168">
+              <Identification>1A</Identification>
               <PinComponent>PinComponent_id_370_106</PinComponent>
               <TerminalRole id="TerminalRole_id_370_168"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_7">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_7"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_7">
+              <Identification>H</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_7</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_66">
+                <Identification>H</Identification>
+                <ReferencedSlot>Slot_id_341_57</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_169">
+                  <Identification>1A</Identification>
+                  <ReferencedCavity>Cavity_id_370_107</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_169">
+              <Identification>1A</Identification>
               <PinComponent>PinComponent_id_370_107</PinComponent>
               <TerminalRole id="TerminalRole_id_370_169"></TerminalRole>
             </PinComponentRef>
           </HousingComponentRef>
           <HousingComponentRef id="HousingComponentReference_id_416_8">
-            <ConnectorHousingRole id="ConnectorHousingRole_id_416_8"></ConnectorHousingRole>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_416_8">
+              <Identification>J</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_415_8</ConnectorHousingSpecification>
+              <SlotReference xsi:type="vec:SlotReference" id="SlotReference_id_341_67">
+                <Identification>J</Identification>
+                <ReferencedSlot>Slot_id_341_58</ReferencedSlot>
+                <CavityReference id="CavityReference_id_370_170">
+                  <Identification>1</Identification>
+                  <ReferencedCavity>Cavity_id_370_108</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_171">
+                  <Identification>2</Identification>
+                  <ReferencedCavity>Cavity_id_370_109</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_172">
+                  <Identification>3</Identification>
+                  <ReferencedCavity>Cavity_id_370_110</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_173">
+                  <Identification>4</Identification>
+                  <ReferencedCavity>Cavity_id_370_111</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_174">
+                  <Identification>5</Identification>
+                  <ReferencedCavity>Cavity_id_370_112</ReferencedCavity>
+                </CavityReference>
+                <CavityReference id="CavityReference_id_370_175">
+                  <Identification>6</Identification>
+                  <ReferencedCavity>Cavity_id_370_113</ReferencedCavity>
+                </CavityReference>
+              </SlotReference>
+            </ConnectorHousingRole>
             <PinComponentRef id="PinComponentReference_id_370_170">
+              <Identification>1</Identification>
               <PinComponent>PinComponent_id_370_108</PinComponent>
               <TerminalRole id="TerminalRole_id_370_170"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_171">
+              <Identification>2</Identification>
               <PinComponent>PinComponent_id_370_109</PinComponent>
               <TerminalRole id="TerminalRole_id_370_171"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_172">
+              <Identification>3</Identification>
               <PinComponent>PinComponent_id_370_110</PinComponent>
               <TerminalRole id="TerminalRole_id_370_172"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_173">
+              <Identification>4</Identification>
               <PinComponent>PinComponent_id_370_111</PinComponent>
               <TerminalRole id="TerminalRole_id_370_173"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_174">
+              <Identification>5</Identification>
               <PinComponent>PinComponent_id_370_112</PinComponent>
               <TerminalRole id="TerminalRole_id_370_174"></TerminalRole>
             </PinComponentRef>
             <PinComponentRef id="PinComponentReference_id_370_175">
+              <Identification>6</Identification>
               <PinComponent>PinComponent_id_370_113</PinComponent>
               <TerminalRole id="TerminalRole_id_370_175"></TerminalRole>
             </PinComponentRef>
