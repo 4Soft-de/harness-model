@@ -31,10 +31,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecTerminalReceptionSpecification;
-import com.foursoft.harness.vec.v2x.VecTerminalSpecification;
-import com.foursoft.harness.vec.v2x.VecWireReceptionSpecification;
+import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
 
@@ -53,6 +50,8 @@ public class TerminalDocumentVersionTransformer implements Transformer<KblPart, 
                     .withDownstream(KblGeneralTerminal.class, VecWireReceptionSpecification.class, Query.of(source),
                                     VecDocumentVersion::getSpecifications)
                     .withDownstream(KblGeneralTerminal.class, VecTerminalReceptionSpecification.class, Query.of(source),
+                                    VecDocumentVersion::getSpecifications)
+                    .withDownstream(KblGeneralTerminal.class, VecPlaceableElementSpecification.class, Query.of(source),
                                     VecDocumentVersion::getSpecifications)
                     .build();
         }

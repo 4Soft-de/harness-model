@@ -34,6 +34,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCompositionSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
 
@@ -52,6 +53,8 @@ public class AssemblyDocumentVersionTransformer implements Transformer<KblPart, 
                             .withDownstream(KblAssemblyPart.class, VecPartStructureSpecification.class,
                                             Query.of(assemblyPart),
                                             VecDocumentVersion::getSpecifications)
+                            .withDownstream(KblAssemblyPart.class, VecPlaceableElementSpecification.class,
+                                            Query.of(assemblyPart), VecDocumentVersion::getSpecifications)
                             .withFragment(commonComponentInformation(source, context));
 
             return builder.build();
