@@ -23,51 +23,38 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.placements;
+package com.foursoft.harness.kbl2vec.transform.components.accessory;
 
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.KblAccessory;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
-import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
-import com.foursoft.harness.vec.v2x.VecPlacementSpecification;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
+import com.foursoft.harness.vec.v2x.VecPlacementType;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PlacementSpecificationTransformerTest {
+class PlaceableElementSpecificationTransformerTest {
 
     @Test
-    void should_transformPlacementSpecification() {
+    void shouldTransformPlaceableElementSpecification() {
         // Given
-        final PlacementSpecificationTransformer transformer = new PlacementSpecificationTransformer();
+        final PlaceableElementSpecificationTransformer transformer = new PlaceableElementSpecificationTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblHarness source = new KblHarness();
+        final KblAccessory source = new KblAccessory();
 
-        final KBLContainer container = new KBLContainer();
-        source.setParentKBLContainer(container);
-
-        final KblSegment segment = new KblSegment();
-        source.getParentKBLContainer().getSegments().add(segment);
-
-        final KblProtectionArea protectionArea = new KblProtectionArea();
-        segment.getProtectionAreas().add(protectionArea);
-
-        final KblFixingAssignment fixingAssignment = new KblFixingAssignment();
-        segment.getFixingAssignments().add(fixingAssignment);
-
-        final VecOnWayPlacement vecOnWayPlacement = new VecOnWayPlacement();
-        orchestrator.addMockMapping(protectionArea, vecOnWayPlacement);
-
-        final VecOnPointPlacement vecOnPointPlacement = new VecOnPointPlacement();
-        orchestrator.addMockMapping(fixingAssignment, vecOnPointPlacement);
+        final VecPartVersion vecPartVersion = new VecPartVersion();
+        orchestrator.addMockMapping(source, vecPartVersion);
 
         // When
-        final VecPlacementSpecification result = orchestrator.transform(transformer, source);
+        final VecPlaceableElementSpecification result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .satisfies(v -> assertThat(v.getPlacements()).containsExactlyInAnyOrder(vecOnWayPlacement,
-                                                                                        vecOnPointPlacement));
+                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion))
+                .satisfies(
+                        v -> assertThat(v.getValidPlacementTypes()).containsExactlyInAnyOrder(
+                                VecPlacementType.ON_POINT));
     }
 }

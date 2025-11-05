@@ -25,12 +25,16 @@
  */
 package com.foursoft.harness.kbl2vec.transform.placements;
 
-public final class Constants {
-    private Constants() {
-        throw new AssertionError("Constants class should not be instantiated.");
-    }
+import com.foursoft.harness.kbl.v25.KblFixingAssignment;
+import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecSegmentLocation;
 
-    public static final String START_LOCATION_ID = "START";
-    public static final String END_LOCATION_ID = "END";
-    public static final String FIXING_LOCATION_ID = "FIXING";
+public class SegmentLocationTransformer extends AbstractSegmentLocationTransformer<KblFixingAssignment>
+        implements Transformer<KblFixingAssignment, VecSegmentLocation> {
+
+    @Override
+    protected LocationData extractLocationData(final KblFixingAssignment source) {
+        return new LocationData(source.getLocation(), source.getAbsoluteLocation(), Constants.FIXING_LOCATION_ID,
+                                source.getParentSegment());
+    }
 }

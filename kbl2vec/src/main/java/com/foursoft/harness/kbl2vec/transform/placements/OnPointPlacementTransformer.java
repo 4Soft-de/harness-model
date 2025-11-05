@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,35 +23,30 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.accessory;
+package com.foursoft.harness.kbl2vec.transform.placements;
 
-import com.foursoft.harness.kbl.v25.KblAccessory;
-import com.foursoft.harness.kbl.v25.KblPart;
+import com.foursoft.harness.kbl.v25.KblFixingAssignment;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
-import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
+import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
+import com.foursoft.harness.vec.v2x.VecSegmentLocation;
 
-import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
-
-public class AccessoryDocumentVersionTransformer implements Transformer<KblPart, VecDocumentVersion> {
+public class OnPointPlacementTransformer implements Transformer<KblFixingAssignment, VecOnPointPlacement> {
 
     @Override
-    public TransformationResult<VecDocumentVersion> transform(final TransformationContext context, final KblPart part) {
-        if (part instanceof final KblAccessory source) {
-            final VecDocumentVersion destination = new VecDocumentVersion();
+    public TransformationResult<VecOnPointPlacement> transform(final TransformationContext context,
+                                                               final KblFixingAssignment source) {
+        final VecOnPointPlacement destination = new VecOnPointPlacement();
+        destination.setIdentification(source.getId());
 
-            return TransformationResult.from(destination)
-                    .withFragment(commonComponentInformation(source, context))
-                    .withDownstream(KblAccessory.class, VecPartOrUsageRelatedSpecification.class, Query.of(source),
-                                    VecDocumentVersion::getSpecifications)
-                    .withDownstream(KblAccessory.class, VecPlaceableElementSpecification.class, Query.of(source),
-                                    VecDocumentVersion::getSpecifications)
-                    .build();
-        }
-        return TransformationResult.noResult();
+        return TransformationResult.from(destination)
+                .withDownstream(KblFixingAssignment.class, VecSegmentLocation.class, Query.of(source),
+                                VecOnPointPlacement::getLocations)
+                .withLinker(Query.of(source::getFixing), VecPlaceableElementRole.class,
+                            VecOnPointPlacement::getPlacedElement)
+                .build();
     }
 }
