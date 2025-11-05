@@ -10,7 +10,7 @@ public class LocatedOnPointPlacementTransformer implements Transformer<LocatedCo
     @Override
     public TransformationResult<VecOnPointPlacement> transform(final TransformationContext context,
                                                                final LocatedComponent source) {
-        if (source.getRefNode() == null) {
+        if (source.getRefNode() == null || source instanceof KblComponentBoxConnectorOccurrence) {
             return TransformationResult.noResult();
         }
 
