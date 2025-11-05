@@ -28,6 +28,7 @@ package com.foursoft.harness.kbl2vec.transform.placements;
 import com.foursoft.harness.kbl.v25.KblFixingAssignment;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblProtectionArea;
+import com.foursoft.harness.kbl.v25.LocatedComponent;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
@@ -51,6 +52,8 @@ public class PlacementSpecificationTransformer implements Transformer<KblHarness
                                 Query.fromLists(protectionAreas(source)), VecPlacementSpecification::getPlacements)
                 .withDownstream(KblFixingAssignment.class, VecOnPointPlacement.class,
                                 Query.fromLists(fixingAssignments(source)), VecPlacementSpecification::getPlacements)
+                .withDownstream(LocatedComponent.class, VecOnPointPlacement.class, source::getLocatedComponents,
+                                VecPlacementSpecification::getPlacements)
                 .build();
     }
 
