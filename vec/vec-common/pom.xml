@@ -12,4 +12,12 @@
     <name>VEC Common</name>
     <artifactId>vec-common</artifactId>
     <description>Common code for the VEC Model.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.foursoft.harness.navext</groupId>
+            <artifactId>navext-runtime</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

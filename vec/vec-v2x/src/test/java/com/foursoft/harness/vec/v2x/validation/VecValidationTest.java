@@ -26,11 +26,13 @@
 package com.foursoft.harness.vec.v2x.validation;
 
 import com.foursoft.harness.vec.common.exception.VecException;
+import com.foursoft.harness.vec.common.validation.VecValidation;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecWriter;
 import org.junit.jupiter.api.Test;
 
+import javax.xml.validation.Schema;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -38,6 +40,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class VecValidationTest {
+
+    private static final Schema SCHEMA = SchemaFactory.getSchema();
 
     @Test
     void testStrictSchema() {
@@ -49,7 +53,7 @@ class VecValidationTest {
         final String result = vecWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        VecValidation.validateXML(result, errors::add, true);
+        VecValidation.validateXML(SCHEMA, result, errors::add, true);
 
         assertThat(errors).isEmpty();
 
@@ -70,9 +74,10 @@ class VecValidationTest {
         final String result = vecWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        assertThatThrownBy(() -> VecValidation.validateXML(result, errors::add, true))
+        assertThatThrownBy(() -> VecValidation.validateXML(SCHEMA, result, errors::add, true))
                 .isInstanceOf(VecException.class)
                 .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
         assertThat(errors).isNotEmpty();
     }
+
 }

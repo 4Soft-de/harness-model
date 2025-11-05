@@ -26,8 +26,10 @@
 module com.foursoft.harness.vec.common {
     requires org.slf4j;
     requires java.xml;
+    requires com.foursoft.harness.navext.runtime;
     exports com.foursoft.harness.vec.common;
     exports com.foursoft.harness.vec.common.annotations;
     exports com.foursoft.harness.vec.common.exception;
+    exports com.foursoft.harness.vec.common.validation;
     exports com.foursoft.harness.vec.common.util;
 }

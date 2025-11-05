@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.v113.validation;
+package com.foursoft.harness.vec.common.validation;
 
 import com.foursoft.harness.navext.runtime.io.validation.LogErrors;
 import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
@@ -40,7 +40,6 @@ import java.util.function.Consumer;
  * Validate VEC data.
  */
 public final class VecValidation {
-    private static final Schema schema = SchemaFactory.getSchema();
 
     private VecValidation() {
         // hide default constructor
@@ -49,11 +48,12 @@ public final class VecValidation {
     /**
      * Validates a xml string against the vec schema
      *
+     * @param schema      the vec schema
      * @param xmlContent  the xml content
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
      */
-    public static void validateXML(final String xmlContent, final Consumer<String> consumer,
+    public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer,
                                    final boolean detailedLog) {
         Objects.requireNonNull(xmlContent);
 
