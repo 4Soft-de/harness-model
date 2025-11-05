@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.wireprotection;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.util.IdCreator;
 import com.foursoft.harness.vec.v113.VecCustomProperty;
 import com.foursoft.harness.vec.v113.VecNumericalValue;
 import com.foursoft.harness.vec.v113.VecNumericalValueProperty;
@@ -67,7 +68,9 @@ public class Vec12To11StripeSpecificationWrapper extends Vec12To11WireProtection
                 .map(getContext().getWrapperProxyFactory()::createProxy)
                 .map(VecNumericalValue.class::cast)
                 .ifPresent(thickness -> {
+                    final String xmlId = IdCreator.generateXmlId(VecNumericalValueProperty.class);
                     final VecNumericalValueProperty vecNumericalValueProperty = new VecNumericalValueProperty();
+                    vecNumericalValueProperty.setXmlId(xmlId);
                     vecNumericalValueProperty.setPropertyType("Thickness");
                     vecNumericalValueProperty.setValue(thickness);
                     customProperties.add(vecNumericalValueProperty);
