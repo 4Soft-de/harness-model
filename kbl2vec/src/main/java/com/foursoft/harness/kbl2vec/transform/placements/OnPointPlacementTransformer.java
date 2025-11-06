@@ -27,14 +27,14 @@ package com.foursoft.harness.kbl2vec.transform.placements;
 
 import com.foursoft.harness.kbl.common.HasIdentification;
 import com.foursoft.harness.kbl.v25.*;
-import com.foursoft.harness.kbl2vec.core.Query;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.core.*;
 import com.foursoft.harness.vec.v2x.VecNodeLocation;
 import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import com.foursoft.harness.vec.v2x.VecSegmentLocation;
+
+import java.util.Comparator;
+import java.util.List;
 
 public class OnPointPlacementTransformer implements Transformer<ConnectionOrOccurrence, VecOnPointPlacement> {
 
@@ -52,21 +52,40 @@ public class OnPointPlacementTransformer implements Transformer<ConnectionOrOccu
             destination.setIdentification("FIXING_PLACEMENT");
         }
 
-        final TransformationResult.Builder<VecOnPointPlacement> builder = TransformationResult.from(destination);
-        if (source instanceof final FixedComponent fixing && !fixing.getRefFixingAssignment().isEmpty()) {
-            builder.withDownstream(KblFixingAssignment.class, VecSegmentLocation.class,
-                                   Query.fromLists(fixing.getRefFixingAssignment().stream().toList()),
-                                   VecOnPointPlacement::getLocations);
-        }
-
-        if (source instanceof final LocatedComponent locatedComponent && !locatedComponent.getRefNode().isEmpty()) {
-            builder.withDownstream(KblNode.class, VecNodeLocation.class,
-                                   Query.fromLists(locatedComponent.getRefNode().stream().toList()),
-                                   VecOnPointPlacement::getLocations);
-        }
-
-        return builder
+        return TransformationResult.from(destination)
+                .withFragment(fixedComponentInformation(source))
                 .withLinker(Query.of(source), VecPlaceableElementRole.class, VecOnPointPlacement::getPlacedElement)
                 .build();
+    }
+
+    private static TransformationFragment<VecOnPointPlacement, TransformationResult.Builder<VecOnPointPlacement>> fixedComponentInformation(
+            final ConnectionOrOccurrence source) {
+        return (resultValue, builder) -> {
+            if (source instanceof final LocatedComponent locatedComponent && !locatedComponent.getRefNode().isEmpty()) {
+                builder.withDownstream(KblNode.class, VecNodeLocation.class,
+                                       Query.fromLists(referencedNodes(locatedComponent)),
+                                       VecOnPointPlacement::getLocations);
+            }
+
+            if (source instanceof final FixedComponent fixing && !fixing.getRefFixingAssignment().isEmpty()) {
+                builder.withDownstream(KblFixingAssignment.class, VecSegmentLocation.class,
+                                       Query.fromLists(referencedFixingAssignments(fixing)),
+                                       VecOnPointPlacement::getLocations);
+            }
+        };
+    }
+
+    private static List<KblFixingAssignment> referencedFixingAssignments(final FixedComponent fixedComponent) {
+        return fixedComponent.getRefFixingAssignment()
+                .stream()
+                .sorted(Comparator.comparing(KblFixingAssignment::getXmlId))
+                .toList();
+    }
+
+    private static List<KblNode> referencedNodes(final LocatedComponent locatedComponent) {
+        return locatedComponent.getRefNode()
+                .stream()
+                .sorted(Comparator.comparing(KblNode::getXmlId))
+                .toList();
     }
 }
