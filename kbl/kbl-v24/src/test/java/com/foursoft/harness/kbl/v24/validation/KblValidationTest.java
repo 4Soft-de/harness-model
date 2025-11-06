@@ -25,12 +25,12 @@
  */
 package com.foursoft.harness.kbl.v24.validation;
 
-import com.foursoft.harness.kbl.common.exception.KblException;
-import com.foursoft.harness.kbl.common.validation.KblValidation;
 import com.foursoft.harness.kbl.v24.KBLContainer;
 import com.foursoft.harness.kbl.v24.KblHarness;
 import com.foursoft.harness.kbl.v24.KblHarnessContent;
 import com.foursoft.harness.kbl.v24.KblWriter;
+import com.foursoft.harness.navext.runtime.exception.XmlValidationException;
+import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
+        XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
 
         assertThat(errors).isEmpty();
     }
@@ -79,9 +79,8 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        assertThatThrownBy(() -> KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true))
-                .isInstanceOf(KblException.class)
-                .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
+        assertThatThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true))
+                .isInstanceOf(XmlValidationException.class);
         assertThat(errors).isNotEmpty();
     }
 }
