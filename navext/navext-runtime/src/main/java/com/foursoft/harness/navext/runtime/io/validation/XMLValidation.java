@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.navext.runtime.io.validation;
 
+import com.foursoft.harness.navext.runtime.exception.XmlValidationException;
 import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
 
@@ -33,10 +34,16 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.Validator;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * A helper class to validate a given xml string against an xsd schema. All found errors are returned in a collection.
@@ -67,6 +74,67 @@ public final class XMLValidation {
             }
         } catch (final XMLIOException e) {
             throw new XMLIOException("XML contains fatal errors, cannot read it:", e);
+        }
+    }
+
+    /**
+     * Validates the given XML file against the given {@link Schema}.
+     *
+     * @param schema      The schema to use for validation.
+     * @param xmlFilePath Path to the file which should be validated.
+     * @param consumer    Consumer to run for the annotated XML file contents.
+     *                    Can be used to display scheme violations.
+     *                    <b>Will only be used if {@code detailedLog} is set to {@code true}!</b>
+     * @param detailedLog Flag whether the validation errors should be annotated and processed or not.
+     * @throws XMLIOException         In case something goes wrong before or during the validation.
+     * @throws XmlValidationException In case the validation for the given file fails.
+     */
+    public static void validateXML(final Schema schema, final Path xmlFilePath, final Consumer<String> consumer,
+                                   final boolean detailedLog) throws XMLIOException, XmlValidationException {
+        try {
+            final String xmlContent = Files.readString(xmlFilePath);
+            validateXML(schema, xmlContent, consumer, detailedLog);
+        } catch (final IOException e) {
+            final String errorMsg = String.format("IOException occurred when trying to validate file '%s'.",
+                                                  xmlFilePath);
+            throw new XMLIOException(errorMsg, e);
+        }
+    }
+
+    /**
+     * Validates the given XML string against the given {@link Schema}.
+     *
+     * @param schema      The schema to use for validation.
+     * @param xmlContent  Contents of an XML file which should be validated.
+     * @param consumer    Consumer to run for the annotated XML file contents.
+     *                    Can be used to display scheme violations.
+     *                    <b>Will only be used if {@code detailedLog} is set to {@code true}!</b>
+     * @param detailedLog Flag whether the validation errors should be annotated and processed or not.
+     * @throws XmlValidationException In case the validation for the given file fails.
+     */
+    public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer,
+                                   final boolean detailedLog) throws XmlValidationException {
+        Objects.requireNonNull(xmlContent, "XML contents may not be null.");
+
+        final XMLValidation xmlValidation = new XMLValidation(schema);
+        final Collection<LogValidator.ErrorLocation> errorLocations =
+                xmlValidation.validateXML(xmlContent, StandardCharsets.UTF_8);
+        final boolean valid = errorLocations.isEmpty();
+
+        if (!valid) {
+            final String additionalInformation;
+            if (detailedLog) {
+                additionalInformation = "Check the result of the used consumer for more information.";
+
+                final String annotateXMLContent = LogErrors.annotateXMLContent(xmlContent, errorLocations);
+                if (!annotateXMLContent.isEmpty()) {
+                    consumer.accept(annotateXMLContent);
+                }
+            } else {
+                additionalInformation = "Set the 'detailedLog' flag to obtain more information.";
+            }
+
+            throw new XmlValidationException("Schema validation failed! " + additionalInformation);
         }
     }
 
