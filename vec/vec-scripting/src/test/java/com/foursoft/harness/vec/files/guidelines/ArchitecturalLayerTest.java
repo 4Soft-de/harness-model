@@ -55,7 +55,7 @@ class ArchitecturalLayerTest {
             na.addNetType("12V-Power", nt -> {
                         nt.withSignalType(SignalType.ENERGY);
                     })
-                    .addNetType("HAL", nt -> {
+                    .addNetType("HALL", nt -> {
                         nt.withSignalType(SignalType.INFORMATION)
                                 .withSignalInformationType(SignalInformationType.ANALOG);
                     })
@@ -69,11 +69,11 @@ class ArchitecturalLayerTest {
                 nn.addPort("CAN1", "CAN");
             }).addNetworkNode("DMD", nn -> {
                 nn.addPort("CAN", "CAN")
-                        .addPort("PWED-HAL", "HAL")
+                        .addPort("PWED-HALL", "HALL")
                         .addPort("PWED-Engine", "12V-Power");
 
             }).addNetworkNode("PWED", nn -> {
-                nn.addPort("HAL", "HAL")
+                nn.addPort("HALL", "HALL")
                         .addPort("Engine", "12V-Power");
             });
 
@@ -82,10 +82,10 @@ class ArchitecturalLayerTest {
                                 .addPort("PWED", "Engine")
                                 .addPort("DMD", "PWED-Engine");
                     })
-                    .addNet("HAL", nn -> {
-                        nn.withNetType("HAL")
-                                .addPort("PWED", "HAL")
-                                .addPort("DMD", "PWED-HAL");
+                    .addNet("HALL", nn -> {
+                        nn.withNetType("HALL")
+                                .addPort("PWED", "HALL")
+                                .addPort("DMD", "PWED-HALL");
                     })
                     .addNet("Body-CAN", nn -> {
                         nn.withNetType("CAN")
@@ -97,16 +97,16 @@ class ArchitecturalLayerTest {
 
         session.signals("1234567", signals -> {
             signals.withNetworkLayer("1234567")
-                    .addSignal("PWED_HAL_GROUND", s -> {
-                        s.withNetType("HAL")
+                    .addSignal("PWED_HALL_GROUND", s -> {
+                        s.withNetType("HALL")
                                 .withSignalType(SignalType.GROUND);
                     })
-                    .addSignal("PWED_HAL_IN", s -> {
-                        s.withNetType("HAL")
+                    .addSignal("PWED_HALL_IN", s -> {
+                        s.withNetType("HALL")
                                 .withSignalType(SignalType.ENERGY);
                     })
-                    .addSignal("PWED_HAL_OUT", s -> {
-                        s.withNetType("HAL")
+                    .addSignal("PWED_HALL_OUT", s -> {
+                        s.withNetType("HALL")
                                 .withSignalType(SignalType.INFORMATION)
                                 .withSignalInformationType(SignalInformationType.ANALOG);
                     });
@@ -118,42 +118,42 @@ class ArchitecturalLayerTest {
                     .addComponentNode("DMD", cn -> {
                         cn.withNetworkNode("DMD")
                                 .addPort("A", "1", p -> {
-                                    p.withNetworkPort("PWED-HAL");
+                                    p.withNetworkPort("PWED-HALL");
                                 })
                                 .addPort("A", "2", p -> {
-                                    p.withNetworkPort("PWED-HAL");
+                                    p.withNetworkPort("PWED-HALL");
                                 })
                                 .addPort("A", "3", p -> {
-                                    p.withNetworkPort("PWED-HAL");
+                                    p.withNetworkPort("PWED-HALL");
                                 });
                     })
                     .addComponentNode("PWED", cn -> {
                         cn.withNetworkNode("PWED")
                                 .addPort("A", "1", p -> {
-                                    p.withSignal("PWED_HAL_GROUND")
-                                            .withNetworkPort("HAL");
+                                    p.withSignal("PWED_HALL_GROUND")
+                                            .withNetworkPort("HALL");
                                 })
                                 .addPort("A", "2", p -> {
-                                    p.withSignal("PWED_HAL_IN")
-                                            .withNetworkPort("HAL");
+                                    p.withSignal("PWED_HALL_IN")
+                                            .withNetworkPort("HALL");
                                 })
                                 .addPort("A", "3", p -> {
-                                    p.withSignal("PWED_HAL_OUT")
-                                            .withNetworkPort("HAL");
+                                    p.withSignal("PWED_HALL_OUT")
+                                            .withNetworkPort("HALL");
                                 });
-                    }).addConnection("PWED_HAL_GROUND", cn -> {
-                        cn.withNet("HAL")
-                                .withSignal("PWED_HAL_GROUND")
+                    }).addConnection("PWED_HALL_GROUND", cn -> {
+                        cn.withNet("HALL")
+                                .withSignal("PWED_HALL_GROUND")
                                 .addEnd("PWED", "A", "1")
                                 .addEnd("DMD", "A", "1");
-                    }).addConnection("PWED_HAL_IN", cn -> {
-                        cn.withNet("HAL")
-                                .withSignal("PWED_HAL_IN")
+                    }).addConnection("PWED_HALL_IN", cn -> {
+                        cn.withNet("HALL")
+                                .withSignal("PWED_HALL_IN")
                                 .addEnd("PWED", "A", "2")
                                 .addEnd("DMD", "A", "2");
-                    }).addConnection("PWED_HAL_OUT", cn -> {
-                        cn.withNet("HAL")
-                                .withSignal("PWED_HAL_OUT")
+                    }).addConnection("PWED_HALL_OUT", cn -> {
+                        cn.withNet("HALL")
+                                .withSignal("PWED_HALL_OUT")
                                 .addEnd("PWED", "A", "3")
                                 .addEnd("DMD", "A", "3");
                     });
