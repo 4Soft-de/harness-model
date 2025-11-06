@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,49 +25,69 @@
  */
 package com.foursoft.harness.vec.scripting.schematic;
 
-import com.foursoft.harness.vec.common.util.StringUtils;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
-import com.foursoft.harness.vec.v2x.VecComponentConnector;
-import com.foursoft.harness.vec.v2x.VecComponentNode;
-import com.foursoft.harness.vec.v2x.VecComponentPort;
+import com.foursoft.harness.vec.scripting.VecScriptingException;
+import com.foursoft.harness.vec.v2x.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
-import static com.foursoft.harness.vec.scripting.factories.LocalizedStringFactory.en;
+import static com.foursoft.harness.vec.common.util.StreamUtils.findOne;
 
 public class ComponentNodeBuilder implements Builder<VecComponentNode> {
 
-    private VecComponentNode componentNode = new VecComponentNode();
+    private final Function<String, VecNetworkNode> networkNodeLookup;
+    private final Function<String, VecSignal> signalLookup;
+    private final VecComponentNode componentNode = new VecComponentNode();
 
     private final Map<String, VecComponentConnector> componentConnectors = new HashMap<>();
 
-    public ComponentNodeBuilder(String identification) {
+    public ComponentNodeBuilder(final String identification, final Function<String, VecNetworkNode> networkNodeLookup,
+                                final Function<String, VecSignal> signalLookup) {
+        this.networkNodeLookup = networkNodeLookup;
+        this.signalLookup = signalLookup;
 
         componentNode.setIdentification(identification);
     }
 
-    public ComponentNodeBuilder addPort(final String componentConnectorId, final String portId) {
-        return this.addPort(componentConnectorId, portId, null);
-    }
-
-    public ComponentNodeBuilder addPort(final String componentConnectorId, final String portId, String description) {
-        final VecComponentConnector connector = this.componentConnectors.computeIfAbsent(componentConnectorId,
-                                                                                         this::createSlot);
-
-        VecComponentPort port = new VecComponentPort();
-        port.setIdentification(portId);
-        connector.getComponentPorts().add(port);
-
-        if (StringUtils.isNotEmpty(description)) {
-            port.getDescriptions().add(en(description));
-        }
-
+    public ComponentNodeBuilder withNetworkNode(final String identification) {
+        componentNode.setNetworkNode(networkNodeLookup.apply(identification));
         return this;
     }
 
-    @Override public VecComponentNode build() {
+    public ComponentNodeBuilder addPort(final String componentConnectorId, final String portId) {
+        return this.addPort(componentConnectorId, portId, pb -> {
+        });
+    }
+
+    public ComponentNodeBuilder addPort(final String componentConnectorId, final String portId,
+                                        final String description) {
+
+        return this.addPort(componentConnectorId, portId, pb -> {
+            pb.withDescription(description);
+        });
+
+    }
+
+    public ComponentNodeBuilder addPort(final String componentConnectorId, final String portId,
+                                        final Customizer<ComponentPortBuilder> customizer) {
+        final VecComponentConnector connector = this.componentConnectors.computeIfAbsent(componentConnectorId,
+                                                                                         this::createSlot);
+        final ComponentPortBuilder componentPortBuilder = new ComponentPortBuilder(portId, this::findNetworkPort,
+                                                                                   signalLookup);
+
+        customizer.customize(componentPortBuilder);
+
+        connector.getComponentPorts().add(componentPortBuilder.build());
+
+        return this;
+
+    }
+
+    @Override
+    public VecComponentNode build() {
         return componentNode;
     }
 
@@ -78,13 +98,28 @@ public class ComponentNodeBuilder implements Builder<VecComponentNode> {
         return connector;
     }
 
-    public ComponentNodeBuilder addChildNode(String identification, Customizer<ComponentNodeBuilder> customizer) {
-        ComponentNodeBuilder componentNodeBuilder = new ComponentNodeBuilder(identification);
+    public ComponentNodeBuilder addChildNode(final String identification,
+                                             final Customizer<ComponentNodeBuilder> customizer) {
+        final ComponentNodeBuilder componentNodeBuilder = new ComponentNodeBuilder(identification, networkNodeLookup,
+                                                                                   signalLookup);
 
         customizer.customize(componentNodeBuilder);
 
         this.componentNode.getChildNodes().add(componentNodeBuilder.build());
 
         return this;
+    }
+
+    private VecNetworkPort findNetworkPort(final String identification) {
+        final VecNetworkNode networkNode = this.componentNode.getNetworkNode();
+        if (networkNode == null) {
+            throw new VecScriptingException("The component node " + this.componentNode.getIdentification() +
+                                                    " is not associated with a NetworkPort.");
+        }
+        return networkNode
+                .getPorts()
+                .stream()
+                .filter(port -> identification.equals(port.getIdentification()))
+                .collect(findOne());
     }
 }

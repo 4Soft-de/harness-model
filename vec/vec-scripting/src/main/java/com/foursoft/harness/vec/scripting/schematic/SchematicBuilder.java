@@ -25,12 +25,10 @@
  */
 package com.foursoft.harness.vec.scripting.schematic;
 
-import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.scripting.Customizer;
-import com.foursoft.harness.vec.scripting.DefaultValues;
-import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.v2x.VecConnectionSpecification;
-import com.foursoft.harness.vec.v2x.VecReusageSpecification;
+import com.foursoft.harness.vec.scripting.*;
+import com.foursoft.harness.vec.scripting.net.NetSpecificationQueries;
+import com.foursoft.harness.vec.scripting.signals.SignalSpecificationQueries;
+import com.foursoft.harness.vec.v2x.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +36,16 @@ import java.util.List;
 public class SchematicBuilder implements Builder<SchematicResult> {
 
     private final VecConnectionSpecification connectionSpecification;
+    private final ConnectionSpecificationQueries queries;
     private final List<VecReusageSpecification> reusageSpecifications = new ArrayList<>();
     private final VecSession session;
+    private NetSpecificationQueries netQueries = new NetSpecificationQueries();
+    private SignalSpecificationQueries signalQueries = new SignalSpecificationQueries();
 
     public SchematicBuilder(final VecSession session) {
         this.session = session;
         this.connectionSpecification = initializeConnectionSpecification();
+        this.queries = new ConnectionSpecificationQueries(connectionSpecification);
     }
 
     @Override
@@ -81,9 +83,29 @@ public class SchematicBuilder implements Builder<SchematicResult> {
         return this;
     }
 
+    public SchematicBuilder withNetworkLayer(final String networkDocumentNumber) {
+        final VecDocumentVersion networkDocument = session.findDocument(networkDocumentNumber);
+        netQueries = new NetSpecificationQueries(
+                networkDocument.getSpecificationWithType(VecNetSpecification.class).orElseThrow(
+                        () -> new VecScriptingException(
+                                "No NetSpecification found in document with number: " + networkDocumentNumber)));
+        return this;
+    }
+
+    public SchematicBuilder withSignals(final String signalDocumentNumber) {
+        final VecDocumentVersion networkDocument = session.findDocument(signalDocumentNumber);
+        signalQueries = new SignalSpecificationQueries(
+                networkDocument.getSpecificationWithType(VecSignalSpecification.class).orElseThrow(
+                        () -> new VecScriptingException(
+                                "No SignalSpecification found in document with number: " + signalDocumentNumber)));
+        return this;
+    }
+
     public SchematicBuilder addComponentNode(final String identification,
                                              final Customizer<ComponentNodeBuilder> customizer) {
-        final ComponentNodeBuilder builder = new ComponentNodeBuilder(identification);
+        final ComponentNodeBuilder builder = new ComponentNodeBuilder(identification,
+                                                                      netQueries::findNetworkNode,
+                                                                      signalQueries::findSignal);
 
         customizer.customize(builder);
 
@@ -93,9 +115,8 @@ public class SchematicBuilder implements Builder<SchematicResult> {
     }
 
     public SchematicBuilder addConnection(final String identification, final Customizer<ConnectionBuilder> customizer) {
-        final ConnectionBuilder builder = new ConnectionBuilder(
-                ((nodeId, connectorId, portId) -> SchematicQueries.findPort(connectionSpecification, nodeId,
-                                                                            connectorId, portId)), identification);
+        final ConnectionBuilder builder = new ConnectionBuilder(queries::findPort, identification,
+                                                                netQueries::findNet, signalQueries::findSignal);
 
         customizer.customize(builder);
 

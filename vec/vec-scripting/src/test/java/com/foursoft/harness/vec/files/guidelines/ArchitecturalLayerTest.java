@@ -31,6 +31,7 @@ import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.enums.SignalInformationType;
 import com.foursoft.harness.vec.scripting.enums.SignalSubType;
 import com.foursoft.harness.vec.scripting.enums.SignalType;
+import com.foursoft.harness.vec.v2x.validation.VecValidation;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -94,8 +95,73 @@ class ArchitecturalLayerTest {
 
         });
 
+        session.signals("1234567", signals -> {
+            signals.withNetworkLayer("1234567")
+                    .addSignal("PWED_HAL_GROUND", s -> {
+                        s.withNetType("HAL")
+                                .withSignalType(SignalType.GROUND);
+                    })
+                    .addSignal("PWED_HAL_IN", s -> {
+                        s.withNetType("HAL")
+                                .withSignalType(SignalType.ENERGY);
+                    })
+                    .addSignal("PWED_HAL_OUT", s -> {
+                        s.withNetType("HAL")
+                                .withSignalType(SignalType.INFORMATION)
+                                .withSignalInformationType(SignalInformationType.ANALOG);
+                    });
+        });
+
+        session.schematic("1234567", schematic -> {
+            schematic.withNetworkLayer("1234567")
+                    .withSignals("1234567")
+                    .addComponentNode("DMD", cn -> {
+                        cn.withNetworkNode("DMD")
+                                .addPort("A", "1", p -> {
+                                    p.withNetworkPort("PWED-HAL");
+                                })
+                                .addPort("A", "2", p -> {
+                                    p.withNetworkPort("PWED-HAL");
+                                })
+                                .addPort("A", "3", p -> {
+                                    p.withNetworkPort("PWED-HAL");
+                                });
+                    })
+                    .addComponentNode("PWED", cn -> {
+                        cn.withNetworkNode("PWED")
+                                .addPort("A", "1", p -> {
+                                    p.withSignal("PWED_HAL_GROUND")
+                                            .withNetworkPort("HAL");
+                                })
+                                .addPort("A", "2", p -> {
+                                    p.withSignal("PWED_HAL_IN")
+                                            .withNetworkPort("HAL");
+                                })
+                                .addPort("A", "3", p -> {
+                                    p.withSignal("PWED_HAL_OUT")
+                                            .withNetworkPort("HAL");
+                                });
+                    }).addConnection("PWED_HAL_GROUND", cn -> {
+                        cn.withNet("HAL")
+                                .withSignal("PWED_HAL_GROUND")
+                                .addEnd("PWED", "A", "1")
+                                .addEnd("DMD", "A", "1");
+                    }).addConnection("PWED_HAL_IN", cn -> {
+                        cn.withNet("HAL")
+                                .withSignal("PWED_HAL_IN")
+                                .addEnd("PWED", "A", "2")
+                                .addEnd("DMD", "A", "2");
+                    }).addConnection("PWED_HAL_OUT", cn -> {
+                        cn.withNet("HAL")
+                                .withSignal("PWED_HAL_OUT")
+                                .addEnd("PWED", "A", "3")
+                                .addEnd("DMD", "A", "3");
+                    });
+        });
+
         assertThatCode(() -> {
             session.writeToStream(TestUtils.createTestFileStream("ecad-wiki-guideline-architectural-layer"));
+            VecValidation.validateXML(session.writeToString(), System.out::println, true);
         }).doesNotThrowAnyException();
 
     }

@@ -34,7 +34,7 @@ import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.routing.RoutingSpecificationBuilder;
-import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
+import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.scripting.topology.TopologyBuilder;
 import com.foursoft.harness.vec.scripting.variants.ConfigManagementBuilder;
 import com.foursoft.harness.vec.v2x.*;
@@ -58,6 +58,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
     private VecContactingSpecification contactingSpecification;
     private VecConnectionSpecification schematic;
+    private ConnectionSpecificationQueries schematicQuery = new ConnectionSpecificationQueries();
 
     private final List<VecPartVersion> createdParts = new ArrayList<>();
     private VecTopologySpecification topologySpecification;
@@ -165,10 +166,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
         final PartOccurrenceBuilder builder = new PartOccurrenceBuilder(this.session, identification,
                                                                         partNumber,
-                                                                        nodeId -> SchematicQueries.findNode(
-                                                                                schematic, nodeId),
-                                                                        connectionID -> SchematicQueries.findConnection(
-                                                                                schematic, connectionID));
+                                                                        this.schematicQuery);
 
         if (customizer != null) {
             customizer.customize(builder);
@@ -205,6 +203,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     public HarnessBuilder withSchematic(final String schematicDocumentNumber) {
         this.schematic = session.findDocument(schematicDocumentNumber).getSpecificationWith(
                 VecConnectionSpecification.class, DefaultValues.CONNECTION_SPEC_IDENTIFICATION).orElseThrow();
+        this.schematicQuery = new ConnectionSpecificationQueries(this.schematic);
         return this;
     }
 

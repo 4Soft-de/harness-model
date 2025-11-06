@@ -23,41 +23,40 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.net;
+package com.foursoft.harness.vec.scripting.signals;
 
-import com.foursoft.harness.vec.common.util.StringUtils;
-import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.v2x.VecNetType;
-import com.foursoft.harness.vec.v2x.VecNetworkNode;
-import com.foursoft.harness.vec.v2x.VecNetworkPort;
+import com.foursoft.harness.vec.scripting.VecScriptingException;
+import com.foursoft.harness.vec.v2x.VecSignal;
+import com.foursoft.harness.vec.v2x.VecSignalSpecification;
 
-import java.util.function.Function;
+public class SignalSpecificationQueries {
 
-public class NetworkNodeBuilder implements Builder<VecNetworkNode> {
+    private final VecSignalSpecification signalSpecification;
 
-    private final VecNetworkNode networkNode = new VecNetworkNode();
-    private final Function<String, VecNetType> netTypeLoopup;
-
-    public NetworkNodeBuilder(final Function<String, VecNetType> netTypeLookup, final String identification) {
-        this.netTypeLoopup = netTypeLookup;
-        networkNode.setIdentification(identification);
+    public SignalSpecificationQueries() {
+        signalSpecification = null;
     }
 
-    public NetworkNodeBuilder addPort(final String identification, final String netType) {
-        final VecNetworkPort port = new VecNetworkPort();
+    public SignalSpecificationQueries(final VecSignalSpecification signalSpecification) {
+        this.signalSpecification = signalSpecification;
+    }
 
-        port.setIdentification(identification);
-        if (StringUtils.isNotEmpty(netType)) {
-            port.setNetType(netTypeLoopup.apply(netType));
+    private VecSignalSpecification signalSpecification() {
+        if (signalSpecification == null) {
+            throw new VecScriptingException("No ConnectionSpecification set for context.");
         }
-
-        networkNode.getPorts().add(port);
-
-        return this;
+        return signalSpecification;
     }
 
-    @Override
-    public VecNetworkNode build() {
-        return networkNode;
+    public VecSignal findSignal(
+            final String signalId) {
+        return signalSpecification()
+                .getSignals()
+                .stream()
+                .filter(c -> signalId.equals(c.getIdentification()))
+                .findFirst()
+                .orElseThrow(
+                        () -> new IllegalArgumentException("No Signal exists with Identification='" + signalId + "'."));
     }
+
 }

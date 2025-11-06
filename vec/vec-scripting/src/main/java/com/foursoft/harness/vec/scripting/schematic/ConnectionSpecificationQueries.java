@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC 2.x Scripting API (Experimental)
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2025 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting.schematic;
 
+import com.foursoft.harness.vec.scripting.VecScriptingException;
 import com.foursoft.harness.vec.v2x.*;
 import com.foursoft.harness.vec.v2x.visitor.BaseVisitor;
 import com.foursoft.harness.vec.v2x.visitor.DepthFirstTraverserImpl;
@@ -33,17 +34,31 @@ import com.foursoft.harness.vec.v2x.visitor.TraversingVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class SchematicQueries {
+public class ConnectionSpecificationQueries {
 
-    private SchematicQueries() {
-        throw new AssertionError();
+    private final VecConnectionSpecification connectionSpecification;
+
+    public ConnectionSpecificationQueries() {
+        connectionSpecification = null;
     }
 
-    public static VecComponentNode findNode(VecConnectionSpecification connectionSpecification, String nodeId) {
-        List<VecComponentNode> nodes = new ArrayList<>();
-        connectionSpecification.accept(
+    public ConnectionSpecificationQueries(final VecConnectionSpecification connectionSpecification) {
+        this.connectionSpecification = connectionSpecification;
+    }
+
+    private VecConnectionSpecification connectionSpecification() {
+        if (connectionSpecification == null) {
+            throw new VecScriptingException("No ConnectionSpecification set for context.");
+        }
+        return connectionSpecification;
+    }
+
+    public VecComponentNode findNode(final String nodeId) {
+        final List<VecComponentNode> nodes = new ArrayList<>();
+        connectionSpecification().accept(
                 new TraversingVisitor<>(new DepthFirstTraverserImpl<>(), new BaseVisitor<>() {
-                    @Override public Object visitVecComponentNode(final VecComponentNode node) {
+                    @Override
+                    public Object visitVecComponentNode(final VecComponentNode node) {
                         if (nodeId.equals(node.getIdentification())) {
                             nodes.add(node);
                         }
@@ -61,15 +76,18 @@ public final class SchematicQueries {
         return nodes.get(0);
     }
 
-    public static VecConnection findConnection(VecConnectionSpecification connectionSpecification,
-                                               String connectionId) {
-        return connectionSpecification.getConnections().stream().filter(c -> connectionId.equals(c.getIdentification()))
+    public VecConnection findConnection(
+            final String connectionId) {
+        return connectionSpecification().getConnections().stream().filter(
+                        c -> connectionId.equals(c.getIdentification()))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException(
                         "No Connection exists with Identification='" + connectionId + "'."));
     }
 
-    public static VecComponentConnector findConnector(VecComponentNode node, String connectorId) {
-        List<VecComponentConnector> connectors = node.getComponentConnectors().stream().filter(
+    public VecComponentConnector findConnector(final String nodeId, final String connectorId) {
+        final VecComponentNode node = findNode(nodeId);
+
+        final List<VecComponentConnector> connectors = node.getComponentConnectors().stream().filter(
                 c -> connectorId.equals(c.getIdentification())).toList();
 
         if (connectors.isEmpty()) {
@@ -86,8 +104,8 @@ public final class SchematicQueries {
         return connectors.get(0);
     }
 
-    public static VecComponentPort findPort(VecComponentConnector connector, String portId) {
-        List<VecComponentPort> ports = connector.getComponentPorts().stream().filter(
+    public static VecComponentPort findPort(final VecComponentConnector connector, final String portId) {
+        final List<VecComponentPort> ports = connector.getComponentPorts().stream().filter(
                 c -> portId.equals(c.getIdentification())).toList();
 
         if (ports.isEmpty()) {
@@ -104,10 +122,11 @@ public final class SchematicQueries {
         return ports.get(0);
     }
 
-    public static VecComponentPort findPort(VecConnectionSpecification connectionSpecification, String nodeId,
-                                            String connectorId, String portId) {
-        VecComponentNode node = findNode(connectionSpecification, nodeId);
-        VecComponentConnector connector = findConnector(node, connectorId);
+    public VecComponentPort findPort(final String nodeId,
+                                     final String connectorId, final String portId) {
+
+        final VecComponentConnector connector = findConnector(nodeId, connectorId);
         return findPort(connector, portId);
     }
+
 }

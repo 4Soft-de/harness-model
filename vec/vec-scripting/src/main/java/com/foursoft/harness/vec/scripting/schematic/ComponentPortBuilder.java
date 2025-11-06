@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,41 +23,51 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.net;
+package com.foursoft.harness.vec.scripting.schematic;
 
 import com.foursoft.harness.vec.common.util.StringUtils;
 import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.v2x.VecNetType;
-import com.foursoft.harness.vec.v2x.VecNetworkNode;
+import com.foursoft.harness.vec.v2x.VecComponentPort;
 import com.foursoft.harness.vec.v2x.VecNetworkPort;
+import com.foursoft.harness.vec.v2x.VecSignal;
 
 import java.util.function.Function;
 
-public class NetworkNodeBuilder implements Builder<VecNetworkNode> {
+import static com.foursoft.harness.vec.scripting.factories.LocalizedStringFactory.en;
 
-    private final VecNetworkNode networkNode = new VecNetworkNode();
-    private final Function<String, VecNetType> netTypeLoopup;
+public class ComponentPortBuilder implements Builder<VecComponentPort> {
 
-    public NetworkNodeBuilder(final Function<String, VecNetType> netTypeLookup, final String identification) {
-        this.netTypeLoopup = netTypeLookup;
-        networkNode.setIdentification(identification);
+    private final VecComponentPort componentPort = new VecComponentPort();
+    private final Function<String, VecNetworkPort> networkPortLookup;
+    private final Function<String, VecSignal> signalLookup;
+
+    public ComponentPortBuilder(final String identification, final Function<String, VecNetworkPort> networkPortLookup,
+                                final Function<String, VecSignal> signalLookup) {
+        this.networkPortLookup = networkPortLookup;
+        this.signalLookup = signalLookup;
+        componentPort.setIdentification(identification);
     }
 
-    public NetworkNodeBuilder addPort(final String identification, final String netType) {
-        final VecNetworkPort port = new VecNetworkPort();
-
-        port.setIdentification(identification);
-        if (StringUtils.isNotEmpty(netType)) {
-            port.setNetType(netTypeLoopup.apply(netType));
+    public ComponentPortBuilder withDescription(final String description) {
+        if (StringUtils.isNotEmpty(description)) {
+            componentPort.getDescriptions().add(en(description));
         }
-
-        networkNode.getPorts().add(port);
 
         return this;
     }
 
+    public ComponentPortBuilder withSignal(final String signalIdentification) {
+        componentPort.setSignal(signalLookup.apply(signalIdentification));
+        return this;
+    }
+
+    public ComponentPortBuilder withNetworkPort(final String identification) {
+        componentPort.setNetworkPort(networkPortLookup.apply(identification));
+        return this;
+    }
+
     @Override
-    public VecNetworkNode build() {
-        return networkNode;
+    public VecComponentPort build() {
+        return componentPort;
     }
 }
