@@ -57,6 +57,10 @@ class TerminalDocumentVersionTransformerTest {
         final VecPartVersion vecPartVersion = new VecPartVersion();
         orchestrator.addMockMapping(source, vecPartVersion);
 
+        final VecPlaceableElementSpecification vecPlaceableElementSpecification =
+                new VecPlaceableElementSpecification();
+        orchestrator.addMockMapping(source, vecPlaceableElementSpecification);
+
         // When
         final VecDocumentVersion result = orchestrator.transform(transformer, source);
 
@@ -67,6 +71,7 @@ class TerminalDocumentVersionTransformerTest {
                 .satisfies(
                         v -> assertThat(v.getSpecifications()).containsExactlyInAnyOrder(
                                 vecGeneralTechnicalPartSpecification, vecTerminalSpecification,
-                                vecWireReceptionSpecification, vecTerminalReceptionSpecification));
+                                vecWireReceptionSpecification, vecTerminalReceptionSpecification,
+                                vecPlaceableElementSpecification));
     }
 }

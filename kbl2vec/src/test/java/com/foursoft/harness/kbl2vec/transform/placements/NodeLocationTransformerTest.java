@@ -23,29 +23,36 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.terminals;
+package com.foursoft.harness.kbl2vec.transform.placements;
 
-import com.foursoft.harness.kbl.v25.KblGeneralTerminal;
-import com.foursoft.harness.kbl2vec.core.TransformationContext;
-import com.foursoft.harness.kbl2vec.core.TransformationResult;
-import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
-import com.foursoft.harness.vec.v2x.VecPlacementType;
+import com.foursoft.harness.kbl.v25.KblNode;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecNodeLocation;
+import com.foursoft.harness.vec.v2x.VecTopologyNode;
+import org.junit.jupiter.api.Test;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlaceableElementSpecificationTransformer
-        implements Transformer<KblGeneralTerminal, VecPlaceableElementSpecification> {
+class NodeLocationTransformerTest {
 
-    @Override
-    public TransformationResult<VecPlaceableElementSpecification> transform(final TransformationContext context,
-                                                                            final KblGeneralTerminal source) {
-        final VecPlaceableElementSpecification destination = new VecPlaceableElementSpecification();
-        destination.setIdentification(source.getPartNumber());
-        destination.getValidPlacementTypes().add(VecPlacementType.ON_POINT);
+    @Test
+    void should_transformNodeLocation() {
+        // Given
+        final NodeLocationTransformer transformer = new NodeLocationTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        return TransformationResult.from(destination)
-                .withFragment(commonSpecificationAttributes(source))
-                .build();
+        final KblNode source = new KblNode();
+        source.setId("TestId");
+
+        final VecTopologyNode vecTopologyNode = new VecTopologyNode();
+        orchestrator.addMockMapping(source, vecTopologyNode);
+
+        // When
+        final VecNodeLocation result = orchestrator.transform(transformer, source);
+
+        // The
+        assertThat(result).isNotNull()
+                .returns("TestId", VecNodeLocation::getIdentification)
+                .returns(vecTopologyNode, VecNodeLocation::getReferencedNode);
     }
 }
