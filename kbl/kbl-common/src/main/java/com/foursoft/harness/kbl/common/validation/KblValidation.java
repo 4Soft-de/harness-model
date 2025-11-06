@@ -26,23 +26,20 @@
 package com.foursoft.harness.kbl.common.validation;
 
 import com.foursoft.harness.kbl.common.exception.KblException;
-import com.foursoft.harness.navext.runtime.io.validation.LogErrors;
-import com.foursoft.harness.navext.runtime.io.validation.LogValidator;
+import com.foursoft.harness.navext.runtime.exception.XmlValidationException;
+import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 
 import javax.xml.validation.Schema;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
  * Validate KBL data.
+ *
+ * @deprecated Use {@link XMLValidation} instead.
  */
-
+@Deprecated(forRemoval = true)
 public class KblValidation {
 
     private KblValidation() {
@@ -56,13 +53,14 @@ public class KblValidation {
      * @param kblPath     path to kbl
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, Path, Consumer, boolean)} instead.
      */
+    @Deprecated(forRemoval = true)
     public static void validateXML(final Schema schema, final Path kblPath, final Consumer<String> consumer,
                                    final boolean detailedLog) {
         try {
-            final String xmlContent = Files.readString(kblPath);
-            validateXML(schema, xmlContent, consumer, detailedLog);
-        } catch (final IOException e) {
+            XMLValidation.validateXML(schema, kblPath, consumer, detailedLog);
+        } catch (final XMLIOException | XmlValidationException e) {
             throw new KblException("Schema validation failed! Could not read Path: " + kblPath, e);
         }
     }
@@ -74,21 +72,14 @@ public class KblValidation {
      * @param xmlContent  the xml content
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer, boolean)} instead.
      */
+    @Deprecated(forRemoval = true)
     public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer,
                                    final boolean detailedLog) {
-        Objects.requireNonNull(xmlContent);
-        final XMLValidation xmlValidation = new XMLValidation(schema);
-        final Collection<LogValidator.ErrorLocation> errorLocations = xmlValidation.validateXML(xmlContent,
-                                                                                                StandardCharsets.UTF_8);
-        if (detailedLog && !errorLocations.isEmpty()) {
-            // TODO use  https://github.com/4Soft-de/jaxb-enhanced-navigation/pull/7 scoped!
-            final String annotateXMLContent = LogErrors.annotateXMLContent(xmlContent, errorLocations);
-            if (!annotateXMLContent.isEmpty()) {
-                consumer.accept(annotateXMLContent);
-            }
-        }
-        if (!errorLocations.isEmpty()) {
+        try {
+            XMLValidation.validateXML(schema, xmlContent, consumer, detailedLog);
+        } catch (final XMLIOException | XmlValidationException e) {
             throw new KblException("Schema validation failed! Use detailedLog for more information");
         }
     }
