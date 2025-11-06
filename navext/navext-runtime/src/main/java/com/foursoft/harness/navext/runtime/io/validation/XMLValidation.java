@@ -53,10 +53,6 @@ public final class XMLValidation {
         this.schema = schema;
     }
 
-    private static InputStream toInputStream(final String input, final Charset charset) {
-        return new ByteArrayInputStream(input.getBytes(charset));
-    }
-
     public Collection<ErrorLocation> validateXML(final String xmlContent, final Charset charset) {
         try {
             final LogValidator validator = createValidator();
@@ -72,6 +68,10 @@ public final class XMLValidation {
         } catch (final XMLIOException e) {
             throw new XMLIOException("XML contains fatal errors, cannot read it:", e);
         }
+    }
+
+    private static InputStream toInputStream(final String input, final Charset charset) {
+        return new ByteArrayInputStream(input.getBytes(charset));
     }
 
     private LogValidator createValidator() {
