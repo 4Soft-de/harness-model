@@ -65,7 +65,7 @@ public class OnPointPlacementTransformer implements Transformer<ConnectionOrOccu
                                    VecOnPointPlacement::getLocations);
         }
 
-        return TransformationResult.from(destination)
+        return builder
                 .withLinker(Query.of(source), VecPlaceableElementRole.class, VecOnPointPlacement::getPlacedElement)
                 .build();
     }
