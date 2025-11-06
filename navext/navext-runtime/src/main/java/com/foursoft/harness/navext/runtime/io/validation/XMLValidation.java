@@ -83,12 +83,30 @@ public final class XMLValidation {
      * @param schema      The schema to use for validation.
      * @param xmlFilePath Path to the file which should be validated.
      * @param consumer    Consumer to run for the annotated XML file contents.
+     *                    Could be used to display or log scheme violations.
+     *                    Can be {@code null} if the annotated XML file contents is not wanted / needed.
+     * @throws XMLIOException         In case something goes wrong before or during the validation.
+     * @throws XmlValidationException In case the validation for the given file fails.
+     */
+    public static void validateXML(final Schema schema, final Path xmlFilePath, final Consumer<String> consumer)
+            throws XMLIOException, XmlValidationException {
+        validateXML(schema, xmlFilePath, consumer, consumer != null);
+    }
+
+    /**
+     * Validates the given XML file against the given {@link Schema}.
+     *
+     * @param schema      The schema to use for validation.
+     * @param xmlFilePath Path to the file which should be validated.
+     * @param consumer    Consumer to run for the annotated XML file contents.
      *                    Can be used to display scheme violations.
      *                    <b>Will only be used if {@code detailedLog} is set to {@code true}!</b>
      * @param detailedLog Flag whether the validation errors should be annotated and processed or not.
      * @throws XMLIOException         In case something goes wrong before or during the validation.
      * @throws XmlValidationException In case the validation for the given file fails.
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, Path, Consumer)} instead.
      */
+    @Deprecated(forRemoval = true)
     public static void validateXML(final Schema schema, final Path xmlFilePath, final Consumer<String> consumer,
                                    final boolean detailedLog) throws XMLIOException, XmlValidationException {
         try {
@@ -104,6 +122,21 @@ public final class XMLValidation {
     /**
      * Validates the given XML string against the given {@link Schema}.
      *
+     * @param schema     The schema to use for validation.
+     * @param xmlContent Contents of an XML file which should be validated.
+     * @param consumer   Consumer to run for the annotated XML file contents.
+     *                   Could be used to display or log scheme violations.
+     *                   Can be {@code null} if the annotated XML file contents is not wanted / needed.
+     * @throws XmlValidationException In case the validation for the given file fails.
+     */
+    public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer)
+            throws XmlValidationException {
+        validateXML(schema, xmlContent, consumer, consumer != null);
+    }
+
+    /**
+     * Validates the given XML string against the given {@link Schema}.
+     *
      * @param schema      The schema to use for validation.
      * @param xmlContent  Contents of an XML file which should be validated.
      * @param consumer    Consumer to run for the annotated XML file contents.
@@ -111,7 +144,9 @@ public final class XMLValidation {
      *                    <b>Will only be used if {@code detailedLog} is set to {@code true}!</b>
      * @param detailedLog Flag whether the validation errors should be annotated and processed or not.
      * @throws XmlValidationException In case the validation for the given file fails.
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer)} instead.
      */
+    @Deprecated(forRemoval = true)
     public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer,
                                    final boolean detailedLog) throws XmlValidationException {
         Objects.requireNonNull(xmlContent, "XML contents may not be null.");
