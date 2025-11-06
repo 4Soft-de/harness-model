@@ -25,13 +25,18 @@
  */
 package com.foursoft.harness.vec.v113.validation;
 
+import com.foursoft.harness.navext.runtime.exception.XmlValidationException;
+import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
+import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.vec.common.exception.VecException;
+
 import javax.xml.validation.Schema;
 import java.util.function.Consumer;
 
 /**
  * Validate VEC data.
  *
- * @deprecated Use {@link com.foursoft.harness.vec.common.validation.VecValidation} instead.
+ * @deprecated Use {@link XMLValidation} instead.
  */
 @Deprecated(forRemoval = true)
 public final class VecValidation {
@@ -46,15 +51,17 @@ public final class VecValidation {
      * @param xmlContent  the xml content
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
-     * @deprecated Use {@link com.foursoft.harness.vec.common.validation.VecValidation#validateXML(Schema, String, Consumer, boolean)}
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer, boolean)}
      * with {@link SchemaFactory#getSchema()} instead.
      */
     @Deprecated(forRemoval = true)
     public static void validateXML(final String xmlContent, final Consumer<String> consumer,
                                    final boolean detailedLog) {
-        com.foursoft.harness.vec.common.validation.
-                VecValidation.validateXML(SchemaFactory.getSchema(), xmlContent, consumer, detailedLog);
+        try {
+            XMLValidation.validateXML(SchemaFactory.getSchema(), xmlContent, consumer, detailedLog);
+        } catch (final XMLIOException | XmlValidationException e) {
+            throw new VecException("Schema validation failed! Use detailedLog for more information");
+        }
     }
 
 }
-
