@@ -53,7 +53,7 @@ class VecValidationTest {
         final String result = vecWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        XMLValidation.validateXML(SCHEMA, result, errors::add, true);
+        XMLValidation.validateXML(SCHEMA, result, errors::add);
 
         assertThat(errors).isEmpty();
 
@@ -74,7 +74,7 @@ class VecValidationTest {
         final String result = vecWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        assertThatThrownBy(() -> XMLValidation.validateXML(SCHEMA, result, errors::add, true))
+        assertThatThrownBy(() -> XMLValidation.validateXML(SCHEMA, result, errors::add))
                 .isInstanceOf(XmlValidationException.class);
         assertThat(errors).isNotEmpty();
     }

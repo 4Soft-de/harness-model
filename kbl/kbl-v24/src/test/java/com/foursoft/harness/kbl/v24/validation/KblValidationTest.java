@@ -62,7 +62,7 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
+        XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add);
 
         assertThat(errors).isEmpty();
     }
@@ -79,7 +79,7 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        assertThatThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true))
+        assertThatThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add))
                 .isInstanceOf(XmlValidationException.class);
         assertThat(errors).isNotEmpty();
     }
