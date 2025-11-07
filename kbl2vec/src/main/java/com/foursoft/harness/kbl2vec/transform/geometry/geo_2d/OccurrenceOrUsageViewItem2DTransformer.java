@@ -25,24 +25,18 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
-import com.foursoft.harness.kbl.common.HasAliasId;
 import com.foursoft.harness.kbl.common.HasIdentification;
 import com.foursoft.harness.kbl.common.HasPlacement;
 import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
-import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblTransformation;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.common.util.StreamUtils;
-import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsageViewItem2D;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecTransformation2D;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
 
 public class OccurrenceOrUsageViewItem2DTransformer
         implements Transformer<ConnectionOrOccurrence, VecOccurrenceOrUsageViewItem2D> {
@@ -63,14 +57,6 @@ public class OccurrenceOrUsageViewItem2DTransformer
 
             final TransformationResult.Builder<VecOccurrenceOrUsageViewItem2D> builder = TransformationResult.from(
                     destination);
-
-            if (source instanceof final HasAliasId<?> hasAliasId) {
-                final List<KblAliasIdentification> aliasIds = hasAliasId.getAliasIds().stream()
-                        .flatMap(StreamUtils.ofClass(KblAliasIdentification.class))
-                        .toList();
-                builder.withDownstream(KblAliasIdentification.class, VecAliasIdentification.class,
-                                       Query.fromLists(aliasIds), VecOccurrenceOrUsageViewItem2D::getAliasIds);
-            }
 
             final KblTransformation transformation = (KblTransformation) hasPlacement.getPlacement();
             return builder
