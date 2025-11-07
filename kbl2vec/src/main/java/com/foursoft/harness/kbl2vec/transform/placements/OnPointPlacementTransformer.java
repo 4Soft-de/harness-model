@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.common.HasIdentification;
 import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
 import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import com.foursoft.harness.vec.v2x.VecSegmentLocation;
@@ -40,7 +41,11 @@ public class OnPointPlacementTransformer implements Transformer<KblFixingAssignm
     public TransformationResult<VecOnPointPlacement> transform(final TransformationContext context,
                                                                final KblFixingAssignment source) {
         final VecOnPointPlacement destination = new VecOnPointPlacement();
-        destination.setIdentification(source.getId());
+        if (source instanceof final HasIdentification hasIdentification) {
+            destination.setIdentification(hasIdentification.getIdentification());
+        } else {
+            destination.setIdentification("FIXING_PLACEMENT");
+        }
 
         return TransformationResult.from(destination)
                 .withDownstream(KblFixingAssignment.class, VecSegmentLocation.class, Query.of(source),
