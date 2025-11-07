@@ -26,20 +26,37 @@
 package com.foursoft.harness.vec.scripting.schematic;
 
 import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.v2x.VecComponentPort;
-import com.foursoft.harness.vec.v2x.VecConnection;
-import com.foursoft.harness.vec.v2x.VecConnectionEnd;
+import com.foursoft.harness.vec.v2x.*;
+
+import java.util.function.Function;
 
 public class ConnectionBuilder implements Builder<VecConnection> {
     private final VecConnection connection = new VecConnection();
     private final ComponentPortLookup componentPortLookup;
+    private final Function<String, VecNet> netLookup;
+    private final Function<String, VecSignal> signalLookup;
 
     public ConnectionBuilder(final ComponentPortLookup componentPortLookup,
-                             final String identification) {
+                             final String identification, final Function<String, VecNet> netLookup,
+                             final Function<String, VecSignal> signalLookup) {
         this.componentPortLookup = componentPortLookup;
+        this.netLookup = netLookup;
+        this.signalLookup = signalLookup;
 
         connection.setIdentification(identification);
 
+    }
+
+    public ConnectionBuilder withNet(final String netIdentification) {
+        connection.setNet(netLookup.apply(netIdentification));
+
+        return this;
+    }
+
+    public ConnectionBuilder withSignal(final String signalIdentification) {
+        connection.setSignal(signalLookup.apply(signalIdentification));
+
+        return this;
     }
 
     public ConnectionBuilder addEnd(final String nodeId, final String connectorId, final String portId
@@ -59,7 +76,8 @@ public class ConnectionBuilder implements Builder<VecConnection> {
         return this;
     }
 
-    @Override public VecConnection build() {
+    @Override
+    public VecConnection build() {
         return connection;
     }
 

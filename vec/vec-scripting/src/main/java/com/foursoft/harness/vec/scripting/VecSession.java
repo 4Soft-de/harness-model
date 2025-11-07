@@ -37,9 +37,10 @@ import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
 import com.foursoft.harness.vec.scripting.harness.HarnessBuilder;
-import com.foursoft.harness.vec.scripting.net.NetworkArchitectureBuilder;
+import com.foursoft.harness.vec.scripting.net.NetSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicResult;
+import com.foursoft.harness.vec.scripting.signals.SignalSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGeneratingTraverser;
 import com.foursoft.harness.vec.scripting.utils.XmlIdGenerator;
 import com.foursoft.harness.vec.v2x.*;
@@ -121,10 +122,10 @@ public class VecSession {
     }
 
     public void networkArchitecture(final String containerDocumentNumber,
-                                    final Customizer<NetworkArchitectureBuilder> customizer) {
+                                    final Customizer<NetSpecificationBuilder> customizer) {
         final VecDocumentVersion containerDocument = findDocument(containerDocumentNumber);
 
-        final NetworkArchitectureBuilder builder = new NetworkArchitectureBuilder();
+        final NetSpecificationBuilder builder = new NetSpecificationBuilder();
 
         customizer.customize(builder);
 
@@ -145,6 +146,19 @@ public class VecSession {
         containerDocument.getSpecifications().add(schematicResult.connectionSpecification());
 
         schematicResult.reusageSpecification().forEach(containerDocument.getSpecifications()::add);
+    }
+
+    public void signals(final String containerDocumentNumber, final Customizer<SignalSpecificationBuilder> customizer) {
+        final VecDocumentVersion containerDocument = findDocument(containerDocumentNumber);
+
+        final SignalSpecificationBuilder builder = new SignalSpecificationBuilder(this);
+
+        customizer.customize(builder);
+
+        final VecSignalSpecification result = builder.build();
+
+        containerDocument.getSpecifications().add(result);
+
     }
 
     public void harness(final String documentNumber, final String version,
