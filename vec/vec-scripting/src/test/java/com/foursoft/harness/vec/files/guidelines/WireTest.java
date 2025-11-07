@@ -29,6 +29,7 @@ import com.foursoft.harness.vec.files.TestUtils;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
+import com.foursoft.harness.vec.v2x.validation.VecValidation;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -55,6 +56,7 @@ class WireTest {
 
         assertThatCode(() -> {
             session.writeToStream(TestUtils.createTestFileStream("ecad-wiki-guideline-single-core"));
+            VecValidation.validateXML(session.writeToString(), System.out::println, true);
         }).doesNotThrowAnyException();
 
         final VecContent content = session.toVecContent();
