@@ -46,6 +46,8 @@ import com.foursoft.harness.vec.scripting.utils.XmlIdGenerator;
 import com.foursoft.harness.vec.v2x.*;
 import jakarta.xml.bind.Marshaller;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.util.Optional;
 
@@ -175,6 +177,13 @@ public class VecSession {
 
     public void addXmlComment(final Identifiable identifiable, final String comment) {
         comments.put(identifiable, comment);
+    }
+
+    public VecContent toVecContent() {
+        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        final VecReader reader = new VecReader();
+        writeToStream(byteArrayOutputStream);
+        return reader.read(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
     }
 
     public String writeToString() {
