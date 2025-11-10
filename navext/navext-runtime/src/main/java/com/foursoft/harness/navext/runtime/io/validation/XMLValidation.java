@@ -97,7 +97,14 @@ public final class XMLValidation {
      */
     public static void validateXML(final Schema schema, final Path xmlFilePath, final Consumer<String> consumer)
             throws XMLIOException, XmlValidationException {
-        validateXML(schema, xmlFilePath, consumer, consumer != null);
+        try {
+            final String xmlContent = Files.readString(xmlFilePath);
+            validateXML(schema, xmlContent, consumer);
+        } catch (final IOException e) {
+            final String errorMsg = String.format("IOException occurred when trying to validate file '%s'.",
+                                                  xmlFilePath);
+            throw new XMLIOException(errorMsg, e);
+        }
     }
 
     /**
@@ -138,7 +145,28 @@ public final class XMLValidation {
      */
     public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer)
             throws XmlValidationException {
-        validateXML(schema, xmlContent, consumer, consumer != null);
+        Objects.requireNonNull(xmlContent, "XML contents may not be null.");
+
+        final XMLValidation xmlValidation = new XMLValidation(schema);
+        final Collection<LogValidator.ErrorLocation> errorLocations =
+                xmlValidation.validateXML(xmlContent, StandardCharsets.UTF_8);
+        final boolean valid = errorLocations.isEmpty();
+
+        if (!valid) {
+            final String additionalInformation;
+            if (consumer != null) {
+                additionalInformation = "Check the result of the used consumer for more information.";
+
+                final String annotateXMLContent = LogErrors.annotateXMLContent(xmlContent, errorLocations);
+                if (!annotateXMLContent.isEmpty()) {
+                    consumer.accept(annotateXMLContent);
+                }
+            } else {
+                additionalInformation = "Define a consumer to obtain more information.";
+            }
+
+            throw new XmlValidationException("Schema validation failed! " + additionalInformation);
+        }
     }
 
     /**
