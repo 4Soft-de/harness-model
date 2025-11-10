@@ -18,6 +18,10 @@
             <artifactId>vec-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.foursoft.harness.navext</groupId>
+            <artifactId>navext-runtime</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>jakarta.annotation</groupId>
