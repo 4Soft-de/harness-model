@@ -32,13 +32,16 @@ import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.navext.runtime.model.Root;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.validation.Schema;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
+import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -105,6 +108,37 @@ class XMLValidationTest {
                 .withCauseInstanceOf(XMLIOException.class)
                 .havingCause()
                 .withMessageContaining("--");
+    }
+
+    @Test
+    void testValidateXML() {
+        // Only testing the method taking a Path since it calls the method taking an XML String.
+        final Path validXmlPath = TestData.getPath(TestData.VALIDATE_BASIC_TEST_XML);
+        final Path invalidXmlPath = TestData.getPath(TestData.VALIDATE_DUPLICATE_ELEMENT_TEST_XML);
+
+        final Schema schema = TestData.getBasicSchema();
+        final Consumer<String> noopConsumer = string -> {
+        };
+
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, null));
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, null));
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, noopConsumer));
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, noopConsumer));
+
+        // Also test deprecated code for good measure.
+
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, noopConsumer, false));
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, noopConsumer, false));
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, noopConsumer, true));
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, noopConsumer, true));
     }
 
 }
