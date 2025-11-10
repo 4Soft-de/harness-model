@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.v2x.validation;
 
-import com.foursoft.harness.navext.runtime.exception.XmlValidationException;
 import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecWriter;

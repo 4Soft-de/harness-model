@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.navext.runtime.exception;
+package com.foursoft.harness.navext.runtime.io.validation;
 
 /**
  * Exception which is thrown if the validation of an XML-based file fails.

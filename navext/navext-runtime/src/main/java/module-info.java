@@ -31,7 +31,6 @@ open module com.foursoft.harness.navext.runtime {
     exports com.foursoft.harness.navext.runtime;
     exports com.foursoft.harness.navext.runtime.annotations;
     exports com.foursoft.harness.navext.runtime.cache;
-    exports com.foursoft.harness.navext.runtime.exception;
     exports com.foursoft.harness.navext.runtime.io.read;
     exports com.foursoft.harness.navext.runtime.io.utils;
     exports com.foursoft.harness.navext.runtime.io.write;

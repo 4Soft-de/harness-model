@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.navext.runtime.io.validation;
 
-import com.foursoft.harness.navext.runtime.exception.XmlValidationException;
 import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
 
