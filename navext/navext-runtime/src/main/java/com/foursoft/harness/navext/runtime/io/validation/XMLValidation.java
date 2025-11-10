@@ -72,19 +72,15 @@ public final class XMLValidation {
      * @throws XMLIOException In case validating the XML fails due to an unexpected error.
      */
     public Collection<ErrorLocation> validateXML(final String xmlContent, final Charset charset) throws XMLIOException {
-        try {
-            final LogValidator validator = createValidator();
-            final InputStream inputStream = toInputStream(xmlContent, charset);
-            final Source inputSource = new StreamSource(inputStream);
-            final boolean validate = validator.validate(inputSource);
+        final LogValidator validator = createValidator();
+        final InputStream inputStream = toInputStream(xmlContent, charset);
+        final Source inputSource = new StreamSource(inputStream);
 
-            if (validate) {
-                return Collections.emptyList();
-            } else {
-                return validator.getErrorLines();
-            }
+        try {
+            final boolean valid = validator.validate(inputSource);
+            return valid ? Collections.emptyList() : validator.getErrorLines();
         } catch (final XMLIOException e) {
-            throw new XMLIOException("XML contains fatal errors, cannot read it:", e);
+            throw new XMLIOException("XML contains fatal errors, cannot read it.", e);
         }
     }
 
