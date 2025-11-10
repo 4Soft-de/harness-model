@@ -79,7 +79,7 @@ public class KblValidation {
                                    final boolean detailedLog) {
         try {
             XMLValidation.validateXML(schema, xmlContent, consumer, detailedLog);
-        } catch (final XMLIOException | XmlValidationException e) {
+        } catch (final XmlValidationException e) {
             throw new KblException("Schema validation failed! Use detailedLog for more information");
         }
     }

@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.vec.v113.validation;
 
-import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
 import com.foursoft.harness.vec.common.exception.VecException;
@@ -59,7 +58,7 @@ public final class VecValidation {
                                    final boolean detailedLog) {
         try {
             XMLValidation.validateXML(SchemaFactory.getSchema(), xmlContent, consumer, detailedLog);
-        } catch (final XMLIOException | XmlValidationException e) {
+        } catch (final XmlValidationException e) {
             throw new VecException("Schema validation failed! Use detailedLog for more information");
         }
     }
