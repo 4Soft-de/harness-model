@@ -45,21 +45,33 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
- * A helper class to validate a given xml string against an xsd schema. All found errors are returned in a collection.
+ * A helper class to validate a given xml string against an XSD schema.
+ * <p>
+ * All found errors can be returned in a collection or as a method throwing an exception in case there are errors.
  */
 public final class XMLValidation {
+
     private final Schema schema;
 
     /**
-     * The validator can use a lot of memory, because it holds the xmlContent multiple times in memory!
+     * Creates a new instance with the given schema.
+     * <b>Notice:</b> The validator can use a lot of memory, because it holds the XML content multiple times in memory!
      *
-     * @param schema the schema to validate against
+     * @param schema The schema to validate XML contents against.
      */
     public XMLValidation(final Schema schema) {
         this.schema = schema;
     }
 
-    public Collection<ErrorLocation> validateXML(final String xmlContent, final Charset charset) {
+    /**
+     * Validates the given XML string against the stored {@link Schema}.
+     *
+     * @param xmlContent Contents of an XML file which should be validated.
+     * @param charset    {@link Charset} of the XML contents.
+     * @return Possibly-empty Collection with {@link ErrorLocation validation error}s.
+     * @throws XMLIOException In case validating the XML fails due to an unexpected error.
+     */
+    public Collection<ErrorLocation> validateXML(final String xmlContent, final Charset charset) throws XMLIOException {
         try {
             final LogValidator validator = createValidator();
             final InputStream inputStream = toInputStream(xmlContent, charset);
