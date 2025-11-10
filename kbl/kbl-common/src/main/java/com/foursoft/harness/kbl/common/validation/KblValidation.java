@@ -26,7 +26,6 @@
 package com.foursoft.harness.kbl.common.validation;
 
 import com.foursoft.harness.kbl.common.exception.KblException;
-import com.foursoft.harness.navext.runtime.io.utils.XMLIOException;
 import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
 
@@ -60,7 +59,7 @@ public class KblValidation {
                                    final boolean detailedLog) {
         try {
             XMLValidation.validateXML(schema, kblPath, detailedLog ? consumer : null);
-        } catch (final XMLIOException | XmlValidationException e) {
+        } catch (final XmlValidationException e) {
             throw new KblException("Schema validation failed! Could not read Path: " + kblPath, e);
         }
     }

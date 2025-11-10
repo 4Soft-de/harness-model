@@ -70,6 +70,7 @@ public final class XMLValidation {
      * @param charset    {@link Charset} of the XML contents.
      * @return Possibly-empty Collection with {@link ErrorLocation validation error}s.
      * @throws XMLIOException In case validating the XML fails due to an unexpected error.
+     *                        See {@link LogValidator#validate(Source)}.
      */
     public Collection<ErrorLocation> validateXML(final String xmlContent, final Charset charset) throws XMLIOException {
         final LogValidator validator = createValidator();
@@ -92,19 +93,28 @@ public final class XMLValidation {
      * @param consumer    Consumer to run for the annotated XML file contents.
      *                    Could be used to display or log scheme violations.
      *                    Can be {@code null} if the annotated XML file contents is not wanted / needed.
-     * @throws XMLIOException         In case something goes wrong before or during the validation.
+     * @throws XMLIOException         Due to one of the following cases:
+     *                                <ul>
+     *                                    <li>Reading the given file fails.</li>
+     *                                    <li>Validating the XML fails due to an unexpected error.
+     *                                    See {@link #validateXML(String, Charset)}.
+     *                                    </li>
+     *                                </ul>
      * @throws XmlValidationException In case the validation for the given file fails.
      */
     public static void validateXML(final Schema schema, final Path xmlFilePath, final Consumer<String> consumer)
             throws XMLIOException, XmlValidationException {
+
+        final String xmlContent;
         try {
-            final String xmlContent = Files.readString(xmlFilePath);
-            validateXML(schema, xmlContent, consumer);
+            xmlContent = Files.readString(xmlFilePath);
         } catch (final IOException e) {
             final String errorMsg = String.format("IOException occurred when trying to validate file '%s'.",
                                                   xmlFilePath);
             throw new XMLIOException(errorMsg, e);
         }
+
+        validateXML(schema, xmlContent, consumer);
     }
 
     /**
@@ -115,10 +125,12 @@ public final class XMLValidation {
      * @param consumer   Consumer to run for the annotated XML file contents.
      *                   Could be used to display or log scheme violations.
      *                   Can be {@code null} if the annotated XML file contents is not wanted / needed.
+     * @throws XMLIOException         In case validating the XML fails due to an unexpected error.
+     *                                See {@link #validateXML(String, Charset)}.
      * @throws XmlValidationException In case the validation for the given file fails.
      */
     public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer)
-            throws XmlValidationException {
+            throws XMLIOException, XmlValidationException {
         Objects.requireNonNull(xmlContent, "XML contents may not be null.");
 
         final XMLValidation xmlValidation = new XMLValidation(schema);
