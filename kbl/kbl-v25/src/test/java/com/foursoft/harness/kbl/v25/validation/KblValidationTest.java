@@ -26,7 +26,6 @@
 package com.foursoft.harness.kbl.v25.validation;
 
 import com.foursoft.harness.kbl.common.exception.KblException;
-import com.foursoft.harness.kbl.common.validation.KblValidation;
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblHarnessContent;
@@ -67,9 +66,6 @@ class KblValidationTest {
         final Collection<String> errors = new ArrayList<>();
         XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add);
 
-        // Deprecated, only there for coverage.
-        KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
-
         assertThat(errors).isEmpty();
     }
 
@@ -88,10 +84,6 @@ class KblValidationTest {
 
         assertThatThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add))
                 .isInstanceOf(XmlValidationException.class);
-
-        // Deprecated, only there for coverage.
-        assertThatThrownBy(() -> KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, false))
-                .isInstanceOf(KblException.class);
 
         assertThat(errors).isNotEmpty();
     }
