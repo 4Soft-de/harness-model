@@ -25,6 +25,8 @@
  */
 package com.foursoft.harness.kbl.v25.validation;
 
+import com.foursoft.harness.kbl.common.exception.KblException;
+import com.foursoft.harness.kbl.common.validation.KblValidation;
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblHarnessContent;
@@ -41,6 +43,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class KblValidationTest {
+
     @Test
     void testSchema() {
         final KBLContainer root = new KBLContainer();
@@ -64,6 +67,9 @@ class KblValidationTest {
         final Collection<String> errors = new ArrayList<>();
         XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add);
 
+        // Deprecated, only there for coverage.
+        KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
+
         assertThat(errors).isEmpty();
     }
 
@@ -79,8 +85,15 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
+
         assertThatThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add))
                 .isInstanceOf(XmlValidationException.class);
+
+        // Deprecated, only there for coverage.
+        assertThatThrownBy(() -> KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, false))
+                .isInstanceOf(KblException.class);
+
         assertThat(errors).isNotEmpty();
     }
+
 }

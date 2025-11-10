@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.v113.validation;
 
 import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
+import com.foursoft.harness.vec.common.exception.VecException;
 import com.foursoft.harness.vec.v113.VecContent;
 import com.foursoft.harness.vec.v113.VecPartVersion;
 import com.foursoft.harness.vec.v113.VecWriter;
@@ -55,8 +56,10 @@ class VecValidationTest {
         final Collection<String> errors = new ArrayList<>();
         XMLValidation.validateXML(SCHEMA, result, errors::add);
 
-        assertThat(errors).isEmpty();
+        // Deprecated, only there for coverage.
+        VecValidation.validateXML(result, errors::add, true);
 
+        assertThat(errors).isEmpty();
     }
 
     @Test
@@ -74,8 +77,14 @@ class VecValidationTest {
         final String result = vecWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
+
         assertThatThrownBy(() -> XMLValidation.validateXML(SCHEMA, result, errors::add))
                 .isInstanceOf(XmlValidationException.class);
+
+        // Deprecated, only there for coverage.
+        assertThatThrownBy(() -> VecValidation.validateXML(result, errors::add, false))
+                .isInstanceOf(VecException.class);
+
         assertThat(errors).isNotEmpty();
     }
 
