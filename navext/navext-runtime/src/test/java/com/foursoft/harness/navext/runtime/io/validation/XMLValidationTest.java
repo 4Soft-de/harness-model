@@ -128,6 +128,10 @@ class XMLValidationTest {
                 .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, noopConsumer));
         Assertions.assertThatExceptionOfType(XmlValidationException.class)
                 .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, noopConsumer));
+
+        final Path parentFolder = validXmlPath.getParent();  // Fails since it's not a file.
+        Assertions.assertThatExceptionOfType(XMLIOException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, parentFolder, noopConsumer));
     }
 
 }
