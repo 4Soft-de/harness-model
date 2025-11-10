@@ -50,14 +50,14 @@ public final class VecValidation {
      * @param xmlContent  the xml content
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
-     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer, boolean)}
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer)}
      * with {@link SchemaFactory#getSchema()} instead.
      */
     @Deprecated(forRemoval = true)
     public static void validateXML(final String xmlContent, final Consumer<String> consumer,
                                    final boolean detailedLog) {
         try {
-            XMLValidation.validateXML(SchemaFactory.getSchema(), xmlContent, consumer, detailedLog);
+            XMLValidation.validateXML(SchemaFactory.getSchema(), xmlContent, detailedLog ? consumer : null);
         } catch (final XmlValidationException e) {
             throw new VecException("Schema validation failed! Use detailedLog for more information");
         }

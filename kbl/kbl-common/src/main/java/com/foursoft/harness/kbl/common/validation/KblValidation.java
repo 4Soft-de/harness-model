@@ -53,13 +53,13 @@ public class KblValidation {
      * @param kblPath     path to kbl
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
-     * @deprecated Use {@link XMLValidation#validateXML(Schema, Path, Consumer, boolean)} instead.
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, Path, Consumer)} instead.
      */
     @Deprecated(forRemoval = true)
     public static void validateXML(final Schema schema, final Path kblPath, final Consumer<String> consumer,
                                    final boolean detailedLog) {
         try {
-            XMLValidation.validateXML(schema, kblPath, consumer, detailedLog);
+            XMLValidation.validateXML(schema, kblPath, detailedLog ? consumer : null);
         } catch (final XMLIOException | XmlValidationException e) {
             throw new KblException("Schema validation failed! Could not read Path: " + kblPath, e);
         }
@@ -72,13 +72,13 @@ public class KblValidation {
      * @param xmlContent  the xml content
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
-     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer, boolean)} instead.
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer)} instead.
      */
     @Deprecated(forRemoval = true)
     public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer,
                                    final boolean detailedLog) {
         try {
-            XMLValidation.validateXML(schema, xmlContent, consumer, detailedLog);
+            XMLValidation.validateXML(schema, xmlContent, detailedLog ? consumer : null);
         } catch (final XmlValidationException e) {
             throw new KblException("Schema validation failed! Use detailedLog for more information");
         }

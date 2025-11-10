@@ -128,17 +128,6 @@ class XMLValidationTest {
                 .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, noopConsumer));
         Assertions.assertThatExceptionOfType(XmlValidationException.class)
                 .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, noopConsumer));
-
-        // Also test deprecated code for good measure.
-
-        Assertions.assertThatNoException()
-                .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, noopConsumer, false));
-        Assertions.assertThatExceptionOfType(XmlValidationException.class)
-                .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, noopConsumer, false));
-        Assertions.assertThatNoException()
-                .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, noopConsumer, true));
-        Assertions.assertThatExceptionOfType(XmlValidationException.class)
-                .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, noopConsumer, true));
     }
 
 }

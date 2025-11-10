@@ -108,25 +108,6 @@ public final class XMLValidation {
     }
 
     /**
-     * Validates the given XML file against the given {@link Schema}.
-     *
-     * @param schema      The schema to use for validation.
-     * @param xmlFilePath Path to the file which should be validated.
-     * @param consumer    Consumer to run for the annotated XML file contents.
-     *                    Can be used to display scheme violations.
-     *                    <b>Will only be used if {@code detailedLog} is set to {@code true}!</b>
-     * @param detailedLog Flag whether the validation errors should be annotated and processed or not.
-     * @throws XMLIOException         In case something goes wrong before or during the validation.
-     * @throws XmlValidationException In case the validation for the given file fails.
-     * @deprecated Use {@link XMLValidation#validateXML(Schema, Path, Consumer)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public static void validateXML(final Schema schema, final Path xmlFilePath, final Consumer<String> consumer,
-                                   final boolean detailedLog) throws XMLIOException, XmlValidationException {
-        validateXML(schema, xmlFilePath, detailedLog ? consumer : null);
-    }
-
-    /**
      * Validates the given XML string against the given {@link Schema}.
      *
      * @param schema     The schema to use for validation.
@@ -160,24 +141,6 @@ public final class XMLValidation {
 
             throw new XmlValidationException("Schema validation failed! " + additionalInformation);
         }
-    }
-
-    /**
-     * Validates the given XML string against the given {@link Schema}.
-     *
-     * @param schema      The schema to use for validation.
-     * @param xmlContent  Contents of an XML file which should be validated.
-     * @param consumer    Consumer to run for the annotated XML file contents.
-     *                    Can be used to display scheme violations.
-     *                    <b>Will only be used if {@code detailedLog} is set to {@code true}!</b>
-     * @param detailedLog Flag whether the validation errors should be annotated and processed or not.
-     * @throws XmlValidationException In case the validation for the given file fails.
-     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public static void validateXML(final Schema schema, final String xmlContent, final Consumer<String> consumer,
-                                   final boolean detailedLog) throws XmlValidationException {
-        validateXML(schema, xmlContent, detailedLog ? consumer : null);
     }
 
     private static InputStream toInputStream(final String input, final Charset charset) {
