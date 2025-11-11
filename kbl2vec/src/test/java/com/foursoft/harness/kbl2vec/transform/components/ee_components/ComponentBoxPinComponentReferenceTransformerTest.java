@@ -30,7 +30,6 @@ import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPinComponent;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
-import com.foursoft.harness.vec.v2x.VecTerminalRole;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,9 +48,6 @@ class ComponentBoxPinComponentReferenceTransformerTest {
         final KblCavity part =  new KblCavity();
         source.setPart(part);
 
-        final VecTerminalRole role = new VecTerminalRole();
-        orchestrator.addMockMapping(source, role);
-
         final VecPinComponent pinComponent = new VecPinComponent();
         orchestrator.addMockMapping(part, pinComponent);
 
@@ -60,7 +56,6 @@ class ComponentBoxPinComponentReferenceTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
-                .returns(role, VecPinComponentReference::getTerminalRole)
                 .returns(pinComponent, VecPinComponentReference::getPinComponent);
     }
 }

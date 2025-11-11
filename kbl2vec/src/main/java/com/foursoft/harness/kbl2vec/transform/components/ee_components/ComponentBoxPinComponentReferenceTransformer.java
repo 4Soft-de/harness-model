@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,7 +32,6 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPinComponent;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
-import com.foursoft.harness.vec.v2x.VecTerminalRole;
 
 public class ComponentBoxPinComponentReferenceTransformer
         implements Transformer<KblCavityOccurrence, VecPinComponentReference> {
@@ -44,8 +43,6 @@ public class ComponentBoxPinComponentReferenceTransformer
         destination.setIdentification(source.getPart().getCavityNumber());
 
         return TransformationResult.from(destination)
-                .withDownstream(KblCavityOccurrence.class, VecTerminalRole.class, Query.of(source),
-                                VecPinComponentReference::setTerminalRole)
                 .withLinker(Query.of(source::getPart), VecPinComponent.class, VecPinComponentReference::setPinComponent)
                 .build();
     }

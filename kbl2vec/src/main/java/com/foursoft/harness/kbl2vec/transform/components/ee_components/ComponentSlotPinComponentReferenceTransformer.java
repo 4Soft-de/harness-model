@@ -32,7 +32,6 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPinComponent;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
-import com.foursoft.harness.vec.v2x.VecTerminalRole;
 
 public class ComponentSlotPinComponentReferenceTransformer
         implements Transformer<KblComponentCavityOccurrence, VecPinComponentReference> {
@@ -44,8 +43,6 @@ public class ComponentSlotPinComponentReferenceTransformer
         destination.setIdentification(source.getPart().getCavityNumber());
 
         return TransformationResult.from(destination)
-                .withDownstream(KblComponentCavityOccurrence.class, VecTerminalRole.class, Query.of(source),
-                                VecPinComponentReference::setTerminalRole)
                 .withLinker(Query.of(source::getPart), VecPinComponent.class, VecPinComponentReference::setPinComponent)
                 .build();
     }

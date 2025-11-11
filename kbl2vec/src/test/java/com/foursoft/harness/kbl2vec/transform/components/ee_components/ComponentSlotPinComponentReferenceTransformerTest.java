@@ -30,7 +30,6 @@ import com.foursoft.harness.kbl.v25.KblComponentCavityOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecPinComponent;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
-import com.foursoft.harness.vec.v2x.VecTerminalRole;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,15 +51,11 @@ class ComponentSlotPinComponentReferenceTransformerTest {
         final VecPinComponent vecPinComponent = new VecPinComponent();
         orchestrator.addMockMapping(part, vecPinComponent);
 
-        final VecTerminalRole vecTerminalRole = new VecTerminalRole();
-        orchestrator.addMockMapping(source, vecTerminalRole);
-
         // When
         final VecPinComponentReference result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns(vecTerminalRole, VecPinComponentReference::getTerminalRole)
                 .returns(vecPinComponent, VecPinComponentReference::getPinComponent);
     }
 }

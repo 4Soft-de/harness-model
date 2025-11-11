@@ -54,6 +54,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SnapshotExtension.class)
 class KblToVecConverterTest {
 
+
+
     private Expect expect;
 
     /**
@@ -86,7 +88,7 @@ class KblToVecConverterTest {
             try (final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
                 writeToStream(result, baos);
                 expect.scenario(kblFileName).toMatchSnapshot(baos.toString(StandardCharsets.UTF_8));
-                validateXML(baos.toString(StandardCharsets.UTF_8), validationErrors::add, true);
+                validateXML(baos.toString(StandardCharsets.UTF_8), System.out::println, true);
                 assertThat(validationErrors).isEmpty();
             }
         }

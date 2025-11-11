@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,9 +31,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
-import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
-import com.foursoft.harness.vec.v2x.VecPinComponentReference;
+import com.foursoft.harness.vec.v2x.*;
 
 public class ComponentSlotHousingReferenceTransformer
         implements Transformer<KblComponentSlotOccurrence, VecHousingComponentReference> {
@@ -50,6 +48,8 @@ public class ComponentSlotHousingReferenceTransformer
                                 VecHousingComponentReference::getPinComponentReves)
                 .withDownstream(KblComponentSlotOccurrence.class, VecConnectorHousingRole.class, Query.of(source),
                                 VecHousingComponentReference::setConnectorHousingRole)
+                .withLinker(Query.of(source::getPart), VecHousingComponent.class,
+                            VecHousingComponentReference::setHousingComponent)
                 .build();
     }
 }
