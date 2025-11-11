@@ -26,10 +26,12 @@
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
 import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
+import com.foursoft.harness.kbl.v25.KblComponentBoxConnector;
 import com.foursoft.harness.kbl.v25.KblComponentBoxConnectorOccurrence;
 import com.foursoft.harness.kbl.v25.KblSlotOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
+import com.foursoft.harness.vec.v2x.VecHousingComponent;
 import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
 import org.junit.jupiter.api.Test;
@@ -46,6 +48,10 @@ class ComponentBoxHousingReferenceTransformerTest {
 
         final KblComponentBoxConnectorOccurrence source = new KblComponentBoxConnectorOccurrence();
 
+        final KblComponentBoxConnector part = new KblComponentBoxConnector();
+        source.setPart(part);
+        part.setId("TestId");
+
         final KblSlotOccurrence slotOccurrence = new KblSlotOccurrence();
         final KblCavityOccurrence cavityOccurrence = new KblCavityOccurrence();
         slotOccurrence.getCavities().add(cavityOccurrence);
@@ -57,12 +63,17 @@ class ComponentBoxHousingReferenceTransformerTest {
         final VecConnectorHousingRole housingRole = new VecConnectorHousingRole();
         orchestrator.addMockMapping(source, housingRole);
 
+        final VecHousingComponent housingComponent = new VecHousingComponent();
+        orchestrator.addMockMapping(part, housingComponent);
+
         // When
         final VecHousingComponentReference result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
+                .returns("TestId", VecHousingComponentReference::getIdentification)
                 .returns(housingRole, VecHousingComponentReference::getConnectorHousingRole)
+                .returns(housingComponent, VecHousingComponentReference::getHousingComponent)
                 .satisfies(v -> assertThat(v.getPinComponentReves()).containsExactly(pinComponentReference));
     }
 }

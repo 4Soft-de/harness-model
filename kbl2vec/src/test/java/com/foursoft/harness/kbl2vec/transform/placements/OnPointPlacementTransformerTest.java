@@ -45,7 +45,6 @@ class OnPointPlacementTransformerTest {
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblFixingAssignment source = new KblFixingAssignment();
-        source.setId("TestId");
 
         final VecSegmentLocation location = new VecSegmentLocation();
         orchestrator.addMockMapping(source, location);
@@ -61,7 +60,7 @@ class OnPointPlacementTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecOnPointPlacement::getIdentification)
+                .returns("FIXING_PLACEMENT", VecOnPointPlacement::getIdentification)
                 .satisfies(v -> assertThat(v.getPlacedElement()).containsExactly(role))
                 .satisfies(v -> assertThat(v.getLocations()).containsExactly(location));
     }
