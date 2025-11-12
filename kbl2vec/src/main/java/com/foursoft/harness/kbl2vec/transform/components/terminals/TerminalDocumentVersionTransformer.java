@@ -43,15 +43,22 @@ public class TerminalDocumentVersionTransformer implements Transformer<KblPart, 
         if (kblPart instanceof final KblGeneralTerminal source) {
             final VecDocumentVersion destination = new VecDocumentVersion();
 
-            return TransformationResult.from(destination)
+            final TransformationResult.Builder<VecDocumentVersion> builder = TransformationResult.from(destination);
+
+            if (!source.getRefSpecialTerminalOccurrence().isEmpty()) {
+                builder
+                        .withDownstream(KblGeneralTerminal.class, VecPlaceableElementSpecification.class,
+                                        Query.of(source),
+                                        VecDocumentVersion::getSpecifications);
+            }
+
+            return builder
                     .withFragment(commonComponentInformation(source, context))
                     .withDownstream(KblGeneralTerminal.class, VecTerminalSpecification.class, Query.of(source),
                                     VecDocumentVersion::getSpecifications)
                     .withDownstream(KblGeneralTerminal.class, VecWireReceptionSpecification.class, Query.of(source),
                                     VecDocumentVersion::getSpecifications)
                     .withDownstream(KblGeneralTerminal.class, VecTerminalReceptionSpecification.class, Query.of(source),
-                                    VecDocumentVersion::getSpecifications)
-                    .withDownstream(KblGeneralTerminal.class, VecPlaceableElementSpecification.class, Query.of(source),
                                     VecDocumentVersion::getSpecifications)
                     .build();
         }
