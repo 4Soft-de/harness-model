@@ -41,33 +41,36 @@ public class OnPointPlacementTransformer implements Transformer<ConnectionOrOccu
     @Override
     public TransformationResult<VecOnPointPlacement> transform(final TransformationContext context,
                                                                final ConnectionOrOccurrence source) {
-        if (!(source instanceof FixedComponent || source instanceof LocatedComponent)) {
-            return TransformationResult.noResult();
-        }
+        if (source instanceof final FixedComponent fixedComponent &&
+                fixedComponent.getRefFixingAssignment().isEmpty() ||
+                source instanceof final LocatedComponent locatedComponent && locatedComponent.getRefNode().isEmpty()) {
 
-        final VecOnPointPlacement destination = new VecOnPointPlacement();
-        if (source instanceof final HasIdentification hasIdentification) {
-            destination.setIdentification(hasIdentification.getId());
-        } else {
-            destination.setIdentification("FIXING_PLACEMENT");
-        }
+            final VecOnPointPlacement destination = new VecOnPointPlacement();
 
-        return TransformationResult.from(destination)
-                .withFragment(fixedComponentInformation(source))
-                .withLinker(Query.of(source), VecPlaceableElementRole.class, VecOnPointPlacement::getPlacedElement)
-                .build();
+            if (source instanceof final HasIdentification hasIdentification) {
+                destination.setIdentification(hasIdentification.getId());
+            } else {
+                destination.setIdentification("PLACEMENT");
+            }
+
+            return TransformationResult.from(destination)
+                    .withFragment(fixedComponentInformation(source))
+                    .withLinker(Query.of(source), VecPlaceableElementRole.class, VecOnPointPlacement::getPlacedElement)
+                    .build();
+        }
+        return TransformationResult.noResult();
     }
 
     private static TransformationFragment<VecOnPointPlacement, TransformationResult.Builder<VecOnPointPlacement>> fixedComponentInformation(
             final ConnectionOrOccurrence source) {
         return (resultValue, builder) -> {
-            if (source instanceof final LocatedComponent locatedComponent && !locatedComponent.getRefNode().isEmpty()) {
+            if (source instanceof final LocatedComponent locatedComponent) {
                 builder.withDownstream(KblNode.class, VecNodeLocation.class,
                                        Query.fromLists(referencedNodes(locatedComponent)),
                                        VecOnPointPlacement::getLocations);
             }
 
-            if (source instanceof final FixedComponent fixing && !fixing.getRefFixingAssignment().isEmpty()) {
+            if (source instanceof final FixedComponent fixing) {
                 builder.withDownstream(KblFixingAssignment.class, VecSegmentLocation.class,
                                        Query.fromLists(referencedFixingAssignments(fixing)),
                                        VecOnPointPlacement::getLocations);
