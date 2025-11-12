@@ -56,7 +56,7 @@ class VecValidationTest {
         final Collection<String> errors = new ArrayList<>();
         XMLValidation.validateXML(SCHEMA, result, errors::add);
 
-        // Deprecated, only there for coverage.
+        // Legacy test (should / can be removed after the corresponding code was removed).
         VecValidation.validateXML(result, errors::add, true);
 
         assertThat(errors).isEmpty();
@@ -81,7 +81,7 @@ class VecValidationTest {
         assertThatThrownBy(() -> XMLValidation.validateXML(SCHEMA, result, errors::add))
                 .isInstanceOf(XmlValidationException.class);
 
-        // Deprecated, only there for coverage.
+        // Legacy test (should / can be removed after the corresponding code was removed).
         assertThatThrownBy(() -> VecValidation.validateXML(result, errors::add, false))
                 .isInstanceOf(VecException.class);
 

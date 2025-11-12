@@ -67,7 +67,7 @@ class KblValidationTest {
         final Collection<String> errors = new ArrayList<>();
         XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add);
 
-        // Deprecated, only there for coverage.
+        // Legacy test (should / can be removed after the corresponding code was removed).
         KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
 
         assertThat(errors).isEmpty();
@@ -89,7 +89,7 @@ class KblValidationTest {
         assertThatThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add))
                 .isInstanceOf(XmlValidationException.class);
 
-        // Deprecated, only there for coverage.
+        // Legacy test (should / can be removed after the corresponding code was removed).
         assertThatThrownBy(() -> KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, false))
                 .isInstanceOf(KblException.class);
 
