@@ -90,7 +90,8 @@ class KblValidationTest {
 
         // Legacy test (should / can be removed after the corresponding code was removed).
         assertThatThrownBy(() -> KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, false))
-                .isInstanceOf(KblException.class);
+                .isInstanceOf(KblException.class)
+                .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
 
         assertThat(errors).isNotEmpty();
     }
