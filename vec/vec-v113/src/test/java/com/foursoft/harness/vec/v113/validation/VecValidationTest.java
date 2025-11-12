@@ -82,7 +82,7 @@ class VecValidationTest {
                 .isInstanceOf(XmlValidationException.class);
 
         // Legacy test (should / can be removed after the corresponding code was removed).
-        assertThatThrownBy(() -> VecValidation.validateXML(result, errors::add, false))
+        assertThatThrownBy(() -> VecValidation.validateXML(result, errors::add, true))
                 .isInstanceOf(VecException.class)
                 .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
 
