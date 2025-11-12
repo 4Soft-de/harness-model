@@ -41,7 +41,6 @@ public class PlaceableElementSpecificationTransformer
     public TransformationResult<VecPlaceableElementSpecification> transform(final TransformationContext context,
                                                                             final KblConnectorHousing source) {
         final VecPlaceableElementSpecification destination = new VecPlaceableElementSpecification();
-        destination.setIdentification(source.getPartNumber());
         destination.getValidPlacementTypes().add(VecPlacementType.ON_POINT);
 
         return TransformationResult.from(destination)
