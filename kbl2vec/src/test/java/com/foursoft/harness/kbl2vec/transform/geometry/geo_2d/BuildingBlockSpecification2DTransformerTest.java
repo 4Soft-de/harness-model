@@ -62,6 +62,15 @@ class BuildingBlockSpecification2DTransformerTest {
         final KblSegment segment = new KblSegment();
         kblContainer.getSegments().add(segment);
 
+        final KblNumericalValue length = new KblNumericalValue();
+        segment.setPhysicalLength(length);
+
+        final KblUnit baseUnit = new KblUnit();
+        length.setUnitComponent(baseUnit);
+
+        final VecUnit vecUnit = new VecCustomUnit();
+        orchestrator.addMockMapping(baseUnit, vecUnit);
+
         final VecGeometrySegment2D vecGeometrySegment2D = new VecGeometrySegment2D();
         orchestrator.addMockMapping(segment, vecGeometrySegment2D);
 
@@ -79,6 +88,7 @@ class BuildingBlockSpecification2DTransformerTest {
                 .satisfies(v -> assertThat(v.getGeometryNodes()).containsExactly(vecGeometryNode2D))
                 .satisfies(v -> assertThat(v.getGeometrySegments()).containsExactly(vecGeometrySegment2D))
                 .satisfies(v -> assertThat(v.getCartesianPoints()).containsExactly(vecCartesianPoint2D))
-                .satisfies(v -> assertThat(v.getPlacedElementViewItems()).containsExactly(viewItem2D));
+                .satisfies(v -> assertThat(v.getPlacedElementViewItems()).containsExactly(viewItem2D))
+                .returns(vecUnit, VecBuildingBlockSpecification2D::getBaseUnit);
     }
 }

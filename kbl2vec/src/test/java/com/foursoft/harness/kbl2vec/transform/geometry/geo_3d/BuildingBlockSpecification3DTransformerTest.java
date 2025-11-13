@@ -63,8 +63,16 @@ class BuildingBlockSpecification3DTransformerTest {
         final KblSegment segment = new KblSegment();
         kblContainer.getSegments().add(segment);
 
+        final KblUnit baseUnit = new KblUnit();
+        final KblNumericalValue length = new KblNumericalValue();
+        segment.setPhysicalLength(length);
+        length.setUnitComponent(baseUnit);
+
         final VecGeometrySegment3D vecGeometrySegment3D = new VecGeometrySegment3D();
         orchestrator.addMockMapping(segment, vecGeometrySegment3D);
+
+        final VecUnit vecUnit = new VecCustomUnit();
+        orchestrator.addMockMapping(baseUnit, vecUnit);
 
         final KblAssemblyPartOccurrence placeableOccurrence = new KblAssemblyPartOccurrence();
         source.getAssemblyPartOccurrences().add(placeableOccurrence);
@@ -80,6 +88,7 @@ class BuildingBlockSpecification3DTransformerTest {
                 .satisfies(v -> assertThat(v.getGeometryNodes()).containsExactly(vecGeometryNode3D))
                 .satisfies(v -> assertThat(v.getGeometrySegments()).containsExactly(vecGeometrySegment3D))
                 .satisfies(v -> assertThat(v.getCartesianPoints()).containsExactly(vecCartesianPoint3D))
-                .satisfies(v -> assertThat(v.getPlacedElementViewItem3Ds()).containsExactly(viewItem3D));
+                .satisfies(v -> assertThat(v.getPlacedElementViewItem3Ds()).containsExactly(viewItem3D))
+                .returns(vecUnit, VecBuildingBlockSpecification3D::getBaseUnit);
     }
 }

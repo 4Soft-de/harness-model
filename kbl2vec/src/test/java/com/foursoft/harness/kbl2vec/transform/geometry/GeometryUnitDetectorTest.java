@@ -23,29 +23,53 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.transform.components.ee_components;
+package com.foursoft.harness.kbl2vec.transform.geometry;
 
-import com.foursoft.harness.kbl.v25.KblComponentCavityOccurrence;
-import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecTerminalRole;
+import com.foursoft.harness.kbl.v25.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ComponentSlotTerminalRoleTransformerTest {
+class GeometryUnitDetectorTest {
 
     @Test
-    void should_transformTerminalRole() {
+    void should_getBaseUnit() {
         // Given
-        final ComponentSlotTerminalRoleTransformer transformer = new ComponentSlotTerminalRoleTransformer();
-        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+        final KblHarness source = new KblHarness();
 
-        final KblComponentCavityOccurrence source = new KblComponentCavityOccurrence();
+        final KBLContainer container = new KBLContainer();
+        source.setParentKBLContainer(container);
+
+        final KblNumericalValue length = new KblNumericalValue();
+        final KblUnit expectedUnit = new KblUnit();
+        length.setUnitComponent(expectedUnit);
+
+        final KblSegment segment = new KblSegment();
+        segment.setPhysicalLength(length);
+        container.getSegments().add(segment);
 
         // When
-        final VecTerminalRole result = orchestrator.transform(transformer, source);
+        final KblUnit result = GeometryUnitDetector.getUnit(source);
 
         // Then
-        assertThat(result).isNotNull();
+        assertThat(result).isEqualTo(expectedUnit);
+    }
+
+    @Test
+    void should_returnNull() {
+        // Given
+        final KblHarness source = new KblHarness();
+
+        final KBLContainer container = new KBLContainer();
+        source.setParentKBLContainer(container);
+
+        final KblSegment segment = new KblSegment();
+        container.getSegments().add(segment);
+
+        // When
+        final KblUnit result = GeometryUnitDetector.getUnit(source);
+
+        // Then
+        assertThat(result).isNull();
     }
 }

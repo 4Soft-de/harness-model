@@ -26,16 +26,18 @@
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
 import com.foursoft.harness.kbl.v25.KblComponentCavityOccurrence;
+import com.foursoft.harness.kbl.v25.KblComponentSlot;
 import com.foursoft.harness.kbl.v25.KblComponentSlotOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
+import com.foursoft.harness.vec.v2x.VecHousingComponent;
 import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
 import com.foursoft.harness.vec.v2x.VecPinComponentReference;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class HousingComponentReferenceTransformerTest {
+class ComponentSlotHousingReferenceTransformerTest {
 
     @Test
     void should_transformHousingComponentReference() {
@@ -46,6 +48,9 @@ class HousingComponentReferenceTransformerTest {
         final KblComponentSlotOccurrence source = new KblComponentSlotOccurrence();
         source.setId("TestId");
 
+        final KblComponentSlot part = new KblComponentSlot();
+        source.setPart(part);
+
         final KblComponentCavityOccurrence cavityOccurrence = new KblComponentCavityOccurrence();
         source.getComponentCavities().add(cavityOccurrence);
 
@@ -55,6 +60,9 @@ class HousingComponentReferenceTransformerTest {
         final VecConnectorHousingRole vecConnectorHousingRole = new VecConnectorHousingRole();
         orchestrator.addMockMapping(source, vecConnectorHousingRole);
 
+        final VecHousingComponent vecHousingComponent = new VecHousingComponent();
+        orchestrator.addMockMapping(part, vecHousingComponent);
+
         // When
         final VecHousingComponentReference result = orchestrator.transform(transformer, source);
 
@@ -62,6 +70,7 @@ class HousingComponentReferenceTransformerTest {
         assertThat(result).isNotNull()
                 .returns("TestId", VecHousingComponentReference::getIdentification)
                 .returns(vecConnectorHousingRole, VecHousingComponentReference::getConnectorHousingRole)
+                .returns(vecHousingComponent, VecHousingComponentReference::getHousingComponent)
                 .satisfies(v -> assertThat(v.getPinComponentReves()).containsExactly(vecPinComponentReference));
     }
 }

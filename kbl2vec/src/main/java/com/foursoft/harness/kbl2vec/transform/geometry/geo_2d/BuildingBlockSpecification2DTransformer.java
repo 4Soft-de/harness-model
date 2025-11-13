@@ -34,6 +34,7 @@ import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.kbl2vec.transform.Queries.placeablePartOccurrences;
+import com.foursoft.harness.kbl2vec.transform.geometry.GeometryUnitDetector;
 
 public class BuildingBlockSpecification2DTransformer
         implements Transformer<KblHarness, VecBuildingBlockSpecification2D> {
@@ -42,6 +43,7 @@ public class BuildingBlockSpecification2DTransformer
     public TransformationResult<VecBuildingBlockSpecification2D> transform(final TransformationContext context,
                                                                            final KblHarness source) {
         final VecBuildingBlockSpecification2D destination = new VecBuildingBlockSpecification2D();
+        destination.setIdentification("BB_SPEC_2D");
 
         if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
                                                      GeometryDimensionDetector.GEO_2D)) {
@@ -62,6 +64,8 @@ public class BuildingBlockSpecification2DTransformer
                 .withDownstream(ConnectionOrOccurrence.class, VecOccurrenceOrUsageViewItem2D.class,
                                 placeablePartOccurrences(source),
                                 VecBuildingBlockSpecification2D::getPlacedElementViewItems)
+                .withLinker(Query.of(GeometryUnitDetector.getUnit(source)), VecUnit.class,
+                            VecBuildingBlockSpecification2D::setBaseUnit)
                 .build();
     }
 }

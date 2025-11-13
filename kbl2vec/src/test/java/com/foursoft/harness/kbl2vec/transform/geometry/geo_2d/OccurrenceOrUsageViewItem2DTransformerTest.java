@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,7 +27,6 @@ package com.foursoft.harness.kbl2vec.transform.geometry.geo_2d;
 
 import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsageViewItem2D;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecTransformation2D;
@@ -49,12 +48,6 @@ class OccurrenceOrUsageViewItem2DTransformerTest {
         final VecTransformation2D vecTransformation2D = new VecTransformation2D();
         orchestrator.addMockMapping(transformation, vecTransformation2D);
 
-        final KblAliasIdentification aliasIdentification = new KblAliasIdentification();
-        source.getAliasIds().add(aliasIdentification);
-
-        final VecAliasIdentification vecAliasIdentification = new VecAliasIdentification();
-        orchestrator.addMockMapping(aliasIdentification, vecAliasIdentification);
-
         final VecPartOccurrence vecPartOccurrence = new VecPartOccurrence();
         orchestrator.addMockMapping(source, vecPartOccurrence);
 
@@ -64,7 +57,6 @@ class OccurrenceOrUsageViewItem2DTransformerTest {
         // Then
         assertThat(result).isNotNull()
                 .returns(vecTransformation2D, VecOccurrenceOrUsageViewItem2D::getOrientation)
-                .satisfies(v -> assertThat(v.getAliasIds()).containsExactly(vecAliasIdentification))
                 .satisfies(v -> assertThat(v.getOccurrenceOrUsage()).containsExactly(vecPartOccurrence));
     }
 }

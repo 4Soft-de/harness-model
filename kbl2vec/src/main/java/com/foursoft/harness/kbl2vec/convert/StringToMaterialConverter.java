@@ -45,6 +45,7 @@ public class StringToMaterialConverter implements Converter<String, Optional<Vec
         }
         final VecMaterial material = new VecMaterial();
         material.setReferenceSystem(referenceSystem);
+        material.setKey(source);
         return Optional.of(material);
     }
 }

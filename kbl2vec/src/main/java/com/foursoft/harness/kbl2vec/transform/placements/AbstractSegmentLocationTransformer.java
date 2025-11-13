@@ -28,10 +28,7 @@ package com.foursoft.harness.kbl2vec.transform.placements;
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.core.*;
-import com.foursoft.harness.vec.v2x.VecNumericalValue;
-import com.foursoft.harness.vec.v2x.VecSegmentLocation;
-import com.foursoft.harness.vec.v2x.VecTopologySegment;
-import com.foursoft.harness.vec.v2x.VecUnit;
+import com.foursoft.harness.vec.v2x.*;
 
 public abstract class AbstractSegmentLocationTransformer<S> implements Transformer<S, VecSegmentLocation> {
 
@@ -40,6 +37,7 @@ public abstract class AbstractSegmentLocationTransformer<S> implements Transform
     @Override
     public TransformationResult<VecSegmentLocation> transform(final TransformationContext context, final S source) {
         final VecSegmentLocation destination = new VecSegmentLocation();
+        destination.setAnchor(VecAnchorType.FROM_START_NODE);
 
         final LocationData locationData = extractLocationData(source);
         destination.setIdentification(locationData.identification);

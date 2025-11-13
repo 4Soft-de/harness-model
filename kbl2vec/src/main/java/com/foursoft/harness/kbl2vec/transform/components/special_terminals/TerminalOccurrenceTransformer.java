@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,13 +26,11 @@
 package com.foursoft.harness.kbl2vec.transform.components.special_terminals;
 
 import com.foursoft.harness.kbl.v25.ConnectionOrOccurrence;
-import com.foursoft.harness.kbl.v25.KblAliasIdentification;
 import com.foursoft.harness.kbl.v25.KblSpecialTerminalOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecTerminalRole;
 
@@ -48,8 +46,6 @@ public class TerminalOccurrenceTransformer implements Transformer<ConnectionOrOc
 
             return TransformationResult.from(destination)
                     .withFragment(commonOccurrenceInformation(source, context))
-                    .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class, source::getAliasIds,
-                                    VecPartOccurrence::getAliasIds)
                     .withDownstream(KblSpecialTerminalOccurrence.class, VecTerminalRole.class, Query.of(source),
                                     VecPartOccurrence::getRoles)
                     .build();
