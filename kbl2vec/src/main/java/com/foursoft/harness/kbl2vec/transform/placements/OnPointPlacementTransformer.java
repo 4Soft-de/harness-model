@@ -42,8 +42,8 @@ public class OnPointPlacementTransformer implements Transformer<ConnectionOrOccu
     public TransformationResult<VecOnPointPlacement> transform(final TransformationContext context,
                                                                final ConnectionOrOccurrence source) {
         if (source instanceof final FixedComponent fixedComponent &&
-                fixedComponent.getRefFixingAssignment().isEmpty() ||
-                source instanceof final LocatedComponent locatedComponent && locatedComponent.getRefNode().isEmpty()) {
+                !fixedComponent.getRefFixingAssignment().isEmpty() ||
+                source instanceof final LocatedComponent locatedComponent && !locatedComponent.getRefNode().isEmpty()) {
 
             final VecOnPointPlacement destination = new VecOnPointPlacement();
 
