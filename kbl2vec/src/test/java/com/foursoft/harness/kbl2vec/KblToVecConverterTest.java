@@ -88,7 +88,7 @@ class KblToVecConverterTest {
             try (final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
                 writeToStream(result, baos);
                 expect.scenario(kblFileName).toMatchSnapshot(baos.toString(StandardCharsets.UTF_8));
-                validateXML(baos.toString(StandardCharsets.UTF_8), System.out::println, true);
+                validateXML(baos.toString(StandardCharsets.UTF_8), validationErrors::add, true);
                 assertThat(validationErrors).isEmpty();
             }
         }
