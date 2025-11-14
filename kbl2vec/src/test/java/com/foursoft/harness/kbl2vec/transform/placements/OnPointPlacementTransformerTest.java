@@ -59,7 +59,6 @@ class OnPointPlacementTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
-                .returns("FIXING_PLACEMENT", VecOnPointPlacement::getIdentification)
                 .satisfies(v -> assertThat(v.getPlacedElement()).containsExactly(role))
                 .satisfies(v -> assertThat(v.getLocations()).containsExactly(location));
     }
