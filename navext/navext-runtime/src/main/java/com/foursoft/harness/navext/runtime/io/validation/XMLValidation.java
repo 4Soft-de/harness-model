@@ -35,6 +35,7 @@ import javax.xml.validation.Validator;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -53,10 +54,35 @@ public final class XMLValidation {
         this.schema = schema;
     }
 
+    /**
+     * Validates the given XML string against the stored {@link Schema}.
+     *
+     * @param xmlContent Contents of an XML file which should be validated.
+     * @param charset    {@link Charset} of the XML contents.
+     * @return Possibly-empty Collection with {@link ErrorLocation validation error}s.
+     * @throws XMLIOException In case validating the XML fails due to an unexpected error.
+     *                        See {@link LogValidator#validate(Source)}.
+     * @deprecated Use {@link #validateXML(String)} instead.
+     * <b>Notice:</b> The given Charset will already be ignored, {@link StandardCharsets#UTF_8} will be used.
+     * See <a href="https://github.com/4Soft-de/harness-model/issues/404">GitHub issue</a>.
+     */
+    @Deprecated(forRemoval = true)
     public Collection<ErrorLocation> validateXML(final String xmlContent, final Charset charset) {
+        return validateXML(xmlContent);
+    }
+
+    /**
+     * Validates the given UTF-8 encoded XML string against the stored {@link Schema}.
+     *
+     * @param xmlContent Contents of an XML file which should be validated.
+     * @return Possibly-empty Collection with {@link ErrorLocation validation error}s.
+     * @throws XMLIOException In case validating the XML fails due to an unexpected error.
+     *                        See {@link LogValidator#validate(Source)}.
+     */
+    public Collection<ErrorLocation> validateXML(final String xmlContent) {
         try {
             final LogValidator validator = createValidator();
-            final InputStream inputStream = toInputStream(xmlContent, charset);
+            final InputStream inputStream = toInputStream(xmlContent, StandardCharsets.UTF_8);
             final Source inputSource = new StreamSource(inputStream);
             final boolean validate = validator.validate(inputSource);
 
