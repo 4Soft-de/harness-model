@@ -100,29 +100,29 @@ class BasicWritingTest {
         final KblWriter kblWriter = new KblWriter();
         final String result = kblWriter.writeToString(root);
 
-        assertThat(result)
-                .isEqualToIgnoringWhitespace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                                                     + "<kbl:KBL_container id=\"ID000\" version_id=\"version_id0\""
-                                                     +
-                                                     " xmlns:kbl=\"http://www.prostep.org/Car_electric_container/KBL2" +
-                                                     ".3/KBLSchema\">\n"
-                                                     + "    <Harness id=\"I1397\">\n"
-                                                     + "        <Connector_occurrence id=\"I1616\">\n"
-                                                     + "            <Contact_points id=\"id_1234\">\n"
-                                                     + "                <Id>SCHNUPSI</Id>\n"
-                                                     + "                <Associated_parts>id_4711</Associated_parts>\n"
-                                                     + "            </Contact_points>\n"
-                                                     + "            <Contact_points id=\"id_1235\">\n"
-                                                     + "                <Id>SCHNUPSI</Id>\n"
-                                                     + "            </Contact_points>\n"
-                                                     + "            <Contact_points id=\"id_1236\">\n"
-                                                     + "                <Id>SCHNUPSI</Id>\n"
-                                                     + "            </Contact_points>\n"
-                                                     + "        </Connector_occurrence>\n"
-                                                     + "        <Terminal_occurrence id=\"id_4711\"/>\n"
-                                                     + "        <Terminal_occurrence id=\"id_4712\"/>\n"
-                                                     + "    </Harness>\n"
-                                                     + "</kbl:KBL_container>");
+        assertThat(result).isEqualToIgnoringWhitespace(
+                """
+                        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                        <kbl:KBL_container id="ID000" version_id="version_id0" xmlns:kbl="http://www.prostep.org/Car_electric_container/KBL2.3/KBLSchema">
+                            <Harness id="I1397">
+                                <Connector_occurrence id="I1616">
+                                    <Contact_points id="id_1234">
+                                        <Id>SCHNUPSI</Id>
+                                        <Associated_parts>id_4711</Associated_parts>
+                                    </Contact_points>
+                                    <Contact_points id="id_1235">
+                                        <Id>SCHNUPSI</Id>
+                                    </Contact_points>
+                                    <Contact_points id="id_1236">
+                                        <Id>SCHNUPSI</Id>
+                                    </Contact_points>
+                                </Connector_occurrence>
+                                <Terminal_occurrence id="id_4711"/>
+                                <Terminal_occurrence id="id_4712"/>
+                            </Harness>
+                        </kbl:KBL_container>
+                        """
+        );
     }
 
     @Test
