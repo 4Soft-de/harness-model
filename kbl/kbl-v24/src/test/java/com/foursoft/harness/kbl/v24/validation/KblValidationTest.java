@@ -31,8 +31,6 @@ import com.foursoft.harness.kbl.v24.KBLContainer;
 import com.foursoft.harness.kbl.v24.KblHarness;
 import com.foursoft.harness.kbl.v24.KblHarnessContent;
 import com.foursoft.harness.kbl.v24.KblWriter;
-import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
-import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -64,9 +62,6 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-        XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add);
-
-        // Legacy test (should / can be removed after the corresponding code was removed).
         KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true);
 
         assertThat(errors).isEmpty();
@@ -84,15 +79,9 @@ class KblValidationTest {
         final String result = kblWriter.writeToString(root);
 
         final Collection<String> errors = new ArrayList<>();
-
-        assertThatThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), result, errors::add))
-                .isInstanceOf(XmlValidationException.class);
-
-        // Legacy test (should / can be removed after the corresponding code was removed).
         assertThatThrownBy(() -> KblValidation.validateXML(SchemaFactory.getSchema(), result, errors::add, true))
                 .isInstanceOf(KblException.class)
                 .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
-
         assertThat(errors).isNotEmpty();
     }
 
