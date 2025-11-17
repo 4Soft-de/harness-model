@@ -25,14 +25,18 @@
  */
 package com.foursoft.harness.kbl.v24;
 
+import com.foursoft.harness.kbl.v24.validation.SchemaFactory;
+import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BasicWritingTest {
 
-    @Test
-    void testWriteModel() {
+    private KBLContainer createModel() {
         final KBLContainer root = new KBLContainer();
         root.setXmlId("ID000");
         root.setVersionId("version_id0");
@@ -86,6 +90,13 @@ class BasicWritingTest {
         contactPoint3.setId("SCHNUPSI");
         contactPoint3.setXmlId("id_1236");
 
+        return root;
+    }
+
+    @Test
+    void testWriteModel() {
+        final KBLContainer root = createModel();
+
         final KblWriter kblWriter = new KblWriter();
         final String result = kblWriter.writeToString(root);
 
@@ -112,7 +123,19 @@ class BasicWritingTest {
                                                      + "        <Terminal_occurrence id=\"id_4712\"/>\n"
                                                      + "    </Harness>\n"
                                                      + "</kbl:KBL_container>");
+    }
 
+    @Test
+    void testValidateModel() {
+        final Collection<String> errors = new ArrayList<>();
+
+        final KBLContainer model = createModel();
+        final String xml = new KblWriter().writeToString(model);
+
+        XMLValidation.validateXML(SchemaFactory.getSchema(), xml, errors::add);
+
+        assertThat(errors)
+                .isEmpty();
     }
 
 }

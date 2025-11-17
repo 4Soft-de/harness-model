@@ -25,19 +25,22 @@
  */
 package com.foursoft.harness.vec.v12x;
 
+import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
 import com.foursoft.harness.vec.common.util.DateUtils;
+import com.foursoft.harness.vec.v12x.validation.SchemaFactory;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BasicWritingTest {
 
-    @Test
-    void testWriteModel() {
+    private VecContent createModel() {
         final LocalDate exampleDate = LocalDate.of(2022, 3, 24);
         final LocalDateTime exampleDateTime = LocalDateTime.of(exampleDate, LocalTime.NOON);
 
@@ -74,6 +77,13 @@ class BasicWritingTest {
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
+        return root;
+    }
+
+    @Test
+    void testWriteModel() {
+        final VecContent root = createModel();
+
         final VecWriter vecWriter = new VecWriter();
         final String result = vecWriter.writeToString(root);
         assertThat(result).isEqualToIgnoringWhitespace(
@@ -101,6 +111,19 @@ class BasicWritingTest {
                         </vec:VecContent>
                         """
         );
+    }
+
+    @Test
+    void testValidateModel() {
+        final Collection<String> errors = new ArrayList<>();
+
+        final VecContent model = createModel();
+        final String xml = new VecWriter().writeToString(model);
+
+        XMLValidation.validateXML(SchemaFactory.getSchema(), xml, errors::add);
+
+        assertThat(errors)
+                .isEmpty();
     }
 
 }
