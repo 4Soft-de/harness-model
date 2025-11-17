@@ -63,6 +63,8 @@ class BasicWritingTest {
         documentVersion.setXmlId("id_1002_0");
         documentVersion.getApprovals().add(approval);
         documentVersion.setDocumentNumber("123_456_789");
+        documentVersion.setDocumentVersion("3");
+        documentVersion.setCompanyName("Test Company");
 
         final VecSpecification specification = new VecConnectorHousingCapSpecification();
         specification.setXmlId("id_2000_0");
@@ -73,6 +75,9 @@ class BasicWritingTest {
         final VecPartVersion partVersion = new VecPartVersion();
         partVersion.setXmlId("id_1001_0");
         partVersion.setPartNumber("123_456_789");
+        partVersion.setPartVersion("3");
+        partVersion.setPrimaryPartType(VecPrimaryPartType.OTHER);
+        partVersion.setCompanyName("Test Company");
 
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
@@ -93,6 +98,7 @@ class BasicWritingTest {
                             <VecVersion>1.2.0</VecVersion>
                             <DateOfCreation>2022-03-24T00:00:00</DateOfCreation>
                             <DocumentVersion id="id_1002_0">
+                                <CompanyName>Test Company</CompanyName>
                                 <Approval id="id_2014_0">
                                     <Status>Approved</Status>
                                     <Permission id="id_2185_0">
@@ -101,12 +107,16 @@ class BasicWritingTest {
                                     </Permission>
                                 </Approval>
                                 <DocumentNumber>123_456_789</DocumentNumber>
+                                <DocumentVersion>3</DocumentVersion>
                                 <Specification xsi:type="vec:ConnectorHousingCapSpecification" id="id_2000_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                     <Identification>Ccs-123_456_789-1</Identification>
                                 </Specification>
                             </DocumentVersion>
                             <PartVersion id="id_1001_0">
+                                <CompanyName>Test Company</CompanyName>
                                 <PartNumber>123_456_789</PartNumber>
+                                <PartVersion>3</PartVersion>
+                                <PrimaryPartType>Other</PrimaryPartType>
                             </PartVersion>
                         </vec:VecContent>
                         """
