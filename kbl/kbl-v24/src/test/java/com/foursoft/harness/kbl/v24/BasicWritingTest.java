@@ -27,6 +27,8 @@ package com.foursoft.harness.kbl.v24;
 
 import com.foursoft.harness.kbl.v24.validation.SchemaFactory;
 import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
@@ -240,6 +242,16 @@ class BasicWritingTest {
 
         assertThat(errors)
                 .isEmpty();
+
+        final KBLContainer model2 = createModel();
+        model2.setXmlId(null);
+        final String xml2 = new KblWriter().writeToString(model2);
+
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), xml2, errors::add));
+
+        assertThat(errors)
+                .hasSize(1);
     }
 
 }

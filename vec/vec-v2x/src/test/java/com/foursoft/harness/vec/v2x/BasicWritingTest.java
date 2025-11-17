@@ -26,8 +26,10 @@
 package com.foursoft.harness.vec.v2x;
 
 import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
 import com.foursoft.harness.vec.common.util.DateUtils;
 import com.foursoft.harness.vec.v2x.validation.SchemaFactory;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -134,6 +136,16 @@ class BasicWritingTest {
 
         assertThat(errors)
                 .isEmpty();
+
+        final VecContent model2 = createModel();
+        model2.setXmlId(null);
+        final String xml2 = new VecWriter().writeToString(model2);
+
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), xml2, errors::add));
+
+        assertThat(errors)
+                .hasSize(1);
     }
 
 }
