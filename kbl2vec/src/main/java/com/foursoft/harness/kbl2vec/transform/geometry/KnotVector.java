@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,31 +25,41 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry;
 
+import com.foursoft.harness.kbl.v25.KblBSplineCurve;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public record KnotVector(int degree, int order, int numberOfControlPoints, String clamping) {
+public record KnotVector(KblBSplineCurve source, Clamping clamping) {
 
-    public List<Double> getKnots() {
+    public List<Double> deriveKnots() {
+        final int degree = source.getDegree().intValue();
+        final int numberOfControlPoints = source.getControlPoints().size();
+        final int order = degree + 1;
+        return this.getKnots(degree, order, numberOfControlPoints, clamping);
+    }
+
+    private List<Double> getKnots(final int degree, final int order, final int numberOfControlPoints,
+                                  final Clamping clamping) {
         if (numberOfControlPoints <= degree || order != degree + 1) {
             return new ArrayList<>();
         }
 
         final int knotLength = numberOfControlPoints + order;
 
-        if (Constants.CLAMPED.equals(clamping)) {
-            return clampedUniformKnots(knotLength);
+        if (Clamping.CLAMPED.equals(clamping)) {
+            return clampedUniformKnots(knotLength, order);
         }
 
-        if (Constants.UNCLAMPED.equals(clamping)) {
+        if (Clamping.UNCLAMPED.equals(clamping)) {
             return unclampedUniformKnots(knotLength);
         }
 
         return new ArrayList<>();
     }
 
-    private List<Double> clampedUniformKnots(final int knotLength) {
+    private List<Double> clampedUniformKnots(final int knotLength, final int order) {
         final List<Double> knots = new ArrayList<>();
         for (int i = 0; i < order; i++) {
             knots.add(0.0);

@@ -25,11 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry;
 
-public final class Constants {
-    private Constants() {
-        throw new AssertionError("Constants class should not be instantiated.");
-    }
-
-    public static final String CLAMPED = "Clamped";
-    public static final String UNCLAMPED = "Unclamped";
+public enum Clamping {
+    CLAMPED,
+    UNCLAMPED
 }

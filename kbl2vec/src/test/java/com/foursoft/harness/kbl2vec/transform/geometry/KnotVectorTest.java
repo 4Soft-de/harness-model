@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,8 +25,11 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry;
 
+import com.foursoft.harness.kbl.v25.KblBSplineCurve;
+import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,15 +39,24 @@ class KnotVectorTest {
     @Test
     void should_returnClampedUniformKnots() {
         // Given
-        final int degree = 6;
-        final int order = 7;
-        final int numberOfControlPoints = 7;
-        final int expectedKnotVectorSize = order + numberOfControlPoints;
+        final KblBSplineCurve source = new KblBSplineCurve();
 
-        final KnotVector knotVector = new KnotVector(degree, order, numberOfControlPoints, Constants.CLAMPED);
+        final int degree = 6;
+        source.setDegree(BigInteger.valueOf(degree));
+
+        final List<KblCartesianPoint> controlPoints = List.of(new KblCartesianPoint(), new KblCartesianPoint(),
+                                                              new KblCartesianPoint(), new KblCartesianPoint(),
+                                                              new KblCartesianPoint(), new KblCartesianPoint(),
+                                                              new KblCartesianPoint());
+        source.getControlPoints().addAll(controlPoints);
+
+        // expectedKnotVectorSize = numberOfControlPoints + degree + 1 = 14
+        final int expectedKnotVectorSize = 14;
+
+        final KnotVector knotVector = new KnotVector(source, Clamping.CLAMPED);
 
         // When
-        final List<Double> result = knotVector.getKnots();
+        final List<Double> result = knotVector.deriveKnots();
 
         // Then
         assertThat(result).isNotNull()
@@ -55,15 +67,24 @@ class KnotVectorTest {
     @Test
     void should_returnUnclampedUniformKnots() {
         // Given
-        final int degree = 6;
-        final int order = 7;
-        final int numberOfControlPoints = 7;
-        final int expectedKnotVectorSize = order + numberOfControlPoints;
+        final KblBSplineCurve source = new KblBSplineCurve();
 
-        final KnotVector knotVector = new KnotVector(degree, order, numberOfControlPoints, Constants.UNCLAMPED);
+        final int degree = 6;
+        source.setDegree(BigInteger.valueOf(degree));
+
+        final List<KblCartesianPoint> controlPoints = List.of(new KblCartesianPoint(), new KblCartesianPoint(),
+                                                             new KblCartesianPoint(), new KblCartesianPoint(),
+                                                             new KblCartesianPoint(), new KblCartesianPoint(),
+                                                             new KblCartesianPoint());
+        source.getControlPoints().addAll(controlPoints);
+
+        // expectedKnotVectorSize = numberOfControlPoints + degree + 1 = 14
+        final int expectedKnotVectorSize = 14;
+
+        final KnotVector knotVector = new KnotVector(source, Clamping.UNCLAMPED);
 
         // When
-        final List<Double> result = knotVector.getKnots();
+        final List<Double> result = knotVector.deriveKnots();
 
         // Then
         assertThat(result).isNotNull()
@@ -74,15 +95,24 @@ class KnotVectorTest {
     @Test
     void should_returnClampedKnotsWithMiddleVector() {
         // Given
-        final int degree = 2;
-        final int order = 3;
-        final int numberOfControlPoints = 7;
-        final int expectedKnotVectorSize = order + numberOfControlPoints;
+        final KblBSplineCurve source = new KblBSplineCurve();
 
-        final KnotVector knotVector = new KnotVector(degree, order, numberOfControlPoints, Constants.CLAMPED);
+        final int degree = 2;
+        source.setDegree(BigInteger.valueOf(degree));
+
+        final List<KblCartesianPoint> controlPoints = List.of(new KblCartesianPoint(), new KblCartesianPoint(),
+                                                              new KblCartesianPoint(), new KblCartesianPoint(),
+                                                              new KblCartesianPoint(), new KblCartesianPoint(),
+                                                              new KblCartesianPoint());
+        source.getControlPoints().addAll(controlPoints);
+
+        // expectedKnotVectorSize = numberOfControlPoints + degree + 1 = 10
+        final int expectedKnotVectorSize = 10;
+
+        final KnotVector knotVector = new KnotVector(source, Clamping.CLAMPED);
 
         // When
-        final List<Double> result = knotVector.getKnots();
+        final List<Double> result = knotVector.deriveKnots();
 
         // Then
         assertThat(result).isNotNull()
@@ -93,30 +123,18 @@ class KnotVectorTest {
     @Test
     void should_returnEmptyList_whenNumberOfControlPointsNotGreaterThanOrder() {
         // Given
-        final int degree = 6;
-        final int order = 7;
-        final int numberOfControlPoints = 5;
+        final  KblBSplineCurve source = new KblBSplineCurve();
 
-        final KnotVector knotVector = new KnotVector(degree, order, numberOfControlPoints, Constants.CLAMPED);
+        final int degree = 6;
+        source.setDegree(BigInteger.valueOf(degree));
+
+        final List<KblCartesianPoint> controlPoints = List.of(new KblCartesianPoint());
+        source.getControlPoints().addAll(controlPoints);
+
+        final KnotVector knotVector = new KnotVector(source, Clamping.CLAMPED);
 
         // When
-        final List<Double> result = knotVector.getKnots();
-
-        // Then
-        assertThat(result).isNotNull().isEmpty();
-    }
-
-    @Test
-    void should_returnEmptyList_whenOrderIsNotDegreePlusOne() {
-        // Given
-        final int degree = 6;
-        final int oder = 10;
-        final int numberOfControlPoints = 7;
-
-        final KnotVector knotVector = new KnotVector(degree, oder, numberOfControlPoints, Constants.CLAMPED);
-
-        // When
-        final List<Double> result = knotVector.getKnots();
+        final List<Double> result = knotVector.deriveKnots();
 
         // Then
         assertThat(result).isNotNull().isEmpty();

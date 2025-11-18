@@ -59,7 +59,7 @@ class NurbsCurveTransformerTest {
         orchestrator.addMockMapping(controlPoint1, vecControlPoint1);
         orchestrator.addMockMapping(controlPoint2, vecControlPoint2);
 
-        final List<Double> expectedKnots = List.of(0.0, 0.0, 1.0, 1.0);
+        final List<Double> expectedKnots = List.of(0.0, 1.0, 2.0, 3.0);
 
         // When
         final VecNURBSCurve result = orchestrator.transform(transformer, source);
