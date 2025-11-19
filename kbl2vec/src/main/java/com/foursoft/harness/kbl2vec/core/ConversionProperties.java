@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.core;
 
+import com.foursoft.harness.kbl2vec.transform.geometry.Clamping;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecValueDetermination;
 
@@ -36,6 +37,7 @@ public class ConversionProperties {
     private String defaultWireTypeReferenceSystem = "ACME Inc.";
     private String defaultMaterialReferenceSystem = "ACME Inc.";
     private String defaultExternalReferenceCompanyName = "ACME Inc.";
+    private Clamping default3DCurveClamping = Clamping.UNCLAMPED;
 
     public VecLanguageCode getDefaultLanguageCode() {
         return defaultLanguageCode;
@@ -91,5 +93,13 @@ public class ConversionProperties {
 
     public String getDefaultExternalReferenceCompanyName() {
         return defaultExternalReferenceCompanyName;
+    }
+
+    public Clamping getDefault3DCurveClamping() {
+        return default3DCurveClamping;
+    }
+
+    public void setDefault3DCurveClamping(final Clamping default3DCurveClamping) {
+        this.default3DCurveClamping = default3DCurveClamping;
     }
 }

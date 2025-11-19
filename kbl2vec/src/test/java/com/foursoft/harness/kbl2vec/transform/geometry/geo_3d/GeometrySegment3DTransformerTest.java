@@ -26,13 +26,11 @@
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
 
 import com.foursoft.harness.kbl.v25.KblAliasIdentification;
+import com.foursoft.harness.kbl.v25.KblBSplineCurve;
 import com.foursoft.harness.kbl.v25.KblNode;
 import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
-import com.foursoft.harness.vec.v2x.VecAliasIdentification;
-import com.foursoft.harness.vec.v2x.VecGeometryNode3D;
-import com.foursoft.harness.vec.v2x.VecGeometrySegment3D;
-import com.foursoft.harness.vec.v2x.VecTopologySegment;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -74,6 +72,12 @@ class GeometrySegment3DTransformerTest {
         final VecAliasIdentification vecAliasIdentification = new VecAliasIdentification();
         orchestrator.addMockMapping(aliasIdentification, vecAliasIdentification);
 
+        final KblBSplineCurve kblBSplineCurve = new KblBSplineCurve();
+        source.getCenterCurves().add(kblBSplineCurve);
+
+        final VecNURBSCurve vecNURBSCurve = new VecNURBSCurve();
+        orchestrator.addMockMapping(kblBSplineCurve, vecNURBSCurve);
+
         // When
         final VecGeometrySegment3D result = orchestrator.transform(transformer, source);
 
@@ -89,7 +93,8 @@ class GeometrySegment3DTransformerTest {
                 .satisfies(v -> assertThat(v.getEndVector().getX()).isEqualTo(1.0))
                 .satisfies(v -> assertThat(v.getEndVector().getY()).isEqualTo(2.0))
                 .satisfies(v -> assertThat(v.getEndVector().getZ()).isEqualTo(3.0))
-                .satisfies(v -> assertThat(v.getAliasIds()).containsExactly(vecAliasIdentification));
+                .satisfies(v -> assertThat(v.getAliasIds()).containsExactly(vecAliasIdentification))
+                .satisfies(v -> assertThat(v.getCurves()).containsExactly(vecNURBSCurve));
     }
 
     @Test
