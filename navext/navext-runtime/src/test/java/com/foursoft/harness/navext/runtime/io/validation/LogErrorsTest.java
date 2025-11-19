@@ -43,11 +43,14 @@ class LogErrorsTest {
 
         final String content = new String(
                 Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DUPLICATE_ELEMENT_TEST_XML)));
-        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                                                                           StandardCharsets.UTF_8);
+        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content);
         final String errorString = LogErrors.annotateXMLContent(content, errors);
         // line 21 contains a duplicate key
         assertThat(errorString).contains("21: ERROR     <ChildB id=\"id_8\">");
+
+        final Collection<ErrorLocation> errors2 = xmlValidation.validateXML(content, StandardCharsets.UTF_8);
+        assertThat(errors2)
+                .containsExactlyElementsOf(errors);
     }
 
 }
