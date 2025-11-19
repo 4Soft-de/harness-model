@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import com.foursoft.harness.vec.v2x.VecTerminalRole;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
@@ -47,6 +48,8 @@ public class TerminalOccurrenceTransformer implements Transformer<ConnectionOrOc
             return TransformationResult.from(destination)
                     .withFragment(commonOccurrenceInformation(source, context))
                     .withDownstream(KblSpecialTerminalOccurrence.class, VecTerminalRole.class, Query.of(source),
+                                    VecPartOccurrence::getRoles)
+                    .withDownstream(KblSpecialTerminalOccurrence.class, VecPlaceableElementRole.class, Query.of(source),
                                     VecPartOccurrence::getRoles)
                     .build();
         }

@@ -53,14 +53,14 @@ class PlacementSpecificationTransformerTest {
         final KblProtectionArea protectionArea = new KblProtectionArea();
         segment.getProtectionAreas().add(protectionArea);
 
-        final KblFixingAssignment fixingAssignment = new KblFixingAssignment();
-        segment.getFixingAssignments().add(fixingAssignment);
+        final KblSpecialTerminalOccurrence locatedComponent = new KblSpecialTerminalOccurrence();
+        source.getSpecialTerminalOccurrences().add(locatedComponent);
 
         final VecOnWayPlacement vecOnWayPlacement = new VecOnWayPlacement();
         orchestrator.addMockMapping(protectionArea, vecOnWayPlacement);
 
         final VecOnPointPlacement vecOnPointPlacement = new VecOnPointPlacement();
-        orchestrator.addMockMapping(fixingAssignment, vecOnPointPlacement);
+        orchestrator.addMockMapping(locatedComponent, vecOnPointPlacement);
 
         // When
         final VecPlacementSpecification result = orchestrator.transform(transformer, source);
