@@ -151,7 +151,7 @@ public final class XMLValidation {
 
         final XMLValidation xmlValidation = new XMLValidation(schema);
         final Collection<LogValidator.ErrorLocation> errorLocations =
-                xmlValidation.validateXML(xmlContent, StandardCharsets.UTF_8);
+                xmlValidation.validateXML(xmlContent);
         final boolean valid = errorLocations.isEmpty();
 
         if (!valid) {
