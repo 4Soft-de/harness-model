@@ -27,19 +27,22 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.harness.HarnessQueries;
-import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
-import com.foursoft.harness.vec.scripting.schematic.SchematicQueries;
+import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.v2x.*;
+
+import java.util.function.BiFunction;
 
 public class ConnectorHousingRoleBuilder implements Builder<VecConnectorHousingRole> {
 
     private final VecConnectorHousingRole connectorHousingRole;
-    private final ComponentNodeLookup componentNodeLookup;
+
+    private final BiFunction<String, String, VecComponentConnector> connectorLookup;
 
     public ConnectorHousingRoleBuilder(final String identification,
                                        final VecConnectorHousingSpecification specification,
-                                       final ComponentNodeLookup componentNodeLookup) {
-        this.componentNodeLookup = componentNodeLookup;
+                                       final BiFunction<String, String, VecComponentConnector> connectorLookup) {
+        this.connectorLookup = connectorLookup;
+
         this.connectorHousingRole = connectorHousingRole(identification, specification);
 
     }
@@ -63,9 +66,8 @@ public class ConnectorHousingRoleBuilder implements Builder<VecConnectorHousingR
 
     public ConnectorHousingRoleBuilder withComponentConnector(final String componentNodeId,
                                                               final String componentConnectorId) {
-        final VecComponentNode node = componentNodeLookup.find(componentNodeId);
 
-        final VecComponentConnector connector = SchematicQueries.findConnector(node, componentConnectorId);
+        final VecComponentConnector connector = connectorLookup.apply(componentConnectorId, componentNodeId);
 
         this.connectorHousingRole.getComponentConnector().add(connector);
 
@@ -86,7 +88,7 @@ public class ConnectorHousingRoleBuilder implements Builder<VecConnectorHousingR
         final VecCavityReference cavityReference = HarnessQueries.findCavity(connectorHousingRole, cavityNumber);
 
         for (final VecComponentConnector connector : this.connectorHousingRole.getComponentConnector()) {
-            final VecComponentPort port = SchematicQueries.findPort(connector, portId);
+            final VecComponentPort port = ConnectionSpecificationQueries.findPort(connector, portId);
             cavityReference.getComponentPort().add(port);
         }
         return this;

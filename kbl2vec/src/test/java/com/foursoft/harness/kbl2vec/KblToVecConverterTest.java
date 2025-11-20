@@ -45,9 +45,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static com.foursoft.harness.vec.v2x.validation.VecValidation.validateXML;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SnapshotExtension.class)
 class KblToVecConverterTest {
+
+
 
     private Expect expect;
 
@@ -76,10 +83,13 @@ class KblToVecConverterTest {
             final ConversionOrchestrator.Result<VecContent> result = converter.convert(kblContainer);
 
             writeToStream(result, TestUtils.createTestFileStream(kblFileName));
+            final Collection<String> validationErrors = new ArrayList<>();
 
             try (final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
                 writeToStream(result, baos);
                 expect.scenario(kblFileName).toMatchSnapshot(baos.toString(StandardCharsets.UTF_8));
+                validateXML(baos.toString(StandardCharsets.UTF_8), validationErrors::add, true);
+                assertThat(validationErrors).isEmpty();
             }
         }
     }

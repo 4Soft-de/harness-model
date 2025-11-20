@@ -26,6 +26,7 @@
 package com.foursoft.harness.kbl2vec.transform.components.terminals;
 
 import com.foursoft.harness.kbl.v25.KblGeneralTerminal;
+import com.foursoft.harness.kbl.v25.KblSpecialTerminalOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,9 @@ class TerminalDocumentVersionTransformerTest {
 
         final KblGeneralTerminal source = new KblGeneralTerminal();
 
+        final KblSpecialTerminalOccurrence specialTerminalOccurrence = new KblSpecialTerminalOccurrence();
+        source.getRefSpecialTerminalOccurrence().add(specialTerminalOccurrence);
+
         final VecGeneralTechnicalPartSpecification vecGeneralTechnicalPartSpecification =
                 new VecGeneralTechnicalPartSpecification();
         final VecTerminalSpecification vecTerminalSpecification = new VecTerminalSpecification();
@@ -57,6 +61,10 @@ class TerminalDocumentVersionTransformerTest {
         final VecPartVersion vecPartVersion = new VecPartVersion();
         orchestrator.addMockMapping(source, vecPartVersion);
 
+        final VecPlaceableElementSpecification vecPlaceableElementSpecification =
+                new VecPlaceableElementSpecification();
+        orchestrator.addMockMapping(source, vecPlaceableElementSpecification);
+
         // When
         final VecDocumentVersion result = orchestrator.transform(transformer, source);
 
@@ -67,6 +75,7 @@ class TerminalDocumentVersionTransformerTest {
                 .satisfies(
                         v -> assertThat(v.getSpecifications()).containsExactlyInAnyOrder(
                                 vecGeneralTechnicalPartSpecification, vecTerminalSpecification,
-                                vecWireReceptionSpecification, vecTerminalReceptionSpecification));
+                                vecWireReceptionSpecification, vecTerminalReceptionSpecification,
+                                vecPlaceableElementSpecification));
     }
 }

@@ -75,7 +75,8 @@ public final class Fragments {
                     .ifPresent(dv.getDescriptions()::add);
 
             builder.withLinker(source, VecPartVersion.class, VecDocumentVersion::getReferencedPart);
+            builder.withLinker(source::getExternalReferences, VecDocumentVersion.class,
+                               VecDocumentVersion::getRelatedDocument);
         };
     }
-
 }

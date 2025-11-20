@@ -33,6 +33,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonComponentInformation;
 
@@ -44,14 +45,14 @@ public class ConnectorDocumentVersionTransformer implements Transformer<KblPart,
         if (source instanceof final KblConnectorHousing connectorHousing) {
             final VecDocumentVersion documentVersion = new VecDocumentVersion();
 
-            final TransformationResult.Builder<VecDocumentVersion> builder =
-                    TransformationResult.from(documentVersion)
-                            .withDownstream(KblConnectorHousing.class, VecConnectorHousingSpecification.class,
-                                            Query.of(connectorHousing),
-                                            VecDocumentVersion::getSpecifications)
-                            .withFragment(commonComponentInformation(source, context));
-
-            return builder.build();
+            return TransformationResult.from(documentVersion)
+                    .withDownstream(KblConnectorHousing.class, VecConnectorHousingSpecification.class,
+                                    Query.of(connectorHousing),
+                                    VecDocumentVersion::getSpecifications)
+                    .withDownstream(KblConnectorHousing.class, VecPlaceableElementSpecification.class,
+                                    Query.of(connectorHousing), VecDocumentVersion::getSpecifications)
+                    .withFragment(commonComponentInformation(source, context))
+                    .build();
         }
 
         return TransformationResult.noResult();

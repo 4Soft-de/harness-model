@@ -48,7 +48,7 @@ public class GenericPartOccurrenceTransformer implements Transformer<ConnectionO
                 source instanceof KblCoPackOccurrence || source instanceof KblCavityPlugOccurrence ||
                 source instanceof KblCavitySealOccurrence || source instanceof KblAccessoryOccurrence ||
                 source instanceof KblFixingOccurrence || source instanceof KblTerminalOccurrence ||
-                source instanceof KblSpecialTerminalOccurrence) {
+                source instanceof KblSpecialTerminalOccurrence || source instanceof KblComponentBoxOccurrence) {
             return TransformationResult.noResult();
         }
         context.getLogger().warn(

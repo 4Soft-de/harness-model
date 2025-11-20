@@ -48,7 +48,8 @@ public class GenericComponentDocumentVersionTransformer implements Transformer<K
         if (source instanceof KblAssemblyPart || source instanceof KblConnectorHousing ||
                 source instanceof KblGeneralWire || source instanceof KblWireProtection ||
                 source instanceof KblCoPackPart || source instanceof KblCavityPlug || source instanceof KblCavitySeal ||
-                source instanceof KblAccessory || source instanceof KblFixing || source instanceof KblGeneralTerminal) {
+                source instanceof KblAccessory || source instanceof KblFixing || source instanceof KblGeneralTerminal ||
+                source instanceof KblComponentBox) {
             return TransformationResult.noResult();
         }
         context.getLogger().warn(

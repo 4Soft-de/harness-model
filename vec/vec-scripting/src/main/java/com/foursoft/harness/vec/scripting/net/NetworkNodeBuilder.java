@@ -38,8 +38,8 @@ public class NetworkNodeBuilder implements Builder<VecNetworkNode> {
     private final VecNetworkNode networkNode = new VecNetworkNode();
     private final Function<String, VecNetType> netTypeLoopup;
 
-    public NetworkNodeBuilder(final Function<String, VecNetType> netTypeLoopup, final String identification) {
-        this.netTypeLoopup = netTypeLoopup;
+    public NetworkNodeBuilder(final Function<String, VecNetType> netTypeLookup, final String identification) {
+        this.netTypeLoopup = netTypeLookup;
         networkNode.setIdentification(identification);
     }
 

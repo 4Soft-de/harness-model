@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,15 +27,13 @@ package com.foursoft.harness.vec.scripting.net;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.DefaultValues;
 import com.foursoft.harness.vec.v2x.VecNetSpecification;
-import com.foursoft.harness.vec.v2x.VecNetType;
-import com.foursoft.harness.vec.v2x.VecNetworkPort;
 
-import static com.foursoft.harness.vec.common.util.StreamUtils.findOne;
+public class NetSpecificationBuilder implements Builder<VecNetSpecification> {
 
-public class NetworkArchitectureBuilder implements Builder<VecNetSpecification> {
-
-    private final VecNetSpecification netSpecification = new VecNetSpecification();
+    private final VecNetSpecification netSpecification = initializeNetSpecification();
+    private final NetSpecificationQueries queries = new NetSpecificationQueries(netSpecification);
 
     @Override
     public VecNetSpecification build() {
@@ -43,9 +41,15 @@ public class NetworkArchitectureBuilder implements Builder<VecNetSpecification> 
         return netSpecification;
     }
 
-    public NetworkArchitectureBuilder addNetworkNode(final String identification,
-                                                     final Customizer<NetworkNodeBuilder> customizer) {
-        final NetworkNodeBuilder builder = new NetworkNodeBuilder(this::findNetType, identification);
+    private VecNetSpecification initializeNetSpecification() {
+        final VecNetSpecification result = new VecNetSpecification();
+        result.setIdentification(DefaultValues.NETWORK_SPEC_IDENTIFICATION);
+        return result;
+    }
+
+    public NetSpecificationBuilder addNetworkNode(final String identification,
+                                                  final Customizer<NetworkNodeBuilder> customizer) {
+        final NetworkNodeBuilder builder = new NetworkNodeBuilder(queries::findNetType, identification);
 
         customizer.customize(builder);
 
@@ -54,8 +58,8 @@ public class NetworkArchitectureBuilder implements Builder<VecNetSpecification> 
         return this;
     }
 
-    public NetworkArchitectureBuilder addNetType(final String identification,
-                                                 final Customizer<NetTypeBuilder> customizer) {
+    public NetSpecificationBuilder addNetType(final String identification,
+                                              final Customizer<NetTypeBuilder> customizer) {
         final NetTypeBuilder builder = new NetTypeBuilder(identification);
 
         customizer.customize(builder);
@@ -65,9 +69,9 @@ public class NetworkArchitectureBuilder implements Builder<VecNetSpecification> 
         return this;
     }
 
-    public NetworkArchitectureBuilder addNet(final String identification,
-                                             final Customizer<NetBuilder> customizer) {
-        final NetBuilder builder = new NetBuilder(this::findPort, this::findNetType, identification);
+    public NetSpecificationBuilder addNet(final String identification,
+                                          final Customizer<NetBuilder> customizer) {
+        final NetBuilder builder = new NetBuilder(queries::findPort, queries::findNetType, identification);
 
         customizer.customize(builder);
 
@@ -76,17 +80,4 @@ public class NetworkArchitectureBuilder implements Builder<VecNetSpecification> 
         return this;
     }
 
-    private VecNetType findNetType(final String identification) {
-        return this.netSpecification.getNetTypes().stream().filter(
-                net -> net.getIdentification().equals(identification)).collect(findOne());
-    }
-
-    private VecNetworkPort findPort(final String nodeId, final String portId) {
-        return this.netSpecification
-                .getNetworkNodes()
-                .stream().filter(n -> nodeId.equals(n.getIdentification()))
-                .flatMap(n -> n.getPorts().stream())
-                .filter(p -> portId.equals(p.getIdentification()))
-                .collect(findOne());
-    }
 }

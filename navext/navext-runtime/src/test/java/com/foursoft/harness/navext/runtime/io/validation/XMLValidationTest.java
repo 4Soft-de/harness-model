@@ -59,10 +59,13 @@ class XMLValidationTest {
         final String content = new String(
                 Files.readAllBytes(TestData.getPath(TestData.VALIDATE_BASIC_TEST_XML)));
 
-        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                                                                           StandardCharsets.UTF_8);
+        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content);
         assertThat(errors)
                 .isEmpty();
+
+        final Collection<ErrorLocation> errors2 = xmlValidation.validateXML(content, StandardCharsets.UTF_8);
+        assertThat(errors2)
+                .containsExactlyElementsOf(errors);
     }
 
     @Test
@@ -72,14 +75,17 @@ class XMLValidationTest {
         final String content = new String(
                 Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DUPLICATE_ELEMENT_TEST_XML)));
 
-        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content,
-                                                                           StandardCharsets.UTF_8);
+        final Collection<ErrorLocation> errors = xmlValidation.validateXML(content);
         assertThat(errors)
                 .isNotEmpty()
                 .hasSize(2)
                 .allSatisfy(el -> assertThat(el)
                         .returns(21, x -> x.line)
                         .returns(true, x -> x.message.contains("id_8")));
+
+        final Collection<ErrorLocation> errors2 = xmlValidation.validateXML(content, StandardCharsets.UTF_8);
+        assertThat(errors2)
+                .containsExactlyElementsOf(errors);
     }
 
     @Test
@@ -97,11 +103,19 @@ class XMLValidationTest {
 
         final XMLValidation xmlValidation = getXmlValidation();
         assertThatNoException()
+                .isThrownBy(() -> xmlValidation.validateXML(result));
+        assertThatNoException()
                 .isThrownBy(() -> xmlValidation.validateXML(result, StandardCharsets.UTF_8));
 
         // Validate that an error is thrown when validating an XML string with a double hyphen in an XML comment.
         final String content = new String(
                 Files.readAllBytes(TestData.getPath(TestData.VALIDATE_DOUBLE_HYPHEN_TEST_XML)));
+
+        assertThatExceptionOfType(XMLIOException.class)
+                .isThrownBy(() -> xmlValidation.validateXML(content))
+                .withCauseInstanceOf(XMLIOException.class)
+                .havingCause()
+                .withMessageContaining("--");
 
         assertThatExceptionOfType(XMLIOException.class)
                 .isThrownBy(() -> xmlValidation.validateXML(content, StandardCharsets.UTF_8))

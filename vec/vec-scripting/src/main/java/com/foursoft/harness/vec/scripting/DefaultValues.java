@@ -41,6 +41,8 @@ public class DefaultValues {
     public static final String MODULES_COMPOSITION_SPEC_IDENTIFICATION = "MODULES";
 
     public static final String CONNECTION_SPEC_IDENTIFICATION = "SCHEMATIC";
+    public static final String NETWORK_SPEC_IDENTIFICATION = "NETWORK";
+    public static final String SIGNAL_SPEC_IDENTIFICATION = "SIGNALS";
 
     public String getCompanyName() {
         return companyName;

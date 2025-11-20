@@ -34,6 +34,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecPartWithSubComponentsRole;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 
 import static com.foursoft.harness.kbl2vec.transform.components.common.Fragments.commonOccurrenceInformation;
 
@@ -48,9 +49,9 @@ public class AssemblyPartOccurrenceTransformer implements Transformer<Connection
                     .from(partOccurrence)
                     .withFragment(commonOccurrenceInformation(assemblyPartOccurrence, context))
                     .withDownstream(KblAssemblyPartOccurrence.class, VecPartWithSubComponentsRole.class,
-                                    Query.of(assemblyPartOccurrence),
-                                    VecOccurrenceOrUsage::getRoles)
-
+                                    Query.of(assemblyPartOccurrence), VecOccurrenceOrUsage::getRoles)
+                    .withDownstream(KblAssemblyPartOccurrence.class, VecPlaceableElementRole.class,
+                                    Query.of(assemblyPartOccurrence), VecOccurrenceOrUsage::getRoles)
                     .build();
         }
         return TransformationResult.noResult();

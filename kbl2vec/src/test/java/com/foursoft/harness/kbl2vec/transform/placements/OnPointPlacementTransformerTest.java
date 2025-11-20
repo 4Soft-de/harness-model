@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.kbl2vec.transform.placements;
 
-import com.foursoft.harness.kbl.v25.FixedComponent;
 import com.foursoft.harness.kbl.v25.KblFixingAssignment;
 import com.foursoft.harness.kbl.v25.KblFixingOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
@@ -44,24 +43,22 @@ class OnPointPlacementTransformerTest {
         final OnPointPlacementTransformer transformer = new OnPointPlacementTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
-        final KblFixingAssignment source = new KblFixingAssignment();
-        source.setId("TestId");
+        final KblFixingOccurrence source = new KblFixingOccurrence();
+
+        final KblFixingAssignment fixingAssignment = new KblFixingAssignment();
+        source.getRefFixingAssignment().add(fixingAssignment);
 
         final VecSegmentLocation location = new VecSegmentLocation();
-        orchestrator.addMockMapping(source, location);
-
-        final FixedComponent fixing = new KblFixingOccurrence();
-        source.setFixing(fixing);
+        orchestrator.addMockMapping(fixingAssignment, location);
 
         final VecPlaceableElementRole role = new VecPlaceableElementRole();
-        orchestrator.addMockMapping(fixing, role);
+        orchestrator.addMockMapping(source, role);
 
         // When
         final VecOnPointPlacement result = orchestrator.transform(transformer, source);
 
         // Then
         assertThat(result).isNotNull()
-                .returns("TestId", VecOnPointPlacement::getIdentification)
                 .satisfies(v -> assertThat(v.getPlacedElement()).containsExactly(role))
                 .satisfies(v -> assertThat(v.getLocations()).containsExactly(location));
     }

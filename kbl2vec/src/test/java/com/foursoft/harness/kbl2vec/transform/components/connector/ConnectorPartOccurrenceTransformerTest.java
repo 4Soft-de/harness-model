@@ -31,6 +31,7 @@ import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -56,6 +57,9 @@ class ConnectorPartOccurrenceTransformerTest {
         orchestrator.addMockMapping(source, connectorHousingRole);
         orchestrator.addMockMapping(kblPart, vecPart);
 
+        final VecPlaceableElementRole placeableElementRole = new VecPlaceableElementRole();
+        orchestrator.addMockMapping(source, placeableElementRole);
+
         // When
         final VecPartOccurrence result = orchestrator.transform(transformer, source);
 
@@ -64,7 +68,7 @@ class ConnectorPartOccurrenceTransformerTest {
                 .returns("A220", VecPartOccurrence::getIdentification)
                 .returns(vecPart, VecPartOccurrence::getPart)
                 .satisfies(
-                        p -> assertThat(p.getRoles()).contains(connectorHousingRole)
+                        p -> assertThat(p.getRoles()).contains(connectorHousingRole, placeableElementRole)
                 );
     }
 }

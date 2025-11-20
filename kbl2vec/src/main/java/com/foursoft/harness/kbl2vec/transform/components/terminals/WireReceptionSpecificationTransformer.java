@@ -41,6 +41,7 @@ public class WireReceptionSpecificationTransformer
     public TransformationResult<VecWireReceptionSpecification> transform(final TransformationContext context,
                                                                          final KblGeneralTerminal source) {
         final VecWireReceptionSpecification destination = new VecWireReceptionSpecification();
+        destination.setIdentification("WRS");
 
         return TransformationResult.from(destination)
                 .withDownstream(KblValueRange.class, VecValueRange.class, Query.of(source.getCrossSectionArea()),
