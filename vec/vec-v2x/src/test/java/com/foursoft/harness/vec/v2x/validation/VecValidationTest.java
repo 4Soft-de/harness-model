@@ -43,7 +43,7 @@ class VecValidationTest {
     void testStrictSchema() {
         final VecContent root = new VecContent();
         root.setXmlId("id_1000_0");
-        root.setVecVersion("1.2.0");
+        root.setVecVersion("2.0.2");
 
         final VecWriter vecWriter = new VecWriter();
         final String result = vecWriter.writeToString(root);

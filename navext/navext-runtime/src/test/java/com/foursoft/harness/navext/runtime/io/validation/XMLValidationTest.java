@@ -32,12 +32,15 @@ import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.navext.runtime.model.Root;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.validation.Schema;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.*;
@@ -119,6 +122,57 @@ class XMLValidationTest {
                 .withCauseInstanceOf(XMLIOException.class)
                 .havingCause()
                 .withMessageContaining("--");
+    }
+
+    @Test
+    void testValidateXMLValid() {
+        // Only testing the method taking a Path since it calls the method taking an XML String.
+        final Path validXmlPath = TestData.getPath(TestData.VALIDATE_BASIC_TEST_XML);
+
+        final Schema schema = TestData.getBasicSchema();
+        final Collection<String> errors = new ArrayList<>();
+
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, null));
+        Assertions.assertThatNoException()
+                .isThrownBy(() -> XMLValidation.validateXML(schema, validXmlPath, errors::add));
+
+        assertThat(errors)
+                .isEmpty();
+    }
+
+    @Test
+    void testValidateXMLInvalid() {
+        // Only testing the method taking a Path since it calls the method taking an XML String.
+        final Path invalidXmlPath = TestData.getPath(TestData.VALIDATE_DUPLICATE_ELEMENT_TEST_XML);
+
+        final Schema schema = TestData.getBasicSchema();
+        final Collection<String> errors = new ArrayList<>();
+
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, null));
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, invalidXmlPath, errors::add));
+
+        assertThat(errors)
+                .hasSize(1);  // IntelliJ bug, will not fail.
+    }
+
+    @Test
+    void testValidateXMLWithFolder() {
+        // Fails since it's not a file.
+        final Path folderPath = TestData.getPath(TestData.VALIDATE_BASIC_TEST_XML).getParent();
+
+        final Schema schema = TestData.getBasicSchema();
+        final Collection<String> errors = new ArrayList<>();
+
+        Assertions.assertThatExceptionOfType(XMLIOException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, folderPath, null));
+        Assertions.assertThatExceptionOfType(XMLIOException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(schema, folderPath, errors::add));
+
+        assertThat(errors)
+                .isEmpty();  // Fails before even running the validation.
     }
 
 }
