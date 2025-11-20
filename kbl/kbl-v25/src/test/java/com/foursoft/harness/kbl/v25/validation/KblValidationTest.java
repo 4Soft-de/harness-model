@@ -41,7 +41,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class KblValidationTest {
-
     @Test
     void testSchema() {
         final KBLContainer root = new KBLContainer();
@@ -85,5 +84,4 @@ class KblValidationTest {
                 .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
         assertThat(errors).isNotEmpty();
     }
-
 }

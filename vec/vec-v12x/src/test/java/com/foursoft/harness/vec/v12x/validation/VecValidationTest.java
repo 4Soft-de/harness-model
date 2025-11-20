@@ -52,6 +52,7 @@ class VecValidationTest {
         VecValidation.validateXML(result, errors::add, true);
 
         assertThat(errors).isEmpty();
+
     }
 
     @Test
@@ -74,5 +75,4 @@ class VecValidationTest {
                 .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
         assertThat(errors).isNotEmpty();
     }
-
 }

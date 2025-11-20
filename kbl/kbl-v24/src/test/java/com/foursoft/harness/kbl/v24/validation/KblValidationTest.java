@@ -84,5 +84,4 @@ class KblValidationTest {
                 .hasMessageContaining("Schema validation failed! Use detailedLog for more information");
         assertThat(errors).isNotEmpty();
     }
-
 }
