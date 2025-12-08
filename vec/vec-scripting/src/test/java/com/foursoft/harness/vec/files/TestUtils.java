@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,23 +25,48 @@
  */
 package com.foursoft.harness.vec.files;
 
+import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.validation.SchemaFactory;
+import org.assertj.core.api.ThrowableAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 public final class TestUtils {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestUtils.class);
+
     private TestUtils() {
         throw new AssertionError("TestUtils must not be instantiated.");
     }
 
-    public static OutputStream createTestFileStream(String testcase) throws IOException {
-        Path dir = FileSystems.getDefault().getPath(".", "target", "samples");
+    public static OutputStream createTestFileStream(final String testcase) throws IOException {
+        final Path dir = FileSystems.getDefault().getPath(".", "target", "samples");
 
         Files.createDirectories(dir);
 
         return Files.newOutputStream(dir.resolve(testcase + ".vec"), StandardOpenOption.CREATE);
+    }
+
+    public static ThrowableAssert.ThrowingCallable storeVecAndValidate(final String testCaseName,
+                                                                       final VecSession session) {
+        return () -> {
+            final String outputVec = session.writeToString();
+            try (final OutputStream os = createTestFileStream(testCaseName);
+                 final OutputStreamWriter ow = new OutputStreamWriter(
+                         os, StandardCharsets.UTF_8)) {
+                ow.append(outputVec);
+            }
+            XMLValidation.validateXML(SchemaFactory.getStrictSchema(), outputVec, LOGGER::warn);
+        };
     }
 }

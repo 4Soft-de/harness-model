@@ -25,15 +25,14 @@
  */
 package com.foursoft.harness.vec.files.guidelines;
 
-import com.foursoft.harness.vec.files.TestUtils;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.enums.SignalInformationType;
 import com.foursoft.harness.vec.scripting.enums.SignalSubType;
 import com.foursoft.harness.vec.scripting.enums.SignalType;
-import com.foursoft.harness.vec.v2x.validation.VecValidation;
 import org.junit.jupiter.api.Test;
 
+import static com.foursoft.harness.vec.files.TestUtils.storeVecAndValidate;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class ArchitecturalLayerTest {
@@ -159,10 +158,8 @@ class ArchitecturalLayerTest {
                     });
         });
 
-        assertThatCode(() -> {
-            session.writeToStream(TestUtils.createTestFileStream("ecad-wiki-guideline-architectural-layer"));
-            VecValidation.validateXML(session.writeToString(), System.out::println, true);
-        }).doesNotThrowAnyException();
+        assertThatCode(
+                storeVecAndValidate("ecad-wiki-guideline-architectural-layer", session)).doesNotThrowAnyException();
 
     }
 }
