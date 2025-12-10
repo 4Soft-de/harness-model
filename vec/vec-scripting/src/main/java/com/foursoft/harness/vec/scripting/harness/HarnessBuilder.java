@@ -36,6 +36,7 @@ import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilde
 import com.foursoft.harness.vec.scripting.routing.RoutingSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.scripting.topology.TopologyBuilder;
+import com.foursoft.harness.vec.scripting.topology.TopologyZonesBuilder;
 import com.foursoft.harness.vec.scripting.variants.ConfigManagementBuilder;
 import com.foursoft.harness.vec.v2x.*;
 
@@ -63,6 +64,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     private final List<VecPartVersion> createdParts = new ArrayList<>();
     private VecTopologySpecification topologySpecification;
     private VecConfigurationConstraintSpecification configurationConstraintSpecification;
+    private VecTopologyZoneSpecification topologyZonesSpecification;
 
     public HarnessBuilder(final VecSession session, final String documentNumber, final String version) {
         this.session = session;
@@ -208,14 +210,27 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     }
 
     public HarnessBuilder withTopology(final Customizer<TopologyBuilder> customizer) {
-        final TopologyBuilder builder = new TopologyBuilder(
-                configConstraintLocator(configurationConstraintSpecification));
+        final TopologyBuilder builder = new TopologyBuilder(session,
+                                                            configConstraintLocator(
+                                                                    configurationConstraintSpecification));
 
         customizer.customize(builder);
 
         topologySpecification = builder.build();
 
         harnessDocumentBuilder.addSpecification(topologySpecification);
+
+        return this;
+    }
+
+    public HarnessBuilder withTopologyZones(final Customizer<TopologyZonesBuilder> customizer) {
+        final TopologyZonesBuilder builder = new TopologyZonesBuilder(this.session, this.topologySpecification);
+
+        customizer.customize(builder);
+
+        topologyZonesSpecification = builder.build();
+
+        harnessDocumentBuilder.addSpecification(topologyZonesSpecification);
 
         return this;
     }
