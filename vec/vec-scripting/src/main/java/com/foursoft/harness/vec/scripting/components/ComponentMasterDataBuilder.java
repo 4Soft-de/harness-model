@@ -28,6 +28,8 @@ package com.foursoft.harness.vec.scripting.components;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.components.protection.CorrugatedPipeSpecificationBuilder;
+import com.foursoft.harness.vec.scripting.components.protection.WireProtectionSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
@@ -134,6 +136,14 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
     }
 
+    public ComponentMasterDataBuilder addPartSubstitution(
+            final Customizer<PartSubstitutionSpecificationBuilder> customizer) {
+        final PartSubstitutionSpecificationBuilder builder =
+                new PartSubstitutionSpecificationBuilder(this.session, this.partNumber);
+
+        return addPartOrUsageRelatedSpecification(builder, customizer, true);
+    }
+
     public ComponentMasterDataBuilder addRequirementsConformance(
             final Customizer<RequirementsConformanceBuilder> customizer) {
         final RequirementsConformanceBuilder builder = new RequirementsConformanceBuilder(
@@ -146,8 +156,7 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
             final Customizer<VirtualPartStructureBuilder> customizer) {
         final VirtualPartStructureBuilder builder = new VirtualPartStructureBuilder(session,
                                                                                     partMasterDocument::getSpecificationWith,
-                                                                                    internalSchematicQuery::findConnection,
-                                                                                    internalSchematicQuery::findNode);
+                                                                                    internalSchematicQuery);
 
         customizer.customize(builder);
 
@@ -300,6 +309,22 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
 
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
 
+    }
+
+    public ComponentMasterDataBuilder addWireProtection(
+            final Customizer<WireProtectionSpecificationBuilder<VecWireProtectionSpecification>> customizer) {
+        final WireProtectionSpecificationBuilder<VecWireProtectionSpecification> builder =
+                WireProtectionSpecificationBuilder.builder(this.partNumber);
+
+        return addPartOrUsageRelatedSpecification(builder, customizer, true);
+    }
+
+    public ComponentMasterDataBuilder addCorrugatedPipe(
+            final Customizer<CorrugatedPipeSpecificationBuilder> customizer) {
+        final CorrugatedPipeSpecificationBuilder builder =
+                new CorrugatedPipeSpecificationBuilder(this.session, this.partNumber);
+
+        return addPartOrUsageRelatedSpecification(builder, customizer, true);
     }
 
     public ComponentMasterDataBuilder addTerminalPairing(final String otherSidePartNumber,

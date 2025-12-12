@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC 2.x Scripting API (Experimental)
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2025 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,36 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.core;
+package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.scripting.VecScriptingException;
-import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
+import com.foursoft.harness.vec.v2x.VecPartSubstitutionSpecification;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
 
-import java.lang.reflect.InvocationTargetException;
+public class PartSubstitutionSpecificationBuilder
+        extends PartOrUsageRelatedSpecificationBuilder<VecPartSubstitutionSpecification>
+        implements Builder<VecPartSubstitutionSpecification> {
 
-public abstract class PartOrUsageRelatedSpecificationBuilder<X extends VecPartOrUsageRelatedSpecification> implements
-        Builder<X> {
+    private final VecSession session;
+    private final VecPartSubstitutionSpecification specification;
 
-    protected PartOrUsageRelatedSpecificationBuilder() {
+    public PartSubstitutionSpecificationBuilder(final VecSession session, final String partNumber) {
+        this.session = session;
+        this.specification = initializeSpecification(VecPartSubstitutionSpecification.class, partNumber);
     }
 
-    protected <T extends VecPartOrUsageRelatedSpecification> T initializeSpecification(final Class<T> clazz,
-                                                                                       final String partNumber) {
-        try {
-            final T instance = clazz.getConstructor().newInstance();
-
-            instance.setIdentification(abbreviatedClassName(clazz) + "-" + partNumber);
-
-            return instance;
-        } catch (final InstantiationException | NoSuchMethodException | IllegalAccessException |
-                       InvocationTargetException e) {
-            throw new VecScriptingException("Error initializing PartOrUsageRelatedSpecification", e);
-        }
+    public PartSubstitutionSpecificationBuilder addAlternativePartVersion(final String partNumber) {
+        final VecPartVersion partVersion = this.session.findPartVersionByPartNumber(partNumber);
+        specification.getAlternativePartVersions().add(partVersion);
+        return this;
     }
 
-    private String abbreviatedClassName(final Class<?> clazz) {
-        return clazz.getSimpleName().replace("Vec", "").replaceAll("[^A-Z]", "");
+    @Override
+    public VecPartSubstitutionSpecification build() {
+        return specification;
     }
-
 }

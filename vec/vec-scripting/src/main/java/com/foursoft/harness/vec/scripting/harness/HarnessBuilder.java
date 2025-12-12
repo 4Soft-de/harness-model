@@ -30,6 +30,7 @@ import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.DefaultValues;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.components.PartOccurrenceBuilder;
+import com.foursoft.harness.vec.scripting.components.PartUsageBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilder;
@@ -53,6 +54,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
     private final DocumentVersionBuilder harnessDocumentBuilder;
     private final VecCompositionSpecification compositionSpecification;
+    private VecPartUsageSpecification partUsageSpecification;
     private VecCompositionSpecification modulesCompositionSpecification;
 
     private VecVariantConfigurationSpecification variantConfigurationSpecification;
@@ -80,6 +82,10 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         }
 
         this.harnessDocumentBuilder.addSpecification(compositionSpecification);
+
+        if (partUsageSpecification != null) {
+            harnessDocumentBuilder.addSpecification(partUsageSpecification);
+        }
 
         if (modulesCompositionSpecification != null) {
             harnessDocumentBuilder.addSpecification(modulesCompositionSpecification);
@@ -110,6 +116,14 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         final VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
         compositionSpecification.setIdentification(DefaultValues.COMP_COMPOSITION_SPEC_IDENTIFICATION);
         return compositionSpecification;
+    }
+
+    private void ensurePartUsageSpecification() {
+        if (partUsageSpecification == null) {
+            partUsageSpecification = new VecPartUsageSpecification();
+            partUsageSpecification.setIdentification(DefaultValues.COMP_USAGE_SPEC_IDENTIFICATION);
+        }
+
     }
 
     private void ensureModulesCompositionSpecification() {
@@ -161,6 +175,25 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     public HarnessBuilder addPartOccurrence(
             final String identification, final String partNumber) {
         return this.addPartOccurrence(identification, partNumber, null);
+    }
+
+    public HarnessBuilder addPartUsage(final String identification, final String specificationsDocumentNumber,
+                                       final Customizer<PartUsageBuilder> customizer) {
+        ensurePartUsageSpecification();
+
+        final VecDocumentVersion specifications = session.findDocument(specificationsDocumentNumber);
+
+        final PartUsageBuilder builder = new PartUsageBuilder(session, identification,
+                                                              specifications::getSpecificationWith,
+                                                              this.schematicQuery);
+
+        customizer.customize(builder);
+
+        final VecPartUsage result = builder.build();
+
+        partUsageSpecification.getPartUsages().add(result);
+
+        return this;
     }
 
     public HarnessBuilder addPartOccurrence(

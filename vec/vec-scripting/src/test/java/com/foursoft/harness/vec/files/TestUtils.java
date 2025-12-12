@@ -39,7 +39,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 public final class TestUtils {
 
@@ -54,7 +53,7 @@ public final class TestUtils {
 
         Files.createDirectories(dir);
 
-        return Files.newOutputStream(dir.resolve(testcase + ".vec"), StandardOpenOption.CREATE);
+        return Files.newOutputStream(dir.resolve(testcase + ".vec"));
     }
 
     public static ThrowableAssert.ThrowingCallable storeVecAndValidate(final String testCaseName,

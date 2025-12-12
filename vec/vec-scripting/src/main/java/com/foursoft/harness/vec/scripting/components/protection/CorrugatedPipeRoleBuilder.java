@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC 2.x Scripting API (Experimental)
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2025 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,36 +23,25 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.core;
+package com.foursoft.harness.vec.scripting.components.protection;
 
 import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.scripting.VecScriptingException;
-import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
+import com.foursoft.harness.vec.v2x.VecCorrugatedPipeRole;
+import com.foursoft.harness.vec.v2x.VecCorrugatedPipeSpecification;
 
-import java.lang.reflect.InvocationTargetException;
+public class CorrugatedPipeRoleBuilder implements Builder<VecCorrugatedPipeRole> {
 
-public abstract class PartOrUsageRelatedSpecificationBuilder<X extends VecPartOrUsageRelatedSpecification> implements
-        Builder<X> {
+    private final VecCorrugatedPipeRole pipeRole;
 
-    protected PartOrUsageRelatedSpecificationBuilder() {
+    public CorrugatedPipeRoleBuilder(final String identification,
+                                     final VecCorrugatedPipeSpecification specification) {
+        pipeRole = new VecCorrugatedPipeRole();
+        pipeRole.setIdentification(identification);
+        pipeRole.setWireProtectionSpecification(specification);
     }
 
-    protected <T extends VecPartOrUsageRelatedSpecification> T initializeSpecification(final Class<T> clazz,
-                                                                                       final String partNumber) {
-        try {
-            final T instance = clazz.getConstructor().newInstance();
-
-            instance.setIdentification(abbreviatedClassName(clazz) + "-" + partNumber);
-
-            return instance;
-        } catch (final InstantiationException | NoSuchMethodException | IllegalAccessException |
-                       InvocationTargetException e) {
-            throw new VecScriptingException("Error initializing PartOrUsageRelatedSpecification", e);
-        }
+    @Override
+    public VecCorrugatedPipeRole build() {
+        return pipeRole;
     }
-
-    private String abbreviatedClassName(final Class<?> clazz) {
-        return clazz.getSimpleName().replace("Vec", "").replaceAll("[^A-Z]", "");
-    }
-
 }

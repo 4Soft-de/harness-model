@@ -27,32 +27,61 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
-import com.foursoft.harness.vec.scripting.Locator;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.components.protection.CorrugatedPipeRoleBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.eecomponents.FuseRoleBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.RelayRoleBuilder;
-import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
+import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.v2x.*;
 
 public class PartUsageBuilder implements Builder<VecPartUsage> {
 
     private final VecSession session;
     private final SpecificationLocator specificationLocator;
-    private final Locator<VecConnection> connectionLookup;
-    private final ComponentNodeLookup componentNodeLookup;
+    private final ConnectionSpecificationQueries connectionSpecificationQueries;
     private final VecPartUsage partUsage = new VecPartUsage();
 
     public PartUsageBuilder(final VecSession session, final String identification,
                             final SpecificationLocator specificationLocator,
-                            final Locator<VecConnection> connectionLookup,
-                            final ComponentNodeLookup componentNodeLookup) {
+                            final ConnectionSpecificationQueries connectionSpecificationQueries) {
         this.session = session;
         this.specificationLocator = specificationLocator;
-        this.connectionLookup = connectionLookup;
-        this.componentNodeLookup = componentNodeLookup;
+        this.connectionSpecificationQueries = connectionSpecificationQueries;
         this.partUsage.setIdentification(identification);
+    }
 
+    public PartUsageBuilder addCorrugatedPipeSpecification(final String specificationIdentification,
+                                                           final Customizer<CorrugatedPipeRoleBuilder> customizer) {
+        final VecCorrugatedPipeSpecification specification = specificationLocator.find(
+                        VecCorrugatedPipeSpecification.class,
+                        specificationIdentification)
+                .orElseThrow();
+
+        partUsage.getPartOrUsageRelatedSpecification().add(specification);
+
+        final CorrugatedPipeRoleBuilder roleBuilder = new CorrugatedPipeRoleBuilder(partUsage.getIdentification(),
+                                                                                    specification);
+        customizer.customize(roleBuilder);
+
+        partUsage.getRoles().add(roleBuilder.build());
+
+        if (partUsage.getPrimaryPartUsageType() == null) {
+            partUsage.setPrimaryPartUsageType(VecPrimaryPartType.CORRUGATED_PIPE);
+        }
+
+        return this;
+    }
+
+    public PartUsageBuilder addPartSubstitution(final String specificationIdentification) {
+        final VecPartSubstitutionSpecification specification = specificationLocator.find(
+                        VecPartSubstitutionSpecification.class,
+                        specificationIdentification)
+                .orElseThrow();
+
+        partUsage.getPartOrUsageRelatedSpecification().add(specification);
+
+        return this;
     }
 
     public PartUsageBuilder addWireSpecification(final String specificationIdentification,
@@ -64,7 +93,8 @@ public class PartUsageBuilder implements Builder<VecPartUsage> {
         partUsage.getPartOrUsageRelatedSpecification().add(wireSpecification);
 
         final WireRoleBuilder wireRoleBuilder = new WireRoleBuilder(session, partUsage.getIdentification(),
-                                                                    wireSpecification, connectionLookup);
+                                                                    wireSpecification,
+                                                                    connectionSpecificationQueries::findConnection);
 
         customizer.customize(wireRoleBuilder);
 
@@ -89,7 +119,7 @@ public class PartUsageBuilder implements Builder<VecPartUsage> {
 
         final FuseRoleBuilder fuseRoleBuilder = new FuseRoleBuilder(session, partUsage.getIdentification(),
                                                                     fuseSpecification,
-                                                                    componentNodeLookup);
+                                                                    connectionSpecificationQueries::findNode);
 
         customizer.customize(fuseRoleBuilder);
 
@@ -113,7 +143,8 @@ public class PartUsageBuilder implements Builder<VecPartUsage> {
         partUsage.getPartOrUsageRelatedSpecification().add(relaySpecification);
 
         final RelayRoleBuilder relayRoleBuilder = new RelayRoleBuilder(session, partUsage.getIdentification(),
-                                                                       relaySpecification, componentNodeLookup);
+                                                                       relaySpecification,
+                                                                       connectionSpecificationQueries::findNode);
         customizer.customize(relayRoleBuilder);
 
         final VecRelayRole fuseRole = relayRoleBuilder.build();
