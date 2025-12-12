@@ -161,6 +161,8 @@ public class XMLWriter<T> {
             meta.getComments()
                     .ifPresent(c -> marshallerListener.addListener(new CommentAdderListener(xsw, c)));
 
+            marshallerListener.addListener(new XmlListEmptyUnsetListener());
+
             marshaller.marshal(container, xsw);
             xsw.close();
             marshallerListener.clear();
