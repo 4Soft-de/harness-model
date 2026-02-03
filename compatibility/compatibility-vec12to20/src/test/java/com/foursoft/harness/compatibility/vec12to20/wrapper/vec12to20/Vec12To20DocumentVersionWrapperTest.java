@@ -28,8 +28,8 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 import com.foursoft.harness.compatibility.vec12to20.TestFiles;
 import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
 import com.foursoft.harness.compatibility.vec12to20.wrapper.AbstractBaseWrapperTest;
-import com.foursoft.harness.vec.v2x.VecContent;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
+import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -57,4 +57,29 @@ class Vec12To20DocumentVersionWrapperTest extends AbstractBaseWrapperTest {
             assertThat(vecDocumentVersion.getNumberOfSheets()).isEqualTo(5);
         }
     }
+
+    @Test
+    void testGetSpecificationWithType() throws IOException {
+        try (final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X)) {
+            final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
+            assertThat(originalContent).isNotNull();
+
+            final VecDocumentVersion vecDocumentVersion = originalContent.getDocumentVersions().stream()
+                    .filter(d -> d.getDocumentNumber().equals("3D2_937_499"))
+                    .collect(StreamUtils.findOne());
+
+            assertThat(vecDocumentVersion.getSpecifications())
+                    .hasSize(45);
+
+            assertThat(vecDocumentVersion.getSpecificationsWithType(VecConnectorHousingSpecification.class))
+                    .hasSize(32);
+
+            assertThat(vecDocumentVersion.getSpecificationWithType(VecSignalSpecification.class))
+                    .isPresent();
+
+            assertThat(vecDocumentVersion.getSpecificationWithType(VecBatterySpecification.class))
+                    .isEmpty();
+        }
+    }
+
 } 
