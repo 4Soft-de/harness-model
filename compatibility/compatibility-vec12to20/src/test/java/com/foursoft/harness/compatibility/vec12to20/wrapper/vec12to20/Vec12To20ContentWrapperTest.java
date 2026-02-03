@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.X.X
+ * Compatibility VEC 1.2.X To VEC 2.0.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
