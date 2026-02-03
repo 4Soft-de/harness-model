@@ -64,6 +64,14 @@ public class Vec20To12DocumentVersionWrapper extends ReflectionBasedWrapper {
         } else if ("setNumberOfSheets".equals(methodName)) {
             numberOfSheets = (String) allArguments[0];
             return null;
+        } else if ("getSpecificationsWithType".equals(method.getName())) {
+            final Class<?> vec12xClass = (Class<?>) allArguments[0];
+            final Class<?> vec20xClass = getContext().getClassMapper().map(vec12xClass);
+            return wrapList("getSpecificationsWithType", vec12xClass, vec20xClass);
+        } else if ("getSpecificationWithType".equals(method.getName())) {
+            final Class<?> vec12xClass = (Class<?>) allArguments[0];
+            final Class<?> vec20xClass = getContext().getClassMapper().map(vec12xClass);
+            return wrapOptional("getSpecificationWithType", vec12xClass, vec20xClass);
         }
 
         return super.wrapObject(obj, method, allArguments);
