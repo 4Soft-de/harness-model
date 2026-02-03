@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness;
+package com.foursoft.harness.compatibility.vec12to20;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;

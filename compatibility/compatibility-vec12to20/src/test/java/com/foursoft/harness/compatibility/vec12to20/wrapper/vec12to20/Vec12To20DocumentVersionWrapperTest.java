@@ -23,10 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec12to20.wrapper;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
-import com.foursoft.harness.TestFiles;
+import com.foursoft.harness.compatibility.vec12to20.TestFiles;
 import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import org.junit.jupiter.api.Test;
