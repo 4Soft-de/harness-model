@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility VEC 1.2.X To VEC 2.0.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,14 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec20to12;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
-import com.foursoft.harness.TestFiles;
+import com.foursoft.harness.compatibility.vec12to20.TestFiles;
 import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.AbstractBaseWrapperTest;
 import com.foursoft.harness.vec.v2x.VecCompositionSpecification;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.VecEEComponentRole;
-import com.foursoft.harness.vec12to20.wrapper.AbstractBaseWrapperTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

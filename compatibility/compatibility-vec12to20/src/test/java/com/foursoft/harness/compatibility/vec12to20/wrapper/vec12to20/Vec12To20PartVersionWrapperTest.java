@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.X.X
+ * Compatibility VEC 1.2.X To VEC 2.0.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,37 +23,40 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec12to20.wrapper;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
-import com.foursoft.harness.TestFiles;
+import com.foursoft.harness.compatibility.vec12to20.TestFiles;
 import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.AbstractBaseWrapperTest;
+import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v2x.VecContent;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
+import com.foursoft.harness.vec.v2x.VecLocalizedString;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigInteger;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Vec12To20DocumentVersionWrapperTest extends AbstractBaseWrapperTest {
+class Vec12To20PartVersionWrapperTest extends AbstractBaseWrapperTest {
 
     @Test
     void invokeTest() throws IOException {
         try (final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X)) {
             final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
-            assertThat(originalContent).isNotNull();
+            final Optional<VecPartVersion> vecPartVersion = originalContent.getPartVersions().stream()
+                    .filter(pv -> !pv.getPreferredUseCases().isEmpty())
+                    .sorted(Comparator.comparing(VecPartVersion::getXmlId))
+                    .collect(StreamUtils.findOneOrNone());
 
-            final VecDocumentVersion vecDocumentVersion = originalContent.getDocumentVersions().stream()
-                    .filter(d -> !d.getSheetOrChapters().isEmpty())
-                    .toList().get(0);
-
-            final BigInteger numberOfSheets = vecDocumentVersion.getNumberOfSheets();
-            assertThat(numberOfSheets).isEqualTo(1);
-
-            vecDocumentVersion.setNumberOfSheets(new BigInteger("5"));
-            assertThat(vecDocumentVersion.getNumberOfSheets()).isEqualTo(5);
+            assertThat(vecPartVersion).isPresent();
+            final List<VecLocalizedString> preferredUseCases = vecPartVersion.get().getPreferredUseCases();
+            assertThat(preferredUseCases).hasSize(1);
+            assertThat(preferredUseCases.get(0).getValue()).isEqualTo("Normal Connector");
         }
     }
 } 

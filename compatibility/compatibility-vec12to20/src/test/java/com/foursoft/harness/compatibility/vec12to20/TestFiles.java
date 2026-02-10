@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.X.X
+ * Compatibility VEC 1.2.X To VEC 2.0.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec12to20.wrapper;
+package com.foursoft.harness.compatibility.vec12to20;
 
-import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.vec12to20.Vec12XTo20XCompatibilityWrapper;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.util.Objects;
 
-public abstract class AbstractBaseWrapperTest {
+public final class TestFiles {
 
-    protected static CompatibilityContext get12To20Context() {
-        return new Vec12XTo20XCompatibilityWrapper().getContext();
+    public static final String OLD_BEETLE_V12X = "/vec12x/oldbeetle_vec12x.vec";
+
+    private TestFiles() {
+        // hide constructor
+    }
+
+    public static InputStream getInputStream(final String path) {
+        final InputStream resourceAsStream = TestFiles.class.getResourceAsStream(path);
+        Objects.requireNonNull(resourceAsStream, "Couldn't get resource " + path);
+        return new BufferedInputStream(resourceAsStream);
     }
 
 }

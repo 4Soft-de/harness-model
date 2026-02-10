@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.X.X
+ * Compatibility VEC 1.2.X To VEC 2.0.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,27 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
-import java.io.BufferedInputStream;
+import com.foursoft.harness.compatibility.vec12to20.TestFiles;
+import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.AbstractBaseWrapperTest;
+import com.foursoft.harness.vec.v2x.VecContent;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
-public final class TestFiles {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    public static final String OLD_BEETLE_V12X = "/vec12x/oldbeetle_vec12x.vec";
+class Vec12To20ContentWrapperTest extends AbstractBaseWrapperTest {
 
-    private TestFiles() {
-        // hide constructor
+    @Test
+    void invokeTest() throws IOException {
+        try (final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X)) {
+            final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
+            assertThat(originalContent).isNotNull();
+            assertThat(originalContent.getVecVersion()).isEqualTo("2.0.2");
+        }
     }
-
-    public static InputStream getInputStream(final String path) {
-        final InputStream resourceAsStream = TestFiles.class.getResourceAsStream(path);
-        Objects.requireNonNull(resourceAsStream, "Couldn't get resource " + path);
-        return new BufferedInputStream(resourceAsStream);
-    }
-
-}
+} 
