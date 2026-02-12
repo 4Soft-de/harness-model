@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,7 +53,8 @@ class TopologyTest {
 
     private void buildZones(final TopologyZonesBuilder zones) {
         zones.addZone("HOT", zone -> {
-                    zone.withAssignedSegment("SEG-I", assigment ->
+                    zone.withAmbientTemperature(-30, 125)
+                            .withAssignedSegment("SEG-I", assigment ->
                                     assigment.withCoverage(coverage ->
                                                                    coverage.from("ND-IV", VecAnchorType.FROM_END_NODE)
                                                                            .to("Loc A", VecAnchorType.FROM_END_NODE,
@@ -70,13 +71,15 @@ class TopologyTest {
                             .withAssignedSegment("SEG-III");
                 })
                 .addZone("WET", zone -> {
-                    zone.withAssignedSegment("SEG-II", assigment ->
-                            assigment.withCoverage(coverage ->
-                                                           coverage.from("Loc C", VecAnchorType.FROM_START_NODE, 200)
-                                                                   .to("Loc D", VecAnchorType.FROM_START_NODE,
-                                                                       600)
-                            )
-                    );
+                    zone.withLiquidIngressRequirement("9K")
+                            .withAssignedSegment("SEG-II", assigment ->
+                                    assigment.withCoverage(coverage ->
+                                                                   coverage.from("Loc C", VecAnchorType.FROM_START_NODE,
+                                                                                 200)
+                                                                           .to("Loc D", VecAnchorType.FROM_START_NODE,
+                                                                               600)
+                                    )
+                            );
                 });
     }
 

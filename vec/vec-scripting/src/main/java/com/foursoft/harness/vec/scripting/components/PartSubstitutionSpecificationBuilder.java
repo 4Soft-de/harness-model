@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,20 +23,34 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.vec.scripting.components;
 
-public enum TemperatureType {
+import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
+import com.foursoft.harness.vec.v2x.VecPartSubstitutionSpecification;
+import com.foursoft.harness.vec.v2x.VecPartVersion;
 
-    OPERATING_TEMPERATURE("OperatingTemperature"), SHORT_TERM_AGING_TEMPERATURE("ShortTermAgingTemperature"),
-    AMBIENT_TEMPERATURE("AmbientTemperature");
+public class PartSubstitutionSpecificationBuilder
+        extends PartOrUsageRelatedSpecificationBuilder<VecPartSubstitutionSpecification>
+        implements Builder<VecPartSubstitutionSpecification> {
 
-    private final String value;
+    private final VecSession session;
+    private final VecPartSubstitutionSpecification specification;
 
-    TemperatureType(final String value) {
-        this.value = value;
+    public PartSubstitutionSpecificationBuilder(final VecSession session, final String partNumber) {
+        this.session = session;
+        this.specification = initializeSpecification(VecPartSubstitutionSpecification.class, partNumber);
     }
 
-    public String value() {
-        return value;
+    public PartSubstitutionSpecificationBuilder addAlternativePartVersion(final String partNumber) {
+        final VecPartVersion partVersion = this.session.findPartVersionByPartNumber(partNumber);
+        specification.getAlternativePartVersions().add(partVersion);
+        return this;
+    }
+
+    @Override
+    public VecPartSubstitutionSpecification build() {
+        return specification;
     }
 }

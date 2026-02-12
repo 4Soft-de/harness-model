@@ -29,6 +29,7 @@ import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.components.protection.CorrugatedPipeRoleBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.FuseRoleBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
@@ -101,6 +102,7 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
                                                 .stream(), VecPartOrUsageRelatedSpecification.class)
                 .filter(s -> s.getDescribedPart().contains(partVersion))
                 .filter(not(VecGeneralTechnicalPartSpecification.class::isInstance))
+                .filter(not(VecPartSubstitutionSpecification.class::isInstance))
                 .map(x -> x.accept(visitor))
                 .filter(Objects::nonNull).toList();
     }
@@ -113,6 +115,12 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
                 throws RuntimeException {
             return new ConnectorHousingRoleBuilder(partOccurrence.getIdentification(), aBean,
                                                    connectionSpecificationQuery::findConnector);
+        }
+
+        @Override
+        public Builder<? extends VecRole> visitVecCorrugatedPipeSpecification(
+                final VecCorrugatedPipeSpecification aBean) throws RuntimeException {
+            return new CorrugatedPipeRoleBuilder(partOccurrence.getIdentification(), aBean);
         }
 
         @Override

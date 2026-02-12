@@ -27,12 +27,10 @@ package com.foursoft.harness.vec.scripting.harness;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
-import com.foursoft.harness.vec.scripting.Locator;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.components.PartUsageBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
-import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
-import com.foursoft.harness.vec.v2x.VecConnection;
+import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
 import com.foursoft.harness.vec.v2x.VecPartUsage;
 import com.foursoft.harness.vec.v2x.VecPartUsageSpecification;
@@ -43,28 +41,26 @@ public class VirtualPartStructureBuilder implements Builder<VirtualPartStructure
     private final VecPartUsageSpecification partUsageSpecification;
     private final VecSession session;
     private final SpecificationLocator specificationLocator;
-    private final Locator<VecConnection> connectionLookup;
-    private final ComponentNodeLookup componentNodeLookup;
+    private final ConnectionSpecificationQueries connectionSpecificationQueries;
 
     public VirtualPartStructureBuilder(final VecSession session, final SpecificationLocator specificationLocator,
-                                       final Locator<VecConnection> connectionLookup,
-                                       final ComponentNodeLookup componentNodeLookup) {
+                                       final ConnectionSpecificationQueries connectionSpecificationQueries) {
         this.session = session;
         this.specificationLocator = specificationLocator;
-        this.connectionLookup = connectionLookup;
-        this.componentNodeLookup = componentNodeLookup;
+        this.connectionSpecificationQueries = connectionSpecificationQueries;
         partStructureSpecification = initializePartStructureSpecification();
         partUsageSpecification = initalizePartUsageSpecification();
     }
 
-    @Override public VirtualPartStructureResult build() {
+    @Override
+    public VirtualPartStructureResult build() {
         return new VirtualPartStructureResult(partStructureSpecification, partUsageSpecification);
     }
 
     public VirtualPartStructureBuilder addPartUsage(final String identification,
                                                     final Customizer<PartUsageBuilder> customizer) {
         final PartUsageBuilder builder = new PartUsageBuilder(session, identification, specificationLocator,
-                                                              connectionLookup, componentNodeLookup);
+                                                              connectionSpecificationQueries);
 
         customizer.customize(builder);
 

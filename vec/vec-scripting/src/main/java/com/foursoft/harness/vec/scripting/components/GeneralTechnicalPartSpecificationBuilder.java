@@ -77,6 +77,13 @@ public class GeneralTechnicalPartSpecificationBuilder
 
     public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final TemperatureType temperatureType,
                                                                                final double lowerLimit,
+                                                                               final double upperLimit
+    ) {
+        return this.withTemperatureInformation(temperatureType, lowerLimit, upperLimit, session.mm());
+    }
+
+    public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final TemperatureType temperatureType,
+                                                                               final double lowerLimit,
                                                                                final double upperLimit,
                                                                                final VecUnit unit) {
 
@@ -111,7 +118,8 @@ public class GeneralTechnicalPartSpecificationBuilder
         return element.getBoundingBox();
     }
 
-    @Override public VecGeneralTechnicalPartSpecification build() {
+    @Override
+    public VecGeneralTechnicalPartSpecification build() {
         return element;
     }
 }
