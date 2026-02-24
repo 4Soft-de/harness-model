@@ -103,8 +103,7 @@ public final class WrapperHelper {
     public <T> Optional<T> wrapOptional(final String methodName, final Object target,
                                         final Class<T> targetClass, final Object[] args) {
         return getResultObject(methodName, target, Optional.class, args)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
+                .flatMap(x -> (Optional<?>) x)
                 .map(wrapper.getContext().getWrapperProxyFactory()::createProxy)
                 .filter(targetClass::isInstance)
                 .map(targetClass::cast);
