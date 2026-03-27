@@ -107,6 +107,11 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         return wrapperHelper.getResultList(methodName, target, targetClass, args);
     }
 
+    protected <T> Optional<T> wrapOptional(final String methodName,
+                                           final Class<T> targetClass, final Object... args) {
+        return wrapperHelper.wrapOptional(methodName, target, targetClass, args);
+    }
+
     protected <T> List<T> wrapList(final String methodName,
                                    final Class<T> targetClass, final Object... args) {
         return wrapperHelper.wrapList(methodName, target, targetClass, args);
