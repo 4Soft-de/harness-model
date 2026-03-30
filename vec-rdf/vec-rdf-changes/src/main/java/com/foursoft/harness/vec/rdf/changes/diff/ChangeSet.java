@@ -83,7 +83,7 @@ class ChangeSet {
 
     private void addStatement(final Statement statement, final Property changeSetProperty) {
         addClosureContent(statement);
-        final Resource statementResource = changeSetModel.createResource(statement);
+        final StatementTerm statementResource = changeSetModel.createStatementTerm(statement);
         changeSetModel.add(changeSetResource, changeSetProperty, statementResource);
     }
 

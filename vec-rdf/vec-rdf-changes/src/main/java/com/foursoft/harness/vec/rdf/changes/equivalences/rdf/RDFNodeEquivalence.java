@@ -67,7 +67,7 @@ public class RDFNodeEquivalence extends Equivalence<RDFNode> {
             return Equivalence.equals();
         }
 
-        @Override public Object visitStmt(final Resource r, final Statement statement) {
+        @Override public Object visitStmt(final StatementTerm statementTerm, final Statement statement) {
             throw new UnsupportedOperationException("Statement Resources are not supported.");
         }
     }

@@ -26,6 +26,7 @@
 package com.foursoft.harness.vec.scripting.core;
 
 import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecScriptingException;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 
 import java.lang.reflect.InvocationTargetException;
@@ -33,24 +34,24 @@ import java.lang.reflect.InvocationTargetException;
 public abstract class PartOrUsageRelatedSpecificationBuilder<X extends VecPartOrUsageRelatedSpecification> implements
         Builder<X> {
 
-    public PartOrUsageRelatedSpecificationBuilder() {
+    protected PartOrUsageRelatedSpecificationBuilder() {
     }
 
-    protected <T extends VecPartOrUsageRelatedSpecification> T initializeSpecification(Class<T> clazz,
+    protected <T extends VecPartOrUsageRelatedSpecification> T initializeSpecification(final Class<T> clazz,
                                                                                        final String partNumber) {
         try {
-            T instance = clazz.getConstructor().newInstance();
+            final T instance = clazz.getConstructor().newInstance();
 
             instance.setIdentification(abbreviatedClassName(clazz) + "-" + partNumber);
 
             return instance;
-        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException |
-                 InvocationTargetException e) {
-            throw new RuntimeException(e);
+        } catch (final InstantiationException | NoSuchMethodException | IllegalAccessException |
+                       InvocationTargetException e) {
+            throw new VecScriptingException("Error initializing PartOrUsageRelatedSpecification", e);
         }
     }
 
-    private String abbreviatedClassName(Class<?> clazz) {
+    private String abbreviatedClassName(final Class<?> clazz) {
         return clazz.getSimpleName().replace("Vec", "").replaceAll("[^A-Z]", "");
     }
 

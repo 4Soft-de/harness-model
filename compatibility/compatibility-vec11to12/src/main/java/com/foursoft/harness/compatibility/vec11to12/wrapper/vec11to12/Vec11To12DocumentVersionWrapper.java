@@ -52,6 +52,10 @@ public class Vec11To12DocumentVersionWrapper extends ReflectionBasedWrapper {
             final Class<?> vec12xClass = (Class<?>) allArguments[0];
             final Class<?> vec11xClass = getContext().getClassMapper().map(vec12xClass);
             return wrapList("getSpecificationsWithType", vec12xClass, vec11xClass);
+        } else if ("getSpecificationWithType".equals(method.getName())) {
+            final Class<?> vec12xClass = (Class<?>) allArguments[0];
+            final Class<?> vec11xClass = getContext().getClassMapper().map(vec12xClass);
+            return wrapOptional("getSpecificationWithType", vec12xClass, vec11xClass);
         }
 
         return super.wrapObject(obj, method, allArguments);

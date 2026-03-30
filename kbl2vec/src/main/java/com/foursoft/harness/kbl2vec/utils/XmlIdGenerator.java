@@ -32,15 +32,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class XmlIdGenerator {
 
-    private static final String XML_ID_PREFIX = "id_";
-
     private final AtomicInteger counter = new AtomicInteger(0);
 
     public void createIdForXmlBean(final ModifiableIdentifiable aBean) {
         createIdForXmlBean(aBean, derivePrefix(aBean));
     }
 
-    private void createIdForXmlBean(final ModifiableIdentifiable aBean, final String prefix) {
+    protected void createIdForXmlBean(final ModifiableIdentifiable aBean, final String prefix) {
         if (StringUtils.isEmpty(aBean.getXmlId())) {
             aBean.setXmlId(generateNewXmlId(prefix));
         }
@@ -55,5 +53,4 @@ public class XmlIdGenerator {
                 .getSimpleName()
                 .replace("Vec", "") + "_";
     }
-
 }

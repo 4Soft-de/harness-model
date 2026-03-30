@@ -29,6 +29,7 @@ public class DefaultValues {
 
     public static final String VARIANT_CONFIGURATION_SPEC_IDENTIFICATION = "VARIANTS";
     public static final String TOPO_SPEC_IDENTIFICATION = "TOPOLOGY";
+    public static final String TOPO_ZONE_SPEC_IDENTIFICATION = "TOPOLOGY-ZONES";
     public static final String PLACEMENT_SPECIFICATION_IDENTIFICATION = "PLACEMENTS";
     public static final String ROUTING_SPECIFICATION_IDENTIFICATION = "ROUTINGS";
     public static final String CONFIG_CONSTRAINTS_SPEC_IDENTIFICATION = "CONFIG_CONSTRAINTS";
@@ -38,9 +39,12 @@ public class DefaultValues {
     public static final String REQUIREMENTS_DESCRIPTION = "RequirementsDescription";
 
     public static final String COMP_COMPOSITION_SPEC_IDENTIFICATION = "COMPONENTS";
+    public static final String COMP_USAGE_SPEC_IDENTIFICATION = "USAGES";
     public static final String MODULES_COMPOSITION_SPEC_IDENTIFICATION = "MODULES";
 
     public static final String CONNECTION_SPEC_IDENTIFICATION = "SCHEMATIC";
+    public static final String NETWORK_SPEC_IDENTIFICATION = "NETWORK";
+    public static final String SIGNAL_SPEC_IDENTIFICATION = "SIGNALS";
 
     public String getCompanyName() {
         return companyName;

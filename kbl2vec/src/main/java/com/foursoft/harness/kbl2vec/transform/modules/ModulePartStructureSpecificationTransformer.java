@@ -37,8 +37,9 @@ import static com.foursoft.harness.kbl2vec.transform.Queries.partOccurrences;
 
 public class ModulePartStructureSpecificationTransformer
         implements Transformer<KblModuleConfiguration, VecPartStructureSpecification> {
-    @Override public TransformationResult<VecPartStructureSpecification> transform(final TransformationContext context,
-                                                                                   final KblModuleConfiguration source) {
+    @Override
+    public TransformationResult<VecPartStructureSpecification> transform(final TransformationContext context,
+                                                                         final KblModuleConfiguration source) {
         final VecPartStructureSpecification element = new VecPartStructureSpecification();
 
         switch (source.getParentModule().getContent()) {

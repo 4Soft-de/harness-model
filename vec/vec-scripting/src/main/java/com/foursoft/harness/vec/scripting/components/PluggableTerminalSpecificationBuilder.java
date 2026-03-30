@@ -207,7 +207,7 @@ public class PluggableTerminalSpecificationBuilder
     }
 
     public PluggableTerminalSpecificationBuilder withWireReceptionType(final WireReceptionType wireReceptionType) {
-        wireReceptionSpecification.setWireReceptionType(wireReceptionType.value());
+        wireReceptionSpecification.getWireReceptionTypes().add(wireReceptionType.value());
         return this;
     }
 

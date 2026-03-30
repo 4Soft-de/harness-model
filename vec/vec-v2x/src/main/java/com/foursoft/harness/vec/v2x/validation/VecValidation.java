@@ -25,22 +25,20 @@
  */
 package com.foursoft.harness.vec.v2x.validation;
 
-import com.foursoft.harness.navext.runtime.io.validation.LogErrors;
-import com.foursoft.harness.navext.runtime.io.validation.LogValidator.ErrorLocation;
 import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
 import com.foursoft.harness.vec.common.exception.VecException;
 
 import javax.xml.validation.Schema;
-import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
  * Validate VEC data.
+ *
+ * @deprecated Use {@link XMLValidation} instead.
  */
+@Deprecated(forRemoval = true)
 public final class VecValidation {
-    private static final Schema schema = SchemaFactory.getSchema();
 
     private VecValidation() {
         // hide default constructor
@@ -52,20 +50,15 @@ public final class VecValidation {
      * @param xmlContent  the xml content
      * @param consumer    to display scheme violations.
      * @param detailedLog if true and error happens a detailed log is written, use always true in tests !
+     * @deprecated Use {@link XMLValidation#validateXML(Schema, String, Consumer)}
+     * with {@link SchemaFactory#getSchema()} instead.
      */
+    @Deprecated(forRemoval = true)
     public static void validateXML(final String xmlContent, final Consumer<String> consumer,
                                    final boolean detailedLog) {
-        Objects.requireNonNull(xmlContent);
-
-        final XMLValidation xmlValidation = new XMLValidation(schema);
-        final Collection<ErrorLocation> errorLocations = xmlValidation.validateXML(xmlContent, StandardCharsets.UTF_8);
-        if (detailedLog && !errorLocations.isEmpty()) {
-            final String annotateXMLContent = LogErrors.annotateXMLContent(xmlContent, errorLocations);
-            if (!annotateXMLContent.isEmpty()) {
-                consumer.accept(annotateXMLContent);
-            }
-        }
-        if (!errorLocations.isEmpty()) {
+        try {
+            XMLValidation.validateXML(SchemaFactory.getSchema(), xmlContent, detailedLog ? consumer : null);
+        } catch (final XmlValidationException e) {
             throw new VecException("Schema validation failed! Use detailedLog for more information");
         }
     }

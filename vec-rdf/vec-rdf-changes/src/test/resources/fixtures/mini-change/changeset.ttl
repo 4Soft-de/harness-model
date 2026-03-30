@@ -74,27 +74,27 @@ _:b0 rdf:type vec:Color ;
 
 :MyChangeSet rdf:type cs:ChangeSet ;
     cs:changeSetAdded
-        << :WireElementReference-id_00076 vec:wireElementReferenceWireLength _:b2 >>,
-        << :WireElementReference-id_00076 vec:wireElementReferenceReferencedWireElement :WireElement-id_00045 >>,
-        << :InsulationSpecification-id_00036 vec:insulationSpecificationSecondIdentificationColor _:b0 >>,
-        << :DocumentVersion-id_00053 vec:documentVersionDocumentVersion "2" >>,
-        << :PartOccurrence-id_00068 vec:occurrenceOrUsageIdentification "SL3" >>,
-        << :WireElementReference-id_00070 vec:wireElementReferenceReferencedWireElement :WireElement-id_00043 >>,
-        << :WireRole-id_00069 vec:wireRoleWireSpecification :WireSpecification-id_00042 >>,
-        << :PartOccurrence-id_00068 vec:partOccurrencePart :PartVersion-id_00100 >>,
-        << :WireRole-id_00069 vec:roleIdentification "SL3" >>,
-        << :WireElementReference-id_00071 vec:wireElementReferenceReferencedWireElement :WireElement-id_00044 >> ;
+        <<( :WireElementReference-id_00076 vec:wireElementReferenceWireLength _:b2 )>>,
+        <<( :WireElementReference-id_00076 vec:wireElementReferenceReferencedWireElement :WireElement-id_00045 )>>,
+        <<( :InsulationSpecification-id_00036 vec:insulationSpecificationSecondIdentificationColor _:b0 )>>,
+        <<( :DocumentVersion-id_00053 vec:documentVersionDocumentVersion "2" )>>,
+        <<( :PartOccurrence-id_00068 vec:occurrenceOrUsageIdentification "SL3" )>>,
+        <<( :WireElementReference-id_00070 vec:wireElementReferenceReferencedWireElement :WireElement-id_00043 )>>,
+        <<( :WireRole-id_00069 vec:wireRoleWireSpecification :WireSpecification-id_00042 )>>,
+        <<( :PartOccurrence-id_00068 vec:partOccurrencePart :PartVersion-id_00100 )>>,
+        <<( :WireRole-id_00069 vec:roleIdentification "SL3" )>>,
+        <<( :WireElementReference-id_00071 vec:wireElementReferenceReferencedWireElement :WireElement-id_00044 )>> ;
     cs:changeSetIdentification "ISSUE-1278" ;
     cs:changeSetRemoved
-        << :WireElementReference-id_00076 vec:wireElementReferenceWireLength _:b1 >>,
-        << :PartOccurrence-id_00068 vec:partOccurrencePart :PartVersion-id_00099 >>,
-        << :WireRole-id_00069 vec:wireRoleWireSpecification :WireSpecification-id_00027 >>,
-        << :WireElementReference-id_00070 vec:wireElementReferenceReferencedWireElement :WireElement-id_00028 >>,
-        << :WireRole-id_00069 vec:roleIdentification "SL1" >>,
-        << :DocumentVersion-id_00053 vec:documentVersionDocumentVersion "1" >>,
-        << :PartOccurrence-id_00068 vec:occurrenceOrUsageIdentification "SL1" >>,
-        << :WireElementReference-id_00076 vec:wireElementReferenceReferencedWireElement :WireElement-id_00030 >>,
-        << :WireElementReference-id_00071 vec:wireElementReferenceReferencedWireElement :WireElement-id_00029 >> .
+        <<( :WireElementReference-id_00076 vec:wireElementReferenceWireLength _:b1 )>>,
+        <<( :PartOccurrence-id_00068 vec:partOccurrencePart :PartVersion-id_00099 )>>,
+        <<( :WireRole-id_00069 vec:wireRoleWireSpecification :WireSpecification-id_00027 )>>,
+        <<( :WireElementReference-id_00070 vec:wireElementReferenceReferencedWireElement :WireElement-id_00028 )>>,
+        <<( :WireRole-id_00069 vec:roleIdentification "SL1" )>>,
+        <<( :DocumentVersion-id_00053 vec:documentVersionDocumentVersion "1" )>>,
+        <<( :PartOccurrence-id_00068 vec:occurrenceOrUsageIdentification "SL1" )>>,
+        <<( :WireElementReference-id_00076 vec:wireElementReferenceReferencedWireElement :WireElement-id_00030 )>>,
+        <<( :WireElementReference-id_00071 vec:wireElementReferenceReferencedWireElement :WireElement-id_00029 )>> .
 
 :PartOccurrence-id_00068
     vec:occurrenceOrUsageIdentification

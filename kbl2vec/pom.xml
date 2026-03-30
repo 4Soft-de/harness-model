@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.foursoft.harness</groupId>
         <artifactId>harness-parent</artifactId>
-        <version>5.5.0</version>
+        <version>5.6.0</version>
     </parent>
     <groupId>com.foursoft.harness.kbl2vec</groupId>
     <artifactId>kbl2vec</artifactId>
@@ -70,7 +70,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.17.0</version>
+                <version>3.20.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

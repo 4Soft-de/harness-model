@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -35,12 +35,22 @@ public class ConverterRegistry {
 
     private final Converter<String, Optional<VecLocalizedString>> stringToLocalizedString;
     private final StringToColorConverter stringToColorConverter;
+    private final StringToWireTypeConverter stringToWireTypeConverter;
+    private final StringToMaterialConverter stringToMaterialConverter;
+    private final DoublesToCartesianVector2DConverter doublesToCartesianVector2DConverter;
+    private final DoublesToCartesianVector3DConverter doublesToCartesianVector3DConverter;
 
     public ConverterRegistry(final ConversionProperties conversionProperties) {
         Objects.requireNonNull(conversionProperties);
         this.stringToLocalizedString = new StringToLocalizedStringConverter(conversionProperties
                                                                                     .getDefaultLanguageCode());
         stringToColorConverter = new StringToColorConverter(conversionProperties.getDefaultColorReferenceSystem());
+        stringToWireTypeConverter = new StringToWireTypeConverter(
+                conversionProperties.getDefaultWireTypeReferenceSystem());
+        stringToMaterialConverter = new StringToMaterialConverter(
+                conversionProperties.getDefaultMaterialReferenceSystem());
+        doublesToCartesianVector2DConverter = new DoublesToCartesianVector2DConverter();
+        doublesToCartesianVector3DConverter = new DoublesToCartesianVector3DConverter();
     }
 
     public Converter<String, Optional<VecLocalizedString>> getStringToLocalizedString() {
@@ -49,5 +59,21 @@ public class ConverterRegistry {
 
     public StringToColorConverter getStringToColorConverter() {
         return stringToColorConverter;
+    }
+
+    public StringToWireTypeConverter getStringToWireTypeConverter() {
+        return stringToWireTypeConverter;
+    }
+
+    public StringToMaterialConverter getStringToMaterialConverter() {
+        return stringToMaterialConverter;
+    }
+
+    public DoublesToCartesianVector2DConverter getDoublesToCartesianVector2DConverter() {
+        return doublesToCartesianVector2DConverter;
+    }
+
+    public DoublesToCartesianVector3DConverter getDoublesToCartesianVector3DConverter() {
+        return doublesToCartesianVector3DConverter;
     }
 }

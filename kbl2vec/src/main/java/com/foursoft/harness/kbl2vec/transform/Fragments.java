@@ -59,7 +59,7 @@ public final class Fragments {
         };
     }
 
-    public static <D extends VecDocumentVersion> TransformationFragment<D, TransformationResult.Builder<D>> commonDocumentAttributes(
+    public static <D extends VecDocumentVersion> TransformationFragment<D, TransformationResult.Builder<D>> commonPartDocumentAttributes(
             final KblPart source,
             final TransformationContext context) {
         return (dv, builder) -> {
@@ -75,7 +75,8 @@ public final class Fragments {
                     .ifPresent(dv.getDescriptions()::add);
 
             builder.withLinker(source, VecPartVersion.class, VecDocumentVersion::getReferencedPart);
+            builder.withLinker(source::getExternalReferences, VecDocumentVersion.class,
+                               VecDocumentVersion::getRelatedDocument);
         };
     }
-
 }

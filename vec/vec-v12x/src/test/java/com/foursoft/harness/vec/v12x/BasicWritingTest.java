@@ -25,19 +25,24 @@
  */
 package com.foursoft.harness.vec.v12x;
 
+import com.foursoft.harness.navext.runtime.io.validation.XMLValidation;
+import com.foursoft.harness.navext.runtime.io.validation.XmlValidationException;
 import com.foursoft.harness.vec.common.util.DateUtils;
+import com.foursoft.harness.vec.v12x.validation.SchemaFactory;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BasicWritingTest {
 
-    @Test
-    void testWriteModel() {
+    private VecContent createModel() {
         final LocalDate exampleDate = LocalDate.of(2022, 3, 24);
         final LocalDateTime exampleDateTime = LocalDateTime.of(exampleDate, LocalTime.NOON);
 
@@ -60,6 +65,8 @@ class BasicWritingTest {
         documentVersion.setXmlId("id_1002_0");
         documentVersion.getApprovals().add(approval);
         documentVersion.setDocumentNumber("123_456_789");
+        documentVersion.setDocumentVersion("3");
+        documentVersion.setCompanyName("Test Company");
 
         final VecSpecification specification = new VecConnectorHousingCapSpecification();
         specification.setXmlId("id_2000_0");
@@ -70,39 +77,75 @@ class BasicWritingTest {
         final VecPartVersion partVersion = new VecPartVersion();
         partVersion.setXmlId("id_1001_0");
         partVersion.setPartNumber("123_456_789");
+        partVersion.setPartVersion("3");
+        partVersion.setPrimaryPartType(VecPrimaryPartType.OTHER);
+        partVersion.setCompanyName("Test Company");
 
         root.getDocumentVersions().add(documentVersion);
         root.getPartVersions().add(partVersion);
 
+        return root;
+    }
+
+    @Test
+    void testWriteModel() {
+        final VecContent root = createModel();
+
         final VecWriter vecWriter = new VecWriter();
         final String result = vecWriter.writeToString(root);
+        assertThat(result).isEqualToIgnoringWhitespace(
+                """
+                        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+                        <vec:VecContent id="id_1000_0" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec">
+                            <VecVersion>1.2.0</VecVersion>
+                            <DateOfCreation>2022-03-24T00:00:00</DateOfCreation>
+                            <DocumentVersion id="id_1002_0">
+                                <CompanyName>Test Company</CompanyName>
+                                <Approval id="id_2014_0">
+                                    <Status>Approved</Status>
+                                    <Permission id="id_2185_0">
+                                        <Permission>Released</Permission>
+                                        <PermissionDate>2022-03-24T12:00:00</PermissionDate>
+                                    </Permission>
+                                </Approval>
+                                <DocumentNumber>123_456_789</DocumentNumber>
+                                <DocumentVersion>3</DocumentVersion>
+                                <Specification xsi:type="vec:ConnectorHousingCapSpecification" id="id_2000_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                    <Identification>Ccs-123_456_789-1</Identification>
+                                </Specification>
+                            </DocumentVersion>
+                            <PartVersion id="id_1001_0">
+                                <CompanyName>Test Company</CompanyName>
+                                <PartNumber>123_456_789</PartNumber>
+                                <PartVersion>3</PartVersion>
+                                <PrimaryPartType>Other</PrimaryPartType>
+                            </PartVersion>
+                        </vec:VecContent>
+                        """
+        );
+    }
 
-        assertThat(result)
-                .isEqualToIgnoringWhitespace(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                                "<vec:VecContent id=\"id_1000_0\" " +
-                                "xmlns:vec=\"http://www.prostep.org/ecad-if/2011/vec\">\n" +
-                                "    <VecVersion>1.2.0</VecVersion>\n" +
-                                "    <DateOfCreation>2022-03-24T00:00:00</DateOfCreation>\n" +
-                                "    <DocumentVersion id=\"id_1002_0\">\n" +
-                                "        <Approval id=\"id_2014_0\">\n" +
-                                "            <Status>Approved</Status>\n" +
-                                "            <Permission id=\"id_2185_0\">\n" +
-                                "                <Permission>Released</Permission>\n" +
-                                "                <PermissionDate>2022-03-24T12:00:00</PermissionDate>\n" +
-                                "            </Permission>\n" +
-                                "        </Approval>\n" +
-                                "        <DocumentNumber>123_456_789</DocumentNumber>\n" +
-                                "        <Specification " +
-                                "xsi:type=\"vec:ConnectorHousingCapSpecification\" " +
-                                "id=\"id_2000_0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
-                                "            <Identification>Ccs-123_456_789-1</Identification>\n" +
-                                "        </Specification>\n" +
-                                "    </DocumentVersion>\n" +
-                                "    <PartVersion id=\"id_1001_0\">\n" +
-                                "        <PartNumber>123_456_789</PartNumber>\n" +
-                                "    </PartVersion>\n" +
-                                "</vec:VecContent>");
+    @Test
+    void testValidateModel() {
+        final Collection<String> errors = new ArrayList<>();
+
+        final VecContent model = createModel();
+        final String xml = new VecWriter().writeToString(model);
+
+        XMLValidation.validateXML(SchemaFactory.getSchema(), xml, errors::add);
+
+        assertThat(errors)
+                .isEmpty();
+
+        final VecContent model2 = createModel();
+        model2.setXmlId(null);
+        final String xml2 = new VecWriter().writeToString(model2);
+
+        Assertions.assertThatExceptionOfType(XmlValidationException.class)
+                .isThrownBy(() -> XMLValidation.validateXML(SchemaFactory.getSchema(), xml2, errors::add));
+
+        assertThat(errors)
+                .hasSize(1);
     }
 
 }

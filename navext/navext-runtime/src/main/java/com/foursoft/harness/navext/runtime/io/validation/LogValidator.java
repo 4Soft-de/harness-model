@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * a wrapper around a {@link Validator} which logs all error events in an array
@@ -106,11 +107,27 @@ public class LogValidator {
         }
 
         @Override
+        public boolean equals(final Object o) {
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            final ErrorLocation that = (ErrorLocation) o;
+            return line == that.line && Objects.equals(message, that.message);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(line, message);
+        }
+
+        @Override
         public String toString() {
             return "ErrorLocation{" +
                     "line=" + line +
                     ", message='" + message + '\'' +
                     '}';
         }
+
     }
+
 }

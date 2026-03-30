@@ -30,10 +30,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.core.TransformerRegistry;
 import org.reflections.Reflections;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -116,8 +113,9 @@ public class ReflectionsBasedTransformerRegistry implements TransformerRegistry 
 
         final Set<Class<? extends Transformer>> findTransformers = reflections.getSubTypesOf(Transformer.class);
 
-        return findTransformers.stream().collect(
-                Collectors.groupingBy(ReflectionsBasedTransformerRegistry::extractTransformerClassKey));
+        return findTransformers.stream()
+                .filter(c -> !Modifier.isAbstract(c.getModifiers()))
+                .collect(Collectors.groupingBy(ReflectionsBasedTransformerRegistry::extractTransformerClassKey));
     }
 
     private record ClassTupleKey<S, D>(Class<S> source, Class<D> destination) {

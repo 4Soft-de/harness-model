@@ -6,7 +6,7 @@
 
     <groupId>com.foursoft.harness</groupId>
     <artifactId>harness-parent</artifactId>
-    <version>5.5.0</version>
+    <version>5.6.0</version>
     <packaging>pom</packaging>
     <name>Harness Parent</name>
     <description>Parent POM of all 4Soft Harness Projects.</description>
@@ -17,36 +17,36 @@
         <java.version>17</java.version>
 
         <!-- Dependencies -->
-        <jakarta.version>4.0.5</jakarta.version>
+        <jakarta.version>4.0.7</jakarta.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <logback-classic.version>1.5.18</logback-classic.version>
-        <junit.jupiter.version>5.12.2</junit.jupiter.version>
-        <assertj-core.version>3.27.3</assertj-core.version>
-        <maven-api.version>3.9.9</maven-api.version>
+        <logback-classic.version>1.5.32</logback-classic.version>
+        <junit.jupiter.version>6.0.2</junit.jupiter.version>
+        <assertj-core.version>3.27.7</assertj-core.version>
+        <maven-api.version>3.9.12</maven-api.version>
         <java-snapshot-testing.version>4.0.8</java-snapshot-testing.version>
-        <jackson.version>2.19.0</jackson.version>
-        <apache-jena.version>5.4.0</apache-jena.version>
+        <jackson.version>2.21.2</jackson.version>
+        <apache-jena.version>5.6.0</apache-jena.version>
 
         <!-- Plugins -->
-        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
-        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
-        <license-maven-plugin.version>2.5.0</license-maven-plugin.version>
-        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+        <license-maven-plugin.version>2.7.1</license-maven-plugin.version>
+        <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <gitflow-maven-plugin.version>1.21.0</gitflow-maven-plugin.version>
-        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
-        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
+        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
 
         <!-- xjc-maven wrapper -->
         <hisrc-higherjaxb-maven-plugin.version>2.2.1</hisrc-higherjaxb-maven-plugin.version>
         <!-- it's plugins -->
         <hisrc-hyperjaxb-annox-plugin.version>2.2.1</hisrc-hyperjaxb-annox-plugin.version>
         <jaxb-visitor.version>3.1.0</jaxb-visitor.version>
-        <cxf-xjc-javadoc.version>4.1.0</cxf-xjc-javadoc.version>
+        <cxf-xjc-javadoc.version>4.1.2</cxf-xjc-javadoc.version>
 
         <!-- Release Plugins -->
-        <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
-        <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
+        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+        <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
 
         <!-- build and release properties -->
         <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
@@ -124,7 +124,7 @@
             <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy</artifactId>
-                <version>1.17.5</version>
+                <version>1.18.5</version>
             </dependency>
             <dependency>
                 <groupId>org.reflections</groupId>
@@ -139,12 +139,12 @@
             <dependency>
                 <groupId>net.sf.saxon</groupId>
                 <artifactId>Saxon-HE</artifactId>
-                <version>12.7</version>
+                <version>12.9</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.17.0</version>
+                <version>3.20.0</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.jena</groupId>
@@ -155,7 +155,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>33.4.8-jre</version>
+                <version>33.5.0-jre</version>
             </dependency>
 
 
@@ -226,6 +226,12 @@
                 <groupId>io.github.origin-energy</groupId>
                 <artifactId>java-snapshot-testing-junit5</artifactId>
                 <version>${java-snapshot-testing.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit.jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -501,6 +507,41 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>ci-environment</id>
+            <activation>
+                <property>
+                    <name>env.CI</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Check if all headers are present and up-to-date. -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>check-file-header</id>
+                                <goals>
+                                    <goal>check-file-header</goal>
+                                </goals>
+                                <phase>validate</phase>
+                                <configuration>
+                                    <licenseName>mit</licenseName>
+                                    <roots>
+                                        <root>src/main/java</root>
+                                        <root>src/test/java</root>
+                                    </roots>
+                                    <failOnMissingHeader>true</failOnMissingHeader>
+                                    <failOnNotUptodateHeader>true</failOnNotUptodateHeader>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>

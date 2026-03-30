@@ -1,0 +1,76 @@
+/*-
+ * ========================LICENSE_START=================================
+ * KBL to VEC Converter
+ * %%
+ * Copyright (C) 2025 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
+package com.foursoft.harness.kbl2vec.transform.contacting;
+
+import com.foursoft.harness.kbl.v25.KblContactPoint;
+import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
+import com.foursoft.harness.kbl.v25.KblTerminalOccurrence;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.*;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class ContactPointTransformerTest {
+
+    @Test
+    void should_transformContactPoint() {
+        // Given
+        final ContactPointTransformer transformer = new ContactPointTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblContactPoint source = new KblContactPoint();
+        source.setId("TestId");
+
+        final KblTerminalOccurrence terminalOccurrence = new KblTerminalOccurrence();
+        source.getAssociatedParts().add(terminalOccurrence);
+
+        final VecTerminalRole vecTerminalRole = new VecTerminalRole();
+        orchestrator.addMockMapping(terminalOccurrence, vecTerminalRole);
+
+        final VecCavityMounting cavityMounting = new VecCavityMounting();
+        final VecWireMounting wireMounting = new VecWireMounting();
+        orchestrator.addMockMapping(source, cavityMounting);
+        orchestrator.addMockMapping(source, wireMounting);
+
+        final KblProcessingInstruction processingInstruction = new KblProcessingInstruction();
+        source.getProcessingInformations().add(processingInstruction);
+
+        final VecCustomProperty customProperty = new VecSimpleValueProperty();
+        orchestrator.addMockMapping(processingInstruction, customProperty);
+
+        // When
+        final VecContactPoint result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns("TestId", VecContactPoint::getIdentification)
+                .returns(vecTerminalRole, VecContactPoint::getMountedTerminal)
+                .satisfies(v -> assertThat(v.getCavityMountings()).containsExactly(cavityMounting))
+                .satisfies(v -> assertThat(v.getWireMountings()).containsExactly(wireMounting))
+                .satisfies(v -> assertThat(v.getCustomProperties()).containsExactly(customProperty));
+    }
+}

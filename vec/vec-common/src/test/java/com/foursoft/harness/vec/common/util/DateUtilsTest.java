@@ -27,8 +27,11 @@ package com.foursoft.harness.vec.common.util;
 
 import com.foursoft.harness.vec.common.exception.VecException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -36,11 +39,25 @@ import static org.assertj.core.api.Assertions.*;
 
 class DateUtilsTest {
 
+    static {
+        // Ensure this is set before DateUtils is initialized in case the Clock Test is not the first one.
+        System.setProperty("overwrite.clock", "2025-05-01T00:00:00Z");
+    }
+
+    @Test
+    void testClock() {
+        final LocalDate fixedNow = LocalDate.now(DateUtils.CLOCK);
+        assertThat(fixedNow)
+                .hasDayOfMonth(1)
+                .hasMonthValue(5)
+                .hasYear(2025);
+    }
+
     @Test
     void testCurrentDate() {
         final XMLGregorianCalendar calenderOfCurrentDate = DateUtils.currentDate();
 
-        final LocalDate now = LocalDate.now();
+        final LocalDate now = LocalDate.now(DateUtils.CLOCK);
         final LocalDate localDateFromCalendar = DateUtils.toLocalDate(calenderOfCurrentDate);
 
         assertThat(now).isAfterOrEqualTo(localDateFromCalendar);
@@ -62,21 +79,35 @@ class DateUtilsTest {
         final LocalDateTime now = LocalDateTime.now();
         final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(now);
 
-        assertThat(now).hasToString(calenderOfDate.toString());
+        assertThat(calenderOfDate.toString()).startsWith(now.toString());
 
         final LocalDateTime localDateTimeFromCalendar = DateUtils.toLocalDateTime(calenderOfDate);
         assertThat(now).isEqualTo(localDateTimeFromCalendar);
     }
 
     @Test
-    void testToXMLGregorianCalendarWithString() {
-        final String dateTimeString = "2022-03-22T16:05:35.421337Z";
-        final XMLGregorianCalendar calenderOfDateTime = DateUtils.toXMLGregorianCalendar(dateTimeString);
-        assertThat(calenderOfDateTime).hasToString(dateTimeString);
+    void testToXMLGregorianCalendarWithInstant() {
+        final Instant now = Instant.now();
+        final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(now);
 
-        final String dateString = "2022-03-22";
-        final XMLGregorianCalendar calenderOfDate = DateUtils.toXMLGregorianCalendar(dateString);
-        assertThat(calenderOfDate.toString()).startsWith(dateString);
+        assertThat(calenderOfDate.toString()).startsWith(now.toString());
+
+        final Instant instantFromCalendar = DateUtils.toInstant(calenderOfDate);
+        assertThat(now).isEqualTo(instantFromCalendar);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "2022-03-22T16:05:35.421337Z",
+            "2022-03-22Z",
+            "2025-09-15T13:37:00.000Z",
+            "2025-09-15T13:37:00.420+01:00",
+            "2025-09-15T00:32:00.000+01:00",
+            "2025-09-15T23:32:00.000-02:30",
+    })
+    void testToXMLGregorianCalendarWithString(final String inputString) {
+        final XMLGregorianCalendar calendar = DateUtils.toXMLGregorianCalendar(inputString);
+        assertThat(calendar).hasToString(inputString);
     }
 
     @Test

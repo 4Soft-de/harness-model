@@ -90,6 +90,26 @@ public final class WrapperHelper {
     }
 
     /**
+     * Helper method for methods which return an {@link Optional}.
+     * This method creates a proxy for the Optional.
+     *
+     * @param methodName  Name of the method to invoke. The return type of that method needs to be an Optional.
+     * @param target      Target object used for the method invocation.
+     * @param targetClass The target class the Optional should contain after a proxy was created.
+     * @param args        Additional method arguments.
+     * @param <T>         Target type of the Optional.
+     * @return Possibly-empty Optional containing the proxy element of the given target class.
+     */
+    public <T> Optional<T> wrapOptional(final String methodName, final Object target,
+                                        final Class<T> targetClass, final Object[] args) {
+        return getResultObject(methodName, target, Optional.class, args)
+                .flatMap(x -> (Optional<?>) x)
+                .map(wrapper.getContext().getWrapperProxyFactory()::createProxy)
+                .filter(targetClass::isInstance)
+                .map(targetClass::cast);
+    }
+
+    /**
      * Helper method for methods which return a list.
      * This method creates a proxy for every list element.
      *

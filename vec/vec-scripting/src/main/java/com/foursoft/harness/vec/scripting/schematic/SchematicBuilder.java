@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,32 +25,87 @@
  */
 package com.foursoft.harness.vec.scripting.schematic;
 
-import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.scripting.Customizer;
-import com.foursoft.harness.vec.scripting.DefaultValues;
-import com.foursoft.harness.vec.v2x.VecConnectionSpecification;
+import com.foursoft.harness.vec.scripting.*;
+import com.foursoft.harness.vec.scripting.net.NetSpecificationQueries;
+import com.foursoft.harness.vec.scripting.signals.SignalSpecificationQueries;
+import com.foursoft.harness.vec.v2x.*;
 
-public class SchematicBuilder implements Builder<VecConnectionSpecification> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class SchematicBuilder implements Builder<SchematicResult> {
 
     private final VecConnectionSpecification connectionSpecification;
+    private final ConnectionSpecificationQueries queries;
+    private final List<VecReusageSpecification> reusageSpecifications = new ArrayList<>();
+    private final VecSession session;
+    private NetSpecificationQueries netQueries = new NetSpecificationQueries();
+    private SignalSpecificationQueries signalQueries = new SignalSpecificationQueries();
 
-    public SchematicBuilder() {
+    public SchematicBuilder(final VecSession session) {
+        this.session = session;
         this.connectionSpecification = initializeConnectionSpecification();
+        this.queries = new ConnectionSpecificationQueries(connectionSpecification);
     }
 
     @Override
-    public VecConnectionSpecification build() {
-        return this.connectionSpecification;
+    public SchematicResult build() {
+        return new SchematicResult(this.connectionSpecification, reusageSpecifications);
     }
 
     private VecConnectionSpecification initializeConnectionSpecification() {
-        VecConnectionSpecification connectionSpecification = new VecConnectionSpecification();
-        connectionSpecification.setIdentification(DefaultValues.CONNECTION_SPEC_IDENTIFICATION);
-        return connectionSpecification;
+        final VecConnectionSpecification result = new VecConnectionSpecification();
+        result.setIdentification(DefaultValues.CONNECTION_SPEC_IDENTIFICATION);
+        return result;
     }
 
-    public SchematicBuilder addComponentNode(String identification, Customizer<ComponentNodeBuilder> customizer) {
-        ComponentNodeBuilder builder = new ComponentNodeBuilder(identification);
+    public SchematicBuilder addComponentNodeReusage(final String schematicDocumentNumber,
+                                                    final String connectionSpecification,
+                                                    final String templateIdentification,
+                                                    final String usageIdentification) {
+        final VecConnectionSpecification templateSpecification = session.findDocument(schematicDocumentNumber)
+                .getSpecificationWith(
+                        VecConnectionSpecification.class, DefaultValues.CONNECTION_SPEC_IDENTIFICATION).orElseThrow();
+
+        final VecReusageSpecification reusageSpecification = new VecReusageSpecification();
+        reusageSpecification.setIdentification("RS-" + schematicDocumentNumber + "-" + connectionSpecification);
+        reusageSpecifications.add(reusageSpecification);
+
+        final VecConnectionSpecification fragment = new ComponentNodeReuseBuilder(templateSpecification,
+                                                                                  reusageSpecification,
+                                                                                  templateIdentification,
+                                                                                  usageIdentification).build();
+
+        this.connectionSpecification.getComponentNodes().addAll(fragment.getComponentNodes());
+        this.connectionSpecification.getConnections().addAll(fragment.getConnections());
+        this.connectionSpecification.getConnectionGroups().addAll(fragment.getConnectionGroups());
+
+        return this;
+    }
+
+    public SchematicBuilder withNetworkLayer(final String networkDocumentNumber) {
+        final VecDocumentVersion networkDocument = session.findDocument(networkDocumentNumber);
+        netQueries = new NetSpecificationQueries(
+                networkDocument.getSpecificationWithType(VecNetSpecification.class).orElseThrow(
+                        () -> new VecScriptingException(
+                                "No NetSpecification found in document with number: " + networkDocumentNumber)));
+        return this;
+    }
+
+    public SchematicBuilder withSignals(final String signalDocumentNumber) {
+        final VecDocumentVersion networkDocument = session.findDocument(signalDocumentNumber);
+        signalQueries = new SignalSpecificationQueries(
+                networkDocument.getSpecificationWithType(VecSignalSpecification.class).orElseThrow(
+                        () -> new VecScriptingException(
+                                "No SignalSpecification found in document with number: " + signalDocumentNumber)));
+        return this;
+    }
+
+    public SchematicBuilder addComponentNode(final String identification,
+                                             final Customizer<ComponentNodeBuilder> customizer) {
+        final ComponentNodeBuilder builder = new ComponentNodeBuilder(identification,
+                                                                      netQueries::findNetworkNode,
+                                                                      signalQueries::findSignal);
 
         customizer.customize(builder);
 
@@ -59,10 +114,9 @@ public class SchematicBuilder implements Builder<VecConnectionSpecification> {
         return this;
     }
 
-    public SchematicBuilder addConnection(String identification, Customizer<ConnectionBuilder> customizer) {
-        ConnectionBuilder builder = new ConnectionBuilder(
-                ((nodeId, connectorId, portId) -> SchematicQueries.findPort(connectionSpecification, nodeId,
-                                                                            connectorId, portId)), identification);
+    public SchematicBuilder addConnection(final String identification, final Customizer<ConnectionBuilder> customizer) {
+        final ConnectionBuilder builder = new ConnectionBuilder(queries::findPort, identification,
+                                                                netQueries::findNet, signalQueries::findSignal);
 
         customizer.customize(builder);
 

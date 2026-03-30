@@ -1,0 +1,34 @@
+<configuration>
+    <appender name="USER_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [USR] %logger{36} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SYSTEM_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%red(%d{HH:mm:ss.SSS} [%thread] %-5level [SYS] %logger{36} - %msg %n)</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_SYSTEM" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SYSTEM_LOG"/>
+        <queueSize>1000</queueSize>
+    </appender>
+
+    <appender name="ASYNC_USER" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="USER_LOG"/>
+        <queueSize>1000</queueSize>
+    </appender>
+
+
+    <logger name="com.foursoft.harness.kbl2vec.TRANSFORMATION_LOG" level="DEBUG" additivity="false">
+        <appender-ref ref="ASYNC_USER"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="ASYNC_SYSTEM"/>
+    </root>
+
+    <logger name="com.foursoft" level="debug"/>
+</configuration>

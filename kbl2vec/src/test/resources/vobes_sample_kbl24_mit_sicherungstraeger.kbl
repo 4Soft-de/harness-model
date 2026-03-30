@@ -1609,6 +1609,7 @@
         <Description>BUCHSENGEHAEUSE_6-POL</Description>
         <External_references>External_reference_1</External_references>
         <Housing_colour>schwarz</Housing_colour>
+        <Housing_code>A</Housing_code>
         <Slots id="id_341_0">
             <Id>default</Id>
             <Number_of_cavities>6</Number_of_cavities>
