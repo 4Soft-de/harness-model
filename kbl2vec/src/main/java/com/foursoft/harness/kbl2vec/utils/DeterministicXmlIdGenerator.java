@@ -28,13 +28,14 @@ package com.foursoft.harness.kbl2vec.utils;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
+import com.foursoft.harness.vec.v2x.visitor.DefaultXmlIdGenerator;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DeterministicXmlIdGenerator extends XmlIdGenerator {
+public class DeterministicXmlIdGenerator extends DefaultXmlIdGenerator {
 
     private final TransformationContext context;
     private final Map<Object, Object> invertedEntityMapping;

@@ -28,15 +28,14 @@ package com.foursoft.harness.kbl2vec.post;
 import com.foursoft.harness.kbl2vec.core.Processor;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.utils.DeterministicXmlIdGenerator;
-import com.foursoft.harness.kbl2vec.utils.XmlIdGeneratingTraverser;
 import com.foursoft.harness.vec.v2x.VecContent;
+import com.foursoft.harness.vec.v2x.visitor.XmlIdGenerator;
 
 public class XmlIdPostProcessor implements Processor<VecContent> {
 
     @Override
     public VecContent apply(final VecContent source, final TransformationContext context) {
-        final DeterministicXmlIdGenerator xmlIdGenerator = new DeterministicXmlIdGenerator(context);
-        source.accept(new XmlIdGeneratingTraverser(xmlIdGenerator));
+        XmlIdGenerator.generateIds(source, new DeterministicXmlIdGenerator(context));
         return source;
     }
 }

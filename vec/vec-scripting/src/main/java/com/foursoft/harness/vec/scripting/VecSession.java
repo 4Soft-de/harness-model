@@ -41,15 +41,17 @@ import com.foursoft.harness.vec.scripting.net.NetSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
 import com.foursoft.harness.vec.scripting.schematic.SchematicResult;
 import com.foursoft.harness.vec.scripting.signals.SignalSpecificationBuilder;
-import com.foursoft.harness.vec.scripting.utils.XmlIdGeneratingTraverser;
-import com.foursoft.harness.vec.scripting.utils.XmlIdGenerator;
 import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.visitor.DefaultXmlIdGenerator;
+import com.foursoft.harness.vec.v2x.visitor.XmlIdGenerator;
 import jakarta.xml.bind.Marshaller;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.util.Optional;
+
+import static com.foursoft.harness.vec.v2x.visitor.XmlIdGenerator.generateIds;
 
 //TODO: Provision of Units & Provision of comments should be extracted to interfaces. (e.g. GlobalUnitProvider)
 
@@ -58,7 +60,7 @@ public class VecSession {
     private final XMLMeta xmlMeta = new XMLMeta();
     private final Comments comments = new Comments();
 
-    private final XmlIdGenerator xmlIdGenerator = new XmlIdGenerator();
+    private final XmlIdGenerator xmlIdGenerator = new DefaultXmlIdGenerator();
 
     private final VecContent vecContentRoot = VecContentFactory.create();
 
@@ -212,7 +214,7 @@ public class VecSession {
     }
 
     private void ensureXmlIds() {
-        vecContentRoot.accept(new XmlIdGeneratingTraverser(xmlIdGenerator));
+        generateIds(vecContentRoot, xmlIdGenerator);
     }
 
     public VecSIUnit volts() {
