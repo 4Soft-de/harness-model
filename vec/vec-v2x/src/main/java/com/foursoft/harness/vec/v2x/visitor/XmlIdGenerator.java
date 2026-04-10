@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * vec-v2x
+ * VEC 2.X
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,34 +23,16 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.utils;
+package com.foursoft.harness.vec.v2x.visitor;
 
 import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
-import com.foursoft.harness.vec.common.util.StringUtils;
 
-import java.util.concurrent.atomic.AtomicInteger;
+@FunctionalInterface
+public interface XmlIdGenerator {
+    void createIdForXmlBean(final ModifiableIdentifiable aBean);
 
-public class XmlIdGenerator {
-
-    private final AtomicInteger counter = new AtomicInteger(0);
-
-    public void createIdForXmlBean(final ModifiableIdentifiable aBean) {
-        createIdForXmlBean(aBean, derivePrefix(aBean));
-    }
-
-    protected void createIdForXmlBean(final ModifiableIdentifiable aBean, final String prefix) {
-        if (StringUtils.isEmpty(aBean.getXmlId())) {
-            aBean.setXmlId(generateNewXmlId(prefix));
-        }
-    }
-
-    private String generateNewXmlId(final String prefix) {
-        return String.format("%s%05d", prefix, counter.getAndIncrement());
-    }
-
-    private String derivePrefix(final ModifiableIdentifiable aBean) {
-        return aBean.getClass()
-                .getSimpleName()
-                .replace("Vec", "") + "_";
+    static void generateIds(final Visitable root, final XmlIdGenerator generator) {
+        final XmlIdGeneratingTraverser traverser = new XmlIdGeneratingTraverser(generator);
+        root.accept(traverser);
     }
 }

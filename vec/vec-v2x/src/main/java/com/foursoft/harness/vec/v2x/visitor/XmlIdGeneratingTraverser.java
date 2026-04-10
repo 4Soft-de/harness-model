@@ -23,16 +23,13 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.kbl2vec.utils;
+package com.foursoft.harness.vec.v2x.visitor;
 
 import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
-import com.foursoft.harness.vec.v2x.visitor.DepthFirstTraverserImpl;
-import com.foursoft.harness.vec.v2x.visitor.FunctionVisitor;
-import com.foursoft.harness.vec.v2x.visitor.TraversingVisitor;
 
 public class XmlIdGeneratingTraverser extends TraversingVisitor<Void, RuntimeException> {
 
-    public XmlIdGeneratingTraverser(final DeterministicXmlIdGenerator generator) {
+    public XmlIdGeneratingTraverser(final XmlIdGenerator generator) {
         super(new DepthFirstTraverserImpl<>(), new FunctionVisitor<>(x -> {
             if (x instanceof final ModifiableIdentifiable modifiableIdentifiable) {
                 generator.createIdForXmlBean(modifiableIdentifiable);
@@ -40,4 +37,5 @@ public class XmlIdGeneratingTraverser extends TraversingVisitor<Void, RuntimeExc
             return null;
         }));
     }
+
 }
