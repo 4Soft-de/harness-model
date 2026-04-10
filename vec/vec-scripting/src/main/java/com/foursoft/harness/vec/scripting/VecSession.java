@@ -103,7 +103,7 @@ public class VecSession {
 
     public void part(final String partNumber, final VecPrimaryPartType primaryPartType,
                      final Customizer<PartVersionBuilder> customizer) {
-        final PartVersionBuilder builder = new PartVersionBuilder(this, partNumber, primaryPartType);
+        final PartVersionBuilder builder = new PartVersionBuilder(this, partNumber, "1", primaryPartType);
 
         customizer.customize(builder);
 
@@ -115,7 +115,15 @@ public class VecSession {
     public void component(final String partNumber, final String documentNumber,
                           final VecPrimaryPartType primaryPartType,
                           final Customizer<ComponentMasterDataBuilder> customizer) {
-        final ComponentMasterDataBuilder builder = new ComponentMasterDataBuilder(this, partNumber, documentNumber,
+        this.component(partNumber, "1", documentNumber, "1", primaryPartType, customizer);
+    }
+
+    public void component(final String partNumber, final String partVersion, final String documentNumber,
+                          final String documentVersion,
+                          final VecPrimaryPartType primaryPartType,
+                          final Customizer<ComponentMasterDataBuilder> customizer) {
+        final ComponentMasterDataBuilder builder = new ComponentMasterDataBuilder(this, partNumber, partVersion,
+                                                                                  documentNumber, documentVersion,
                                                                                   primaryPartType);
         customizer.customize(builder);
 

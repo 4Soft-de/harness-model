@@ -46,6 +46,11 @@ public class ConnectorSpecificationBuilder
         connectorHousingSpecification = initializeSpecification(VecConnectorHousingSpecification.class, partNumber);
     }
 
+    public ConnectorSpecificationBuilder withIdentification(final String identification) {
+        connectorHousingSpecification.setIdentification(identification);
+        return this;
+    }
+
     public ConnectorSpecificationBuilder withCoding(final String coding) {
         final VecCoding codingObject = new VecCoding();
         codingObject.setCoding(coding);
@@ -69,7 +74,8 @@ public class ConnectorSpecificationBuilder
         return this;
     }
 
-    @Override public VecConnectorHousingSpecification build() {
+    @Override
+    public VecConnectorHousingSpecification build() {
         return connectorHousingSpecification;
     }
 
