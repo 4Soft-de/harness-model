@@ -77,6 +77,7 @@ public class VecSession {
     private VecSIUnit ohm;
     private VecSIUnit ampere;
     private VecSIUnit volts;
+    private VecSIUnit gram;
 
     public VecSession() {
         xmlMeta.setComments(comments);
@@ -307,14 +308,19 @@ public class VecSession {
         return this.ampere;
     }
 
+    public VecSIUnit gram() {
+        if (this.gram == null) {
+            this.gram = SiUnitFactory.gram();
+            this.vecContentRoot.getUnits().add(gram);
+        }
+        return gram;
+    }
+
     public VecUnit gramPerMeter() {
         if (this.gramPerMeter == null) {
-            final VecSIUnit gram = SiUnitFactory.gram();
             this.gramPerMeter = new VecCompositeUnit();
-            this.gramPerMeter.getFactors().add(gram);
+            this.gramPerMeter.getFactors().add(this.gram());
             this.gramPerMeter.getFactors().add(perMetre());
-
-            this.vecContentRoot.getUnits().add(gram);
             this.vecContentRoot.getUnits().add(this.gramPerMeter);
         }
         return this.gramPerMeter;
