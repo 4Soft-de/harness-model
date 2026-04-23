@@ -246,6 +246,7 @@ public class VecSession {
     public VecUnit piece() {
         if (this.piece == null) {
             this.piece = new VecOtherUnit();
+            this.piece.setUnEceCode("H87");
             this.piece.setOtherUnitName(VecOtherUnitName.PIECE);
             this.vecContentRoot.getUnits()
                     .add(this.piece);
@@ -303,6 +304,7 @@ public class VecSession {
         if (this.gramPerMeter == null) {
             final VecSIUnit gram = SiUnitFactory.gram();
             this.gramPerMeter = new VecCompositeUnit();
+            this.gramPerMeter.setUnEceCode("GF");
             this.gramPerMeter.getFactors().add(gram);
             this.gramPerMeter.getFactors().add(perMetre());
 
@@ -316,6 +318,7 @@ public class VecSession {
         if (this.mOhmPerMeter == null) {
             final VecSIUnit mOhm = SiUnitFactory.mOhm();
             this.mOhmPerMeter = new VecCompositeUnit();
+            this.mOhmPerMeter.setUnEceCode("F54");
             this.mOhmPerMeter.getFactors().add(mOhm);
             this.mOhmPerMeter.getFactors().add(perMetre());
 
