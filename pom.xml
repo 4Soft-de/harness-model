@@ -40,7 +40,7 @@
         <!-- xjc-maven wrapper -->
         <hisrc-higherjaxb-maven-plugin.version>3.0.0</hisrc-higherjaxb-maven-plugin.version>
         <!-- it's plugins -->
-        <hisrc-hyperjaxb-annox-plugin.version>2.2.1</hisrc-hyperjaxb-annox-plugin.version>
+        <hisrc-hyperjaxb-annox-plugin.version>3.0.0</hisrc-hyperjaxb-annox-plugin.version>
         <jaxb-visitor.version>3.1.0</jaxb-visitor.version>
         <cxf-xjc-javadoc.version>4.1.2</cxf-xjc-javadoc.version>
 
@@ -410,10 +410,10 @@
                     <version>${central-publishing-maven-plugin.version}</version>
                     <extensions>true</extensions>
                     <configuration>
-                      <publishingServerId>sonatype-central</publishingServerId>
-                      <autoPublish>true</autoPublish>
+                        <publishingServerId>sonatype-central</publishingServerId>
+                        <autoPublish>true</autoPublish>
                     </configuration>
-                  </plugin>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
