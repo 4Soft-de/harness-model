@@ -77,6 +77,7 @@ public class VecSession {
     private VecSIUnit ohm;
     private VecSIUnit ampere;
     private VecSIUnit volts;
+    private VecSIUnit gram;
 
     public VecSession() {
         xmlMeta.setComments(comments);
@@ -103,7 +104,7 @@ public class VecSession {
 
     public void part(final String partNumber, final VecPrimaryPartType primaryPartType,
                      final Customizer<PartVersionBuilder> customizer) {
-        final PartVersionBuilder builder = new PartVersionBuilder(this, partNumber, primaryPartType);
+        final PartVersionBuilder builder = new PartVersionBuilder(this, partNumber, "1", primaryPartType);
 
         customizer.customize(builder);
 
@@ -115,7 +116,15 @@ public class VecSession {
     public void component(final String partNumber, final String documentNumber,
                           final VecPrimaryPartType primaryPartType,
                           final Customizer<ComponentMasterDataBuilder> customizer) {
-        final ComponentMasterDataBuilder builder = new ComponentMasterDataBuilder(this, partNumber, documentNumber,
+        this.component(partNumber, "1", documentNumber, "1", primaryPartType, customizer);
+    }
+
+    public void component(final String partNumber, final String partVersion, final String documentNumber,
+                          final String documentVersion,
+                          final VecPrimaryPartType primaryPartType,
+                          final Customizer<ComponentMasterDataBuilder> customizer) {
+        final ComponentMasterDataBuilder builder = new ComponentMasterDataBuilder(this, partNumber, partVersion,
+                                                                                  documentNumber, documentVersion,
                                                                                   primaryPartType);
         customizer.customize(builder);
 
@@ -299,14 +308,19 @@ public class VecSession {
         return this.ampere;
     }
 
+    public VecSIUnit gram() {
+        if (this.gram == null) {
+            this.gram = SiUnitFactory.gram();
+            this.vecContentRoot.getUnits().add(gram);
+        }
+        return gram;
+    }
+
     public VecUnit gramPerMeter() {
         if (this.gramPerMeter == null) {
-            final VecSIUnit gram = SiUnitFactory.gram();
             this.gramPerMeter = new VecCompositeUnit();
-            this.gramPerMeter.getFactors().add(gram);
+            this.gramPerMeter.getFactors().add(this.gram());
             this.gramPerMeter.getFactors().add(perMetre());
-
-            this.vecContentRoot.getUnits().add(gram);
             this.vecContentRoot.getUnits().add(this.gramPerMeter);
         }
         return this.gramPerMeter;
