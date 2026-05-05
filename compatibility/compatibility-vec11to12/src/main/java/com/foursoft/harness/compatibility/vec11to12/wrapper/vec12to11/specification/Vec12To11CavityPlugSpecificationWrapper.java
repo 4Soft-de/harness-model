@@ -26,11 +26,13 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecCavityPlugSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecCavityPlugSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecCavityPlugSpecification.class)
 public class Vec12To11CavityPlugSpecificationWrapper extends Vec12To11CavityPartSpecificationWrapper {
 
     /**

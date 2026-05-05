@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specifica
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.util.IdCreator;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v113.VecCustomProperty;
 import com.foursoft.harness.vec.v113.VecNumericalValue;
 import com.foursoft.harness.vec.v113.VecNumericalValueProperty;
@@ -38,6 +39,7 @@ import java.util.List;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecStripeSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecStripeSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecStripeSpecification.class)
 public class Vec12To11StripeSpecificationWrapper extends Vec12To11WireProtectionSpecificationWrapper {
 
     /**

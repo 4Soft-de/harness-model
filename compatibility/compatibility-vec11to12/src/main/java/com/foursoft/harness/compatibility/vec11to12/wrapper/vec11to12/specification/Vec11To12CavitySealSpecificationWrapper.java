@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.Constants;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 
@@ -38,6 +39,7 @@ import java.lang.reflect.Method;
  * <p>
  * Extending {@link Vec11To12CavityPartSpecificationWrapper} to convert {@link Constants#GET_CAVITY_DIMENSIONS}.
  */
+@Wraps(com.foursoft.harness.vec.v113.VecCavitySealSpecification.class)
 public class Vec11To12CavitySealSpecificationWrapper extends Vec11To12CavityPartSpecificationWrapper {
 
     private VecNumericalValue insideDiameter;

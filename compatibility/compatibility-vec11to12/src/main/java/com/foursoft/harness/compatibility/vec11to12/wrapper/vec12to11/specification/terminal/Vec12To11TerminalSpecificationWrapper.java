@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.terminal;
 
 import com.foursoft.harness.compatibility.core.Context;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.AbstractSpecificationReflectionBasedWrapper;
 
 import java.lang.reflect.Method;
@@ -34,6 +35,7 @@ import java.lang.reflect.Method;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecTerminalSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecTerminalSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecTerminalSpecification.class)
 public class Vec12To11TerminalSpecificationWrapper extends AbstractSpecificationReflectionBasedWrapper {
 
     /**

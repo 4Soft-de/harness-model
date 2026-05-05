@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.Constants;
 
 /**
@@ -34,6 +35,7 @@ import com.foursoft.harness.compatibility.vec11to12.Constants;
  * <p>
  * Extending {@link Vec11To12CavityPartSpecificationWrapper} to convert {@link Constants#GET_CAVITY_DIMENSIONS}.
  */
+@Wraps(com.foursoft.harness.vec.v113.VecCavityPlugSpecification.class)
 public class Vec11To12CavityPlugSpecificationWrapper extends Vec11To12CavityPartSpecificationWrapper {
 
     /**

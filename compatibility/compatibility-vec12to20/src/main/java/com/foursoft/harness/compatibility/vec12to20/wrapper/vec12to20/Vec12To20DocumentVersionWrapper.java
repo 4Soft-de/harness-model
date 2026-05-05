@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ import java.math.BigInteger;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecDocumentVersion}
  * to {@link VecDocumentVersion}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecDocumentVersion.class)
 public class Vec12To20DocumentVersionWrapper extends ReflectionBasedWrapper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Vec12To20DocumentVersionWrapper.class);

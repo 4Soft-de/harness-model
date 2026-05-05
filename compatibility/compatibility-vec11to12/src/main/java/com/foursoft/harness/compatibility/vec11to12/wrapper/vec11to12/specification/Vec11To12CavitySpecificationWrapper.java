@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.field.Vec11To12CavityDimensionWrapper;
 import com.foursoft.harness.vec.v12x.VecSize;
 
@@ -36,6 +37,7 @@ import java.lang.reflect.Method;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecCavitySpecification}
  * to {@link com.foursoft.harness.vec.v12x.VecCavitySpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v113.VecCavitySpecification.class)
 public class Vec11To12CavitySpecificationWrapper extends ReflectionBasedWrapper {
 
     private final Vec11To12CavityDimensionWrapper cavityDimensionWrapper;

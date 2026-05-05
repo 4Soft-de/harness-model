@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecCableLeadThroughReference;
 
 import java.lang.reflect.Method;
@@ -37,6 +38,7 @@ import java.util.List;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecGrommetRole}
  * to {@link com.foursoft.harness.vec.v12x.VecGrommetRole}.
  */
+@Wraps(com.foursoft.harness.vec.v113.VecGrommetRole.class)
 public class Vec11To12GrommetRoleWrapper extends ReflectionBasedWrapper {
 
     private List<VecCableLeadThroughReference> cableLeadThroughReferences;

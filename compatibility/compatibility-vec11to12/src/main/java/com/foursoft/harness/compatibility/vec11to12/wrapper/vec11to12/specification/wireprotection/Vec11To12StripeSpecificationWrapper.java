@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecCustomProperty;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 import com.foursoft.harness.vec.v12x.VecNumericalValueProperty;
@@ -39,6 +40,7 @@ import java.util.List;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecStripeSpecification}
  * to {@link com.foursoft.harness.vec.v12x.VecStripeSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v113.VecStripeSpecification.class)
 public class Vec11To12StripeSpecificationWrapper extends ReflectionBasedWrapper {
 
     private static final String GET_CUSTOM_PROPERTIES_METHOD_NAME = "getCustomProperties";

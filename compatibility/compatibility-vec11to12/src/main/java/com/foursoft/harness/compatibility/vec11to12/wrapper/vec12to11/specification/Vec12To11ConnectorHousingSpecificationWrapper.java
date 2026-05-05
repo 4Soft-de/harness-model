@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification;
 
 import com.foursoft.harness.compatibility.core.Context;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 
 import java.lang.reflect.Method;
 
@@ -33,6 +34,7 @@ import java.lang.reflect.Method;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecConnectorHousingSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecConnectorHousingSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecConnectorHousingSpecification.class)
 public class Vec12To11ConnectorHousingSpecificationWrapper extends AbstractSpecificationReflectionBasedWrapper {
 
     /**

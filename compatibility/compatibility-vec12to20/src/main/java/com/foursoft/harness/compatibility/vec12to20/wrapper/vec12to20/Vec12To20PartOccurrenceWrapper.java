@@ -26,12 +26,14 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecPartOccurrence}
  * to {@link VecPartOccurrence}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecPartOccurrence.class)
 public class Vec12To20PartOccurrenceWrapper extends Vec12To20OccurrenceOrUsageWrapper {
 
     /**

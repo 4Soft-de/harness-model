@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specifica
 
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.util.IdCreator;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.Constants;
 import com.foursoft.harness.vec.v113.VecNumericalValue;
 import com.foursoft.harness.vec.v113.VecSize;
@@ -40,6 +41,7 @@ import java.util.Optional;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecCavityPartSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecCavityPartSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecCavityPartSpecification.class)
 public class Vec12To11CavityPartSpecificationWrapper extends AbstractSpecificationReflectionBasedWrapper {
 
     private VecValueRange valueRange;

@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specifica
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecWireElement;
 
 import java.lang.reflect.Method;
@@ -38,6 +39,7 @@ import java.util.stream.Collectors;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecWireSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecWireSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecWireSpecification.class)
 public class Vec12To11WireSpecificationWrapper extends ReflectionBasedWrapper {
 
     private final List<com.foursoft.harness.vec.v113.VecWireElement> wireElements = new ArrayList<>();

@@ -26,11 +26,13 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.terminal;
 
 import com.foursoft.harness.compatibility.core.Context;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecRingTerminalSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecRingTerminalSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecRingTerminalSpecification.class)
 public class Vec12To11RingTerminalSpecificationWrapper extends Vec12To11TerminalSpecificationWrapper {
 
     /**

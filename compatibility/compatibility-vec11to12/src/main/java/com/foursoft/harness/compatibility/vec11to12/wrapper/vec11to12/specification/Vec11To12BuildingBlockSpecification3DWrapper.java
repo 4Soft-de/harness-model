@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v113.VecZone;
 
 import java.lang.reflect.Method;
@@ -35,6 +36,7 @@ import java.lang.reflect.Method;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecBuildingBlockSpecification3D}
  * to {@link com.foursoft.harness.vec.v12x.VecBuildingBlockSpecification3D}.
  */
+@Wraps(com.foursoft.harness.vec.v113.VecBuildingBlockSpecification3D.class)
 public class Vec11To12BuildingBlockSpecification3DWrapper extends ReflectionBasedWrapper {
 
     /**
