@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specifica
 
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.util.IdCreator;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.AbstractSpecificationReflectionBasedWrapper;
 import com.foursoft.harness.vec.v113.VecAbrasionResistanceClass;
 import com.foursoft.harness.vec.v12x.VecGeneralTechnicalPartSpecification;
@@ -42,6 +43,7 @@ import java.util.stream.Collectors;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecWireProtectionSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecWireProtectionSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecWireProtectionSpecification.class)
 public class Vec12To11WireProtectionSpecificationWrapper extends AbstractSpecificationReflectionBasedWrapper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Vec12To11WireProtectionSpecificationWrapper.class);

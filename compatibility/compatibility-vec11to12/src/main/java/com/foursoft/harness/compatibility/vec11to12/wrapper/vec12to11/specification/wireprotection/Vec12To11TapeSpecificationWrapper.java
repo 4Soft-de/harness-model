@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.wireprotection;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 
 import java.lang.reflect.Method;
@@ -35,6 +36,7 @@ import java.util.List;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecTapeSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecTapeSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecTapeSpecification.class)
 public class Vec12To11TapeSpecificationWrapper extends Vec12To11WireProtectionSpecificationWrapper {
 
     protected List<com.foursoft.harness.vec.v113.VecNumericalValue> widths;

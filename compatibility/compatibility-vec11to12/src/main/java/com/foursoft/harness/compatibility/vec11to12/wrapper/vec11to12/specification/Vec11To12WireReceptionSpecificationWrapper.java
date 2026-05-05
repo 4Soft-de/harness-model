@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecWireReceptionAddOn;
 
 import java.lang.reflect.Method;
@@ -37,6 +38,7 @@ import java.util.List;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecWireReceptionSpecification}
  * to {@link com.foursoft.harness.vec.v12x.VecWireReceptionSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v113.VecWireReceptionSpecification.class)
 public class Vec11To12WireReceptionSpecificationWrapper extends ReflectionBasedWrapper {
 
     private final List<VecWireReceptionAddOn> addons = new ArrayList<>();

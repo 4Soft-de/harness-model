@@ -27,17 +27,17 @@ package com.foursoft.harness.compatibility.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.CompatibilityContext.CompatibilityContextBuilder;
-import com.foursoft.harness.compatibility.core.WrapperRegistry;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.CompatibilityWrapper;
-import com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.*;
-import com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12.*;
-import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.compatibility.core.wrapper.WrapperAutoRegistrar;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.Vec12To20DefaultWrapper;
 
 /**
  * Compatibility Wrapper for VEC 1.2.X to VEC 2.X.X and vice versa.
  */
 public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapper {
+
+    private static final String WRAPPER_PACKAGE = "com.foursoft.harness.compatibility.vec12to20.wrapper";
 
     private final CompatibilityContext compatibilityContext;
 
@@ -49,10 +49,11 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
         final CompatibilityContext context =
                 new CompatibilityContextBuilder()
                         .withClassMapper(classMapper)
+                        .withDefaultWrapperFactory(Vec12To20DefaultWrapper::new)
                         .withUnsupportedMethodCheck(classMapper.checkUnsupportedMethods())
                         .build();
 
-        initializeRegistry(context);
+        WrapperAutoRegistrar.registerAll(context, WRAPPER_PACKAGE);
 
         compatibilityContext = context;
     }
@@ -60,42 +61,6 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
     @Override
     public CompatibilityContext getContext() {
         return compatibilityContext;
-    }
-
-    private static void initializeRegistry(final CompatibilityContext context) {
-        final WrapperRegistry registry = context.getWrapperRegistry();
-
-        // VEC 1.2.X -> VEC 2.X.X
-        registry.register(com.foursoft.harness.vec.v12x.VecConnectorHousingRole.class,
-                          c -> new Vec12To20ConnectorHousingRoleWrapper(context, c))
-                .register(com.foursoft.harness.vec.v12x.VecDocumentVersion.class,
-                          c -> new Vec12To20DocumentVersionWrapper(context, c))
-                .register(com.foursoft.harness.vec.v12x.VecPartVersion.class,
-                          c -> new Vec12To20PartVersionWrapper(context, c))
-                .register(com.foursoft.harness.vec.v12x.VecContent.class,
-                          c -> new Vec12To20ContentWrapper(context, c))
-                .register(com.foursoft.harness.vec.v12x.VecPartOccurrence.class,
-                          c -> new Vec12To20PartOccurrenceWrapper(context, c))
-                .register(com.foursoft.harness.vec.v12x.VecPartUsage.class,
-                          c -> new Vec12To20PartUsageWrapper(context, c))
-                .register(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class,
-                          c -> new Vec12To20CableLeadThroughWrapper(context, c));
-
-        // VEC 2.X.X -> VEC 1.2.X
-        registry.register(VecConnectorHousingRole.class,
-                          c -> new Vec20To12ConnectorHousingRoleWrapper(context, c))
-                .register(VecDocumentVersion.class,
-                          c -> new Vec20To12DocumentVersionWrapper(context, c))
-                .register(VecPartVersion.class,
-                          c -> new Vec20To12PartVersionWrapper(context, c))
-                .register(VecContent.class,
-                          c -> new Vec20To12ContentWrapper(context, c))
-                .register(VecCableLeadThrough.class,
-                          c -> new Vec20To12CableLeadThroughWrapper(context, c))
-                .register(VecPartOccurrence.class,
-                          c -> new Vec20To12PartOccurrenceWrapper(context, c))
-                .register(VecPartUsage.class,
-                          c -> new Vec20To12PartUsageWrapper(context, c));
     }
 
 }

@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecComponentConnector;
 import com.foursoft.harness.vec.v2x.VecComponentNode;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
@@ -38,6 +39,7 @@ import java.util.Comparator;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecConnectorHousingRole}
  * to {@link VecConnectorHousingRole}.
  */
+@Wraps(VecConnectorHousingRole.class)
 public class Vec20To12ConnectorHousingRoleWrapper extends ReflectionBasedWrapper {
 
     /**

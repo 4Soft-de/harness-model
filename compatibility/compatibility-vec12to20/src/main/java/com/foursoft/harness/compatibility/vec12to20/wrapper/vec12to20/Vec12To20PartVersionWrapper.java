@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
@@ -40,6 +41,7 @@ import java.util.UUID;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecPartVersion}
  * to {@link VecPartVersion}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecPartVersion.class)
 public class Vec12To20PartVersionWrapper extends ReflectionBasedWrapper {
 
     /**

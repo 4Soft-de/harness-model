@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 
 import java.lang.reflect.Method;
@@ -36,6 +37,7 @@ import java.math.BigInteger;
  * Wrapper to wrap {@link VecDocumentVersion}
  * to {@link com.foursoft.harness.vec.v12x.VecDocumentVersion}.
  */
+@Wraps(VecDocumentVersion.class)
 public class Vec20To12DocumentVersionWrapper extends ReflectionBasedWrapper {
 
     protected String numberOfSheets;

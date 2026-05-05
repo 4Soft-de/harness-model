@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
 import com.foursoft.harness.vec.v2x.VecCableLeadThroughOutlet;
 
@@ -37,6 +38,7 @@ import java.util.stream.Collectors;
  * Wrapper to wrap {@link VecCableLeadThrough}
  * to {@link com.foursoft.harness.vec.v12x.VecCableLeadThrough}.
  */
+@Wraps(VecCableLeadThrough.class)
 public class Vec20To12CableLeadThroughWrapper extends ReflectionBasedWrapper {
 
     /**

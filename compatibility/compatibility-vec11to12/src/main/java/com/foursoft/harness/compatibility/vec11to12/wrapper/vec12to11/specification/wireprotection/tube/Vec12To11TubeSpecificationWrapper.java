@@ -26,12 +26,14 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.wireprotection.tube;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.wireprotection.Vec12To11WireProtectionSpecificationWrapper;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecTubeSpecification}
  * to {@link com.foursoft.harness.vec.v113.VecTubeSpecification}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecTubeSpecification.class)
 public class Vec12To11TubeSpecificationWrapper extends Vec12To11WireProtectionSpecificationWrapper {
 
     /**

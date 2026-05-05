@@ -27,6 +27,7 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecCartesianPoint3D;
 import com.foursoft.harness.vec.v12x.VecNURBSControlPoint;
 
@@ -39,6 +40,7 @@ import java.util.stream.Collectors;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecNURBSCurve}
  * to {@link com.foursoft.harness.vec.v113.VecBSplineCurve}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecNURBSCurve.class)
 public class Vec12To11BSplineCurveWrapper extends ReflectionBasedWrapper {
 
     /**

@@ -26,11 +26,13 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecPartUsage}
  * to {@link com.foursoft.harness.vec.v12x.VecPartUsage}.
  */
+@Wraps(com.foursoft.harness.vec.v113.VecPartUsage.class)
 public class Vec11To12PartUsageWrapper extends Vec11To12OccurrenceOrUsageWrapper {
 
     /**

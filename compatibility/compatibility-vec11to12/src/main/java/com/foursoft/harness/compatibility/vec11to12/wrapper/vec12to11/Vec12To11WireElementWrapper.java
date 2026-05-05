@@ -27,11 +27,13 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecWireElement}
  * to {@link com.foursoft.harness.vec.v113.VecWireElement}.
  */
+@Wraps(com.foursoft.harness.vec.v12x.VecWireElement.class)
 public class Vec12To11WireElementWrapper extends ReflectionBasedWrapper {
 
     /**
