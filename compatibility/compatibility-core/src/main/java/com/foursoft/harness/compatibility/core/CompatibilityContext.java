@@ -119,6 +119,24 @@ public final class CompatibilityContext implements Context {
             return this;
         }
 
+        /**
+         * Overrides the default wrapper factory used when no specific wrapper has been registered for a
+         * given target type.
+         * <p>
+         * The factory is called with the active {@link Context} and the target object to wrap, and must
+         * return a non-{@code null} {@link InvocationHandler}. It is used as a fallback by the
+         * {@link com.foursoft.harness.compatibility.core.WrapperRegistry} whenever
+         * {@link com.foursoft.harness.compatibility.core.WrapperRegistry#getWrapper(Object)} cannot
+         * find a specifically registered wrapper for the runtime type of the target.
+         * <p>
+         * If not set, {@link com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper}
+         * is used as the default factory.
+         *
+         * @param defaultWrapperFactory A factory {@link java.util.function.BiFunction} that accepts a
+         *                              {@link Context} and a target object and returns an
+         *                              {@link InvocationHandler}; must not be {@code null}.
+         * @return The builder, useful for chaining.
+         */
         public CompatibilityContextBuilder withDefaultWrapperFactory(
                 final BiFunction<Context, Object, InvocationHandler> defaultWrapperFactory) {
             this.defaultWrapperFactory = defaultWrapperFactory;
