@@ -31,7 +31,9 @@ import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.badctor.BadCtorWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.fixture.duplicate.DuplicateSource;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.emptywraps.EmptyWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.fixture.nothandler.NotHandlerWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.FixtureSourceA;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.FixtureSourceB;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.FixtureSourceC;
@@ -52,6 +54,10 @@ class WrapperAutoRegistrarTest {
             "com.foursoft.harness.compatibility.core.wrapper.fixture.badctor";
     private static final String EMPTY_PACKAGE =
             "com.foursoft.harness.compatibility.core.wrapper.fixture.emptywraps";
+    private static final String NOT_HANDLER_PACKAGE =
+            "com.foursoft.harness.compatibility.core.wrapper.fixture.nothandler";
+    private static final String DUPLICATE_PACKAGE =
+            "com.foursoft.harness.compatibility.core.wrapper.fixture.duplicate";
 
     @Test
     void registersAllAnnotatedWrappersInPackage() {
@@ -86,6 +92,26 @@ class WrapperAutoRegistrarTest {
                 .isInstanceOf(WrapperException.class)
                 .hasMessageContaining(EmptyWrapper.class.getName())
                 .hasMessageContaining("at least one source class");
+    }
+
+    @Test
+    void rejectsWrapperThatDoesNotImplementInvocationHandler() {
+        final CompatibilityContext context = newContext();
+
+        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, NOT_HANDLER_PACKAGE))
+                .isInstanceOf(WrapperException.class)
+                .hasMessageContaining(NotHandlerWrapper.class.getName())
+                .hasMessageContaining(InvocationHandler.class.getName());
+    }
+
+    @Test
+    void rejectsDuplicateSourceClassRegistration() {
+        final CompatibilityContext context = newContext();
+
+        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, DUPLICATE_PACKAGE))
+                .isInstanceOf(WrapperException.class)
+                .hasMessageContaining(DuplicateSource.class.getName())
+                .hasMessageContaining("more than one wrapper");
     }
 
     private static CompatibilityContext newContext() {

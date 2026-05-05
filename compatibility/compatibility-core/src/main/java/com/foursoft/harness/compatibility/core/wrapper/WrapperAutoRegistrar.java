@@ -35,6 +35,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -56,6 +57,12 @@ public final class WrapperAutoRegistrar {
     /**
      * Scans {@code basePackage} for {@link Wraps}-annotated classes and registers them on
      * the {@link WrapperRegistry} of the given context.
+     * <p>
+     * Every discovered class must implement {@link InvocationHandler}; registration fails fast
+     * with a {@link com.foursoft.harness.compatibility.core.exception.WrapperException} if it does not.
+     * Declaring the same source class in more than one {@link Wraps} annotation within the scanned
+     * package is also an error and will throw immediately instead of silently overwriting an earlier
+     * registration.
      *
      * @param context     Context whose registry will receive the registrations.
      * @param basePackage Package prefix to scan (e.g. {@code "com.foo.compat.wrapper"}).
@@ -64,9 +71,16 @@ public final class WrapperAutoRegistrar {
         final Set<Class<?>> wrapperClasses =
                 new Reflections(basePackage).getTypesAnnotatedWith(Wraps.class);
         final WrapperRegistry registry = context.getWrapperRegistry();
+        final Set<Class<?>> seenSourceClasses = new HashSet<>();
 
         int registrations = 0;
         for (final Class<?> wrapperClass : wrapperClasses) {
+            if (!InvocationHandler.class.isAssignableFrom(wrapperClass)) {
+                throw new WrapperException(
+                        "Wrapper " + wrapperClass.getName()
+                                + " annotated with @Wraps must implement "
+                                + InvocationHandler.class.getName() + ".");
+            }
             final Class<?>[] sourceClasses = wrapperClass.getAnnotation(Wraps.class).value();
             if (sourceClasses.length == 0) {
                 throw new WrapperException(
@@ -74,6 +88,12 @@ public final class WrapperAutoRegistrar {
             }
             final Constructor<?> ctor = resolveConstructor(wrapperClass, context);
             for (final Class<?> sourceClass : sourceClasses) {
+                if (!seenSourceClasses.add(sourceClass)) {
+                    throw new WrapperException(
+                            "Duplicate @Wraps registration: source class " + sourceClass.getName()
+                                    + " is mapped by more than one wrapper in package '"
+                                    + basePackage + "'. Only one wrapper per source class is allowed.");
+                }
                 registry.register(sourceClass, target -> instantiate(ctor, context, target));
                 registrations++;
             }
