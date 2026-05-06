@@ -91,7 +91,7 @@ public final class WrapperProxyFactory {
             return null;
         }
 
-        final InvocationHandler callback = registry.findOrCreate(target);
+        final InvocationHandler callback = registry.createInvocationHandler(target);
         final Class<?> proxyType = TYPE_CACHE.findOrInsert(target.getClass().getClassLoader(), target.getClass(), () ->
                 new ByteBuddy().subclass(mappedClass)
                         .defineField(CALLBACK, InvocationHandler.class, Visibility.PUBLIC)

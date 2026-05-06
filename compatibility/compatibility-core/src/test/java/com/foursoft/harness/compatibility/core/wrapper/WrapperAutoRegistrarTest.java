@@ -33,12 +33,8 @@ import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.badctor.BadCtorWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.duplicate.DuplicateSource;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.emptywraps.EmptyWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.*;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.nothandler.NotHandlerWrapper;
-import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.FixtureSourceA;
-import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.FixtureSourceB;
-import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.FixtureSourceC;
-import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.MultiFixtureWrapper;
-import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.SingleFixtureWrapper;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationHandler;
@@ -65,9 +61,12 @@ class WrapperAutoRegistrarTest {
 
         WrapperAutoRegistrar.registerAll(context, HAPPY_PACKAGE);
 
-        final InvocationHandler singleHandler = context.getWrapperRegistry().findOrCreate(new FixtureSourceA());
-        final InvocationHandler multiBHandler = context.getWrapperRegistry().findOrCreate(new FixtureSourceB());
-        final InvocationHandler multiCHandler = context.getWrapperRegistry().findOrCreate(new FixtureSourceC());
+        final InvocationHandler singleHandler = context.getWrapperRegistry().createInvocationHandler(
+                new FixtureSourceA());
+        final InvocationHandler multiBHandler = context.getWrapperRegistry().createInvocationHandler(
+                new FixtureSourceB());
+        final InvocationHandler multiCHandler = context.getWrapperRegistry().createInvocationHandler(
+                new FixtureSourceC());
 
         assertThat(singleHandler).isInstanceOf(SingleFixtureWrapper.class);
         assertThat(multiBHandler).isInstanceOf(MultiFixtureWrapper.class);
