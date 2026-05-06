@@ -109,7 +109,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
      * @param propertyName Property name in camelCase (e.g. {@code "myProperty"}).
      */
     protected void registerValueProperty(final String propertyName) {
-        final String capitalised = Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1);
+        final String capitalised = capitalize(propertyName);
         registerValueProperty("get" + capitalised, "set" + capitalised);
     }
 
@@ -131,8 +131,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
      * @param propertyName Property name in camelCase (e.g. {@code "myList"}).
      */
     protected void registerListProperty(final String propertyName) {
-        final String capitalised = Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1);
-        listPropertyGetters.add("get" + capitalised);
+        listPropertyGetters.add("get" + capitalize(propertyName));
     }
 
     /**
@@ -142,8 +141,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
      * @param propertyName Property name in camelCase (e.g. {@code "refEEComponentRole"}).
      */
     protected void registerBackRefProperty(final String propertyName) {
-        final String capitalised = Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1);
-        backRefPropertyGetters.add("get" + capitalised);
+        backRefPropertyGetters.add("get" + capitalize(propertyName));
     }
 
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
@@ -332,6 +330,13 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         }
 
         return interestingObjects;
+    }
+
+    private static String capitalize(final String s) {
+        if (s == null || s.isEmpty()) {
+            return s;
+        }
+        return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
     private boolean isClassOfInterest(final Class<?> o) {
