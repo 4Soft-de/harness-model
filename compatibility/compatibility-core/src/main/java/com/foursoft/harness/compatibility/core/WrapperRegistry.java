@@ -41,15 +41,15 @@ public class WrapperRegistry {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WrapperRegistry.class);
 
-    private final Function<Object, InvocationHandler> defaultWrapper;
-    private final Map<Class<?>, Function<Object, InvocationHandler>> wrapperFunctionByClass = new HashMap<>();
+    private final Function<Object, InvocationHandler> defaultWrapperFactory;
+    private final Map<Class<?>, Function<Object, InvocationHandler>> wrapperFactoryByClass = new HashMap<>();
 
-    public WrapperRegistry(final Function<Object, InvocationHandler> defaultWrapper) {
-        this.defaultWrapper = defaultWrapper;
+    public WrapperRegistry(final Function<Object, InvocationHandler> defaultWrapperFactory) {
+        this.defaultWrapperFactory = defaultWrapperFactory;
     }
 
     /**
-     * Finds or creates an {@link InvocationHandler} for the given object.
+     * Creates a new {@link InvocationHandler} for the given object.
      * Will use the default wrapper this {@code WrapperRegistry} was created with if
      * no own function was registered beforehand.
      *
@@ -57,27 +57,44 @@ public class WrapperRegistry {
      * @return {@code InvocationHandler} for the given target object.
      * @see #register(Class, Function)
      */
-    public InvocationHandler findOrCreate(final Object target) {
+    public InvocationHandler createInvocationHandler(final Object target) {
         final Class<?> aClass = ClassUtils.getNonProxyClass(target.getClass());
-        return wrapperFunctionByClass.computeIfAbsent(aClass, d -> defaultWrapper).apply(target);
+        return wrapperFactoryByClass.computeIfAbsent(aClass, this::findFallbackWrapperFunction).apply(target);
+    }
+
+    private Function<Object, InvocationHandler> findFallbackWrapperFunction(final Class<?> clazz) {
+        Class<?> current = clazz.getSuperclass();
+        while (current != null && current != Object.class) {
+            final Function<Object, InvocationHandler> function = wrapperFactoryByClass.get(current);
+            if (function != null) {
+                return function;
+
+            }
+            current = current.getSuperclass();
+        }
+        return defaultWrapperFactory;
     }
 
     /**
-     * Registers the given class with the given function.
-     * This will be used when calling {@link #findOrCreate(Object)}.
+     * Registers a wrapper factory function for a specific target class.
+     * <p>
+     * The registered function is used by
+     * {@link #createInvocationHandler(Object)} when the requested target class matches {@code clazz}. If a
+     * function is already registered for the same class, it is replaced (a warning is logged before overwrite).
      *
-     * @param clazz    Class to register.
-     * @param function Function to register for the given class.
-     * @return The updated {@code WrapperRegistry}, useful for chaining.
+     * @param clazz    target class to associate with a wrapper factory
+     * @param function factory that creates an
+     *                 {@link InvocationHandler} for instances of {@code clazz}
+     * @return this {@code WrapperRegistry} instance to allow fluent chaining
      */
     public WrapperRegistry register(final Class<?> clazz, final Function<Object, InvocationHandler> function) {
         checkClassCollision(clazz);
-        wrapperFunctionByClass.put(clazz, function);
+        wrapperFactoryByClass.put(clazz, function);
         return this;
     }
 
     private void checkClassCollision(final Class<?> clazz) {
-        if (wrapperFunctionByClass.containsKey(clazz)) {
+        if (wrapperFactoryByClass.containsKey(clazz)) {
             LOGGER.warn("The class {} already has a Function registered. It will be overwritten now.",
                         clazz.getCanonicalName());
         }
