@@ -29,12 +29,17 @@ import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.WrapperRegistry;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,12 +69,22 @@ public final class WrapperAutoRegistrar {
      * package is also an error and will throw immediately instead of silently overwriting an earlier
      * registration.
      *
-     * @param context     Context whose registry will receive the registrations.
-     * @param basePackage Package prefix to scan (e.g. {@code "com.foo.compat.wrapper"}).
+     * @param context            Context whose registry will receive the registrations.
+     * @param basePackageClasses Classes in packages to scan, type safe way to specify packages.
      */
-    public static void registerAll(final Context context, final String basePackage) {
-        final Set<Class<?>> wrapperClasses =
-                new Reflections(basePackage).getTypesAnnotatedWith(Wraps.class);
+    public static void registerAll(final Context context, final Class<?>... basePackageClasses) {
+        final String[] packages = Arrays.stream(basePackageClasses).map(Class::getPackageName).toArray(String[]::new);
+        final FilterBuilder filterBuilder = new FilterBuilder();
+        for (final String packageName : packages) {
+            filterBuilder.includePackage(packageName);
+        }
+        final URL[] urls = Arrays.stream(basePackageClasses).map(
+                p -> p.getProtectionDomain().getCodeSource().getLocation()).toArray(URL[]::new);
+
+        final Set<Class<?>> wrapperClasses = new Reflections(new ConfigurationBuilder().setUrls(urls)
+                                                                     .filterInputsBy(filterBuilder)
+                                                                     .forPackages(packages).addScanners(
+                        Scanners.TypesAnnotated)).getTypesAnnotatedWith(Wraps.class);
         final WrapperRegistry registry = context.getWrapperRegistry();
         final Set<Class<?>> seenSourceClasses = new HashSet<>();
 
@@ -92,15 +107,15 @@ public final class WrapperAutoRegistrar {
                     throw new WrapperException(
                             "Duplicate @Wraps registration: source class " + sourceClass.getName()
                                     + " is mapped by more than one wrapper in package '"
-                                    + basePackage + "'. Only one wrapper per source class is allowed.");
+                                    + Arrays.toString(packages) + "'. Only one wrapper per source class is allowed.");
                 }
                 registry.register(sourceClass, target -> instantiate(ctor, context, target));
                 registrations++;
             }
         }
 
-        LOGGER.info("Auto-registered {} wrapper(s) for {} source class(es) from package '{}'.",
-                    wrapperClasses.size(), registrations, basePackage);
+        LOGGER.info("Auto-registered {} wrapper(s) for {} source class(es) from packages '{}'.",
+                    wrapperClasses.size(), registrations, packages);
     }
 
     /**
