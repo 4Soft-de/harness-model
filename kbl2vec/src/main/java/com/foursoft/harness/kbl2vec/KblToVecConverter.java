@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl.v25.visitor.TraversingVisitor;
 import com.foursoft.harness.kbl2vec.core.ConversionOrchestrator;
 import com.foursoft.harness.kbl2vec.core.ConversionProperties;
 import com.foursoft.harness.kbl2vec.core.Logging;
+import com.foursoft.harness.kbl2vec.core.Processor;
 import com.foursoft.harness.kbl2vec.post.XmlIdPostProcessor;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.v2x.VecContent;
@@ -40,17 +41,27 @@ import com.google.common.collect.MultimapBuilder;
 import com.google.common.collect.Multimaps;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class KblToVecConverter {
 
     private final ReflectionsBasedTransformerRegistry registry;
+    private final List<Processor<KBLContainer>> preProcessors;
+    private final List<Processor<VecContent>> postProcessors;
 
     public KblToVecConverter() {
-        registry = new ReflectionsBasedTransformerRegistry();
+        this(List.of(), List.of());
+    }
 
+    public KblToVecConverter(final List<Processor<KBLContainer>> preProcessors,
+                             final List<Processor<VecContent>> postProcessors) {
+        registry = new ReflectionsBasedTransformerRegistry();
+        this.preProcessors = new ArrayList<>(preProcessors);
+        this.postProcessors = new ArrayList<>(postProcessors);
     }
 
     public ConversionOrchestrator.Result<VecContent> convert(final KBLContainer container) {
@@ -70,6 +81,9 @@ public class KblToVecConverter {
                 registry, new ConversionProperties());
 
         orchestrator.addPostProcessor(new XmlIdPostProcessor());
+
+        preProcessors.forEach(orchestrator::addPreProcessor);
+        postProcessors.forEach(orchestrator::addPostProcessor);
 
         return orchestrator;
     }
