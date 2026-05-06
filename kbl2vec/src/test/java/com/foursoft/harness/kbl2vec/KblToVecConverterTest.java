@@ -30,12 +30,14 @@ import au.com.origin.snapshots.junit5.SnapshotExtension;
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblReader;
 import com.foursoft.harness.kbl2vec.core.ConversionOrchestrator;
+import com.foursoft.harness.kbl2vec.core.Processor;
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.vec.v2x.VecContent;
 import jakarta.xml.bind.Marshaller;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -47,6 +49,7 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static com.foursoft.harness.vec.v2x.validation.VecValidation.validateXML;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -92,6 +95,43 @@ class KblToVecConverterTest {
                 assertThat(validationErrors).isEmpty();
             }
         }
+    }
+
+    /**
+     * Tests that user-supplied pre- and post-processors are invoked during conversion, and that the custom
+     * post-processor runs after the internally configured {@code XmlIdPostProcessor} (i.e. XML IDs are already
+     * assigned on the result when the custom post-processor is called).
+     *
+     * @throws IOException if reading or writing files fails
+     */
+    @Test
+    void should_invokeCustomProcessors_afterInternalProcessors() throws IOException {
+        final List<Boolean> xmlIdsAlreadyPresentWhenCustomPostProcessorRuns = new ArrayList<>();
+
+        final Processor<KBLContainer> preProcessor = (source, context) -> source;
+
+        final Processor<VecContent> postProcessor =
+                (source, context) -> {
+                    // XmlIdPostProcessor must have run before this: all VEC elements should have an XML ID assigned.
+                    final boolean allIdsPresent = source.getDocumentVersions().stream()
+                            .allMatch(dv -> dv.getXmlId() != null && !dv.getXmlId().isEmpty());
+                    xmlIdsAlreadyPresentWhenCustomPostProcessorRuns.add(allIdsPresent);
+                    return source;
+                };
+
+        final KblToVecConverter converter = new KblToVecConverter(List.of(preProcessor), List.of(postProcessor));
+
+        try (final InputStream is = getClass().getResourceAsStream("/vobes_sample_kbl24_battery_plus_cable.kbl")) {
+            final KBLContainer kblContainer = new KblReader(new ValidationEventLogger()).read(is);
+            converter.convert(kblContainer);
+        }
+
+        assertThat(xmlIdsAlreadyPresentWhenCustomPostProcessorRuns)
+                .as("custom post-processor should have been invoked exactly once")
+                .hasSize(1);
+        assertThat(xmlIdsAlreadyPresentWhenCustomPostProcessorRuns.get(0))
+                .as("XmlIdPostProcessor must have run before the custom post-processor")
+                .isTrue();
     }
 
     public void writeToStream(final ConversionOrchestrator.Result<VecContent> result, final OutputStream stream) {
