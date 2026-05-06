@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,19 +25,33 @@
  */
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
-import com.foursoft.harness.compatibility.core.Context;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.AbstractBaseWrapperTest;
+import com.foursoft.harness.vec.v2x.VecColor;
+import org.junit.jupiter.api.Test;
 
-public class DefaultWrapper extends ReflectionBasedWrapper {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    /**
-     * Creates a wrapper for the given {@link Context} and target object.
-     *
-     * @param context Context for the wrapper.
-     * @param target  Target object to adjust.
-     */
-    public DefaultWrapper(final Context context, final Object target) {
-        super(context, target);
-        registerValueProperty("immutableGlobalIri");
+class DefaultWrapperTest extends AbstractBaseWrapperTest {
+
+    @Test
+    void immutableGlobalIri_should_be_null_initially() {
+        final VecColor proxy = createProxy();
+
+        assertThat(proxy.getImmutableGlobalIri()).isNull();
     }
+
+    @Test
+    void immutableGlobalIri_should_roundtrip_through_setter_and_getter() {
+        final VecColor proxy = createProxy();
+
+        proxy.setImmutableGlobalIri("urn:example:color:red");
+
+        assertThat(proxy.getImmutableGlobalIri()).isEqualTo("urn:example:color:red");
+    }
+
+    private VecColor createProxy() {
+        return get12To20Context().getWrapperProxyFactory()
+                .createProxy(new com.foursoft.harness.vec.v12x.VecColor());
+    }
+
 }

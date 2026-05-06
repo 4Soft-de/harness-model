@@ -47,7 +47,6 @@ import java.util.List;
 @Wraps(com.foursoft.harness.vec.v113.VecCavityPartSpecification.class)
 public class CavityPartSpecificationWrapper extends ReflectionBasedWrapper {
 
-    private List<String> compatibleCavityGeometries;
     private List<VecSize> vecSize;
 
     /**
@@ -58,6 +57,7 @@ public class CavityPartSpecificationWrapper extends ReflectionBasedWrapper {
      */
     public CavityPartSpecificationWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
+        registerListProperty("compatibleCavityGeometries");
     }
 
     public List<VecSize> createVecSize(final VecValueRange range, final Context context) {
@@ -76,13 +76,6 @@ public class CavityPartSpecificationWrapper extends ReflectionBasedWrapper {
                 vecSize = getVecSizes();
             }
             return vecSize;
-        }
-
-        if ("getCompatibleCavityGeometries".equals(methodName)) {
-            if (compatibleCavityGeometries == null) {
-                compatibleCavityGeometries = new ArrayList<>();
-            }
-            return compatibleCavityGeometries;
         }
 
         return super.wrapObject(obj, method, allArguments);
