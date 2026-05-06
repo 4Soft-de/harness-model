@@ -51,6 +51,14 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
 
     private final Map<Object, Object> collectionsByMethod = new HashMap<>();
 
+    private final Map<String, Object> valuePropertyValues = new HashMap<>();
+    private final Set<String> valuePropertyGetters = new HashSet<>();
+    private final Map<String, String> setterToGetter = new HashMap<>();
+    private final Set<String> listPropertyGetters = new HashSet<>();
+    private final Map<String, List<Object>> listPropertyStore = new HashMap<>();
+    private final Set<String> backRefPropertyGetters = new HashSet<>();
+    private final Map<String, Set<Object>> backRefPropertyStore = new HashMap<>();
+
     private final WrapperHelper wrapperHelper;
     private final Context context;
     private final Object target;
@@ -93,7 +101,69 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         return target;
     }
 
+    /**
+     * Registers a value property (getter + setter) that is handled in-memory by this wrapper.
+     * Getter and setter names are inferred by capitalising the property name and prepending
+     * {@code get} / {@code set} (standard JavaBean convention).
+     *
+     * @param propertyName Property name in camelCase (e.g. {@code "myProperty"}).
+     */
+    protected void registerValueProperty(final String propertyName) {
+        final String capitalised = Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1);
+        registerValueProperty("get" + capitalised, "set" + capitalised);
+    }
+
+    /**
+     * Registers a value property with explicit getter and setter method names.
+     *
+     * @param getterName Name of the getter method.
+     * @param setterName Name of the setter method.
+     */
+    protected void registerValueProperty(final String getterName, final String setterName) {
+        valuePropertyGetters.add(getterName);
+        setterToGetter.put(setterName, getterName);
+    }
+
+    /**
+     * Registers a list property whose getter returns a stable, lazily-created empty list.
+     * The getter name is inferred by capitalising the property name and prepending {@code get}.
+     *
+     * @param propertyName Property name in camelCase (e.g. {@code "myList"}).
+     */
+    protected void registerListProperty(final String propertyName) {
+        final String capitalised = Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1);
+        listPropertyGetters.add("get" + capitalised);
+    }
+
+    /**
+     * Registers a back-reference property whose getter returns a stable, lazily-created empty set.
+     * The getter name is inferred by capitalising the property name and prepending {@code get}.
+     *
+     * @param propertyName Property name in camelCase (e.g. {@code "refEEComponentRole"}).
+     */
+    protected void registerBackRefProperty(final String propertyName) {
+        final String capitalised = Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1);
+        backRefPropertyGetters.add("get" + capitalised);
+    }
+
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
+        final String methodName = method.getName();
+
+        if (valuePropertyGetters.contains(methodName)) {
+            return valuePropertyValues.get(methodName);
+        }
+        if (setterToGetter.containsKey(methodName)) {
+            valuePropertyValues.put(setterToGetter.get(methodName),
+                                    allArguments != null && allArguments.length > 0 ? allArguments[0] : null);
+            return null;
+        }
+        if (listPropertyGetters.contains(methodName)) {
+            return listPropertyStore.computeIfAbsent(methodName, k -> new ArrayList<>());
+        }
+        if (backRefPropertyGetters.contains(methodName)) {
+            return backRefPropertyStore.computeIfAbsent(methodName, k -> new HashSet<>());
+        }
+
         return defaultInvoke(method, allArguments);
     }
 
