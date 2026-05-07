@@ -25,8 +25,6 @@
  */
 package com.foursoft.harness.compatibility.vec11to12;
 
-import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
-import com.foursoft.harness.compatibility.core.MethodIdentifier;
 import com.foursoft.harness.compatibility.core.PropertyAdditionProvider;
 import com.foursoft.harness.compatibility.core.PurePropertyAdditions;
 import com.foursoft.harness.compatibility.core.mapping.NameBasedClassMapper;
@@ -35,11 +33,8 @@ import com.foursoft.harness.vec.v113.*;
 import com.foursoft.harness.vec.v12x.VecNURBSCurve;
 import com.foursoft.harness.vec.v12x.VecTopologyZone;
 
-import java.io.Serial;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Objects;
 
 import static com.foursoft.harness.compatibility.core.PropertyAddition.*;
 
@@ -49,7 +44,6 @@ import static com.foursoft.harness.compatibility.core.PropertyAddition.*;
 public class Vec11XTo12XClassMapper extends NameBasedClassMapper implements PropertyAdditionProvider {
 
     private final Map<Class<?>, Class<?>> classMap;
-    private final UnsupportedVec11XToVec12XMethods ignored;
     private final PurePropertyAdditions propertyAdditions;
 
     /**
@@ -67,8 +61,6 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper implements Prop
         // VEC 1.2.X -> VEC 1.1.X
         classMap.put(VecNURBSCurve.class, VecBSplineCurve.class);
         classMap.put(VecTopologyZone.class, VecZone.class);
-
-        ignored = new UnsupportedVec11XToVec12XMethods();
 
         // ── pure property additions — properties new in VEC 1.2.X handled automatically by DefaultWrapper
         propertyAdditions = new PurePropertyAdditions()
@@ -175,30 +167,6 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper implements Prop
         return aClass != null
                 ? aClass
                 : classMap.getOrDefault(ClassUtils.getNonProxyClass(clazz), super.map(clazz));
-    }
-
-    @Override
-    public HasUnsupportedMethods checkUnsupportedMethods() {
-        return ignored;
-    }
-
-    private static class UnsupportedVec11XToVec12XMethods extends HashSet<MethodIdentifier>
-            implements HasUnsupportedMethods {
-
-        @Serial
-        private static final long serialVersionUID = 6377405392358586968L;
-
-        @Override
-        public boolean isNotSupported(final MethodIdentifier method) {
-            Objects.requireNonNull(method);
-            return contains(method);
-        }
-
-        public void add(final Class<?> vecClass, final String methodName) {
-            final String className = vecClass.getSimpleName();
-            add(new MethodIdentifier(className, methodName));
-        }
-
     }
 
 }

@@ -48,7 +48,6 @@ public final class Vec11XTo12XCompatibilityWrapper implements CompatibilityWrapp
         final CompatibilityContext context =
                 new CompatibilityContextBuilder()
                         .withClassMapper(classMapper)
-                        .withUnsupportedMethodCheck(classMapper.checkUnsupportedMethods())
                         .withDefaultWrapperFactory(DefaultWrapper::new)
                         .build();
 

@@ -41,15 +41,12 @@ public final class CompatibilityContext implements Context {
     private final ClassMapper classMapper;
     private final WrapperRegistry wrapperRegistry;
     private final WrapperProxyFactory wrapperProxyFactory;
-    private final HasUnsupportedMethods hasUnsupportedMethods;
 
     private Object content;
 
     private CompatibilityContext(final ClassMapper classMapper,
-                                 final BiFunction<Context, Object, InvocationHandler> defaultWrapperFactory,
-                                 final HasUnsupportedMethods hasUnsupportedMethods) {
+                                 final BiFunction<Context, Object, InvocationHandler> defaultWrapperFactory) {
         this.classMapper = classMapper;
-        this.hasUnsupportedMethods = hasUnsupportedMethods;
         wrapperRegistry = new WrapperRegistry(c -> defaultWrapperFactory.apply(this, c));
         wrapperProxyFactory = new WrapperProxyFactory.WrapperProxyFactoryBuilder()
                 .withClassMapper(classMapper)
@@ -73,11 +70,6 @@ public final class CompatibilityContext implements Context {
     }
 
     @Override
-    public HasUnsupportedMethods checkUnsupportedMethods() {
-        return hasUnsupportedMethods;
-    }
-
-    @Override
     public Object getContent() {
         return content;
     }
@@ -92,7 +84,6 @@ public final class CompatibilityContext implements Context {
      */
     public static final class CompatibilityContextBuilder {
         private ClassMapper classMapper;
-        private HasUnsupportedMethods hasUnsupportedMethods;
         private BiFunction<Context, Object, InvocationHandler> defaultWrapperFactory =
                 ReflectionBasedWrapper::new;
 
@@ -108,25 +99,13 @@ public final class CompatibilityContext implements Context {
         }
 
         /**
-         * Defines the {@link HasUnsupportedMethods unsupported methods}.
-         *
-         * @param hasUnsupportedMethods {@link HasUnsupportedMethods unsupported methods}.
-         * @return The builder, useful for chaining.
-         */
-        public CompatibilityContextBuilder withUnsupportedMethodCheck(
-                final HasUnsupportedMethods hasUnsupportedMethods) {
-            this.hasUnsupportedMethods = hasUnsupportedMethods;
-            return this;
-        }
-
-        /**
          * Overrides the default wrapper factory used when no specific wrapper has been registered for a
          * given target type.
          * <p>
          * The factory is called with the active {@link Context} and the target object to wrap, and must
          * return a non-{@code null} {@link InvocationHandler}. It is used as a fallback by the
          * {@link com.foursoft.harness.compatibility.core.WrapperRegistry} whenever
-         * {@link com.foursoft.harness.compatibility.core.WrapperRegistry#getWrapper(Object)} cannot
+         * {@link com.foursoft.harness.compatibility.core.WrapperRegistry#createInvocationHandler(Object)}  cannot
          * find a specifically registered wrapper for the runtime type of the target.
          * <p>
          * If not set, {@link com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper}
@@ -145,15 +124,11 @@ public final class CompatibilityContext implements Context {
 
         /**
          * Builds the {@link CompatibilityContext}.
-         * If {@link HasUnsupportedMethods} was not defined, all methods will be marked as supported.
          *
          * @return The built {@link CompatibilityContext}.
          */
         public CompatibilityContext build() {
-            if (hasUnsupportedMethods == null) {
-                hasUnsupportedMethods = method -> false;
-            }
-            return new CompatibilityContext(classMapper, defaultWrapperFactory, hasUnsupportedMethods);
+            return new CompatibilityContext(classMapper, defaultWrapperFactory);
         }
 
     }

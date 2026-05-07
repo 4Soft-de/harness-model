@@ -27,7 +27,6 @@ package com.foursoft.harness.compatibility.core.wrapper;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.CompatibilityContext.CompatibilityContextBuilder;
-import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
 import com.foursoft.harness.compatibility.core.PropertyAdditionProvider;
 import com.foursoft.harness.compatibility.core.PurePropertyAdditions;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
@@ -39,9 +38,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
 
-import static com.foursoft.harness.compatibility.core.PropertyAddition.backRef;
-import static com.foursoft.harness.compatibility.core.PropertyAddition.list;
-import static com.foursoft.harness.compatibility.core.PropertyAddition.value;
+import static com.foursoft.harness.compatibility.core.PropertyAddition.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -59,8 +56,8 @@ class ReflectionBasedWrapperAdditionsTest {
     @Test
     void valueAddition_getterReturnsNullInitially() throws Exception {
         final Object proxy = proxyFor(new AdditionsBean(),
-                new PurePropertyAdditions()
-                        .register(AdditionsBean.class, value("foo")));
+                                      new PurePropertyAdditions()
+                                              .register(AdditionsBean.class, value("foo")));
 
         final Object result = getFoo(proxy);
 
@@ -70,8 +67,8 @@ class ReflectionBasedWrapperAdditionsTest {
     @Test
     void valueAddition_setterStoresValue_getterReturnsIt() throws Exception {
         final Object proxy = proxyFor(new AdditionsBean(),
-                new PurePropertyAdditions()
-                        .register(AdditionsBean.class, value("foo")));
+                                      new PurePropertyAdditions()
+                                              .register(AdditionsBean.class, value("foo")));
 
         setFoo(proxy, "stored");
 
@@ -83,8 +80,8 @@ class ReflectionBasedWrapperAdditionsTest {
         // Without the addition, getFoo() would delegate to AdditionsBean and return "fooOriginal".
         // With the addition, the wrapper intercepts and returns null / stored value.
         final Object proxy = proxyFor(new AdditionsBean(),
-                new PurePropertyAdditions()
-                        .register(AdditionsBean.class, value("foo")));
+                                      new PurePropertyAdditions()
+                                              .register(AdditionsBean.class, value("foo")));
 
         assertThat(getFoo(proxy)).isNotEqualTo("fooOriginal");
     }
@@ -94,8 +91,8 @@ class ReflectionBasedWrapperAdditionsTest {
     @Test
     void listAddition_returnsEmptyListNotNull() throws Exception {
         final Object proxy = proxyFor(new AdditionsBean(),
-                new PurePropertyAdditions()
-                        .register(AdditionsBean.class, list("barList")));
+                                      new PurePropertyAdditions()
+                                              .register(AdditionsBean.class, list("barList")));
 
         final Object result = getBarList(proxy);
 
@@ -106,8 +103,8 @@ class ReflectionBasedWrapperAdditionsTest {
     @Test
     void listAddition_returnsSameInstanceOnRepeatedCalls() throws Exception {
         final Object proxy = proxyFor(new AdditionsBean(),
-                new PurePropertyAdditions()
-                        .register(AdditionsBean.class, list("barList")));
+                                      new PurePropertyAdditions()
+                                              .register(AdditionsBean.class, list("barList")));
 
         final Object first = getBarList(proxy);
         final Object second = getBarList(proxy);
@@ -120,8 +117,8 @@ class ReflectionBasedWrapperAdditionsTest {
     @Test
     void backRefAddition_returnsEmptySet() throws Exception {
         final Object proxy = proxyFor(new AdditionsBean(),
-                new PurePropertyAdditions()
-                        .register(AdditionsBean.class, backRef("bazSet")));
+                                      new PurePropertyAdditions()
+                                              .register(AdditionsBean.class, backRef("bazSet")));
 
         final Object result = getBazSet(proxy);
 
@@ -132,8 +129,8 @@ class ReflectionBasedWrapperAdditionsTest {
     @Test
     void backRefAddition_returnsSameInstanceOnRepeatedCalls() throws Exception {
         final Object proxy = proxyFor(new AdditionsBean(),
-                new PurePropertyAdditions()
-                        .register(AdditionsBean.class, backRef("bazSet")));
+                                      new PurePropertyAdditions()
+                                              .register(AdditionsBean.class, backRef("bazSet")));
 
         final Object first = getBazSet(proxy);
         final Object second = getBazSet(proxy);
@@ -147,8 +144,8 @@ class ReflectionBasedWrapperAdditionsTest {
     void additionOnParentClass_isAppliedWhenWrappingSubclass() throws Exception {
         // parentProp is declared on ParentAdditionsBean; AdditionsBean extends it.
         final Object proxy = proxyFor(new AdditionsBean(),
-                new PurePropertyAdditions()
-                        .register(ParentAdditionsBean.class, value("parentProp")));
+                                      new PurePropertyAdditions()
+                                              .register(ParentAdditionsBean.class, value("parentProp")));
 
         setParentProp(proxy, "fromParentAddition");
 
@@ -201,13 +198,8 @@ class ReflectionBasedWrapperAdditionsTest {
         return proxy.getClass().getMethod(name, params);
     }
 
-    private static final class AdditionsClassMapper implements ClassMapper, PropertyAdditionProvider {
-
-        private final PurePropertyAdditions additions;
-
-        AdditionsClassMapper(final PurePropertyAdditions additions) {
-            this.additions = additions;
-        }
+    private record AdditionsClassMapper(PurePropertyAdditions additions)
+            implements ClassMapper, PropertyAdditionProvider {
 
         @Override
         public Class<?> map(final Class<?> clazz) {
@@ -222,11 +214,6 @@ class ReflectionBasedWrapperAdditionsTest {
         @Override
         public String getTargetPackageName() {
             return FIXTURE_PACKAGE;
-        }
-
-        @Override
-        public HasUnsupportedMethods checkUnsupportedMethods() {
-            return method -> false;
         }
 
         @Override

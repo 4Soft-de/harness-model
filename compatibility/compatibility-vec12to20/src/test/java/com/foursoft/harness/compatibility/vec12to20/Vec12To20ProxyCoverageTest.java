@@ -26,7 +26,6 @@
 package com.foursoft.harness.compatibility.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.MethodIdentifier;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import jakarta.xml.bind.annotation.XmlType;
 import org.junit.jupiter.api.DisplayName;
@@ -81,7 +80,6 @@ class Vec12To20ProxyCoverageTest {
         final Class<?> vec2xClass = CONTEXT.getClassMapper().map(vec12xClass);
         final List<Method> publicMethods = Arrays.stream(vec2xClass.getMethods())
                 .filter(m -> !m.getDeclaringClass().equals(Object.class))
-                .filter(m -> !isUnsupported(m))
                 .sorted(Comparator.comparing(Method::getName))
                 .toList();
 
@@ -154,10 +152,6 @@ class Vec12To20ProxyCoverageTest {
         }
         final Type genericReturn = method.getGenericReturnType();
         return genericReturn instanceof ParameterizedType;
-    }
-
-    private static boolean isUnsupported(final Method method) {
-        return CONTEXT.checkUnsupportedMethods().isNotSupported(MethodIdentifier.of(method));
     }
 
     private static boolean hasNoArgConstructor(final Class<?> clazz) {

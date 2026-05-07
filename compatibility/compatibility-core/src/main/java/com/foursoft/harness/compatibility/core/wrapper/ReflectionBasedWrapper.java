@@ -26,9 +26,7 @@
 package com.foursoft.harness.compatibility.core.wrapper;
 
 import com.foursoft.harness.compatibility.core.Context;
-import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
 import com.foursoft.harness.compatibility.core.MethodCache;
-import com.foursoft.harness.compatibility.core.MethodIdentifier;
 import com.foursoft.harness.compatibility.core.PropertyAddition;
 import com.foursoft.harness.compatibility.core.PropertyAdditionProvider;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
@@ -79,13 +77,13 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         final Class<?> targetClass = ClassUtils.getNonProxyClass(target.getClass());
         MethodCache.initClassCache(targetClass);
 
-        if (context.getClassMapper() instanceof PropertyAdditionProvider provider) {
+        if (context.getClassMapper() instanceof final PropertyAdditionProvider provider) {
             for (final PropertyAddition addition : provider.getPropertyAdditions().getAdditions(targetClass)) {
-                if (addition instanceof PropertyAddition.Value v) {
+                if (addition instanceof final PropertyAddition.Value v) {
                     registerValueProperty(v.propertyName());
-                } else if (addition instanceof PropertyAddition.MutableList l) {
+                } else if (addition instanceof final PropertyAddition.MutableList l) {
                     registerListProperty(l.propertyName());
-                } else if (addition instanceof PropertyAddition.BackRef b) {
+                } else if (addition instanceof final PropertyAddition.BackRef b) {
                     registerBackRefProperty(b.propertyName());
                 }
             }
@@ -215,20 +213,6 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         // Note: hashCode, equals and toString should NOT be handled, the Sonar / IJ warning can be ignored.
         // See WrapperProxyFactory (`.method(not(isDeclaredBy(Object.class)))`).
         if (obj == null || target == null) {
-            return null;
-        }
-
-        final HasUnsupportedMethods hasUnsupportedMethods = context.checkUnsupportedMethods();
-        if (hasUnsupportedMethods.isNotSupported(MethodIdentifier.of(method))) {
-            return null;
-        }
-
-        // The given method can be from a super class which can exist in both source and target package.
-        // However, this doesn't need to be true for the method of the given object (e.g. changed inheritance).
-        // Thus, the unsupported check has to be for the method of the given object too.
-        final String className = ClassUtils.getNonProxyClass(obj.getClass()).getSimpleName();
-        final String methodName = method.getName();
-        if (hasUnsupportedMethods.isNotSupported(new MethodIdentifier(className, methodName))) {
             return null;
         }
 

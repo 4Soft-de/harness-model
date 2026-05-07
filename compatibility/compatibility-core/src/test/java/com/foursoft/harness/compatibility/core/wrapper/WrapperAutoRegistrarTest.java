@@ -27,7 +27,6 @@ package com.foursoft.harness.compatibility.core.wrapper;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.CompatibilityContext.CompatibilityContextBuilder;
-import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.badctor.BadCtorWrapper;
@@ -114,10 +113,6 @@ class WrapperAutoRegistrarTest {
             return "";
         }
 
-        @Override
-        public HasUnsupportedMethods checkUnsupportedMethods() {
-            return method -> false;
-        }
     }
 
 }
