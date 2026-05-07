@@ -152,7 +152,16 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper implements Prop
                 .register(VecZone.class,
                           value("parentTopologyZone"),
                           value("parentTopologyZoneSpecification"),
-                          value("type"), list("assignments"));
+                          value("type"), list("assignments"))
+
+                // Pure Removals:
+                .register(com.foursoft.harness.vec.v12x.VecContent.class, list("compliantConformanceClasses"))
+                .register(com.foursoft.harness.vec.v12x.VecPath.class, value("configInfo"))
+                .register(com.foursoft.harness.vec.v12x.VecTopologySpecification.class, list("zones"))
+                .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("gradient"))
+                .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("tapeOverlap"))
+                .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("tapingDirection"))
+        ;
     }
 
     @Override

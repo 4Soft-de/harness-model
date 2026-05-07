@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.X.X
+ * Compatibility VEC 1.2.X To VEC 2.0.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,25 +25,22 @@
  */
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
-import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
-import com.foursoft.harness.vec.v2x.VecPartUsage;
+import com.foursoft.harness.vec.v12x.VecModuleFamily;
 
 /**
- * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecPartUsage}
- * to {@link VecPartUsage}.
+ * Wraps {@link VecModuleFamily} to the VEC 2.x counterpart.
+ *
+ * <p>Explicitly registers {@code isMandatory}/{@code setMandatory} because the standard
+ * {@code registerValueProperty("mandatory")} convenience method generates a {@code getMandatory}
+ * getter name, whereas JAXB uses the non-standard {@code is*} prefix for boolean properties.
  */
-@Wraps(com.foursoft.harness.vec.v12x.VecPartUsage.class)
-public class PartUsageWrapper extends OccurrenceOrUsageWrapper {
+@Wraps(VecModuleFamily.class)
+public class ModuleFamilyWrapper extends DefaultWrapper {
 
-    /**
-     * Creates this wrapper.
-     *
-     * @param context Context of the wrapper.
-     * @param target  Target object of the wrapper.
-     */
-    public PartUsageWrapper(final CompatibilityContext context, final Object target) {
+    public ModuleFamilyWrapper(final Context context, final Object target) {
         super(context, target);
+        registerValueProperty("isMandatory", "setMandatory");
     }
-
 }

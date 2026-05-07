@@ -40,7 +40,7 @@ import java.math.BigInteger;
  * to {@link VecDocumentVersion}.
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecDocumentVersion.class)
-public class DocumentVersionWrapper extends ReflectionBasedWrapper {
+public class DocumentVersionWrapper extends DefaultWrapper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DocumentVersionWrapper.class);
 

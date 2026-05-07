@@ -27,19 +27,20 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
-import com.foursoft.harness.vec.v12x.VecExtendableElement;
+import com.foursoft.harness.vec.v12x.VecRingTerminalSpecification;
 
-@Wraps(VecExtendableElement.class)
-public class ExtendableElementWrapper extends DefaultWrapper {
+/**
+ * Wraps {@link VecRingTerminalSpecification} to the VEC 2.x counterpart.
+ *
+ * <p>Explicitly registers {@code isNutIntegrated}/{@code setNutIntegrated} because the standard
+ * {@code registerValueProperty("nutIntegrated")} convenience method generates a {@code getNutIntegrated}
+ * getter name, whereas JAXB uses the non-standard {@code is*} prefix for boolean properties.
+ */
+@Wraps(VecRingTerminalSpecification.class)
+public class RingTerminalSpecificationWrapper extends DefaultWrapper {
 
-    /**
-     * Creates this wrapper.
-     *
-     * @param context Context of the wrapper.
-     * @param target  Target object of the wrapper.
-     */
-    public ExtendableElementWrapper(final Context context, final Object target) {
+    public RingTerminalSpecificationWrapper(final Context context, final Object target) {
         super(context, target);
-        registerBackRefProperty("refReusage");
+        registerValueProperty("isNutIntegrated", "setNutIntegrated");
     }
 }

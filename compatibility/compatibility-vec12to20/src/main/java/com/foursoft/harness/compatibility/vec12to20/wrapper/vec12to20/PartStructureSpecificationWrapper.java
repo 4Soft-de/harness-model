@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,37 +27,20 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
-import com.foursoft.harness.vec.v12x.VecEEComponentSpecification;
-import com.foursoft.harness.vec.v2x.VecComponentNode;
+import com.foursoft.harness.vec.v12x.VecPartStructureSpecification;
 
-import java.lang.reflect.Method;
+/**
+ * Wraps {@link VecPartStructureSpecification} to the VEC 2.x counterpart.
+ *
+ * <p>Explicitly registers {@code isDefinedAsEmpty}/{@code setDefinedAsEmpty} because the standard
+ * {@code registerValueProperty("definedAsEmpty")} convenience method generates a {@code getDefinedAsEmpty}
+ * getter name, whereas JAXB uses the non-standard {@code is*} prefix for boolean properties.
+ */
+@Wraps(VecPartStructureSpecification.class)
+public class PartStructureSpecificationWrapper extends DefaultWrapper {
 
-@Wraps({VecEEComponentSpecification.class})
-public class EEComponentSpecificationWrapper extends ExtendableElementWrapper {
-
-    private VecComponentNode componentNode;
-
-    /**
-     * Creates a wrapper for the given {@link Context} and target object.
-     *
-     * @param context Context for the wrapper.
-     * @param target  Target object to adjust.
-     */
-    public EEComponentSpecificationWrapper(final Context context,
-                                           final Object target) {
+    public PartStructureSpecificationWrapper(final Context context, final Object target) {
         super(context, target);
-    }
-
-    @Override
-    protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
-        final String methodName = method.getName();
-        if ("getComponentNode".equals(methodName)) {
-            return componentNode;
-        }
-        if ("setComponentNode".equals(methodName) && allArguments.length == 1) {
-            componentNode = (VecComponentNode) allArguments[0];
-            return null;
-        }
-        return super.wrapObject(obj, method, allArguments);
+        registerValueProperty("isDefinedAsEmpty", "setDefinedAsEmpty");
     }
 }

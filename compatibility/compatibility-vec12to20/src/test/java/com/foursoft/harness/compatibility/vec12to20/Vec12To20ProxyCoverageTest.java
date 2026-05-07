@@ -143,7 +143,9 @@ class Vec12To20ProxyCoverageTest {
     }
 
     private static boolean isSetter(final Method method) {
-        return method.getParameterCount() == 1 && method.getName().startsWith("set");
+        return method.getParameterCount() == 1
+                && method.getName().startsWith("set")
+                && !method.getParameterTypes()[0].isPrimitive();
     }
 
     private static boolean isListReturnType(final Method method) {

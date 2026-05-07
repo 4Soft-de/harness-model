@@ -43,7 +43,7 @@ class ContentWrapperTest extends AbstractBaseWrapperTest {
         try (final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X)) {
             final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
             assertThat(originalContent).isNotNull();
-            assertThat(originalContent.getVecVersion()).isEqualTo("2.0.2");
+            assertThat(originalContent.getVecVersion()).isEqualTo("2.2.0");
         }
     }
 } 

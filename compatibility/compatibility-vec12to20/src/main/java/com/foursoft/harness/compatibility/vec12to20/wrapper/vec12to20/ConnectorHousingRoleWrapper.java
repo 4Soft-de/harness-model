@@ -42,7 +42,7 @@ import java.util.stream.Stream;
  * to {@link VecConnectorHousingRole}.
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecConnectorHousingRole.class)
-public class ConnectorHousingRoleWrapper extends ReflectionBasedWrapper {
+public class ConnectorHousingRoleWrapper extends DefaultWrapper {
 
     private List<VecComponentConnector> slot;
 
