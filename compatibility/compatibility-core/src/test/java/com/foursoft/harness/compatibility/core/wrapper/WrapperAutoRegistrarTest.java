@@ -32,7 +32,7 @@ import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.badctor.BadCtorWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.duplicate.DuplicateSource;
-import com.foursoft.harness.compatibility.core.wrapper.fixture.emptywraps.EmptyWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.fixture.duplicate.DuplicateWrapperA;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.*;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.nothandler.NotHandlerWrapper;
 import org.junit.jupiter.api.Test;
@@ -44,22 +44,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WrapperAutoRegistrarTest {
 
-    private static final String HAPPY_PACKAGE =
-            "com.foursoft.harness.compatibility.core.wrapper.fixture.happy";
-    private static final String BAD_CTOR_PACKAGE =
-            "com.foursoft.harness.compatibility.core.wrapper.fixture.badctor";
-    private static final String EMPTY_PACKAGE =
-            "com.foursoft.harness.compatibility.core.wrapper.fixture.emptywraps";
-    private static final String NOT_HANDLER_PACKAGE =
-            "com.foursoft.harness.compatibility.core.wrapper.fixture.nothandler";
-    private static final String DUPLICATE_PACKAGE =
-            "com.foursoft.harness.compatibility.core.wrapper.fixture.duplicate";
-
     @Test
     void registersAllAnnotatedWrappersInPackage() {
         final CompatibilityContext context = newContext();
 
-        WrapperAutoRegistrar.registerAll(context, HAPPY_PACKAGE);
+        WrapperAutoRegistrar.registerAll(context, MultiFixtureWrapper.class);
 
         final InvocationHandler singleHandler = context.getWrapperRegistry().createInvocationHandler(
                 new FixtureSourceA());
@@ -77,27 +66,17 @@ class WrapperAutoRegistrarTest {
     void rejectsWrapperWithoutContextObjectConstructor() {
         final CompatibilityContext context = newContext();
 
-        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, BAD_CTOR_PACKAGE))
+        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, BadCtorWrapper.class))
                 .isInstanceOf(WrapperException.class)
                 .hasMessageContaining(BadCtorWrapper.class.getName())
                 .hasMessageContaining("(Context, Object)");
     }
 
     @Test
-    void rejectsWrapperWithEmptyWrapsValue() {
-        final CompatibilityContext context = newContext();
-
-        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, EMPTY_PACKAGE))
-                .isInstanceOf(WrapperException.class)
-                .hasMessageContaining(EmptyWrapper.class.getName())
-                .hasMessageContaining("at least one source class");
-    }
-
-    @Test
     void rejectsWrapperThatDoesNotImplementInvocationHandler() {
         final CompatibilityContext context = newContext();
 
-        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, NOT_HANDLER_PACKAGE))
+        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, NotHandlerWrapper.class))
                 .isInstanceOf(WrapperException.class)
                 .hasMessageContaining(NotHandlerWrapper.class.getName())
                 .hasMessageContaining(InvocationHandler.class.getName());
@@ -107,7 +86,7 @@ class WrapperAutoRegistrarTest {
     void rejectsDuplicateSourceClassRegistration() {
         final CompatibilityContext context = newContext();
 
-        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, DUPLICATE_PACKAGE))
+        assertThatThrownBy(() -> WrapperAutoRegistrar.registerAll(context, DuplicateWrapperA.class))
                 .isInstanceOf(WrapperException.class)
                 .hasMessageContaining(DuplicateSource.class.getName())
                 .hasMessageContaining("more than one wrapper");

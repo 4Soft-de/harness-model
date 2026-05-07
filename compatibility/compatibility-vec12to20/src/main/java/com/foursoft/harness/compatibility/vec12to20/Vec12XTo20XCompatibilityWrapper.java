@@ -31,13 +31,12 @@ import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.CompatibilityWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.WrapperAutoRegistrar;
 import com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20.DefaultWrapper;
+import com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12.ContentWrapper;
 
 /**
  * Compatibility Wrapper for VEC 1.2.X to VEC 2.X.X and vice versa.
  */
 public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapper {
-
-    private static final String WRAPPER_PACKAGE = "com.foursoft.harness.compatibility.vec12to20.wrapper";
 
     private final CompatibilityContext compatibilityContext;
 
@@ -53,7 +52,7 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
                         .withUnsupportedMethodCheck(classMapper.checkUnsupportedMethods())
                         .build();
 
-        WrapperAutoRegistrar.registerAll(context, WRAPPER_PACKAGE);
+        WrapperAutoRegistrar.registerAll(context, DefaultWrapper.class, ContentWrapper.class);
 
         compatibilityContext = context;
     }
