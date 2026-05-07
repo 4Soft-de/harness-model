@@ -30,6 +30,7 @@ import com.foursoft.harness.compatibility.core.CompatibilityContext.Compatibilit
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.CompatibilityWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.WrapperAutoRegistrar;
+import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.DefaultWrapper;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.ContentWrapper;
 
 /**
@@ -48,6 +49,7 @@ public final class Vec11XTo12XCompatibilityWrapper implements CompatibilityWrapp
                 new CompatibilityContextBuilder()
                         .withClassMapper(classMapper)
                         .withUnsupportedMethodCheck(classMapper.checkUnsupportedMethods())
+                        .withDefaultWrapperFactory(DefaultWrapper::new)
                         .build();
 
         WrapperAutoRegistrar.registerAll(context, ContentWrapper.class,

@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility Core
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,37 +23,27 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
+package com.foursoft.harness.compatibility.core.wrapper.fixture.additions;
 
-import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
-import java.lang.reflect.Method;
+public class AdditionsBean extends ParentAdditionsBean {
 
-/**
- * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecOccurrenceOrUsage}
- * to {@link com.foursoft.harness.vec.v12x.VecOccurrenceOrUsage}.
- */
-public class OccurrenceOrUsageWrapper extends DefaultWrapper {
-
-    /**
-     * Creates this wrapper.
-     *
-     * @param context Context of the wrapper.
-     * @param target  Target object of the wrapper.
-     */
-    public OccurrenceOrUsageWrapper(final CompatibilityContext context, final Object target) {
-        super(context, target);
+    public String getFoo() {
+        return "fooOriginal";
     }
 
-    @Override
-    protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
-        if ("getRolesWithType".equals(method.getName())) {
-            final Class<?> vec12xClass = (Class<?>) allArguments[0];
-            final Class<?> vec11xClass = getContext().getClassMapper().map(vec12xClass);
-            return wrapList("getRolesWithType", vec12xClass, vec11xClass);
-        }
-
-        return super.wrapObject(obj, method, allArguments);
+    public void setFoo(final String value) {
+        // intentionally left empty — the wrapper intercepts this
     }
 
+    public List<String> getBarList() {
+        return Collections.singletonList("barOriginal");
+    }
+
+    public Set<String> getBazSet() {
+        return Collections.singleton("bazOriginal");
+    }
 }

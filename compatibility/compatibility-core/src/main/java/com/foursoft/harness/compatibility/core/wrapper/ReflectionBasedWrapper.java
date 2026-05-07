@@ -29,6 +29,8 @@ import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
 import com.foursoft.harness.compatibility.core.MethodCache;
 import com.foursoft.harness.compatibility.core.MethodIdentifier;
+import com.foursoft.harness.compatibility.core.PropertyAddition;
+import com.foursoft.harness.compatibility.core.PropertyAdditionProvider;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.util.ClassUtils;
@@ -74,7 +76,20 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         this.target = target;
 
         wrapperHelper = new WrapperHelper(this);
-        MethodCache.initClassCache(ClassUtils.getNonProxyClass(target.getClass()));
+        final Class<?> targetClass = ClassUtils.getNonProxyClass(target.getClass());
+        MethodCache.initClassCache(targetClass);
+
+        if (context.getClassMapper() instanceof PropertyAdditionProvider provider) {
+            for (final PropertyAddition addition : provider.getPropertyAdditions().getAdditions(targetClass)) {
+                if (addition instanceof PropertyAddition.Value v) {
+                    registerValueProperty(v.propertyName());
+                } else if (addition instanceof PropertyAddition.MutableList l) {
+                    registerListProperty(l.propertyName());
+                } else if (addition instanceof PropertyAddition.BackRef b) {
+                    registerBackRefProperty(b.propertyName());
+                }
+            }
+        }
     }
 
     @Override

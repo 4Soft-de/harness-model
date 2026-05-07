@@ -26,7 +26,6 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v113.VecOccurrenceOrUsage;
 
@@ -39,7 +38,7 @@ import java.util.List;
  * to {@link com.foursoft.harness.vec.v12x.VecOccurrenceOrUsageViewItem3D}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecOccurrenceOrUsageViewItem3D.class)
-public class OccurrenceOrUsageViewItem3DWrapper extends ReflectionBasedWrapper {
+public class OccurrenceOrUsageViewItem3DWrapper extends DefaultWrapper {
 
     // Object so no cast is needed.
     // VEC 1.2.X has a list instead of a single object.

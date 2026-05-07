@@ -26,8 +26,8 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
+import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.DefaultWrapper;
 import com.foursoft.harness.vec.v113.VecZone;
 
 import java.lang.reflect.Method;
@@ -37,7 +37,7 @@ import java.lang.reflect.Method;
  * to {@link com.foursoft.harness.vec.v12x.VecBuildingBlockSpecification3D}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecBuildingBlockSpecification3D.class)
-public class BuildingBlockSpecification3DWrapper extends ReflectionBasedWrapper {
+public class BuildingBlockSpecification3DWrapper extends DefaultWrapper {
 
     /**
      * Creates this wrapper.
@@ -51,10 +51,14 @@ public class BuildingBlockSpecification3DWrapper extends ReflectionBasedWrapper 
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
-        if ("getTopologyZone".equals(method.getName())) {
+        final String methodName = method.getName();
+        if ("getTopologyZone".equals(methodName)) {
             return getResultObject("getZone", VecZone.class, allArguments)
                     .map(getContext().getWrapperProxyFactory()::createProxy)
                     .orElse(null);
+        }
+        if ("setTopologyZone".equals(methodName)) {
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);

@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.1.X To VEC 1.2.X
+ * Compatibility Core
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,37 +23,13 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
-
-import com.foursoft.harness.compatibility.core.CompatibilityContext;
-
-import java.lang.reflect.Method;
+package com.foursoft.harness.compatibility.core;
 
 /**
- * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecOccurrenceOrUsage}
- * to {@link com.foursoft.harness.vec.v12x.VecOccurrenceOrUsage}.
+ * Optional capability that a {@link com.foursoft.harness.compatibility.core.mapping.ClassMapper}
+ * may implement to expose {@link PurePropertyAdditions} to the wrapper infrastructure.
  */
-public class OccurrenceOrUsageWrapper extends DefaultWrapper {
+public interface PropertyAdditionProvider {
 
-    /**
-     * Creates this wrapper.
-     *
-     * @param context Context of the wrapper.
-     * @param target  Target object of the wrapper.
-     */
-    public OccurrenceOrUsageWrapper(final CompatibilityContext context, final Object target) {
-        super(context, target);
-    }
-
-    @Override
-    protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
-        if ("getRolesWithType".equals(method.getName())) {
-            final Class<?> vec12xClass = (Class<?>) allArguments[0];
-            final Class<?> vec11xClass = getContext().getClassMapper().map(vec12xClass);
-            return wrapList("getRolesWithType", vec12xClass, vec11xClass);
-        }
-
-        return super.wrapObject(obj, method, allArguments);
-    }
-
+    PurePropertyAdditions getPropertyAdditions();
 }

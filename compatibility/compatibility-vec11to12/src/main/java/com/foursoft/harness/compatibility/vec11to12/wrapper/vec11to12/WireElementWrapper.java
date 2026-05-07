@@ -27,7 +27,6 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.util.ReflectionUtils;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v113.VecWireSpecification;
@@ -45,7 +44,7 @@ import java.util.stream.Stream;
  * to {@link com.foursoft.harness.vec.v12x.VecWireElement}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecWireElement.class)
-public class WireElementWrapper extends ReflectionBasedWrapper {
+public class WireElementWrapper extends DefaultWrapper {
 
     private VecWireElement parentWireElement;
     private List<VecWireElement> subWireElements;
@@ -83,10 +82,11 @@ public class WireElementWrapper extends ReflectionBasedWrapper {
                                 .stream()
                                 .filter(WireElementWrapper::hasRefWireSpecification)
                                 .collect(StreamUtils.findOneOrNone())
-                                .orElseThrow(() -> new IllegalStateException(
-                                        "VecWireElement couldn't be fetched from the parent VecWireSpecification, " +
-                                                "no or more than 1 element was returned by " +
-                                                "VecWireSpecification#getWireElements!"));
+                                .orElse(null);
+
+                if (vec113parentWireElement == null) {
+                    return null;
+                }
 
                 parentWireElement = Stream.of(vec113parentWireElement)
                         .map(getContext().getWrapperProxyFactory()::createProxy)

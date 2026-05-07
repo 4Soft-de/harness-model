@@ -26,8 +26,8 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
+import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.DefaultWrapper;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.field.CavityDimensionWrapper;
 import com.foursoft.harness.vec.v12x.VecSize;
 
@@ -38,7 +38,7 @@ import java.lang.reflect.Method;
  * to {@link com.foursoft.harness.vec.v12x.VecCavitySpecification}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecCavitySpecification.class)
-public class CavitySpecificationWrapper extends ReflectionBasedWrapper {
+public class CavitySpecificationWrapper extends DefaultWrapper {
 
     private final CavityDimensionWrapper cavityDimensionWrapper;
 
@@ -68,7 +68,9 @@ public class CavitySpecificationWrapper extends ReflectionBasedWrapper {
 
         if ("setCavityDimension".equals(methodName) && allArguments.length == 1) {
             vecSize = (VecSize) allArguments[0];
-            cavityDimensionWrapper.setCavityDimension(vecSize);
+            if (vecSize != null) {
+                cavityDimensionWrapper.setCavityDimension(vecSize);
+            }
             return null;
         }
 

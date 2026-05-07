@@ -26,8 +26,8 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
+import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.DefaultWrapper;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 
 import java.lang.reflect.Method;
@@ -37,7 +37,7 @@ import java.lang.reflect.Method;
  * to {@link com.foursoft.harness.vec.v12x.VecTapeSpecification}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecTapeSpecification.class)
-public class TapeSpecificationWrapper extends ReflectionBasedWrapper {
+public class TapeSpecificationWrapper extends DefaultWrapper {
 
     private VecNumericalValue width;
     private VecNumericalValue thickness;
