@@ -58,8 +58,9 @@ public final class PurePropertyAdditions {
      * Registers one or more additions for the given class. Returns {@code this} for chaining.
      */
     public PurePropertyAdditions register(final Class<?> clazz, final PropertyAddition... additions) {
-        additionsPerClass.computeIfAbsent(clazz, k -> new ArrayList<>())
+        additionsPerClass.computeIfAbsent(clazz, key -> new ArrayList<>())
                 .addAll(Arrays.asList(additions));
+        cache.clear();
         return this;
     }
 
