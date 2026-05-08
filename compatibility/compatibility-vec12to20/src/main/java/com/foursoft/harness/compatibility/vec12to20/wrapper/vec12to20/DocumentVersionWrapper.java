@@ -26,7 +26,6 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import org.slf4j.Logger;
@@ -80,10 +79,10 @@ public class DocumentVersionWrapper extends DefaultWrapper {
         return super.wrapObject(obj, method, allArguments);
     }
 
-    private void handleValue(String value) {
+    private void handleValue(final String value) {
         try {
             numberOfSheets = new BigInteger(value);
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             LOGGER.error("Cannot convert value '{}' for 'numberOfSheets' to Integer.", value);
             numberOfSheets = BigInteger.ZERO;
         }
