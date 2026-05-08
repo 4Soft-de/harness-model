@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.0.X
+ * Compatibility VEC 1.1.X To VEC 1.2.X
  * %%
  * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
@@ -57,7 +57,7 @@ class Vec11To12ProxyCoverageTest {
     private static final CompatibilityContext CONTEXT =
             new Vec11XTo12XCompatibilityWrapper().getContext();
 
-    static Stream<Class<?>> vec12xXmlTypeClasses() {
+    static Stream<Class<?>> vec11xXmlTypeClasses() {
         final Reflections reflections = new Reflections(Constants.PACKAGE_VEC11X);
         return reflections.getTypesAnnotatedWith(XmlType.class)
                 .stream()
@@ -69,15 +69,15 @@ class Vec11To12ProxyCoverageTest {
     }
 
     @ParameterizedTest(name = "{0}")
-    @MethodSource("vec12xXmlTypeClasses")
+    @MethodSource({"vec11xXmlTypeClasses"})
     @DisplayName("All proxy methods callable without exception for")
-    void allProxyMethodsShouldBeCallableWithoutException(final Class<?> vec12xClass) throws Exception {
-        final Object source = vec12xClass.getDeclaredConstructor().newInstance();
+    void allProxyMethodsShouldBeCallableWithoutException(final Class<?> vec11xClass) throws Exception {
+        final Object source = vec11xClass.getDeclaredConstructor().newInstance();
         final Object proxy = CONTEXT.getWrapperProxyFactory().createProxy(source);
 
         assertThat(proxy).isNotNull();
 
-        final Class<?> vec2xClass = CONTEXT.getClassMapper().map(vec12xClass);
+        final Class<?> vec2xClass = CONTEXT.getClassMapper().map(vec11xClass);
         final List<Method> publicMethods = Arrays.stream(vec2xClass.getMethods())
                 .filter(m -> !m.getDeclaringClass().equals(Object.class))
                 .sorted(Comparator.comparing(Method::getName))
@@ -85,9 +85,9 @@ class Vec11To12ProxyCoverageTest {
 
         for (final Method method : publicMethods) {
             if (isGetter(method)) {
-                assertGetterCallable(proxy, method, vec12xClass, vec2xClass);
+                assertGetterCallable(proxy, method, vec11xClass, vec2xClass);
             } else if (isSetter(method)) {
-                assertSetterCallable(proxy, method, vec12xClass, vec2xClass);
+                assertSetterCallable(proxy, method, vec11xClass, vec2xClass);
             }
         }
     }
