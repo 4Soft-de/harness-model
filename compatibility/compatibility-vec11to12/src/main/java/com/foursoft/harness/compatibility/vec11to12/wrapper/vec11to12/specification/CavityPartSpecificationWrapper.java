@@ -28,10 +28,10 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.util.IdCreator;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.Constants;
 import com.foursoft.harness.compatibility.vec11to12.util.WrapperUtils;
+import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.DefaultWrapper;
 import com.foursoft.harness.vec.v113.VecValueRange;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 import com.foursoft.harness.vec.v12x.VecSize;
@@ -45,7 +45,7 @@ import java.util.List;
  * to {@link com.foursoft.harness.vec.v12x.VecCavityPartSpecification}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecCavityPartSpecification.class)
-public class CavityPartSpecificationWrapper extends ReflectionBasedWrapper {
+public class CavityPartSpecificationWrapper extends DefaultWrapper {
 
     private List<VecSize> vecSize;
 
@@ -57,7 +57,6 @@ public class CavityPartSpecificationWrapper extends ReflectionBasedWrapper {
      */
     public CavityPartSpecificationWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
-        registerListProperty("compatibleCavityGeometries");
     }
 
     public List<VecSize> createVecSize(final VecValueRange range, final Context context) {

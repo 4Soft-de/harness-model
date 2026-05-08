@@ -49,7 +49,6 @@ public final class Vec12XTo20XCompatibilityWrapper implements CompatibilityWrapp
                 new CompatibilityContextBuilder()
                         .withClassMapper(classMapper)
                         .withDefaultWrapperFactory(DefaultWrapper::new)
-                        .withUnsupportedMethodCheck(classMapper.checkUnsupportedMethods())
                         .build();
 
         WrapperAutoRegistrar.registerAll(context, DefaultWrapper.class, ContentWrapper.class);

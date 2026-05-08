@@ -28,12 +28,12 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.util.IdCreator;
 import com.foursoft.harness.compatibility.core.util.ReflectionUtils;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecCartesianPoint3D;
 import com.foursoft.harness.vec.v12x.VecNURBSControlPoint;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +42,9 @@ import java.util.stream.Collectors;
  * to {@link com.foursoft.harness.vec.v12x.VecNURBSCurve}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecBSplineCurve.class)
-public class NURBSCurveWrapper extends ReflectionBasedWrapper {
+public class NURBSCurveWrapper extends DefaultWrapper {
+
+    private List<VecNURBSControlPoint> controlPoints;
 
     /**
      * Creates this wrapper.
@@ -75,11 +77,13 @@ public class NURBSCurveWrapper extends ReflectionBasedWrapper {
     }
 
     private List<VecNURBSControlPoint> getControlPoints(final Object obj) {
-        final List<VecCartesianPoint3D> wrappedVec11xControlPoints =
-                wrapList("getControlPoint", VecCartesianPoint3D.class);
-        return wrappedVec11xControlPoints.stream()
-                .map(c -> convertToNurbsControlPoint(c, obj))
-                .collect(Collectors.toList());
+        if (controlPoints == null) {
+            controlPoints = wrapList("getControlPoint", VecCartesianPoint3D.class)
+                    .stream()
+                    .map(c -> convertToNurbsControlPoint(c, obj))
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }
+        return controlPoints;
     }
 
 }

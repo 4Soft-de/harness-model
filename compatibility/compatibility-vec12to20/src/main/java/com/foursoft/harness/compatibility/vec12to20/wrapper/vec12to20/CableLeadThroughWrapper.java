@@ -26,13 +26,14 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
 import com.foursoft.harness.vec.v2x.VecCableLeadThroughOutlet;
 import com.foursoft.harness.vec.v2x.VecPlacementPoint;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,8 @@ import java.util.stream.Collectors;
  * to {@link VecCableLeadThrough}.
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecCableLeadThrough.class)
-public class CableLeadThroughWrapper extends ReflectionBasedWrapper {
+public class CableLeadThroughWrapper extends DefaultWrapper {
+    private List<VecCableLeadThroughOutlet> outlets;
 
     /**
      * Creates this wrapper.
@@ -57,19 +59,22 @@ public class CableLeadThroughWrapper extends ReflectionBasedWrapper {
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
         if ("getOutlets".equals(methodName)) {
-            return getResultList("getPlacementPoint", com.foursoft.harness.vec.v12x.VecPlacementPoint.class,
-                                 allArguments[0])
-                    .stream()
-                    .map(this::wrapPointWithOutlet)
-                    .collect(Collectors.toList());
+            if (outlets == null) {
+                outlets = getResultList("getPlacementPoint", com.foursoft.harness.vec.v12x.VecPlacementPoint.class)
+                        .stream()
+                        .map(this::wrapPointWithOutlet)
+                        .collect(Collectors.toCollection(ArrayList::new));
+            }
+            return outlets;
         }
         return super.wrapObject(obj, method, allArguments);
     }
 
     private VecCableLeadThroughOutlet wrapPointWithOutlet(
-            com.foursoft.harness.vec.v12x.VecPlacementPoint placementPoint) {
-        VecPlacementPoint wrappedPlacementPoint = getContext().getWrapperProxyFactory().createProxy(placementPoint);
-        VecCableLeadThroughOutlet outlet = new VecCableLeadThroughOutlet();
+            final com.foursoft.harness.vec.v12x.VecPlacementPoint placementPoint) {
+        final VecPlacementPoint wrappedPlacementPoint = getContext().getWrapperProxyFactory().createProxy(
+                placementPoint);
+        final VecCableLeadThroughOutlet outlet = new VecCableLeadThroughOutlet();
         outlet.setXmlId(UUID.randomUUID().toString().substring(0, 10));
         outlet.setPlacementPoint(wrappedPlacementPoint);
         outlet.setIdentification("CableLeadThroughOutlet_" + placementPoint.getIdentification());

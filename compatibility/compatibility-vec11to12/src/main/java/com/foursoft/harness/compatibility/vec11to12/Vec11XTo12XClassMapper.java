@@ -25,27 +25,26 @@
  */
 package com.foursoft.harness.compatibility.vec11to12;
 
-import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
-import com.foursoft.harness.compatibility.core.MethodIdentifier;
+import com.foursoft.harness.compatibility.core.PropertyAdditionProvider;
+import com.foursoft.harness.compatibility.core.PurePropertyAdditions;
 import com.foursoft.harness.compatibility.core.mapping.NameBasedClassMapper;
 import com.foursoft.harness.compatibility.core.util.ClassUtils;
-import com.foursoft.harness.vec.v113.VecBSplineCurve;
-import com.foursoft.harness.vec.v113.VecZone;
-import com.foursoft.harness.vec.v12x.*;
+import com.foursoft.harness.vec.v113.*;
+import com.foursoft.harness.vec.v12x.VecNURBSCurve;
+import com.foursoft.harness.vec.v12x.VecTopologyZone;
 
-import java.io.Serial;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Objects;
+
+import static com.foursoft.harness.compatibility.core.PropertyAddition.*;
 
 /**
  * Class responsible for mapping VEC 1.1.X classes to VEC 1.2.X <b>and vice versa</b>.
  */
-public class Vec11XTo12XClassMapper extends NameBasedClassMapper {
+public class Vec11XTo12XClassMapper extends NameBasedClassMapper implements PropertyAdditionProvider {
 
     private final Map<Class<?>, Class<?>> classMap;
-    private final UnsupportedVec11XToVec12XMethods ignored;
+    private final PurePropertyAdditions propertyAdditions;
 
     /**
      * Creates a VEC 1.1 to VEC 1.2 Class Mapper.
@@ -63,53 +62,103 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper {
         classMap.put(VecNURBSCurve.class, VecBSplineCurve.class);
         classMap.put(VecTopologyZone.class, VecZone.class);
 
-        ignored = new UnsupportedVec11XToVec12XMethods();
+        // ── pure property additions — properties new in VEC 1.2.X handled automatically by DefaultWrapper
+        propertyAdditions = new PurePropertyAdditions()
+                .register(VecAliasIdentification.class, value("type"))
+                .register(VecApproval.class, value("additionalLevelInformation"))
+                .register(VecBSplineCurve.class, list("knots"))
+                .register(VecCableLeadThrough.class, value("cableLeadThroughSpecification"),
+                          backRef("refCableLeadThroughReference"))
+                .register(VecCavityPlugRole.class, backRef("refCableLeadThroughReference"))
+                .register(VecCavitySealRole.class, backRef("refCableLeadThroughReference"))
+                .register(VecCavityAddOn.class, value("type"))
+                .register(VecCavityPartSpecification.class, list("compatibleCavityGeometries"))
+                .register(VecCavityReference.class, value("integratedTerminalRole"))
+                .register(VecCavitySpecification.class, value("geometry"))
+                .register(VecCartesianPoint3D.class, value("parentLocalGeometrySpecification"),
+                          backRef("refLocalPosition"), backRef("refNURBSControlPoint"))
+                .register(VecComponentNode.class, value("subType"))
+                .register(VecConfigurableElement.class,
+                          list("applicationConstraint"), list("associatedAssignmentGroups"))
+                .register(VecConnection.class, backRef("refBridgeTerminalRole"), backRef("refMatingDetail"),
+                          backRef("refMatingPoint"))
+                .register(VecConnectionGroup.class, backRef("refWireElementReference"), backRef("refWireGrouping"))
+                .register(VecContactPoint.class, backRef("refPinWireMappingPoint"))
+                .register(VecConductorSpecification.class, backRef("refTerminalPairing"))
+                .register(VecCustomProperty.class, value("parentComplexProperty"))
+                .register(VecDocumentVersion.class, value("digitalRepresentationIndex"),
+                          backRef("refBaselineSpecification"), backRef("refDocumentRelatedAssignmentGroup"),
+                          backRef("refExtendableElement"), backRef("refRequirementsConformanceStatement"))
+                .register(VecExtendableElement.class, list("referencedExternalDocuments"))
+                .register(VecGeneralTechnicalPartSpecification.class,
+                          value("fitRate"))
+                .register(VecGrommetRole.class, list("cableLeadThroughReferences"))
+                .register(VecHousingComponent.class, list("compatibleTypes"))
+                .register(VecLocation.class, value("parentNodeMapping"), value("parentZoneCoverage"))
+                .register(VecMatingDetail.class, value("connection"))
+                .register(VecMatingPoint.class, value("connection"))
+                .register(VecMeasurementPoint.class, backRef("refMeasurePointPosition"))
+                .register(VecNetType.class, value("signalTransmissionMediumType"))
+                .register(VecNetworkNode.class, value("subType"))
+                .register(VecOccurrenceOrUsage.class, backRef("refOccurrenceOrUsage"),
+                          backRef("refPartStructureSpecification"), backRef("refPartUsage"))
+                .register(VecPartRelation.class, value("customRelationExpression"), backRef("refExtensionSlot"),
+                          backRef("refModularSlot"), backRef("refSlot"))
+                .register(VecPartUsage.class, list("instanciatedUsage"), list("referenceElement"),
+                          backRef("refModuleList"))
+                .register(VecPartVersion.class, backRef("refTerminalPairing"), backRef("refBaselineSpecification"))
+                .register(VecPath.class,
+                          value("parentSegmentMapping"), value("parentTopologyBendingRestriction"))
+                .register(VecPinComponent.class, backRef("refDiodeSpecification"))
+                .register(VecPinComponentReference.class, backRef("refPinWireMappingPoint"))
+                .register(VecPlacementPoint.class, backRef("refPlacementPointPosition"))
+                .register(VecProject.class, backRef("refApplicationConstraint"))
+                .register(VecRingTerminalSpecification.class, value("boltNominalSize"))
+                .register(VecSheetOrChapter.class, backRef("refDocumentRelatedAssignmentGroup"))
+                .register(VecSignal.class, value("currentType"), value("dataRate"))
+                .register(VecSlot.class, list("supplementaryParts"))
+                .register(VecTerminalRole.class, value("parentCavityReference"))
+                .register(VecTopologyGroupSpecification.class, backRef("refTopologyMappingSpecification"))
+                .register(VecTopologyNode.class, value("instantiatedNode"), backRef("refNodeMapping"),
+                          backRef("refTopologyNode"))
+                .register(VecTopologySegment.class, value("instantiatedSegment"), backRef("refSegmentMapping"),
+                          backRef("refTopologySegment"), backRef("refZoneAssignment"))
+                .register(VecTopologySpecification.class, backRef("refTopologyMappingSpecification"))
+                .register(VecTransformation3D.class, value("parentLocalGeometrySpecification"))
+                .register(VecUnit.class, backRef("refLocalGeometrySpecification"))
+                .register(VecVariantCode.class, value("abbreviation"), list("aliasIds"))
+                .register(VecVariantConfiguration.class, value("baseInclusion"), backRef("refVariantConfiguration"))
+                .register(VecVariantGroup.class, value("abbreviation"), list("aliasIds"),
+                          backRef("refVariantStructureNode"))
+                .register(VecWireElement.class, value("parentWireElement"))
+                .register(VecWireElementReference.class, value("connectionGroup"))
+                .register(VecWireEndAccessorySpecification.class, backRef("refWireEndAccessoryRole"))
+                .register(VecWireGrouping.class,
+                          list("containedWireGroupings"),
+                          list("relatedWireElementReference"),
+                          value("connectionGroup"),
+                          value("parentWireGrouping"),
+                          value("parentWireGroupingSpecification"))
+                .register(VecWireReceptionSpecification.class, list("addOns"),
+                          backRef("refWireEndAccessorySpecification"))
+                .register(VecZone.class,
+                          value("parentTopologyZone"),
+                          value("parentTopologyZoneSpecification"),
+                          value("type"), list("assignments"))
 
-        // Ignored VEC 1.2.X -> VEC 1.1.X methods.
-        // methods added in VEC 1.2.X
-        ignored.add(VecApproval.class, "getAdditionalLevelInformation");
-        ignored.add(VecAliasIdentification.class, "getType");
-        ignored.add(VecCableLeadThrough.class, "getCableLeadThroughSpecification");
-        ignored.add(VecCavityReference.class, "getIntegratedTerminalRole");
-        ignored.add(VecCavitySpecification.class, "getGeometry");
-        ignored.add(VecComponentNode.class, "getSubType");
-        ignored.add(VecConfigurableElement.class, "getApplicationConstraint");
-        ignored.add(VecConfigurableElement.class, "getAssociatedAssignmentGroups");
-        ignored.add(VecDocumentVersion.class, "getDigitalRepresentationIndex");
-        ignored.add(VecExtendableElement.class, "getReferencedExternalDocuments");
-        ignored.add(VecGeneralTechnicalPartSpecification.class, "getFitRate");
-        ignored.add(VecGeneralTechnicalPartSpecification.class, "isUnspecifiedAccessoryPermitted");
-        ignored.add(VecHousingComponent.class, "getCompatibleTypes");
-        ignored.add(VecMatingPoint.class, "getConnection");
-        ignored.add(VecNURBSCurve.class, "getKnots");
-        ignored.add(VecPartUsage.class, "getInstanciatedUsage");
-        ignored.add(VecPartUsage.class, "getReferenceElement");
-        ignored.add(VecPartVersion.class, "getRefBaselineSpecification");
-        ignored.add(VecPartVersion.class, "getRefContactSystem");
-        ignored.add(VecPartVersion.class, "getRefExtensionSlot");
-        ignored.add(VecPartVersion.class, "getRefModularSlot");
-        ignored.add(VecPartVersion.class, "getRefTerminalPairing");
-        ignored.add(VecPinComponent.class, "getRefDiodeSpecification");
-        ignored.add(VecPinComponentReference.class, "getRefPinWireMappingPoint");
-        ignored.add(VecRingTerminalSpecification.class, "getBoltNominalSize");
-        ignored.add(VecSignal.class, "getCurrentType");
-        ignored.add(VecSignal.class, "getDataRate");
-        ignored.add(VecSlot.class, "getSupplementaryParts");
-        ignored.add(VecTopologyNode.class, "getInstantiatedNode");
-        ignored.add(VecTopologySegment.class, "getInstantiatedSegment");
-        ignored.add(VecUnit.class, "getRefLocalGeometrySpecification");
-        ignored.add(VecVariantConfiguration.class, "getBaseInclusion");
-        ignored.add(VecWireElementReference.class, "getConnectionGroup");
-        ignored.add(VecWireElementReference.class, "isUnconnected");
+                // Pure Removals:
+                .register(com.foursoft.harness.vec.v12x.VecContent.class, list("compliantConformanceClasses"))
+                .register(com.foursoft.harness.vec.v12x.VecPath.class, value("configInfo"))
+                .register(com.foursoft.harness.vec.v12x.VecTopologySpecification.class, list("zones"))
+                .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("gradient"))
+                .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("tapeOverlap"))
+                .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("tapingDirection"))
+        ;
+    }
 
-        // Ignored VEC 1.1.X -> VEC 1.2.X methods.
-        // methods removed in VEC 1.2.X
-        ignored.add(com.foursoft.harness.vec.v113.VecContent.class, "getCompliantConformanceClasses");
-        ignored.add(com.foursoft.harness.vec.v113.VecPath.class, "getConfigInfo");
-        ignored.add(com.foursoft.harness.vec.v113.VecTopologySpecification.class, "getZones");
-        ignored.add(com.foursoft.harness.vec.v113.VecWireProtectionRole.class, "getGradient");
-        ignored.add(com.foursoft.harness.vec.v113.VecWireProtectionRole.class, "getTapeOverlap");
-        ignored.add(com.foursoft.harness.vec.v113.VecWireProtectionRole.class, "getTapingDirection");
+    @Override
+    public PurePropertyAdditions getPropertyAdditions() {
+        return propertyAdditions;
     }
 
     @Override
@@ -118,30 +167,6 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper {
         return aClass != null
                 ? aClass
                 : classMap.getOrDefault(ClassUtils.getNonProxyClass(clazz), super.map(clazz));
-    }
-
-    @Override
-    public HasUnsupportedMethods checkUnsupportedMethods() {
-        return ignored;
-    }
-
-    private static class UnsupportedVec11XToVec12XMethods extends HashSet<MethodIdentifier>
-            implements HasUnsupportedMethods {
-
-        @Serial
-        private static final long serialVersionUID = 6377405392358586968L;
-
-        @Override
-        public boolean isNotSupported(final MethodIdentifier method) {
-            Objects.requireNonNull(method);
-            return contains(method);
-        }
-
-        public void add(final Class<?> vecClass, final String methodName) {
-            final String className = vecClass.getSimpleName();
-            add(new MethodIdentifier(className, methodName));
-        }
-
     }
 
 }

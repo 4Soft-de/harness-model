@@ -34,10 +34,16 @@ module com.foursoft.harness.compatibility.vec11to12 {
     requires org.reflections;
 
     exports com.foursoft.harness.compatibility.vec11to12;
-
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification.wireprotection;
     exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.field;
     exports com.foursoft.harness.compatibility.vec11to12.util;
+
+    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
+    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.field;
+    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification;
+    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.wireprotection;
+    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.wireprotection.tube;
+    exports com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11.specification.terminal;
 }

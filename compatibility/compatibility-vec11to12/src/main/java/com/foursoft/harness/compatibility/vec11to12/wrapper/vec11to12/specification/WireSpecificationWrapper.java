@@ -26,8 +26,8 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specification;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
+import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.DefaultWrapper;
 import com.foursoft.harness.vec.v113.VecExtendableElement;
 import com.foursoft.harness.vec.v12x.VecWireElement;
 import com.foursoft.harness.vec.v12x.VecWireElementSpecification;
@@ -43,7 +43,7 @@ import java.util.List;
  * to {@link com.foursoft.harness.vec.v12x.VecWireSpecification}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecWireSpecification.class)
-public class WireSpecificationWrapper extends ReflectionBasedWrapper {
+public class WireSpecificationWrapper extends DefaultWrapper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WireSpecificationWrapper.class);
 
@@ -66,6 +66,9 @@ public class WireSpecificationWrapper extends ReflectionBasedWrapper {
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
+        if ("setWireElement".equals(method.getName())) {
+            return null;
+        }
         if ("getWireElement".equals(method.getName())) {
             if (vecWireElement != null) {
                 return vecWireElement;

@@ -25,8 +25,6 @@
  */
 package com.foursoft.harness.compatibility.core.mapping;
 
-import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
-
 /**
  * Interface for mapping classes between two packages.
  * It also allows defining which package counts as the source and which is the target.
@@ -76,12 +74,5 @@ public interface ClassMapper {
         final String packageName = clazz.getPackage().getName();
         return packageName.startsWith(getTargetPackageName());
     }
-
-    /**
-     * Grants access to check which methods of which classes are not supported.
-     *
-     * @return An instance of {@link HasUnsupportedMethods} to check whether a method is supported or not.
-     */
-    HasUnsupportedMethods checkUnsupportedMethods();
 
 }

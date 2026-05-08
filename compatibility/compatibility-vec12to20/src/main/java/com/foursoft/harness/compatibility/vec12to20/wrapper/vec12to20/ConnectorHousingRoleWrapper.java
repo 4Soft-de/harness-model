@@ -26,7 +26,6 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v2x.VecComponentConnector;
@@ -42,7 +41,7 @@ import java.util.stream.Stream;
  * to {@link VecConnectorHousingRole}.
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecConnectorHousingRole.class)
-public class ConnectorHousingRoleWrapper extends ReflectionBasedWrapper {
+public class ConnectorHousingRoleWrapper extends DefaultWrapper {
 
     private List<VecComponentConnector> slot;
 

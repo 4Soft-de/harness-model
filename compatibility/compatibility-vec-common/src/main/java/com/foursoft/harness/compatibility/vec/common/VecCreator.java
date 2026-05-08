@@ -157,7 +157,7 @@ public final class VecCreator {
             return processor.createContent(vecProcessTask, targetClass);
         } catch (final Exception e) {
             final String errorMsg = String.format("Failed to create an VEC from %s.", streamName);
-            throw new VecException(errorMsg);
+            throw new VecException(errorMsg, e);
         }
     }
 

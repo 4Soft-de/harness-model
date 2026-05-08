@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility Core
+ * Compatibility VEC 1.2.X To VEC 2.0.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,18 +23,24 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.core;
+package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
+
+import com.foursoft.harness.compatibility.core.Context;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
+import com.foursoft.harness.vec.v12x.VecModuleFamily;
 
 /**
- * An interface which allows checking whether a method of a class is supported or not.
- * This is done by using a {@link MethodIdentifier}.
+ * Wraps {@link VecModuleFamily} to the VEC 2.x counterpart.
+ *
+ * <p>Explicitly registers {@code isMandatory}/{@code setMandatory} because the standard
+ * {@code registerValueProperty("mandatory")} convenience method generates a {@code getMandatory}
+ * getter name, whereas JAXB uses the non-standard {@code is*} prefix for boolean properties.
  */
-@FunctionalInterface
-public interface HasUnsupportedMethods {
+@Wraps(VecModuleFamily.class)
+public class ModuleFamilyWrapper extends DefaultWrapper {
 
-    /**
-     * @return {@code true} if the method of the class is not supported, else {@code false}.
-     */
-    boolean isNotSupported(MethodIdentifier method);
-
+    public ModuleFamilyWrapper(final Context context, final Object target) {
+        super(context, target);
+        registerValueProperty("isMandatory", "setMandatory");
+    }
 }

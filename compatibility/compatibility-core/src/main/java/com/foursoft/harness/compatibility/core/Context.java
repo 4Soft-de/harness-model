@@ -47,13 +47,6 @@ public interface Context {
     WrapperRegistry getWrapperRegistry();
 
     /**
-     * Provides access to the {@link HasUnsupportedMethods unsupported methods} of this Context.
-     *
-     * @return The {@link HasUnsupportedMethods unsupported methods} of this Context.
-     */
-    HasUnsupportedMethods checkUnsupportedMethods();
-
-    /**
      * Returns the {@link WrapperProxyFactory} of this Context.
      *
      * @return The {@link WrapperProxyFactory} of this Context.

@@ -26,7 +26,6 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec.common.VecVersion;
 import com.foursoft.harness.vec.v2x.VecContent;
@@ -38,7 +37,7 @@ import java.lang.reflect.Method;
  * to {@link VecContent}.
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecContent.class)
-public class ContentWrapper extends ReflectionBasedWrapper {
+public class ContentWrapper extends DefaultWrapper {
 
     private String vecVersion = VecVersion.VEC20X.getCurrentVersion();
 

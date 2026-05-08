@@ -26,18 +26,20 @@
 package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecCurve3D;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecGeometrySegment3D}
  * to {@link com.foursoft.harness.vec.v12x.VecGeometrySegment3D}.
  */
 @Wraps(com.foursoft.harness.vec.v113.VecGeometrySegment3D.class)
-public class GeometrySegment3DWrapper extends ReflectionBasedWrapper {
+public class GeometrySegment3DWrapper extends DefaultWrapper {
+
+    private List<VecCurve3D> curves;
 
     /**
      * Creates this wrapper.
@@ -52,8 +54,11 @@ public class GeometrySegment3DWrapper extends ReflectionBasedWrapper {
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         if ("getCurves".equals(method.getName())) {
-            // getBSplineCurves returns VecBSplineCurves which will be converted to a List of VecCurve3D.
-            return wrapList("getBSplineCurves", VecCurve3D.class);
+            if (curves == null) {
+                // getBSplineCurves returns VecBSplineCurves which will be converted to a List of VecCurve3D.
+                curves = wrapList("getBSplineCurves", VecCurve3D.class);
+            }
+            return curves;
         }
 
         return super.wrapObject(obj, method, allArguments);

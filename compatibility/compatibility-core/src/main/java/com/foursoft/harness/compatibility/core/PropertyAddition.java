@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.0.X
+ * Compatibility Core
  * %%
  * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
@@ -23,27 +23,38 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
+package com.foursoft.harness.compatibility.core;
 
-import com.foursoft.harness.compatibility.vec12to20.TestFiles;
-import com.foursoft.harness.compatibility.vec12to20.util.DefaultVecReader;
-import com.foursoft.harness.compatibility.vec12to20.wrapper.AbstractBaseWrapperTest;
-import com.foursoft.harness.vec.v2x.VecContent;
-import org.junit.jupiter.api.Test;
+/**
+ * Describes a property that exists in the target API version but has no counterpart in the source
+ * version. These additions are configured in the class mapper and are automatically applied to
+ * every proxy created for a class that declares (or inherits) them.
+ *
+ * <ul>
+ *   <li>{@link Value} – a scalar or object-reference property with a getter and setter</li>
+ *   <li>{@link MutableList} – a {@code List}-returning getter with no setter (JAXB lazy-init)</li>
+ *   <li>{@link BackRef} – a read-only {@code Set}-returning back-reference with no setter</li>
+ * </ul>
+ */
+public sealed interface PropertyAddition {
 
-import java.io.IOException;
-import java.io.InputStream;
+    String propertyName();
 
-import static org.assertj.core.api.Assertions.assertThat;
+    record Value(String propertyName) implements PropertyAddition {}
 
-class ContentWrapperTest extends AbstractBaseWrapperTest {
+    record MutableList(String propertyName) implements PropertyAddition {}
 
-    @Test
-    void invokeTest() throws IOException {
-        try (final InputStream inputOriginal = TestFiles.getInputStream(TestFiles.OLD_BEETLE_V12X)) {
-            final VecContent originalContent = DefaultVecReader.read(inputOriginal, "test");
-            assertThat(originalContent).isNotNull();
-            assertThat(originalContent.getVecVersion()).isEqualTo("2.2.0");
-        }
+    record BackRef(String propertyName) implements PropertyAddition {}
+
+    static Value value(final String propertyName) {
+        return new Value(propertyName);
     }
-} 
+
+    static MutableList list(final String propertyName) {
+        return new MutableList(propertyName);
+    }
+
+    static BackRef backRef(final String propertyName) {
+        return new BackRef(propertyName);
+    }
+}

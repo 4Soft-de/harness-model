@@ -26,8 +26,8 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
-import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
+import com.foursoft.harness.compatibility.core.wrapper.Wraps;
+import com.foursoft.harness.vec.v12x.VecOccurrenceOrUsage;
 
 import java.lang.reflect.Method;
 
@@ -35,7 +35,8 @@ import java.lang.reflect.Method;
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecOccurrenceOrUsage}
  * to {@link VecOccurrenceOrUsage}.
  */
-public class OccurrenceOrUsageWrapper extends ReflectionBasedWrapper {
+@Wraps(VecOccurrenceOrUsage.class)
+public class OccurrenceOrUsageWrapper extends DefaultWrapper {
 
     /**
      * Creates this wrapper.

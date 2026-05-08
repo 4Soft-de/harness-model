@@ -26,7 +26,6 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
@@ -42,7 +41,7 @@ import java.util.UUID;
  * to {@link VecPartVersion}.
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecPartVersion.class)
-public class PartVersionWrapper extends ReflectionBasedWrapper {
+public class PartVersionWrapper extends DefaultWrapper {
 
     /**
      * Creates this wrapper.
@@ -61,7 +60,7 @@ public class PartVersionWrapper extends ReflectionBasedWrapper {
         final String methodName = method.getName();
         if ("getPreferredUseCases".equals(methodName)) {
             if (preferredUseCases.isEmpty() || !containsGermanString(preferredUseCases)) {
-                String xmlId = getResultObject("getXmlId", String.class)
+                final String xmlId = getResultObject("getXmlId", String.class)
                         .orElse(UUID.randomUUID().toString().substring(0, 10));
                 getResultObject("getPreferredUseCase", String.class)
                         .ifPresent(result -> preferredUseCases.add(wrapToGerman(result, xmlId)));
@@ -72,15 +71,15 @@ public class PartVersionWrapper extends ReflectionBasedWrapper {
         return super.wrapObject(obj, method, allArguments);
     }
 
-    public static VecLocalizedString wrapToGerman(String text, String xmlId) {
-        VecLocalizedString result = new VecLocalizedString();
+    public static VecLocalizedString wrapToGerman(final String text, final String xmlId) {
+        final VecLocalizedString result = new VecLocalizedString();
         result.setLanguageCode(VecLanguageCode.DE);
         result.setValue(text);
         result.setXmlId(xmlId);
         return result;
     }
 
-    private boolean containsGermanString(List<VecLocalizedString> list) {
+    private boolean containsGermanString(final List<VecLocalizedString> list) {
         return list.stream().anyMatch(ls -> ls.getLanguageCode() == VecLanguageCode.DE);
     }
 

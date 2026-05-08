@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * Compatibility VEC 1.2.X To VEC 2.X.X
+ * Compatibility Core
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,27 +23,15 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
+package com.foursoft.harness.compatibility.core.wrapper.fixture.additions;
 
-import com.foursoft.harness.compatibility.core.CompatibilityContext;
-import com.foursoft.harness.compatibility.core.wrapper.Wraps;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+public class ParentAdditionsBean {
 
-/**
- * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecPartOccurrence}
- * to {@link VecPartOccurrence}.
- */
-@Wraps(com.foursoft.harness.vec.v12x.VecPartOccurrence.class)
-public class PartOccurrenceWrapper extends OccurrenceOrUsageWrapper {
-
-    /**
-     * Creates this wrapper.
-     *
-     * @param context Context of the wrapper.
-     * @param target  Target object of the wrapper.
-     */
-    public PartOccurrenceWrapper(final CompatibilityContext context, final Object target) {
-        super(context, target);
+    public String getParentProp() {
+        return "parentOriginal";
     }
 
+    public void setParentProp(final String value) {
+        // intentionally left empty — the wrapper intercepts this
+    }
 }
