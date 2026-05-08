@@ -128,8 +128,11 @@ class Vec12To20ProxyCoverageTest {
 
     private static void assertSetterCallable(final Object proxy, final Method method,
                                              final Class<?> vec12xClass, final Class<?> vec2xClass) {
-        assertThatCode(() -> method.invoke(proxy, (Object) null))
-                .as("Setter %s#%s must not throw when called with null via proxy of %s",
+        final Class<?> parameterType = method.getParameterTypes()[0];
+        final Object argument = parameterType.isPrimitive() ? primitiveDefaultValue(parameterType) : null;
+
+        assertThatCode(() -> method.invoke(proxy, argument))
+                .as("Setter %s#%s must not throw when called via proxy of %s",
                     vec2xClass.getSimpleName(), method.getName(), vec12xClass.getSimpleName())
                 .doesNotThrowAnyException();
     }
@@ -142,8 +145,35 @@ class Vec12To20ProxyCoverageTest {
 
     private static boolean isSetter(final Method method) {
         return method.getParameterCount() == 1
-                && method.getName().startsWith("set")
-                && !method.getParameterTypes()[0].isPrimitive();
+                && method.getName().startsWith("set");
+    }
+
+    private static Object primitiveDefaultValue(final Class<?> primitiveType) {
+        if (boolean.class.equals(primitiveType)) {
+            return false;
+        }
+        if (char.class.equals(primitiveType)) {
+            return '\0';
+        }
+        if (byte.class.equals(primitiveType)) {
+            return (byte) 0;
+        }
+        if (short.class.equals(primitiveType)) {
+            return (short) 0;
+        }
+        if (int.class.equals(primitiveType)) {
+            return 0;
+        }
+        if (long.class.equals(primitiveType)) {
+            return 0L;
+        }
+        if (float.class.equals(primitiveType)) {
+            return 0F;
+        }
+        if (double.class.equals(primitiveType)) {
+            return 0D;
+        }
+        throw new IllegalArgumentException("Unsupported primitive type: " + primitiveType.getName());
     }
 
     private static boolean isListReturnType(final Method method) {
