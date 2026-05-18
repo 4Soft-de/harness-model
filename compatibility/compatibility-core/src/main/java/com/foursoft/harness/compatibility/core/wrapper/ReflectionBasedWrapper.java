@@ -94,7 +94,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
     public final Object invoke(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final Object returnValue = innerInvoke(obj, method, allArguments);
         // In case the return value is a List. This should prevent NPEs when trying to loop over the list.
-        if (returnValue == null && method.getReturnType().isAssignableFrom(List.class)) {
+        if (returnValue == null && List.class.isAssignableFrom(method.getReturnType())) {
             return new ArrayList<>();
         }
         return returnValue;

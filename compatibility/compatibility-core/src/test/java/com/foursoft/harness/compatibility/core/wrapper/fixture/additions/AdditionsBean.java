@@ -46,4 +46,12 @@ public class AdditionsBean extends ParentAdditionsBean {
     public Set<String> getBazSet() {
         return Collections.singleton("bazOriginal");
     }
+
+    public List<String> getNullList() {
+        return null;
+    }
+
+    public Object getNullObject() {
+        return null;
+    }
 }
