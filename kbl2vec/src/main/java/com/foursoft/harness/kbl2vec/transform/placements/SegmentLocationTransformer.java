@@ -27,14 +27,28 @@ package com.foursoft.harness.kbl2vec.transform.placements;
 
 import com.foursoft.harness.kbl.v25.KblFixingAssignment;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.v2x.VecSegmentLocation;
+
+import java.util.List;
+
+import static java.util.Comparator.comparing;
 
 public class SegmentLocationTransformer extends AbstractSegmentLocationTransformer<KblFixingAssignment>
         implements Transformer<KblFixingAssignment, VecSegmentLocation> {
 
     @Override
     protected LocationData extractLocationData(final KblFixingAssignment source) {
-        return new LocationData(source.getLocation(), source.getAbsoluteLocation(), Constants.FIXING_LOCATION_ID,
+        final List<KblFixingAssignment> assignments = source.getFixing()
+                .getRefFixingAssignment()
+                .stream()
+                .sorted(comparing(Identifiable::getXmlId))
+                .toList();
+
+        final String PATTERN = "%1$s-%2$s";
+
+        return new LocationData(source.getLocation(), source.getAbsoluteLocation(),
+                                PATTERN.formatted(Constants.FIXING_LOCATION_ID, assignments.indexOf(source)),
                                 source.getParentSegment());
     }
 }
