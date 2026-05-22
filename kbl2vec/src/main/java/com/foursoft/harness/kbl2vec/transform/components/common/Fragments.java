@@ -37,6 +37,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonPartDocumentAttributes;
 
@@ -79,6 +80,19 @@ public class Fragments {
                                    VecPartOccurrence::getInstanciatedOccurrence);
             }
             if (source instanceof final HasRelatedAssembly hasRelatedAssembly) {
+                // Prefix Identifications of occurrences of related assemblies, as they might be non-unique in some
+                // dialects.
+                final String idPrefix = hasRelatedAssembly
+                        .getRelatedAssembly()
+                        .stream()
+                        .map(KblAssemblyPartOccurrence::getId)
+                        .filter(StringUtils::isNotBlank)
+                        .sorted()
+                        .collect(Collectors.joining("-"));
+                if (StringUtils.isNotBlank(idPrefix)) {
+                    po.setIdentification(idPrefix + "-" + po.getIdentification());
+                }
+
                 builder.withLinker(hasRelatedAssembly::getRelatedAssembly, VecPartWithSubComponentsRole.class,
                                    (occ, assembly) -> assembly.getSubComponent().add(occ));
             }
