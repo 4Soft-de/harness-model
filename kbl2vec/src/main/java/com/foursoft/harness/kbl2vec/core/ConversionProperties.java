@@ -38,6 +38,7 @@ public class ConversionProperties {
     private String defaultMaterialReferenceSystem = "ACME Inc.";
     private String defaultExternalReferenceCompanyName = "ACME Inc.";
     private Clamping default3DCurveClamping = Clamping.UNCLAMPED;
+    private String defaultSignalListCompanyName = "ACME Inc.";
 
     public VecLanguageCode getDefaultLanguageCode() {
         return defaultLanguageCode;
@@ -101,5 +102,13 @@ public class ConversionProperties {
 
     public void setDefault3DCurveClamping(final Clamping default3DCurveClamping) {
         this.default3DCurveClamping = default3DCurveClamping;
+    }
+
+    public String getDefaultSignalListCompanyName() {
+        return defaultSignalListCompanyName;
+    }
+
+    public void setDefaultSignalListCompanyName(final String defaultSignalListCompanyName) {
+        this.defaultSignalListCompanyName = defaultSignalListCompanyName;
     }
 }

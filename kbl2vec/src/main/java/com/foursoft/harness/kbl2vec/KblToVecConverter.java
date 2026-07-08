@@ -33,6 +33,7 @@ import com.foursoft.harness.kbl2vec.core.ConversionOrchestrator;
 import com.foursoft.harness.kbl2vec.core.ConversionProperties;
 import com.foursoft.harness.kbl2vec.core.Logging;
 import com.foursoft.harness.kbl2vec.core.Processor;
+import com.foursoft.harness.kbl2vec.post.SignalDeduplicationPostProcessor;
 import com.foursoft.harness.kbl2vec.post.XmlIdPostProcessor;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.v2x.VecContent;
@@ -80,6 +81,8 @@ public class KblToVecConverter {
                 VecContent.class,
                 registry, new ConversionProperties());
 
+        // Deduplicate signals (and repoint their references) before XML ids are assigned.
+        orchestrator.addPostProcessor(new SignalDeduplicationPostProcessor());
         orchestrator.addPostProcessor(new XmlIdPostProcessor());
 
         preProcessors.forEach(orchestrator::addPreProcessor);

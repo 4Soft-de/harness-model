@@ -30,10 +30,12 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecSignal;
 import com.foursoft.harness.vec.v2x.VecWireElement;
 import com.foursoft.harness.vec.v2x.VecWireElementReference;
 import com.foursoft.harness.vec.v2x.VecWireEnd;
 import com.foursoft.harness.vec.v2x.VecWireLength;
+import com.google.common.base.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +63,20 @@ public class WireElementReferenceTransformer
                                 VecWireElementReference::getWireEnds)
                 .withLinker(Query.of(source::getPart), VecWireElement.class,
                             VecWireElementReference::setReferencedWireElement)
+                .withLinker(() -> firstConnectionWithSignal(source), VecSignal.class,
+                            VecWireElementReference::setSignal)
                 .build();
+    }
+
+    private List<KblConnection> firstConnectionWithSignal(final KblGeneralWireOccurrence source) {
+        if (source instanceof final KblWireOccurrence wireOccurrence) {
+            return wireOccurrence.getRefConnection().stream()
+                    .filter(connection -> !Strings.isNullOrEmpty(connection.getSignalName()))
+                    .findFirst()
+                    .stream()
+                    .toList();
+        }
+        return List.of();
     }
 
     private List<KblExtremity> getExtremities(final KblGeneralWireOccurrence source) {
