@@ -56,7 +56,7 @@ class SignalListDocumentVersionTransformerTest {
                 .returns("SignalList", VecDocumentVersion::getDocumentType)
                 .returns("Signals", VecDocumentVersion::getDocumentNumber)
                 .returns("1", VecDocumentVersion::getDocumentVersion)
-                .returns("[DefaultCompany]", VecDocumentVersion::getCompanyName);
+                .returns("ACME Inc.", VecDocumentVersion::getCompanyName);
         assertThat(result.getDescriptions())
                 .extracting(VecAbstractLocalizedString::getLanguageCode, VecAbstractLocalizedString::getValue)
                 .containsExactly(tuple(VecLanguageCode.DE, "Signalliste"), tuple(VecLanguageCode.EN, "Signal list"));
