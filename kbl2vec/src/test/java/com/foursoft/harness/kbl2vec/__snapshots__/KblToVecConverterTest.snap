@@ -287,7 +287,7 @@ This is not intended for productive use and is not complete!
       <LanguageCode>En</LanguageCode>
       <Value>Signal list</Value>
     </Description>
-    <CompanyName>[DefaultCompany]</CompanyName>
+    <CompanyName>ACME Inc.</CompanyName>
     <DocumentNumber>Signals</DocumentNumber>
     <DocumentType>SignalList</DocumentType>
     <DocumentVersion>1</DocumentVersion>
@@ -1656,7 +1656,7 @@ This is not intended for productive use and is not complete!
       <LanguageCode>En</LanguageCode>
       <Value>Signal list</Value>
     </Description>
-    <CompanyName>[DefaultCompany]</CompanyName>
+    <CompanyName>ACME Inc.</CompanyName>
     <DocumentNumber>Signals</DocumentNumber>
     <DocumentType>SignalList</DocumentType>
     <DocumentVersion>1</DocumentVersion>
@@ -23380,7 +23380,7 @@ This is not intended for productive use and is not complete!
       <LanguageCode>En</LanguageCode>
       <Value>Signal list</Value>
     </Description>
-    <CompanyName>[DefaultCompany]</CompanyName>
+    <CompanyName>ACME Inc.</CompanyName>
     <DocumentNumber>Signals</DocumentNumber>
     <DocumentType>SignalList</DocumentType>
     <DocumentVersion>1</DocumentVersion>
@@ -101618,7 +101618,7 @@ This is not intended for productive use and is not complete!
       <LanguageCode>En</LanguageCode>
       <Value>Signal list</Value>
     </Description>
-    <CompanyName>[DefaultCompany]</CompanyName>
+    <CompanyName>ACME Inc.</CompanyName>
     <DocumentNumber>Signals</DocumentNumber>
     <DocumentType>SignalList</DocumentType>
     <DocumentVersion>1</DocumentVersion>
