@@ -40,6 +40,8 @@ import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Comparator.comparing;
+
 public class WireElementReferenceTransformer
         implements Transformer<KblGeneralWireOccurrence, VecWireElementReference> {
 
@@ -72,7 +74,7 @@ public class WireElementReferenceTransformer
         if (source instanceof final KblWireOccurrence wireOccurrence) {
             return wireOccurrence.getRefConnection().stream()
                     .filter(connection -> !Strings.isNullOrEmpty(connection.getSignalName()))
-                    .findFirst()
+                    .min(comparing(KblConnection::getSignalName))
                     .stream()
                     .toList();
         }

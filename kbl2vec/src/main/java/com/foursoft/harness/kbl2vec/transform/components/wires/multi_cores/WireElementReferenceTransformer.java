@@ -37,7 +37,10 @@ import com.foursoft.harness.vec.v2x.VecWireEnd;
 import com.foursoft.harness.vec.v2x.VecWireLength;
 import com.google.common.base.Strings;
 
+import java.util.Comparator;
 import java.util.List;
+
+import static java.util.Comparator.comparing;
 
 public class WireElementReferenceTransformer implements Transformer<KblCoreOccurrence, VecWireElementReference> {
 
@@ -62,7 +65,7 @@ public class WireElementReferenceTransformer implements Transformer<KblCoreOccur
     private List<KblConnection> firstConnectionWithSignal(final KblCoreOccurrence source) {
         return source.getRefConnection().stream()
                 .filter(connection -> !Strings.isNullOrEmpty(connection.getSignalName()))
-                .findFirst()
+                .min(comparing(KblConnection::getSignalName))
                 .stream()
                 .toList();
     }
