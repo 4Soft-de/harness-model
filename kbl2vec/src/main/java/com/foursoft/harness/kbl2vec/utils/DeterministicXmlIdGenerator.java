@@ -49,8 +49,12 @@ public class DeterministicXmlIdGenerator extends DefaultXmlIdGenerator {
     }
 
     private Map<Object, Object> invertEntityMapping() {
+        // Several source entities can be deduplicated onto the same destination entity (e.g. several KblConnections
+        // sharing a signal name onto a single VecSignal). The entity mapping iterates in insertion order, so keeping
+        // the first mapped source yields the canonical (first) source and thus a deterministic, stable XML id.
         return context.getEntityMapping().getContent().entries().stream()
-                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey,
+                                          (firstSource, duplicateSource) -> firstSource));
     }
 
     private String formatId(final String baseId, final int suffix) {

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,17 +25,20 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.wires.multi_cores;
 
-import com.foursoft.harness.kbl.v25.*;
+import com.foursoft.harness.kbl.v25.KblConnection;
+import com.foursoft.harness.kbl.v25.KblCoreOccurrence;
+import com.foursoft.harness.kbl.v25.KblExtremity;
+import com.foursoft.harness.kbl.v25.KblWireLength;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecWireElement;
-import com.foursoft.harness.vec.v2x.VecWireElementReference;
-import com.foursoft.harness.vec.v2x.VecWireEnd;
-import com.foursoft.harness.vec.v2x.VecWireLength;
+import com.foursoft.harness.vec.v2x.*;
+import com.google.common.base.Strings;
 
 import java.util.List;
+
+import static java.util.Comparator.comparing;
 
 public class WireElementReferenceTransformer implements Transformer<KblCoreOccurrence, VecWireElementReference> {
 
@@ -52,7 +55,17 @@ public class WireElementReferenceTransformer implements Transformer<KblCoreOccur
                                 VecWireElementReference::getWireEnds)
                 .withLinker(Query.of(source::getPart), VecWireElement.class,
                             VecWireElementReference::setReferencedWireElement)
+                .withLinker(() -> firstConnectionWithSignal(source), VecSignal.class,
+                            VecWireElementReference::setSignal)
                 .build();
+    }
+
+    private List<KblConnection> firstConnectionWithSignal(final KblCoreOccurrence source) {
+        return source.getRefConnection().stream()
+                .filter(connection -> !Strings.isNullOrEmpty(connection.getSignalName()))
+                .min(comparing(KblConnection::getSignalName))
+                .stream()
+                .toList();
     }
 
     private List<KblExtremity> getExtremities(final KblCoreOccurrence source) {
