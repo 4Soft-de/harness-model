@@ -38,10 +38,12 @@ import com.google.common.base.Strings;
  * Creates the single {@link VecSignalSpecification} of the signal list document and populates it with one
  * {@link VecSignal} per {@link KblConnection} that carries a (non-blank) signal name.
  * <p>
- * One signal is created per connection on purpose (instead of deduplicating up front): this keeps a clean 1:1
- * {@code KblConnection -> VecSignal} entity mapping so that downstream signal linking (e.g. from
- * {@code WireElementReference}) resolves via the entity mapping. Duplicate signals are collapsed afterwards by the
- * {@code SignalDeduplicationPostProcessor}.
+ * The KBL carries one connection per signal occurrence, so several connections can share the same
+ * {@code Signal_name}. Because {@code VecSignal.identification} must be unique within the specification, the
+ * downstream transformation deduplicates the produced signals by {@link VecSignal#getSignalName()}: only the first
+ * signal per name is kept, and every duplicate connection is re-pointed in the entity mapping to that retained
+ * signal. This keeps a clean {@code KblConnection -> VecSignal} mapping so that downstream signal linking (e.g.
+ * from {@code WireElementReference}) resolves to the retained signal via the entity mapping.
  */
 public class SignalSpecificationTransformer implements Transformer<KblHarness, VecSignalSpecification> {
 
@@ -56,7 +58,9 @@ public class SignalSpecificationTransformer implements Transformer<KblHarness, V
                                 () -> source.getConnections().stream()
                                         .filter(connection -> !Strings.isNullOrEmpty(connection.getSignalName()))
                                         .toList(),
-                                VecSignalSpecification::getSignals)
+                                VecSignalSpecification::getSignals,
+                                VecSignal::getSignalName,
+                                null)
                 .build();
     }
 }

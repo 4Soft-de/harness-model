@@ -81,9 +81,27 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
                                                     final Class<TO> destinationClass,
                                                     final Query<FROM> sourceQuery,
                                                     final BiConsumer<D, TO> accumulator) {
+            return withDownstream(sourceClass, destinationClass, sourceQuery, accumulator, null, null);
+        }
+
+        /**
+         * Like {@link #withDownstream(Class, Class, Query, BiConsumer)}, but deduplicates the produced destination
+         * objects: only the first destination object per {@code deduplicationKey} is accumulated, and every source
+         * object that produced a duplicate is re-pointed in the entity mapping to the retained ("canonical")
+         * instance so that second-phase linking resolves to it. An optional {@code merger} folds a dropped
+         * duplicate into the retained instance (invoked as {@code merger.accept(canonical, duplicate)}); pass
+         * {@code null} when duplicates can simply be discarded.
+         */
+        public <FROM, TO> Builder<D> withDownstream(final Class<FROM> sourceClass,
+                                                    final Class<TO> destinationClass,
+                                                    final Query<FROM> sourceQuery,
+                                                    final BiConsumer<D, TO> accumulator,
+                                                    final Function<TO, Object> deduplicationKey,
+                                                    final BiConsumer<TO, TO> merger) {
             downstreamTransformations.add(
-                    new Transformation<>(sourceClass, destinationClass, sourceQuery,
-                                         result -> accumulator.accept(element, result)));
+                    new Transformation<FROM, TO>(sourceClass, destinationClass, sourceQuery,
+                                                 result -> accumulator.accept(element, result), deduplicationKey,
+                                                 merger));
 
             return this;
         }
@@ -92,8 +110,27 @@ public record TransformationResult<D>(D element, List<Transformation<?, ?>> down
                                                     final Class<TO> destinationClass,
                                                     final Query<FROM> sourceQuery,
                                                     final Function<D, List<? super TO>> contextListProvider) {
-            downstreamTransformations.add(new Transformation<>(sourceClass, destinationClass, sourceQuery,
-                                                               value -> contextListProvider.apply(element).add(value)));
+            return withDownstream(sourceClass, destinationClass, sourceQuery, contextListProvider, null, null);
+        }
+
+        /**
+         * Like {@link #withDownstream(Class, Class, Query, Function)}, but deduplicates the produced destination
+         * objects: only the first destination object per {@code deduplicationKey} is added to the parent list, and
+         * every source object that produced a duplicate is re-pointed in the entity mapping to the retained
+         * ("canonical") instance so that second-phase linking resolves to it. An optional {@code merger} folds a
+         * dropped duplicate into the retained instance (invoked as {@code merger.accept(canonical, duplicate)});
+         * pass {@code null} when duplicates can simply be discarded.
+         */
+        public <FROM, TO> Builder<D> withDownstream(final Class<FROM> sourceClass,
+                                                    final Class<TO> destinationClass,
+                                                    final Query<FROM> sourceQuery,
+                                                    final Function<D, List<? super TO>> contextListProvider,
+                                                    final Function<TO, Object> deduplicationKey,
+                                                    final BiConsumer<TO, TO> merger) {
+            downstreamTransformations.add(
+                    new Transformation<FROM, TO>(sourceClass, destinationClass, sourceQuery,
+                                                 value -> contextListProvider.apply(element).add(value),
+                                                 deduplicationKey, merger));
 
             return this;
         }
