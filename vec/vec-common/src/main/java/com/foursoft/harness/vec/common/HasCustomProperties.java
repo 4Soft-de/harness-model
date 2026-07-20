@@ -60,7 +60,7 @@ public interface HasCustomProperties<X extends HasPropertyType> {
      * @param propertyType defines the meaning of the value.
      * @return all properties with the given type and key.
      */
-    default <T extends X> List<T> getCustomProperties(final Class<T> type, final String propertyType) {
+    default <T extends X> List<T> getCustomPropertiesWithType(final Class<T> type, final String propertyType) {
         return DelegationUtils.getFromListWithTypeAsStream(getCustomProperties(), type)
                 .filter(c -> c.getPropertyType().equals(propertyType))
                 .toList();

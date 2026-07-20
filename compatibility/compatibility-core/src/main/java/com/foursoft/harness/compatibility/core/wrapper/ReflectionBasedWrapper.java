@@ -247,7 +247,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         try {
             targetMethodResult = targetMethod.invoke(target, objects);
         } catch (final IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            final String args = Arrays.stream(objects)
+            final String args = objects == null ? "[]" : Arrays.stream(objects)
                     .map(Object::toString)
                     .collect(Collectors.joining(", "));
             final String errorMsg = String.format("Cannot invoke method %s on class %s with args '%s'.",
