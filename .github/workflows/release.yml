@@ -7,10 +7,6 @@ on:
         description: 'The Version of the Release (e.g. 0.1.0)'
         required: false
         default: ''
-      github_user:
-        description: 'The GitHub user to release with (Owner of the PAT)'
-        required: true
-        default: 'RainerGanss'
       github_pat:
         description: 'A PAT that has the permission to push to protected branches.'
         required: true
@@ -43,7 +39,7 @@ jobs:
         run: |
           git config user.email "${{ github.event.inputs.git_mail }}"
           git config user.name "${{ github.event.inputs.git_name }}"
-          git remote set-url origin https://${{ github.event.inputs.github_user }}:${{ github.event.inputs.github_pat }}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://x-access-token:${{ github.event.inputs.github_pat }}@github.com/${GITHUB_REPOSITORY}.git
       - name: Release with Maven
         run: |
           ./mvnw -e -P release -B -DreleaseVersion=${{ github.event.inputs.release_version }} -s .mvn/release.settings.xml gitflow:release --file pom.xml
