@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * vec-v2x
  * %%
- * Copyright (C) 2020 - 2022 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,32 +25,23 @@
  */
 package com.foursoft.harness.vec.v2x.visitor;
 
-import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
-import com.foursoft.harness.vec.common.util.StringUtils;
-
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DefaultXmlIdGenerator implements XmlIdGenerator {
+/**
+ * Variant of {@link DefaultXmlIdGenerator} that keeps a separate counter per prefix instead of a single
+ * counter shared across all bean types. Inserting a bean of one type therefore no longer shifts the
+ * generated ids of unrelated types, keeping ids stable across edits that only add or remove elements.
+ */
+public class PrefixScopedXmlIdGenerator extends DefaultXmlIdGenerator {
 
-    private final AtomicInteger counter = new AtomicInteger(0);
+    private final Map<String, AtomicInteger> countersByPrefix = new ConcurrentHashMap<>();
 
-    public void createIdForXmlBean(final ModifiableIdentifiable aBean) {
-        createIdForXmlBean(aBean, derivePrefix(aBean));
-    }
-
-    protected void createIdForXmlBean(final ModifiableIdentifiable aBean, final String prefix) {
-        if (StringUtils.isEmpty(aBean.getXmlId())) {
-            aBean.setXmlId(generateNewXmlId(prefix));
-        }
-    }
-
+    @Override
     protected String generateNewXmlId(final String prefix) {
-        return String.format("%s%05d", prefix, counter.getAndIncrement());
-    }
-
-    protected String derivePrefix(final ModifiableIdentifiable aBean) {
-        return aBean.getClass()
-                .getSimpleName()
-                .replace("Vec", "") + "_";
+        final int value = countersByPrefix.computeIfAbsent(prefix, unused -> new AtomicInteger(0))
+                .getAndIncrement();
+        return String.format("%s%05d", prefix, value);
     }
 }
