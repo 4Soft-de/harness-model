@@ -26,6 +26,7 @@
 package com.foursoft.harness.kbl2vec.transform.placements;
 
 import com.foursoft.harness.kbl.v25.KblProtectionArea;
+import com.foursoft.harness.kbl.v25.KblSegment;
 import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
@@ -44,8 +45,13 @@ class OnWayPlacementTransformerTest {
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblProtectionArea source = new KblProtectionArea();
+        final KblSegment segment = new KblSegment();
+        segment.setId("SegmentId");
+        segment.getProtectionAreas().add(source);
+        source.setParentSegment(segment);
 
         final KblWireProtectionOccurrence protectionOccurrence = new KblWireProtectionOccurrence();
+        protectionOccurrence.setId("ProtectionId");
         source.setAssociatedProtection(protectionOccurrence);
 
         final VecPlaceableElementRole placeableElementRole = new VecPlaceableElementRole();
@@ -60,6 +66,7 @@ class OnWayPlacementTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
+                .satisfies(v -> assertThat(v.getIdentification()).isEqualTo("ProtectionId-SegmentId"))
                 .satisfies(v -> assertThat(v.getPlacedElement()).containsExactly(placeableElementRole))
                 .satisfies(v -> assertThat(v.getStartLocation()).isEqualTo(startSegmentLocation));
     }
@@ -71,8 +78,13 @@ class OnWayPlacementTransformerTest {
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblProtectionArea source = new KblProtectionArea();
+        final KblSegment segment = new KblSegment();
+        segment.setId("SegmentId");
+        segment.getProtectionAreas().add(source);
+        source.setParentSegment(segment);
 
         final KblWireProtectionOccurrence protectionOccurrence = new KblWireProtectionOccurrence();
+        protectionOccurrence.setId("ProtectionId");
         source.setAssociatedProtection(protectionOccurrence);
 
         final VecPlaceableElementRole placeableElementRole = new VecPlaceableElementRole();
@@ -87,6 +99,7 @@ class OnWayPlacementTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
+                .satisfies(v -> assertThat(v.getIdentification()).isEqualTo("ProtectionId-SegmentId"))
                 .satisfies(v -> assertThat(v.getPlacedElement()).containsExactly(placeableElementRole))
                 .satisfies(v -> assertThat(v.getEndLocation()).isEqualTo(endSegmentLocation));
     }

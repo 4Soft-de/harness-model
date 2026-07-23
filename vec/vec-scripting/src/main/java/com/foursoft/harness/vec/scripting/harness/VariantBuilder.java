@@ -40,19 +40,17 @@ public class VariantBuilder implements Builder<VariantBuilder.VariantResult> {
     private final Function<String[], List<VecPartOccurrence>> occurrencesLookup;
     private VecVariantConfiguration variantConfiguration;
 
-    ;
-
     private final VecPartVersion partVersion;
     private final VecPartStructureSpecification partStructureSpecification;
     private final VecPartOccurrence moduleOccurrence;
     private VecPartWithSubComponentsRole partWithSubComponentsRole;
 
-    public VariantBuilder(VecSession session,
-                          String partNumber,
-                          Function<String[], List<VecPartOccurrence>> occurrencesLookup
+    public VariantBuilder(final VecSession session,
+                          final String partNumber,
+                          final Function<String[], List<VecPartOccurrence>> occurrencesLookup
     ) {
         this.occurrencesLookup = occurrencesLookup;
-        this.partVersion = new PartVersionBuilder(session, partNumber, VecPrimaryPartType.PART_STRUCTURE).build();
+        this.partVersion = new PartVersionBuilder(session, partNumber, "1", VecPrimaryPartType.PART_STRUCTURE).build();
 
         this.partStructureSpecification = initializePartStructure(this.partVersion);
         this.moduleOccurrence = initializeModuleOccurrence(partNumber);
@@ -63,13 +61,13 @@ public class VariantBuilder implements Builder<VariantBuilder.VariantResult> {
         return new VariantResult(partVersion, moduleOccurrence, partStructureSpecification, variantConfiguration);
     }
 
-    public VariantBuilder withAbbreviation(String text) {
+    public VariantBuilder withAbbreviation(final String text) {
         this.partVersion.getAbbreviations().add(de(text));
         return this;
     }
 
-    public VariantBuilder withOccurrences(String... occurrences) {
-        List<VecPartOccurrence> result = this.occurrencesLookup.apply(occurrences);
+    public VariantBuilder withOccurrences(final String... occurrences) {
+        final List<VecPartOccurrence> result = this.occurrencesLookup.apply(occurrences);
         this.partStructureSpecification.getInBillOfMaterial().addAll(result);
         this.partWithSubComponentsRole.getSubComponent().addAll(result);
         return this;
@@ -80,7 +78,7 @@ public class VariantBuilder implements Builder<VariantBuilder.VariantResult> {
         variantConfiguration.setIdentification("Config@" + this.partVersion.getPartNumber());
         variantConfiguration.setLogisticControlString(configuration);
 
-        VecConfigurationConstraint constraint = new VecConfigurationConstraint();
+        final VecConfigurationConstraint constraint = new VecConfigurationConstraint();
         constraint.setIdentification("Config@" + this.partVersion.getPartNumber());
         constraint.setConfigInfo(variantConfiguration);
 
@@ -89,8 +87,8 @@ public class VariantBuilder implements Builder<VariantBuilder.VariantResult> {
         return this;
     }
 
-    private VecPartOccurrence initializeModuleOccurrence(String partNumber) {
-        VecPartOccurrence result = new VecPartOccurrence();
+    private VecPartOccurrence initializeModuleOccurrence(final String partNumber) {
+        final VecPartOccurrence result = new VecPartOccurrence();
         result.setIdentification(partNumber);
         result.setPart(partVersion);
 
@@ -103,7 +101,7 @@ public class VariantBuilder implements Builder<VariantBuilder.VariantResult> {
         return result;
     }
 
-    private VecPartStructureSpecification initializePartStructure(VecPartVersion partVersion) {
+    private VecPartStructureSpecification initializePartStructure(final VecPartVersion partVersion) {
         final VecPartStructureSpecification ps = new VecPartStructureSpecification();
         ps.setIdentification("STRUCTURE_" + partVersion.getPartNumber());
         ps.getDescribedPart().add(partVersion);

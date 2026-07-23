@@ -25,14 +25,12 @@
  */
 package com.foursoft.harness.kbl2vec.transform.contacting;
 
-import com.foursoft.harness.kbl.v25.KblContactPoint;
-import com.foursoft.harness.kbl.v25.KblProcessingInstruction;
-import com.foursoft.harness.kbl.v25.KblTerminalOccurrence;
+import com.foursoft.harness.kbl.common.util.StreamUtils;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v2x.*;
 
 import java.util.List;
@@ -57,10 +55,11 @@ public class ContactPointTransformer implements Transformer<KblContactPoint, Vec
                 .build();
     }
 
-    private List<KblTerminalOccurrence> getTerminalOccurrence(final KblContactPoint contactPoint,
-                                                              final TransformationContext context) {
-        final List<KblTerminalOccurrence> terminalOccurrences = contactPoint.getAssociatedParts().stream()
-                .flatMap(StreamUtils.ofClass(KblTerminalOccurrence.class))
+    private List<ConnectionOrOccurrence> getTerminalOccurrence(final KblContactPoint contactPoint,
+                                                               final TransformationContext context) {
+        final List<ConnectionOrOccurrence> terminalOccurrences = contactPoint.getAssociatedParts().stream()
+                .filter(x -> x instanceof KblTerminalOccurrence || x instanceof KblSpecialTerminalOccurrence)
+                .flatMap(StreamUtils.ofClass(ConnectionOrOccurrence.class))
                 .toList();
 
         if (terminalOccurrences.size() > 1) {

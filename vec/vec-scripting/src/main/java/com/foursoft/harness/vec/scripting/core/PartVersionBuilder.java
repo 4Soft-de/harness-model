@@ -36,12 +36,13 @@ public class PartVersionBuilder implements Builder<VecPartVersion> {
     private final VecPartVersion part;
     private final VecSession session;
 
-    public PartVersionBuilder(final VecSession session, final String partNumber, final VecPrimaryPartType primaryPartType) {
+    public PartVersionBuilder(final VecSession session, final String partNumber, final String partVersion,
+                              final VecPrimaryPartType primaryPartType) {
         this.session = session;
         part = new VecPartVersion();
 
         part.setCompanyName(this.session.getDefaultValues().getCompanyName());
-        part.setPartVersion("1");
+        part.setPartVersion(partVersion);
         part.setPartNumber(partNumber);
         part.setPrimaryPartType(primaryPartType);
     }
@@ -51,7 +52,8 @@ public class PartVersionBuilder implements Builder<VecPartVersion> {
         return this;
     }
 
-    @Override public VecPartVersion build() {
+    @Override
+    public VecPartVersion build() {
         return part;
     }
 }

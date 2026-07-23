@@ -36,11 +36,16 @@ import com.foursoft.harness.vec.v2x.VecSegmentLocation;
 
 public class OnWayPlacementTransformer implements Transformer<KblProtectionArea, VecOnWayPlacement> {
 
+    private static final String IDENTIFICATION_PATTERN = "%1s-%2s";
+
     @Override
     public TransformationResult<VecOnWayPlacement> transform(final TransformationContext context,
                                                              final KblProtectionArea source) {
         final VecOnWayPlacement destination = new VecOnWayPlacement();
-        destination.setIdentification(source.getAssociatedProtection().getId());
+
+        final String protectionId = source.getAssociatedProtection().getId();
+        final String segmentId = source.getParentSegment().getId();
+        destination.setIdentification(IDENTIFICATION_PATTERN.formatted(protectionId, segmentId));
 
         return TransformationResult.from(destination)
                 .withDownstream(KblProtectionArea.class, VecSegmentLocation.class, Query.of(source),

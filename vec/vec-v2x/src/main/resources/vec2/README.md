@@ -10,6 +10,8 @@ follow these steps:
   `src/main/java/com/foursoft/harness/vec/v2x/validation/SchemaFactory.java`.
 - Run the `scripts/relocate-doc-in-xsd.xsl` on the XSDs, to make the embedded docs XJC compatible.
 - Run the `scripts/generate-xjb-from-schema.xsl` on the XSDs to generate the `vec_2.x.x.xjb` file.
+- Run the `scripts/generate-structured-primitive-xjb-from-model.xsl` on the UML XMI file (downloadable from the
+  ECAD-WIKI) to generate `vec_2.x.x-structured-primitives.xjb`
 - Adapt the `schemaLocation="vec_2.2.0.xsd"` attribute in the XJB files located in this directory.
 - Also add the files (including model and ontologies) to `vec-rdf/vec-rdf-common/src/main/resources/vec`
 - Fix the `com.foursoft.harness.vec.v2x.Version.VERSION` constant.

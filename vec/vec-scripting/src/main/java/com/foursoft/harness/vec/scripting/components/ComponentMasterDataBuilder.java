@@ -58,12 +58,13 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     private ConnectionSpecificationQueries internalSchematicQuery;
 
     public ComponentMasterDataBuilder(final VecSession session,
-                                      final String partNumber, final String documentNumber,
+                                      final String partNumber, final String partVersion, final String documentNumber,
+                                      final String documentVersion,
                                       final VecPrimaryPartType primaryPartType) {
         this.session = session;
         this.partNumber = partNumber;
-        this.part = new PartVersionBuilder(session, partNumber, primaryPartType).build();
-        this.partMasterDocument = initializeDocument(documentNumber);
+        this.part = new PartVersionBuilder(session, partNumber, partVersion, primaryPartType).build();
+        this.partMasterDocument = initializeDocument(documentNumber, documentVersion);
     }
 
     @Override
@@ -74,8 +75,9 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         return new PartDocumentsPair(part, documents);
     }
 
-    private DocumentVersionBuilder initializeDocument(final String documentNumber) {
-        return new DocumentVersionBuilder(session, documentNumber, "1").documentType(DocumentType.PART_MASTER)
+    private DocumentVersionBuilder initializeDocument(final String documentNumber, final String documentVersion) {
+        return new DocumentVersionBuilder(session, documentNumber, documentVersion).documentType(
+                        DocumentType.PART_MASTER)
                 .addReferencedPart(
                         this.part);
     }

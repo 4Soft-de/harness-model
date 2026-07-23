@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings xmlns:inheritance="urn:jvnet.org:basicjaxb:xjc:inheritance"
+        xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        node="/xs:schema"
+        schemaLocation="vec_2.2.0.xsd"
+        version="3.0"
+        extensionBindingPrefixes="xjc">
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='AliasIdentification']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='LocalizedString']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true"
+            node="//xs:complexType[@name='AbstractLocalizedString']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='LocalizedTypedString']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='DocumentClassification']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='CustomProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='NumericalValueProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='SimpleValueProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='ValueRangeProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true"
+            node="//xs:complexType[@name='LocalizedStringProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='BooleanValueProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='DateValueProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='DoubleValueProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='IntegerValueProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='ComplexProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true"
+            node="//xs:complexType[@name='MultiDimensionalValueProperty']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='SlotLayout']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true"
+            node="//xs:complexType[@name='TerminalCurrentInformation']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='WireType']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true"
+            node="//xs:complexType[@name='TerminalDistanceInformation']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true"
+            node="//xs:complexType[@name='ReferenceSurfaceDefinition']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='FuseCharacteristic']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='NURBSControlPoint']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='Color']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='MassInformation']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='Material']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='NumericalValue']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='RobustnessProperties']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='Size']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='SoundDampingClass']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='TemperatureInformation']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='Tolerance']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='ValueRange']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='ValueWithUnit']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='MaterialComposition']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='MultiDimensionalValue']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='DataPoint']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+    <jxb:bindings multiple="true" node="//xs:complexType[@name='DataPointValue']">
+        <inheritance:implements>com.foursoft.harness.vec.common.StructuredPrimitive</inheritance:implements>
+    </jxb:bindings>
+</jxb:bindings>

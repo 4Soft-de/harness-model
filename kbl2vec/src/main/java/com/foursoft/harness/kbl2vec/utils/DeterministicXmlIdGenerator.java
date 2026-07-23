@@ -28,13 +28,14 @@ package com.foursoft.harness.kbl2vec.utils;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
+import com.foursoft.harness.vec.v2x.visitor.DefaultXmlIdGenerator;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DeterministicXmlIdGenerator extends XmlIdGenerator {
+public class DeterministicXmlIdGenerator extends DefaultXmlIdGenerator {
 
     private final TransformationContext context;
     private final Map<Object, Object> invertedEntityMapping;
@@ -48,8 +49,12 @@ public class DeterministicXmlIdGenerator extends XmlIdGenerator {
     }
 
     private Map<Object, Object> invertEntityMapping() {
+        // Several source entities can be deduplicated onto the same destination entity (e.g. several KblConnections
+        // sharing a signal name onto a single VecSignal). The entity mapping iterates in insertion order, so keeping
+        // the first mapped source yields the canonical (first) source and thus a deterministic, stable XML id.
         return context.getEntityMapping().getContent().entries().stream()
-                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey,
+                                          (firstSource, duplicateSource) -> firstSource));
     }
 
     private String formatId(final String baseId, final int suffix) {

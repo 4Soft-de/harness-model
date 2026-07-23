@@ -136,43 +136,7 @@ public class ConversionOrchestrator<S, D> {
 
     private <FROM, TO> void handleSingleTransformation(final Transformation<FROM, TO> transformation,
                                                        final TransformationStackTrace parentStackTrace) {
-        final Collection<Transformer<FROM, TO>> transformers = transformerRegistry.getTransformer(
-                transformation.sourceClass(),
-                transformation.destinationClass());
-
-        transformation.sourceQuery()
-                .stream()
-                .flatMap(from -> handleElementTransformations(transformers, from, parentStackTrace))
-                .filter(Objects::nonNull)
-                .forEach(transformation.accumulator());
-
-    }
-
-    private <FROM, TO> Stream<TO> handleElementTransformations(final Collection<Transformer<FROM, TO>> transformers,
-                                                               final FROM element,
-                                                               final TransformationStackTrace parentStackTrace) {
-        return transformers.stream()
-                .map(t -> handleElementTransformation(t, element, parentStackTrace));
-    }
-
-    private <FROM, TO> TO handleElementTransformation(final Transformer<FROM, TO> transformer, final FROM element,
-                                                      final TransformationStackTrace parentStackTrace) {
-        TransformationResult<TO> result = null;
-        try {
-            result = transformer.transform(this.transformationContext, element);
-        } catch (final Exception e) {
-            throw new TransformerException(transformer, element, parentStackTrace, e);
-        }
-
-        if (!result.isEmpty()) {
-            final TransformationStackTrace currentStackTrace = parentStackTrace.addElement(element, result.element(),
-                                                                                           transformer);
-            transformations.addAll(wrapTransformations(result.downstreamTransformations(), currentStackTrace));
-            finisher.addAll(wrapFinishers(result.finisher(), currentStackTrace));
-            transformationContext.getEntityMapping().put(element, result.element());
-            comments.putAll(result.comments());
-        }
-        return result.element();
+        new TransformationHandler<>(transformation, parentStackTrace).handle();
     }
 
     private static List<TransformationHolder> wrapTransformations(
@@ -186,6 +150,95 @@ public class ConversionOrchestrator<S, D> {
                                                       final TransformationStackTrace currentStackTrace) {
         return finishers.stream().map(f -> new FinisherHolder(f, currentStackTrace))
                 .toList();
+    }
+
+    /**
+     * Handles a single queued {@link Transformation}: it runs the registered transformers for every source element,
+     * optionally deduplicates the produced destination objects, records the source&rarr;destination entity mapping,
+     * enqueues downstream transformations and finishers, and accumulates the (canonical) results into their parent.
+     * <p>
+     * One instance is created per queued transformation. The data that belongs to that single transformation - the
+     * transformation itself, its stack trace, the matching transformers and the deduplication cache - is kept as
+     * instance state instead of being threaded through the handling methods as parameters.
+     */
+    private final class TransformationHandler<FROM, TO> {
+
+        private final Transformation<FROM, TO> transformation;
+        private final TransformationStackTrace parentStackTrace;
+        private final Collection<Transformer<FROM, TO>> transformers;
+        // Canonical instance per deduplication key, scoped to this handler (i.e. this single transformation).
+        // Only used when the transformation declares a deduplication key; it stays empty for the default path.
+        private final Map<Object, TO> canonicalByKey = new HashMap<>();
+
+        private TransformationHandler(final Transformation<FROM, TO> transformation,
+                                      final TransformationStackTrace parentStackTrace) {
+            this.transformation = transformation;
+            this.parentStackTrace = parentStackTrace;
+            this.transformers = transformerRegistry.getTransformer(transformation.sourceClass(),
+                                                                   transformation.destinationClass());
+        }
+
+        private void handle() {
+            transformation.sourceQuery()
+                    .stream()
+                    .flatMap(this::transformElement)
+                    .filter(Objects::nonNull)
+                    .forEach(transformation.accumulator());
+        }
+
+        private Stream<TO> transformElement(final FROM element) {
+            return transformers.stream()
+                    .map(transformer -> applyTransformer(transformer, element));
+        }
+
+        private TO applyTransformer(final Transformer<FROM, TO> transformer, final FROM element) {
+            final TransformationResult<TO> result;
+            try {
+                result = transformer.transform(transformationContext, element);
+            } catch (final Exception e) {
+                throw new TransformerException(transformer, element, parentStackTrace, e);
+            }
+
+            if (result.isEmpty()) {
+                return null;
+            }
+
+            final TO produced = result.element();
+            final TO canonical = resolveCanonical(produced);
+            if (canonical != produced) {
+                // Duplicate: fold it into the retained instance (if a merger is defined) and re-point the source's
+                // entity mapping to the canonical instance so second-phase linking resolves to it. The duplicate is
+                // never wired into the graph (returning null suppresses accumulation) and its downstream
+                // transformations and finishers are intentionally not enqueued.
+                if (transformation.merger() != null) {
+                    transformation.merger().accept(canonical, produced);
+                }
+                transformationContext.getEntityMapping().put(element, canonical);
+                return null;
+            }
+
+            final TransformationStackTrace currentStackTrace = parentStackTrace.addElement(element, produced,
+                                                                                           transformer);
+            transformations.addAll(wrapTransformations(result.downstreamTransformations(), currentStackTrace));
+            finisher.addAll(wrapFinishers(result.finisher(), currentStackTrace));
+            transformationContext.getEntityMapping().put(element, produced);
+            comments.putAll(result.comments());
+            return produced;
+        }
+
+        /**
+         * Resolves the canonical destination instance for a produced element. When the transformation does not
+         * deduplicate, the produced element is always its own canonical instance. Otherwise the first element seen
+         * per key becomes canonical; later elements with the same key resolve to that earlier instance.
+         */
+        private TO resolveCanonical(final TO produced) {
+            if (transformation.deduplicationKey() == null) {
+                return produced;
+            }
+            final Object key = transformation.deduplicationKey().apply(produced);
+            final TO existing = canonicalByKey.putIfAbsent(key, produced);
+            return existing == null ? produced : existing;
+        }
     }
 
     public record Result<D>(D resultValue, Map<Object, String> comments, Multimap<Object, Object> entityMapping) {

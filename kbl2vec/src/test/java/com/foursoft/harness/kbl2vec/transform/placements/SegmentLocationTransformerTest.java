@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,10 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.placements;
 
-import com.foursoft.harness.kbl.v25.KblFixingAssignment;
-import com.foursoft.harness.kbl.v25.KblNumericalValue;
-import com.foursoft.harness.kbl.v25.KblSegment;
-import com.foursoft.harness.kbl.v25.KblUnit;
+import com.foursoft.harness.kbl.v25.*;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.*;
 import org.junit.jupiter.api.Test;
@@ -44,6 +41,9 @@ class SegmentLocationTransformerTest {
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
 
         final KblFixingAssignment source = new KblFixingAssignment();
+        final KblFixingOccurrence fixing = new KblFixingOccurrence();
+        source.setFixing(fixing);
+        fixing.getRefFixingAssignment().add(source);
 
         final KblSegment segment = new KblSegment();
         source.setParentSegment(segment);
@@ -62,7 +62,7 @@ class SegmentLocationTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
-                .returns(Constants.FIXING_LOCATION_ID, VecSegmentLocation::getIdentification)
+                .returns(Constants.FIXING_LOCATION_ID + "-0", VecSegmentLocation::getIdentification)
                 .returns(topologySegment, VecSegmentLocation::getReferencedSegment)
                 .returns(vecAbsoluteLocation, VecSegmentLocation::getOffset);
     }
@@ -75,6 +75,10 @@ class SegmentLocationTransformerTest {
 
         final KblFixingAssignment source = new KblFixingAssignment();
         source.setLocation(1.0);
+
+        final KblFixingOccurrence fixing = new KblFixingOccurrence();
+        source.setFixing(fixing);
+        fixing.getRefFixingAssignment().add(source);
 
         final KblSegment segment = new KblSegment();
         source.setParentSegment(segment);
@@ -110,6 +114,10 @@ class SegmentLocationTransformerTest {
 
         final KblFixingAssignment source = new KblFixingAssignment();
         source.setLocation(1.0);
+
+        final KblFixingOccurrence fixing = new KblFixingOccurrence();
+        source.setFixing(fixing);
+        fixing.getRefFixingAssignment().add(source);
 
         final KblSegment segment = new KblSegment();
         source.setParentSegment(segment);

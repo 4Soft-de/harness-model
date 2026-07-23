@@ -28,6 +28,9 @@ package com.foursoft.harness.compatibility.core;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 
+import java.lang.reflect.InvocationHandler;
+import java.util.function.BiFunction;
+
 /**
  * Default implementation of a {@link Context}.
  * <p>
@@ -38,14 +41,13 @@ public final class CompatibilityContext implements Context {
     private final ClassMapper classMapper;
     private final WrapperRegistry wrapperRegistry;
     private final WrapperProxyFactory wrapperProxyFactory;
-    private final HasUnsupportedMethods hasUnsupportedMethods;
 
     private Object content;
 
-    private CompatibilityContext(final ClassMapper classMapper, final HasUnsupportedMethods hasUnsupportedMethods) {
+    private CompatibilityContext(final ClassMapper classMapper,
+                                 final BiFunction<Context, Object, InvocationHandler> defaultWrapperFactory) {
         this.classMapper = classMapper;
-        this.hasUnsupportedMethods = hasUnsupportedMethods;
-        wrapperRegistry = new WrapperRegistry(c -> new ReflectionBasedWrapper(this, c));
+        wrapperRegistry = new WrapperRegistry(c -> defaultWrapperFactory.apply(this, c));
         wrapperProxyFactory = new WrapperProxyFactory.WrapperProxyFactoryBuilder()
                 .withClassMapper(classMapper)
                 .withWrapperRegistry(wrapperRegistry)
@@ -68,11 +70,6 @@ public final class CompatibilityContext implements Context {
     }
 
     @Override
-    public HasUnsupportedMethods checkUnsupportedMethods() {
-        return hasUnsupportedMethods;
-    }
-
-    @Override
     public Object getContent() {
         return content;
     }
@@ -87,7 +84,8 @@ public final class CompatibilityContext implements Context {
      */
     public static final class CompatibilityContextBuilder {
         private ClassMapper classMapper;
-        private HasUnsupportedMethods hasUnsupportedMethods;
+        private BiFunction<Context, Object, InvocationHandler> defaultWrapperFactory =
+                ReflectionBasedWrapper::new;
 
         /**
          * Defines the {@link ClassMapper} to use.
@@ -101,28 +99,36 @@ public final class CompatibilityContext implements Context {
         }
 
         /**
-         * Defines the {@link HasUnsupportedMethods unsupported methods}.
+         * Overrides the default wrapper factory used when no specific wrapper has been registered for a
+         * given target type.
+         * <p>
+         * The factory is called with the active {@link Context} and the target object to wrap, and must
+         * return a non-{@code null} {@link InvocationHandler}. It is used as a fallback by the
+         * {@link com.foursoft.harness.compatibility.core.WrapperRegistry} whenever
+         * {@link com.foursoft.harness.compatibility.core.WrapperRegistry#createInvocationHandler(Object)}  cannot
+         * find a specifically registered wrapper for the runtime type of the target.
+         * <p>
+         * If not set, {@link com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper}
+         * is used as the default factory.
          *
-         * @param hasUnsupportedMethods {@link HasUnsupportedMethods unsupported methods}.
+         * @param defaultWrapperFactory A factory {@link java.util.function.BiFunction} that accepts a
+         *                              {@link Context} and a target object and returns an
+         *                              {@link InvocationHandler}; must not be {@code null}.
          * @return The builder, useful for chaining.
          */
-        public CompatibilityContextBuilder withUnsupportedMethodCheck(
-                final HasUnsupportedMethods hasUnsupportedMethods) {
-            this.hasUnsupportedMethods = hasUnsupportedMethods;
+        public CompatibilityContextBuilder withDefaultWrapperFactory(
+                final BiFunction<Context, Object, InvocationHandler> defaultWrapperFactory) {
+            this.defaultWrapperFactory = defaultWrapperFactory;
             return this;
         }
 
         /**
          * Builds the {@link CompatibilityContext}.
-         * If {@link HasUnsupportedMethods} was not defined, all methods will be marked as supported.
          *
          * @return The built {@link CompatibilityContext}.
          */
         public CompatibilityContext build() {
-            if (hasUnsupportedMethods == null) {
-                hasUnsupportedMethods = method -> false;
-            }
-            return new CompatibilityContext(classMapper, hasUnsupportedMethods);
+            return new CompatibilityContext(classMapper, defaultWrapperFactory);
         }
 
     }

@@ -38,7 +38,10 @@ public class EntityMapping {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EntityMapping.class);
 
-    Multimap<Object, Object> mappedElements = MultimapBuilder.hashKeys()
+    // linkedHashKeys preserves the order in which source entities are mapped. This makes downstream consumers
+    // that iterate the mapping deterministic - in particular inverting the mapping (destination -> source) can
+    // then keep the first (canonical) source when several sources are deduplicated onto the same destination.
+    Multimap<Object, Object> mappedElements = MultimapBuilder.linkedHashKeys()
             .arrayListValues()
             .build();
 

@@ -26,9 +26,9 @@
 package com.foursoft.harness.compatibility.core.wrapper;
 
 import com.foursoft.harness.compatibility.core.Context;
-import com.foursoft.harness.compatibility.core.HasUnsupportedMethods;
 import com.foursoft.harness.compatibility.core.MethodCache;
-import com.foursoft.harness.compatibility.core.MethodIdentifier;
+import com.foursoft.harness.compatibility.core.PropertyAddition;
+import com.foursoft.harness.compatibility.core.PropertyAdditionProvider;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.mapping.ClassMapper;
 import com.foursoft.harness.compatibility.core.util.ClassUtils;
@@ -51,6 +51,14 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
 
     private final Map<Object, Object> collectionsByMethod = new HashMap<>();
 
+    private final Map<String, Object> valuePropertyValues = new HashMap<>();
+    private final Set<String> valuePropertyGetters = new HashSet<>();
+    private final Map<String, String> setterToGetter = new HashMap<>();
+    private final Set<String> listPropertyGetters = new HashSet<>();
+    private final Map<String, List<Object>> listPropertyStore = new HashMap<>();
+    private final Set<String> backRefPropertyGetters = new HashSet<>();
+    private final Map<String, Set<Object>> backRefPropertyStore = new HashMap<>();
+
     private final WrapperHelper wrapperHelper;
     private final Context context;
     private final Object target;
@@ -66,14 +74,27 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         this.target = target;
 
         wrapperHelper = new WrapperHelper(this);
-        MethodCache.initClassCache(ClassUtils.getNonProxyClass(target.getClass()));
+        final Class<?> targetClass = ClassUtils.getNonProxyClass(target.getClass());
+        MethodCache.initClassCache(targetClass);
+
+        if (context.getClassMapper() instanceof final PropertyAdditionProvider provider) {
+            for (final PropertyAddition addition : provider.getPropertyAdditions().getAdditions(targetClass)) {
+                if (addition instanceof final PropertyAddition.Value v) {
+                    registerValueProperty(v.propertyName());
+                } else if (addition instanceof final PropertyAddition.MutableList l) {
+                    registerListProperty(l.propertyName());
+                } else if (addition instanceof final PropertyAddition.BackRef b) {
+                    registerBackRefProperty(b.propertyName());
+                }
+            }
+        }
     }
 
     @Override
     public final Object invoke(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final Object returnValue = innerInvoke(obj, method, allArguments);
         // In case the return value is a List. This should prevent NPEs when trying to loop over the list.
-        if (returnValue == null && method.getReturnType().isAssignableFrom(List.class)) {
+        if (returnValue == null && List.class.isAssignableFrom(method.getReturnType())) {
             return new ArrayList<>();
         }
         return returnValue;
@@ -93,7 +114,67 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         return target;
     }
 
+    /**
+     * Registers a value property (getter + setter) that is handled in-memory by this wrapper.
+     * Getter and setter names are inferred by capitalising the property name and prepending
+     * {@code get} / {@code set} (standard JavaBean convention).
+     *
+     * @param propertyName Property name in camelCase (e.g. {@code "myProperty"}).
+     */
+    protected void registerValueProperty(final String propertyName) {
+        final String capitalised = capitalize(propertyName);
+        registerValueProperty("get" + capitalised, "set" + capitalised);
+    }
+
+    /**
+     * Registers a value property with explicit getter and setter method names.
+     *
+     * @param getterName Name of the getter method.
+     * @param setterName Name of the setter method.
+     */
+    protected void registerValueProperty(final String getterName, final String setterName) {
+        valuePropertyGetters.add(getterName);
+        setterToGetter.put(setterName, getterName);
+    }
+
+    /**
+     * Registers a list property whose getter returns a stable, lazily-created empty list.
+     * The getter name is inferred by capitalising the property name and prepending {@code get}.
+     *
+     * @param propertyName Property name in camelCase (e.g. {@code "myList"}).
+     */
+    protected void registerListProperty(final String propertyName) {
+        listPropertyGetters.add("get" + capitalize(propertyName));
+    }
+
+    /**
+     * Registers a back-reference property whose getter returns a stable, lazily-created empty set.
+     * The getter name is inferred by capitalising the property name and prepending {@code get}.
+     *
+     * @param propertyName Property name in camelCase (e.g. {@code "refEEComponentRole"}).
+     */
+    protected void registerBackRefProperty(final String propertyName) {
+        backRefPropertyGetters.add("get" + capitalize(propertyName));
+    }
+
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
+        final String methodName = method.getName();
+
+        if (valuePropertyGetters.contains(methodName)) {
+            return valuePropertyValues.get(methodName);
+        }
+        if (setterToGetter.containsKey(methodName)) {
+            valuePropertyValues.put(setterToGetter.get(methodName),
+                                    allArguments != null && allArguments.length > 0 ? allArguments[0] : null);
+            return null;
+        }
+        if (listPropertyGetters.contains(methodName)) {
+            return listPropertyStore.computeIfAbsent(methodName, k -> new ArrayList<>());
+        }
+        if (backRefPropertyGetters.contains(methodName)) {
+            return backRefPropertyStore.computeIfAbsent(methodName, k -> new HashSet<>());
+        }
+
         return defaultInvoke(method, allArguments);
     }
 
@@ -135,20 +216,6 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
             return null;
         }
 
-        final HasUnsupportedMethods hasUnsupportedMethods = context.checkUnsupportedMethods();
-        if (hasUnsupportedMethods.isNotSupported(MethodIdentifier.of(method))) {
-            return null;
-        }
-
-        // The given method can be from a super class which can exist in both source and target package.
-        // However, this doesn't need to be true for the method of the given object (e.g. changed inheritance).
-        // Thus, the unsupported check has to be for the method of the given object too.
-        final String className = ClassUtils.getNonProxyClass(obj.getClass()).getSimpleName();
-        final String methodName = method.getName();
-        if (hasUnsupportedMethods.isNotSupported(new MethodIdentifier(className, methodName))) {
-            return null;
-        }
-
         final ClassMapper classMapper = context.getClassMapper();
         final Class<?> targetClass = target.getClass();
         if (classMapper.isFromSourcePackage(targetClass) || classMapper.isFromTargetPackage(targetClass)) {
@@ -180,7 +247,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         try {
             targetMethodResult = targetMethod.invoke(target, objects);
         } catch (final IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            final String args = Arrays.stream(objects)
+            final String args = objects == null ? "[]" : Arrays.stream(objects)
                     .map(Object::toString)
                     .collect(Collectors.joining(", "));
             final String errorMsg = String.format("Cannot invoke method %s on class %s with args '%s'.",
@@ -262,6 +329,13 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         }
 
         return interestingObjects;
+    }
+
+    private static String capitalize(final String s) {
+        if (s == null || s.isEmpty()) {
+            return s;
+        }
+        return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
     private boolean isClassOfInterest(final Class<?> o) {

@@ -6,7 +6,7 @@
 
     <groupId>com.foursoft.harness</groupId>
     <artifactId>harness-parent</artifactId>
-    <version>5.6.0</version>
+    <version>6.0.0</version>
     <packaging>pom</packaging>
     <name>Harness Parent</name>
     <description>Parent POM of all 4Soft Harness Projects.</description>
@@ -14,18 +14,18 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
 
         <!-- Dependencies -->
-        <jakarta.version>4.0.7</jakarta.version>
+        <jakarta.version>4.0.8</jakarta.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <logback-classic.version>1.5.32</logback-classic.version>
-        <junit.jupiter.version>6.0.2</junit.jupiter.version>
+        <logback-classic.version>1.5.38</logback-classic.version>
+        <junit.jupiter.version>6.1.2</junit.jupiter.version>
         <assertj-core.version>3.27.7</assertj-core.version>
-        <maven-api.version>3.9.12</maven-api.version>
+        <maven-api.version>3.9.16</maven-api.version>
         <java-snapshot-testing.version>4.0.8</java-snapshot-testing.version>
-        <jackson.version>2.21.2</jackson.version>
-        <apache-jena.version>5.6.0</apache-jena.version>
+        <jackson.version>2.21.3</jackson.version>
+        <apache-jena.version>6.1.0</apache-jena.version>
 
         <!-- Plugins -->
         <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
@@ -35,14 +35,14 @@
         <gitflow-maven-plugin.version>1.21.0</gitflow-maven-plugin.version>
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
-        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
 
         <!-- xjc-maven wrapper -->
-        <hisrc-higherjaxb-maven-plugin.version>2.2.1</hisrc-higherjaxb-maven-plugin.version>
+        <hisrc-higherjaxb-maven-plugin.version>3.0.0</hisrc-higherjaxb-maven-plugin.version>
         <!-- it's plugins -->
-        <hisrc-hyperjaxb-annox-plugin.version>2.2.1</hisrc-hyperjaxb-annox-plugin.version>
+        <hisrc-hyperjaxb-annox-plugin.version>3.0.0</hisrc-hyperjaxb-annox-plugin.version>
         <jaxb-visitor.version>3.1.0</jaxb-visitor.version>
-        <cxf-xjc-javadoc.version>4.1.2</cxf-xjc-javadoc.version>
+        <cxf-xjc-javadoc.version>4.2.0</cxf-xjc-javadoc.version>
 
         <!-- Release Plugins -->
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
@@ -124,7 +124,7 @@
             <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy</artifactId>
-                <version>1.18.5</version>
+                <version>1.18.11</version>
             </dependency>
             <dependency>
                 <groupId>org.reflections</groupId>
@@ -155,7 +155,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>33.5.0-jre</version>
+                <version>33.6.0-jre</version>
             </dependency>
 
 
@@ -410,10 +410,10 @@
                     <version>${central-publishing-maven-plugin.version}</version>
                     <extensions>true</extensions>
                     <configuration>
-                      <publishingServerId>sonatype-central</publishingServerId>
-                      <autoPublish>true</autoPublish>
+                        <publishingServerId>sonatype-central</publishingServerId>
+                        <autoPublish>true</autoPublish>
                     </configuration>
-                  </plugin>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
@@ -488,6 +488,21 @@
         </plugins>
     </build>
     <profiles>
+        <profile>
+            <id>sources</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>release</id>
             <build>
