@@ -7,17 +7,6 @@ on:
         description: 'The Version of the Release (e.g. 0.1.0)'
         required: false
         default: ''
-      github_pat:
-        description: 'A PAT that has the permission to push to protected branches.'
-        required: true
-      git_name:
-        description: 'Name used for the release commits.'
-        required: true
-        default: 'Rainer Ganß'
-      git_mail:
-        description: 'eMail used for the release commits.'
-        required: true
-        default: 'ganss@4soft.de'
 
 jobs:
   build:
@@ -35,11 +24,22 @@ jobs:
           check-latest: true
           cache: 'maven'
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Value of the GPG private key to import
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+      - name: Get GitHub App bot user id
+        id: bot-user
+        run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
       - name: Configure Git user
         run: |
-          git config user.email "${{ github.event.inputs.git_mail }}"
-          git config user.name "${{ github.event.inputs.git_name }}"
-          git remote set-url origin https://x-access-token:${{ github.event.inputs.github_pat }}@github.com/${GITHUB_REPOSITORY}.git
+          git config user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
+          git config user.email '${{ steps.bot-user.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/${GITHUB_REPOSITORY}.git
       - name: Release with Maven
         run: |
           ./mvnw -e -P release -B -DreleaseVersion=${{ github.event.inputs.release_version }} -s .mvn/release.settings.xml gitflow:release --file pom.xml
