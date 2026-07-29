@@ -27,7 +27,9 @@ package com.foursoft.harness.vec.v2x.navigations;
 
 import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.traversal.PlaceableElementRoles;
 import com.foursoft.harness.vec.v2x.traversal.Placements;
+import com.foursoft.harness.vec.v2x.traversal.ViewItems;
 
 import java.util.List;
 import java.util.function.Function;
@@ -36,7 +38,8 @@ import java.util.stream.Stream;
 /**
  * Navigation methods for getting {@link VecPlacement}s.
  *
- * @deprecated Use {@link Placements} instead.
+ * @deprecated These navigations start at three different source types and are therefore spread over the
+ * catalogs of those types: {@link PlaceableElementRoles}, {@link Placements} and {@link ViewItems}.
  */
 @Deprecated(forRemoval = true)
 public final class PlacementNavs {
@@ -46,19 +49,19 @@ public final class PlacementNavs {
     }
 
     /**
-     * @deprecated Use {@link Placements#onPointPlacement()} instead.
+     * @deprecated Use {@link PlaceableElementRoles#onPointPlacements()} instead.
      */
     @Deprecated(forRemoval = true)
     public static Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> onPointPlacement() {
-        return Placements.onPointPlacement();
+        return PlaceableElementRoles.onPointPlacements();
     }
 
     /**
-     * @deprecated Use {@link Placements#onWayPlacement()} instead.
+     * @deprecated Use {@link PlaceableElementRoles#onWayPlacements()} instead.
      */
     @Deprecated(forRemoval = true)
     public static Function<VecPlaceableElementRole, Stream<VecOnWayPlacement>> onWayPlacement() {
-        return Placements.onWayPlacement();
+        return PlaceableElementRoles.onWayPlacements();
     }
 
     /**
@@ -68,26 +71,26 @@ public final class PlacementNavs {
      * @return A function to get the locations from a
      * {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
      * @see #onPointPlacement()
-     * @deprecated Use {@link Placements#locationsOf(com.foursoft.harness.vec.common.traversal.MultiNavigation)}
+     * @deprecated Use {@link ViewItems#locations(com.foursoft.harness.vec.common.traversal.MultiNavigation)}
      * instead, which accepts the way from the role to the locations and therefore also supports
-     * {@link Placements#onWayPlacement()}.
+     * {@link PlaceableElementRoles#onWayPlacements()}.
      */
     @Deprecated(forRemoval = true)
     public static Function<HasOccurrenceOrUsages, List<VecLocation>> locationsOf(
             final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
-        return viewItem -> Placements
-                .locationsOf(Navigations.stream(placement)
-                                     .thenEach(Placements.onPointLocations()))
+        return viewItem -> ViewItems
+                .locations(Navigations.stream(placement)
+                                   .thenEach(Placements.locations()))
                 .listFrom(viewItem);
     }
 
     /**
-     * @deprecated Use {@link Placements#onWayLocationsWith(Class)} instead.
+     * @deprecated Use {@link Placements#locationsWith(Class)} instead.
      */
     @Deprecated(forRemoval = true)
     public static <T extends VecLocation> Function<VecOnWayPlacement, List<T>> locationsWith(
             final Class<T> locationType) {
-        return placement -> Placements.onWayLocationsWith(locationType)
+        return placement -> Placements.locationsWith(locationType)
                 .listFrom(placement);
     }
 

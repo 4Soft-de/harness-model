@@ -29,6 +29,7 @@ import com.foursoft.harness.vec.common.HasDescription;
 import com.foursoft.harness.vec.v2x.VecAbstractLocalizedString;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.traversal.Descriptions;
+import com.foursoft.harness.vec.v2x.traversal.LocalizedStrings;
 
 import java.util.List;
 import java.util.Optional;
@@ -72,28 +73,28 @@ public final class DescriptionNavs {
     }
 
     /**
-     * @deprecated Use {@link Descriptions#germanString()} instead.
+     * @deprecated Use {@link LocalizedStrings#germanString()} instead.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> germanString() {
-        return Descriptions.germanString();
+        return LocalizedStrings.germanString();
     }
 
     /**
-     * @deprecated Use {@link Descriptions#englishString()} instead.
+     * @deprecated Use {@link LocalizedStrings#englishString()} instead.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> englishString() {
-        return Descriptions.englishString();
+        return LocalizedStrings.englishString();
     }
 
     /**
-     * @deprecated Use {@link Descriptions#stringIn(VecLanguageCode)} instead.
+     * @deprecated Use {@link LocalizedStrings#stringIn(VecLanguageCode)} instead.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> stringIn(
             final VecLanguageCode vecLanguageCode) {
-        return Descriptions.stringIn(vecLanguageCode);
+        return LocalizedStrings.stringIn(vecLanguageCode);
     }
 
     /**

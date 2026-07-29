@@ -50,17 +50,44 @@ smaller ones rather than by writing new traversal code:
 `nullable`, `stream`, `collection`). It is the intended entry point of a chain: a plain getter
 becomes a navigation, and operators take it from there.
 
-Concrete navigations are grouped into **catalogs** — one final class per subject area, named after
-the plural of the domain concept (`Descriptions`, `Placements`), with a private constructor and
-static factory methods returning the navigation interfaces. Because the factories return the
-interface type and not a raw `Function`, a navigation can be *passed to* another navigation as a
-typed parameter. That is what makes higher-order navigations expressible.
+Concrete navigations are grouped into **catalogs**: final classes with a private constructor and
+static factory methods returning the navigation interfaces. Because the factories return the interface
+type and not a raw `Function`, a navigation can be *passed to* another navigation as a typed
+parameter. That is what makes higher-order navigations expressible.
+
+### Catalog organisation
+
+**A navigation belongs to the catalog of its source type `S`.** The catalog is named after that type
+in plural with the `Vec` prefix dropped, and method names state only the *target*, never the source.
+
+Granularity is the **nearest model supertype** that has navigations, so a type shares a catalog with
+its subtypes, and `Has*` mixin interfaces are legitimate source types with their own catalogs. A
+catalog is split only once it grows unwieldy. This bounds the number of catalogs — the model has
+several hundred classes — without making the lookup ambiguous.
+
+That gives a mechanical answer to *"I am holding an `x`, where can I go from here?"*: the navigation
+is in the catalog named after `x`'s type or one of its supertypes or mixins, and autocomplete on that
+catalog enumerates everything reachable. Two consequences of the rule are worth stating explicitly:
+
+- **The source never appears in a method name.** A catalog with a single source type does not need to
+  disambiguate, so `parentDocumentVersion()` stays as it is instead of becoming
+  `parentDocumentVersionOfOccurrence()`. Since the factories take no arguments, they cannot be
+  overloaded, which means a catalog mixing source types is *forced* to encode the source in its method
+  names — the legacy `PartOccurrenceOrUsageNavs` shows the result.
+- **Where a family shares a target, the navigation belongs at the family level.** `Placements.locations()`
+  starts at `VecPlacement` and resolves the subtype internally, rather than offering separate
+  `onPointLocations()`/`onWayLocations()` entries that would reintroduce source-encoded names.
+
+The rule deliberately optimises the "from" direction. *"Which navigations lead to a `VecLocation`?"* is
+not answerable from the class layout, because a target is reachable from many sources while a
+navigation has exactly one source; that direction is served by documentation and by search, not by
+where the code lives.
 
 ### The legacy API (`navigations`)
 
-The older generation follows the same catalog idea — one final class per subject area, named
-`<Concept>Navs`, with static factory methods — but every factory returns a raw
-`java.util.function.Function`. Consequences:
+The older generation uses catalogs too — final classes named `<Concept>Navs` with static factory
+methods — but every factory returns a raw `java.util.function.Function`, and the catalogs follow no
+single grouping rule. Consequences:
 
 - A navigation has no type identity and cannot be distinguished from any other function.
 - Result shapes are inconsistent across the catalogs: bare values, `Optional`, `List` and `Stream`
@@ -68,6 +95,14 @@ The older generation follows the same catalog idea — one final class per subje
 - Composition is limited to `Function#andThen`, and a navigation taken as a parameter has to be
   typed as a concrete raw `Function`. This is not merely inelegant: it made
   `PlacementNavs.locationsOf` document a usage its own parameter type rejected.
+- **Three competing grouping criteria coexist**, so there is no way to predict which catalog holds a
+  given navigation. Most catalogs group by source type (`DocumentVersionNavs`, `ContentNavs`,
+  `SegmentNavs`, `ConfigurableElementNavs`); some group by *target* concept and therefore mix unrelated
+  source types (`PlacementNavs`, `DescriptionNavs`, `CustomPropertyNavs`); `SpecificationNavs` groups by
+  types whose *name* ends in `Specification`; and `VecNavs` is a catch-all. The visible symptoms are
+  `parentDocumentNumber()` existing in three catalogs, `parentDocumentVersion()` in three,
+  `geometryNode2dBy`/`geometryNode3dBy` in two, and the `OfUsage`/`OfOccurrence` method-name suffixes
+  in `PartOccurrenceOrUsageNavs`.
 
 ## Key Design Decisions
 
@@ -84,6 +119,10 @@ The older generation follows the same catalog idea — one final class per subje
 - **Abstraction in `vec-common`, catalogs per version module.** The interfaces are
   version-independent and therefore shared, matching how the `Has*` mixin interfaces are already
   organised. The catalogs reference version-specific model classes and must stay per module.
+- **Catalogs are keyed on the source type, not the target.** A navigation has exactly one source but a
+  target is reachable from many sources, so only the source yields a total, unambiguous assignment. It
+  also matches the question developers actually ask at the call site, and it is what frees method names
+  from having to name the source.
 - **A distinct package name, not a singular/plural pair.** `traversal` was chosen over
   `navigation` precisely because the old package is called `navigations`; while both exist, a
   singular/plural pair would create permanent import ambiguity.
@@ -138,8 +177,23 @@ they are public API.
 | Module | Typed catalogs | Legacy catalogs |
 | --- | --- | --- |
 | `vec-common` | interfaces and factory | — |
-| `vec-v2x` | `Descriptions`, `Placements` | 10 `*Navs`, two of them deprecated and delegating |
+| `vec-v2x` | 5 catalogs, see below | 10 `*Navs`, two of them deprecated and delegating |
 | `vec-v12x` | — | 10 `*Navs` |
 | `vec-v113` | — | none |
+
+The `vec-v2x` catalogs and their source types:
+
+| Catalog | Source type `S` |
+| --- | --- |
+| `Descriptions` | `HasDescription<? extends VecAbstractLocalizedString>` |
+| `LocalizedStrings` | `List<? extends VecAbstractLocalizedString>` |
+| `Placements` | `VecPlacement` (and its on-point/on-way subtypes) |
+| `PlaceableElementRoles` | `VecPlaceableElementRole` |
+| `ViewItems` | `HasOccurrenceOrUsages` |
+
+Note that the two legacy catalogs ported so far each split across several of these, because they
+grouped by target concept: `DescriptionNavs` became `Descriptions` plus `LocalizedStrings`, and
+`PlacementNavs` became `Placements`, `PlaceableElementRoles` and `ViewItems`. Expect the same when
+porting the remaining catalogs — the mapping from old catalog to new is not one-to-one.
 
 The remaining `vec-v2x` catalogs are ported one at a time; `vec-v12x` follows afterwards.

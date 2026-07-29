@@ -26,52 +26,46 @@
 package com.foursoft.harness.vec.v2x.traversal;
 
 import com.foursoft.harness.vec.common.traversal.MultiNavigation;
-import com.foursoft.harness.vec.v2x.VecLocation;
+import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
 import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
+import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 import com.foursoft.harness.vec.v2x.VecPlacement;
 
-import java.util.Objects;
-import java.util.stream.Stream;
-
 /**
- * Navigations starting at a {@link VecPlacement}.
+ * Navigations starting at a {@link VecPlaceableElementRole}.
  */
-public final class Placements {
+public final class PlaceableElementRoles {
 
-    private Placements() {
+    private PlaceableElementRoles() {
         // hide default constructor
     }
 
     /**
-     * Navigates to the locations of a placement, regardless of how the placement expresses them: a
-     * {@link VecOnPointPlacement} holds them in a list, a {@link VecOnWayPlacement} as its start and end
-     * location. Unset locations are skipped.
+     * Navigates to all placements of a role.
      *
-     * @return A navigation to the locations of a placement.
+     * @return A navigation to the placements of a role.
      */
-    public static MultiNavigation<VecPlacement, VecLocation> locations() {
-        return placement -> switch (placement) {
-            case final VecOnPointPlacement onPointPlacement -> onPointPlacement.getLocations().stream()
-                    .filter(Objects::nonNull);
-            case final VecOnWayPlacement onWayPlacement -> Stream
-                    .of(onWayPlacement.getStartLocation(), onWayPlacement.getEndLocation())
-                    .filter(Objects::nonNull);
-            default -> Stream.empty();
-        };
+    public static MultiNavigation<VecPlaceableElementRole, VecPlacement> placements() {
+        return Navigations.collection(VecPlaceableElementRole::getRefPlacement);
     }
 
     /**
-     * Navigates to the locations of a placement which have the given type.
+     * Navigates to the {@link VecOnPointPlacement}s of a role.
      *
-     * @param locationType Type the locations have to have.
-     * @param <T>          Type to narrow the navigation to.
-     * @return A navigation to the locations of the given type.
-     * @see #locations()
+     * @return A navigation to the on point placements of a role.
      */
-    public static <T extends VecLocation> MultiNavigation<VecPlacement, T> locationsWith(
-            final Class<T> locationType) {
-        return locations().ofType(locationType);
+    public static MultiNavigation<VecPlaceableElementRole, VecOnPointPlacement> onPointPlacements() {
+        return placements().ofType(VecOnPointPlacement.class);
+    }
+
+    /**
+     * Navigates to the {@link VecOnWayPlacement}s of a role.
+     *
+     * @return A navigation to the on way placements of a role.
+     */
+    public static MultiNavigation<VecPlaceableElementRole, VecOnWayPlacement> onWayPlacements() {
+        return placements().ofType(VecOnWayPlacement.class);
     }
 
 }
