@@ -25,34 +25,40 @@
  */
 package com.foursoft.harness.vec.v2x.navigations;
 
-import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.traversal.Placements;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  * Navigation methods for getting {@link VecPlacement}s.
+ *
+ * @deprecated Use {@link Placements} instead.
  */
+@Deprecated(forRemoval = true)
 public final class PlacementNavs {
 
     private PlacementNavs() {
         // hide default constructor
     }
 
+    /**
+     * @deprecated Use {@link Placements#onPointPlacement()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> onPointPlacement() {
-        return role -> role.getRefPlacement().stream()
-                .filter(VecOnPointPlacement.class::isInstance)
-                .map(VecOnPointPlacement.class::cast);
+        return Placements.onPointPlacement();
     }
 
+    /**
+     * @deprecated Use {@link Placements#onWayPlacement()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<VecPlaceableElementRole, Stream<VecOnWayPlacement>> onWayPlacement() {
-        return role -> role.getRefPlacement().stream()
-                .filter(VecOnWayPlacement.class::isInstance)
-                .map(VecOnWayPlacement.class::cast);
+        return Placements.onWayPlacement();
     }
 
     /**
@@ -61,35 +67,28 @@ public final class PlacementNavs {
      * @param placement Placement Navigation method.
      * @return A function to get the locations from a
      * {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
-     * @see #onWayPlacement()
      * @see #onPointPlacement()
+     * @deprecated Use {@link Placements#locationsOf(com.foursoft.harness.vec.common.traversal.MultiNavigation)}
+     * instead, which accepts the way from the role to the locations and therefore also supports
+     * {@link Placements#onWayPlacement()}.
      */
+    @Deprecated(forRemoval = true)
     public static Function<HasOccurrenceOrUsages, List<VecLocation>> locationsOf(
             final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
-        return viewItem -> viewItem.getOccurrenceOrUsage().stream()
-                .filter(VecPartOccurrence.class::isInstance)
-                .map(VecPartOccurrence.class::cast)
-                .flatMap(StreamUtils.toStream(c -> c.getRolesWithType(VecPlaceableElementRole.class)))
-                .collect(StreamUtils.findOneOrNone())
-                .map(role -> placement.apply(role)
-                        .map(VecOnPointPlacement::getLocations)
-                        .flatMap(List::stream)
-                        .toList())
-                .orElseGet(Collections::emptyList);
+        return viewItem -> Placements
+                .locationsOf(Navigations.stream(placement)
+                                     .thenEach(Placements.onPointLocations()))
+                .listFrom(viewItem);
     }
 
+    /**
+     * @deprecated Use {@link Placements#onWayLocationsWith(Class)} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static <T extends VecLocation> Function<VecOnWayPlacement, List<T>> locationsWith(
             final Class<T> locationType) {
-        return placement ->
-                getLocationsByType(Stream.of(placement.getStartLocation(), placement.getEndLocation()), locationType)
-                        .toList();
-    }
-
-    private static <T extends VecLocation> Stream<T> getLocationsByType(final Stream<VecLocation> locations,
-                                                                        final Class<T> locationType) {
-        return locations
-                .filter(locationType::isInstance)
-                .map(locationType::cast);
+        return placement -> Placements.onWayLocationsWith(locationType)
+                .listFrom(placement);
     }
 
 }

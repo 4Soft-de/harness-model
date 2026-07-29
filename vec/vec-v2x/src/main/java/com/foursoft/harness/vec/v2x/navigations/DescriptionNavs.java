@@ -26,95 +26,101 @@
 package com.foursoft.harness.vec.v2x.navigations;
 
 import com.foursoft.harness.vec.common.HasDescription;
-import com.foursoft.harness.vec.common.util.StreamUtils;
-import com.foursoft.harness.vec.common.util.StringUtils;
 import com.foursoft.harness.vec.v2x.VecAbstractLocalizedString;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
-import com.foursoft.harness.vec.v2x.VecLocalizedTypedString;
-import com.foursoft.harness.vec.v2x.predicates.VecPredicates;
+import com.foursoft.harness.vec.v2x.traversal.Descriptions;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
 /**
  * Navigation methods for {@link HasDescription} with {@link VecAbstractLocalizedString}s.
+ *
+ * @deprecated Use {@link Descriptions} instead.
  */
+@Deprecated(forRemoval = true)
 public final class DescriptionNavs {
 
     private DescriptionNavs() {
         // hide default constructor
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#germanDescription()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> germanDescription() {
-        return descriptionIn(VecLanguageCode.DE);
+        return Descriptions.germanDescription();
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#englishDescription()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> englishDescription() {
-        return descriptionIn(VecLanguageCode.EN);
+        return Descriptions.englishDescription();
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#descriptionIn(VecLanguageCode)} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> descriptionIn(
             final VecLanguageCode vecLanguageCode) {
-        return descHolder -> {
-            final List<? extends VecAbstractLocalizedString> localizedStrings = descHolder.getDescriptions();
-            return stringIn(vecLanguageCode).apply(localizedStrings);
-        };
+        return Descriptions.descriptionIn(vecLanguageCode);
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#germanString()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> germanString() {
-        return stringIn(VecLanguageCode.DE);
+        return Descriptions.germanString();
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#englishString()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> englishString() {
-        return stringIn(VecLanguageCode.EN);
+        return Descriptions.englishString();
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#stringIn(VecLanguageCode)} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> stringIn(
             final VecLanguageCode vecLanguageCode) {
-        return localizedStrings -> {
-            if (localizedStrings.isEmpty()) {
-                return Optional.empty();
-            }
-            if (localizedStrings.size() == 1) {
-                final VecAbstractLocalizedString localizedString = localizedStrings.get(0);
-                if (localizedString instanceof VecLocalizedTypedString &&
-                        !StringUtils.isEmpty(((VecLocalizedTypedString) localizedString).getType())) {
-                    return Optional.empty();
-                }
-                return Optional.ofNullable(localizedString).map(VecAbstractLocalizedString::getValue);
-            }
-
-            return localizedStrings.stream()
-                    .filter(Objects::nonNull)
-                    .filter(d -> !(d instanceof VecLocalizedTypedString))
-                    .filter(VecPredicates.languageCode(vecLanguageCode))
-                    .map(VecAbstractLocalizedString::getValue)
-                    .filter(Objects::nonNull)
-                    .collect(StreamUtils.findOneOrNone());
-        };
+        return Descriptions.stringIn(vecLanguageCode);
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#germanTypedStringBy(String)} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> germanTypedStringBy(
             final String descriptionType) {
-        return typedStringBy(descriptionType, VecLanguageCode.DE);
+        return Descriptions.germanTypedStringBy(descriptionType);
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#englishTypedStringBy(String)} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> englishTypedStringBy(
             final String descriptionType) {
-        return typedStringBy(descriptionType, VecLanguageCode.EN);
+        return Descriptions.englishTypedStringBy(descriptionType);
     }
 
+    /**
+     * @deprecated Use {@link Descriptions#typedStringBy(String, VecLanguageCode)} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<HasDescription<? extends VecAbstractLocalizedString>, Optional<String>> typedStringBy(
             final String descriptionType, final VecLanguageCode vecLanguageCode) {
-        return hasDescription -> hasDescription.getDescriptions().stream()
-                .filter(VecPredicates.languageCode(vecLanguageCode))
-                .flatMap(StreamUtils.ofClass(VecLocalizedTypedString.class))
-                .filter(typedString -> descriptionType.equals(typedString.getType()))
-                .collect(StreamUtils.findOneOrNone())
-                .map(VecLocalizedTypedString::getValue)
-                .filter(StringUtils::isNotEmpty);
+        return Descriptions.typedStringBy(descriptionType, vecLanguageCode);
     }
 
 }

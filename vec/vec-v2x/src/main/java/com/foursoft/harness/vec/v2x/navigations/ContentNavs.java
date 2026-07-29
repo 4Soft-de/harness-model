@@ -33,7 +33,6 @@ import com.foursoft.harness.vec.v2x.VecSpecification;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Navigation methods for the {@link VecContent}.

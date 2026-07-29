@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.X
+ * VEC Common
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,38 +23,41 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.v2x.navigations;
-
-import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
-import com.foursoft.harness.vec.v2x.VecDocumentVersion;
-import com.foursoft.harness.vec.v2x.VecExtendableElement;
-import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
-import com.foursoft.harness.vec.v2x.VecRole;
+package com.foursoft.harness.vec.common.traversal;
 
 import java.util.List;
-import java.util.function.Function;
 
 /**
- * Navigation methods which don't fit into a special category.
+ * Minimal model to test the navigation combinators without depending on a generated VEC model.
  */
-public final class VecNavs {
+final class TestModel {
 
-    private VecNavs() {
+    private TestModel() {
         // hide default constructor
     }
 
-    public static Function<VecExtendableElement, List<String>> externalDocumentNumbers() {
-        return element -> element.getReferencedExternalDocuments().stream()
-                .map(VecDocumentVersion::getDocumentNumber)
-                .toList();
+    interface Part {
+
+        String name();
+
     }
 
-    @RequiresBackReferences
-    public static Function<VecRole, VecDocumentVersion> parentDocumentVersion() {
-        return role -> {
-            final VecOccurrenceOrUsage parentOccurrenceOrUsage = role.getParentOccurrenceOrUsage();
-            return PartOccurrenceOrUsageNavs.parentDocumentVersion().apply(parentOccurrenceOrUsage);
-        };
+    record Grade(String designation) {
+    }
+
+    record Screw(String name, Grade grade) implements Part {
+    }
+
+    record Nut(String name) implements Part {
+    }
+
+    record Assembly(String name, Part mainPart, List<Part> parts) {
+    }
+
+    record Plant(List<Assembly> assemblies) {
+    }
+
+    record Kit(List<Screw> screws) {
     }
 
 }
