@@ -25,11 +25,9 @@
  */
 package com.foursoft.harness.vec.v2x.traversal;
 
-import com.foursoft.harness.vec.common.traversal.MultiNavigation;
 import com.foursoft.harness.vec.common.traversal.SingleNavigation;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v2x.HasOccurrenceOrUsages;
-import com.foursoft.harness.vec.v2x.VecLocation;
 import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsageViewItem2D;
 import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsageViewItem3D;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
@@ -38,6 +36,15 @@ import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
 /**
  * Navigations starting at a {@link HasOccurrenceOrUsages}, that is a {@link VecOccurrenceOrUsageViewItem2D}
  * or {@link VecOccurrenceOrUsageViewItem3D}.
+ * <p>
+ * To reach the locations of a view item, continue this navigation at the call site, for example
+ * <pre>
+ * {@code
+ * ViewItems.placeableElementRole()
+ *         .thenEach(PlaceableElementRoles.onWayPlacements())
+ *         .thenEach(Placements.locations());
+ * }
+ * </pre>
  */
 public final class ViewItems {
 
@@ -59,28 +66,6 @@ public final class ViewItems {
                 .flatMap(StreamUtils.toStream(
                         occurrence -> occurrence.getRolesWithType(VecPlaceableElementRole.class)))
                 .collect(StreamUtils.findOneOrNone());
-    }
-
-    /**
-     * Navigates to the locations of a view item, using the given navigation to get from its placeable element
-     * role to the locations.
-     * <p>
-     * Since the way from the role to the locations is passed in, every kind of placement can be used:
-     * <pre>
-     * {@code
-     * ViewItems.locations(PlaceableElementRoles.onPointPlacements().thenEach(Placements.locations()));
-     * ViewItems.locations(PlaceableElementRoles.onWayPlacements().thenEach(Placements.locations()));
-     * ViewItems.locations(PlaceableElementRoles.placements().thenEach(Placements.locations()));
-     * }
-     * </pre>
-     *
-     * @param locations Navigation from the placeable element role to its locations.
-     * @return A navigation to the locations of a view item.
-     * @see #placeableElementRole()
-     */
-    public static MultiNavigation<HasOccurrenceOrUsages, VecLocation> locations(
-            final MultiNavigation<VecPlaceableElementRole, VecLocation> locations) {
-        return placeableElementRole().thenEach(locations);
     }
 
 }

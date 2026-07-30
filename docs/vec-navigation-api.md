@@ -51,9 +51,8 @@ smaller ones rather than by writing new traversal code:
 becomes a navigation, and operators take it from there.
 
 Concrete navigations are grouped into **catalogs**: final classes with a private constructor and
-static factory methods returning the navigation interfaces. Because the factories return the interface
-type and not a raw `Function`, a navigation can be *passed to* another navigation as a typed
-parameter. That is what makes higher-order navigations expressible.
+static factory methods returning the navigation interfaces. A catalog contributes the *steps*; the
+caller composes them into a path with the operators above.
 
 ### Catalog organisation
 
@@ -82,6 +81,37 @@ The rule deliberately optimises the "from" direction. *"Which navigations lead t
 not answerable from the class layout, because a target is reachable from many sources while a
 navigation has exactly one source; that direction is served by documentation and by search, not by
 where the code lives.
+
+### Catalogs hold steps, callers compose paths
+
+**A catalog factory must not take a parameter that it merely forwards to one of the interface's own
+operators.** If `Catalog.x(arg)` would be nothing but `Catalog.y().someOperator(arg)`, it does not
+belong in the catalog: it adds API surface and an argument without adding meaning, and it forces the
+reader inside-out. Composition belongs at the call site, where the chain reads left to right in the
+order the model is traversed:
+
+```java
+// as a catalog method taking a navigation — nests, reads inside-out
+ViewItems.locations(PlaceableElementRoles.onWayPlacements().thenEach(Placements.locations()))
+
+// composed by the caller — reads in traversal order, no extra API
+ViewItems.placeableElementRole()
+        .thenEach(PlaceableElementRoles.onWayPlacements())
+        .thenEach(Placements.locations())
+```
+
+Two kinds of parameter remain legitimate, because neither is expressible by chaining:
+
+- **Domain values that feed the traversal logic**, such as the language in
+  `LocalizedStrings.stringIn(VecLanguageCode)` or the property type in
+  `LocalizedStrings.typedStringBy(String, VecLanguageCode)`.
+- **Nothing at all**: zero-argument named presets are vocabulary, not indirection, and are encouraged.
+  `PlaceableElementRoles.onPointPlacements()` and `Descriptions.germanDescription()` are just
+  `placements().ofType(VecOnPointPlacement.class)` and `descriptionIn(DE)`, but they name a concept the
+  domain actually has.
+
+A navigation-typed parameter is only justified when the catalog wraps logic *around* the passed
+navigation that the caller could not otherwise express — not when the body is pure composition.
 
 ### The legacy API (`navigations`)
 
@@ -126,10 +156,11 @@ single grouping rule. Consequences:
 - **A distinct package name, not a singular/plural pair.** `traversal` was chosen over
   `navigation` precisely because the old package is called `navigations`; while both exist, a
   singular/plural pair would create permanent import ambiguity.
-- **Higher-order navigations take a navigation, not a placement.** Where a navigation needs a
-  sub-path supplied by the caller, the parameter is a `MultiNavigation`/`SingleNavigation` describing
-  the whole remaining way. This is more general than accepting an intermediate element type and it is
-  what allows one navigation to serve several kinds of placement.
+- **Catalogs expose steps, not composed paths.** Composition happens at the call site, so a catalog
+  factory never takes a parameter it would only forward to one of the interface's operators. The chained
+  form reads in traversal order and needs no API surface; a wrapper method reads inside-out and hides
+  nothing. The composition operators on the interface are what make this possible — without them, the
+  wrapper method would be the only option, which is the position the legacy API is in.
 
 ## Relationships
 

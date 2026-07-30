@@ -36,6 +36,9 @@ import java.util.stream.Stream;
 
 /**
  * Navigations starting at a {@link VecPlacement}.
+ * <p>
+ * To restrict the result to a certain kind of location, narrow the navigation at the call site with
+ * {@code Placements.locations().ofType(VecNodeLocation.class)}.
  */
 public final class Placements {
 
@@ -59,19 +62,6 @@ public final class Placements {
                     .filter(Objects::nonNull);
             default -> Stream.empty();
         };
-    }
-
-    /**
-     * Navigates to the locations of a placement which have the given type.
-     *
-     * @param locationType Type the locations have to have.
-     * @param <T>          Type to narrow the navigation to.
-     * @return A navigation to the locations of the given type.
-     * @see #locations()
-     */
-    public static <T extends VecLocation> MultiNavigation<VecPlacement, T> locationsWith(
-            final Class<T> locationType) {
-        return locations().ofType(locationType);
     }
 
 }

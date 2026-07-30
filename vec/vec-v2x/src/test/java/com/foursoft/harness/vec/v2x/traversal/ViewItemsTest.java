@@ -46,10 +46,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewItemsTest {
 
-    private static final MultiNavigation<VecPlaceableElementRole, VecLocation> ON_POINT_LOCATIONS =
-            PlaceableElementRoles.onPointPlacements().thenEach(Placements.locations());
-    private static final MultiNavigation<VecPlaceableElementRole, VecLocation> ON_WAY_LOCATIONS =
-            PlaceableElementRoles.onWayPlacements().thenEach(Placements.locations());
+    private static final MultiNavigation<HasOccurrenceOrUsages, VecLocation> ON_POINT_LOCATIONS =
+            ViewItems.placeableElementRole()
+                    .thenEach(PlaceableElementRoles.onPointPlacements())
+                    .thenEach(Placements.locations());
+    private static final MultiNavigation<HasOccurrenceOrUsages, VecLocation> ON_WAY_LOCATIONS =
+            ViewItems.placeableElementRole()
+                    .thenEach(PlaceableElementRoles.onWayPlacements())
+                    .thenEach(Placements.locations());
 
     private final VecNodeLocation nodeLocation = new VecNodeLocation();
     private final VecSegmentLocation segmentLocation = new VecSegmentLocation();
@@ -89,33 +93,33 @@ class ViewItemsTest {
 
     @Test
     void navigatesToTheOnPointLocationsOfAViewItem() {
-        assertThat(ViewItems.locations(ON_POINT_LOCATIONS).listFrom(viewItem)).containsExactly(nodeLocation);
+        assertThat(ON_POINT_LOCATIONS.listFrom(viewItem)).containsExactly(nodeLocation);
     }
 
     /**
-     * The way from the role to the locations is a parameter of
-     * {@link ViewItems#locations(MultiNavigation)}, so on way placements can be used as well. The deprecated
-     * {@link PlacementNavs#locationsOf(java.util.function.Function)} documented this, but its parameter type
-     * only allowed on point placements.
+     * Since the way to the locations is composed at the call site, on way placements work just as well. The
+     * deprecated {@link PlacementNavs#locationsOf(java.util.function.Function)} documented this, but its
+     * parameter type only allowed on point placements.
      */
     @Test
     void navigatesToTheOnWayLocationsOfAViewItem() {
-        assertThat(ViewItems.locations(ON_WAY_LOCATIONS).listFrom(viewItem))
-                .containsExactly(segmentLocation, nodeLocation);
+        assertThat(ON_WAY_LOCATIONS.listFrom(viewItem)).containsExactly(segmentLocation, nodeLocation);
     }
 
     @Test
     void navigatesToTheLocationsOfEveryPlacementKindAtOnce() {
-        final MultiNavigation<VecPlaceableElementRole, VecLocation> allLocations =
-                PlaceableElementRoles.placements().thenEach(Placements.locations());
+        final MultiNavigation<HasOccurrenceOrUsages, VecLocation> allLocations =
+                ViewItems.placeableElementRole()
+                        .thenEach(PlaceableElementRoles.placements())
+                        .thenEach(Placements.locations());
 
-        assertThat(ViewItems.locations(allLocations).listFrom(viewItem))
+        assertThat(allLocations.listFrom(viewItem))
                 .containsExactlyInAnyOrder(nodeLocation, segmentLocation, nodeLocation);
     }
 
     @Test
     void navigatesToNoLocationForAnEmptyViewItem() {
-        assertThat(ViewItems.locations(ON_POINT_LOCATIONS).listFrom(Collections::emptyList)).isEmpty();
+        assertThat(ON_POINT_LOCATIONS.listFrom(Collections::emptyList)).isEmpty();
     }
 
     /**
@@ -126,7 +130,7 @@ class ViewItemsTest {
     @SuppressWarnings({"deprecation", "removal"})
     void deprecatedNavigationsBehaveLikeTheirReplacement() {
         assertThat(PlacementNavs.locationsOf(PlacementNavs.onPointPlacement()).apply(viewItem))
-                .isEqualTo(ViewItems.locations(ON_POINT_LOCATIONS).listFrom(viewItem));
+                .isEqualTo(ON_POINT_LOCATIONS.listFrom(viewItem));
         assertThat(PlacementNavs.locationsOf(PlacementNavs.onPointPlacement()).apply(Collections::emptyList))
                 .isEmpty();
     }

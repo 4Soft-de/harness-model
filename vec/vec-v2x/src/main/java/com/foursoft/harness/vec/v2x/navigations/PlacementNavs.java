@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.v2x.navigations;
 
+import com.foursoft.harness.vec.common.traversal.MultiNavigation;
 import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.v2x.*;
 import com.foursoft.harness.vec.v2x.traversal.PlaceableElementRoles;
@@ -71,27 +72,28 @@ public final class PlacementNavs {
      * @return A function to get the locations from a
      * {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
      * @see #onPointPlacement()
-     * @deprecated Use {@link ViewItems#locations(com.foursoft.harness.vec.common.traversal.MultiNavigation)}
-     * instead, which accepts the way from the role to the locations and therefore also supports
-     * {@link PlaceableElementRoles#onWayPlacements()}.
+     * @deprecated Compose the navigation at the call site instead, which also works for
+     * {@link PlaceableElementRoles#onWayPlacements()}:
+     * {@code ViewItems.placeableElementRole().thenEach(PlaceableElementRoles.onPointPlacements())
+     * .thenEach(Placements.locations())}.
      */
     @Deprecated(forRemoval = true)
     public static Function<HasOccurrenceOrUsages, List<VecLocation>> locationsOf(
             final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
-        return viewItem -> ViewItems
-                .locations(Navigations.stream(placement)
-                                   .thenEach(Placements.locations()))
-                .listFrom(viewItem);
+        final MultiNavigation<HasOccurrenceOrUsages, VecLocation> locations = ViewItems.placeableElementRole()
+                .thenEach(Navigations.stream(placement))
+                .thenEach(Placements.locations());
+        return locations::listFrom;
     }
 
     /**
-     * @deprecated Use {@link Placements#locationsWith(Class)} instead.
+     * @deprecated Use {@code Placements.locations().ofType(locationType)} instead.
      */
     @Deprecated(forRemoval = true)
     public static <T extends VecLocation> Function<VecOnWayPlacement, List<T>> locationsWith(
             final Class<T> locationType) {
-        return placement -> Placements.locationsWith(locationType)
-                .listFrom(placement);
+        final MultiNavigation<VecPlacement, T> locations = Placements.locations().ofType(locationType);
+        return locations::listFrom;
     }
 
 }
