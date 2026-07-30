@@ -39,16 +39,29 @@ smaller ones rather than by writing new traversal code:
 
 | Operator | Meaning |
 | --- | --- |
-| `then` | continue with a single-valued navigation |
-| `thenEach` | continue with a multi-valued navigation |
+| `then` | continue with the next step, overloaded on its kind |
 | `filter` | keep only elements matching a predicate |
 | `ofType` | narrow the navigation to a sub type |
 | `atMostOne` | reduce many results to at most one |
 | `asMulti` / `asList` | convert between result shapes |
 
+`then` is **overloaded on the kind of the following step** rather than split into `then`/`thenEach`
+variants: the argument's type already says whether the next step is single- or multi-valued, so a
+suffix would only restate it. The result stays single-valued exactly when both steps are:
+
+| | `.then(single)` | `.then(multi)` |
+| --- | --- | --- |
+| `single` | single | multi |
+| `multi` | multi | multi |
+
 `Navigations` is the factory that lifts ordinary model getters into navigations (`optional`,
 `nullable`, `stream`, `collection`). It is the intended entry point of a chain: a plain getter
 becomes a navigation, and operators take it from there.
+
+One consequence of the overload is worth knowing: since both kinds are functional interfaces, an
+*implicitly* typed lambda (`x -> …`) is ambiguous as an argument to `then`. Lift it with `Navigations`
+— the intended form anyway — or use an exact method reference or an explicitly typed lambda, all of
+which resolve. `SingleNavigationTest` pins these forms.
 
 Concrete navigations are grouped into **catalogs**: final classes with a private constructor and
 static factory methods returning the navigation interfaces. A catalog contributes the *steps*; the
@@ -92,12 +105,12 @@ order the model is traversed:
 
 ```java
 // as a catalog method taking a navigation — nests, reads inside-out
-ViewItems.locations(PlaceableElementRoles.onWayPlacements().thenEach(Placements.locations()))
+ViewItems.locations(PlaceableElementRoles.onWayPlacements().then(Placements.locations()))
 
 // composed by the caller — reads in traversal order, no extra API
 ViewItems.placeableElementRole()
-        .thenEach(PlaceableElementRoles.onWayPlacements())
-        .thenEach(Placements.locations())
+        .then(PlaceableElementRoles.onWayPlacements())
+        .then(Placements.locations())
 ```
 
 Two kinds of parameter remain legitimate, because neither is expressible by chaining:

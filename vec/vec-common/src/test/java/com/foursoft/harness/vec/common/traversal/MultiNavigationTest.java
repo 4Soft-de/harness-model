@@ -78,10 +78,10 @@ class MultiNavigationTest {
     }
 
     @Test
-    void thenEachFlattensNestedNavigations() {
+    void thenFlattensNestedMultiNavigations() {
         final MultiNavigation<Plant, Part> allParts =
                 Navigations.<Plant, Assembly>collection(Plant::assemblies)
-                        .thenEach(PARTS);
+                        .then(PARTS);
 
         final Plant plant = new Plant(List.of(assemblyWith(SCREW_M6), assemblyWith(NUT, SCREW_M8)));
 
@@ -134,7 +134,7 @@ class MultiNavigationTest {
     @Test
     void navigatesAnEmptySourceWithoutFailing() {
         assertThat(Navigations.<Plant, Assembly>collection(Plant::assemblies)
-                           .thenEach(PARTS)
+                           .then(PARTS)
                            .listFrom(new Plant(Collections.emptyList()))).isEmpty();
     }
 

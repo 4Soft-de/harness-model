@@ -41,8 +41,8 @@ import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
  * <pre>
  * {@code
  * ViewItems.placeableElementRole()
- *         .thenEach(PlaceableElementRoles.onWayPlacements())
- *         .thenEach(Placements.locations());
+ *         .then(PlaceableElementRoles.onWayPlacements())
+ *         .then(Placements.locations());
  * }
  * </pre>
  */

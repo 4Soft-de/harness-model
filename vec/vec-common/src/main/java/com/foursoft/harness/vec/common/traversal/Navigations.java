@@ -39,7 +39,7 @@ import java.util.stream.Stream;
  * MultiNavigation<VecPlaceableElementRole, VecLocation> locations =
  *     Navigations.collection(VecPlaceableElementRole::getRefPlacement)
  *         .ofType(VecOnPointPlacement.class)
- *         .thenEach(Navigations.collection(VecOnPointPlacement::getLocations));
+ *         .then(Navigations.collection(VecOnPointPlacement::getLocations));
  * }
  * </pre>
  */

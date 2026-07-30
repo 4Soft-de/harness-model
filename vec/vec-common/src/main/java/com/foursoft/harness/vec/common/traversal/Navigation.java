@@ -41,6 +41,16 @@ import java.util.function.Function;
  *     <li>{@link MultiNavigation} for navigations leading to an arbitrary number of elements.</li>
  * </ul>
  * A navigation is a {@link Function} and can therefore be used wherever a function is expected.
+ * <p>
+ * Steps are composed with {@code then}, which is overloaded on the kind of the following step, so the
+ * chain never has to name the kinds itself. The result stays single valued only if both steps are:
+ * <pre>
+ * single.then(single) -&gt; single      multi.then(single) -&gt; multi
+ * single.then(multi)  -&gt; multi       multi.then(multi)  -&gt; multi
+ * </pre>
+ * Since both kinds are functional interfaces, an <em>implicitly</em> typed lambda is ambiguous as an
+ * argument to {@code then}. Lift plain getters with {@link Navigations} instead, which is the intended
+ * way to start a chain; an explicitly typed lambda or an exact method reference also resolves.
  *
  * @param <S> Type of the source object to navigate from.
  * @param <T> Type of the navigation result.

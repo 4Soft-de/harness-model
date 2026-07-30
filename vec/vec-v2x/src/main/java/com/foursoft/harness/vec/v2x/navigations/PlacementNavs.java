@@ -74,15 +74,15 @@ public final class PlacementNavs {
      * @see #onPointPlacement()
      * @deprecated Compose the navigation at the call site instead, which also works for
      * {@link PlaceableElementRoles#onWayPlacements()}:
-     * {@code ViewItems.placeableElementRole().thenEach(PlaceableElementRoles.onPointPlacements())
-     * .thenEach(Placements.locations())}.
+     * {@code ViewItems.placeableElementRole().then(PlaceableElementRoles.onPointPlacements())
+     * .then(Placements.locations())}.
      */
     @Deprecated(forRemoval = true)
     public static Function<HasOccurrenceOrUsages, List<VecLocation>> locationsOf(
             final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
         final MultiNavigation<HasOccurrenceOrUsages, VecLocation> locations = ViewItems.placeableElementRole()
-                .thenEach(Navigations.stream(placement))
-                .thenEach(Placements.locations());
+                .then(Navigations.stream(placement))
+                .then(Placements.locations());
         return locations::listFrom;
     }
 

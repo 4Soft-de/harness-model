@@ -48,12 +48,12 @@ class ViewItemsTest {
 
     private static final MultiNavigation<HasOccurrenceOrUsages, VecLocation> ON_POINT_LOCATIONS =
             ViewItems.placeableElementRole()
-                    .thenEach(PlaceableElementRoles.onPointPlacements())
-                    .thenEach(Placements.locations());
+                    .then(PlaceableElementRoles.onPointPlacements())
+                    .then(Placements.locations());
     private static final MultiNavigation<HasOccurrenceOrUsages, VecLocation> ON_WAY_LOCATIONS =
             ViewItems.placeableElementRole()
-                    .thenEach(PlaceableElementRoles.onWayPlacements())
-                    .thenEach(Placements.locations());
+                    .then(PlaceableElementRoles.onWayPlacements())
+                    .then(Placements.locations());
 
     private final VecNodeLocation nodeLocation = new VecNodeLocation();
     private final VecSegmentLocation segmentLocation = new VecSegmentLocation();
@@ -110,8 +110,8 @@ class ViewItemsTest {
     void navigatesToTheLocationsOfEveryPlacementKindAtOnce() {
         final MultiNavigation<HasOccurrenceOrUsages, VecLocation> allLocations =
                 ViewItems.placeableElementRole()
-                        .thenEach(PlaceableElementRoles.placements())
-                        .thenEach(Placements.locations());
+                        .then(PlaceableElementRoles.placements())
+                        .then(Placements.locations());
 
         assertThat(allLocations.listFrom(viewItem))
                 .containsExactlyInAnyOrder(nodeLocation, segmentLocation, nodeLocation);

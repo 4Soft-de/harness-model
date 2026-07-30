@@ -84,16 +84,39 @@ class SingleNavigationTest {
     }
 
     @Test
-    void thenEachContinuesWithAMultiNavigation() {
+    void thenContinuesWithAMultiNavigation() {
         final MultiNavigation<Plant, Part> partsOfTheOnlyAssembly =
                 Navigations.<Plant, Assembly>collection(Plant::assemblies)
                         .atMostOne()
-                        .thenEach(Navigations.collection(Assembly::parts));
+                        .then(Navigations.collection(Assembly::parts));
 
         final Assembly assembly = new Assembly("assembly", null, List.of(SCREW, NUT));
 
         assertThat(partsOfTheOnlyAssembly.listFrom(new Plant(List.of(assembly)))).containsExactly(SCREW, NUT);
         assertThat(partsOfTheOnlyAssembly.listFrom(new Plant(Collections.emptyList()))).isEmpty();
+    }
+
+    private static Optional<Grade> gradeOf(final Screw screw) {
+        return Optional.ofNullable(screw.grade());
+    }
+
+    /**
+     * {@code then} is overloaded on the kind of the following navigation, so the argument has to have a
+     * known kind. This pins the forms which resolve; an implicitly typed lambda does not and has to be
+     * lifted with {@link Navigations} instead.
+     */
+    @Test
+    void thenResolvesTheOverloadForEveryUnambiguousArgumentForm() {
+        final SingleNavigation<Assembly, Screw> screw = MAIN_PART.ofType(Screw.class);
+        final Assembly assembly = assemblyWith(SCREW);
+
+        // lifted by the factory, the intended form
+        assertThat(screw.then(Navigations.nullable(Screw::grade)).from(assembly)).contains(GRADE_8_8);
+        // exact method reference
+        assertThat(screw.then(SingleNavigationTest::gradeOf).from(assembly)).contains(GRADE_8_8);
+        // explicitly typed lambda
+        assertThat(screw.then((final Screw s) -> Optional.ofNullable(s.grade())).from(assembly))
+                .contains(GRADE_8_8);
     }
 
     @Test

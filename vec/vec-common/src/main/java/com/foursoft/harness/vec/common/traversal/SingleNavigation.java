@@ -42,7 +42,7 @@ import java.util.stream.Stream;
 public interface SingleNavigation<S, T> extends Navigation<S, Optional<T>> {
 
     /**
-     * Continues this navigation with another single valued navigation.
+     * Continues this navigation with another single valued navigation, which stays single valued.
      *
      * @param next Navigation to apply to the result of this navigation.
      * @param <R>  Type of the element the returned navigation leads to.
@@ -53,13 +53,13 @@ public interface SingleNavigation<S, T> extends Navigation<S, Optional<T>> {
     }
 
     /**
-     * Continues this navigation with a multi valued navigation.
+     * Continues this navigation with a multi valued navigation, which makes the result multi valued.
      *
      * @param next Navigation to apply to the result of this navigation.
      * @param <R>  Type of the elements the returned navigation leads to.
      * @return A navigation from {@code S} to an arbitrary number of {@code R}.
      */
-    default <R> MultiNavigation<S, R> thenEach(final MultiNavigation<? super T, R> next) {
+    default <R> MultiNavigation<S, R> then(final MultiNavigation<? super T, R> next) {
         return source -> from(source).stream()
                 .flatMap(next);
     }

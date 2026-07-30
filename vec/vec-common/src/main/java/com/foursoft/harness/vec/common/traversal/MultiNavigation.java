@@ -58,13 +58,13 @@ public interface MultiNavigation<S, T> extends Navigation<S, Stream<T>> {
     }
 
     /**
-     * Continues this navigation with another multi valued navigation.
+     * Continues this navigation with another multi valued navigation, flattening the results.
      *
      * @param next Navigation to apply to each element of this navigation.
      * @param <R>  Type of the elements the returned navigation leads to.
      * @return A navigation from {@code S} to an arbitrary number of {@code R}.
      */
-    default <R> MultiNavigation<S, R> thenEach(final MultiNavigation<? super T, R> next) {
+    default <R> MultiNavigation<S, R> then(final MultiNavigation<? super T, R> next) {
         return source -> from(source).flatMap(next);
     }
 
