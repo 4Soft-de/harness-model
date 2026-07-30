@@ -42,7 +42,8 @@ smaller ones rather than by writing new traversal code:
 | `then` | continue with the next step, overloaded on its kind |
 | `filter` | keep only elements matching a predicate |
 | `ofType` | narrow the navigation to a sub type |
-| `atMostOne` | reduce many results to at most one |
+| `collect` | reduce many results to at most one, with given rules |
+| `atMostOne` | the most common reduction: expect a single result |
 | `asMulti` / `asList` | convert between result shapes |
 
 `then` is **overloaded on the kind of the following step** rather than split into `then`/`thenEach`
@@ -63,9 +64,37 @@ One consequence of the overload is worth knowing: since both kinds are functiona
 — the intended form anyway — or use an exact method reference or an explicitly typed lambda, all of
 which resolve. `SingleNavigationTest` pins these forms.
 
+### Reductions
+
+Going from many elements to one is not always "expect a single result". Which of several localized
+strings is *the* description, for instance, follows rules over the strings as a whole — a lone untyped
+string counts regardless of its language, but among several the typed ones are ignored. No sequence of
+filters and mappings expresses that.
+
+`collect` is therefore the general `Multi → Single` operator, taking a reduction as a
+`java.util.stream.Collector` that yields an `Optional`. `atMostOne()` is simply the most common one,
+defined as `collect(StreamUtils.findOneOrNone())` rather than as a mechanism of its own. Domain
+reductions are authored with `StreamUtils.reducing(…)`, which builds such a collector from a function
+over the accumulated elements, and are grouped into their own catalogs — `LocalizedStrings` holds
+reductions, not navigations:
+
+```java
+Descriptions.descriptions().collect(LocalizedStrings.valueIn(VecLanguageCode.DE))
+```
+
+Recognising a reduction matters for modelling, not just for tidiness. Before `collect` existed, the
+only place for these rules was a pretend navigation *from the collection* — which forced `List<…>` to
+be a source type, forced an identity lift to get back to the elements, and forced the step leading to
+the descriptions to be a private list-valued navigation instead of a public `MultiNavigation`. All
+three disappeared once the reduction was named as such. **If a navigation's source is a collection,
+that is the signal: it is probably a reduction wearing a navigation's clothes.**
+
+### Catalogs
+
 Concrete navigations are grouped into **catalogs**: final classes with a private constructor and
 static factory methods returning the navigation interfaces. A catalog contributes the *steps*; the
-caller composes them into a path with the operators above.
+caller composes them into a path with the operators above. Reductions are grouped the same way, in
+catalogs of their own.
 
 ### Catalog organisation
 
@@ -116,8 +145,8 @@ ViewItems.placeableElementRole()
 Two kinds of parameter remain legitimate, because neither is expressible by chaining:
 
 - **Domain values that feed the traversal logic**, such as the language in
-  `LocalizedStrings.stringIn(VecLanguageCode)` or the property type in
-  `LocalizedStrings.typedStringBy(String, VecLanguageCode)`.
+  `Descriptions.descriptionIn(VecLanguageCode)` or the property type in
+  `LocalizedStrings.typedValueBy(String, VecLanguageCode)`.
 - **Nothing at all**: zero-argument named presets are vocabulary, not indirection, and are encouraged.
   `PlaceableElementRoles.onPointPlacements()` and `Descriptions.germanDescription()` are just
   `placements().ofType(VecOnPointPlacement.class)` and `descriptionIn(DE)`, but they name a concept the
@@ -131,8 +160,8 @@ narrowings, it is composed from the operators rather than written as a stream pi
 implementation reads like the path it describes — `ViewItems.placeableElementRole()` is the reference
 example. Raw stream code and hand-written lambdas stay appropriate for *leaf* steps, where there is
 genuine logic and nothing to compose: `Placements.locations()` dispatches on the placement subtype, and
-`LocalizedStrings.stringIn(…)` applies rules that depend on the size of the list. Forcing those through
-the operators would make them longer, not clearer.
+the body of a reduction such as `LocalizedStrings.valueIn(…)` weighs the elements against each other.
+Forcing those through the operators would make them longer, not clearer.
 
 ### The legacy API (`navigations`)
 
@@ -238,14 +267,16 @@ The `vec-v2x` catalogs and their source types:
 | Catalog | Source type `S` |
 | --- | --- |
 | `Descriptions` | `HasDescription<? extends VecAbstractLocalizedString>` |
-| `LocalizedStrings` | `List<? extends VecAbstractLocalizedString>` |
 | `Placements` | `VecPlacement` (and its on-point/on-way subtypes) |
 | `PlaceableElementRoles` | `VecPlaceableElementRole` |
 | `ViewItems` | `HasOccurrenceOrUsages` |
 
+Plus one reduction catalog: `LocalizedStrings`, over `VecAbstractLocalizedString`.
+
 Note that the two legacy catalogs ported so far each split across several of these, because they
-grouped by target concept: `DescriptionNavs` became `Descriptions` plus `LocalizedStrings`, and
-`PlacementNavs` became `Placements`, `PlaceableElementRoles` and `ViewItems`. Expect the same when
-porting the remaining catalogs — the mapping from old catalog to new is not one-to-one.
+grouped by target concept: `DescriptionNavs` became `Descriptions` plus the `LocalizedStrings`
+reductions, and `PlacementNavs` became `Placements`, `PlaceableElementRoles` and `ViewItems`. Expect the
+same when porting the remaining catalogs — the mapping from old catalog to new is not one-to-one, and
+some legacy navigations turn out to be reductions rather than navigations at all.
 
 The remaining `vec-v2x` catalogs are ported one at a time; `vec-v12x` follows afterwards.

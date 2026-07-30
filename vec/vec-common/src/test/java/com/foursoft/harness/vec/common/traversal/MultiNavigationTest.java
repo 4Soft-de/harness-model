@@ -31,10 +31,12 @@ import com.foursoft.harness.vec.common.traversal.TestModel.Nut;
 import com.foursoft.harness.vec.common.traversal.TestModel.Part;
 import com.foursoft.harness.vec.common.traversal.TestModel.Plant;
 import com.foursoft.harness.vec.common.traversal.TestModel.Screw;
+import com.foursoft.harness.vec.common.util.StreamUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -98,6 +100,27 @@ class MultiNavigationTest {
     void ofTypeNarrowsTheNavigation() {
         assertThat(PARTS.ofType(Screw.class).listFrom(assemblyWith(SCREW_M6, NUT, SCREW_M8)))
                 .containsExactly(SCREW_M6, SCREW_M8);
+    }
+
+    /**
+     * The general way from many elements to at most one. Reductions whose rules depend on the elements as a
+     * whole cannot be expressed as a filter or a mapping, so they are authored as a collector.
+     */
+    @Test
+    void collectReducesWithCustomRules() {
+        final MultiNavigation<Assembly, Part> parts = PARTS;
+        final var onlyIfUnambiguous = StreamUtils.<Part, String>reducing(
+                list -> list.size() == 1 ? Optional.of(list.get(0).name()) : Optional.empty());
+
+        assertThat(parts.collect(onlyIfUnambiguous).from(assemblyWith(SCREW_M6))).contains("M6");
+        assertThat(parts.collect(onlyIfUnambiguous).from(assemblyWith(SCREW_M6, NUT))).isEmpty();
+        assertThat(parts.collect(onlyIfUnambiguous).from(assemblyWith())).isEmpty();
+    }
+
+    @Test
+    void atMostOneIsAReductionAsWell() {
+        assertThat(PARTS.collect(StreamUtils.<Part>findOneOrNone()).from(assemblyWith(SCREW_M6)))
+                .isEqualTo(PARTS.atMostOne().from(assemblyWith(SCREW_M6)));
     }
 
     @Test

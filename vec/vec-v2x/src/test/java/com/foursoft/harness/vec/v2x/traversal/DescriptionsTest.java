@@ -46,6 +46,16 @@ class DescriptionsTest {
     }
 
     @Test
+    void navigatesToTheDescriptionsOfAnElement() {
+        final VecAbstractLocalizedString german = localizedString(VecLanguageCode.DE, "Leitung");
+        final VecAbstractLocalizedString english = localizedString(VecLanguageCode.EN, "Wire");
+
+        assertThat(Descriptions.descriptions().listFrom(holderOf(german, english)))
+                .containsExactly(german, english);
+        assertThat(Descriptions.descriptions().listFrom(holderOf())).isEmpty();
+    }
+
+    @Test
     void navigatesToTheDescriptionOfTheRequestedLanguage() {
         final HasDescription<VecAbstractLocalizedString> holder = holderOf(
                 localizedString(VecLanguageCode.DE, "Leitung"),

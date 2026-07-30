@@ -30,6 +30,7 @@ import com.foursoft.harness.vec.common.util.StreamUtils;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Stream;
 
 /**
@@ -92,7 +93,24 @@ public interface MultiNavigation<S, T> extends Navigation<S, Stream<T>> {
     }
 
     /**
-     * Returns a navigation leading to the only element of this navigation.
+     * Reduces this navigation to a single valued one with the given reduction.
+     * <p>
+     * This is the general way from many elements to at most one. Use it whenever choosing the result needs
+     * rules of its own rather than a filter or a mapping of the single elements; author such reductions with
+     * {@link StreamUtils#reducing(java.util.function.Function)}.
+     *
+     * @param reduction Reduction of the navigated elements to at most one result.
+     * @param <R>       Type of the element the returned navigation leads to.
+     * @return A navigation from {@code S} to at most one {@code R}.
+     * @see #atMostOne()
+     */
+    default <R> SingleNavigation<S, R> collect(final Collector<? super T, ?, Optional<R>> reduction) {
+        return source -> from(source).collect(reduction);
+    }
+
+    /**
+     * Returns a navigation leading to the only element of this navigation, the most common
+     * {@linkplain #collect(Collector) reduction}.
      * <p>
      * If this navigation leads to more than one element, the first one is chosen and a debug log entry is
      * fired, see {@link StreamUtils#findOneOrNone()}.
@@ -100,7 +118,7 @@ public interface MultiNavigation<S, T> extends Navigation<S, Stream<T>> {
      * @return A single valued view on this navigation.
      */
     default SingleNavigation<S, T> atMostOne() {
-        return source -> from(source).collect(StreamUtils.findOneOrNone());
+        return collect(StreamUtils.findOneOrNone());
     }
 
     /**

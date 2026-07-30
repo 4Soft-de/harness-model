@@ -73,28 +73,36 @@ public final class DescriptionNavs {
     }
 
     /**
-     * @deprecated Use {@link LocalizedStrings#germanString()} instead.
+     * @deprecated Reduce the localized strings with {@link LocalizedStrings#valueIn(VecLanguageCode)}
+     * instead, which composes onto any navigation leading to them, for example
+     * {@link Descriptions#descriptions()}.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> germanString() {
-        return LocalizedStrings.germanString();
+        return stringIn(VecLanguageCode.DE);
     }
 
     /**
-     * @deprecated Use {@link LocalizedStrings#englishString()} instead.
+     * @deprecated Reduce the localized strings with {@link LocalizedStrings#valueIn(VecLanguageCode)}
+     * instead, which composes onto any navigation leading to them, for example
+     * {@link Descriptions#descriptions()}.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> englishString() {
-        return LocalizedStrings.englishString();
+        return stringIn(VecLanguageCode.EN);
     }
 
     /**
-     * @deprecated Use {@link LocalizedStrings#stringIn(VecLanguageCode)} instead.
+     * @deprecated Reduce the localized strings with {@link LocalizedStrings#valueIn(VecLanguageCode)}
+     * instead, which composes onto any navigation leading to them, for example
+     * {@link Descriptions#descriptions()}.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> stringIn(
             final VecLanguageCode vecLanguageCode) {
-        return LocalizedStrings.stringIn(vecLanguageCode);
+        return localizedStrings -> localizedStrings.stream()
+                .map(VecAbstractLocalizedString.class::cast)
+                .collect(LocalizedStrings.valueIn(vecLanguageCode));
     }
 
     /**

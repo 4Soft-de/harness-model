@@ -26,24 +26,33 @@
 package com.foursoft.harness.vec.v2x.traversal;
 
 import com.foursoft.harness.vec.common.HasDescription;
+import com.foursoft.harness.vec.common.traversal.MultiNavigation;
 import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.common.traversal.SingleNavigation;
 import com.foursoft.harness.vec.v2x.VecAbstractLocalizedString;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedTypedString;
 
-import java.util.List;
-
 /**
  * Navigations starting at a {@link HasDescription} holding {@link VecAbstractLocalizedString}s.
  * <p>
- * Each of these navigations picks a value out of the element's description list; use
- * {@link LocalizedStrings} to navigate from such a list directly.
+ * Which of several descriptions applies is decided by a reduction from {@link LocalizedStrings}, not by the
+ * navigation itself.
  */
 public final class Descriptions {
 
     private Descriptions() {
         // hide default constructor
+    }
+
+    /**
+     * Navigates to the localized strings describing an element.
+     *
+     * @return A navigation to the descriptions of an element.
+     */
+    public static MultiNavigation<HasDescription<? extends VecAbstractLocalizedString>,
+            VecAbstractLocalizedString> descriptions() {
+        return Navigations.collection(HasDescription::getDescriptions);
     }
 
     /**
@@ -71,11 +80,11 @@ public final class Descriptions {
      *
      * @param languageCode Language of the description to navigate to.
      * @return A navigation to the description in the given language.
-     * @see LocalizedStrings#stringIn(VecLanguageCode)
+     * @see LocalizedStrings#valueIn(VecLanguageCode)
      */
     public static SingleNavigation<HasDescription<? extends VecAbstractLocalizedString>, String> descriptionIn(
             final VecLanguageCode languageCode) {
-        return descriptions().then(LocalizedStrings.stringIn(languageCode));
+        return descriptions().collect(LocalizedStrings.valueIn(languageCode));
     }
 
     /**
@@ -108,23 +117,11 @@ public final class Descriptions {
      * @param descriptionType Type of the localized string to navigate to.
      * @param languageCode    Language of the localized string to navigate to.
      * @return A navigation to the value of the given type and language.
-     * @see LocalizedStrings#typedStringBy(String, VecLanguageCode)
+     * @see LocalizedStrings#typedValueBy(String, VecLanguageCode)
      */
     public static SingleNavigation<HasDescription<? extends VecAbstractLocalizedString>, String> typedStringBy(
             final String descriptionType, final VecLanguageCode languageCode) {
-        return descriptions().then(LocalizedStrings.typedStringBy(descriptionType, languageCode));
-    }
-
-    /**
-     * Navigates to the description list itself, as the step the {@link LocalizedStrings} navigations
-     * continue from.
-     * <p>
-     * Deliberately not public: a navigation to a list <em>as a value</em> would be easy to mistake for a
-     * {@link com.foursoft.harness.vec.common.traversal.MultiNavigation} to the single strings.
-     */
-    private static SingleNavigation<HasDescription<? extends VecAbstractLocalizedString>,
-            List<? extends VecAbstractLocalizedString>> descriptions() {
-        return Navigations.nullable(HasDescription::getDescriptions);
+        return descriptions().collect(LocalizedStrings.typedValueBy(descriptionType, languageCode));
     }
 
 }

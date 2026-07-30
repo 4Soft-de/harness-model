@@ -26,8 +26,6 @@
 package com.foursoft.harness.vec.v2x.traversal;
 
 import com.foursoft.harness.vec.common.traversal.MultiNavigation;
-import com.foursoft.harness.vec.common.traversal.Navigations;
-import com.foursoft.harness.vec.common.traversal.SingleNavigation;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.common.util.StringUtils;
 import com.foursoft.harness.vec.v2x.VecAbstractLocalizedString;
@@ -38,11 +36,20 @@ import com.foursoft.harness.vec.v2x.predicates.VecPredicates;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collector;
 
 /**
- * Navigations starting at a list of {@link VecAbstractLocalizedString}s.
+ * Reductions from several {@link VecAbstractLocalizedString}s to the one value that applies.
  * <p>
- * Use {@link Descriptions} to navigate from an element holding such a list.
+ * These are <em>not</em> navigations: choosing the right value needs rules over the localized strings as a
+ * whole, which no sequence of steps expresses. They are therefore used with
+ * {@link MultiNavigation#collect(Collector)} on a navigation leading to the localized strings, such as
+ * {@link Descriptions#descriptions()}:
+ * <pre>
+ * {@code
+ * Descriptions.descriptions().collect(LocalizedStrings.valueIn(VecLanguageCode.DE));
+ * }
+ * </pre>
  */
 public final class LocalizedStrings {
 
@@ -51,38 +58,18 @@ public final class LocalizedStrings {
     }
 
     /**
-     * Navigates to the german value.
-     *
-     * @return A navigation to the german value.
-     * @see #stringIn(VecLanguageCode)
-     */
-    public static SingleNavigation<List<? extends VecAbstractLocalizedString>, String> germanString() {
-        return stringIn(VecLanguageCode.DE);
-    }
-
-    /**
-     * Navigates to the english value.
-     *
-     * @return A navigation to the english value.
-     * @see #stringIn(VecLanguageCode)
-     */
-    public static SingleNavigation<List<? extends VecAbstractLocalizedString>, String> englishString() {
-        return stringIn(VecLanguageCode.EN);
-    }
-
-    /**
-     * Navigates to the value in the given language.
+     * Reduces localized strings to the value in the given language.
      * <p>
-     * A single {@link VecLocalizedTypedString} with a type is not considered a description and therefore leads
-     * to no value. A single untyped string is used regardless of its language, as there is nothing to choose
-     * from. Otherwise the typed strings are ignored and the value of the given language is used.
+     * A single {@link VecLocalizedTypedString} with a type is not considered a description and therefore
+     * yields no value. A single untyped string is used regardless of its language, as there is nothing to
+     * choose from. Otherwise the typed strings are ignored and the value of the given language is used.
      *
-     * @param languageCode Language of the value to navigate to.
-     * @return A navigation to the value in the given language.
+     * @param languageCode Language of the value to reduce to.
+     * @return A reduction to the value in the given language.
      */
-    public static SingleNavigation<List<? extends VecAbstractLocalizedString>, String> stringIn(
+    public static Collector<VecAbstractLocalizedString, ?, Optional<String>> valueIn(
             final VecLanguageCode languageCode) {
-        return localizedStrings -> {
+        return StreamUtils.reducing(localizedStrings -> {
             if (localizedStrings.isEmpty()) {
                 return Optional.empty();
             }
@@ -103,34 +90,33 @@ public final class LocalizedStrings {
                     .map(VecAbstractLocalizedString::getValue)
                     .filter(Objects::nonNull)
                     .collect(StreamUtils.findOneOrNone());
-        };
+        });
     }
 
     /**
-     * Navigates to the value of the {@link VecLocalizedTypedString} with the given type and language.
+     * Reduces localized strings to the value of the {@link VecLocalizedTypedString} with the given type and
+     * language.
      *
-     * @param descriptionType Type of the localized string to navigate to.
-     * @param languageCode    Language of the localized string to navigate to.
-     * @return A navigation to the value of the given type and language.
+     * @param descriptionType Type of the localized string to reduce to.
+     * @param languageCode    Language of the localized string to reduce to.
+     * @return A reduction to the value of the given type and language.
      */
-    public static SingleNavigation<List<? extends VecAbstractLocalizedString>, String> typedStringBy(
+    public static Collector<VecAbstractLocalizedString, ?, Optional<String>> typedValueBy(
             final String descriptionType, final VecLanguageCode languageCode) {
-        return elements()
-                .filter(VecPredicates.languageCode(languageCode))
-                .ofType(VecLocalizedTypedString.class)
-                .filter(typedString -> descriptionType.equals(typedString.getType()))
-                .atMostOne()
-                .then(Navigations.nullable(VecLocalizedTypedString::getValue))
-                .filter(StringUtils::isNotEmpty);
+        return StreamUtils.reducing(localizedStrings -> reduceToTypedValue(
+                localizedStrings, descriptionType, languageCode));
     }
 
-    /**
-     * Navigates from the list to the single localized strings, so that navigations over them can be composed
-     * from the operators. Needed because the source of this catalog is the list itself.
-     */
-    private static MultiNavigation<List<? extends VecAbstractLocalizedString>, VecAbstractLocalizedString>
-    elements() {
-        return Navigations.collection(localizedStrings -> localizedStrings);
+    private static Optional<String> reduceToTypedValue(final List<VecAbstractLocalizedString> localizedStrings,
+                                                       final String descriptionType,
+                                                       final VecLanguageCode languageCode) {
+        return localizedStrings.stream()
+                .filter(VecPredicates.languageCode(languageCode))
+                .flatMap(StreamUtils.ofClass(VecLocalizedTypedString.class))
+                .filter(typedString -> descriptionType.equals(typedString.getType()))
+                .collect(StreamUtils.findOneOrNone())
+                .map(VecLocalizedTypedString::getValue)
+                .filter(StringUtils::isNotEmpty);
     }
 
 }

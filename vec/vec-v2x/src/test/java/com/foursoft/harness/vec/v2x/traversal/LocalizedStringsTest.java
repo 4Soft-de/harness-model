@@ -32,6 +32,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collector;
 
 import static com.foursoft.harness.vec.v2x.traversal.LocalizedStringFixtures.LENGTH_TYPE;
 import static com.foursoft.harness.vec.v2x.traversal.LocalizedStringFixtures.localizedString;
@@ -40,38 +42,49 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LocalizedStringsTest {
 
+    private static Optional<String> reduce(final List<VecAbstractLocalizedString> localizedStrings,
+                                           final Collector<VecAbstractLocalizedString, ?, Optional<String>>
+                                                   reduction) {
+        return localizedStrings.stream().collect(reduction);
+    }
+
     @Test
-    void navigatesToTheValueOfTheRequestedLanguage() {
+    void reducesToTheValueOfTheRequestedLanguage() {
         final List<VecAbstractLocalizedString> localizedStrings = List.of(
                 localizedString(VecLanguageCode.DE, "Leitung"),
                 localizedString(VecLanguageCode.EN, "Wire"));
 
-        assertThat(LocalizedStrings.germanString().from(localizedStrings)).contains("Leitung");
-        assertThat(LocalizedStrings.englishString().from(localizedStrings)).contains("Wire");
-        assertThat(LocalizedStrings.stringIn(VecLanguageCode.EN).from(localizedStrings)).contains("Wire");
+        assertThat(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.DE))).contains("Leitung");
+        assertThat(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.EN))).contains("Wire");
     }
 
     @Test
-    void navigatesToTheOnlyValueRegardlessOfItsLanguage() {
-        assertThat(LocalizedStrings.germanString().from(List.of(localizedString(VecLanguageCode.EN, "Wire"))))
-                .contains("Wire");
+    void reducesToTheOnlyValueRegardlessOfItsLanguage() {
+        final List<VecAbstractLocalizedString> localizedStrings =
+                List.of(localizedString(VecLanguageCode.EN, "Wire"));
+
+        assertThat(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.DE))).contains("Wire");
     }
 
     @Test
-    void navigatesToNoValueForAnEmptyList() {
-        assertThat(LocalizedStrings.germanString().from(Collections.emptyList())).isEmpty();
+    void reducesToNoValueForNoLocalizedString() {
+        assertThat(reduce(Collections.emptyList(), LocalizedStrings.valueIn(VecLanguageCode.DE))).isEmpty();
     }
 
     @Test
-    void navigatesToNoValueForASingleTypedString() {
-        assertThat(LocalizedStrings.germanString()
-                           .from(List.of(typedString(VecLanguageCode.DE, LENGTH_TYPE, "100")))).isEmpty();
+    void reducesToNoValueForASingleTypedString() {
+        final List<VecAbstractLocalizedString> localizedStrings =
+                List.of(typedString(VecLanguageCode.DE, LENGTH_TYPE, "100"));
+
+        assertThat(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.DE))).isEmpty();
     }
 
     @Test
-    void navigatesToASingleTypedStringWithoutAType() {
-        assertThat(LocalizedStrings.germanString()
-                           .from(List.of(typedString(VecLanguageCode.DE, null, "Leitung")))).contains("Leitung");
+    void reducesToASingleTypedStringWithoutAType() {
+        final List<VecAbstractLocalizedString> localizedStrings =
+                List.of(typedString(VecLanguageCode.DE, null, "Leitung"));
+
+        assertThat(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.DE))).contains("Leitung");
     }
 
     @Test
@@ -80,48 +93,48 @@ class LocalizedStringsTest {
                 typedString(VecLanguageCode.DE, LENGTH_TYPE, "100"),
                 localizedString(VecLanguageCode.DE, "Leitung"));
 
-        assertThat(LocalizedStrings.germanString().from(localizedStrings)).contains("Leitung");
+        assertThat(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.DE))).contains("Leitung");
     }
 
     @Test
-    void navigatesToTheTypedStringOfTheRequestedTypeAndLanguage() {
+    void reducesToTheTypedValueOfTheRequestedTypeAndLanguage() {
         final List<VecAbstractLocalizedString> localizedStrings = List.of(
                 typedString(VecLanguageCode.DE, LENGTH_TYPE, "100"),
                 typedString(VecLanguageCode.EN, LENGTH_TYPE, "One hundred"),
                 typedString(VecLanguageCode.DE, "Width", "5"));
 
-        assertThat(LocalizedStrings.typedStringBy(LENGTH_TYPE, VecLanguageCode.DE).from(localizedStrings))
+        assertThat(reduce(localizedStrings, LocalizedStrings.typedValueBy(LENGTH_TYPE, VecLanguageCode.DE)))
                 .contains("100");
-        assertThat(LocalizedStrings.typedStringBy(LENGTH_TYPE, VecLanguageCode.EN).from(localizedStrings))
+        assertThat(reduce(localizedStrings, LocalizedStrings.typedValueBy(LENGTH_TYPE, VecLanguageCode.EN)))
                 .contains("One hundred");
-        assertThat(LocalizedStrings.typedStringBy("Height", VecLanguageCode.DE).from(localizedStrings))
+        assertThat(reduce(localizedStrings, LocalizedStrings.typedValueBy("Height", VecLanguageCode.DE)))
                 .isEmpty();
     }
 
     @Test
-    void navigatesToNoTypedStringForAnEmptyValue() {
+    void reducesToNoTypedValueForAnEmptyValue() {
         final List<VecAbstractLocalizedString> localizedStrings = List.of(
                 typedString(VecLanguageCode.DE, LENGTH_TYPE, ""),
                 localizedString(VecLanguageCode.DE, "Leitung"));
 
-        assertThat(LocalizedStrings.typedStringBy(LENGTH_TYPE, VecLanguageCode.DE).from(localizedStrings))
+        assertThat(reduce(localizedStrings, LocalizedStrings.typedValueBy(LENGTH_TYPE, VecLanguageCode.DE)))
                 .isEmpty();
     }
 
     /**
-     * Characterisation test for the deprecated {@link DescriptionNavs}, whose list based navigations delegate
-     * to {@link LocalizedStrings}. Can be removed together with {@link DescriptionNavs}.
+     * Characterisation test for the list based navigations of the deprecated {@link DescriptionNavs}, which
+     * now apply these reductions. Can be removed together with {@link DescriptionNavs}.
      */
     @Test
     @SuppressWarnings({"deprecation", "removal"})
     void deprecatedNavigationsBehaveLikeTheirReplacement() {
         for (final List<VecAbstractLocalizedString> localizedStrings : LocalizedStringFixtures.allVariants()) {
             assertThat(DescriptionNavs.germanString().apply(localizedStrings))
-                    .isEqualTo(LocalizedStrings.germanString().from(localizedStrings));
+                    .isEqualTo(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.DE)));
             assertThat(DescriptionNavs.englishString().apply(localizedStrings))
-                    .isEqualTo(LocalizedStrings.englishString().from(localizedStrings));
+                    .isEqualTo(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.EN)));
             assertThat(DescriptionNavs.stringIn(VecLanguageCode.EN).apply(localizedStrings))
-                    .isEqualTo(LocalizedStrings.stringIn(VecLanguageCode.EN).from(localizedStrings));
+                    .isEqualTo(reduce(localizedStrings, LocalizedStrings.valueIn(VecLanguageCode.EN)));
         }
     }
 
