@@ -26,10 +26,13 @@
 package com.foursoft.harness.vec.v2x.traversal;
 
 import com.foursoft.harness.vec.common.HasDescription;
+import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.common.traversal.SingleNavigation;
 import com.foursoft.harness.vec.v2x.VecAbstractLocalizedString;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedTypedString;
+
+import java.util.List;
 
 /**
  * Navigations starting at a {@link HasDescription} holding {@link VecAbstractLocalizedString}s.
@@ -72,8 +75,7 @@ public final class Descriptions {
      */
     public static SingleNavigation<HasDescription<? extends VecAbstractLocalizedString>, String> descriptionIn(
             final VecLanguageCode languageCode) {
-        return hasDescription -> LocalizedStrings.stringIn(languageCode)
-                .from(hasDescription.getDescriptions());
+        return descriptions().then(LocalizedStrings.stringIn(languageCode));
     }
 
     /**
@@ -110,8 +112,19 @@ public final class Descriptions {
      */
     public static SingleNavigation<HasDescription<? extends VecAbstractLocalizedString>, String> typedStringBy(
             final String descriptionType, final VecLanguageCode languageCode) {
-        return hasDescription -> LocalizedStrings.typedStringBy(descriptionType, languageCode)
-                .from(hasDescription.getDescriptions());
+        return descriptions().then(LocalizedStrings.typedStringBy(descriptionType, languageCode));
+    }
+
+    /**
+     * Navigates to the description list itself, as the step the {@link LocalizedStrings} navigations
+     * continue from.
+     * <p>
+     * Deliberately not public: a navigation to a list <em>as a value</em> would be easy to mistake for a
+     * {@link com.foursoft.harness.vec.common.traversal.MultiNavigation} to the single strings.
+     */
+    private static SingleNavigation<HasDescription<? extends VecAbstractLocalizedString>,
+            List<? extends VecAbstractLocalizedString>> descriptions() {
+        return Navigations.nullable(HasDescription::getDescriptions);
     }
 
 }

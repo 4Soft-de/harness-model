@@ -25,6 +25,8 @@
  */
 package com.foursoft.harness.vec.v2x.traversal;
 
+import com.foursoft.harness.vec.common.traversal.MultiNavigation;
+import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.common.traversal.SingleNavigation;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.common.util.StringUtils;
@@ -113,13 +115,22 @@ public final class LocalizedStrings {
      */
     public static SingleNavigation<List<? extends VecAbstractLocalizedString>, String> typedStringBy(
             final String descriptionType, final VecLanguageCode languageCode) {
-        return localizedStrings -> localizedStrings.stream()
+        return elements()
                 .filter(VecPredicates.languageCode(languageCode))
-                .flatMap(StreamUtils.ofClass(VecLocalizedTypedString.class))
+                .ofType(VecLocalizedTypedString.class)
                 .filter(typedString -> descriptionType.equals(typedString.getType()))
-                .collect(StreamUtils.findOneOrNone())
-                .map(VecLocalizedTypedString::getValue)
+                .atMostOne()
+                .then(Navigations.nullable(VecLocalizedTypedString::getValue))
                 .filter(StringUtils::isNotEmpty);
+    }
+
+    /**
+     * Navigates from the list to the single localized strings, so that navigations over them can be composed
+     * from the operators. Needed because the source of this catalog is the list itself.
+     */
+    private static MultiNavigation<List<? extends VecAbstractLocalizedString>, VecAbstractLocalizedString>
+    elements() {
+        return Navigations.collection(localizedStrings -> localizedStrings);
     }
 
 }
