@@ -126,6 +126,14 @@ Two kinds of parameter remain legitimate, because neither is expressible by chai
 A navigation-typed parameter is only justified when the catalog wraps logic *around* the passed
 navigation that the caller could not otherwise express — not when the body is pure composition.
 
+The same applies **inside** a catalog. Where a navigation is just a sequence of getter steps and type
+narrowings, it is composed from the operators rather than written as a stream pipeline, so that the
+implementation reads like the path it describes — `ViewItems.placeableElementRole()` is the reference
+example. Raw stream code and hand-written lambdas stay appropriate for *leaf* steps, where there is
+genuine logic and nothing to compose: `Placements.locations()` dispatches on the placement subtype, and
+`LocalizedStrings.stringIn(…)` applies rules that depend on the size of the list. Forcing those through
+the operators would make them longer, not clearer.
+
 ### The legacy API (`navigations`)
 
 The older generation uses catalogs too — final classes named `<Concept>Navs` with static factory

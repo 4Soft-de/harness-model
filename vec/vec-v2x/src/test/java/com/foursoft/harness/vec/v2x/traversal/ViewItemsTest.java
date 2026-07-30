@@ -59,6 +59,7 @@ class ViewItemsTest {
     private final VecSegmentLocation segmentLocation = new VecSegmentLocation();
 
     private VecPlaceableElementRole role;
+    private VecPartOccurrence partOccurrence;
     private HasOccurrenceOrUsages viewItem;
 
     @BeforeEach
@@ -74,7 +75,7 @@ class ViewItemsTest {
         role.getRefPlacement().add(onPointPlacement);
         role.getRefPlacement().add(onWayPlacement);
 
-        final VecPartOccurrence partOccurrence = new VecPartOccurrence();
+        partOccurrence = new VecPartOccurrence();
         partOccurrence.getRoles().add(role);
 
         final List<VecOccurrenceOrUsage> occurrences = List.of(partOccurrence);
@@ -82,8 +83,21 @@ class ViewItemsTest {
     }
 
     @Test
+    void navigatesToTheOccurrencesOrUsagesOfAViewItem() {
+        assertThat(ViewItems.occurrenceOrUsages().listFrom(viewItem)).containsExactly(partOccurrence);
+        assertThat(ViewItems.occurrenceOrUsages().listFrom(Collections::emptyList)).isEmpty();
+    }
+
+    @Test
     void navigatesToThePlaceableElementRoleOfAViewItem() {
         assertThat(ViewItems.placeableElementRole().from(viewItem)).contains(role);
+    }
+
+    @Test
+    void navigatesToNoPlaceableElementRoleForAnOccurrenceWithoutSuchARole() {
+        partOccurrence.getRoles().clear();
+
+        assertThat(ViewItems.placeableElementRole().from(viewItem)).isEmpty();
     }
 
     @Test

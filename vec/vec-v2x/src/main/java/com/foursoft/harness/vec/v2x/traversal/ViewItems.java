@@ -25,9 +25,11 @@
  */
 package com.foursoft.harness.vec.v2x.traversal;
 
+import com.foursoft.harness.vec.common.traversal.MultiNavigation;
+import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.common.traversal.SingleNavigation;
-import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.v2x.HasOccurrenceOrUsages;
+import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsage;
 import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsageViewItem2D;
 import com.foursoft.harness.vec.v2x.VecOccurrenceOrUsageViewItem3D;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
@@ -53,19 +55,28 @@ public final class ViewItems {
     }
 
     /**
+     * Navigates to the occurrences or usages a view item shows.
+     *
+     * @return A navigation to the occurrences or usages of a view item.
+     */
+    public static MultiNavigation<HasOccurrenceOrUsages, VecOccurrenceOrUsage> occurrenceOrUsages() {
+        return Navigations.collection(HasOccurrenceOrUsages::getOccurrenceOrUsage);
+    }
+
+    /**
      * Navigates to the {@link VecPlaceableElementRole} of a view item.
      * <p>
      * A view item is expected to reference at most one placeable element role. If there are several ones, the
-     * first is chosen, see {@link StreamUtils#findOneOrNone()}.
+     * first is chosen, see {@link MultiNavigation#atMostOne()}.
      *
      * @return A navigation to the placeable element role of a view item.
      */
     public static SingleNavigation<HasOccurrenceOrUsages, VecPlaceableElementRole> placeableElementRole() {
-        return viewItem -> viewItem.getOccurrenceOrUsage().stream()
-                .flatMap(StreamUtils.ofClass(VecPartOccurrence.class))
-                .flatMap(StreamUtils.toStream(
-                        occurrence -> occurrence.getRolesWithType(VecPlaceableElementRole.class)))
-                .collect(StreamUtils.findOneOrNone());
+        return occurrenceOrUsages()
+                .ofType(VecPartOccurrence.class)
+                .then(Navigations.collection(VecOccurrenceOrUsage::getRoles))
+                .ofType(VecPlaceableElementRole.class)
+                .atMostOne();
     }
 
 }
