@@ -47,13 +47,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ViewItemsTest {
 
     private static final MultiNavigation<HasOccurrenceOrUsages, VecLocation> ON_POINT_LOCATIONS =
-            ViewItems.placeableElementRole()
-                    .then(PlaceableElementRoles.onPointPlacements())
-                    .then(Placements.locations());
+            ViewItems.toPlaceableElementRole()
+                    .then(PlaceableElementRoles.toOnPointPlacements())
+                    .then(Placements.toLocations());
     private static final MultiNavigation<HasOccurrenceOrUsages, VecLocation> ON_WAY_LOCATIONS =
-            ViewItems.placeableElementRole()
-                    .then(PlaceableElementRoles.onWayPlacements())
-                    .then(Placements.locations());
+            ViewItems.toPlaceableElementRole()
+                    .then(PlaceableElementRoles.toOnWayPlacements())
+                    .then(Placements.toLocations());
 
     private final VecNodeLocation nodeLocation = new VecNodeLocation();
     private final VecSegmentLocation segmentLocation = new VecSegmentLocation();
@@ -84,25 +84,25 @@ class ViewItemsTest {
 
     @Test
     void navigatesToTheOccurrencesOrUsagesOfAViewItem() {
-        assertThat(ViewItems.occurrenceOrUsages().listFrom(viewItem)).containsExactly(partOccurrence);
-        assertThat(ViewItems.occurrenceOrUsages().listFrom(Collections::emptyList)).isEmpty();
+        assertThat(ViewItems.toOccurrenceOrUsages().listFrom(viewItem)).containsExactly(partOccurrence);
+        assertThat(ViewItems.toOccurrenceOrUsages().listFrom(Collections::emptyList)).isEmpty();
     }
 
     @Test
     void navigatesToThePlaceableElementRoleOfAViewItem() {
-        assertThat(ViewItems.placeableElementRole().from(viewItem)).contains(role);
+        assertThat(ViewItems.toPlaceableElementRole().from(viewItem)).contains(role);
     }
 
     @Test
     void navigatesToNoPlaceableElementRoleForAnOccurrenceWithoutSuchARole() {
         partOccurrence.getRoles().clear();
 
-        assertThat(ViewItems.placeableElementRole().from(viewItem)).isEmpty();
+        assertThat(ViewItems.toPlaceableElementRole().from(viewItem)).isEmpty();
     }
 
     @Test
     void navigatesToNoPlaceableElementRoleForAnEmptyViewItem() {
-        assertThat(ViewItems.placeableElementRole().from(Collections::emptyList)).isEmpty();
+        assertThat(ViewItems.toPlaceableElementRole().from(Collections::emptyList)).isEmpty();
     }
 
     @Test
@@ -123,9 +123,9 @@ class ViewItemsTest {
     @Test
     void navigatesToTheLocationsOfEveryPlacementKindAtOnce() {
         final MultiNavigation<HasOccurrenceOrUsages, VecLocation> allLocations =
-                ViewItems.placeableElementRole()
-                        .then(PlaceableElementRoles.placements())
-                        .then(Placements.locations());
+                ViewItems.toPlaceableElementRole()
+                        .then(PlaceableElementRoles.toPlacements())
+                        .then(Placements.toLocations());
 
         assertThat(allLocations.listFrom(viewItem))
                 .containsExactlyInAnyOrder(nodeLocation, segmentLocation, nodeLocation);

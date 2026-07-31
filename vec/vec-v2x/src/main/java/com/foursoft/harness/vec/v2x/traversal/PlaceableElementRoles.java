@@ -46,7 +46,7 @@ public final class PlaceableElementRoles {
      *
      * @return A navigation to the placements of a role.
      */
-    public static MultiNavigation<VecPlaceableElementRole, VecPlacement> placements() {
+    public static MultiNavigation<VecPlaceableElementRole, VecPlacement> toPlacements() {
         return Navigations.collection(VecPlaceableElementRole::getRefPlacement);
     }
 
@@ -55,8 +55,8 @@ public final class PlaceableElementRoles {
      *
      * @return A navigation to the on point placements of a role.
      */
-    public static MultiNavigation<VecPlaceableElementRole, VecOnPointPlacement> onPointPlacements() {
-        return placements().ofType(VecOnPointPlacement.class);
+    public static MultiNavigation<VecPlaceableElementRole, VecOnPointPlacement> toOnPointPlacements() {
+        return toPlacements().ofType(VecOnPointPlacement.class);
     }
 
     /**
@@ -64,8 +64,8 @@ public final class PlaceableElementRoles {
      *
      * @return A navigation to the on way placements of a role.
      */
-    public static MultiNavigation<VecPlaceableElementRole, VecOnWayPlacement> onWayPlacements() {
-        return placements().ofType(VecOnWayPlacement.class);
+    public static MultiNavigation<VecPlaceableElementRole, VecOnWayPlacement> toOnWayPlacements() {
+        return toPlacements().ofType(VecOnWayPlacement.class);
     }
 
 }

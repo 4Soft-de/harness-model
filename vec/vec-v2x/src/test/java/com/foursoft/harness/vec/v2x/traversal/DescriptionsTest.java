@@ -50,9 +50,9 @@ class DescriptionsTest {
         final VecAbstractLocalizedString german = localizedString(VecLanguageCode.DE, "Leitung");
         final VecAbstractLocalizedString english = localizedString(VecLanguageCode.EN, "Wire");
 
-        assertThat(Descriptions.descriptions().listFrom(holderOf(german, english)))
+        assertThat(Descriptions.toDescriptions().listFrom(holderOf(german, english)))
                 .containsExactly(german, english);
-        assertThat(Descriptions.descriptions().listFrom(holderOf())).isEmpty();
+        assertThat(Descriptions.toDescriptions().listFrom(holderOf())).isEmpty();
     }
 
     @Test

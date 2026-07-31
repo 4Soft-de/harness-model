@@ -56,20 +56,20 @@ class PlacementsTest {
 
     @Test
     void navigatesToTheLocationsOfAnOnPointPlacement() {
-        assertThat(Placements.locations().listFrom(onPointPlacement(nodeLocation)))
+        assertThat(Placements.toLocations().listFrom(onPointPlacement(nodeLocation)))
                 .containsExactly(nodeLocation);
     }
 
     @Test
     void navigatesToTheStartAndEndLocationOfAnOnWayPlacement() {
-        assertThat(Placements.locations().listFrom(onWayPlacement()))
+        assertThat(Placements.toLocations().listFrom(onWayPlacement()))
                 .containsExactly(segmentLocation, nodeLocation);
     }
 
     @Test
     void navigatesToNoLocationForAPlacementWithoutLocations() {
-        assertThat(Placements.locations().listFrom(onPointPlacement())).isEmpty();
-        assertThat(Placements.locations().listFrom(new VecOnWayPlacement())).isEmpty();
+        assertThat(Placements.toLocations().listFrom(onPointPlacement())).isEmpty();
+        assertThat(Placements.toLocations().listFrom(new VecOnWayPlacement())).isEmpty();
     }
 
     @Test
@@ -77,16 +77,16 @@ class PlacementsTest {
         final VecOnWayPlacement placement = onWayPlacement();
         placement.setStartLocation(null);
 
-        assertThat(Placements.locations().listFrom(placement)).containsExactly(nodeLocation);
+        assertThat(Placements.toLocations().listFrom(placement)).containsExactly(nodeLocation);
     }
 
     @Test
     void navigatesToTheLocationsOfTheRequestedType() {
         final VecOnWayPlacement placement = onWayPlacement();
 
-        assertThat(Placements.locations().ofType(VecNodeLocation.class).listFrom(placement))
+        assertThat(Placements.toLocations().ofType(VecNodeLocation.class).listFrom(placement))
                 .containsExactly(nodeLocation);
-        assertThat(Placements.locations().ofType(VecSegmentLocation.class).listFrom(placement))
+        assertThat(Placements.toLocations().ofType(VecSegmentLocation.class).listFrom(placement))
                 .containsExactly(segmentLocation);
     }
 
@@ -100,9 +100,9 @@ class PlacementsTest {
         final VecOnWayPlacement placement = onWayPlacement();
 
         assertThat(PlacementNavs.locationsWith(VecNodeLocation.class).apply(placement))
-                .isEqualTo(Placements.locations().ofType(VecNodeLocation.class).listFrom(placement));
+                .isEqualTo(Placements.toLocations().ofType(VecNodeLocation.class).listFrom(placement));
         assertThat(PlacementNavs.locationsWith(VecSegmentLocation.class).apply(placement))
-                .isEqualTo(Placements.locations().ofType(VecSegmentLocation.class).listFrom(placement));
+                .isEqualTo(Placements.toLocations().ofType(VecSegmentLocation.class).listFrom(placement));
     }
 
 }

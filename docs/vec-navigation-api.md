@@ -79,7 +79,7 @@ over the accumulated elements, and are grouped into their own catalogs — `Loca
 reductions, not navigations:
 
 ```java
-Descriptions.descriptions().collect(LocalizedStrings.valueIn(VecLanguageCode.DE))
+Descriptions.toDescriptions().collect(LocalizedStrings.valueIn(VecLanguageCode.DE))
 ```
 
 Recognising a reduction matters for modelling, not just for tidiness. Before `collect` existed, the
@@ -96,10 +96,42 @@ static factory methods returning the navigation interfaces. A catalog contribute
 caller composes them into a path with the operators above. Reductions are grouped the same way, in
 catalogs of their own.
 
+### Naming the factories
+
+**A navigation that is a pure structural step is named `toX()`; one that selects a particular result
+keeps a noun phrase.** The dividing line is whether the result depends on anything beyond the model's
+own structure:
+
+| | Named | Because |
+| --- | --- | --- |
+| `Placements.toLocations()` | `to…` | follows an association |
+| `PlaceableElementRoles.toOnWayPlacements()` | `to…` | association plus a narrowing along the type hierarchy |
+| `ViewItems.toPlaceableElementRole()` | `to…` | association, reduced to the expected single result |
+| `Descriptions.descriptionIn(DE)` | noun | a domain value picks the result |
+| `Descriptions.germanDescription()` | noun | a preset of a selector, so it inherits its naming |
+| `LocalizedStrings.valueIn(DE)` | noun | a reduction, not a navigation at all |
+
+The `to` earns its place at the chain's start, where no operator precedes it, and keeps the whole chain
+reading as one sentence — *"view items **to** placeable element role, then **to** on-way placements,
+then **to** locations"*:
+
+```java
+ViewItems.toPlaceableElementRole()
+        .then(PlaceableElementRoles.toOnWayPlacements())
+        .then(Placements.toLocations())
+```
+
+Note that the sibling `predicates` catalog goes the other way: commit `07a8bd1a` deliberately stripped
+the `is` prefix from every `VecPredicates` method, because `filter(…)` already supplies the verb. The
+difference is that `is` was purely redundant with `Predicate`, whereas `to` states a direction that a
+bare noun leaves the reader to infer. Selectors do not state a direction — they name a thing — which is
+why they keep the predicates style.
+
 ### Catalog organisation
 
 **A navigation belongs to the catalog of its source type `S`.** The catalog is named after that type
-in plural with the `Vec` prefix dropped, and method names state only the *target*, never the source.
+in plural with the `Vec` prefix dropped, and method names state only the *target*, never the source —
+see [Naming the factories](#naming-the-factories) above.
 
 Granularity is the **nearest model supertype** that has navigations, so a type shares a catalog with
 its subtypes, and `Has*` mixin interfaces are legitimate source types with their own catalogs. A
@@ -115,7 +147,7 @@ catalog enumerates everything reachable. Two consequences of the rule are worth 
   `parentDocumentVersionOfOccurrence()`. Since the factories take no arguments, they cannot be
   overloaded, which means a catalog mixing source types is *forced* to encode the source in its method
   names — the legacy `PartOccurrenceOrUsageNavs` shows the result.
-- **Where a family shares a target, the navigation belongs at the family level.** `Placements.locations()`
+- **Where a family shares a target, the navigation belongs at the family level.** `Placements.toLocations()`
   starts at `VecPlacement` and resolves the subtype internally, rather than offering separate
   `onPointLocations()`/`onWayLocations()` entries that would reintroduce source-encoded names.
 
@@ -134,12 +166,12 @@ order the model is traversed:
 
 ```java
 // as a catalog method taking a navigation — nests, reads inside-out
-ViewItems.locations(PlaceableElementRoles.onWayPlacements().then(Placements.locations()))
+ViewItems.locations(PlaceableElementRoles.toOnWayPlacements().then(Placements.toLocations()))
 
 // composed by the caller — reads in traversal order, no extra API
-ViewItems.placeableElementRole()
-        .then(PlaceableElementRoles.onWayPlacements())
-        .then(Placements.locations())
+ViewItems.toPlaceableElementRole()
+        .then(PlaceableElementRoles.toOnWayPlacements())
+        .then(Placements.toLocations())
 ```
 
 Two kinds of parameter remain legitimate, because neither is expressible by chaining:
@@ -148,8 +180,8 @@ Two kinds of parameter remain legitimate, because neither is expressible by chai
   `Descriptions.descriptionIn(VecLanguageCode)` or the property type in
   `LocalizedStrings.typedValueBy(String, VecLanguageCode)`.
 - **Nothing at all**: zero-argument named presets are vocabulary, not indirection, and are encouraged.
-  `PlaceableElementRoles.onPointPlacements()` and `Descriptions.germanDescription()` are just
-  `placements().ofType(VecOnPointPlacement.class)` and `descriptionIn(DE)`, but they name a concept the
+  `PlaceableElementRoles.toOnPointPlacements()` and `Descriptions.germanDescription()` are just
+  `toPlacements().ofType(VecOnPointPlacement.class)` and `descriptionIn(DE)`, but they name a concept the
   domain actually has.
 
 A navigation-typed parameter is only justified when the catalog wraps logic *around* the passed
@@ -157,9 +189,9 @@ navigation that the caller could not otherwise express — not when the body is 
 
 The same applies **inside** a catalog. Where a navigation is just a sequence of getter steps and type
 narrowings, it is composed from the operators rather than written as a stream pipeline, so that the
-implementation reads like the path it describes — `ViewItems.placeableElementRole()` is the reference
+implementation reads like the path it describes — `ViewItems.toPlaceableElementRole()` is the reference
 example. Raw stream code and hand-written lambdas stay appropriate for *leaf* steps, where there is
-genuine logic and nothing to compose: `Placements.locations()` dispatches on the placement subtype, and
+genuine logic and nothing to compose: `Placements.toLocations()` dispatches on the placement subtype, and
 the body of a reduction such as `LocalizedStrings.valueIn(…)` weighs the elements against each other.
 Forcing those through the operators would make them longer, not clearer.
 

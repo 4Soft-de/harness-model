@@ -38,7 +38,7 @@ import java.util.stream.Stream;
  * Navigations starting at a {@link VecPlacement}.
  * <p>
  * To restrict the result to a certain kind of location, narrow the navigation at the call site with
- * {@code Placements.locations().ofType(VecNodeLocation.class)}.
+ * {@code Placements.toLocations().ofType(VecNodeLocation.class)}.
  */
 public final class Placements {
 
@@ -53,7 +53,7 @@ public final class Placements {
      *
      * @return A navigation to the locations of a placement.
      */
-    public static MultiNavigation<VecPlacement, VecLocation> locations() {
+    public static MultiNavigation<VecPlacement, VecLocation> toLocations() {
         return placement -> switch (placement) {
             case final VecOnPointPlacement onPointPlacement -> onPointPlacement.getLocations().stream()
                     .filter(Objects::nonNull);

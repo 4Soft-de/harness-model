@@ -75,7 +75,7 @@ public final class DescriptionNavs {
     /**
      * @deprecated Reduce the localized strings with {@link LocalizedStrings#valueIn(VecLanguageCode)}
      * instead, which composes onto any navigation leading to them, for example
-     * {@link Descriptions#descriptions()}.
+     * {@link Descriptions#toDescriptions()}.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> germanString() {
@@ -85,7 +85,7 @@ public final class DescriptionNavs {
     /**
      * @deprecated Reduce the localized strings with {@link LocalizedStrings#valueIn(VecLanguageCode)}
      * instead, which composes onto any navigation leading to them, for example
-     * {@link Descriptions#descriptions()}.
+     * {@link Descriptions#toDescriptions()}.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> englishString() {
@@ -95,7 +95,7 @@ public final class DescriptionNavs {
     /**
      * @deprecated Reduce the localized strings with {@link LocalizedStrings#valueIn(VecLanguageCode)}
      * instead, which composes onto any navigation leading to them, for example
-     * {@link Descriptions#descriptions()}.
+     * {@link Descriptions#toDescriptions()}.
      */
     @Deprecated(forRemoval = true)
     public static Function<List<? extends VecAbstractLocalizedString>, Optional<String>> stringIn(

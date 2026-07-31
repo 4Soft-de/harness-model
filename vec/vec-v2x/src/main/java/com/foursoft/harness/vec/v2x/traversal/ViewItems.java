@@ -42,9 +42,9 @@ import com.foursoft.harness.vec.v2x.VecPlaceableElementRole;
  * To reach the locations of a view item, continue this navigation at the call site, for example
  * <pre>
  * {@code
- * ViewItems.placeableElementRole()
- *         .then(PlaceableElementRoles.onWayPlacements())
- *         .then(Placements.locations());
+ * ViewItems.toPlaceableElementRole()
+ *         .then(PlaceableElementRoles.toOnWayPlacements())
+ *         .then(Placements.toLocations());
  * }
  * </pre>
  */
@@ -59,7 +59,7 @@ public final class ViewItems {
      *
      * @return A navigation to the occurrences or usages of a view item.
      */
-    public static MultiNavigation<HasOccurrenceOrUsages, VecOccurrenceOrUsage> occurrenceOrUsages() {
+    public static MultiNavigation<HasOccurrenceOrUsages, VecOccurrenceOrUsage> toOccurrenceOrUsages() {
         return Navigations.collection(HasOccurrenceOrUsages::getOccurrenceOrUsage);
     }
 
@@ -71,8 +71,8 @@ public final class ViewItems {
      *
      * @return A navigation to the placeable element role of a view item.
      */
-    public static SingleNavigation<HasOccurrenceOrUsages, VecPlaceableElementRole> placeableElementRole() {
-        return occurrenceOrUsages()
+    public static SingleNavigation<HasOccurrenceOrUsages, VecPlaceableElementRole> toPlaceableElementRole() {
+        return toOccurrenceOrUsages()
                 .ofType(VecPartOccurrence.class)
                 .then(Navigations.collection(VecOccurrenceOrUsage::getRoles))
                 .ofType(VecPlaceableElementRole.class)

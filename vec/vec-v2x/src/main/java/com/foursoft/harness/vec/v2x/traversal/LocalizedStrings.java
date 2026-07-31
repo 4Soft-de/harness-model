@@ -44,10 +44,10 @@ import java.util.stream.Collector;
  * These are <em>not</em> navigations: choosing the right value needs rules over the localized strings as a
  * whole, which no sequence of steps expresses. They are therefore used with
  * {@link MultiNavigation#collect(Collector)} on a navigation leading to the localized strings, such as
- * {@link Descriptions#descriptions()}:
+ * {@link Descriptions#toDescriptions()}:
  * <pre>
  * {@code
- * Descriptions.descriptions().collect(LocalizedStrings.valueIn(VecLanguageCode.DE));
+ * Descriptions.toDescriptions().collect(LocalizedStrings.valueIn(VecLanguageCode.DE));
  * }
  * </pre>
  */

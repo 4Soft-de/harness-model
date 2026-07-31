@@ -50,21 +50,21 @@ class PlaceableElementRolesTest {
 
     @Test
     void navigatesToAllPlacementsOfARole() {
-        assertThat(PlaceableElementRoles.placements().listFrom(role))
+        assertThat(PlaceableElementRoles.toPlacements().listFrom(role))
                 .containsExactlyInAnyOrder(onPointPlacement, onWayPlacement);
     }
 
     @Test
     void navigatesToThePlacementsOfTheRequestedKind() {
-        assertThat(PlaceableElementRoles.onPointPlacements().listFrom(role))
+        assertThat(PlaceableElementRoles.toOnPointPlacements().listFrom(role))
                 .containsExactly(onPointPlacement);
-        assertThat(PlaceableElementRoles.onWayPlacements().listFrom(role))
+        assertThat(PlaceableElementRoles.toOnWayPlacements().listFrom(role))
                 .containsExactly(onWayPlacement);
     }
 
     @Test
     void navigatesToNoPlacementForARoleWithoutPlacements() {
-        assertThat(PlaceableElementRoles.placements().listFrom(new VecPlaceableElementRole())).isEmpty();
+        assertThat(PlaceableElementRoles.toPlacements().listFrom(new VecPlaceableElementRole())).isEmpty();
     }
 
     /**
@@ -75,9 +75,9 @@ class PlaceableElementRolesTest {
     @SuppressWarnings({"deprecation", "removal"})
     void deprecatedNavigationsBehaveLikeTheirReplacement() {
         assertThat(PlacementNavs.onPointPlacement().apply(role))
-                .containsExactlyElementsOf(PlaceableElementRoles.onPointPlacements().listFrom(role));
+                .containsExactlyElementsOf(PlaceableElementRoles.toOnPointPlacements().listFrom(role));
         assertThat(PlacementNavs.onWayPlacement().apply(role))
-                .containsExactlyElementsOf(PlaceableElementRoles.onWayPlacements().listFrom(role));
+                .containsExactlyElementsOf(PlaceableElementRoles.toOnWayPlacements().listFrom(role));
     }
 
 }

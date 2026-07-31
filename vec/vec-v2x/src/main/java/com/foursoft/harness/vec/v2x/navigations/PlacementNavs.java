@@ -50,19 +50,19 @@ public final class PlacementNavs {
     }
 
     /**
-     * @deprecated Use {@link PlaceableElementRoles#onPointPlacements()} instead.
+     * @deprecated Use {@link PlaceableElementRoles#toOnPointPlacements()} instead.
      */
     @Deprecated(forRemoval = true)
     public static Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> onPointPlacement() {
-        return PlaceableElementRoles.onPointPlacements();
+        return PlaceableElementRoles.toOnPointPlacements();
     }
 
     /**
-     * @deprecated Use {@link PlaceableElementRoles#onWayPlacements()} instead.
+     * @deprecated Use {@link PlaceableElementRoles#toOnWayPlacements()} instead.
      */
     @Deprecated(forRemoval = true)
     public static Function<VecPlaceableElementRole, Stream<VecOnWayPlacement>> onWayPlacement() {
-        return PlaceableElementRoles.onWayPlacements();
+        return PlaceableElementRoles.toOnWayPlacements();
     }
 
     /**
@@ -73,26 +73,26 @@ public final class PlacementNavs {
      * {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
      * @see #onPointPlacement()
      * @deprecated Compose the navigation at the call site instead, which also works for
-     * {@link PlaceableElementRoles#onWayPlacements()}:
-     * {@code ViewItems.placeableElementRole().then(PlaceableElementRoles.onPointPlacements())
-     * .then(Placements.locations())}.
+     * {@link PlaceableElementRoles#toOnWayPlacements()}:
+     * {@code ViewItems.toPlaceableElementRole().then(PlaceableElementRoles.toOnPointPlacements())
+     * .then(Placements.toLocations())}.
      */
     @Deprecated(forRemoval = true)
     public static Function<HasOccurrenceOrUsages, List<VecLocation>> locationsOf(
             final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
-        final MultiNavigation<HasOccurrenceOrUsages, VecLocation> locations = ViewItems.placeableElementRole()
+        final MultiNavigation<HasOccurrenceOrUsages, VecLocation> locations = ViewItems.toPlaceableElementRole()
                 .then(Navigations.stream(placement))
-                .then(Placements.locations());
+                .then(Placements.toLocations());
         return locations::listFrom;
     }
 
     /**
-     * @deprecated Use {@code Placements.locations().ofType(locationType)} instead.
+     * @deprecated Use {@code Placements.toLocations().ofType(locationType)} instead.
      */
     @Deprecated(forRemoval = true)
     public static <T extends VecLocation> Function<VecOnWayPlacement, List<T>> locationsWith(
             final Class<T> locationType) {
-        final MultiNavigation<VecPlacement, T> locations = Placements.locations().ofType(locationType);
+        final MultiNavigation<VecPlacement, T> locations = Placements.toLocations().ofType(locationType);
         return locations::listFrom;
     }
 

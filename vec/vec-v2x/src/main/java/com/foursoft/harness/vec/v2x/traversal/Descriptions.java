@@ -51,7 +51,7 @@ public final class Descriptions {
      * @return A navigation to the descriptions of an element.
      */
     public static MultiNavigation<HasDescription<? extends VecAbstractLocalizedString>,
-            VecAbstractLocalizedString> descriptions() {
+            VecAbstractLocalizedString> toDescriptions() {
         return Navigations.collection(HasDescription::getDescriptions);
     }
 
@@ -84,7 +84,7 @@ public final class Descriptions {
      */
     public static SingleNavigation<HasDescription<? extends VecAbstractLocalizedString>, String> descriptionIn(
             final VecLanguageCode languageCode) {
-        return descriptions().collect(LocalizedStrings.valueIn(languageCode));
+        return toDescriptions().collect(LocalizedStrings.valueIn(languageCode));
     }
 
     /**
@@ -121,7 +121,7 @@ public final class Descriptions {
      */
     public static SingleNavigation<HasDescription<? extends VecAbstractLocalizedString>, String> typedStringBy(
             final String descriptionType, final VecLanguageCode languageCode) {
-        return descriptions().collect(LocalizedStrings.typedValueBy(descriptionType, languageCode));
+        return toDescriptions().collect(LocalizedStrings.typedValueBy(descriptionType, languageCode));
     }
 
 }
