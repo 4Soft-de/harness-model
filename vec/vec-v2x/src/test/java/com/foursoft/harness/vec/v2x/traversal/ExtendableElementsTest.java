@@ -62,12 +62,21 @@ class ExtendableElementsTest {
     /**
      * Characterisation test for the deprecated {@link VecNavs}, which delegates to
      * {@link ExtendableElements}. Can be removed together with {@link VecNavs}.
+     * <p>
+     * The two agree on every model the schema admits, which is what this pins. They deviate on an
+     * unnumbered document: the deprecated navigation maps each referenced document and so yields a
+     * {@code null} element, while the replacement treats a missing number as an absent target and
+     * omits it. Since {@code DocumentNumber} is mandatory, only an incomplete model can tell them
+     * apart, and the fixture below therefore references numbered documents only.
      */
     @Test
     @SuppressWarnings({"deprecation", "removal"})
     void deprecatedNavigationsBehaveLikeTheirReplacement() {
-        assertThat(VecNavs.externalDocumentNumbers().apply(element))
-                .isEqualTo(ExtendableElements.toExternalDocumentNumbers().listFrom(element));
+        final VecExtendableElement numbered = new VecPartOccurrence();
+        numbered.getReferencedExternalDocuments().add(drawing);
+
+        assertThat(VecNavs.externalDocumentNumbers().apply(numbered))
+                .isEqualTo(ExtendableElements.toExternalDocumentNumbers().listFrom(numbered));
     }
 
 }
