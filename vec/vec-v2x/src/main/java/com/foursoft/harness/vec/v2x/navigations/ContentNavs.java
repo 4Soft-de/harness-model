@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC 2.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,10 +25,12 @@
  */
 package com.foursoft.harness.vec.v2x.navigations;
 
-import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.common.traversal.MultiNavigation;
 import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecSpecification;
+import com.foursoft.harness.vec.v2x.traversal.Contents;
+import com.foursoft.harness.vec.v2x.traversal.SpecificationOwners;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,25 +38,34 @@ import java.util.function.Function;
 
 /**
  * Navigation methods for the {@link VecContent}.
+ *
+ * @deprecated Use {@link Contents} instead.
  */
+@Deprecated(forRemoval = true)
 public final class ContentNavs {
 
     private ContentNavs() {
         // hide default constructor
     }
 
+    /**
+     * @deprecated Compose the navigation at the call site instead:
+     * {@code Contents.toDocumentVersions().then(SpecificationOwners.toSpecifications()).ofType(clazz)}.
+     */
+    @Deprecated(forRemoval = true)
     public static <T extends VecSpecification> Function<VecContent, List<T>> allSpecificationsOf(final Class<T> clazz) {
-        return vecContent -> vecContent.getDocumentVersions()
-                .stream()
-                .flatMap(StreamUtils.toStream(documentVersion -> documentVersion.getSpecificationsWithType(clazz)))
-                .toList();
+        final MultiNavigation<VecContent, T> specifications = Contents.toDocumentVersions()
+                .then(SpecificationOwners.<VecDocumentVersion>toSpecifications())
+                .ofType(clazz);
+        return specifications::listFrom;
     }
 
-    public static Function<VecContent, Optional<VecDocumentVersion>> documentVersionBy(
-            final String documentNumber) {
-        return content -> content.getDocumentVersions().stream()
-                .filter(documentVersion -> documentVersion.getDocumentNumber().equals(documentNumber))
-                .collect(StreamUtils.findOneOrNone());
+    /**
+     * @deprecated Use {@link Contents#documentVersionBy(String)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    public static Function<VecContent, Optional<VecDocumentVersion>> documentVersionBy(final String documentNumber) {
+        return Contents.documentVersionBy(documentNumber);
     }
 
 }
