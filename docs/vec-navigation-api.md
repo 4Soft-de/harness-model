@@ -131,7 +131,10 @@ why they keep the predicates style.
 
 **A navigation belongs to the catalog of its source type `S`.** The catalog is named after that type
 in plural with the `Vec` prefix dropped, and method names state only the *target*, never the source —
-see [Naming the factories](#naming-the-factories) above.
+see [Naming the factories](#naming-the-factories) above. A `Has*` mixin drops the `Has` instead, which is
+where `Descriptions` and `CustomProperties` come from; where that would collide with the catalog of the
+element itself, the mixin catalog says whose it is — `HasSpecifications` becomes `SpecificationOwners`,
+because `Specifications` is the catalog of `VecSpecification`.
 
 Granularity is the **nearest model supertype** that has navigations, so a type shares a catalog with
 its subtypes, and `Has*` mixin interfaces are legitimate source types with their own catalogs. A
@@ -140,7 +143,7 @@ several hundred classes — without making the lookup ambiguous.
 
 That gives a mechanical answer to *"I am holding an `x`, where can I go from here?"*: the navigation
 is in the catalog named after `x`'s type or one of its supertypes or mixins, and autocomplete on that
-catalog enumerates everything reachable. Two consequences of the rule are worth stating explicitly:
+catalog enumerates everything reachable. Three consequences of the rule are worth stating explicitly:
 
 - **The source never appears in a method name.** A catalog with a single source type does not need to
   disambiguate, so `parentDocumentVersion()` stays as it is instead of becoming
@@ -150,6 +153,17 @@ catalog enumerates everything reachable. Two consequences of the rule are worth 
 - **Where a family shares a target, the navigation belongs at the family level.** `Placements.toLocations()`
   starts at `VecPlacement` and resolves the subtype internally, rather than offering separate
   `onPointLocations()`/`onWayLocations()` entries that would reintroduce source-encoded names.
+  `OccurrenceOrUsages` is the larger case: `toParentDocumentVersion()`, `toPrimaryPartType()` and
+  `toPartOrUsageRelatedSpecifications()` each start at `VecOccurrenceOrUsage` and switch on the subtype,
+  which is what retires the `OfOccurrence`/`OfUsage` suffixes of the legacy catalog. Such a switch covers
+  every subtype the model has, so its `default` arm throws a `VecException` rather than returning an empty
+  result: reaching it means a subtype was missed when the navigation was written, and an empty result would
+  hide that as a legitimately empty path.
+- **A mixin catalog is generic in its source.** `SpecificationOwners.toSpecifications()` is declared
+  `<S extends HasSpecifications<VecSpecification>>`, so a chain starting at a `VecDocumentVersion` keeps
+  that type — `SpecificationOwners.<VecDocumentVersion>toSpecifications().ofType(…)` — instead of widening
+  to the mixin and forcing every catalog downstream to widen too. Without the type parameter, `DocumentVersions`
+  could not build on the mixin's steps and would have to duplicate them.
 
 The rule deliberately optimises the "from" direction. *"Which navigations lead to a `VecLocation`?"* is
 not answerable from the class layout, because a target is reachable from many sources while a
@@ -199,7 +213,9 @@ Forcing those through the operators would make them longer, not clearer.
 
 The older generation uses catalogs too — final classes named `<Concept>Navs` with static factory
 methods — but every factory returns a raw `java.util.function.Function`, and the catalogs follow no
-single grouping rule. Consequences:
+single grouping rule. All of them are now deprecated for removal and delegate to the typed catalogs, so
+what follows describes the surface that is being retired, not behaviour that still lives anywhere.
+Consequences:
 
 - A navigation has no type identity and cannot be distinguished from any other function.
 - Result shapes are inconsistent across the catalogs: bare values, `Optional`, `List` and `Stream`
@@ -279,7 +295,8 @@ vec/vec-v2x/src/main/java/com/foursoft/harness/vec/v2x/
 └── navigations/                  ← legacy catalogs (deprecated for removal)
 
 vec/vec-v12x/src/main/java/com/foursoft/harness/vec/v12x/
-└── navigations/                  ← legacy catalogs, not yet ported
+├── traversal/                    ← typed catalogs, the same set as v2x
+└── navigations/                  ← legacy catalogs (deprecated for removal)
 ```
 
 Both packages are exported in each module's `module-info.java` and published to Maven Central, so
@@ -290,25 +307,49 @@ they are public API.
 | Module | Typed catalogs | Legacy catalogs |
 | --- | --- | --- |
 | `vec-common` | interfaces and factory | — |
-| `vec-v2x` | 5 catalogs, see below | 10 `*Navs`, two of them deprecated and delegating |
-| `vec-v12x` | — | 10 `*Navs` |
+| `vec-v2x` | 15 catalogs, see below | 10 `*Navs`, all deprecated and delegating |
+| `vec-v12x` | the same 15 catalogs | 10 `*Navs`, all deprecated and delegating |
 | `vec-v113` | — | none |
 
-The `vec-v2x` catalogs and their source types:
+Every legacy navigation has a replacement, so both `navigations` packages are deprecated in full and
+carry no logic of their own. The catalogs and their source types, identical in both modules:
 
 | Catalog | Source type `S` |
 | --- | --- |
+| `ConfigurableElements` | `VecConfigurableElement` |
+| `Contents` | `VecContent` |
+| `CustomProperties` | `HasCustomProperties<VecCustomProperty>` |
 | `Descriptions` | `HasDescription<? extends VecAbstractLocalizedString>` |
-| `Placements` | `VecPlacement` (and its on-point/on-way subtypes) |
+| `DocumentVersions` | `VecDocumentVersion` |
+| `ExtendableElements` | `VecExtendableElement` |
+| `LocalizedStringProperties` | `VecLocalizedStringProperty` |
+| `OccurrenceOrUsages` | `VecOccurrenceOrUsage` (and its occurrence/usage subtypes) |
 | `PlaceableElementRoles` | `VecPlaceableElementRole` |
+| `Placements` | `VecPlacement` (and its on-point/on-way subtypes) |
+| `Roles` | `VecRole` |
+| `Specifications` | `VecSpecification` (and its subtypes) |
+| `SpecificationOwners` | `HasSpecifications<VecSpecification>` |
+| `TopologySegments` | `VecTopologySegment` |
 | `ViewItems` | `HasOccurrenceOrUsages` |
 
 Plus one reduction catalog: `LocalizedStrings`, over `VecAbstractLocalizedString`.
 
-Note that the two legacy catalogs ported so far each split across several of these, because they
-grouped by target concept: `DescriptionNavs` became `Descriptions` plus the `LocalizedStrings`
-reductions, and `PlacementNavs` became `Placements`, `PlaceableElementRoles` and `ViewItems`. Expect the
-same when porting the remaining catalogs — the mapping from old catalog to new is not one-to-one, and
-some legacy navigations turn out to be reductions rather than navigations at all.
+The mapping from old catalog to new is not one-to-one. Catalogs which grouped by target concept split
+across several source types — `DescriptionNavs` became `Descriptions` plus the `LocalizedStrings`
+reductions, `PlacementNavs` became `Placements`, `PlaceableElementRoles` and `ViewItems`, and
+`CustomPropertyNavs` became `CustomProperties` plus `LocalizedStringProperties` — while the catch-all
+`VecNavs` split into `ExtendableElements` and `Roles`. In the other direction, the `OfOccurrence` and
+`OfUsage` pairs of `PartOccurrenceOrUsageNavs` collapsed into one family-level navigation each.
 
-The remaining `vec-v2x` catalogs are ported one at a time; `vec-v12x` follows afterwards.
+A few legacy signatures had no navigation shape at all and are deprecated without a one-to-one
+replacement:
+
+- `PartOccurrenceOrUsageNavs.occurrence()` / `usage()` are `ofType` on whatever navigation leads to the
+  occurrences.
+- `PartOccurrenceOrUsageNavs.findNodeOfComponent()` took two sources; it became
+  `DocumentVersions.topologyNodeOf(VecOccurrenceOrUsage)`, a navigation from the document version with the
+  component as a domain value.
+- `CustomPropertyNavs.customPropertyOfType(…)` (v12x only) starts at a collection of properties, the
+  signal of a navigation in the wrong shape; it is a filter and a narrowing at the call site.
+
+`vec-v113` has no navigations of either generation.

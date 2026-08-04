@@ -28,10 +28,13 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.specifica
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.compatibility.vec11to12.wrapper.vec11to12.DefaultWrapper;
+import com.foursoft.harness.vec.common.HasCustomProperties;
+import com.foursoft.harness.vec.common.traversal.Navigations;
+import com.foursoft.harness.vec.common.traversal.SingleNavigation;
 import com.foursoft.harness.vec.v12x.VecCustomProperty;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 import com.foursoft.harness.vec.v12x.VecNumericalValueProperty;
-import com.foursoft.harness.vec.v12x.navigations.CustomPropertyNavs;
+import com.foursoft.harness.vec.v12x.traversal.CustomProperties;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -45,6 +48,13 @@ public class StripeSpecificationWrapper extends DefaultWrapper {
 
     private static final String GET_CUSTOM_PROPERTIES_METHOD_NAME = "getCustomProperties";
     private static final String THICKNESS_CUSTOM_PROPERTY = "Thickness";
+
+    private static final SingleNavigation<HasCustomProperties<VecCustomProperty>, VecNumericalValue> THICKNESS =
+            CustomProperties.toCustomProperties()
+                    .filter(property -> THICKNESS_CUSTOM_PROPERTY.equalsIgnoreCase(property.getPropertyType()))
+                    .ofType(VecNumericalValueProperty.class)
+                    .atMostOne()
+                    .then(Navigations.nullable(VecNumericalValueProperty::getValue));
 
     private VecNumericalValue thickness;
 
@@ -87,13 +97,9 @@ public class StripeSpecificationWrapper extends DefaultWrapper {
 
     private VecNumericalValue getThickness() {
         if (thickness == null) {
-            final List<VecCustomProperty> vecCustomProperties =
+            final List<VecCustomProperty> customProperties =
                     wrapList(GET_CUSTOM_PROPERTIES_METHOD_NAME, VecCustomProperty.class);
-            thickness = CustomPropertyNavs.customPropertyOfType(THICKNESS_CUSTOM_PROPERTY,
-                                                                VecNumericalValueProperty.class)
-                    .apply(vecCustomProperties)
-                    .map(VecNumericalValueProperty::getValue)
-                    .orElse(null);
+            thickness = THICKNESS.orElseNull(() -> customProperties);
         }
 
         return thickness;

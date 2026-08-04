@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.X
+ * VEC 1.2.X
  * %%
  * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
@@ -23,14 +23,14 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.v2x.traversal;
+package com.foursoft.harness.vec.v12x.traversal;
 
 import com.foursoft.harness.vec.common.exception.VecException;
 import com.foursoft.harness.vec.common.traversal.MultiNavigation;
-import com.foursoft.harness.vec.v2x.VecLocation;
-import com.foursoft.harness.vec.v2x.VecOnPointPlacement;
-import com.foursoft.harness.vec.v2x.VecOnWayPlacement;
-import com.foursoft.harness.vec.v2x.VecPlacement;
+import com.foursoft.harness.vec.v12x.VecLocation;
+import com.foursoft.harness.vec.v12x.VecOnPointPlacement;
+import com.foursoft.harness.vec.v12x.VecOnWayPlacement;
+import com.foursoft.harness.vec.v12x.VecPlacement;
 
 import java.util.Objects;
 import java.util.stream.Stream;

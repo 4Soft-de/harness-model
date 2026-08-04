@@ -35,5 +35,6 @@ open module com.foursoft.harness.vec.v12x {
     exports com.foursoft.harness.vec.v12x.visitor;
     exports com.foursoft.harness.vec.v12x.navigations;
     exports com.foursoft.harness.vec.v12x.predicates;
+    exports com.foursoft.harness.vec.v12x.traversal;
     exports com.foursoft.harness.vec.v12x.validation;
 }
