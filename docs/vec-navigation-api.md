@@ -209,6 +209,37 @@ genuine logic and nothing to compose: `Placements.toLocations()` dispatches on t
 the body of a reduction such as `LocalizedStrings.valueIn(…)` weighs the elements against each other.
 Forcing those through the operators would make them longer, not clearer.
 
+### Deprecated model associations
+
+The VEC standard evolves too and deprecates associations of its own. Where it supersedes one path
+through the model with another, the navigation **follows the recommended path and falls back to the
+deprecated one only where the recommended path leads nowhere**. Both generations of files therefore
+navigate through the same catalog method, and no call site has to know which generation it is holding.
+
+`ConfigurableElements.toVariantConfiguration()` is the reference case. VEC 2.X configures an element
+through the `VecConfigurationConstraint`s referencing it and deprecates the element's own `ConfigInfo`
+association for removal, so the navigation goes back to the constraints and forward to their
+configuration first, and only an empty result sends it to the old association. Three properties of that
+shape generalise:
+
+- **The fallback keys on the result, not on a version flag.** Nothing tells a navigation which
+  generation a file was written against, and mixed files exist. An empty result is the only signal
+  available, and it is the right one: it means the recommended path genuinely holds no answer here.
+- **A path against the reference direction needs back references.** The recommended path is usually the
+  reverse of the association the deprecated one followed forwards, so it depends on the `navext`
+  back-reference accessors and carries `@RequiresBackReferences` — along with everything built on it.
+  Read without back references, such a navigation finds nothing and silently takes the fallback:
+  correct, but degraded, which is what the annotation warns about.
+- **The suppression stays in the catalog.** Using a deprecated getter needs
+  `@SuppressWarnings({"deprecation", "removal"})`, and the catalog is where it belongs. It is then the
+  single place in the repository touching the association, and consumers never need the suppression at
+  all.
+
+The direction is the mirror image of the repository's own deprecations, where the old API delegates to
+the new one (see [API Evolution](api-evolution.md)). Here the new path falls back to the old, because
+the deprecation is in the data rather than in this code: a consumer can migrate its calls, but nobody
+can migrate the files that already exist.
+
 ### The legacy API (`navigations`)
 
 The older generation uses catalogs too — final classes named `<Concept>Navs` with static factory
@@ -254,6 +285,11 @@ Consequences:
 - **A distinct package name, not a singular/plural pair.** `traversal` was chosen over
   `navigation` precisely because the old package is called `navigations`; while both exist, a
   singular/plural pair would create permanent import ambiguity.
+- **A deprecated model association is a fallback, not a second navigation.** Offering the recommended
+  and the superseded path as two catalog methods would push the choice, and the knowledge of which VEC
+  generation a file follows, to every call site — which is exactly what a navigation exists to absorb.
+  One method with a fallback keeps the model's deprecation invisible to consumers until the model
+  removes the association, at which point only the fallback is deleted.
 - **Catalogs expose steps, not composed paths.** Composition happens at the call site, so a catalog
   factory never takes a parameter it would only forward to one of the interface's operators. The chained
   form reads in traversal order and needs no API surface; a wrapper method reads inside-out and hides

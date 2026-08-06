@@ -26,6 +26,7 @@
 package com.foursoft.harness.vec.v2x.traversal;
 
 import com.foursoft.harness.vec.v2x.VecConfigurableElement;
+import com.foursoft.harness.vec.v2x.VecConfigurationConstraint;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
 import com.foursoft.harness.vec.v2x.navigations.ConfigurableElementNavs;
@@ -55,9 +56,55 @@ class ConfigurableElementsTest {
         configured = occurrence;
     }
 
+    /**
+     * Back references are set during unmarshalling only, so a test model has to establish them itself.
+     */
+    private static void constrain(final VecConfigurableElement element,
+                                  final VecVariantConfiguration configuration) {
+        final VecConfigurationConstraint constraint = new VecConfigurationConstraint();
+        constraint.setConfigInfo(configuration);
+        constraint.getConstrainedElements().add(element);
+        element.getRefConfigurationConstraint().add(constraint);
+    }
+
     @Test
     void navigatesToTheVariantConfigurationOfAnElement() {
         assertThat(ConfigurableElements.toVariantConfiguration().from(configured)).contains(configuration);
+    }
+
+    @Test
+    void navigatesToTheVariantConfigurationThroughTheConstrainingConstraint() {
+        final VecVariantConfiguration constrained = new VecVariantConfiguration();
+        constrain(unconfigured, constrained);
+
+        assertThat(ConfigurableElements.toVariantConfiguration().from(unconfigured)).contains(constrained);
+    }
+
+    @Test
+    void prefersTheConstraintOverTheDeprecatedConfigInfo() {
+        final VecVariantConfiguration constrained = new VecVariantConfiguration();
+        constrained.setLogisticControlString("C + D");
+        constrain(configured, constrained);
+
+        assertThat(ConfigurableElements.toVariantConfiguration().from(configured)).contains(constrained);
+        assertThat(ConfigurableElements.toLogisticControlString().from(configured)).contains("C + D");
+    }
+
+    @Test
+    void fallsBackToTheDeprecatedConfigInfoForAConstraintWithoutConfiguration() {
+        constrain(configured, null);
+
+        assertThat(ConfigurableElements.toVariantConfiguration().from(configured)).contains(configuration);
+    }
+
+    @Test
+    void navigatesToTheConfigurationConstraintsOfAnElement() {
+        constrain(configured, configuration);
+
+        assertThat(ConfigurableElements.toConfigurationConstraints().listFrom(configured))
+                .singleElement()
+                .satisfies(constraint -> assertThat(constraint.getConstrainedElements()).containsExactly(configured));
+        assertThat(ConfigurableElements.toConfigurationConstraints().listFrom(unconfigured)).isEmpty();
     }
 
     @Test

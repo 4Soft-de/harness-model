@@ -12,7 +12,8 @@ files cover usage and the code covers the details.
 ## Cross-cutting
 
 - [API Evolution](api-evolution.md) — how public API is replaced without breaking downstream
-  consumers: version-suffixed modules, and the deprecate-and-delegate pattern for superseded concepts.
+  consumers: version-suffixed modules, the deprecate-and-delegate pattern for superseded concepts, and
+  how deprecations in the models themselves differ from it.
 
 ## Module-level documents
 
