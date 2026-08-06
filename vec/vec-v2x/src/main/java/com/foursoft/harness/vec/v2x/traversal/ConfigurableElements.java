@@ -25,10 +25,15 @@
  */
 package com.foursoft.harness.vec.v2x.traversal;
 
+import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
+import com.foursoft.harness.vec.common.traversal.MultiNavigation;
 import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.common.traversal.SingleNavigation;
 import com.foursoft.harness.vec.v2x.VecConfigurableElement;
+import com.foursoft.harness.vec.v2x.VecConfigurationConstraint;
 import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
+
+import java.util.Optional;
 
 /**
  * Navigations starting at a {@link VecConfigurableElement}, that is at any element whose presence can be
@@ -41,23 +46,46 @@ public final class ConfigurableElements {
     }
 
     /**
+     * Navigates to the {@link VecConfigurationConstraint}s constraining a configurable element.
+     * <p>
+     * This is the reverse of {@link VecConfigurationConstraint#getConstrainedElements()} and therefore only
+     * yields elements on a model read with back references.
+     *
+     * @return A navigation to the configuration constraints of an element.
+     */
+    @RequiresBackReferences
+    public static MultiNavigation<VecConfigurableElement, VecConfigurationConstraint> toConfigurationConstraints() {
+        return Navigations.collection(VecConfigurableElement::getRefConfigurationConstraint);
+    }
+
+    /**
      * Navigates to the configuration of a configurable element.
      * <p>
-     * VEC 2.X deprecates the association this follows without offering a replacement for it, so this
-     * navigation is deprecated for removal in the model's sense, not in this API's.
+     * VEC 2.X configures an element through the {@link VecConfigurationConstraint}s pointing at it, so the
+     * navigation takes that way first: back to the constraints and forward to their configuration. Only if
+     * this leads nowhere does it fall back to the element's own {@code ConfigInfo} association, which the
+     * model deprecated for removal. The fallback also covers a model read without back references, where the
+     * recommended way cannot be followed at all.
      *
      * @return A navigation to the variant configuration of an element.
      */
+    @RequiresBackReferences
     @SuppressWarnings({"deprecation", "removal"})
     public static SingleNavigation<VecConfigurableElement, VecVariantConfiguration> toVariantConfiguration() {
-        return Navigations.nullable(VecConfigurableElement::getConfigInfo);
+        return element -> toConfigurationConstraints()
+                .then(Navigations.nullable(VecConfigurationConstraint::getConfigInfo))
+                .atMostOne()
+                .from(element)
+                .or(() -> Optional.ofNullable(element.getConfigInfo()));
     }
 
     /**
      * Navigates to the logistic control string of a configurable element.
      *
      * @return A navigation to the logistic control string of an element.
+     * @see #toVariantConfiguration()
      */
+    @RequiresBackReferences
     public static SingleNavigation<VecConfigurableElement, String> toLogisticControlString() {
         return toVariantConfiguration()
                 .then(Navigations.nullable(VecVariantConfiguration::getLogisticControlString));
@@ -67,7 +95,9 @@ public final class ConfigurableElements {
      * Navigates to the logistic control expression of a configurable element.
      *
      * @return A navigation to the logistic control expression of an element.
+     * @see #toVariantConfiguration()
      */
+    @RequiresBackReferences
     public static SingleNavigation<VecConfigurableElement, String> toLogisticControlExpression() {
         return toVariantConfiguration()
                 .then(Navigations.nullable(VecVariantConfiguration::getLogisticControlExpression));

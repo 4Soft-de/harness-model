@@ -49,6 +49,16 @@ The delegation direction is deliberately old → new. Making the deprecated clas
 and the new one a wrapper would keep the old semantics as the source of truth and prevent the new API
 from fixing anything.
 
+### Deprecations in the model are a separate axis
+
+The VEC and KBL standards deprecate parts of their own models, which is unrelated to this repository
+deprecating its API — a generated model class can be deprecated for removal by the standard while the
+hand-written code using it is current. The two are handled in opposite directions. An API deprecation
+delegates old to new, because the caller is the one who migrates. A model deprecation is absorbed by
+preferring the recommended path and falling back to the deprecated one, because the files already
+written cannot be migrated by anyone here. See
+[Deprecated model associations](vec-navigation-api.md#deprecated-model-associations).
+
 ## Key Design Decisions
 
 - **Tests accompany the new API, not the old one.** Because the legacy API is typically untested,
