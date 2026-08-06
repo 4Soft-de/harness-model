@@ -25,34 +25,44 @@
  */
 package com.foursoft.harness.vec.v2x.navigations;
 
-import com.foursoft.harness.vec.common.util.StreamUtils;
+import com.foursoft.harness.vec.common.traversal.MultiNavigation;
+import com.foursoft.harness.vec.common.traversal.Navigations;
 import com.foursoft.harness.vec.v2x.*;
+import com.foursoft.harness.vec.v2x.traversal.PlaceableElementRoles;
+import com.foursoft.harness.vec.v2x.traversal.Placements;
+import com.foursoft.harness.vec.v2x.traversal.ViewItems;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  * Navigation methods for getting {@link VecPlacement}s.
+ *
+ * @deprecated These navigations start at three different source types and are therefore spread over the
+ * catalogs of those types: {@link PlaceableElementRoles}, {@link Placements} and {@link ViewItems}.
  */
+@Deprecated(forRemoval = true)
 public final class PlacementNavs {
 
     private PlacementNavs() {
         // hide default constructor
     }
 
+    /**
+     * @deprecated Use {@link PlaceableElementRoles#toOnPointPlacements()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> onPointPlacement() {
-        return role -> role.getRefPlacement().stream()
-                .filter(VecOnPointPlacement.class::isInstance)
-                .map(VecOnPointPlacement.class::cast);
+        return PlaceableElementRoles.toOnPointPlacements();
     }
 
+    /**
+     * @deprecated Use {@link PlaceableElementRoles#toOnWayPlacements()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<VecPlaceableElementRole, Stream<VecOnWayPlacement>> onWayPlacement() {
-        return role -> role.getRefPlacement().stream()
-                .filter(VecOnWayPlacement.class::isInstance)
-                .map(VecOnWayPlacement.class::cast);
+        return PlaceableElementRoles.toOnWayPlacements();
     }
 
     /**
@@ -61,35 +71,29 @@ public final class PlacementNavs {
      * @param placement Placement Navigation method.
      * @return A function to get the locations from a
      * {@link VecOccurrenceOrUsageViewItem3D} or {@link VecOccurrenceOrUsageViewItem2D}.
-     * @see #onWayPlacement()
      * @see #onPointPlacement()
+     * @deprecated Compose the navigation at the call site instead, which also works for
+     * {@link PlaceableElementRoles#toOnWayPlacements()}:
+     * {@code ViewItems.toPlaceableElementRole().then(PlaceableElementRoles.toOnPointPlacements())
+     * .then(Placements.toLocations())}.
      */
+    @Deprecated(forRemoval = true)
     public static Function<HasOccurrenceOrUsages, List<VecLocation>> locationsOf(
             final Function<VecPlaceableElementRole, Stream<VecOnPointPlacement>> placement) {
-        return viewItem -> viewItem.getOccurrenceOrUsage().stream()
-                .filter(VecPartOccurrence.class::isInstance)
-                .map(VecPartOccurrence.class::cast)
-                .flatMap(StreamUtils.toStream(c -> c.getRolesWithType(VecPlaceableElementRole.class)))
-                .collect(StreamUtils.findOneOrNone())
-                .map(role -> placement.apply(role)
-                        .map(VecOnPointPlacement::getLocations)
-                        .flatMap(List::stream)
-                        .toList())
-                .orElseGet(Collections::emptyList);
+        final MultiNavigation<HasOccurrenceOrUsages, VecLocation> locations = ViewItems.toPlaceableElementRole()
+                .then(Navigations.stream(placement))
+                .then(Placements.toLocations());
+        return locations::listFrom;
     }
 
+    /**
+     * @deprecated Use {@code Placements.toLocations().ofType(locationType)} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static <T extends VecLocation> Function<VecOnWayPlacement, List<T>> locationsWith(
             final Class<T> locationType) {
-        return placement ->
-                getLocationsByType(Stream.of(placement.getStartLocation(), placement.getEndLocation()), locationType)
-                        .toList();
-    }
-
-    private static <T extends VecLocation> Stream<T> getLocationsByType(final Stream<VecLocation> locations,
-                                                                        final Class<T> locationType) {
-        return locations
-                .filter(locationType::isInstance)
-                .map(locationType::cast);
+        final MultiNavigation<VecPlacement, T> locations = Placements.toLocations().ofType(locationType);
+        return locations::listFrom;
     }
 
 }

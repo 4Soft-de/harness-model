@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC 2.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,34 +27,48 @@ package com.foursoft.harness.vec.v2x.navigations;
 
 import com.foursoft.harness.vec.v2x.VecConfigurableElement;
 import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
+import com.foursoft.harness.vec.v2x.traversal.ConfigurableElements;
 
 import java.util.Optional;
 import java.util.function.Function;
 
 /**
  * Navigation methods for the {@link VecConfigurableElement}.
+ *
+ * @deprecated Use {@link ConfigurableElements} instead.
  */
+@Deprecated(forRemoval = true)
 public final class ConfigurableElementNavs {
 
     private ConfigurableElementNavs() {
         // hide default constructor
     }
 
+    /**
+     * @deprecated Use {@link ConfigurableElements#toVariantConfiguration()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<VecConfigurableElement, Optional<VecVariantConfiguration>> variantConfiguration() {
         return configurableElement -> Optional.ofNullable(configurableElement)
-                .map(VecConfigurableElement::getConfigInfo);
+                .flatMap(ConfigurableElements.toVariantConfiguration());
     }
 
+    /**
+     * @deprecated Use {@link ConfigurableElements#toLogisticControlString()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<VecConfigurableElement, Optional<String>> controlInformation() {
         return configurableElement -> Optional.ofNullable(configurableElement)
-                .map(VecConfigurableElement::getConfigInfo)
-                .map(VecVariantConfiguration::getLogisticControlString);
+                .flatMap(ConfigurableElements.toLogisticControlString());
     }
 
+    /**
+     * @deprecated Use {@link ConfigurableElements#toLogisticControlExpression()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<VecConfigurableElement, Optional<String>> controlExpression() {
         return configurableElement -> Optional.ofNullable(configurableElement)
-                .map(VecConfigurableElement::getConfigInfo)
-                .map(VecVariantConfiguration::getLogisticControlExpression);
+                .flatMap(ConfigurableElements.toLogisticControlExpression());
     }
 
 }
