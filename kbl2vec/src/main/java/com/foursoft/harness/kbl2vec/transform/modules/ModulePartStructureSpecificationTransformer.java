@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPartStructureContentType;
 import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
@@ -43,8 +44,8 @@ public class ModulePartStructureSpecificationTransformer
         final VecPartStructureSpecification element = new VecPartStructureSpecification();
 
         switch (source.getParentModule().getContent()) {
-            case MODULE -> element.setContent("Module");
-            case VARIANT -> element.setContent("Variant");
+            case MODULE -> element.setContentLiteral(VecPartStructureContentType.MODULE);
+            case VARIANT -> element.setContentLiteral(VecPartStructureContentType.VARIANT);
         }
 
         return TransformationResult.from(element)

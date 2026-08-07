@@ -41,7 +41,9 @@ public class TopologySegmentTransformer implements Transformer<KblSegment, VecTo
         final VecTopologySegment topologySegment = new VecTopologySegment();
         topologySegment.setIdentification(source.getId());
         if (source.getForm() != null) {
-            topologySegment.setForm(source.getForm() == KblSegmentForm.CIRCULAR ? "Circular" : "NonCircular");
+            topologySegment.setFormLiteral(source.getForm() == KblSegmentForm.CIRCULAR
+                                                   ? VecSegmentForm.CIRCULAR
+                                                   : VecSegmentForm.NON_CIRCULAR);
         }
 
         return TransformationResult.from(topologySegment)
@@ -50,9 +52,11 @@ public class TopologySegmentTransformer implements Transformer<KblSegment, VecTo
                 .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,
                                 source::getProcessingInformations, VecTopologySegment::getCustomProperties)
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
-                                Query.of(source.getVirtualLength()), appendLengthInformation("Designed"))
+                                Query.of(source.getVirtualLength()),
+                                appendLengthInformation(VecLengthClassification.DESIGNED))
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
-                                Query.of(source.getPhysicalLength()), appendLengthInformation("Adapted"))
+                                Query.of(source.getPhysicalLength()),
+                                appendLengthInformation(VecLengthClassification.ADAPTED))
                 .withDownstream(KblCrossSectionArea.class, VecSegmentCrossSectionArea.class,
                                 Query.fromLists(source.getCrossSectionAreaInformations()),
                                 VecTopologySegment::getCrossSectionAreaInformations)
@@ -62,10 +66,10 @@ public class TopologySegmentTransformer implements Transformer<KblSegment, VecTo
     }
 
     private BiConsumer<VecTopologySegment, VecNumericalValue> appendLengthInformation(
-            final String classification) {
+            final VecLengthClassificationLiteral classification) {
         return (final VecTopologySegment topologySegment, final VecNumericalValue numericalValue) -> {
             final VecSegmentLength segmentLength = new VecSegmentLength();
-            segmentLength.setClassification(classification);
+            segmentLength.setClassificationLiteral(classification);
             segmentLength.setLength(numericalValue);
             topologySegment.getLengthInformations().add(segmentLength);
         };
