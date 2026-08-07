@@ -27,39 +27,38 @@ package com.foursoft.harness.vec.scripting.enums;
 
 import com.foursoft.harness.vec.v2x.VecTemperatureType;
 import com.foursoft.harness.vec.v2x.VecTemperatureTypeLiteral;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * @deprecated Use {@link VecTemperatureType}, which is generated from the literals the VEC schema defines for
- * this open enumeration, together with the {@link VecTemperatureTypeLiteral} it implements.
+ * The literals this API adds to an open enumeration of the VEC, and how they behave next to the ones
+ * the standard defines.
  */
-@Deprecated(forRemoval = true)
-public enum TemperatureType implements VecTemperatureTypeLiteral {
+class AdditionalTemperatureTypeTest {
 
-    /**
-     * Replaced by {@link VecTemperatureType#OPERATING_TEMPERATURE}.
-     */
-    OPERATING_TEMPERATURE(VecTemperatureType.OPERATING_TEMPERATURE),
+    @Test
+    void anAddedLiteralIsAcceptedWhereALiteralOfTheStandardIs() {
+        final VecTemperatureTypeLiteral added = AdditionalTemperatureType.SHORT_TERM_AGING_TEMPERATURE;
+        final VecTemperatureTypeLiteral defined = VecTemperatureType.OPERATING_TEMPERATURE;
 
-    /**
-     * Not defined by the VEC standard. Replaced by
-     * {@link AdditionalTemperatureType#SHORT_TERM_AGING_TEMPERATURE}.
-     */
-    SHORT_TERM_AGING_TEMPERATURE(AdditionalTemperatureType.SHORT_TERM_AGING_TEMPERATURE),
-
-    /**
-     * Replaced by {@link VecTemperatureType#AMBIENT_TEMPERATURE}.
-     */
-    AMBIENT_TEMPERATURE(VecTemperatureType.AMBIENT_TEMPERATURE);
-
-    private final VecTemperatureTypeLiteral delegate;
-
-    TemperatureType(final VecTemperatureTypeLiteral delegate) {
-        this.delegate = delegate;
+        assertThat(added.value()).isEqualTo("ShortTermAgingTemperature");
+        assertThat(defined.value()).isEqualTo("OperatingTemperature");
     }
 
-    @Override
-    public String value() {
-        return delegate.value();
+    @Test
+    void anAddedLiteralIsNotACustomOne() {
+        // ScriptingOpenEnumLiterals registers it, so a document using it reads back as this constant
+        // rather than as an anonymous custom literal.
+        assertThat(VecTemperatureTypeLiteral.of("ShortTermAgingTemperature"))
+                .isSameAs(AdditionalTemperatureType.SHORT_TERM_AGING_TEMPERATURE);
+        assertThat(AdditionalTemperatureType.SHORT_TERM_AGING_TEMPERATURE.isCustom()).isFalse();
+    }
+
+    @Test
+    void aLiteralOfTheStandardIsNotShadowedByAContributedOne() {
+        assertThat(VecTemperatureTypeLiteral.of("OperatingTemperature"))
+                .isSameAs(VecTemperatureType.OPERATING_TEMPERATURE);
     }
 
 }
