@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCustomProperty;
 import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
+import com.foursoft.harness.vec.v2x.VecVariantConfigurationType;
 
 public class ModuleConfigurationVariantConfigurationTransformer
         implements Transformer<KblModuleConfiguration, VecVariantConfiguration> {
@@ -41,7 +42,7 @@ public class ModuleConfigurationVariantConfigurationTransformer
                                                                    final KblModuleConfiguration source) {
 
         final VecVariantConfiguration variantConfiguration = new VecVariantConfiguration();
-        variantConfiguration.setConfigurationType("Logistic");
+        variantConfiguration.setConfigurationTypeLiteral(VecVariantConfigurationType.LOGISTIC);
         variantConfiguration.setLogisticControlExpression(source.getLogisticControlInformation());
 
         final TransformationResult.Builder<VecVariantConfiguration> builder = TransformationResult.from(
