@@ -151,8 +151,10 @@ The plugin itself is model-agnostic: the runtime types it generates against are 
 
 ## Relationships
 
-- **[API Evolution](api-evolution.md)** — the deprecate-and-delegate rules the `vec-scripting`
-  migration follows. The seven hand-maintained enums there now implement the generated interfaces, so
-  callers that have not migrated still compile.
+- **[API Evolution](api-evolution.md)** — the rules for replacing published API. They did not apply to
+  the seven hand-maintained enums `vec-scripting` used to carry: that module is explicitly
+  experimental and guarantees no stable API, so they were deleted outright rather than deprecated and
+  kept. `AdditionalTemperatureType` is what remains, because that literal is genuinely not part of the
+  standard.
 - **[VEC Navigation API](vec-navigation-api.md)** — the other catalog of typed access on top of the
   generated model.
