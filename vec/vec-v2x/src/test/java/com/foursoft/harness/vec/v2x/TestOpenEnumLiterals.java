@@ -38,7 +38,7 @@ import java.util.List;
 public class TestOpenEnumLiterals implements OpenEnumLiteralProvider {
 
     @Override
-    public Collection<? extends OpenEnumLiteral> literals() {
+    public Collection<OpenEnumLiteral> literals() {
         return List.of(TestDocumentType.values());
     }
 

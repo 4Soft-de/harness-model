@@ -62,6 +62,9 @@ final class LiteralAccessorGenerator {
 
     private static final String LITERAL = "Literal";
 
+    /** Name of the accessor every open enumeration literal has. */
+    private static final String VALUE = "value";
+
     private final JCodeModel codeModel;
     private final ErrorReceiver errorReceiver;
 
@@ -129,7 +132,7 @@ final class LiteralAccessorGenerator {
                                  .arg(JExpr.invoke(plainGetterName)));
 
         final JMethod setter = implClass.method(JMod.PUBLIC, codeModel.VOID, setterName);
-        final JVar value = setter.param(literalInterface, "value");
+        final JVar value = setter.param(literalInterface, VALUE);
         setter.javadoc()
                 .append(String.format("Sets {@link #%s(String)} to the value of the given literal.", plainSetterName));
         setter.javadoc()
@@ -137,7 +140,7 @@ final class LiteralAccessorGenerator {
                 .append("The literal to set, or {@code null} to unset the property.");
         setter.body()
                 .add(JExpr.invoke(plainSetterName)
-                             .arg(JOp.cond(value.eq(JExpr._null()), JExpr._null(), value.invoke("value"))));
+                             .arg(JOp.cond(value.eq(JExpr._null()), JExpr._null(), value.invoke(VALUE))));
         return true;
     }
 
@@ -183,7 +186,7 @@ final class LiteralAccessorGenerator {
         final JBlock body = getter.body();
         final JVar literals = body.decl(literalList, "literals", JExpr._new(codeModel.ref(ArrayList.class)
                                                                                    .narrow(literalInterface)));
-        final JForEach value = body.forEach(codeModel.ref(String.class), "value", JExpr.invoke(rawGetterName));
+        final JForEach value = body.forEach(codeModel.ref(String.class), VALUE, JExpr.invoke(rawGetterName));
         value.body()
                 .add(literals.invoke("add")
                              .arg(literalInterface.staticInvoke("of")
@@ -196,7 +199,7 @@ final class LiteralAccessorGenerator {
     private void addCollectionAdder(final JDefinedClass implClass, final JClass literalInterface,
                                     final String adderName, final String rawGetterName) {
         final JMethod adder = implClass.method(JMod.PUBLIC, codeModel.VOID, adderName);
-        final JVar value = adder.param(literalInterface, "value");
+        final JVar value = adder.param(literalInterface, VALUE);
         adder.javadoc()
                 .append(String.format("Adds the value of the given literal to {@link #%s()}.", rawGetterName));
         adder.javadoc()
@@ -210,7 +213,7 @@ final class LiteralAccessorGenerator {
                          .arg(JExpr.lit("The literal to add must not be null.")));
         body.add(JExpr.invoke(rawGetterName)
                          .invoke("add")
-                         .arg(value.invoke("value")));
+                         .arg(value.invoke(VALUE)));
     }
 
     private void addCollectionSetter(final JDefinedClass implClass, final JClass literalInterface,
@@ -232,11 +235,11 @@ final class LiteralAccessorGenerator {
 
         final JBlock guarded = body._if(values.ne(JExpr._null()))
                 ._then();
-        final JForEach value = guarded.forEach(literalInterface, "value", values);
+        final JForEach value = guarded.forEach(literalInterface, VALUE, values);
         value.body()
                 .add(target.invoke("add")
                              .arg(value.var()
-                                          .invoke("value")));
+                                          .invoke(VALUE)));
     }
 
     private boolean isStringTyped(final FieldOutline field) {

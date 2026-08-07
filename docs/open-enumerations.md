@@ -91,7 +91,7 @@ public enum AcmeDocumentType implements VecDocumentTypeLiteral {
 }
 
 public class AcmeLiterals implements OpenEnumLiteralProvider {
-    public Collection<? extends OpenEnumLiteral> literals() { return List.of(AcmeDocumentType.values()); }
+    public Collection<OpenEnumLiteral> literals() { return List.of(AcmeDocumentType.values()); }
 }
 // module-info.java:  provides OpenEnumLiteralProvider with AcmeLiterals;
 // or class path:     META-INF/services/com.foursoft.harness.vec.common.openenum.OpenEnumLiteralProvider

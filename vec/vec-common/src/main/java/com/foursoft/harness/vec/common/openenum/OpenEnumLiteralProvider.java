@@ -52,7 +52,7 @@ import java.util.Collection;
  * }
  *
  * public class AcmeLiterals implements OpenEnumLiteralProvider {
- *     public Collection<? extends OpenEnumLiteral> literals() {
+ *     public Collection<OpenEnumLiteral> literals() {
  *         return List.of(AcmeDocumentType.values());
  *     }
  * }
@@ -79,6 +79,6 @@ public interface OpenEnumLiteralProvider {
      *
      * @return Possibly-empty Collection of literals, never {@code null}.
      */
-    Collection<? extends OpenEnumLiteral> literals();
+    Collection<OpenEnumLiteral> literals();
 
 }

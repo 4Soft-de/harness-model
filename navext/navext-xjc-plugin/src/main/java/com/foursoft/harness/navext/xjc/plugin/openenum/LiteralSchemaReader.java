@@ -71,16 +71,13 @@ final class LiteralSchemaReader {
         final Iterator<XSSimpleType> simpleTypes = schemaSet.iterateSimpleTypes();
         while (simpleTypes.hasNext()) {
             final XSSimpleType simpleType = simpleTypes.next();
-            if (!simpleType.isGlobal()) {
-                continue;
+            final List<OpenEnumDefinition.Literal> literals =
+                    simpleType.isGlobal() ? literalsOf(simpleType) : List.of();
+            if (!literals.isEmpty()) {
+                final QName typeName = new QName(simpleType.getTargetNamespace(), simpleType.getName());
+                definitions.put(typeName,
+                                new OpenEnumDefinition(typeName, SchemaDocumentation.of(simpleType), literals));
             }
-            final List<OpenEnumDefinition.Literal> literals = literalsOf(simpleType);
-            if (literals.isEmpty()) {
-                continue;
-            }
-            final QName typeName = new QName(simpleType.getTargetNamespace(), simpleType.getName());
-            definitions.put(typeName,
-                            new OpenEnumDefinition(typeName, SchemaDocumentation.of(simpleType), literals));
         }
         return definitions;
     }
