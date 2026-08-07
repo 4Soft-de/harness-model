@@ -100,11 +100,12 @@ class OpenEnumerationsPluginTest {
     void resolvesAnUnrecognizedLiteralToACustomLiteral() throws Exception {
         final OpenEnumLiteral literal = model.literalOf("DocumentType", "AcmeSpecification");
 
-        assertThat(literal).isInstanceOf(CustomOpenEnumLiteral.class);
-        assertThat(literal.value()).isEqualTo("AcmeSpecification");
-        assertThat(literal.isCustom()).isTrue();
-        assertThat(literal).isEqualTo(model.literalOf("DocumentType", "AcmeSpecification"));
-        assertThat(literal).isNotEqualTo(model.literalOf("DocumentType", "Other"));
+        assertThat(literal)
+                .isInstanceOf(CustomOpenEnumLiteral.class)
+                .isEqualTo(model.literalOf("DocumentType", "AcmeSpecification"))
+                .isNotEqualTo(model.literalOf("DocumentType", "Other"))
+                .returns("AcmeSpecification", OpenEnumLiteral::value)
+                .returns(true, OpenEnumLiteral::isCustom);
     }
 
     @Test
@@ -209,7 +210,9 @@ class OpenEnumerationsPluginTest {
 
         assertThat(anchorType.isEnum()).isTrue();
         assertThat(model.exists(PACKAGE + ".AnchorTypeLiteral")).isFalse();
-        assertThat(methodNames(document)).doesNotContain("getAnchorLiteral", "getTitleLiteral");
+        assertThat(methodNames(document))
+                .isNotEmpty()
+                .doesNotContain("getAnchorLiteral", "getTitleLiteral");
 
         // XJC keeps generating the throwing fromValue for closed enumerations.
         final Method fromValue = anchorType.getMethod("fromValue", String.class);

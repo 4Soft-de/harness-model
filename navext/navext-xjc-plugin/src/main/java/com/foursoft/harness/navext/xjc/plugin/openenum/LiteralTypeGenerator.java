@@ -63,6 +63,11 @@ import java.util.Objects;
  */
 final class LiteralTypeGenerator {
 
+    /** Name of the generated field and of the accessor returning it. */
+    private static final String VALUE = "value";
+
+    private static final String EQUALS = "equals";
+
     private final Outline outline;
     private final JCodeModel codeModel;
     private final OpenEnumRuntime runtime;
@@ -127,42 +132,42 @@ final class LiteralTypeGenerator {
                                       definition.typeName()
                                               .getLocalPart()));
 
-        custom.field(JMod.PRIVATE | JMod.FINAL, String.class, "value");
+        custom.field(JMod.PRIVATE | JMod.FINAL, String.class, VALUE);
 
         final JMethod constructor = custom.constructor(JMod.PUBLIC);
-        final JVar value = constructor.param(String.class, "value");
+        final JVar value = constructor.param(String.class, VALUE);
         constructor.javadoc()
                 .addParam(value)
                 .append("The literal as it appears in the XML. Must not be null.");
         constructor.body()
-                .assign(JExpr.refthis("value"), codeModel.ref(Objects.class)
+                .assign(JExpr.refthis(VALUE), codeModel.ref(Objects.class)
                         .staticInvoke("requireNonNull")
                         .arg(value)
                         .arg(JExpr.lit("The value of a custom literal must not be null.")));
 
-        final JMethod valueMethod = custom.method(JMod.PUBLIC, String.class, "value");
+        final JMethod valueMethod = custom.method(JMod.PUBLIC, String.class, VALUE);
         valueMethod.annotate(Override.class);
         valueMethod.body()
-                ._return(JExpr.ref("value"));
+                ._return(JExpr.ref(VALUE));
 
         createCustomEquals(custom);
 
         final JMethod hashCode = custom.method(JMod.PUBLIC, codeModel.INT, "hashCode");
         hashCode.annotate(Override.class);
         hashCode.body()
-                ._return(JExpr.ref("value")
+                ._return(JExpr.ref(VALUE)
                                  .invoke("hashCode"));
 
         final JMethod toString = custom.method(JMod.PUBLIC, String.class, "toString");
         toString.annotate(Override.class);
         toString.body()
-                ._return(JExpr.ref("value"));
+                ._return(JExpr.ref(VALUE));
 
         return custom;
     }
 
     private void createCustomEquals(final JDefinedClass custom) {
-        final JMethod equals = custom.method(JMod.PUBLIC, codeModel.BOOLEAN, "equals");
+        final JMethod equals = custom.method(JMod.PUBLIC, codeModel.BOOLEAN, EQUALS);
         equals.annotate(Override.class);
         final JVar other = equals.param(Object.class, "obj");
 
@@ -175,9 +180,9 @@ final class LiteralTypeGenerator {
                          .not())
                 ._then()
                 ._return(JExpr.FALSE);
-        body._return(JExpr.ref("value")
-                             .invoke("equals")
-                             .arg(JExpr.invoke(JExpr.cast(custom, other), "value")));
+        body._return(JExpr.ref(VALUE)
+                             .invoke(EQUALS)
+                             .arg(JExpr.invoke(JExpr.cast(custom, other), VALUE)));
     }
 
     private JDefinedClass createEnum(final JPackage pkg, final String className,
@@ -201,17 +206,17 @@ final class LiteralTypeGenerator {
                     .documentation());
         }
 
-        literalEnum.field(JMod.PRIVATE | JMod.FINAL, String.class, "value");
+        literalEnum.field(JMod.PRIVATE | JMod.FINAL, String.class, VALUE);
 
         final JMethod constructor = literalEnum.constructor(JMod.NONE);
-        final JVar value = constructor.param(String.class, "value");
+        final JVar value = constructor.param(String.class, VALUE);
         constructor.body()
-                .assign(JExpr.refthis("value"), value);
+                .assign(JExpr.refthis(VALUE), value);
 
-        final JMethod valueMethod = literalEnum.method(JMod.PUBLIC, String.class, "value");
+        final JMethod valueMethod = literalEnum.method(JMod.PUBLIC, String.class, VALUE);
         valueMethod.annotate(Override.class);
         valueMethod.body()
-                ._return(JExpr.ref("value"));
+                ._return(JExpr.ref(VALUE));
 
         createFromValue(literalEnum);
 
@@ -220,7 +225,7 @@ final class LiteralTypeGenerator {
 
     private void createFromValue(final JDefinedClass literalEnum) {
         final JMethod fromValue = literalEnum.method(JMod.PUBLIC | JMod.STATIC, literalEnum, "fromValue");
-        final JVar value = fromValue.param(String.class, "value");
+        final JVar value = fromValue.param(String.class, VALUE);
         fromValue.javadoc()
                 .append("Returns the constant with the given value.");
         fromValue.javadoc()
@@ -235,8 +240,8 @@ final class LiteralTypeGenerator {
         final JForEach candidate = body.forEach(literalEnum, "candidate", literalEnum.staticInvoke("values"));
         candidate.body()
                 ._if(candidate.var()
-                             .invoke("value")
-                             .invoke("equals")
+                             .invoke(VALUE)
+                             .invoke(EQUALS)
                              .arg(value))
                 ._then()
                 ._return(candidate.var());
@@ -246,7 +251,7 @@ final class LiteralTypeGenerator {
     private void createFactoryMethod(final JDefinedClass literalInterface, final JDefinedClass literalEnum,
                                      final JDefinedClass customLiteral, final OpenEnumDefinition definition) {
         final JMethod of = literalInterface.method(JMod.PUBLIC | JMod.STATIC, literalInterface, "of");
-        final JVar value = of.param(String.class, "value");
+        final JVar value = of.param(String.class, VALUE);
         of.javadoc()
                 .append(String.format("Returns the literal of %s with the given value.",
                                       definition.typeName()

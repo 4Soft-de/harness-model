@@ -70,8 +70,9 @@ final class OpenEnumOptions {
     private static final String DEFAULT_LITERAL_SUFFIX = "-strict";
 
     private String literalSuffix = DEFAULT_LITERAL_SUFFIX;
-    private String literalSchema;
-    private String names;
+    /** The raw option values; both may be relative and are resolved on use. */
+    private String literalSchemaOption;
+    private String namesOption;
     private String classPrefix;
     private String runtimePackage = DEFAULT_RUNTIME_PACKAGE;
 
@@ -83,9 +84,9 @@ final class OpenEnumOptions {
         if (argument.startsWith(LITERAL_SUFFIX)) {
             literalSuffix = valueOf(argument, LITERAL_SUFFIX);
         } else if (argument.startsWith(LITERAL_SCHEMA)) {
-            literalSchema = valueOf(argument, LITERAL_SCHEMA);
+            literalSchemaOption = valueOf(argument, LITERAL_SCHEMA);
         } else if (argument.startsWith(NAMES)) {
-            names = valueOf(argument, NAMES);
+            namesOption = valueOf(argument, NAMES);
         } else if (argument.startsWith(CLASS_PREFIX)) {
             classPrefix = valueOf(argument, CLASS_PREFIX);
         } else if (argument.startsWith(RUNTIME)) {
@@ -101,8 +102,8 @@ final class OpenEnumOptions {
      * @return The system id of the schema declaring the literals of the open enumerations.
      */
     String literalSchemaUriFor(final String compiledSchemaUri) {
-        if (literalSchema != null) {
-            return resolve(compiledSchemaUri, literalSchema);
+        if (literalSchemaOption != null) {
+            return resolve(compiledSchemaUri, literalSchemaOption);
         }
         final int extension = compiledSchemaUri.lastIndexOf('.');
         return extension < 0
@@ -115,7 +116,7 @@ final class OpenEnumOptions {
      * @return The system id of the constant name overrides, or {@code null} if there are none.
      */
     String namesUriFor(final String literalSchemaUri) {
-        return names == null ? null : resolve(literalSchemaUri, names);
+        return namesOption == null ? null : resolve(literalSchemaUri, namesOption);
     }
 
     String classPrefix() {

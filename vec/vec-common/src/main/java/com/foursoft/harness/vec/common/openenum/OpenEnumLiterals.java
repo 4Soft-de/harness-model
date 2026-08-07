@@ -37,6 +37,7 @@ import java.util.Map;
 import java.util.ServiceConfigurationError;
 import java.util.ServiceLoader;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Registry of the open enumeration literals contributed by {@link OpenEnumLiteralProvider}s.
@@ -52,11 +53,9 @@ public final class OpenEnumLiterals {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OpenEnumLiterals.class);
 
-    private static final Object LOCK = new Object();
-
     private static final Map<Class<?>, Map<String, OpenEnumLiteral>> INDEX = new ConcurrentHashMap<>();
 
-    private static volatile List<OpenEnumLiteral> contributedLiterals;
+    private static final AtomicReference<List<OpenEnumLiteral>> CONTRIBUTED = new AtomicReference<>();
 
     private OpenEnumLiterals() {
         throw new AssertionError("OpenEnumLiterals must not be instantiated.");
@@ -84,10 +83,8 @@ public final class OpenEnumLiterals {
      * again. Intended for tests that install a provider after the registry has been used.
      */
     public static void reload() {
-        synchronized (LOCK) {
-            contributedLiterals = null;
-            INDEX.clear();
-        }
+        CONTRIBUTED.set(null);
+        INDEX.clear();
     }
 
     private static Map<String, OpenEnumLiteral> indexFor(final Class<? extends OpenEnumLiteral> type) {
@@ -101,7 +98,7 @@ public final class OpenEnumLiterals {
                 continue;
             }
             final OpenEnumLiteral previous = index.putIfAbsent(literal.value(), literal);
-            if (previous != null && previous != literal) {
+            if (previous != null && previous != literal && LOGGER.isWarnEnabled()) {
                 LOGGER.warn("Literal '{}' of {} is contributed by {} and {}. Keeping the first one.",
                             literal.value(), type.getName(), previous.getClass()
                                     .getName(), literal.getClass()
@@ -112,24 +109,19 @@ public final class OpenEnumLiterals {
     }
 
     private static List<OpenEnumLiteral> contributedLiterals() {
-        List<OpenEnumLiteral> literals = contributedLiterals;
-        if (literals == null) {
-            synchronized (LOCK) {
-                literals = contributedLiterals;
-                if (literals == null) {
-                    literals = loadLiterals();
-                    contributedLiterals = literals;
-                }
-            }
-        }
-        return literals;
+        final List<OpenEnumLiteral> loaded = CONTRIBUTED.get();
+        // Under contention the providers may be loaded more than once, which is harmless: loading
+        // has no side effects and every result is equivalent.
+        return loaded != null
+                ? loaded
+                : CONTRIBUTED.updateAndGet(current -> current != null ? current : loadLiterals());
     }
 
     private static List<OpenEnumLiteral> loadLiterals() {
         final List<OpenEnumLiteral> literals = new ArrayList<>();
         for (final OpenEnumLiteralProvider provider : loadProviders().values()) {
             try {
-                final Collection<? extends OpenEnumLiteral> contributed = provider.literals();
+                final Collection<OpenEnumLiteral> contributed = provider.literals();
                 if (contributed != null) {
                     literals.addAll(contributed);
                 }
