@@ -25,8 +25,8 @@
  */
 package com.foursoft.harness.vec.files.guidelines;
 
+import com.foursoft.harness.vec.v2x.VecLengthClassification;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.enums.LengthClassification;
 import com.foursoft.harness.vec.scripting.topology.TopologyBuilder;
 import com.foursoft.harness.vec.scripting.topology.TopologyZonesBuilder;
 import com.foursoft.harness.vec.v2x.VecAnchorType;
@@ -89,11 +89,11 @@ class TopologyTest {
                 .addNode("ND-III")
                 .addNode("ND-IV")
                 .addSegment("ND-I", "ND-IV", "SEG-I",
-                            segment -> segment.withSegmentLength(1100, LengthClassification.DESIGNED))
+                            segment -> segment.withSegmentLength(1100, VecLengthClassification.DESIGNED))
                 .addSegment("ND-IV", "ND-II", "SEG-II",
-                            segment -> segment.withSegmentLength(1200, LengthClassification.DESIGNED))
+                            segment -> segment.withSegmentLength(1200, VecLengthClassification.DESIGNED))
                 .addSegment("ND-III", "ND-IV", "SEG-III",
-                            segment -> segment.withSegmentLength(1300, LengthClassification.DESIGNED))
+                            segment -> segment.withSegmentLength(1300, VecLengthClassification.DESIGNED))
         ;
     }
 

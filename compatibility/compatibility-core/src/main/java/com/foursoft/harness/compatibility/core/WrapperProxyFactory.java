@@ -31,8 +31,10 @@ import com.foursoft.harness.compatibility.core.util.ClassUtils;
 import com.foursoft.harness.compatibility.core.util.ReflectionUtils;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.TypeCache;
+import net.bytebuddy.description.method.MethodDescription;
 import net.bytebuddy.description.modifier.Visibility;
 import net.bytebuddy.implementation.InvocationHandlerAdapter;
+import net.bytebuddy.matcher.ElementMatcher;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
@@ -95,7 +97,8 @@ public final class WrapperProxyFactory {
         final Class<?> proxyType = TYPE_CACHE.findOrInsert(target.getClass().getClassLoader(), target.getClass(), () ->
                 new ByteBuddy().subclass(mappedClass)
                         .defineField(CALLBACK, InvocationHandler.class, Visibility.PUBLIC)
-                        .method(not(isDeclaredBy(Object.class)).and(not(named("accept"))))
+                        .method(not(isDeclaredBy(Object.class)).and(not(named("accept")))
+                                        .and(not(isOpenEnumLiteralAccessor())))
                         .intercept(InvocationHandlerAdapter.toField(CALLBACK).withoutMethodCache())
                         .make()
                         .load(target.getClass().getClassLoader())
@@ -105,6 +108,23 @@ public final class WrapperProxyFactory {
         final Field field = proxy.getClass().getDeclaredField(CALLBACK);
         ReflectionUtils.setFieldValue(proxy, field, callback);
         return proxy;
+    }
+
+    /**
+     * Matches the typed accessors of an open enumeration, which must keep their own implementation
+     * instead of being routed to the wrapped object.
+     *
+     * <p>
+     * Whether a property is an open enumeration is decided by the standard, and standards evolve, so
+     * these accessors regularly have no counterpart on the wrapped object - the property may be a
+     * plain string there, or may not exist at all. They need none: their implementation derives the
+     * literals from the plain accessor of the same property, and that one is proxied as usual. So
+     * letting them run unintercepted yields the right value wherever the plain accessor takes it
+     * from, and interprets it with the vocabulary of the version the caller is using.
+     * </p>
+     */
+    private static ElementMatcher.Junction<MethodDescription> isOpenEnumLiteralAccessor() {
+        return nameEndsWith("Literal").or(nameEndsWith("Literals"));
     }
 
     /**

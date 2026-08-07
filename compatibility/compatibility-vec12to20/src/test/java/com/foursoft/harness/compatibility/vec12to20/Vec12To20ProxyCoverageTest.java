@@ -51,6 +51,9 @@ import static org.assertj.core.api.Assertions.assertThatCode;
  *   <li>the returned value is a non-null, empty {@link List}</li>
  *   <li>a subsequent call returns the exact same list instance</li>
  * </ul>
+ *
+ * <p>The typed getters of an open enumeration are excluded from those two: they are derived,
+ * unmodifiable views of the plain list rather than the JAXB list itself.
  */
 class Vec12To20ProxyCoverageTest {
 
@@ -99,7 +102,11 @@ class Vec12To20ProxyCoverageTest {
                     vec2xClass.getSimpleName(), method.getName(), vec12xClass.getSimpleName())
                 .doesNotThrowAnyException();
 
-        if (!isListReturnType(method)) {
+        if (!isListReturnType(method) || isOpenEnumLiteralGetter(method)) {
+            // The assertions below describe the JAXB list getters, which hand out the live list so
+            // that getX().add(...) works. The typed getters of an open enumeration deliberately do
+            // not: they return an unmodifiable snapshot derived from the plain getter, and the list
+            // is modified through addXLiteral / setXLiterals instead.
             return;
         }
 
@@ -174,6 +181,11 @@ class Vec12To20ProxyCoverageTest {
             return 0D;
         }
         throw new IllegalArgumentException("Unsupported primitive type: " + primitiveType.getName());
+    }
+
+    private static boolean isOpenEnumLiteralGetter(final Method method) {
+        return method.getName()
+                .endsWith("Literals");
     }
 
     private static boolean isListReturnType(final Method method) {

@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,17 +25,40 @@
  */
 package com.foursoft.harness.vec.scripting.enums;
 
-public enum WireReceptionType {
+import com.foursoft.harness.vec.v2x.VecWireReceptionType;
+import com.foursoft.harness.vec.v2x.VecWireReceptionTypeLiteral;
 
-    CRIMP("Crimp"), SOLDERING("Soldering"), PLASMA_SOLDERING("PlasmaSoldering");
+/**
+ * @deprecated Use {@link VecWireReceptionType}, which is generated from the literals the VEC schema defines for
+ * this open enumeration, together with the {@link VecWireReceptionTypeLiteral} it implements.
+ */
+@Deprecated(forRemoval = true)
+public enum WireReceptionType implements VecWireReceptionTypeLiteral {
 
-    private final String value;
+    /**
+     * Replaced by {@link VecWireReceptionType#CRIMP}.
+     */
+    CRIMP(VecWireReceptionType.CRIMP),
 
-    WireReceptionType(final String value) {
-        this.value = value;
+    /**
+     * Replaced by {@link VecWireReceptionType#SOLDERING}.
+     */
+    SOLDERING(VecWireReceptionType.SOLDERING),
+
+    /**
+     * Replaced by {@link VecWireReceptionType#PLASMA_SOLDERING}.
+     */
+    PLASMA_SOLDERING(VecWireReceptionType.PLASMA_SOLDERING);
+
+    private final VecWireReceptionTypeLiteral delegate;
+
+    WireReceptionType(final VecWireReceptionTypeLiteral delegate) {
+        this.delegate = delegate;
     }
 
+    @Override
     public String value() {
-        return value;
+        return delegate.value();
     }
+
 }

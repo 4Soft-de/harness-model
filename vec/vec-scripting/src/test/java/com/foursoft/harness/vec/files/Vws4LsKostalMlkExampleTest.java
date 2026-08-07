@@ -25,9 +25,9 @@
  */
 package com.foursoft.harness.vec.files;
 
+import com.foursoft.harness.vec.v2x.VecWireReceptionType;
+import com.foursoft.harness.vec.v2x.VecTemperatureType;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.enums.TemperatureType;
-import com.foursoft.harness.vec.scripting.enums.WireReceptionType;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 
@@ -62,7 +62,7 @@ class Vws4LsKostalMlkExampleTest {
 
                 .addGeneralTechnicalPart(gen -> gen
                         .withMaterialInformation("CuSn")
-                        .withTemperatureInformation(TemperatureType.OPERATING_TEMPERATURE, Double.NaN, 150,
+                        .withTemperatureInformation(VecTemperatureType.OPERATING_TEMPERATURE, Double.NaN, 150,
                                                     session.degreeCelsius())
                 )
                 .addPluggableTerminal(plug -> plug
@@ -74,7 +74,7 @@ class Vws4LsKostalMlkExampleTest {
                         .withPlatingMaterialWireReception("frSn0,8-2")
                         .withCoreCrossSectionArea(0.12, 0.14)
                         .withWireElementOutsideDiameter(0.85, 1.2)
-                        .withWireReceptionType(WireReceptionType.CRIMP)
+                        .withWireReceptionType(VecWireReceptionType.CRIMP)
                         .withTerminalLengthOverall(15, 0.3, 0.3)
                         .withInsulationCrimpLength(2.0, 0.2)
                         .withInsulationCrimpLegHeight(1.85, 0.2)

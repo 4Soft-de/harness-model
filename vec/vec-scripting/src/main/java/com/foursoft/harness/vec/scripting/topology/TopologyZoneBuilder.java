@@ -28,10 +28,12 @@ package com.foursoft.harness.vec.scripting.topology;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.enums.TemperatureType;
 import com.foursoft.harness.vec.scripting.factories.ValueRangeFactory;
+import com.foursoft.harness.vec.v2x.VecRobustnessClass;
+import com.foursoft.harness.vec.v2x.VecRobustnessClassReferenceSystem;
 import com.foursoft.harness.vec.v2x.VecRobustnessProperties;
 import com.foursoft.harness.vec.v2x.VecTemperatureInformation;
+import com.foursoft.harness.vec.v2x.VecTemperatureType;
 import com.foursoft.harness.vec.v2x.VecTopologyZone;
 import com.foursoft.harness.vec.v2x.VecValueRange;
 
@@ -66,7 +68,7 @@ public class TopologyZoneBuilder implements Builder<VecTopologyZone> {
         final VecTemperatureInformation temperatureInformation = new VecTemperatureInformation();
 
         temperatureInformation.setTemperatureRange(range);
-        temperatureInformation.setTemperatureType(TemperatureType.AMBIENT_TEMPERATURE.value());
+        temperatureInformation.setTemperatureType(VecTemperatureType.AMBIENT_TEMPERATURE.value());
 
         topologyZone.setAmbientTemperature(temperatureInformation);
 
@@ -75,9 +77,9 @@ public class TopologyZoneBuilder implements Builder<VecTopologyZone> {
 
     public TopologyZoneBuilder withLiquidIngressRequirement(final String ipClassRequirement) {
         final VecRobustnessProperties rp = new VecRobustnessProperties();
-        rp.setClazz("LiquidIngressProtection");
+        rp.setClazzLiteral(VecRobustnessClass.LIQUID_INGRESS_PROTECTION);
         rp.setClassKey(ipClassRequirement);
-        rp.setClassReferenceSystem("ISO 20653");
+        rp.setClassReferenceSystemLiteral(VecRobustnessClassReferenceSystem.ISO_20653);
         rp.setHasRobustness(true);
 
         topologyZone.getRequiredRobustnessProperties().add(rp);

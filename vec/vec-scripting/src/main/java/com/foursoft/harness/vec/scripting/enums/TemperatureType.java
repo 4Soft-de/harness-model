@@ -25,18 +25,41 @@
  */
 package com.foursoft.harness.vec.scripting.enums;
 
-public enum TemperatureType {
+import com.foursoft.harness.vec.v2x.VecTemperatureType;
+import com.foursoft.harness.vec.v2x.VecTemperatureTypeLiteral;
 
-    OPERATING_TEMPERATURE("OperatingTemperature"), SHORT_TERM_AGING_TEMPERATURE("ShortTermAgingTemperature"),
-    AMBIENT_TEMPERATURE("AmbientTemperature");
+/**
+ * @deprecated Use {@link VecTemperatureType}, which is generated from the literals the VEC schema defines for
+ * this open enumeration, together with the {@link VecTemperatureTypeLiteral} it implements.
+ */
+@Deprecated(forRemoval = true)
+public enum TemperatureType implements VecTemperatureTypeLiteral {
 
-    private final String value;
+    /**
+     * Replaced by {@link VecTemperatureType#OPERATING_TEMPERATURE}.
+     */
+    OPERATING_TEMPERATURE(VecTemperatureType.OPERATING_TEMPERATURE),
 
-    TemperatureType(final String value) {
-        this.value = value;
+    /**
+     * Not defined by the VEC standard. Replaced by
+     * {@link AdditionalTemperatureType#SHORT_TERM_AGING_TEMPERATURE}.
+     */
+    SHORT_TERM_AGING_TEMPERATURE(AdditionalTemperatureType.SHORT_TERM_AGING_TEMPERATURE),
+
+    /**
+     * Replaced by {@link VecTemperatureType#AMBIENT_TEMPERATURE}.
+     */
+    AMBIENT_TEMPERATURE(VecTemperatureType.AMBIENT_TEMPERATURE);
+
+    private final VecTemperatureTypeLiteral delegate;
+
+    TemperatureType(final VecTemperatureTypeLiteral delegate) {
+        this.delegate = delegate;
     }
 
+    @Override
     public String value() {
-        return value;
+        return delegate.value();
     }
+
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Constant names for literals whose generated name would be unreadable, or would collide with the
+    name of another literal of the same open enumeration. Without the "#1" entry the build fails,
+    because "#1" and "1" both mangle to the same constant name.
+-->
+<open-enum-names>
+    <type name="BoltSize">
+        <literal value="#0" name="NO_0"/>
+        <literal value="#1" name="NO_1"/>
+        <literal value="12V" name="V12"/>
+    </type>
+</open-enum-names>
