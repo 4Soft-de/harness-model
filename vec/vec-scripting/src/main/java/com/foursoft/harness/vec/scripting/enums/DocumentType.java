@@ -25,20 +25,55 @@
  */
 package com.foursoft.harness.vec.scripting.enums;
 
-public enum DocumentType {
+import com.foursoft.harness.vec.v2x.VecDocumentType;
+import com.foursoft.harness.vec.v2x.VecDocumentTypeLiteral;
 
-    HARNESS_DESCRIPTION("HarnessDescription"), NETWORK_ARCHITECTURE("NetworkArchitecture"),
-    PART_MASTER("PartMaster"), PROCESSING_INSTRUCTION("ProcessingInstruction"),
-    REQUIREMENTS_DESCRIPTION("RequirementsDescription"), SYSTEM_SCHEMATIC("SystemSchematic"),
-    ;
+/**
+ * @deprecated Use {@link VecDocumentType}, which is generated from the literals the VEC schema defines for
+ * this open enumeration, together with the {@link VecDocumentTypeLiteral} it implements.
+ */
+@Deprecated(forRemoval = true)
+public enum DocumentType implements VecDocumentTypeLiteral {
 
-    private final String value;
+    /**
+     * Replaced by {@link VecDocumentType#HARNESS_DESCRIPTION}.
+     */
+    HARNESS_DESCRIPTION(VecDocumentType.HARNESS_DESCRIPTION),
 
-    DocumentType(final String value) {
-        this.value = value;
+    /**
+     * Replaced by {@link VecDocumentType#NETWORK_ARCHITECTURE}.
+     */
+    NETWORK_ARCHITECTURE(VecDocumentType.NETWORK_ARCHITECTURE),
+
+    /**
+     * Replaced by {@link VecDocumentType#PART_MASTER}.
+     */
+    PART_MASTER(VecDocumentType.PART_MASTER),
+
+    /**
+     * Replaced by {@link VecDocumentType#PROCESSING_INSTRUCTION}.
+     */
+    PROCESSING_INSTRUCTION(VecDocumentType.PROCESSING_INSTRUCTION),
+
+    /**
+     * Replaced by {@link VecDocumentType#REQUIREMENTS_DESCRIPTION}.
+     */
+    REQUIREMENTS_DESCRIPTION(VecDocumentType.REQUIREMENTS_DESCRIPTION),
+
+    /**
+     * Replaced by {@link VecDocumentType#SYSTEM_SCHEMATIC}.
+     */
+    SYSTEM_SCHEMATIC(VecDocumentType.SYSTEM_SCHEMATIC);
+
+    private final VecDocumentTypeLiteral delegate;
+
+    DocumentType(final VecDocumentTypeLiteral delegate) {
+        this.delegate = delegate;
     }
 
+    @Override
     public String value() {
-        return value;
+        return delegate.value();
     }
+
 }

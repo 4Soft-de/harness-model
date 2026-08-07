@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,17 +25,35 @@
  */
 package com.foursoft.harness.vec.scripting.enums;
 
-public enum SignalSubType {
+import com.foursoft.harness.vec.v2x.VecSignalSubType;
+import com.foursoft.harness.vec.v2x.VecSignalSubTypeLiteral;
 
-    CAN("CAN"), LIN("LIN");
+/**
+ * @deprecated Use {@link VecSignalSubType}, which is generated from the literals the VEC schema defines for
+ * this open enumeration, together with the {@link VecSignalSubTypeLiteral} it implements.
+ */
+@Deprecated(forRemoval = true)
+public enum SignalSubType implements VecSignalSubTypeLiteral {
 
-    private final String value;
+    /**
+     * Replaced by {@link VecSignalSubType#CAN}.
+     */
+    CAN(VecSignalSubType.CAN),
 
-    SignalSubType(final String value) {
-        this.value = value;
+    /**
+     * Replaced by {@link VecSignalSubType#LIN}.
+     */
+    LIN(VecSignalSubType.LIN);
+
+    private final VecSignalSubTypeLiteral delegate;
+
+    SignalSubType(final VecSignalSubTypeLiteral delegate) {
+        this.delegate = delegate;
     }
 
+    @Override
     public String value() {
-        return value;
+        return delegate.value();
     }
+
 }

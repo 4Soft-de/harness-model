@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,17 +25,40 @@
  */
 package com.foursoft.harness.vec.scripting.enums;
 
-public enum SignalType {
+import com.foursoft.harness.vec.v2x.VecSignalType;
+import com.foursoft.harness.vec.v2x.VecSignalTypeLiteral;
 
-    INFORMATION("Information"), ENERGY("Energy"), GROUND("Ground");
+/**
+ * @deprecated Use {@link VecSignalType}, which is generated from the literals the VEC schema defines for
+ * this open enumeration, together with the {@link VecSignalTypeLiteral} it implements.
+ */
+@Deprecated(forRemoval = true)
+public enum SignalType implements VecSignalTypeLiteral {
 
-    private final String value;
+    /**
+     * Replaced by {@link VecSignalType#INFORMATION}.
+     */
+    INFORMATION(VecSignalType.INFORMATION),
 
-    SignalType(final String value) {
-        this.value = value;
+    /**
+     * Replaced by {@link VecSignalType#ENERGY}.
+     */
+    ENERGY(VecSignalType.ENERGY),
+
+    /**
+     * Replaced by {@link VecSignalType#GROUND}.
+     */
+    GROUND(VecSignalType.GROUND);
+
+    private final VecSignalTypeLiteral delegate;
+
+    SignalType(final VecSignalTypeLiteral delegate) {
+        this.delegate = delegate;
     }
 
+    @Override
     public String value() {
-        return value;
+        return delegate.value();
     }
+
 }

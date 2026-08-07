@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    The schema used for strict validation, and the source of the open enumeration literals. It is
+    identical to sample.xsd except that the open enumerations declare their literals here.
+
+    The literals of BoltSize are deliberately hostile: they cover values that are no Java
+    identifiers at all ("#0", "1/2"), values that start with a digit ("12V"), values containing a
+    space, and the pair "#1" / "1", which mangles to the same constant name and therefore needs an
+    entry in sample-open-enum-names.xml.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:t="http://www.4soft.de/xjc-plugins/openenum/tests"
+           targetNamespace="http://www.4soft.de/xjc-plugins/openenum/tests"
+           elementFormDefault="qualified">
+
+    <xs:element name="Root" type="t:Document"/>
+
+    <xs:complexType name="Document">
+        <xs:sequence>
+            <xs:element name="DocumentType" type="t:DocumentType" minOccurs="0"/>
+            <xs:element name="BoltSize" type="t:BoltSize" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="Undefined" type="t:Undefined" minOccurs="0"/>
+            <xs:element name="Anchor" type="t:AnchorType" minOccurs="0"/>
+            <xs:element name="Title" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="DocumentType">
+        <xs:annotation>
+            <xs:documentation xml:lang="en"><![CDATA[<p>The type of a document.</p>]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PartMaster">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"><![CDATA[<p>Describes the master data of a part.</p>]]></xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="HarnessDescription"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="BoltSize">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="#0"/>
+            <xs:enumeration value="#1"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="1/2"/>
+            <xs:enumeration value="M1.2"/>
+            <xs:enumeration value="12V"/>
+            <xs:enumeration value="Normally open"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Unused">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Whatever"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Undefined">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="AnchorType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FromStartNode"/>
+            <xs:enumeration value="FromEndNode"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

@@ -28,8 +28,8 @@ package com.foursoft.harness.vec.scripting.topology;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Locator;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.enums.LengthClassification;
 import com.foursoft.harness.vec.scripting.variants.ConfigurableElementBuilder;
+import com.foursoft.harness.vec.v2x.VecLengthClassificationLiteral;
 import com.foursoft.harness.vec.v2x.VecConfigurationConstraint;
 import com.foursoft.harness.vec.v2x.VecSegmentLength;
 import com.foursoft.harness.vec.v2x.VecTopologyNode;
@@ -64,7 +64,7 @@ public class TopologySegmentBuilder extends ConfigurableElementBuilder<TopologyS
         return segment;
     }
 
-    public TopologySegmentBuilder withSegmentLength(final double length, final LengthClassification classification) {
+    public TopologySegmentBuilder withSegmentLength(final double length, final VecLengthClassificationLiteral classification) {
         final VecSegmentLength segmentLength = new VecSegmentLength();
         segmentLength.setLength(value(length, session.mm()));
         segmentLength.setClassification(classification.value());

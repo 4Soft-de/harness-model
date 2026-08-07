@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.VecConductorType;
 import com.foursoft.harness.vec.v2x.VecCoreSpecification;
 import com.foursoft.harness.vec.v2x.VecMaterial;
 
@@ -70,7 +71,7 @@ public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
 
     public CoreSpecificationBuilder strands(final int numberOfStrands, final double strandTolerancePercentage,
                                             final double diameter) {
-        this.coreSpecification.setType("Stranded");
+        this.coreSpecification.setTypeLiteral(VecConductorType.STRANDED);
         final long tolerance = Math.round(numberOfStrands * strandTolerancePercentage);
         return this.withNumberOfStrands(numberOfStrands, -tolerance,
                                         tolerance)
