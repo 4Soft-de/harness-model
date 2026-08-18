@@ -41,7 +41,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Discovers {@link Wraps}-annotated wrapper classes via classpath scanning and registers them
@@ -55,6 +58,14 @@ import java.util.Set;
 public final class WrapperAutoRegistrar {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WrapperAutoRegistrar.class);
+
+    /**
+     * Caches the classpath scan per set of base package classes. The scan result depends on the classpath
+     * only, not on the {@link Context} the wrappers are registered for, so it can safely be shared between
+     * all contexts of a class loader. Without this cache every wrapper instantiation triggers a full
+     * classpath scan, which is both slow and noisy in the log.
+     */
+    private static final Map<List<Class<?>>, Set<Class<?>>> SCAN_CACHE = new ConcurrentHashMap<>();
 
     private WrapperAutoRegistrar() {
     }
@@ -74,17 +85,7 @@ public final class WrapperAutoRegistrar {
      */
     public static void registerAll(final Context context, final Class<?>... basePackageClasses) {
         final String[] packages = Arrays.stream(basePackageClasses).map(Class::getPackageName).toArray(String[]::new);
-        final FilterBuilder filterBuilder = new FilterBuilder();
-        for (final String packageName : packages) {
-            filterBuilder.includePackage(packageName);
-        }
-        final URL[] urls = Arrays.stream(basePackageClasses).map(
-                p -> p.getProtectionDomain().getCodeSource().getLocation()).toArray(URL[]::new);
-
-        final Set<Class<?>> wrapperClasses = new Reflections(new ConfigurationBuilder().setUrls(urls)
-                                                                     .filterInputsBy(filterBuilder)
-                                                                     .forPackages(packages).addScanners(
-                        Scanners.TypesAnnotated)).getTypesAnnotatedWith(Wraps.class);
+        final Set<Class<?>> wrapperClasses = scanWrapperClasses(basePackageClasses);
         final WrapperRegistry registry = context.getWrapperRegistry();
         final Set<Class<?>> seenSourceClasses = new HashSet<>();
 
@@ -114,8 +115,34 @@ public final class WrapperAutoRegistrar {
             }
         }
 
-        LOGGER.info("Auto-registered {} wrapper(s) for {} source class(es) from packages '{}'.",
-                    wrapperClasses.size(), registrations, packages);
+        LOGGER.debug("Auto-registered {} wrapper(s) for {} source class(es) from packages '{}'.",
+                     wrapperClasses.size(), registrations, packages);
+    }
+
+    /**
+     * Returns the {@link Wraps}-annotated classes in the packages of {@code basePackageClasses}, scanning
+     * the classpath only on the first call for a given set of base package classes.
+     *
+     * @param basePackageClasses Classes in packages to scan.
+     * @return The annotated wrapper classes, never {@code null}.
+     */
+    static Set<Class<?>> scanWrapperClasses(final Class<?>... basePackageClasses) {
+        return SCAN_CACHE.computeIfAbsent(List.of(basePackageClasses), WrapperAutoRegistrar::scanUncached);
+    }
+
+    private static Set<Class<?>> scanUncached(final List<Class<?>> basePackageClasses) {
+        final String[] packages = basePackageClasses.stream().map(Class::getPackageName).toArray(String[]::new);
+        final FilterBuilder filterBuilder = new FilterBuilder();
+        for (final String packageName : packages) {
+            filterBuilder.includePackage(packageName);
+        }
+        final URL[] urls = basePackageClasses.stream().map(
+                p -> p.getProtectionDomain().getCodeSource().getLocation()).toArray(URL[]::new);
+
+        return Set.copyOf(new Reflections(new ConfigurationBuilder().setUrls(urls)
+                                                  .filterInputsBy(filterBuilder)
+                                                  .forPackages(packages).addScanners(
+                        Scanners.TypesAnnotated)).getTypesAnnotatedWith(Wraps.class));
     }
 
     /**
