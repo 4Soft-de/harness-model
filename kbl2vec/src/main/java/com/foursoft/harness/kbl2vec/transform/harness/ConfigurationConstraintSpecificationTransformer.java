@@ -36,6 +36,8 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecConfigurationConstraint;
 import com.foursoft.harness.vec.v2x.VecConfigurationConstraintSpecification;
 
+import java.util.stream.Stream;
+
 import static com.foursoft.harness.kbl2vec.transform.Fragments.abbreviatedClassName;
 
 public class ConfigurationConstraintSpecificationTransformer
@@ -48,21 +50,26 @@ public class ConfigurationConstraintSpecificationTransformer
                 abbreviatedClassName(element.getClass()) + "-" + source.getPartNumber());
         return TransformationResult.from(element)
                 .withDownstream(KblModuleConfiguration.class, VecConfigurationConstraint.class,
-                                moduleConfigurationQuery(source, context),
+                                moduleConfigurationQuery(source),
                                 VecConfigurationConstraintSpecification::getConfigurationConstraints)
                 .build();
     }
 
-    Query<KblModuleConfiguration> moduleConfigurationQuery(final KblHarness source,
-                                                           final TransformationContext context) {
-        // Module lists are standalone module configurations, but they are supported (as VecModuleList).
-        final boolean unsupportedStandaloneConfigurations = source.getModuleConfigurations().stream()
-                .anyMatch(c -> c.getConfigurationType() != KblModuleConfigurationType.MODULE_LIST);
-        if (unsupportedStandaloneConfigurations) {
-            context.getLogger().warn("Standalone module configurations are not yet supported.");
-        }
-        return () -> source.getModules().stream()
-                .map(KblModule::getModuleConfiguration)
-                .toList();
+    /**
+     * Both the configurations of the modules and the standalone configurations below the harness become a
+     * {@link VecConfigurationConstraint}; they only differ in what they constrain, see
+     * {@link ModuleConfigurationConfigurationConstraintTransformer}. Module lists are standalone configurations
+     * as well, but they are transformed into a {@code VecModuleList} instead.
+     */
+    Query<KblModuleConfiguration> moduleConfigurationQuery(final KblHarness source) {
+        return () -> {
+            final Stream<KblModuleConfiguration> moduleConfigurations = source.getModules().stream()
+                    .map(KblModule::getModuleConfiguration);
+            final Stream<KblModuleConfiguration> standAloneConfigurations = source.getModuleConfigurations().stream()
+                    .filter(c -> c.getConfigurationType() != KblModuleConfigurationType.MODULE_LIST);
+
+            return Stream.concat(moduleConfigurations, standAloneConfigurations)
+                    .toList();
+        };
     }
 }
