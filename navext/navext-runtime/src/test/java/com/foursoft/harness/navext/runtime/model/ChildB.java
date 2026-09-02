@@ -41,7 +41,7 @@ public class ChildB extends AbstractBase implements Serializable {
     private final static long serialVersionUID = 1L;
 
     @XmlTransient
-    private final Set<ChildA> reverseChildA = new HashSet<>();
+    private Set<ChildA> reverseChildA;
     @XmlElement(name = "xyz", required = true)
     protected String xyz;
     @XmlTransient
@@ -61,6 +61,9 @@ public class ChildB extends AbstractBase implements Serializable {
     }
 
     public Set<ChildA> getReverseChildA() {
+        if (reverseChildA == null) {
+            reverseChildA = new HashSet<>();
+        }
         return reverseChildA;
     }
 }
