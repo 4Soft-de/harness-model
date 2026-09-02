@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecBuildingBlockPositioning3D;
+import com.foursoft.harness.vec.v2x.VecGeometryType;
 import com.foursoft.harness.vec.v2x.VecHarnessGeometrySpecification3D;
 
 public class HarnessGeometrySpecification3DTransformer
@@ -49,7 +50,7 @@ public class HarnessGeometrySpecification3DTransformer
         }
         context.getLogger().info("Detected 3D data. Creating 3D geometry specification.");
 
-        destination.setType("Dmu");
+        destination.setTypeLiteral(VecGeometryType.DMU);
         return TransformationResult.from(destination)
                 .withDownstream(KblHarness.class, VecBuildingBlockPositioning3D.class, Query.of(source),
                                 VecHarnessGeometrySpecification3D::getBuildingBlockPositionings)

@@ -25,11 +25,11 @@
  */
 package com.foursoft.harness.vec.files.guidelines;
 
+import com.foursoft.harness.vec.v2x.VecSignalType;
+import com.foursoft.harness.vec.v2x.VecSignalSubType;
+import com.foursoft.harness.vec.v2x.VecSignalInformationType;
+import com.foursoft.harness.vec.v2x.VecDocumentType;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.enums.DocumentType;
-import com.foursoft.harness.vec.scripting.enums.SignalInformationType;
-import com.foursoft.harness.vec.scripting.enums.SignalSubType;
-import com.foursoft.harness.vec.scripting.enums.SignalType;
 import org.junit.jupiter.api.Test;
 
 import static com.foursoft.harness.vec.files.TestUtils.storeVecAndValidate;
@@ -47,21 +47,21 @@ class ArchitecturalLayerTest {
         final VecSession session = new VecSession();
 
         session.document("1234567", "a", dv -> {
-            dv.documentType(DocumentType.NETWORK_ARCHITECTURE);
+            dv.documentType(VecDocumentType.NETWORK_ARCHITECTURE);
         });
 
         session.networkArchitecture("1234567", na -> {
             na.addNetType("12V-Power", nt -> {
-                        nt.withSignalType(SignalType.ENERGY);
+                        nt.withSignalType(VecSignalType.ENERGY);
                     })
                     .addNetType("HALL", nt -> {
-                        nt.withSignalType(SignalType.INFORMATION)
-                                .withSignalInformationType(SignalInformationType.ANALOG);
+                        nt.withSignalType(VecSignalType.INFORMATION)
+                                .withSignalInformationType(VecSignalInformationType.ANALOG);
                     })
                     .addNetType("CAN", nt -> {
-                        nt.withSignalType(SignalType.INFORMATION)
-                                .withSignalInformationType(SignalInformationType.DIGITAL)
-                                .withSignalSubType(SignalSubType.CAN);
+                        nt.withSignalType(VecSignalType.INFORMATION)
+                                .withSignalInformationType(VecSignalInformationType.DIGITAL)
+                                .withSignalSubType(VecSignalSubType.CAN);
                     });
 
             na.addNetworkNode("BCM", nn -> {
@@ -98,16 +98,16 @@ class ArchitecturalLayerTest {
             signals.withNetworkLayer("1234567")
                     .addSignal("PWED_HALL_GROUND", s -> {
                         s.withNetType("HALL")
-                                .withSignalType(SignalType.GROUND);
+                                .withSignalType(VecSignalType.GROUND);
                     })
                     .addSignal("PWED_HALL_IN", s -> {
                         s.withNetType("HALL")
-                                .withSignalType(SignalType.ENERGY);
+                                .withSignalType(VecSignalType.ENERGY);
                     })
                     .addSignal("PWED_HALL_OUT", s -> {
                         s.withNetType("HALL")
-                                .withSignalType(SignalType.INFORMATION)
-                                .withSignalInformationType(SignalInformationType.ANALOG);
+                                .withSignalType(VecSignalType.INFORMATION)
+                                .withSignalInformationType(VecSignalInformationType.ANALOG);
                     });
         });
 

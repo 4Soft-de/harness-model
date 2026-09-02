@@ -1,2 +1,3 @@
 com.foursoft.harness.navext.xjc.plugin.NavigationsPlugin
 com.foursoft.harness.navext.xjc.plugin.EmptyListHandlerPlugin
+com.foursoft.harness.navext.xjc.plugin.openenum.OpenEnumerationsPlugin

@@ -29,6 +29,9 @@ module com.foursoft.harness.vec.common {
     exports com.foursoft.harness.vec.common;
     exports com.foursoft.harness.vec.common.annotations;
     exports com.foursoft.harness.vec.common.exception;
+    exports com.foursoft.harness.vec.common.openenum;
     exports com.foursoft.harness.vec.common.traversal;
     exports com.foursoft.harness.vec.common.util;
+
+    uses com.foursoft.harness.vec.common.openenum.OpenEnumLiteralProvider;
 }

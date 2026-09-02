@@ -29,6 +29,8 @@ import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecColor;
 import com.foursoft.harness.vec.v2x.VecInsulationSpecification;
+import com.foursoft.harness.vec.v2x.VecLabelType;
+import com.foursoft.harness.vec.v2x.VecLabelingTechnology;
 
 import static com.foursoft.harness.vec.scripting.factories.MaterialFactory.material;
 import static com.foursoft.harness.vec.scripting.factories.NumericalValueFactory.value;
@@ -93,8 +95,8 @@ public class InsulationSpecificationBuilder implements Builder<VecInsulationSpec
     }
 
     public InsulationSpecificationBuilder withPrintedLabelIdentificationValue(final String labelIdentificationText) {
-        insulationSpecification.setLabelingTechnology("Printed");
-        insulationSpecification.setLabelIdentificationType("AlphaNumerical");
+        insulationSpecification.setLabelingTechnologyLiteral(VecLabelingTechnology.PRINTED);
+        insulationSpecification.setLabelIdentificationTypeLiteral(VecLabelType.ALPHA_NUMERICAL);
         insulationSpecification.setLabelIdentificationValue(labelIdentificationText);
         return this;
     }

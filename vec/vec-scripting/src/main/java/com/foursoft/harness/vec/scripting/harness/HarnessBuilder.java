@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting.harness;
 
+import com.foursoft.harness.vec.v2x.VecDocumentType;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.DefaultValues;
@@ -32,7 +33,6 @@ import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.components.PartOccurrenceBuilder;
 import com.foursoft.harness.vec.scripting.components.PartUsageBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
-import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.routing.RoutingSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
@@ -109,7 +109,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
     private DocumentVersionBuilder initializeDocument(final String documentNumber, final String version) {
         return new DocumentVersionBuilder(session, documentNumber, version).documentType(
-                DocumentType.HARNESS_DESCRIPTION);
+                VecDocumentType.HARNESS_DESCRIPTION);
     }
 
     private VecCompositionSpecification initializeCompositionSpecification() {

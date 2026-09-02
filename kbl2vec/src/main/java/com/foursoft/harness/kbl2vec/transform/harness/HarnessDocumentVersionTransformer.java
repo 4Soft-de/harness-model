@@ -44,7 +44,7 @@ public class HarnessDocumentVersionTransformer implements Transformer<KblHarness
                                                               final KblHarness source) {
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
 
-        documentVersion.setDocumentType("HarnessDescription");
+        documentVersion.setDocumentTypeLiteral(VecDocumentType.HARNESS_DESCRIPTION);
 
         return TransformationResult.from(documentVersion)
                 .withFragment(commonPartDocumentAttributes(source, context))

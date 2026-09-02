@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Constant names for open enumeration literals of VEC 1.1.3 that the default naming cannot express
+    well. Everything not listed here is named exactly like the literals of a closed enumeration.
+
+    The names must stay in sync with the other VEC versions, because the compatibility layer maps
+    literals across versions by their simple name.
+-->
+<open-enum-names>
+
+    <!-- Voltage levels. "12V" would otherwise become _12_V. -->
+    <type name="NominalVoltage">
+        <literal value="12V" name="V12"/>
+        <literal value="24V" name="V24"/>
+        <literal value="48V" name="V48"/>
+    </type>
+
+</open-enum-names>

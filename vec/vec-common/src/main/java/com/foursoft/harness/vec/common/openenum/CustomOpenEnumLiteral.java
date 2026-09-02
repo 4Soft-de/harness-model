@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.x Scripting API (Experimental)
+ * VEC Common
  * %%
- * Copyright (C) 2020 - 2025 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,19 +23,18 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.vec.common.openenum;
 
-public enum LengthClassification {
-
-    DESIGNED("Designed"), ADAPTED("Adapted");
-
-    private final String value;
-
-    LengthClassification(final String value) {
-        this.value = value;
-    }
-
-    public String value() {
-        return value;
-    }
+/**
+ * Marker for the generated {@code Custom} literal classes.
+ *
+ * <p>
+ * It allows code that does not know the concrete open enumeration to tell a literal defined by the
+ * VEC standard from one that was read verbatim from a document, without an
+ * {@code instanceof} chain over every open enumeration.
+ * </p>
+ *
+ * @see OpenEnumLiteral#isCustom()
+ */
+public interface CustomOpenEnumLiteral extends OpenEnumLiteral {
 }

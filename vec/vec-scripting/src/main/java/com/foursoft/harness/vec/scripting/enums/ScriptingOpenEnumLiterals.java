@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,17 +25,26 @@
  */
 package com.foursoft.harness.vec.scripting.enums;
 
-public enum SignalType {
+import com.foursoft.harness.vec.common.openenum.OpenEnumLiteral;
+import com.foursoft.harness.vec.common.openenum.OpenEnumLiteralProvider;
 
-    INFORMATION("Information"), ENERGY("Energy"), GROUND("Ground");
+import java.util.Collection;
+import java.util.List;
 
-    private final String value;
+/**
+ * Contributes the literals this API uses beyond the ones VEC 2.2.0 defines, so that documents
+ * written with them read back as typed constants rather than as anonymous custom literals.
+ *
+ * <p>
+ * Registered through
+ * {@code META-INF/services/com.foursoft.harness.vec.common.openenum.OpenEnumLiteralProvider}.
+ * </p>
+ */
+public class ScriptingOpenEnumLiterals implements OpenEnumLiteralProvider {
 
-    SignalType(final String value) {
-        this.value = value;
+    @Override
+    public Collection<OpenEnumLiteral> literals() {
+        return List.of(AdditionalTemperatureType.values());
     }
 
-    public String value() {
-        return value;
-    }
 }

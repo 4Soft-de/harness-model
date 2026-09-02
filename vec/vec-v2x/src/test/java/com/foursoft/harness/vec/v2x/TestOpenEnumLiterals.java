@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.x Scripting API (Experimental)
+ * VEC 2.X
  * %%
- * Copyright (C) 2020 - 2025 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.vec.v2x;
 
-public enum DocumentType {
+import com.foursoft.harness.vec.common.openenum.OpenEnumLiteral;
+import com.foursoft.harness.vec.common.openenum.OpenEnumLiteralProvider;
 
-    HARNESS_DESCRIPTION("HarnessDescription"), NETWORK_ARCHITECTURE("NetworkArchitecture"),
-    PART_MASTER("PartMaster"), PROCESSING_INSTRUCTION("ProcessingInstruction"),
-    REQUIREMENTS_DESCRIPTION("RequirementsDescription"), SYSTEM_SCHEMATIC("SystemSchematic"),
-    ;
+import java.util.Collection;
+import java.util.List;
 
-    private final String value;
+/**
+ * Registers {@link TestDocumentType} through
+ * {@code META-INF/services/com.foursoft.harness.vec.common.openenum.OpenEnumLiteralProvider}.
+ */
+public class TestOpenEnumLiterals implements OpenEnumLiteralProvider {
 
-    DocumentType(final String value) {
-        this.value = value;
+    @Override
+    public Collection<OpenEnumLiteral> literals() {
+        return List.of(TestDocumentType.values());
     }
 
-    public String value() {
-        return value;
-    }
 }

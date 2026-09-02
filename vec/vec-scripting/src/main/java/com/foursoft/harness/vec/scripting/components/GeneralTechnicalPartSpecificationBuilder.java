@@ -25,9 +25,10 @@
  */
 package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.v2x.VecMassInformationSource;
+import com.foursoft.harness.vec.v2x.VecTemperatureTypeLiteral;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
-import com.foursoft.harness.vec.scripting.enums.TemperatureType;
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.MaterialFactory.material;
@@ -59,7 +60,7 @@ public class GeneralTechnicalPartSpecificationBuilder
         final VecMassInformation massInformation = new VecMassInformation();
         massInformation.setValue(value(value, unit));
         massInformation.setDeterminationType(VecValueDetermination.MEASURED);
-        massInformation.setValueSource("Series");
+        massInformation.setValueSourceLiteral(VecMassInformationSource.SERIES);
 
         element.getMassInformations().add(massInformation);
 
@@ -75,14 +76,14 @@ public class GeneralTechnicalPartSpecificationBuilder
         return this;
     }
 
-    public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final TemperatureType temperatureType,
+    public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final VecTemperatureTypeLiteral temperatureType,
                                                                                final double lowerLimit,
                                                                                final double upperLimit
     ) {
         return this.withTemperatureInformation(temperatureType, lowerLimit, upperLimit, session.mm());
     }
 
-    public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final TemperatureType temperatureType,
+    public GeneralTechnicalPartSpecificationBuilder withTemperatureInformation(final VecTemperatureTypeLiteral temperatureType,
                                                                                final double lowerLimit,
                                                                                final double upperLimit,
                                                                                final VecUnit unit) {
