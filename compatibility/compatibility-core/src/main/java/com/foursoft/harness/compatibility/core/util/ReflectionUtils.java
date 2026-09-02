@@ -67,14 +67,15 @@ public final class ReflectionUtils {
      * @param value  Value to set for the given field.
      * @throws IllegalAccessException See {@link Field#set(Object, Object)}.
      */
-    public static synchronized void setFieldValue(final Object target, final Field field, final Object value)
+    public static void setFieldValue(final Object target, final Field field, final Object value)
             throws IllegalAccessException {
-        // Ensure the field accessibility is always set to false in the end.
         try {
+            field.set(target, value);
+        } catch (final IllegalAccessException e) {
+            // Opening a field up is remembered on the Field object itself. Callers which reuse their
+            // Field objects therefore pay the (expensive) access check once instead of on every write.
             field.setAccessible(true);
             field.set(target, value);
-        } finally {
-            field.setAccessible(false);
         }
     }
 
