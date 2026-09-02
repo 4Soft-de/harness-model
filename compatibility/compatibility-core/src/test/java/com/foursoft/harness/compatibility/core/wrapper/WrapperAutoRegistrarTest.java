@@ -62,6 +62,22 @@ class WrapperAutoRegistrarTest {
     }
 
     @Test
+    void registersAllAnnotatedWrappersForEveryContextWhileScanningOnlyOnce() {
+        final CompatibilityContext firstContext = newContext();
+        final CompatibilityContext secondContext = newContext();
+
+        WrapperAutoRegistrar.registerAll(firstContext, MultiFixtureWrapper.class);
+        WrapperAutoRegistrar.registerAll(secondContext, MultiFixtureWrapper.class);
+
+        assertThat(WrapperAutoRegistrar.scanWrapperClasses(MultiFixtureWrapper.class))
+                .isSameAs(WrapperAutoRegistrar.scanWrapperClasses(MultiFixtureWrapper.class));
+        assertThat(secondContext.getWrapperRegistry().createInvocationHandler(new FixtureSourceA()))
+                .isInstanceOf(SingleFixtureWrapper.class);
+        assertThat(secondContext.getWrapperRegistry().createInvocationHandler(new FixtureSourceB()))
+                .isInstanceOf(MultiFixtureWrapper.class);
+    }
+
+    @Test
     void rejectsWrapperWithoutContextObjectConstructor() {
         final CompatibilityContext context = newContext();
 

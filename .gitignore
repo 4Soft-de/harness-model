@@ -180,3 +180,7 @@ buildNumber.properties
 /.idea/copilot.data.migration.agent.xml
 /.idea/copilot.data.migration.ask.xml
 /.idea/copilot.data.migration.ask2agent.xml
+
+### java-snapshot-testing ###
+# Written next to the .snap file whenever a snapshot comparison fails.
+*.snap.debug

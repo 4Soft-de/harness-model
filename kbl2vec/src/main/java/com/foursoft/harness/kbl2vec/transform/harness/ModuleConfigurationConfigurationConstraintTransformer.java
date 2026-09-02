@@ -34,6 +34,8 @@ import com.foursoft.harness.vec.v2x.VecConfigurationConstraint;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
 
+import static com.foursoft.harness.kbl2vec.transform.Queries.partOccurrences;
+
 public class ModuleConfigurationConfigurationConstraintTransformer
         implements Transformer<KblModuleConfiguration, VecConfigurationConstraint> {
 
@@ -46,12 +48,23 @@ public class ModuleConfigurationConfigurationConstraintTransformer
         final TransformationResult.Builder<VecConfigurationConstraint> builder = TransformationResult.from(
                 configurationConstraint);
 
+        final Query<?> constrainedElements;
         if (source.getParentModule() != null) {
             builder.withFragment((v, b) ->
                                          v.setIdentification(
                                                  "ConfConstraint_" + source.getParentModule().getPartNumber())
             );
+            constrainedElements = Query.of(source.getParentModule());
         } else {
+            // A standalone module configuration constrains the components it controls, there is no module.
+            constrainedElements = partOccurrences(source);
+            if (constrainedElements.stream().findAny().isEmpty()) {
+                // A ConfigurationConstraint requires at least one ConstrainedElements.
+                context.getLogger().warn(
+                        "Standalone module configuration (xml ID: {}) controls no components and is skipped.",
+                        source.getXmlId());
+                return TransformationResult.noResult();
+            }
             builder.withComment("This occurrence has no \"Id\" in the KBL data.");
             builder.withFragment((v, b) ->
                                          v.setIdentification("GenericIdentifier-" + context.getNewId())
@@ -61,7 +74,7 @@ public class ModuleConfigurationConfigurationConstraintTransformer
         return builder
 
                 .withLinker(Query.of(source), VecVariantConfiguration.class, VecConfigurationConstraint::setConfigInfo)
-                .withLinker(Query.of(source.getParentModule()), VecPartOccurrence.class,
+                .withLinker(constrainedElements, VecPartOccurrence.class,
                             VecConfigurationConstraint::getConstrainedElements)
                 .build();
     }

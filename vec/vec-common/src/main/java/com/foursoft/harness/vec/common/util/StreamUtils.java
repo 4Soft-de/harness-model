@@ -106,6 +106,25 @@ public final class StreamUtils {
     }
 
     /**
+     * Returns a {@link Collector} which applies the given function to all collected elements.
+     * <p>
+     * Intended for reductions whose rules depend on the elements as a whole, for example on how many there
+     * are, which cannot be expressed as a filter or a mapping of the single elements.
+     *
+     * @param reduction Function reducing the collected elements to at most one result.
+     * @param <T>       Type of the elements to collect.
+     * @param <R>       Type of the reduction result.
+     * @return A collector reducing the elements with the given function.
+     */
+    public static <T, R> Collector<T, List<T>, Optional<R>> reducing(
+            final Function<List<T>, Optional<R>> reduction) {
+        return Collector.of(ArrayList::new, List::add, (left, right) -> {
+            left.addAll(right);
+            return left;
+        }, reduction::apply);
+    }
+
+    /**
      * Returns the only element in the list. If zero or more than one element is in the list, an exception is thrown.
      */
     public static <T> Collector<T, List<T>, T> findOne() {

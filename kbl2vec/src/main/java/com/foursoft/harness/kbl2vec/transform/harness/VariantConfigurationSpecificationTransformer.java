@@ -28,6 +28,7 @@ package com.foursoft.harness.kbl2vec.transform.harness;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblModule;
 import com.foursoft.harness.kbl.v25.KblModuleConfiguration;
+import com.foursoft.harness.kbl.v25.KblModuleConfigurationType;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
@@ -58,8 +59,10 @@ public class VariantConfigurationSpecificationTransformer
         return () -> {
             final Stream<KblModuleConfiguration> moduleModuleConfigurations = source.getModules().stream().map(
                     KblModule::getModuleConfiguration);
+            // Module lists are not logistic expressions, they are transformed into a VecModuleList instead.
             final Stream<KblModuleConfiguration> standAloneModuleConfigurations =
-                    source.getModuleConfigurations().stream();
+                    source.getModuleConfigurations().stream()
+                            .filter(c -> c.getConfigurationType() != KblModuleConfigurationType.MODULE_LIST);
 
             return Stream.concat(standAloneModuleConfigurations, moduleModuleConfigurations)
                     .toList();

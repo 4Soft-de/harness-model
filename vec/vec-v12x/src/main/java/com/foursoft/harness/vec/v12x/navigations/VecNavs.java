@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * VEC 1.2.X
  * %%
- * Copyright (C) 2020 - 2023 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,34 +28,41 @@ package com.foursoft.harness.vec.v12x.navigations;
 import com.foursoft.harness.vec.common.annotations.RequiresBackReferences;
 import com.foursoft.harness.vec.v12x.VecDocumentVersion;
 import com.foursoft.harness.vec.v12x.VecExtendableElement;
-import com.foursoft.harness.vec.v12x.VecOccurrenceOrUsage;
 import com.foursoft.harness.vec.v12x.VecRole;
+import com.foursoft.harness.vec.v12x.traversal.ExtendableElements;
+import com.foursoft.harness.vec.v12x.traversal.Roles;
 
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Navigation methods which don't fit into a special category.
+ *
+ * @deprecated These navigations start at two different source types and are therefore spread over the
+ * catalogs of those types: {@link ExtendableElements} and {@link Roles}.
  */
+@Deprecated(forRemoval = true)
 public final class VecNavs {
 
     private VecNavs() {
         // hide default constructor
     }
 
+    /**
+     * @deprecated Use {@link ExtendableElements#toExternalDocumentNumbers()} instead.
+     */
+    @Deprecated(forRemoval = true)
     public static Function<VecExtendableElement, List<String>> externalDocumentNumbers() {
-        return element -> element.getReferencedExternalDocuments().stream()
-                .map(VecDocumentVersion::getDocumentNumber)
-                .toList();
+        return ExtendableElements.toExternalDocumentNumbers()::listFrom;
     }
 
+    /**
+     * @deprecated Use {@link Roles#toParentDocumentVersion()} instead.
+     */
+    @Deprecated(forRemoval = true)
     @RequiresBackReferences
     public static Function<VecRole, VecDocumentVersion> parentDocumentVersion() {
-        return role -> {
-            final VecOccurrenceOrUsage parentOccurrenceOrUsage = role.getParentOccurrenceOrUsage();
-            return PartOccurrenceOrUsageNavs.parentDocumentVersion().apply(parentOccurrenceOrUsage);
-        };
+        return Roles.toParentDocumentVersion()::orElseNull;
     }
 
 }

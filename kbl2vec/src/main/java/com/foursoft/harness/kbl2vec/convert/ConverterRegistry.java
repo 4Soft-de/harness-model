@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.convert;
 
+import com.foursoft.harness.kbl.v25.KblLocalizedString;
 import com.foursoft.harness.kbl2vec.core.ConversionProperties;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 
@@ -34,6 +35,7 @@ import java.util.Optional;
 public class ConverterRegistry {
 
     private final Converter<String, Optional<VecLocalizedString>> stringToLocalizedString;
+    private final Converter<KblLocalizedString, Optional<VecLocalizedString>> localizedString;
     private final StringToColorConverter stringToColorConverter;
     private final StringToWireTypeConverter stringToWireTypeConverter;
     private final StringToMaterialConverter stringToMaterialConverter;
@@ -44,6 +46,7 @@ public class ConverterRegistry {
         Objects.requireNonNull(conversionProperties);
         this.stringToLocalizedString = new StringToLocalizedStringConverter(conversionProperties
                                                                                     .getDefaultLanguageCode());
+        this.localizedString = new LocalizedStringConverter(conversionProperties.getDefaultLanguageCode());
         stringToColorConverter = new StringToColorConverter(conversionProperties.getDefaultColorReferenceSystem());
         stringToWireTypeConverter = new StringToWireTypeConverter(
                 conversionProperties.getDefaultWireTypeReferenceSystem());
@@ -55,6 +58,10 @@ public class ConverterRegistry {
 
     public Converter<String, Optional<VecLocalizedString>> getStringToLocalizedString() {
         return stringToLocalizedString;
+    }
+
+    public Converter<KblLocalizedString, Optional<VecLocalizedString>> getLocalizedString() {
+        return localizedString;
     }
 
     public StringToColorConverter getStringToColorConverter() {
