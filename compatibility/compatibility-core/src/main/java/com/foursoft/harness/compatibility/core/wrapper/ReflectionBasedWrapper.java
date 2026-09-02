@@ -49,19 +49,22 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionBasedWrapper.class);
 
-    private final Map<Object, Object> collectionsByMethod = new HashMap<>();
+    // One wrapper exists per wrapped object, so these collections are created on demand: most wrapped
+    // objects have no property additions at all and never touch anything but collectionsByMethod.
+    private Map<Object, Object> collectionsByMethod = Map.of();
 
-    private final Map<String, Object> valuePropertyValues = new HashMap<>();
-    private final Set<String> valuePropertyGetters = new HashSet<>();
-    private final Map<String, String> setterToGetter = new HashMap<>();
-    private final Set<String> listPropertyGetters = new HashSet<>();
-    private final Map<String, List<Object>> listPropertyStore = new HashMap<>();
-    private final Set<String> backRefPropertyGetters = new HashSet<>();
-    private final Map<String, Set<Object>> backRefPropertyStore = new HashMap<>();
+    private Map<String, Object> valuePropertyValues = Map.of();
+    private Set<String> valuePropertyGetters = Set.of();
+    private Map<String, String> setterToGetter = Map.of();
+    private Set<String> listPropertyGetters = Set.of();
+    private Map<String, List<Object>> listPropertyStore = Map.of();
+    private Set<String> backRefPropertyGetters = Set.of();
+    private Map<String, Set<Object>> backRefPropertyStore = Map.of();
 
     private final WrapperHelper wrapperHelper;
     private final Context context;
     private final Object target;
+    private final Class<?> nonProxyTargetClass;
 
     /**
      * Creates a wrapper for the given {@link Context} and target object.
@@ -74,11 +77,12 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         this.target = target;
 
         wrapperHelper = new WrapperHelper(this);
-        final Class<?> targetClass = ClassUtils.getNonProxyClass(target.getClass());
-        MethodCache.initClassCache(targetClass);
+        nonProxyTargetClass = ClassUtils.getNonProxyClass(target.getClass());
+        MethodCache.initClassCache(nonProxyTargetClass);
 
         if (context.getClassMapper() instanceof final PropertyAdditionProvider provider) {
-            for (final PropertyAddition addition : provider.getPropertyAdditions().getAdditions(targetClass)) {
+            for (final PropertyAddition addition : provider.getPropertyAdditions()
+                    .getAdditions(nonProxyTargetClass)) {
                 if (addition instanceof final PropertyAddition.Value v) {
                     registerValueProperty(v.propertyName());
                 } else if (addition instanceof final PropertyAddition.MutableList l) {
@@ -133,6 +137,8 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
      * @param setterName Name of the setter method.
      */
     protected void registerValueProperty(final String getterName, final String setterName) {
+        valuePropertyGetters = mutable(valuePropertyGetters);
+        setterToGetter = mutable(setterToGetter);
         valuePropertyGetters.add(getterName);
         setterToGetter.put(setterName, getterName);
     }
@@ -144,6 +150,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
      * @param propertyName Property name in camelCase (e.g. {@code "myList"}).
      */
     protected void registerListProperty(final String propertyName) {
+        listPropertyGetters = mutable(listPropertyGetters);
         listPropertyGetters.add("get" + capitalize(propertyName));
     }
 
@@ -154,6 +161,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
      * @param propertyName Property name in camelCase (e.g. {@code "refEEComponentRole"}).
      */
     protected void registerBackRefProperty(final String propertyName) {
+        backRefPropertyGetters = mutable(backRefPropertyGetters);
         backRefPropertyGetters.add("get" + capitalize(propertyName));
     }
 
@@ -164,14 +172,17 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
             return valuePropertyValues.get(methodName);
         }
         if (setterToGetter.containsKey(methodName)) {
+            valuePropertyValues = mutable(valuePropertyValues);
             valuePropertyValues.put(setterToGetter.get(methodName),
                                     allArguments != null && allArguments.length > 0 ? allArguments[0] : null);
             return null;
         }
         if (listPropertyGetters.contains(methodName)) {
+            listPropertyStore = mutable(listPropertyStore);
             return listPropertyStore.computeIfAbsent(methodName, k -> new ArrayList<>());
         }
         if (backRefPropertyGetters.contains(methodName)) {
+            backRefPropertyStore = mutable(backRefPropertyStore);
             return backRefPropertyStore.computeIfAbsent(methodName, k -> new HashSet<>());
         }
 
@@ -234,7 +245,6 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
     }
 
     private Object getTargetObject(final Method method, final Object[] objects) {
-        final Class<?> nonProxyTargetClass = ClassUtils.getNonProxyClass(target.getClass());
         final Optional<Method> targetMethodOpt = MethodCache.get(nonProxyTargetClass, method.getName());
         if (targetMethodOpt.isEmpty()) {
             final String errorMsg = String.format("Could not find a target method for source method %s for class %s.",
@@ -274,6 +284,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
             if (method == null) {
                 return extractObjectsOfPotentialCollection(targetObject);
             }
+            collectionsByMethod = mutable(collectionsByMethod);
             return collectionsByMethod.computeIfAbsent(method, c -> extractObjectsOfPotentialCollection(targetObject));
         } else if (targetType.isEnum()) {
             final Class<? extends Enum<?>> enumClass = (Class<? extends Enum<?>>) targetType;
@@ -329,6 +340,14 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         }
 
         return interestingObjects;
+    }
+
+    private <K, V> Map<K, V> mutable(final Map<K, V> map) {
+        return map instanceof HashMap ? map : new HashMap<>(map);
+    }
+
+    private <T> Set<T> mutable(final Set<T> set) {
+        return set instanceof HashSet ? set : new HashSet<>(set);
     }
 
     private static String capitalize(final String s) {
