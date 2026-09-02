@@ -4,6 +4,8 @@
 > similar two-phase model-to-model converters.
 > Status: analysis of the `kbl2vec` module (branch `develop`).
 > This document describes **only** how `kbl2vec` works today. It contains no implementation.
+> Section 13 is the exception in kind: it is a practical checklist for extending the converter,
+> derived from the conventions the rest of the document describes.
 
 ---
 
@@ -574,14 +576,61 @@ and the specification/occurrence **reference** the `VecPartVersion`, which is cr
 
 ---
 
-## 13. Test Infrastructure
+## 13. Adding a New Transformer — Checklist
+
+The wiring is implicit (see section 10), which makes adding a transformer cheap but also makes a few
+failure modes silent. This checklist collects the steps and the traps that are not visible from the Java API.
+
+**1. Create the class.** Put it in `transform/<domain>/` and implement `Transformer<Source, Target>` with a
+default constructor. That is all the registration there is — `ReflectionsBasedTransformerRegistry` finds it by
+its generic type arguments. A typo in those arguments does not fail the build, the transformer simply never runs.
+
+**2. Make sure something actually requests it.** A transformer only runs if some *other* transformer declares it
+as a `withDownstream`. New specifications in particular have to be added to the document transformer that owns
+them, e.g. `HarnessDocumentVersionTransformer` for everything hanging off the harness `VecDocumentVersion`.
+Without that step the class exists, compiles, is discovered — and produces nothing.
+
+**3. Check the XSD before deciding what an empty result means.** The generated Java accepts empty lists that the
+schema forbids, and the end-to-end test validates against the schema
+(`vec/vec-v2x/src/main/resources/vec2/vec_2.2.0-strict.xsd`). If the element you are filling has `minOccurs` >= 1,
+an empty container is invalid output, so guard the transformer and return `TransformationResult.noResult()`
+instead of an empty element. Example: `ModuleFamilySpecification` requires at least one `ModuleFamily`, and
+`ModuleFamily` requires at least one `ModuleInFamily`, so `ModuleFamilySpecificationTransformer` returns
+`noResult()` for a harness without module families.
+
+**4. Sort anything that comes out of a KBL back-reference.** The navigation extender exposes reverse references
+as `HashSet` (58 KBL classes carry such fields), so iteration order is not stable across runs. Feeding one
+unsorted into a `Query` produces churning IDREFS order and flaky snapshots. Sort on a stable key before
+returning the list — `Comparator.comparing(X::getXmlId)` is the usual choice, see `OnPointPlacementTransformer`
+and `WireMountingTransformer`.
+
+**5. Map every attribute of the source, not just the obvious ones.** In particular, *every* KBL type in
+`kbl-v25` that has `getDescription()` also has `getLocalizedDescriptions()` (17 of 17), and both belong in the
+target's descriptions — mapping only the plain one is a silent, easily-missed data loss. Check which
+`com.foursoft.harness.kbl.common.Has*` capability interfaces the source implements — they are the reliable
+inventory of what a KBL type can carry, and `components/common/Fragments` already keys off them for occurrences.
+
+**6. Decide transformer vs. converter vs. linker.**
+   - The target is referenced by other elements → it needs a `Transformer` so it lands in `EntityMapping`.
+   - It is a throwaway value (a localized string, a colour, a vector) → use a `Converter` from
+     `ConverterRegistry`; add one there if it is missing, as was the case for
+     `KblLocalizedString` → `VecLocalizedString` (`ConverterRegistry.getLocalizedString()`).
+   - The target is built on another branch of the graph → `withLinker`, not `withDownstream`.
+
+**7. Test it.** Add a unit test next to the transformer using `TestConversionOrchestrator` with
+`addMockMapping` for every reference (section 14.1), then regenerate the end-to-end snapshots and review the
+diff (section 14.2). Do not hand-write the license header — the build adds it.
+
+---
+
+## 14. Test Infrastructure
 
 The test strategy is two-tiered: isolated "wiring" unit tests per transformer, and one end-to-end snapshot/validation
 test over real KBL files.
 
 ```mermaid
 flowchart TB
-    subgraph UNIT["13.1 Unit test (per transformer, ~1:1)"]
+    subgraph UNIT["14.1 Unit test (per transformer, ~1:1)"]
         direction TB
         G["Given: KBL input<br/>+ addMockMapping(src, dst)"] --> W["When: orchestrator.transform(transformer, src)"]
         W --> T1["run transform()"]
@@ -590,7 +639,7 @@ flowchart TB
         T3 --> Th["Then: attributes set?<br/>correct targets attached/linked? (AssertJ)"]
     end
 
-    subgraph E2E["13.2 Integration/snapshot test"]
+    subgraph E2E["14.2 Integration/snapshot test"]
         direction TB
         K["4× real .kbl file"] --> R["KblReader.read()"]
         R --> C["KblToVecConverter.convert()"]
@@ -605,7 +654,7 @@ flowchart TB
     class K,R,C,X,S,V e2e;
 ```
 
-### 13.1 Unit Tests of Individual Transformers — `TestConversionOrchestrator`
+### 14.1 Unit Tests of Individual Transformers — `TestConversionOrchestrator`
 
 A **lightweight test engine** (`core/TestConversionOrchestrator`, located in the test source tree) that runs a single
 transformer in isolation, without classpath scan / real orchestration:
@@ -629,7 +678,7 @@ build the KBL input + mock mappings for all expected references/roles → `orche
 attributes are set and the correct mocked targets are attached/linked. There is usually exactly one test class per
 transformer (>100 test classes, mirroring the `transform/` package structure).
 
-### 13.2 Integration/Snapshot Test — `KblToVecConverterTest`
+### 14.2 Integration/Snapshot Test — `KblToVecConverterTest`
 
 End-to-end over real KBL sample files (`src/test/resources/vobes_sample_kbl24_*.kbl`):
 
@@ -644,10 +693,14 @@ End-to-end over real KBL sample files (`src/test/resources/vobes_sample_kbl24_*.
 - `should_invokeCustomProcessors_afterInternalProcessors` checks the processor ordering (XML IDs are already assigned
   when the custom post-processor runs).
 - `TestUtils.createTestFileStream(...)` additionally writes `.vec` files to `target/samples` for manual inspection.
+- **Regenerating the snapshots** after an intended mapping change:
+  `./mvnw -o -pl kbl2vec test -Dtest=KblToVecConverterTest -DupdateSnapshot=` (the trailing `=` means
+  "all snapshots"). Do not edit `snapshot.properties` for this. Adding an element shifts the deterministic
+  XML IDs of everything after it, so review the diff for the *structural* changes you intended.
 
 ---
 
-## 14. Assessment — What Defines This Architecture
+## 15. Assessment — What Defines This Architecture
 
 **Strengths / load-bearing ideas:**
 1. **Single input, self-expanding graph**: start from one root element; each transformer declares its children
@@ -677,7 +730,7 @@ End-to-end over real KBL sample files (`src/test/resources/vobes_sample_kbl24_*.
 
 ---
 
-## 15. Mapping to a Generic Coarse Converter Architecture (Chains, Pre/Postprocessors, Single Input)
+## 16. Mapping to a Generic Coarse Converter Architecture (Chains, Pre/Postprocessors, Single Input)
 
 This table is only a **bridge for understanding** — it shows how the building blocks of `kbl2vec` map onto a generic
 pipeline-style converter architecture (single input → pre-processors → main conversion → post-processors).
