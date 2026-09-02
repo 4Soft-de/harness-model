@@ -28,6 +28,8 @@ package com.foursoft.harness.kbl2vec.core;
 import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
 import org.slf4j.Logger;
 
+import java.util.function.Supplier;
+
 public interface TransformationContext {
 
     EntityMapping getEntityMapping();
@@ -39,5 +41,20 @@ public interface TransformationContext {
     Logger getLogger();
 
     int getNewId();
+
+    /**
+     * Returns a value derived from the source model, computing it with the given supplier on first access and
+     * reusing it for every later call with an equal key.
+     * <p>
+     * This exists for lookups that would otherwise have to be rebuilt for every element that needs them, for
+     * example an index over a collection of the source model. The cache lives as long as the conversion and is
+     * intentionally untyped, so that the framework stays independent of the models being converted; the key
+     * should identify both the source object and the kind of derived value.
+     *
+     * @param key      identifies the cached value, typically the source object the value is derived from
+     * @param supplier computes the value if it is not cached yet
+     * @return the cached value
+     */
+    <T> T getCached(Object key, Supplier<T> supplier);
 
 }

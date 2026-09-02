@@ -28,7 +28,10 @@ package com.foursoft.harness.kbl2vec.core;
 import com.foursoft.harness.kbl2vec.convert.ConverterRegistry;
 import org.slf4j.Logger;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 
 public class TransformationContextImpl implements TransformationContext {
     private final ConversionProperties conversionProperties;
@@ -36,6 +39,7 @@ public class TransformationContextImpl implements TransformationContext {
     private final EntityMapping entityMapping;
     private final Logger logger = Logging.TRANSFORM_LOGGER;
     private final AtomicInteger idCounter = new AtomicInteger(0);
+    private final Map<Object, Object> cache = new ConcurrentHashMap<>();
 
     public TransformationContextImpl(final ConversionProperties conversionProperties,
                                      final ConverterRegistry converterRegistry, final EntityMapping entityMapping) {
@@ -67,5 +71,10 @@ public class TransformationContextImpl implements TransformationContext {
     @Override
     public int getNewId() {
         return idCounter.getAndIncrement();
+    }
+
+    @Override
+    public <T> T getCached(final Object key, final Supplier<T> supplier) {
+        return (T) cache.computeIfAbsent(key, k -> supplier.get());
     }
 }

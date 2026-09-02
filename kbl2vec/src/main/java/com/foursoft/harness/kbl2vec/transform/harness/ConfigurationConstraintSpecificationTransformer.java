@@ -28,6 +28,7 @@ package com.foursoft.harness.kbl2vec.transform.harness;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl.v25.KblModule;
 import com.foursoft.harness.kbl.v25.KblModuleConfiguration;
+import com.foursoft.harness.kbl.v25.KblModuleConfigurationType;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
@@ -54,7 +55,10 @@ public class ConfigurationConstraintSpecificationTransformer
 
     Query<KblModuleConfiguration> moduleConfigurationQuery(final KblHarness source,
                                                            final TransformationContext context) {
-        if (!source.getModuleConfigurations().isEmpty()) {
+        // Module lists are standalone module configurations, but they are supported (as VecModuleList).
+        final boolean unsupportedStandaloneConfigurations = source.getModuleConfigurations().stream()
+                .anyMatch(c -> c.getConfigurationType() != KblModuleConfigurationType.MODULE_LIST);
+        if (unsupportedStandaloneConfigurations) {
             context.getLogger().warn("Standalone module configurations are not yet supported.");
         }
         return () -> source.getModules().stream()
