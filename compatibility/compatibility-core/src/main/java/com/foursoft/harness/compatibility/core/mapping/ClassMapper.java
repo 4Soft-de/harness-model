@@ -60,8 +60,7 @@ public interface ClassMapper {
      * @return {@code true} if the class is from the source package, else {@code false}.
      */
     default boolean isFromSourcePackage(final Class<?> clazz) {
-        final String packageName = clazz.getPackage().getName();
-        return packageName.startsWith(getSourcePackageName());
+        return clazz.getPackageName().startsWith(getSourcePackageName());
     }
 
     /**
@@ -71,8 +70,7 @@ public interface ClassMapper {
      * @return {@code true} if the class is from the target package, else {@code false}.
      */
     default boolean isFromTargetPackage(final Class<?> clazz) {
-        final String packageName = clazz.getPackage().getName();
-        return packageName.startsWith(getTargetPackageName());
+        return clazz.getPackageName().startsWith(getTargetPackageName());
     }
 
 }
