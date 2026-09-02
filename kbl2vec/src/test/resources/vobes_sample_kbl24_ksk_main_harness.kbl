@@ -39704,6 +39704,11 @@
 			<Configuration_type>module list</Configuration_type>
 			<Controlled_components>Wire_protection_occurrence_93</Controlled_components>
 		</Module_configuration>
+        <Module_configuration id="id_353_136">
+            <Logistic_control_information>L0L+QV0/QV3/QU8+I8L</Logistic_control_information>
+            <Configuration_type>option code</Configuration_type>
+            <Controlled_components>Wire_protection_occurrence_92 Wire_protection_occurrence_93</Controlled_components>
+        </Module_configuration>
 		<Module_families id="id_332_0">
 			<Id>000</Id>
 			<Description>LEITUNGSSTRANG</Description>
