@@ -35,27 +35,32 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 /**
  * Manual benchmark of the VEC 1.2.X -&gt; VEC 1.1.3 conversion, i.e. the direction a container export uses.
  * <p>
  * This is not an assertion-based test but a measuring aid for work on the compatibility layer. It is skipped
  * unless it is asked for explicitly:
- * <pre>./mvnw -pl compatibility/compatibility-vec11to12 test -Dtest=ConversionBenchmark -Dbenchmark=true</pre>
+ * <pre>./mvnw -pl compatibility/compatibility-vec11to12 test -Dtest=ConversionBenchmarkTest -Dbenchmark=true</pre>
  * Read the numbers from stdout. {@code allocated} is the most reliable of them, the wall clock timings
  * fluctuate heavily; the first run additionally contains the class loading and JIT warm-up.
  */
 @EnabledIfSystemProperty(named = "benchmark", matches = "true")
-class ConversionBenchmark {
+class ConversionBenchmarkTest {
 
     private static final int ITERATIONS = 10;
 
     @Test
-    void benchmarkDowngrade() throws Exception {
-        final com.foursoft.harness.vec.v12x.VecContent source = readPlainVec12x();
-
-        for (int i = 0; i < ITERATIONS; i++) {
-            runIteration(source, i);
-        }
+    void benchmarkDowngrade() {
+        // There is nothing to assert here - the point of the run are the numbers on stdout. Asserting that it
+        // completes at all keeps it an intentional smoke test rather than a forgotten assertion.
+        assertThatCode(() -> {
+            final com.foursoft.harness.vec.v12x.VecContent source = readPlainVec12x();
+            for (int i = 0; i < ITERATIONS; i++) {
+                runIteration(source, i);
+            }
+        }).doesNotThrowAnyException();
     }
 
     private void runIteration(final com.foursoft.harness.vec.v12x.VecContent source, final int iteration) {
