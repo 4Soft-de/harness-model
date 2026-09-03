@@ -83,3 +83,9 @@ the *structural* changes are the ones you intended.
   there is no enforced formatter (see `.github/CONTRIBUTING.md`).
 - Commit messages in this repo do not carry a `Co-Authored-By` trailer.
 - Branch off `develop` and target PRs at `develop`; PRs are squash-merged.
+
+## Release notes
+
+The notes of a release are embedded by Renovate and Dependabot into the update pull requests of every
+consumer, so their format and their wording follow fixed rules. Before drafting or reviewing them,
+read [`.claude/skills/release-notes/SKILL.md`](.claude/skills/release-notes/SKILL.md).
