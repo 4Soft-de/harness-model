@@ -115,7 +115,7 @@ public final class WrapperAutoRegistrar {
             }
         }
 
-        LOGGER.debug("Auto-registered {} wrapper(s) for {} source class(es) from packages '{}'.",
+        LOGGER.trace("Registered {} wrapper(s) for {} source class(es) on a new context from packages '{}'.",
                      wrapperClasses.size(), registrations, packages);
     }
 
@@ -139,10 +139,13 @@ public final class WrapperAutoRegistrar {
         final URL[] urls = basePackageClasses.stream().map(
                 p -> p.getProtectionDomain().getCodeSource().getLocation()).toArray(URL[]::new);
 
-        return Set.copyOf(new Reflections(new ConfigurationBuilder().setUrls(urls)
-                                                  .filterInputsBy(filterBuilder)
-                                                  .forPackages(packages).addScanners(
-                        Scanners.TypesAnnotated)).getTypesAnnotatedWith(Wraps.class));
+        final Set<Class<?>> wrapperClasses = Set.copyOf(
+                new Reflections(new ConfigurationBuilder().setUrls(urls)
+                                        .filterInputsBy(filterBuilder)
+                                        .forPackages(packages).addScanners(
+                                Scanners.TypesAnnotated)).getTypesAnnotatedWith(Wraps.class));
+        LOGGER.debug("Found {} @Wraps annotated wrapper(s) in packages '{}'.", wrapperClasses.size(), packages);
+        return wrapperClasses;
     }
 
     /**
