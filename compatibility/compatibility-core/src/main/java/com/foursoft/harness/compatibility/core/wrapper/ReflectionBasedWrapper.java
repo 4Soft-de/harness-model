@@ -65,6 +65,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
     private final Context context;
     private final Object target;
     private final Class<?> nonProxyTargetClass;
+    private final boolean targetOfInterest;
 
     /**
      * Creates a wrapper for the given {@link Context} and target object.
@@ -78,6 +79,10 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
 
         wrapperHelper = new WrapperHelper(this);
         nonProxyTargetClass = ClassUtils.getNonProxyClass(target.getClass());
+        // Constant for a given target, so it is decided here instead of on every method invocation.
+        final ClassMapper mapper = context.getClassMapper();
+        targetOfInterest = mapper.isFromSourcePackage(target.getClass())
+                || mapper.isFromTargetPackage(target.getClass());
         MethodCache.initClassCache(nonProxyTargetClass);
 
         if (context.getClassMapper() instanceof final PropertyAdditionProvider provider) {
@@ -227,13 +232,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
             return null;
         }
 
-        final ClassMapper classMapper = context.getClassMapper();
-        final Class<?> targetClass = target.getClass();
-        if (classMapper.isFromSourcePackage(targetClass) || classMapper.isFromTargetPackage(targetClass)) {
-            return wrapObject(obj, method, allArguments);
-        } else {
-            return null;
-        }
+        return targetOfInterest ? wrapObject(obj, method, allArguments) : null;
     }
 
     private Object defaultInvoke(final Method method, final Object[] allArguments) {
