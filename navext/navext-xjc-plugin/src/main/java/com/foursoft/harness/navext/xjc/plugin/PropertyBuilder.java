@@ -37,7 +37,7 @@ public class PropertyBuilder {
     private String name;
     private String getterName;
     private JType baseType;
-    private JExpression init;
+    private JExpression lazyInit;
     private JDocComment getterJavadoc;
     private boolean setter;
     private String setterName;
@@ -73,13 +73,17 @@ public class PropertyBuilder {
 
     public JFieldVar build(final JDefinedClass targetClass) {
         final JFieldVar field = targetClass.field(JMod.PRIVATE, baseType, name);
-        if (init != null) {
-            field.init(init);
-        }
 
         field.annotate(codeModel.ref(XmlTransient.class));
 
         final JMethod getter = targetClass.method(JMod.PUBLIC, baseType, getterName);
+        if (lazyInit != null) {
+            getter.body()
+                    ._if(JExpr.ref(field.name())
+                                 .eq(JExpr._null()))
+                    ._then()
+                    .assign(field, lazyInit);
+        }
         getter.body()
                 ._return(JExpr.ref(field.name()));
 
@@ -114,8 +118,17 @@ public class PropertyBuilder {
 
     }
 
-    public PropertyBuilder withInit(final JExpression init) {
-        this.init = init;
+    /**
+     * Lets the getter create the value on first access instead of initialising the field eagerly.
+     * <p>
+     * An eagerly initialized field costs memory on every instance, even where nothing ever writes to the property.
+     * This is the same pattern XJC itself generates for list properties.
+     *
+     * @param lazyInit expression creating the initial value, evaluated at most once per instance
+     * @return this builder
+     */
+    public PropertyBuilder withLazyInit(final JExpression lazyInit) {
+        this.lazyInit = lazyInit;
         return this;
     }
 

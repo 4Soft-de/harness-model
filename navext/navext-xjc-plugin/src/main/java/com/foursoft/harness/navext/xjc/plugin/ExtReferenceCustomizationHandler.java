@@ -83,8 +83,8 @@ public class ExtReferenceCustomizationHandler extends AbstractCustomizationHandl
         propertyBuilder.withName(inversePropertyName)
                 .withBaseType(codeModel.ref(Set.class)
                                       .narrow(sourceClass))
-                .withInit(JExpr._new(codeModel.ref(HashSet.class)
-                                             .narrow(sourceClass)))
+                .withLazyInit(JExpr._new(codeModel.ref(HashSet.class)
+                                                 .narrow(sourceClass)))
                 .withGetterJavadoc(createGetterJavadoc(codeModel, sourceClass));
 
         findImplementationClasses(context, targetClass).filter(c -> !c.fields()

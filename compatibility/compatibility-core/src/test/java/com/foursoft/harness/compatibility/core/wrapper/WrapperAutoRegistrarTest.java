@@ -34,7 +34,13 @@ import com.foursoft.harness.compatibility.core.wrapper.fixture.duplicate.Duplica
 import com.foursoft.harness.compatibility.core.wrapper.fixture.duplicate.DuplicateWrapperA;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.happy.*;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.nothandler.NotHandlerWrapper;
+import com.foursoft.harness.compatibility.core.wrapper.fixture.scanlogging.ScanLoggingWrapper;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationHandler;
 
@@ -75,6 +81,31 @@ class WrapperAutoRegistrarTest {
                 .isInstanceOf(SingleFixtureWrapper.class);
         assertThat(secondContext.getWrapperRegistry().createInvocationHandler(new FixtureSourceB()))
                 .isInstanceOf(MultiFixtureWrapper.class);
+    }
+
+    @Test
+    void logsTheClasspathScanOncePerPackageSetNoMatterHowOftenWrappersAreRegistered() {
+        final ch.qos.logback.classic.Logger logger =
+                ((LoggerContext) LoggerFactory.getILoggerFactory()).getLogger(WrapperAutoRegistrar.class);
+        final Level originalLevel = logger.getLevel();
+        final ListAppender<ILoggingEvent> appender = new ListAppender<>();
+        appender.start();
+        logger.setLevel(Level.DEBUG);
+        logger.addAppender(appender);
+        try {
+            for (int i = 0; i < 25; i++) {
+                WrapperAutoRegistrar.registerAll(newContext(), ScanLoggingWrapper.class);
+            }
+        } finally {
+            logger.detachAppender(appender);
+            logger.setLevel(originalLevel);
+            appender.stop();
+        }
+
+        assertThat(appender.list)
+                .extracting(ILoggingEvent::getFormattedMessage)
+                .containsExactly("Found 1 @Wraps annotated wrapper(s) in packages "
+                                         + "'[com.foursoft.harness.compatibility.core.wrapper.fixture.scanlogging]'.");
     }
 
     @Test

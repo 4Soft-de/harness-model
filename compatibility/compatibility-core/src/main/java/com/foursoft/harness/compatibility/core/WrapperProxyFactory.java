@@ -36,7 +36,7 @@ import net.bytebuddy.implementation.InvocationHandlerAdapter;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
-import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -52,7 +52,11 @@ public final class WrapperProxyFactory {
     private static final String CALLBACK = "callback";
     private static final TypeCache<Object> TYPE_CACHE = new TypeCache<>(TypeCache.Sort.SOFT);
 
-    private final Map<Object, Object> objectByObject = new HashMap<>();
+    /**
+     * Wrappers are looked up by object identity: a source object and its wrapper belong together
+     * one to one, and hashing the source objects instead would walk their (potentially large) graphs.
+     */
+    private final Map<Object, Object> objectByObject = new IdentityHashMap<>();
 
     private final ClassMapper classMapper;
     private final WrapperRegistry registry;
@@ -96,7 +100,7 @@ public final class WrapperProxyFactory {
                 new ByteBuddy().subclass(mappedClass)
                         .defineField(CALLBACK, InvocationHandler.class, Visibility.PUBLIC)
                         .method(not(isDeclaredBy(Object.class)).and(not(named("accept"))))
-                        .intercept(InvocationHandlerAdapter.toField(CALLBACK).withoutMethodCache())
+                        .intercept(InvocationHandlerAdapter.toField(CALLBACK))
                         .make()
                         .load(target.getClass().getClassLoader())
                         .getLoaded());

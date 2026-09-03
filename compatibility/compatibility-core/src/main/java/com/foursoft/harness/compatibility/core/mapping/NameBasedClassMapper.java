@@ -28,6 +28,9 @@ package com.foursoft.harness.compatibility.core.mapping;
 import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.util.ClassUtils;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * A {@link ClassMapper} implementation which uses a source and target package for class mapping.
  */
@@ -35,6 +38,12 @@ public abstract class NameBasedClassMapper implements ClassMapper {
 
     private final String sourcePackage;
     private final String targetPackage;
+
+    /**
+     * Caches the outcome of {@link #map(Class)}, which is called for every proxy creation and for every
+     * enum value read through a proxy. The cache is bound to the lifetime of this mapper.
+     */
+    private final Map<Class<?>, Class<?>> mappedClasses = new ConcurrentHashMap<>();
 
     /**
      * Creates a new class mapper which helps in converting classes
@@ -50,6 +59,10 @@ public abstract class NameBasedClassMapper implements ClassMapper {
 
     @Override
     public Class<?> map(final Class<?> clazz) {
+        return mappedClasses.computeIfAbsent(clazz, this::mapUncached);
+    }
+
+    private Class<?> mapUncached(final Class<?> clazz) {
         final boolean isSource = isFromSourcePackage(clazz);
         final boolean isTarget = isFromTargetPackage(clazz);
         if (!isSource && !isTarget) {
