@@ -30,13 +30,16 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecMaterial;
+import org.apache.commons.lang3.StringUtils;
 
 public class MaterialTransformer implements Transformer<KblMaterial, VecMaterial> {
 
     @Override
     public TransformationResult<VecMaterial> transform(final TransformationContext context,
                                                        final KblMaterial source) {
-        context.getLogger().debug("Transforming {} to KblMaterial.", source);
+        if(StringUtils.isBlank(source.getMaterialKey())){
+            return TransformationResult.noResult();
+        }
         final VecMaterial result = new VecMaterial();
         result.setReferenceSystem(source.getMaterialReferenceSystem());
         result.setKey(source.getMaterialKey());
