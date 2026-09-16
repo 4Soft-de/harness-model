@@ -58,7 +58,7 @@ class SegmentCrossSectionAreaTransformerTest {
         // Then
         assertThat(result).isNotNull()
                 .returns(vecNumericalValue, VecSegmentCrossSectionArea::getArea)
-                .returns("Reserved", VecSegmentCrossSectionArea::getCrossSectionAreaType)
+                .returns("Real", VecSegmentCrossSectionArea::getCrossSectionAreaType)
                 .returns(VecValueDetermination.CALCULATED, VecSegmentCrossSectionArea::getValueDetermination);
     }
 

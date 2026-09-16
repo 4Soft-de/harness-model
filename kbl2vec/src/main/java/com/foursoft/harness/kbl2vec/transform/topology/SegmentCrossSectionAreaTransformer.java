@@ -45,9 +45,11 @@ public class SegmentCrossSectionAreaTransformer
         final VecSegmentCrossSectionArea destination = new VecSegmentCrossSectionArea();
 
         final KblValueDetermination valueDetermination = source.getValueDetermination();
-        if (valueDetermination == KblValueDetermination.CALCULATED ||
-                valueDetermination == KblValueDetermination.RESERVED) {
+        if (valueDetermination == KblValueDetermination.CALCULATED){
             destination.setValueDetermination(VecValueDetermination.CALCULATED);
+            destination.setCrossSectionAreaType("Real");
+        } else if(valueDetermination == KblValueDetermination.RESERVED) {
+            destination.setValueDetermination(VecValueDetermination.ESTIMATED);
             destination.setCrossSectionAreaType("Reserved");
         } else if (valueDetermination == KblValueDetermination.MEASURED) {
             destination.setValueDetermination(VecValueDetermination.MEASURED);
