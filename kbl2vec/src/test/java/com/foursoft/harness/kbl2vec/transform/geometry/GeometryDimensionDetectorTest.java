@@ -25,7 +25,14 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry;
 
+import com.foursoft.harness.kbl.v25.KBLContainer;
+import com.foursoft.harness.kbl.v25.KblBSplineCurve;
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
+import com.foursoft.harness.kbl.v25.KblSegment;
+import com.foursoft.harness.kbl.v25.KblSegmentForm;
+import com.foursoft.harness.kbl2vec.core.ConversionProperties;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
+import com.foursoft.harness.kbl2vec.core.TransformationContextImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -93,5 +100,72 @@ class GeometryDimensionDetectorTest {
 
         // Then
         assertThat(result).isFalse();
+    }
+
+    @Test
+    void should_detect3dWhenSegmentsHaveFormAndCenterCurves() {
+        // Given
+        final KBLContainer kbl = new KBLContainer();
+        kbl.getSegments().add(segment(KblSegmentForm.CIRCULAR, true));
+        kbl.getSegments().add(segment(null, true));
+
+        // When / Then
+        assertThat(GeometryDimensionDetector.is3d(kbl)).isTrue();
+    }
+
+    @Test
+    void should_detect2dWhenNoSegmentHasAForm() {
+        // Given
+        final KBLContainer kbl = new KBLContainer();
+        kbl.getSegments().add(segment(null, true));
+
+        // When / Then
+        assertThat(GeometryDimensionDetector.is3d(kbl)).isFalse();
+    }
+
+    @Test
+    void should_detect2dWhenAnySegmentLacksACenterCurve() {
+        // Given
+        final KBLContainer kbl = new KBLContainer();
+        kbl.getSegments().add(segment(KblSegmentForm.CIRCULAR, true));
+        kbl.getSegments().add(segment(KblSegmentForm.CIRCULAR, false));
+
+        // When / Then
+        assertThat(GeometryDimensionDetector.is3d(kbl)).isFalse();
+    }
+
+    @Test
+    void should_detect2dWhenThereAreNoSegments() {
+        // Given
+        final KBLContainer kbl = new KBLContainer();
+
+        // When / Then
+        assertThat(GeometryDimensionDetector.is3d(kbl)).isFalse();
+    }
+
+    @Test
+    void should_deriveDecisionOnlyOncePerContainer() {
+        // Given
+        final TransformationContext context = new TransformationContextImpl(new ConversionProperties(), null, null);
+        final KBLContainer kbl = new KBLContainer();
+        kbl.getSegments().add(segment(KblSegmentForm.CIRCULAR, true));
+
+        // When
+        final boolean first = GeometryDimensionDetector.is3d(context, kbl);
+        kbl.getSegments().clear();
+        final boolean second = GeometryDimensionDetector.is3d(context, kbl);
+
+        // Then
+        assertThat(first).isTrue();
+        assertThat(second).isTrue();
+    }
+
+    private static KblSegment segment(final KblSegmentForm form, final boolean withCenterCurve) {
+        final KblSegment segment = new KblSegment();
+        segment.setForm(form);
+        if (withCenterCurve) {
+            segment.getCenterCurves().add(new KblBSplineCurve());
+        }
+        return segment;
     }
 }

@@ -45,8 +45,7 @@ public class BuildingBlockSpecification2DTransformer
         final VecBuildingBlockSpecification2D destination = new VecBuildingBlockSpecification2D();
         destination.setIdentification("BB_SPEC_2D");
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
-                                                     GeometryDimensionDetector.GEO_2D)) {
+        if (GeometryDimensionDetector.is3d(context, source.getParentKBLContainer())) {
             return TransformationResult.noResult();
         }
         context.getLogger().info("Detected 2D data. Creating 2D building block specification.");

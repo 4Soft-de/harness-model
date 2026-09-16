@@ -43,8 +43,7 @@ public class HarnessGeometrySpecification3DTransformer
         final VecHarnessGeometrySpecification3D destination = new VecHarnessGeometrySpecification3D();
         destination.setIdentification("GEOMETRY");
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
-                                                     GeometryDimensionDetector.GEO_3D)) {
+        if (!GeometryDimensionDetector.is3d(context, source.getParentKBLContainer())) {
             return TransformationResult.noResult();
         }
         context.getLogger().info("Detected 3D data. Creating 3D geometry specification.");

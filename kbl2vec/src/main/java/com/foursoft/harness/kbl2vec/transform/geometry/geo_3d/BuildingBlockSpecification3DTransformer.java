@@ -45,8 +45,7 @@ public class BuildingBlockSpecification3DTransformer
         final VecBuildingBlockSpecification3D destination = new VecBuildingBlockSpecification3D();
         destination.setIdentification("BB_SPEC_3D");
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
-                                                     GeometryDimensionDetector.GEO_3D)) {
+        if (!GeometryDimensionDetector.is3d(context, source.getParentKBLContainer())) {
             return TransformationResult.noResult();
         }
         context.getLogger().info("Detected 3D data. Creating 3D building block specification.");
