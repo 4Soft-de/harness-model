@@ -26,8 +26,11 @@
 package com.foursoft.harness.kbl2vec.transform.geometry.geo_3d;
 
 import com.foursoft.harness.kbl.v25.KBLContainer;
+import com.foursoft.harness.kbl.v25.KblBSplineCurve;
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
 import com.foursoft.harness.kbl.v25.KblHarness;
+import com.foursoft.harness.kbl.v25.KblSegment;
+import com.foursoft.harness.kbl.v25.KblSegmentForm;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecBuildingBlockPositioning3D;
 import com.foursoft.harness.vec.v2x.VecHarnessGeometrySpecification3D;
@@ -53,6 +56,11 @@ class HarnessGeometrySpecification3DTransformerTest {
         final KBLContainer kblContainer = new KBLContainer();
         source.setParentKBLContainer(kblContainer);
         source.getParentKBLContainer().getCartesianPoints().add(cartesianPoint);
+
+        final KblSegment segment = new KblSegment();
+        segment.setForm(KblSegmentForm.CIRCULAR);
+        segment.getCenterCurves().add(new KblBSplineCurve());
+        kblContainer.getSegments().add(segment);
 
         final VecBuildingBlockPositioning3D vecBuildingBlockPositioning3D = new VecBuildingBlockPositioning3D();
         orchestrator.addMockMapping(source, vecBuildingBlockPositioning3D);

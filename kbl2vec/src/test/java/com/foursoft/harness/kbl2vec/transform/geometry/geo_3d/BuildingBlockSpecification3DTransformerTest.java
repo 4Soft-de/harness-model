@@ -61,6 +61,8 @@ class BuildingBlockSpecification3DTransformerTest {
         orchestrator.addMockMapping(node, vecGeometryNode3D);
 
         final KblSegment segment = new KblSegment();
+        segment.setForm(KblSegmentForm.CIRCULAR);
+        segment.getCenterCurves().add(new KblBSplineCurve());
         kblContainer.getSegments().add(segment);
 
         final KblUnit baseUnit = new KblUnit();
