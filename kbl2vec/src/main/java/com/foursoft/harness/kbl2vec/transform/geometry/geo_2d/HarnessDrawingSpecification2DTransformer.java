@@ -43,8 +43,7 @@ public class HarnessDrawingSpecification2DTransformer
         final VecHarnessDrawingSpecification2D destination = new VecHarnessDrawingSpecification2D();
         destination.setIdentification("DRAWING");
 
-        if (!GeometryDimensionDetector.hasDimensions(source.getParentKBLContainer().getCartesianPoints(),
-                                                     GeometryDimensionDetector.GEO_2D)) {
+        if (GeometryDimensionDetector.is3d(context, source.getParentKBLContainer())) {
             return TransformationResult.noResult();
         }
         context.getLogger().info("Detected 2D data. Creating 2D drawing specification.");

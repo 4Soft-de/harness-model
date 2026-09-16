@@ -25,7 +25,9 @@
  */
 package com.foursoft.harness.kbl2vec.transform.geometry;
 
+import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblCartesianPoint;
+import com.foursoft.harness.kbl2vec.core.TransformationContext;
 
 import java.util.List;
 
@@ -34,6 +36,24 @@ public class GeometryDimensionDetector {
     public static final int GEO_3D = 3;
 
     private GeometryDimensionDetector() {
+    }
+
+    /**
+     * Decides whether the KBL file carries 3D geometry, cached for the duration of the conversion because every
+     * geometry specification needs the same answer.
+     */
+    public static boolean is3d(final TransformationContext context, final KBLContainer kbl) {
+        return context.getCached(new Is3dKey(kbl), () -> is3d(kbl));
+    }
+
+    /**
+     * A KBL file is treated as 3D if its segments carry a form and every segment has a center curve. Anything
+     * else (no segments, only 2D drawing data, or incomplete 3D data) is treated as 2D.
+     */
+    public static boolean is3d(final KBLContainer kbl) {
+        final boolean hasForm = kbl.getSegments().stream().anyMatch(s -> s.getForm() != null);
+        final boolean hasCurve = kbl.getSegments().stream().noneMatch(s -> s.getCenterCurves().isEmpty());
+        return hasForm && hasCurve;
     }
 
     public static boolean hasDimensions(final KblCartesianPoint vector, final int numOfDimensions) {
@@ -51,5 +71,11 @@ public class GeometryDimensionDetector {
             return hasDimensions(cartesianPoint, numOfDimensions);
         }
         return false;
+    }
+
+    /**
+     * Cache key, so that the cached decision cannot collide with another value cached for the same container.
+     */
+    private record Is3dKey(KBLContainer kbl) {
     }
 }
