@@ -335,7 +335,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>63.617251</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00018">
@@ -1729,7 +1729,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>63.617251</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00054">
@@ -1750,7 +1750,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>63.617251</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00055">
@@ -1771,7 +1771,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00056">
@@ -24424,7 +24424,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00930">
@@ -24445,7 +24445,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00931">
@@ -24466,7 +24466,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00932">
@@ -24487,7 +24487,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>78.539816</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00933">
@@ -24508,7 +24508,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00934">
@@ -24529,7 +24529,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00935">
@@ -24550,7 +24550,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00936">
@@ -24571,7 +24571,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>38.48451</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00937">
@@ -24592,7 +24592,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00938">
@@ -24613,7 +24613,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00939">
@@ -24634,7 +24634,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00940">
@@ -24655,7 +24655,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00941">
@@ -24676,7 +24676,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>95.033178</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00942">
@@ -24697,7 +24697,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>95.033178</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00943">
@@ -24718,7 +24718,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00944">
@@ -24739,7 +24739,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00945">
@@ -24760,7 +24760,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00946">
@@ -24781,7 +24781,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00947">
@@ -24802,7 +24802,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00948">
@@ -24823,7 +24823,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00949">
@@ -24844,7 +24844,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>314.159265</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00950">
@@ -24865,7 +24865,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00951">
@@ -24886,7 +24886,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00952">
@@ -24907,7 +24907,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00953">
@@ -24928,7 +24928,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00954">
@@ -24949,7 +24949,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00955">
@@ -24970,7 +24970,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00956">
@@ -24991,7 +24991,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00957">
@@ -25012,7 +25012,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00958">
@@ -25033,7 +25033,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00959">
@@ -25054,7 +25054,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00960">
@@ -25075,7 +25075,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00961">
@@ -25096,7 +25096,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00962">
@@ -25117,7 +25117,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>314.159265</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00963">
@@ -25138,7 +25138,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00964">
@@ -25159,7 +25159,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00965">
@@ -25180,7 +25180,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00966">
@@ -25201,7 +25201,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00967">
@@ -25222,7 +25222,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00968">
@@ -25243,7 +25243,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00969">
@@ -25264,7 +25264,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00970">
@@ -25285,7 +25285,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00971">
@@ -25306,7 +25306,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00972">
@@ -25327,7 +25327,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00973">
@@ -25348,7 +25348,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00974">
@@ -25369,7 +25369,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00975">
@@ -25390,7 +25390,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00976">
@@ -25411,7 +25411,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00977">
@@ -25432,7 +25432,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00978">
@@ -25453,7 +25453,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00979">
@@ -25474,7 +25474,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00980">
@@ -25495,7 +25495,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00981">
@@ -25516,7 +25516,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00982">
@@ -25537,7 +25537,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00983">
@@ -25558,7 +25558,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00984">
@@ -25579,7 +25579,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00985">
@@ -25600,7 +25600,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00986">
@@ -25621,7 +25621,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00987">
@@ -25642,7 +25642,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00988">
@@ -25663,7 +25663,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>38.48451</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00989">
@@ -25684,7 +25684,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00990">
@@ -25705,7 +25705,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00991">
@@ -25726,7 +25726,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00992">
@@ -25747,7 +25747,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00993">
@@ -25768,7 +25768,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00994">
@@ -25789,7 +25789,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00995">
@@ -25810,7 +25810,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00996">
@@ -25831,7 +25831,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00997">
@@ -25852,7 +25852,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00998">
@@ -25873,7 +25873,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00999">
@@ -25894,7 +25894,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01000">
@@ -25915,7 +25915,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01001">
@@ -25936,7 +25936,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01002">
@@ -25957,7 +25957,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01003">
@@ -25978,7 +25978,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01004">
@@ -25999,7 +25999,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01005">
@@ -26020,7 +26020,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01006">
@@ -26041,7 +26041,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01007">
@@ -26062,7 +26062,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01008">
@@ -26083,7 +26083,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01009">
@@ -26104,7 +26104,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01010">
@@ -26125,7 +26125,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01011">
@@ -26146,7 +26146,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01012">
@@ -26167,7 +26167,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01013">
@@ -26188,7 +26188,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01014">
@@ -26209,7 +26209,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01015">
@@ -26230,7 +26230,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01016">
@@ -26251,7 +26251,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>78.539816</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01017">
@@ -26272,7 +26272,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01018">
@@ -26293,7 +26293,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01019">
@@ -26314,7 +26314,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01020">
@@ -26335,7 +26335,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01021">
@@ -26356,7 +26356,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01022">
@@ -26377,7 +26377,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>63.617251</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01023">
@@ -26398,7 +26398,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01024">
@@ -26419,7 +26419,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01025">
@@ -26440,7 +26440,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01026">
@@ -26461,7 +26461,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01027">
@@ -26482,7 +26482,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01028">
@@ -26503,7 +26503,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>78.539816</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01029">
@@ -26524,7 +26524,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.069194</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01030">
@@ -26545,7 +26545,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01031">
@@ -26566,7 +26566,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01032">
@@ -26587,7 +26587,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01033">
@@ -26608,7 +26608,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01034">
@@ -26629,7 +26629,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01035">
@@ -26650,7 +26650,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01036">
@@ -26671,7 +26671,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01037">
@@ -26692,7 +26692,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01038">
@@ -26713,7 +26713,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01039">
@@ -26734,7 +26734,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01040">
@@ -26755,7 +26755,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01041">
@@ -26776,7 +26776,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01042">
@@ -26797,7 +26797,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01043">
@@ -26818,7 +26818,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01044">
@@ -26839,7 +26839,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01045">
@@ -26860,7 +26860,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01046">
@@ -26881,7 +26881,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01047">
@@ -26902,7 +26902,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>176.714587</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01048">
@@ -26923,7 +26923,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01049">
@@ -26944,7 +26944,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>78.539816</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01050">
@@ -26965,7 +26965,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>153.93804</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01051">
@@ -26986,7 +26986,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01052">
@@ -27007,7 +27007,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01053">
@@ -27028,7 +27028,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01054">
@@ -27049,7 +27049,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01055">
@@ -27070,7 +27070,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01056">
@@ -27091,7 +27091,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>38.48451</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01057">
@@ -27112,7 +27112,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01058">
@@ -27133,7 +27133,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01059">
@@ -27154,7 +27154,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01060">
@@ -27175,7 +27175,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>38.48451</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01061">
@@ -27196,7 +27196,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01062">
@@ -27217,7 +27217,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01063">
@@ -27238,7 +27238,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01064">
@@ -27259,7 +27259,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01065">
@@ -27280,7 +27280,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01066">
@@ -27301,7 +27301,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01067">
@@ -27322,7 +27322,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01068">
@@ -27343,7 +27343,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01069">
@@ -27364,7 +27364,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>153.93804</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01070">
@@ -27385,7 +27385,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>113.097336</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01071">
@@ -27406,7 +27406,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01072">
@@ -27427,7 +27427,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>78.539816</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01073">
@@ -27448,7 +27448,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>78.539816</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01074">
@@ -27469,7 +27469,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01075">
@@ -27490,7 +27490,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01076">
@@ -27511,7 +27511,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01077">
@@ -27532,7 +27532,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01078">
@@ -27553,7 +27553,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01079">
@@ -27574,7 +27574,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01080">
@@ -27595,7 +27595,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01081">
@@ -27616,7 +27616,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01082">
@@ -27637,7 +27637,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01083">
@@ -27658,7 +27658,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01084">
@@ -27679,7 +27679,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01085">
@@ -27700,7 +27700,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>0.785398</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01086">
@@ -27721,7 +27721,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>19.634954</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01087">
@@ -27742,7 +27742,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01088">
@@ -27763,7 +27763,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01089">
@@ -27784,7 +27784,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01090">
@@ -27805,7 +27805,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01091">
@@ -27826,7 +27826,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01092">
@@ -27847,7 +27847,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01093">
@@ -27868,7 +27868,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01094">
@@ -27889,7 +27889,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01095">
@@ -27910,7 +27910,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01096">
@@ -27931,7 +27931,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01097">
@@ -27952,7 +27952,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01098">
@@ -27973,7 +27973,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01099">
@@ -27994,7 +27994,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>28.274334</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01100">
@@ -28015,7 +28015,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01101">
@@ -28036,7 +28036,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>12.566371</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01102">
@@ -28057,7 +28057,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01103">
@@ -28078,7 +28078,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01104">
@@ -28099,7 +28099,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01105">
@@ -28120,7 +28120,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01106">
@@ -28141,7 +28141,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01107">
@@ -28162,7 +28162,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>50.265482</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01108">
@@ -28183,7 +28183,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01109">
@@ -28204,7 +28204,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01110">
@@ -28225,7 +28225,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01111">
@@ -28246,7 +28246,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_01112">
@@ -101820,7 +101820,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00121">
@@ -101841,7 +101841,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00122">
@@ -101862,7 +101862,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00123">
@@ -101883,7 +101883,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00124">
@@ -101904,7 +101904,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00125">
@@ -101925,7 +101925,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00126">
@@ -101946,7 +101946,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00127">
@@ -101967,7 +101967,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00128">
@@ -101988,7 +101988,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00129">
@@ -102009,7 +102009,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00130">
@@ -102030,7 +102030,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00131">
@@ -102051,7 +102051,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00132">
@@ -102072,7 +102072,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00133">
@@ -102093,7 +102093,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00134">
@@ -102114,7 +102114,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00135">
@@ -102135,7 +102135,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00136">
@@ -102156,7 +102156,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00137">
@@ -102177,7 +102177,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00138">
@@ -102198,7 +102198,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00139">
@@ -102219,7 +102219,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00140">
@@ -102240,7 +102240,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00141">
@@ -102261,7 +102261,7 @@ This is not intended for productive use and is not complete!
             <UnitComponent>SIUnit_id_346_0</UnitComponent>
             <ValueComponent>7.068583</ValueComponent>
           </Area>
-          <ValueDetermination>Calculated</ValueDetermination>
+          <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
         <LengthInformation id="SegmentLength_00142">
