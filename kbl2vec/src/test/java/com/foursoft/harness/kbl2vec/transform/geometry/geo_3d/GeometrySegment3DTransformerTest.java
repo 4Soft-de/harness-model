@@ -138,7 +138,7 @@ class GeometrySegment3DTransformerTest {
     }
 
     @Test
-    void should_requireAtLeastOneCoordinate() {
+    void should_defaultMissingVectorsToOrigin() {
         // Given
         final GeometrySegment3DTransformer transformer = new GeometrySegment3DTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
@@ -163,7 +163,11 @@ class GeometrySegment3DTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
-                .returns(null, VecGeometrySegment3D::getStartVector)
-                .returns(null, VecGeometrySegment3D::getEndVector);
+                .satisfies(v -> assertThat(v.getStartVector().getX()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getStartVector().getY()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getStartVector().getZ()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getEndVector().getX()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getEndVector().getY()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getEndVector().getZ()).isEqualTo(0.0));
     }
 }
