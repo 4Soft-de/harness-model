@@ -46,22 +46,25 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
 
         if (!GeometryDimensionDetector.hasDimensions(source.getStartVectors(), GeometryDimensionDetector.GEO_3D)) {
             context.getLogger().warn(
-                    "Unexpected format for start vectors of KblSegment (ID: {}). Expected 2 coordinates for 2D " +
+                    "Unexpected format for start vectors of KblSegment (ID: {}). Expected 3 coordinates for 3D " +
                             "transformation, but found {}: {}",
                     source.getId(), source.getStartVectors().size(), source.getStartVectors());
         }
 
         if (!GeometryDimensionDetector.hasDimensions(source.getEndVectors(), GeometryDimensionDetector.GEO_3D)) {
             context.getLogger().warn(
-                    "Unexpected format for end vectors of KblSegment (ID: {}). Expected 2 coordinates for 2D " +
+                    "Unexpected format for end vectors of KblSegment (ID: {}). Expected 3 coordinates for 3D " +
                             "transformation, but found {}: {}",
                     source.getId(), source.getEndVectors().size(), source.getEndVectors());
         }
 
         final DoublesToCartesianVector3DConverter converter =
                 context.getConverterRegistry().getDoublesToCartesianVector3DConverter();
-        converter.convert(source.getStartVectors()).ifPresent(destination::setStartVector);
-        converter.convert(source.getEndVectors()).ifPresent(destination::setEndVector);
+        // StartVector and EndVector are mandatory in the VEC schema, fall back to the origin if the KBL defines none.
+        destination.setStartVector(converter.convert(source.getStartVectors())
+                                           .orElseGet(GeometrySegment3DTransformer::zeroVector));
+        destination.setEndVector(converter.convert(source.getEndVectors())
+                                         .orElseGet(GeometrySegment3DTransformer::zeroVector));
 
         return TransformationResult.from(destination)
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class, source::getAliasIds,
@@ -73,5 +76,13 @@ public class GeometrySegment3DTransformer implements Transformer<KblSegment, Vec
                 .withLinker(Query.of(source.getEndNode()), VecGeometryNode3D.class, VecGeometrySegment3D::setEndNode)
                 .withLinker(Query.of(source), VecTopologySegment.class, VecGeometrySegment3D::setReferenceSegment)
                 .build();
+    }
+
+    private static VecCartesianVector3D zeroVector() {
+        final VecCartesianVector3D vector = new VecCartesianVector3D();
+        vector.setX(0.0);
+        vector.setY(0.0);
+        vector.setZ(0.0);
+        return vector;
     }
 }

@@ -53,6 +53,14 @@ class BuildingBlockSpecification2DTransformerTest {
         final VecCartesianPoint2D vecCartesianPoint2D = new VecCartesianPoint2D();
         orchestrator.addMockMapping(cartesianPoint, vecCartesianPoint2D);
 
+        final KblCartesianPoint otherCartesianPoint = new KblCartesianPoint();
+        otherCartesianPoint.getCoordinates().add(5.0);
+        otherCartesianPoint.getCoordinates().add(0.5);
+        kblContainer.getCartesianPoints().add(otherCartesianPoint);
+
+        final VecCartesianPoint2D otherVecCartesianPoint2D = new VecCartesianPoint2D();
+        orchestrator.addMockMapping(otherCartesianPoint, otherVecCartesianPoint2D);
+
         final KblNode node = new KblNode();
         kblContainer.getNodes().add(node);
 
@@ -87,8 +95,29 @@ class BuildingBlockSpecification2DTransformerTest {
         assertThat(result).isNotNull()
                 .satisfies(v -> assertThat(v.getGeometryNodes()).containsExactly(vecGeometryNode2D))
                 .satisfies(v -> assertThat(v.getGeometrySegments()).containsExactly(vecGeometrySegment2D))
-                .satisfies(v -> assertThat(v.getCartesianPoints()).containsExactly(vecCartesianPoint2D))
+                .satisfies(v -> assertThat(v.getCartesianPoints()).containsExactly(vecCartesianPoint2D,
+                                                                                  otherVecCartesianPoint2D))
                 .satisfies(v -> assertThat(v.getPlacedElementViewItems()).containsExactly(viewItem2D))
+                .satisfies(v -> assertThat(v.getBoundingBox().getWidth()).isEqualTo(5.0))
+                .satisfies(v -> assertThat(v.getBoundingBox().getHeight()).isEqualTo(2.0))
                 .returns(vecUnit, VecBuildingBlockSpecification2D::getBaseUnit);
+    }
+
+    @Test
+    void should_createEmptyBoundingBoxWithoutCartesianPoints() {
+        // Given
+        final BuildingBlockSpecification2DTransformer transformer = new BuildingBlockSpecification2DTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblHarness source = new KblHarness();
+        source.setParentKBLContainer(new KBLContainer());
+
+        // When
+        final VecBuildingBlockSpecification2D result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .satisfies(v -> assertThat(v.getBoundingBox().getWidth()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getBoundingBox().getHeight()).isEqualTo(0.0));
     }
 }

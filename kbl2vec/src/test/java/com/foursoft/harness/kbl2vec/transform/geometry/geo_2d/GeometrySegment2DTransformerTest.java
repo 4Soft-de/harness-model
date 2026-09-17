@@ -126,7 +126,7 @@ class GeometrySegment2DTransformerTest {
     }
 
     @Test
-    void should_requireAtLeastOneCoordinate() {
+    void should_defaultMissingVectorsToOrigin() {
         // Given
         final GeometrySegment2DTransformer transformer = new GeometrySegment2DTransformer();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
@@ -151,7 +151,9 @@ class GeometrySegment2DTransformerTest {
 
         // Then
         assertThat(result).isNotNull()
-                .returns(null, VecGeometrySegment2D::getStartVector)
-                .returns(null, VecGeometrySegment2D::getEndVector);
+                .satisfies(v -> assertThat(v.getStartVector().getX()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getStartVector().getY()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getEndVector().getX()).isEqualTo(0.0))
+                .satisfies(v -> assertThat(v.getEndVector().getY()).isEqualTo(0.0));
     }
 }

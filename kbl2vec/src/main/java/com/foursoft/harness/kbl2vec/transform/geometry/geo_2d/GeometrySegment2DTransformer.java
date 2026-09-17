@@ -34,6 +34,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
 import com.foursoft.harness.vec.v2x.VecAliasIdentification;
+import com.foursoft.harness.vec.v2x.VecCartesianVector2D;
 import com.foursoft.harness.vec.v2x.VecGeometryNode2D;
 import com.foursoft.harness.vec.v2x.VecGeometrySegment2D;
 import com.foursoft.harness.vec.v2x.VecTopologySegment;
@@ -62,8 +63,11 @@ public class GeometrySegment2DTransformer implements Transformer<KblSegment, Vec
 
         final DoublesToCartesianVector2DConverter converter =
                 context.getConverterRegistry().getDoublesToCartesianVector2DConverter();
-        converter.convert(source.getStartVectors()).ifPresent(destination::setStartVector);
-        converter.convert(source.getEndVectors()).ifPresent(destination::setEndVector);
+        // StartVector and EndVector are mandatory in the VEC schema, fall back to the origin if the KBL defines none.
+        destination.setStartVector(converter.convert(source.getStartVectors())
+                                           .orElseGet(GeometrySegment2DTransformer::zeroVector));
+        destination.setEndVector(converter.convert(source.getEndVectors())
+                                         .orElseGet(GeometrySegment2DTransformer::zeroVector));
 
         return TransformationResult.from(destination)
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class, source::getAliasIds,
@@ -73,5 +77,12 @@ public class GeometrySegment2DTransformer implements Transformer<KblSegment, Vec
                 .withLinker(Query.of(source.getEndNode()), VecGeometryNode2D.class, VecGeometrySegment2D::setEndNode)
                 .withLinker(Query.of(source), VecTopologySegment.class, VecGeometrySegment2D::setReferenceSegment)
                 .build();
+    }
+
+    private static VecCartesianVector2D zeroVector() {
+        final VecCartesianVector2D vector = new VecCartesianVector2D();
+        vector.setX(0.0);
+        vector.setY(0.0);
+        return vector;
     }
 }
