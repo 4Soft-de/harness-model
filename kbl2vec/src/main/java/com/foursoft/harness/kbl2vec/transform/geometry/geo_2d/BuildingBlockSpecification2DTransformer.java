@@ -31,10 +31,12 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.kbl2vec.transform.geometry.GeometryDimensionDetector;
+import com.foursoft.harness.kbl2vec.transform.geometry.GeometryUnitDetector;
 import com.foursoft.harness.vec.v2x.*;
 
+import java.util.List;
+
 import static com.foursoft.harness.kbl2vec.transform.Queries.placeablePartOccurrences;
-import com.foursoft.harness.kbl2vec.transform.geometry.GeometryUnitDetector;
 
 public class BuildingBlockSpecification2DTransformer
         implements Transformer<KblHarness, VecBuildingBlockSpecification2D> {
@@ -49,6 +51,9 @@ public class BuildingBlockSpecification2DTransformer
             return TransformationResult.noResult();
         }
         context.getLogger().info("Detected 2D data. Creating 2D building block specification.");
+
+        // The KBL has no bounding box, the VEC requires one: derive it from the extent of all cartesian points.
+        destination.setBoundingBox(calculateBoundingBox(source.getParentKBLContainer().getCartesianPoints()));
 
         return TransformationResult.from(destination)
                 .withDownstream(KblNode.class, VecGeometryNode2D.class,
@@ -66,5 +71,21 @@ public class BuildingBlockSpecification2DTransformer
                 .withLinker(Query.of(GeometryUnitDetector.getUnit(source)), VecUnit.class,
                             VecBuildingBlockSpecification2D::setBaseUnit)
                 .build();
+    }
+
+    private static VecCartesianDimension calculateBoundingBox(final List<KblCartesianPoint> points) {
+        final VecCartesianDimension boundingBox = new VecCartesianDimension();
+        boundingBox.setWidth(maxCoordinate(points, 0));
+        boundingBox.setHeight(maxCoordinate(points, 1));
+        return boundingBox;
+    }
+
+    private static double maxCoordinate(final List<KblCartesianPoint> points, final int index) {
+        return points.stream()
+                .map(KblCartesianPoint::getCoordinates)
+                .filter(coordinates -> coordinates.size() > index)
+                .mapToDouble(coordinates -> coordinates.get(index))
+                .max()
+                .orElse(0.0);
     }
 }
