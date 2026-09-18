@@ -51,6 +51,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -212,9 +213,10 @@ public class OpenEnumerationsPlugin extends Plugin {
         final NameConverter nameConverter = outline.getModel()
                 .getNameConverter();
 
+        final ConstantNameOverrides overrides = readOverrides(options, candidates, opt);
         final LiteralTypeGenerator generator = new LiteralTypeGenerator(
                 outline, OpenEnumRuntime.of(outline.getCodeModel(), options.runtimePackage()),
-                new ConstantNamer(nameConverter, readOverrides(options, candidates, opt)));
+                new ConstantNamer(nameConverter, overrides));
 
         final Map<QName, JDefinedClass> literalInterfaces = new LinkedHashMap<>();
         for (final QName typeName : candidates.keySet()) {
@@ -230,7 +232,22 @@ public class OpenEnumerationsPlugin extends Plugin {
                                   generator.generate(naming.packageOf(typeName.getNamespaceURI()), className,
                                                      definition));
         }
+        rejectUnusedOverrides(overrides);
         return literalInterfaces;
+    }
+
+    /**
+     * An override that matched no literal is an error rather than a warning: the file has no other
+     * purpose than to pin published constant names, so an orphaned entry is always a mistake, and
+     * a warning in the output of a code generator goes unread.
+     */
+    private static void rejectUnusedOverrides(final ConstantNameOverrides overrides) throws SAXException {
+        final List<String> unused = overrides.unusedEntries();
+        if (!unused.isEmpty()) {
+            throw new SAXException(String.format(
+                    "The constant name overrides (-Xopen-enums-names) contain %d entries matching no literal of any "
+                            + "open enumeration: %s. Fix or remove them.", unused.size(), unused));
+        }
     }
 
     private static ConstantNameOverrides readOverrides(final OpenEnumOptions options,

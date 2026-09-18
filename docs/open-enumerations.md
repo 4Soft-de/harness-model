@@ -141,6 +141,10 @@ Literals of the standard always win, so a provider cannot shadow them.
   the same algorithm XJC uses for closed enumerations, and a genuine collision is settled by a
   hand-maintained override file rather than an automatic suffix — a suffix would silently renumber
   published constants whenever a literal is inserted upstream.
+- **An override entry that matches no literal fails the build too.** The override file exists so that
+  a published constant name does not change by accident. An entry with a typo in the value or the
+  type name would have the default naming take over silently, which is the very failure the file is
+  there to prevent, so the plugin reports every unused entry as an error.
 - **The schema pinning test exists per model.** `OpenEnumerationSchemaTest` in each of `vec-v113`,
   `vec-v12x` and `vec-v2x` compares the generated enums with the strict schema, so that a replaced
   schema shows up as a failing test rather than as a silent change of the API.

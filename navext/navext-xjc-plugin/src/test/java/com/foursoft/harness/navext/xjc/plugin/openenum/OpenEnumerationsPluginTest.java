@@ -282,6 +282,18 @@ class OpenEnumerationsPluginTest {
                 .hasMessageContaining("resolve to the constant name");
     }
 
+    @Test
+    void failsTheBuildOnAnOverrideMatchingNoLiteral() {
+        // An orphaned entry would silently fall back to the default naming, which is exactly the
+        // accidental rename the override file exists to prevent.
+        assertThatThrownBy(() -> GeneratedModel.generate("orphan", "-Xopen-enums-names:sample-open-enum-names-orphan.xml"))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("matching no literal")
+                .hasMessageContaining("BoltSize/#2")
+                .hasMessageContaining("NoSuchType/Whatever")
+                .hasMessageNotContaining("BoltSize/#1");
+    }
+
     private static List<String> methodNames(final Class<?> type) {
         return Arrays.stream(type.getMethods())
                 .map(Method::getName)

@@ -35,8 +35,12 @@ import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Hand-maintained constant names for literals whose generated name would be unreadable or would
@@ -57,20 +61,27 @@ import java.util.Map;
  * <p>
  * {@code type/@namespace} is optional; without it the type is matched by local name alone.
  * </p>
+ * <p>
+ * Every entry must be used by the generation, see {@link #unusedEntries()}. The file exists so that
+ * a published constant name does not change by accident, and an entry that matches no literal - a
+ * typo in the value, a wrong type name - would defeat that purpose silently: the default naming
+ * would take over and the constant would change with nothing to notice it.
+ * </p>
  */
 final class ConstantNameOverrides {
 
-    private static final ConstantNameOverrides EMPTY = new ConstantNameOverrides(Map.of());
-
     /** Keyed by type name, then by literal value. */
     private final Map<QName, Map<String, String>> overrides;
+
+    /** The (type, value) pairs {@link #constantNameFor} has resolved so far. */
+    private final Set<Map.Entry<QName, String>> used = new HashSet<>();
 
     private ConstantNameOverrides(final Map<QName, Map<String, String>> overrides) {
         this.overrides = overrides;
     }
 
     static ConstantNameOverrides none() {
-        return EMPTY;
+        return new ConstantNameOverrides(Map.of());
     }
 
     /**
@@ -81,14 +92,14 @@ final class ConstantNameOverrides {
     static ConstantNameOverrides read(final String uri) throws SAXException {
         final Document document = parse(uri);
 
-        final Map<QName, Map<String, String>> overrides = new HashMap<>();
+        final Map<QName, Map<String, String>> overrides = new LinkedHashMap<>();
         final NodeList types = document.getDocumentElement()
                 .getElementsByTagName("type");
         for (int i = 0; i < types.getLength(); i++) {
             final Element type = (Element) types.item(i);
             final QName typeName = new QName(type.getAttribute("namespace"), type.getAttribute("name"));
 
-            final Map<String, String> literals = overrides.computeIfAbsent(typeName, name -> new HashMap<>());
+            final Map<String, String> literals = overrides.computeIfAbsent(typeName, name -> new LinkedHashMap<>());
             final NodeList literalNodes = type.getElementsByTagName("literal");
             for (int j = 0; j < literalNodes.getLength(); j++) {
                 final Element literal = (Element) literalNodes.item(j);
@@ -104,13 +115,35 @@ final class ConstantNameOverrides {
      * @return The overridden constant name, or {@code null} if there is none.
      */
     String constantNameFor(final QName typeName, final String value) {
-        final Map<String, String> byLocalName =
-                overrides.get(new QName(XMLConstants.NULL_NS_URI, typeName.getLocalPart()));
+        final QName localName = new QName(XMLConstants.NULL_NS_URI, typeName.getLocalPart());
+        final Map<String, String> byLocalName = overrides.get(localName);
         if (byLocalName != null && byLocalName.containsKey(value)) {
+            used.add(Map.entry(localName, value));
             return byLocalName.get(value);
         }
         final Map<String, String> byQualifiedName = overrides.get(typeName);
-        return byQualifiedName == null ? null : byQualifiedName.get(value);
+        if (byQualifiedName != null && byQualifiedName.containsKey(value)) {
+            used.add(Map.entry(typeName, value));
+            return byQualifiedName.get(value);
+        }
+        return null;
+    }
+
+    /**
+     * @return The entries no call of {@link #constantNameFor} has resolved so far, as
+     * {@code type/value} in file order, for reporting.
+     */
+    List<String> unusedEntries() {
+        final List<String> unused = new ArrayList<>();
+        for (final Map.Entry<QName, Map<String, String>> type : overrides.entrySet()) {
+            for (final String value : type.getValue()
+                    .keySet()) {
+                if (!used.contains(Map.entry(type.getKey(), value))) {
+                    unused.add(type.getKey() + "/" + value);
+                }
+            }
+        }
+        return unused;
     }
 
     private static Document parse(final String uri) throws SAXException {

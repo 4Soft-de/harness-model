@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Like sample-open-enum-names.xml, plus an entry matching no literal of the schema. Such an entry
+    must fail the generation, because it would otherwise silently fall back to the default naming.
+-->
+<open-enum-names>
+    <type name="BoltSize">
+        <literal value="#0" name="NO_0"/>
+        <literal value="#1" name="NO_1"/>
+        <literal value="#2" name="NO_2"/>
+    </type>
+    <type name="NoSuchType">
+        <literal value="Whatever" name="WHATEVER"/>
+    </type>
+</open-enum-names>
