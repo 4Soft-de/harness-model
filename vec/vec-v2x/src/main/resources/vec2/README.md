@@ -15,4 +15,16 @@ follow these steps:
 - Adapt the `schemaLocation="vec_2.2.0.xsd"` attribute in the XJB files located in this directory.
 - Also add the files (including model and ontologies) to `vec-rdf/vec-rdf-common/src/main/resources/vec`
 - Fix the `com.foursoft.harness.vec.v2x.Version.VERSION` constant.
+- Fix the schema file names in `OpenEnumerationSchemaTest`, which pins the generated open enumerations
+  against the strict schema.
 - Rebuild the complete project, fix compile errors (e.g. due to new type methods in visitor classes).
+
+Note that the strict schema is a build input, not only a validation resource: the literals of the
+[open enumerations](../../../../../../docs/open-enumerations.md) are generated from it. Two
+consequences for an update:
+
+- If two literals of one open enumeration resolve to the same Java constant name, the build fails
+  with both values named. Add an entry for one of them to `vec_2.x.x-open-enum-names.xml`, which also
+  holds the names that are merely unreadable by default (`#1`, `12V`, `1/2`, …).
+- `OpenEnumerationSchemaTest` fails when upstream added, removed or renamed a literal. That is the
+  intended signal: those constants are published API.

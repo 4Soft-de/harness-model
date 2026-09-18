@@ -8,6 +8,9 @@ files cover usage and the code covers the details.
 
 - [VEC Navigation API](vec-navigation-api.md) — reusable, composable ways through the VEC model: the
   typed `Navigation` interface hierarchy, the per-version catalogs, and the legacy `*Navs` generation.
+- [Open Enumerations](open-enumerations.md) — compile-safe literals for the enumerations the VEC
+  leaves open: the generated interface and enum per type, how a literal the standard does not define
+  is read and written, and how consumers contribute literals of their own.
 
 ## Cross-cutting
 

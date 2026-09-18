@@ -51,7 +51,7 @@ public class Fragments {
             final KblPart source,
             final TransformationContext context) {
         return (dv, builder) -> {
-            dv.setDocumentType("PartMaster");
+            dv.setDocumentTypeLiteral(VecDocumentType.PART_MASTER);
             commonPartDocumentAttributes(source, context).performFragment(dv, builder);
             builder.withDownstream(KblPart.class, VecGeneralTechnicalPartSpecification.class, Query.of(source),
                                    VecDocumentVersion::getSpecifications);

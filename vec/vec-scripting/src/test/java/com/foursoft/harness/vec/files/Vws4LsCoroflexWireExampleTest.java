@@ -25,8 +25,9 @@
  */
 package com.foursoft.harness.vec.files;
 
+import com.foursoft.harness.vec.v2x.VecTemperatureType;
+import com.foursoft.harness.vec.scripting.enums.AdditionalTemperatureType;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.enums.TemperatureType;
 import com.foursoft.harness.vec.v2x.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 
@@ -65,9 +66,9 @@ class Vws4LsCoroflexWireExampleTest {
                 })
                 .addGeneralTechnicalPart(builder -> builder
                         .withMassInformation(485, session.gramPerMeter())
-                        .withTemperatureInformation(TemperatureType.OPERATING_TEMPERATURE, -40, 180,
+                        .withTemperatureInformation(VecTemperatureType.OPERATING_TEMPERATURE, -40, 180,
                                                     session.degreeCelsius())
-                        .withTemperatureInformation(TemperatureType.SHORT_TERM_AGING_TEMPERATURE,
+                        .withTemperatureInformation(AdditionalTemperatureType.SHORT_TERM_AGING_TEMPERATURE,
                                                     Double.NaN, 205,
                                                     session.degreeCelsius())
                 )

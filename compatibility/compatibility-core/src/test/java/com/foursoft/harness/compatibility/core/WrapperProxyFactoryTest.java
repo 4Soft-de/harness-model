@@ -27,12 +27,19 @@ package com.foursoft.harness.compatibility.core;
 
 import com.foursoft.harness.compatibility.core.mapping.NameBasedClassMapper;
 import com.foursoft.harness.compatibility.core.wrapper.fixture.mapping.sourcepackage.MappedBean;
+import com.foursoft.harness.compatibility.core.wrapper.fixture.mapping.sourcepackage.OpenEnumBean;
+import com.foursoft.harness.compatibility.core.wrapper.fixture.openenum.Kind;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -76,6 +83,56 @@ class WrapperProxyFactoryTest {
 
         assertThat(invoked).hasSize(2)
                 .satisfies(methods -> assertThat(methods.get(0)).isSameAs(methods.get(1)));
+    }
+
+    @ParameterizedTest
+    @MethodSource("openEnumLiteralAccessors")
+    void leavesTheOpenEnumLiteralAccessorsUnintercepted(final String name, final Class<?>... parameterTypes)
+            throws Exception {
+        // The typed accessors of an open enumeration derive the literals from the plain accessor of
+        // the same property, which is proxied as usual. Routing them to the wrapped object would fail
+        // wherever it does not know the enumeration.
+        final List<Method> invoked = new ArrayList<>();
+        final Object proxy = contextFor(invoked).getWrapperProxyFactory().createProxy(new OpenEnumBean());
+
+        final Method accessor = proxy.getClass().getMethod(name, parameterTypes);
+        accessor.invoke(proxy, new Object[parameterTypes.length]);
+
+        assertThat(invoked).isEmpty();
+    }
+
+    static Stream<Arguments> openEnumLiteralAccessors() {
+        return Stream.of(Arguments.of("getKindLiteral", new Class<?>[0]),
+                         Arguments.of("setKindLiteral", new Class<?>[]{Kind.class}),
+                         Arguments.of("getKindLiterals", new Class<?>[0]),
+                         Arguments.of("addKindLiteral", new Class<?>[]{Kind.class}),
+                         Arguments.of("setKindLiterals", new Class<?>[]{Collection.class}));
+    }
+
+    @ParameterizedTest
+    @MethodSource("literalLookAlikes")
+    void interceptsMethodsWhichMerelyLookLikeOpenEnumLiteralAccessors(final String name,
+                                                                      final Class<?>... parameterTypes)
+            throws Exception {
+        // Ending in "Literal" is not enough: only the shape of a generated accessor is exempt from
+        // the interception, everything else belongs to the wrapped object.
+        final List<Method> invoked = new ArrayList<>();
+        final Object proxy = contextFor(invoked).getWrapperProxyFactory().createProxy(new OpenEnumBean());
+
+        final Method lookAlike = proxy.getClass().getMethod(name, parameterTypes);
+        lookAlike.invoke(proxy, new Object[parameterTypes.length]);
+
+        assertThat(invoked).hasSize(1)
+                .first()
+                .extracting(Method::getName)
+                .isEqualTo(name);
+    }
+
+    static Stream<Arguments> literalLookAlikes() {
+        return Stream.of(Arguments.of("getTextLiteral", new Class<?>[0]),
+                         Arguments.of("getTextLiterals", new Class<?>[0]),
+                         Arguments.of("toKindLiteral", new Class<?>[]{Kind.class}),
+                         Arguments.of("setKindLiteral", new Class<?>[]{Kind.class, String.class}));
     }
 
     private CompatibilityContext contextFor(final List<Method> invoked) {

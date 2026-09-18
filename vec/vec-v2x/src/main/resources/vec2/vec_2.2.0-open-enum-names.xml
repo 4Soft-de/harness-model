@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Constant names for open enumeration literals of VEC 2.2.0 that the default naming cannot express
+    well. Everything not listed here is named exactly like the literals of a closed enumeration.
+
+    TerminalBoltNominalSize is the one entry that is mandatory rather than cosmetic: it mixes ISO
+    metric sizes with Unified Thread Standard ones, where "#1" (a gauge number) and "1" (an inch
+    fraction) both mangle to the same constant name. Without an entry for them the build fails.
+-->
+<open-enum-names>
+
+    <!-- Voltage levels. "12V" would otherwise become _12_V. -->
+    <type name="NominalVoltage">
+        <literal value="12V" name="V12"/>
+        <literal value="24V" name="V24"/>
+        <literal value="48V" name="V48"/>
+    </type>
+    <type name="ApplicationType">
+        <literal value="12V" name="V12"/>
+        <literal value="24V" name="V24"/>
+        <literal value="48V" name="V48"/>
+    </type>
+
+    <!-- Unified Thread Standard: gauge numbers (#0 .. #12) and inch fractions (1/4 .. 1). -->
+    <type name="TerminalBoltNominalSize">
+        <literal value="#0" name="NO_0"/>
+        <literal value="#1" name="NO_1"/>
+        <literal value="#2" name="NO_2"/>
+        <literal value="#3" name="NO_3"/>
+        <literal value="#4" name="NO_4"/>
+        <literal value="#5" name="NO_5"/>
+        <literal value="#6" name="NO_6"/>
+        <literal value="#8" name="NO_8"/>
+        <literal value="#10" name="NO_10"/>
+        <literal value="#12" name="NO_12"/>
+        <literal value="1/4" name="INCH_1_4"/>
+        <literal value="5/16" name="INCH_5_16"/>
+        <literal value="3/8" name="INCH_3_8"/>
+        <literal value="7/16" name="INCH_7_16"/>
+        <literal value="1/2" name="INCH_1_2"/>
+        <literal value="9/16" name="INCH_9_16"/>
+        <literal value="5/8" name="INCH_5_8"/>
+        <literal value="3/4" name="INCH_3_4"/>
+        <literal value="7/8" name="INCH_7_8"/>
+        <literal value="1" name="INCH_1"/>
+    </type>
+
+</open-enum-names>

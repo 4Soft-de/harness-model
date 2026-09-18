@@ -25,12 +25,13 @@
  */
 package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.v2x.VecPluggableTerminalType;
+import com.foursoft.harness.vec.v2x.VecWireReceptionTypeLiteral;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
 import com.foursoft.harness.vec.scripting.core.SpecificationRegistry;
-import com.foursoft.harness.vec.scripting.enums.WireReceptionType;
 import com.foursoft.harness.vec.v2x.*;
 
 import static com.foursoft.harness.vec.scripting.factories.MaterialFactory.material;
@@ -74,7 +75,7 @@ public class PluggableTerminalSpecificationBuilder
         terminalConnection.getWireReception().add(wireReception);
 
         element = initializeSpecification(VecPluggableTerminalSpecification.class, partNumber);
-        element.setTerminalType("Standard");
+        element.setTerminalTypeLiteral(VecPluggableTerminalType.STANDARD);
 
         element.getTerminalReceptions().add(terminalReception);
         element.getWireReceptions().add(wireReception);
@@ -206,7 +207,7 @@ public class PluggableTerminalSpecificationBuilder
         return this;
     }
 
-    public PluggableTerminalSpecificationBuilder withWireReceptionType(final WireReceptionType wireReceptionType) {
+    public PluggableTerminalSpecificationBuilder withWireReceptionType(final VecWireReceptionTypeLiteral wireReceptionType) {
         wireReceptionSpecification.getWireReceptionTypes().add(wireReceptionType.value());
         return this;
     }

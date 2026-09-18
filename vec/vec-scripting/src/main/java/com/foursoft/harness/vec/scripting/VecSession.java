@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting;
 
+import com.foursoft.harness.vec.v2x.VecDocumentType;
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
@@ -33,7 +34,6 @@ import com.foursoft.harness.navext.runtime.model.Identifiable;
 import com.foursoft.harness.vec.scripting.components.ComponentMasterDataBuilder;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
 import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
-import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.factories.SiUnitFactory;
 import com.foursoft.harness.vec.scripting.factories.VecContentFactory;
 import com.foursoft.harness.vec.scripting.harness.HarnessBuilder;
@@ -352,7 +352,7 @@ public class VecSession {
         return this.vecContentRoot.getDocumentVersions()
                 .stream()
                 .filter(dv -> dv.getDocumentType()
-                        .equals(DocumentType.PART_MASTER.value()) && dv.getReferencedPart()
+                        .equals(VecDocumentType.PART_MASTER.value()) && dv.getReferencedPart()
                         .contains(partVersion))
                 .findFirst()
                 .orElseThrow();

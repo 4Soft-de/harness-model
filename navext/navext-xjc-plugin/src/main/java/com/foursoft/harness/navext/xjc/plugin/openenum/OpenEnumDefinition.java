@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.x Scripting API (Experimental)
+ * NavExt XJC Plugin
  * %%
- * Copyright (C) 2020 - 2025 4Soft GmbH
+ * Copyright (C) 2019 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.navext.xjc.plugin.openenum;
 
-public enum TemperatureType {
+import javax.xml.namespace.QName;
+import java.util.List;
 
-    OPERATING_TEMPERATURE("OperatingTemperature"), SHORT_TERM_AGING_TEMPERATURE("ShortTermAgingTemperature"),
-    AMBIENT_TEMPERATURE("AmbientTemperature");
+/**
+ * The literals an open enumeration declares in the literal schema.
+ *
+ * @param typeName      The qualified name of the simple type.
+ * @param documentation The documentation of the simple type, or {@code null}.
+ * @param literals      The literals, in schema order. Never empty.
+ */
+public record OpenEnumDefinition(QName typeName, String documentation, List<Literal> literals) {
 
-    private final String value;
-
-    TemperatureType(final String value) {
-        this.value = value;
+    public OpenEnumDefinition {
+        literals = List.copyOf(literals);
     }
 
-    public String value() {
-        return value;
+    /**
+     * A single literal of an open enumeration.
+     *
+     * @param value         The literal as it appears in the XML.
+     * @param documentation The documentation of the literal, or {@code null}.
+     */
+    public record Literal(String value, String documentation) {
     }
+
 }
