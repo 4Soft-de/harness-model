@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * The behaviour of the open enumeration literals on the model itself: what a document containing an
@@ -80,6 +81,36 @@ class OpenEnumerationTest {
 
         assertThat(documentVersion.getDocumentType()).isNull();
         assertThat(documentVersion.getDocumentTypeLiteral()).isNull();
+    }
+
+    @Test
+    void aWronglyCasedLiteralIsReadAsTheConstantButWrittenUnchanged() {
+        // Some systems write literals in the wrong case, which cannot always be fixed at the source.
+        // The match is lenient, the document is not silently rewritten: only setting the literal
+        // normalizes the string.
+        final VecDocumentVersion documentVersion = new VecDocumentVersion();
+        documentVersion.setDocumentType("partmaster");
+
+        assertThat(documentVersion.getDocumentTypeLiteral()).isSameAs(VecDocumentType.PART_MASTER);
+        assertThat(documentVersion.getDocumentType()).isEqualTo("partmaster");
+
+        documentVersion.setDocumentTypeLiteral(documentVersion.getDocumentTypeLiteral());
+        assertThat(documentVersion.getDocumentType()).isEqualTo("PartMaster");
+    }
+
+    @Test
+    void aCustomLiteralMustNotBeOneTheStandardDefines() {
+        // Such a Custom would write the same XML as the constant, but would neither equal it nor be
+        // read back as itself.
+        assertThatThrownBy(() -> new VecDocumentTypeLiteral.Custom("PartMaster"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("VecDocumentType.PART_MASTER");
+        assertThatThrownBy(() -> new VecDocumentTypeLiteral.Custom("PARTMASTER"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        // A literal contributed by a provider is outside the standard and stays constructible.
+        assertThat(new VecDocumentTypeLiteral.Custom(TestDocumentType.INTEGRATION_TEST_DOCUMENT.value()))
+                .isNotNull();
     }
 
     @Test
@@ -141,6 +172,15 @@ class OpenEnumerationTest {
                 .isSameAs(TestDocumentType.INTEGRATION_TEST_DOCUMENT);
         assertThat(documentVersion.getDocumentTypeLiteral()
                            .isCustom()).isFalse();
+    }
+
+    @Test
+    void aContributedLiteralIsResolvedIgnoringCaseAsWell() {
+        final VecDocumentVersion documentVersion = new VecDocumentVersion();
+        documentVersion.setDocumentType("integrationtestdocument");
+
+        assertThat(documentVersion.getDocumentTypeLiteral())
+                .isSameAs(TestDocumentType.INTEGRATION_TEST_DOCUMENT);
     }
 
     @Test

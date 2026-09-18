@@ -97,6 +97,37 @@ class OpenEnumerationsPluginTest {
     }
 
     @Test
+    void fromValueIgnoresTheCaseOfTheValue() throws Exception {
+        // Documents with wrongly cased literals exist and cannot always be fixed at the source. The
+        // constant keeps the casing of the standard, only the match is lenient.
+        final Class<?> documentType = model.load(PACKAGE + ".DocumentType");
+        final Method fromValue = documentType.getMethod("fromValue", String.class);
+
+        assertThat(fromValue.invoke(null, "partmaster"))
+                .isSameAs(model.constant("DocumentType", "PART_MASTER"))
+                .returns("PartMaster", constant -> ((OpenEnumLiteral) constant).value());
+        assertThat(model.literalOf("DocumentType", "PARTMASTER"))
+                .isSameAs(model.constant("DocumentType", "PART_MASTER"));
+    }
+
+    @Test
+    void rejectsACustomLiteralTheStandardDefines() throws Exception {
+        // Such a Custom would write the same XML as the constant, but would neither equal it nor be
+        // read back as itself. Any casing counts, since fromValue would match any casing.
+        final Class<?> custom = model.load(PACKAGE + ".DocumentTypeLiteral$Custom");
+        final var constructor = custom.getConstructor(String.class);
+
+        assertThat(constructor.newInstance("AcmeSpecification")).isNotNull();
+        for (final String defined : List.of("PartMaster", "partmaster")) {
+            assertThatThrownBy(() -> constructor.newInstance(defined))
+                    .hasCauseInstanceOf(IllegalArgumentException.class)
+                    .cause()
+                    .hasMessageContaining("'" + defined + "'")
+                    .hasMessageContaining("DocumentType.PART_MASTER");
+        }
+    }
+
+    @Test
     void resolvesAnUnrecognizedLiteralToACustomLiteral() throws Exception {
         final OpenEnumLiteral literal = model.literalOf("DocumentType", "AcmeSpecification");
 
@@ -115,6 +146,15 @@ class OpenEnumerationsPluginTest {
         OpenEnumLiterals.contribute(contributed);
 
         assertThat(model.literalOf("DocumentType", "AcmeSpecification")).isSameAs(contributed);
+    }
+
+    @Test
+    void resolvesAContributedLiteralIgnoringCase() throws Exception {
+        final Class<?> literalInterface = model.load(PACKAGE + ".DocumentTypeLiteral");
+        final OpenEnumLiteral contributed = model.contributedLiteral(literalInterface, "AcmeSpecification");
+        OpenEnumLiterals.contribute(contributed);
+
+        assertThat(model.literalOf("DocumentType", "ACMESPECIFICATION")).isSameAs(contributed);
     }
 
     @Test

@@ -26,6 +26,7 @@ generates for the closed ones:
 public interface VecDocumentTypeLiteral extends OpenEnumLiteral {
     static VecDocumentTypeLiteral of(String value) { … }
     final class Custom implements VecDocumentTypeLiteral, CustomOpenEnumLiteral {
+        /** Throws IllegalArgumentException for a value the standard defines. */
         public Custom(String value) { … }
         public String value() { … }   // plus equals, hashCode and toString
     }
@@ -35,7 +36,7 @@ public enum VecDocumentType implements VecDocumentTypeLiteral {
     BASELINE_DEFINITION("BaselineDefinition"), PART_MASTER("PartMaster"), … ;
 
     public String value();
-    /** Returns null rather than throwing for a literal the standard does not define. */
+    /** Matches ignoring case; returns null rather than throwing for a literal the standard does not define. */
     public static VecDocumentType fromValue(String value);
 }
 ```
@@ -71,6 +72,11 @@ switch (documentVersion.getDocumentTypeLiteral()) {
 Unmarshalling cannot fail on an unrecognized literal, because nothing in the read path consults the
 enum: the mapped property is still a string, and the literal is derived on access.
 
+Matching is case-insensitive: a document containing `partmaster` reads back as `PART_MASTER`, because
+some systems write literals in the wrong case and that cannot always be fixed at the source. The
+string property is not rewritten by reading — `getDocumentType()` still returns `partmaster` and the
+document round-trips unchanged; only `setDocumentTypeLiteral(PART_MASTER)` normalizes it.
+
 ### Writing
 
 ```java
@@ -78,6 +84,10 @@ documentVersion.setDocumentTypeLiteral(VecDocumentType.PART_MASTER);
 documentVersion.setDocumentTypeLiteral(new VecDocumentTypeLiteral.Custom("AcmeInternalType"));
 documentVersion.setDocumentType("AcmeInternalType");        // still available
 ```
+
+`new Custom("PartMaster")` throws: it would write the same XML as the constant, but would neither
+equal it nor be read back as itself. The check is against the enum only, not against contributed
+literals, so a constructor never triggers the service loader.
 
 ### Contributing literals of your own
 
@@ -118,6 +128,12 @@ Literals of the standard always win, so a provider cannot shadow them.
   consumer extension, which is the more valuable half for a standard that expects custom literals.
 - **`fromValue` returns `null` instead of throwing.** The signature stays the one XJC generates for
   closed enumerations, so habits transfer; only the failure mode differs, in the safe direction.
+- **`fromValue` is an index lookup, not a scan.** XJC's closed-enumeration `fromValue` scans
+  `values()`, which clones the constant array per call. That is fine for a method nobody calls in a
+  loop, but the typed getters call `fromValue` on every read, and the collection getters once per
+  element. Each enum therefore builds a `Map` of its constants once, keyed by the lower-cased value,
+  which also makes the case-insensitive match free. The schema test asserts that no open enumeration
+  has two literals differing only in case, which is what keeps that key unambiguous.
 - **The literal types carry no JAXB annotations.** They must not enter the JAXB context, which builds
   from the package's `ObjectFactory`; annotating them would only be misleading.
 - **Constant name collisions fail the build.** `TerminalBoltNominalSize` mixes ISO metric with

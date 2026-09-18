@@ -27,20 +27,26 @@ package com.foursoft.harness.navext.xjc.plugin.openenum;
 
 import com.sun.codemodel.ClassType;
 import com.sun.codemodel.JBlock;
+import com.sun.codemodel.JClass;
 import com.sun.codemodel.JClassAlreadyExistsException;
 import com.sun.codemodel.JCodeModel;
 import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JDocComment;
 import com.sun.codemodel.JEnumConstant;
 import com.sun.codemodel.JExpr;
+import com.sun.codemodel.JExpression;
 import com.sun.codemodel.JForEach;
+import com.sun.codemodel.JInvocation;
 import com.sun.codemodel.JMethod;
 import com.sun.codemodel.JMod;
+import com.sun.codemodel.JOp;
 import com.sun.codemodel.JPackage;
 import com.sun.codemodel.JVar;
 import com.sun.tools.xjc.outline.Outline;
 import org.xml.sax.SAXException;
 
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -56,9 +62,11 @@ import java.util.Objects;
  * </ul>
  *
  * <p>
- * The enum is shaped like the enums XJC generates for closed enumerations, with one difference:
+ * The enum is shaped like the enums XJC generates for closed enumerations, with two differences:
  * {@code fromValue} returns {@code null} instead of throwing, because an unknown literal is expected
- * rather than exceptional here.
+ * rather than exceptional here, and it matches the value case-insensitively, because documents with
+ * wrongly cased literals exist and cannot always be fixed at the source. The match is a lookup in an
+ * index built once per enum, since the typed getters call it on every read.
  * </p>
  */
 final class LiteralTypeGenerator {
@@ -67,6 +75,9 @@ final class LiteralTypeGenerator {
     private static final String VALUE = "value";
 
     private static final String EQUALS = "equals";
+
+    /** Name of the generated index of the enum constants by their normalized value. */
+    private static final String BY_VALUE = "BY_VALUE";
 
     private final Outline outline;
     private final JCodeModel codeModel;
@@ -93,8 +104,8 @@ final class LiteralTypeGenerator {
         final Map<String, OpenEnumDefinition.Literal> literals = constantNamer.nameLiterals(definition);
 
         final JDefinedClass literalInterface = createInterface(pkg, className + "Literal", definition);
-        final JDefinedClass customLiteral = createCustomLiteral(literalInterface, definition);
         final JDefinedClass literalEnum = createEnum(pkg, className, definition, literals);
+        final JDefinedClass customLiteral = createCustomLiteral(literalInterface, literalEnum, definition);
 
         literalEnum._implements(literalInterface);
         createFactoryMethod(literalInterface, literalEnum, customLiteral, definition);
@@ -121,7 +132,7 @@ final class LiteralTypeGenerator {
         return literalInterface;
     }
 
-    private JDefinedClass createCustomLiteral(final JDefinedClass literalInterface,
+    private JDefinedClass createCustomLiteral(final JDefinedClass literalInterface, final JDefinedClass literalEnum,
                                               final OpenEnumDefinition definition) throws SAXException {
         final JDefinedClass custom = nestedClass(literalInterface, "Custom");
         custom._implements(literalInterface);
@@ -134,16 +145,7 @@ final class LiteralTypeGenerator {
 
         custom.field(JMod.PRIVATE | JMod.FINAL, String.class, VALUE);
 
-        final JMethod constructor = custom.constructor(JMod.PUBLIC);
-        final JVar value = constructor.param(String.class, VALUE);
-        constructor.javadoc()
-                .addParam(value)
-                .append("The literal as it appears in the XML. Must not be null.");
-        constructor.body()
-                .assign(JExpr.refthis(VALUE), codeModel.ref(Objects.class)
-                        .staticInvoke("requireNonNull")
-                        .arg(value)
-                        .arg(JExpr.lit("The value of a custom literal must not be null.")));
+        createCustomConstructor(custom, literalEnum);
 
         final JMethod valueMethod = custom.method(JMod.PUBLIC, String.class, VALUE);
         valueMethod.annotate(Override.class);
@@ -164,6 +166,43 @@ final class LiteralTypeGenerator {
                 ._return(JExpr.ref(VALUE));
 
         return custom;
+    }
+
+    /**
+     * The constructor rejects a value the standard defines: such a {@code Custom} would write the
+     * same XML as the constant but would neither equal it nor survive a read as itself. The check
+     * goes against the enum only, deliberately not against the contributed literals, whose lookup
+     * would trigger the service loader from a constructor.
+     */
+    private void createCustomConstructor(final JDefinedClass custom, final JDefinedClass literalEnum) {
+        final JMethod constructor = custom.constructor(JMod.PUBLIC);
+        final JVar value = constructor.param(String.class, VALUE);
+        constructor.javadoc()
+                .addParam(value)
+                .append("The literal as it appears in the XML. Must not be null and must not be a literal "
+                                + "the standard defines, in any casing.");
+        constructor.javadoc()
+                .addThrows(IllegalArgumentException.class)
+                .append(String.format("If {@link %s#fromValue(String)} knows the value. Use that constant instead.",
+                                      literalEnum.name()));
+
+        final JBlock body = constructor.body();
+        body.assign(JExpr.refthis(VALUE), codeModel.ref(Objects.class)
+                .staticInvoke("requireNonNull")
+                .arg(value)
+                .arg(JExpr.lit("The value of a custom literal must not be null.")));
+
+        final JVar defined = body.decl(literalEnum, "defined", literalEnum.staticInvoke("fromValue")
+                .arg(value));
+        body._if(defined.ne(JExpr._null()))
+                ._then()
+                ._throw(JExpr._new(codeModel.ref(IllegalArgumentException.class))
+                                .arg(JExpr.lit("The literal '")
+                                             .plus(value)
+                                             .plus(JExpr.lit("' is defined by the standard as " + literalEnum.name()
+                                                                     + "."))
+                                             .plus(defined.invoke("name"))
+                                             .plus(JExpr.lit(". Use that constant instead of a custom literal."))));
     }
 
     private void createCustomEquals(final JDefinedClass custom) {
@@ -218,34 +257,60 @@ final class LiteralTypeGenerator {
         valueMethod.body()
                 ._return(JExpr.ref(VALUE));
 
+        createIndex(literalEnum);
         createFromValue(literalEnum);
 
         return literalEnum;
+    }
+
+    /**
+     * Generates the index {@code fromValue} looks the constants up in, keyed by the normalized value
+     * and filled once when the enum is initialized. The static initializer runs after the constants
+     * exist, so it may iterate {@code values()}.
+     */
+    private void createIndex(final JDefinedClass literalEnum) {
+        final JClass indexType = codeModel.ref(Map.class)
+                .narrow(codeModel.ref(String.class), literalEnum);
+        final JVar index = literalEnum.field(JMod.PRIVATE | JMod.STATIC | JMod.FINAL, indexType, BY_VALUE,
+                                             JExpr._new(codeModel.ref(HashMap.class)
+                                                                .narrow(codeModel.ref(String.class), literalEnum)));
+
+        final JForEach constant = literalEnum.init()
+                .forEach(literalEnum, "constant", literalEnum.staticInvoke("values"));
+        constant.body()
+                .add(index.invoke("put")
+                             .arg(normalized(constant.var()
+                                                     .invoke(VALUE)))
+                             .arg(constant.var()));
     }
 
     private void createFromValue(final JDefinedClass literalEnum) {
         final JMethod fromValue = literalEnum.method(JMod.PUBLIC | JMod.STATIC, literalEnum, "fromValue");
         final JVar value = fromValue.param(String.class, VALUE);
         fromValue.javadoc()
-                .append("Returns the constant with the given value.");
+                .append("Returns the constant with the given value, ignoring case.");
         fromValue.javadoc()
                 .addParam(value)
                 .append("The literal as it appears in the XML.");
         fromValue.javadoc()
                 .addReturn()
-                .append("The constant with that value, or {@code null} if the standard does not define it. "
-                                + "Never throws.");
+                .append("The constant whose value equals the given one ignoring case, or {@code null} if the "
+                                + "standard does not define it. Never throws.");
 
-        final JBlock body = fromValue.body();
-        final JForEach candidate = body.forEach(literalEnum, "candidate", literalEnum.staticInvoke("values"));
-        candidate.body()
-                ._if(candidate.var()
-                             .invoke(VALUE)
-                             .invoke(EQUALS)
-                             .arg(value))
-                ._then()
-                ._return(candidate.var());
-        body._return(JExpr._null());
+        fromValue.body()
+                ._return(JOp.cond(value.eq(JExpr._null()), JExpr._null(), JExpr.ref(BY_VALUE)
+                        .invoke("get")
+                        .arg(normalized(value))));
+    }
+
+    /**
+     * @return The expression normalizing the given value for the index: lower case in the root
+     * locale, so that the result does not depend on the default locale.
+     */
+    private JInvocation normalized(final JExpression value) {
+        return value.invoke("toLowerCase")
+                .arg(codeModel.ref(Locale.class)
+                             .staticRef("ROOT"));
     }
 
     private void createFactoryMethod(final JDefinedClass literalInterface, final JDefinedClass literalEnum,

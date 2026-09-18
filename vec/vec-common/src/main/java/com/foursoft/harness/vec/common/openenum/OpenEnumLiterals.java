@@ -33,6 +33,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ServiceConfigurationError;
 import java.util.ServiceLoader;
@@ -45,6 +46,11 @@ import java.util.concurrent.atomic.AtomicReference;
  * <p>
  * This class is consulted by the generated {@code of(String)} factories and is rarely used directly.
  * Providers are loaded once, on first use, and the result is cached per open enumeration.
+ * </p>
+ * <p>
+ * Values are matched ignoring case, like the generated {@code fromValue} does: documents with wrongly
+ * cased literals exist and cannot always be fixed at the source. Two contributed literals whose
+ * values differ only in case are therefore a conflict, and the first one wins.
  * </p>
  *
  * @see OpenEnumLiteralProvider
@@ -66,7 +72,7 @@ public final class OpenEnumLiterals {
      *
      * @param type  The interface of the open enumeration, for example
      *              {@code VecDocumentTypeLiteral.class}.
-     * @param value The literal as it appears in the XML.
+     * @param value The literal as it appears in the XML, matched ignoring case.
      * @param <T>   The type of the open enumeration.
      * @return The contributed literal, or {@code null} if no provider contributed one with that
      * value. Never throws.
@@ -75,7 +81,7 @@ public final class OpenEnumLiterals {
         if (type == null || value == null) {
             return null;
         }
-        return type.cast(indexFor(type).get(value));
+        return type.cast(indexFor(type).get(normalize(value)));
     }
 
     /**
@@ -97,7 +103,7 @@ public final class OpenEnumLiterals {
             if (!type.isInstance(literal)) {
                 continue;
             }
-            final OpenEnumLiteral previous = index.putIfAbsent(literal.value(), literal);
+            final OpenEnumLiteral previous = index.putIfAbsent(normalize(literal.value()), literal);
             if (previous != null && previous != literal && LOGGER.isWarnEnabled()) {
                 LOGGER.warn("Literal '{}' of {} is contributed by {} and {}. Keeping the first one.",
                             literal.value(), type.getName(), previous.getClass()
@@ -106,6 +112,14 @@ public final class OpenEnumLiterals {
             }
         }
         return Map.copyOf(index);
+    }
+
+    /**
+     * @return The key of the given value in the index: lower case in the root locale, so that the
+     * result does not depend on the default locale.
+     */
+    private static String normalize(final String value) {
+        return value.toLowerCase(Locale.ROOT);
     }
 
     private static List<OpenEnumLiteral> contributedLiterals() {

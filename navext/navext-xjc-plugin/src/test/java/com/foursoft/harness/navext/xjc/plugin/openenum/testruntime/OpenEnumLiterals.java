@@ -49,7 +49,7 @@ public final class OpenEnumLiterals {
         return CONTRIBUTED.stream()
                 .filter(type::isInstance)
                 .filter(literal -> literal.value()
-                        .equals(value))
+                        .equalsIgnoreCase(value))
                 .findFirst()
                 .map(type::cast)
                 .orElse(null);
