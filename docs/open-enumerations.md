@@ -137,7 +137,11 @@ Literals of the standard always win, so a provider cannot shadow them.
 - **Which properties are open enumerations differs between VEC versions.** A property may be a plain
   string in 1.1.3 and an open enumeration in 1.2.2, or may not exist at all. `WrapperProxyFactory`
   therefore leaves the typed accessors unintercepted, so their own implementation runs and derives
-  the literals from the plain accessor, which is proxied as usual.
+  the literals from the plain accessor, which is proxied as usual. It recognizes them by their shape
+  rather than by the `Literal` suffix alone: a parameterless method returning a literal or a
+  collection of literals, or a `void` method taking one. The literal interface is matched by its
+  simple name `OpenEnumLiteral`, because `compatibility-core` knows nothing about the models it
+  proxies.
 
 ## Generation
 

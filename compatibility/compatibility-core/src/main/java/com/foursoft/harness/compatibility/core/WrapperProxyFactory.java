@@ -33,11 +33,13 @@ import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.TypeCache;
 import net.bytebuddy.description.method.MethodDescription;
 import net.bytebuddy.description.modifier.Visibility;
+import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.implementation.InvocationHandlerAdapter;
 import net.bytebuddy.matcher.ElementMatcher;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
+import java.util.Collection;
 import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -53,6 +55,14 @@ public final class WrapperProxyFactory {
 
     private static final String CALLBACK = "callback";
     private static final TypeCache<Object> TYPE_CACHE = new TypeCache<>(TypeCache.Sort.SOFT);
+
+    /**
+     * Simple name of the interface every literal of an open enumeration implements. It is matched by
+     * name because this module knows nothing about the models it proxies: the interface lives in the
+     * runtime package of the respective model, which is an option of the XJC plugin generating the
+     * accessors, in the same way the plugin itself resolves it.
+     */
+    private static final String LITERAL_INTERFACE = "OpenEnumLiteral";
 
     /**
      * Wrappers are looked up by object identity: a source object and its wrapper belong together
@@ -126,9 +136,36 @@ public final class WrapperProxyFactory {
      * letting them run unintercepted yields the right value wherever the plain accessor takes it
      * from, and interprets it with the vocabulary of the version the caller is using.
      * </p>
+     * <p>
+     * The accessors are recognized by their shape, not by their name alone, so that a model method
+     * which merely happens to end in {@code Literal} is still proxied: a getter returns a literal or
+     * a collection of literals, a setter or adder takes one and returns nothing.
+     * </p>
      */
     private static ElementMatcher.Junction<MethodDescription> isOpenEnumLiteralAccessor() {
-        return nameEndsWith("Literal").or(nameEndsWith("Literals"));
+        final ElementMatcher.Junction<TypeDescription.Generic> literals = isLiteral().or(isLiteralCollection());
+        final ElementMatcher.Junction<MethodDescription> getter = takesArguments(0).and(returnsGeneric(literals));
+        final ElementMatcher.Junction<MethodDescription> setter = takesArguments(1).and(returns(void.class))
+                .and(takesGenericArgument(0, literals));
+        return nameEndsWith("Literal").or(nameEndsWith("Literals"))
+                .and(getter.or(setter));
+    }
+
+    private static ElementMatcher.Junction<TypeDescription.Generic> isLiteral() {
+        return erasure(hasSuperType(type -> LITERAL_INTERFACE.equals(type.getSimpleName())));
+    }
+
+    private static ElementMatcher.Junction<TypeDescription.Generic> isLiteralCollection() {
+        return erasure(isSubTypeOf(Collection.class)).and(type -> type.getSort().isParameterized()
+                && type.getTypeArguments().size() == 1
+                && isLiteral().matches(upperBound(type.getTypeArguments().getOnly())));
+    }
+
+    /**
+     * @return The type itself, or for a wildcard such as {@code ? extends X} its upper bound.
+     */
+    private static TypeDescription.Generic upperBound(final TypeDescription.Generic type) {
+        return type.getSort().isWildcard() ? type.getUpperBounds().getOnly() : type;
     }
 
     /**
