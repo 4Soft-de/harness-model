@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.v2x;
+package com.foursoft.harness.vec.v12x;
 
 import com.foursoft.harness.vec.common.openenum.OpenEnumLiteral;
 import org.junit.jupiter.api.Test;
@@ -57,9 +57,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class OpenEnumerationSchemaTest {
 
-    private static final String STRICT_SCHEMA = "/vec2/vec_2.2.0-strict.xsd";
-    private static final String CODEGEN_SCHEMA = "/vec2/vec_2.2.0.xsd";
-    private static final int OPEN_ENUMERATIONS = 109;
+    private static final String STRICT_SCHEMA = "/vec122/vec_1.2.2-strict.xsd";
+    private static final String CODEGEN_SCHEMA = "/vec122/vec_1.2.2.xsd";
+    private static final int OPEN_ENUMERATIONS = 68;
 
     @Test
     void everyOpenEnumerationOfTheSchemaIsGeneratedWithExactlyItsLiterals() {

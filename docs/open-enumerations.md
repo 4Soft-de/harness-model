@@ -141,6 +141,9 @@ Literals of the standard always win, so a provider cannot shadow them.
   the same algorithm XJC uses for closed enumerations, and a genuine collision is settled by a
   hand-maintained override file rather than an automatic suffix — a suffix would silently renumber
   published constants whenever a literal is inserted upstream.
+- **The schema pinning test exists per model.** `OpenEnumerationSchemaTest` in each of `vec-v113`,
+  `vec-v12x` and `vec-v2x` compares the generated enums with the strict schema, so that a replaced
+  schema shows up as a failing test rather than as a silent change of the API.
 
 ## Trade-offs and Limits
 
