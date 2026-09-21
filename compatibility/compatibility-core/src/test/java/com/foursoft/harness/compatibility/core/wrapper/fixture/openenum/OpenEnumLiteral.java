@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.x Scripting API (Experimental)
+ * Compatibility Core
  * %%
- * Copyright (C) 2020 - 2025 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,15 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.compatibility.core.wrapper.fixture.openenum;
 
-public enum SignalType {
+/**
+ * Stand-in for the runtime interface of open enumeration literals. The
+ * {@link com.foursoft.harness.compatibility.core.WrapperProxyFactory} recognizes it by its simple name,
+ * so it can live in any package.
+ */
+public interface OpenEnumLiteral {
 
-    INFORMATION("Information"), ENERGY("Energy"), GROUND("Ground");
+    String value();
 
-    private final String value;
-
-    SignalType(final String value) {
-        this.value = value;
-    }
-
-    public String value() {
-        return value;
-    }
 }

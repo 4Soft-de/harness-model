@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.x Scripting API (Experimental)
+ * VEC 2.X
  * %%
- * Copyright (C) 2020 - 2025 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,35 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.vec.v2x;
 
-public enum DocumentType {
+/**
+ * Literals of an API consumer, extending the open enumeration {@code DocumentType} the way a
+ * consumer of this library would.
+ *
+ * @see TestOpenEnumLiterals
+ */
+public enum TestDocumentType implements VecDocumentTypeLiteral {
 
-    HARNESS_DESCRIPTION("HarnessDescription"), NETWORK_ARCHITECTURE("NetworkArchitecture"),
-    PART_MASTER("PartMaster"), PROCESSING_INSTRUCTION("ProcessingInstruction"),
-    REQUIREMENTS_DESCRIPTION("RequirementsDescription"), SYSTEM_SCHEMATIC("SystemSchematic"),
-    ;
+    /**
+     * Not defined by the VEC standard, so it only resolves because it is contributed.
+     */
+    INTEGRATION_TEST_DOCUMENT("IntegrationTestDocument"),
+
+    /**
+     * Defined by the VEC standard as well, which must win over this one.
+     */
+    PART_MASTER("PartMaster");
 
     private final String value;
 
-    DocumentType(final String value) {
+    TestDocumentType(final String value) {
         this.value = value;
     }
 
+    @Override
     public String value() {
         return value;
     }
+
 }

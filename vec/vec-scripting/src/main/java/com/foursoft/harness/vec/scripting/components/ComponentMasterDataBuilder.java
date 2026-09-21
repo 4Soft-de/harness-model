@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.v2x.VecDocumentType;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.VecSession;
@@ -36,7 +37,6 @@ import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.FuseSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.RelaySpecificationBuilder;
-import com.foursoft.harness.vec.scripting.enums.DocumentType;
 import com.foursoft.harness.vec.scripting.harness.VirtualPartStructureBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
@@ -77,7 +77,7 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
 
     private DocumentVersionBuilder initializeDocument(final String documentNumber, final String documentVersion) {
         return new DocumentVersionBuilder(session, documentNumber, documentVersion).documentType(
-                        DocumentType.PART_MASTER)
+                        VecDocumentType.PART_MASTER)
                 .addReferencedPart(
                         this.part);
     }
@@ -95,7 +95,7 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
     public ComponentMasterDataBuilder withApplicationSpecification(final String documentNumber,
                                                                    final String documentVersion) {
         final VecDocumentVersion dv = new DocumentVersionBuilder(session, documentNumber, documentVersion)
-                .documentType(DocumentType.PROCESSING_INSTRUCTION)
+                .documentType(VecDocumentType.PROCESSING_INSTRUCTION)
                 .build();
 
         dv.getReferencedPart().add(part);

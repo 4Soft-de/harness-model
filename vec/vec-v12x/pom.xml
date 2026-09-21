@@ -60,6 +60,9 @@
                                 <arg>-Xvisitor-includeType</arg>
                                 <arg>-Xvisitor-noIdrefTraversal</arg>
                                 <arg>-Xvisitor-package:com.foursoft.harness.vec.v12x.visitor</arg>
+                                <!-- must stay last: it inspects what the other plugins generated -->
+                                <arg>-Xopen-enums</arg>
+                                <arg>-Xopen-enums-names:vec_1.2.2-open-enum-names.xml</arg>
                             </args>
                             <generateDirectory>${project.build.directory}/generated-sources/xjc-vec120</generateDirectory>
                             <plugins>

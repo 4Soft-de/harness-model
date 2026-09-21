@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPartOccurrence;
+import com.foursoft.harness.vec.v2x.VecPartStructureContentType;
 import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
@@ -41,7 +42,7 @@ public class HarnessPartStructureSpecificationTransformer implements
     public TransformationResult<VecPartStructureSpecification> transform(final TransformationContext context,
                                                                          final KblHarness source) {
         final VecPartStructureSpecification element = new VecPartStructureSpecification();
-        element.setContent("Harness");
+        element.setContentLiteral(VecPartStructureContentType.HARNESS);
 
         return TransformationResult.from(element)
                 .withFragment(commonSpecificationAttributes(source))

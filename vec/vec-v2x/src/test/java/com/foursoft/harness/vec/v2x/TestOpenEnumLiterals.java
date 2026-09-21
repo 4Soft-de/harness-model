@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.x Scripting API (Experimental)
+ * VEC 2.X
  * %%
- * Copyright (C) 2020 - 2025 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,10 +10,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,19 +23,23 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.vec.v2x;
 
-public enum SignalInformationType {
+import com.foursoft.harness.vec.common.openenum.OpenEnumLiteral;
+import com.foursoft.harness.vec.common.openenum.OpenEnumLiteralProvider;
 
-    ANALOG("Analog"), DIGITAL("Digital");
+import java.util.Collection;
+import java.util.List;
 
-    private final String value;
+/**
+ * Registers {@link TestDocumentType} through
+ * {@code META-INF/services/com.foursoft.harness.vec.common.openenum.OpenEnumLiteralProvider}.
+ */
+public class TestOpenEnumLiterals implements OpenEnumLiteralProvider {
 
-    SignalInformationType(final String value) {
-        this.value = value;
+    @Override
+    public Collection<OpenEnumLiteral> literals() {
+        return List.of(TestDocumentType.values());
     }
 
-    public String value() {
-        return value;
-    }
 }

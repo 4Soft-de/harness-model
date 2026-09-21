@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.vec.scripting.components;
 
+import com.foursoft.harness.vec.v2x.VecWireLengthType;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Locator;
 import com.foursoft.harness.vec.scripting.VecSession;
@@ -64,7 +65,7 @@ public class WireElementRefBuilder implements Builder<VecWireElementReference> {
 
     public WireElementRefBuilder withLength(double length) {
         VecWireLength wireLength = new VecWireLength();
-        wireLength.setLengthType("DMU");
+        wireLength.setLengthTypeLiteral(VecWireLengthType.DMU);
         VecNumericalValue value = new VecNumericalValue();
         value.setUnitComponent(session.mm());
         value.setValueComponent(length);

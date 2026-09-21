@@ -26,10 +26,10 @@
 package com.foursoft.harness.vec.scripting.signals;
 
 import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.scripting.enums.SignalInformationType;
-import com.foursoft.harness.vec.scripting.enums.SignalSubType;
-import com.foursoft.harness.vec.scripting.enums.SignalType;
 import com.foursoft.harness.vec.scripting.net.NetSpecificationQueries;
+import com.foursoft.harness.vec.v2x.VecSignalTypeLiteral;
+import com.foursoft.harness.vec.v2x.VecSignalSubTypeLiteral;
+import com.foursoft.harness.vec.v2x.VecSignalInformationTypeLiteral;
 import com.foursoft.harness.vec.v2x.VecSignal;
 
 public class SignalBuilder implements Builder<VecSignal> {
@@ -52,17 +52,17 @@ public class SignalBuilder implements Builder<VecSignal> {
         return this;
     }
 
-    public SignalBuilder withSignalType(final SignalType signalType) {
+    public SignalBuilder withSignalType(final VecSignalTypeLiteral signalType) {
         this.signal.setSignalType(signalType.value());
         return this;
     }
 
-    public SignalBuilder withSignalInformationType(final SignalInformationType signalInformationType) {
+    public SignalBuilder withSignalInformationType(final VecSignalInformationTypeLiteral signalInformationType) {
         this.signal.setSignalInformationType(signalInformationType.value());
         return this;
     }
 
-    public SignalBuilder withSignalSubType(final SignalSubType signalSubType) {
+    public SignalBuilder withSignalSubType(final VecSignalSubTypeLiteral signalSubType) {
         this.signal.setSignalSubType(signalSubType.value());
         return this;
     }

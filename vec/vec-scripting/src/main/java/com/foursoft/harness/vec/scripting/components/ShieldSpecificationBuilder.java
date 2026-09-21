@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.v2x.VecConductorType;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecMaterial;
 import com.foursoft.harness.vec.v2x.VecShieldSpecification;
@@ -44,12 +45,12 @@ public class ShieldSpecificationBuilder implements Builder<VecShieldSpecificatio
     }
 
     public ShieldSpecificationBuilder braided() {
-        shieldSpecification.setType("Braided");
+        shieldSpecification.setTypeLiteral(VecConductorType.BRAIDED);
         return this;
     }
 
     public ShieldSpecificationBuilder foil() {
-        shieldSpecification.setType("Foil");
+        shieldSpecification.setTypeLiteral(VecConductorType.FOIL);
         return this;
     }
 

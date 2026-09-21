@@ -26,9 +26,9 @@
 package com.foursoft.harness.vec.scripting.net;
 
 import com.foursoft.harness.vec.scripting.Builder;
-import com.foursoft.harness.vec.scripting.enums.SignalInformationType;
-import com.foursoft.harness.vec.scripting.enums.SignalSubType;
-import com.foursoft.harness.vec.scripting.enums.SignalType;
+import com.foursoft.harness.vec.v2x.VecSignalTypeLiteral;
+import com.foursoft.harness.vec.v2x.VecSignalSubTypeLiteral;
+import com.foursoft.harness.vec.v2x.VecSignalInformationTypeLiteral;
 import com.foursoft.harness.vec.v2x.VecNetType;
 
 public class NetTypeBuilder implements Builder<VecNetType> {
@@ -45,17 +45,17 @@ public class NetTypeBuilder implements Builder<VecNetType> {
         return netType;
     }
 
-    public NetTypeBuilder withSignalType(final SignalType signalType) {
+    public NetTypeBuilder withSignalType(final VecSignalTypeLiteral signalType) {
         this.netType.setSignalType(signalType.value());
         return this;
     }
 
-    public NetTypeBuilder withSignalInformationType(final SignalInformationType signalInformationType) {
+    public NetTypeBuilder withSignalInformationType(final VecSignalInformationTypeLiteral signalInformationType) {
         this.netType.setSignalInformationType(signalInformationType.value());
         return this;
     }
 
-    public NetTypeBuilder withSignalSubType(final SignalSubType signalSubType) {
+    public NetTypeBuilder withSignalSubType(final VecSignalSubTypeLiteral signalSubType) {
         this.netType.setSignalSubType(signalSubType.value());
         return this;
     }

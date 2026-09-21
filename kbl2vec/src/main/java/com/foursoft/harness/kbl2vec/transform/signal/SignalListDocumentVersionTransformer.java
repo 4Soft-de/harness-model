@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecDocumentTypeLiteral;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
@@ -50,7 +51,8 @@ public class SignalListDocumentVersionTransformer implements Transformer<KblHarn
                                                               final KblHarness source) {
         final VecDocumentVersion documentVersion = new VecDocumentVersion();
 
-        documentVersion.setDocumentType("SignalList");
+        // "SignalList" is not one of the document types VEC 2.2.0 defines.
+        documentVersion.setDocumentTypeLiteral(new VecDocumentTypeLiteral.Custom("SignalList"));
         documentVersion.setDocumentNumber("Signals");
         documentVersion.setDocumentVersion("1");
         documentVersion.setCompanyName(context.getConversionProperties().getDefaultSignalListCompanyName());

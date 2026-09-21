@@ -34,6 +34,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecSegmentCrossSectionArea;
+import com.foursoft.harness.vec.v2x.VecSegmentCrossSectionAreaType;
 import com.foursoft.harness.vec.v2x.VecValueDetermination;
 
 public class SegmentCrossSectionAreaTransformer
@@ -47,13 +48,13 @@ public class SegmentCrossSectionAreaTransformer
         final KblValueDetermination valueDetermination = source.getValueDetermination();
         if (valueDetermination == KblValueDetermination.CALCULATED){
             destination.setValueDetermination(VecValueDetermination.CALCULATED);
-            destination.setCrossSectionAreaType("Real");
+            destination.setCrossSectionAreaTypeLiteral(VecSegmentCrossSectionAreaType.REAL);
         } else if(valueDetermination == KblValueDetermination.RESERVED) {
             destination.setValueDetermination(VecValueDetermination.ESTIMATED);
-            destination.setCrossSectionAreaType("Reserved");
+            destination.setCrossSectionAreaTypeLiteral(VecSegmentCrossSectionAreaType.RESERVED);
         } else if (valueDetermination == KblValueDetermination.MEASURED) {
             destination.setValueDetermination(VecValueDetermination.MEASURED);
-            destination.setCrossSectionAreaType("Real");
+            destination.setCrossSectionAreaTypeLiteral(VecSegmentCrossSectionAreaType.REAL);
         }
 
         return TransformationResult.from(destination)

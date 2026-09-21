@@ -1,8 +1,8 @@
 /*-
  * ========================LICENSE_START=================================
- * VEC 2.x Scripting API (Experimental)
+ * Compatibility Core
  * %%
- * Copyright (C) 2020 - 2025 4Soft GmbH
+ * Copyright (C) 2020 - 2026 4Soft GmbH
  * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,11 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.foursoft.harness.vec.scripting.enums;
+package com.foursoft.harness.compatibility.core.wrapper.fixture.mapping.sourcepackage;
 
-public enum LengthClassification {
+/**
+ * Source side of the fixture bean with open enumeration accessors, see the target side.
+ */
+public class OpenEnumBean {
 
-    DESIGNED("Designed"), ADAPTED("Adapted");
-
-    private final String value;
-
-    LengthClassification(final String value) {
-        this.value = value;
-    }
-
-    public String value() {
-        return value;
-    }
 }
