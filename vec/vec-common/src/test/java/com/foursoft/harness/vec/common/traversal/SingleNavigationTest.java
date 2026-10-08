@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -133,6 +134,49 @@ class SingleNavigationTest {
 
         assertThat(screw.from(assemblyWith(SCREW))).contains(SCREW);
         assertThat(screw.from(assemblyWith(NUT))).isEmpty();
+    }
+
+    @Test
+    void orLeadsToThisElementIfPresent() {
+        final SingleNavigation<Assembly, Part> mainPartOrNut = MAIN_PART.or(source -> Optional.of(NUT));
+
+        assertThat(mainPartOrNut.from(assemblyWith(SCREW))).contains(SCREW);
+    }
+
+    @Test
+    void orFallsBackIfThisIsEmpty() {
+        final SingleNavigation<Assembly, Part> mainPartOrNut = MAIN_PART.or(source -> Optional.of(NUT));
+
+        assertThat(mainPartOrNut.from(assemblyWith(null))).contains(NUT);
+    }
+
+    @Test
+    void orIsEmptyIfBothAreEmpty() {
+        final SingleNavigation<Assembly, Part> mainPartOrNothing = MAIN_PART.or(source -> Optional.empty());
+
+        assertThat(mainPartOrNothing.from(assemblyWith(null))).isEmpty();
+    }
+
+    @Test
+    void orDoesNotApplyTheFallbackIfThisIsPresent() {
+        final AtomicInteger fallbackCalls = new AtomicInteger();
+        final SingleNavigation<Assembly, Part> mainPartOrNut = MAIN_PART.or(source -> {
+            fallbackCalls.incrementAndGet();
+            return Optional.of(NUT);
+        });
+
+        mainPartOrNut.from(assemblyWith(SCREW));
+
+        assertThat(fallbackCalls).hasValue(0);
+    }
+
+    @Test
+    void orAcceptsAFallbackFromASupertypeToASubtype() {
+        final SingleNavigation<Object, Screw> anyToScrew = source -> Optional.of(SCREW);
+
+        final SingleNavigation<Assembly, Part> mainPartOrScrew = MAIN_PART.or(anyToScrew);
+
+        assertThat(mainPartOrScrew.from(assemblyWith(null))).contains(SCREW);
     }
 
     @Test
