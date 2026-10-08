@@ -88,6 +88,19 @@ public interface SingleNavigation<S, T> extends Navigation<S, Optional<T>> {
     }
 
     /**
+     * Returns a navigation leading to the element of this navigation or, if there is none, to the element
+     * of the given fallback navigation from the same source.
+     * <p>
+     * The fallback is only applied if this navigation does not lead to an element.
+     *
+     * @param fallback Navigation to apply to the source if this navigation does not lead to an element.
+     * @return A navigation from {@code S} to at most one {@code T}.
+     */
+    default SingleNavigation<S, T> or(final SingleNavigation<? super S, ? extends T> fallback) {
+        return source -> from(source).or(() -> fallback.from(source));
+    }
+
+    /**
      * Returns this navigation as a multi valued navigation leading to zero or one element.
      *
      * @return A multi valued view on this navigation.
