@@ -42,6 +42,7 @@ public class AssemblyPartStructureSpecification implements
                                                                          final KblAssemblyPart source) {
 
         final VecPartStructureSpecification element = new VecPartStructureSpecification();
+        element.setSpecialPartType(source.getPartType());
 
         return TransformationResult.from(element)
                 .withLinker(partOccurrences(source.getConnectionOrOccurrences()), VecPartOccurrence.class,

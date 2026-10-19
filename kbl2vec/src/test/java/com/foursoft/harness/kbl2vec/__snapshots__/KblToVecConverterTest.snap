@@ -99896,6 +99896,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_1">
       <Identification>PSS-AS0105563</Identification>
+      <SpecialPartType>multifuse</SpecialPartType>
       <DescribedPart>PartVersion_id_304_1</DescribedPart>
       <InBillOfMaterial>PartOccurrence_id_303_1 PartOccurrence_id_303_3 PartOccurrence_id_303_5 PartOccurrence_id_303_7 PartOccurrence_id_303_9 PartOccurrence_id_303_11</InBillOfMaterial>
     </Specification>
