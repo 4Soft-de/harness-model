@@ -54,7 +54,7 @@ public class TopologyBuilder implements Builder<VecTopologySpecification> {
     }
 
     public TopologyBuilder addNode(final String identification, final Customizer<TopologyNodeBuilder> customizer) {
-        final TopologyNodeBuilder builder = new TopologyNodeBuilder(identification);
+        final TopologyNodeBuilder builder = new TopologyNodeBuilder(session, identification);
 
         customizer.customize(builder);
 

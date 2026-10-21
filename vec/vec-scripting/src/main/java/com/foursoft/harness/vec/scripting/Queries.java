@@ -27,6 +27,7 @@ package com.foursoft.harness.vec.scripting;
 
 import com.foursoft.harness.vec.v2x.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -85,6 +86,37 @@ public final class Queries {
 
             return findByValue(wireRefs, VecWireElementReference::getIdentification, id, "WireElementReference");
         };
+    }
+
+    public static Locator<VecOccurrenceOrUsage> occurrenceOrUsageLocator(
+            VecCompositionSpecification compositionSpecification, VecPartUsageSpecification partUsageSpecification) {
+        return id -> findByValue(occurrencesOrUsages(compositionSpecification, partUsageSpecification),
+                                 VecOccurrenceOrUsage::getIdentification, id, "OccurrenceOrUsage");
+    }
+
+    public static Locator<VecWireElementReference> wireElementReferenceLocator(
+            VecCompositionSpecification compositionSpecification, VecPartUsageSpecification partUsageSpecification) {
+        return id -> {
+            List<VecWireElementReference> wireRefs = occurrencesOrUsages(compositionSpecification,
+                                                                         partUsageSpecification)
+                    .stream()
+                    .flatMap(o -> o.getRoleWithType(VecWireRole.class).stream())
+                    .flatMap(o -> o.getWireElementReferences().stream())
+                    .toList();
+            return findByValue(wireRefs, VecWireElementReference::getIdentification, id, "WireElementReference");
+        };
+    }
+
+    private static List<VecOccurrenceOrUsage> occurrencesOrUsages(
+            VecCompositionSpecification compositionSpecification, VecPartUsageSpecification partUsageSpecification) {
+        List<VecOccurrenceOrUsage> result = new ArrayList<>();
+        if (compositionSpecification != null) {
+            result.addAll(compositionSpecification.getComponents());
+        }
+        if (partUsageSpecification != null) {
+            result.addAll(partUsageSpecification.getPartUsages());
+        }
+        return result;
     }
 
     private static <T, V> T findByValue(List<T> elements, Function<T, V> valueFn, V value, String elementType) {

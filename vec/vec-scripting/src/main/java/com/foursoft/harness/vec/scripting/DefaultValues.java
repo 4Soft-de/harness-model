@@ -33,6 +33,7 @@ public class DefaultValues {
     public static final String PLACEMENT_SPECIFICATION_IDENTIFICATION = "PLACEMENTS";
     public static final String ROUTING_SPECIFICATION_IDENTIFICATION = "ROUTINGS";
     public static final String CONFIG_CONSTRAINTS_SPEC_IDENTIFICATION = "CONFIG_CONSTRAINTS";
+    public static final String CONTACTING_SPEC_IDENTIFICATION = "CONTACTING";
     private String companyName = "Acme Inc.";
     private String colorReferenceSystem = "Acme Inc.";
     private String materialReferenceSystem = "Acme Inc.";

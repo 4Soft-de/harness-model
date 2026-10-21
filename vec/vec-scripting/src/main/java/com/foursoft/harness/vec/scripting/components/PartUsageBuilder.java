@@ -27,9 +27,12 @@ package com.foursoft.harness.vec.scripting.components;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.DefaultValues;
+import com.foursoft.harness.vec.scripting.VecScriptingException;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.components.protection.CorrugatedPipeRoleBuilder;
 import com.foursoft.harness.vec.scripting.core.SpecificationLocator;
+import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.FuseRoleBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.RelayRoleBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
@@ -154,6 +157,82 @@ public class PartUsageBuilder implements Builder<VecPartUsage> {
         if (partUsage.getPrimaryPartUsageType() == null) {
             partUsage.setPrimaryPartUsageType(VecPrimaryPartType.RELAY);
         }
+
+        return this;
+    }
+
+    public PartUsageBuilder addEEComponentSpecification(final String specificationIdentification,
+                                                        final Customizer<EEComponentRoleBuilder> customizer) {
+        final VecEEComponentSpecification eeComponentSpecification = specificationLocator.find(
+                        VecEEComponentSpecification.class, specificationIdentification)
+                .orElseThrow();
+
+        partUsage.getPartOrUsageRelatedSpecification().add(eeComponentSpecification);
+
+        final EEComponentRoleBuilder eeComponentRoleBuilder = new EEComponentRoleBuilder(session,
+                                                                                         partUsage.getIdentification(),
+                                                                                         eeComponentSpecification,
+                                                                                         connectionSpecificationQueries::findNode);
+
+        customizer.customize(eeComponentRoleBuilder);
+
+        partUsage.getRoles().add(eeComponentRoleBuilder.build());
+
+        if (partUsage.getPrimaryPartUsageType() == null) {
+            partUsage.setPrimaryPartUsageType(VecPrimaryPartType.EE_COMPONENT);
+        }
+
+        return this;
+    }
+
+    public PartUsageBuilder addPluggableTerminalSpecification(final String specificationIdentification) {
+        final VecPluggableTerminalSpecification terminalSpecification = specificationLocator.find(
+                        VecPluggableTerminalSpecification.class, specificationIdentification)
+                .orElseThrow();
+
+        partUsage.getPartOrUsageRelatedSpecification().add(terminalSpecification);
+
+        partUsage.getRoles().add(new PluggableTerminalRoleBuilder(partUsage.getIdentification(),
+                                                                  terminalSpecification).build());
+
+        if (partUsage.getPrimaryPartUsageType() == null) {
+            partUsage.setPrimaryPartUsageType(VecPrimaryPartType.PLUGGABLE_TERMINAL);
+        }
+
+        return this;
+    }
+
+    public PartUsageBuilder addPlaceableElementSpecification(final String specificationIdentification) {
+        final VecPlaceableElementSpecification placeableElementSpecification = specificationLocator.find(
+                        VecPlaceableElementSpecification.class, specificationIdentification)
+                .orElseThrow();
+
+        partUsage.getPartOrUsageRelatedSpecification().add(placeableElementSpecification);
+
+        partUsage.getRoles().add(new PlaceableElementRoleBuilder(partUsage.getIdentification(),
+                                                                 placeableElementSpecification).build());
+
+        return this;
+    }
+
+    /**
+     * References the {@link VecPartUsage} of the part master data that is instantiated by this usage (e.g. a
+     * subcomponent of an assembly). The usage is searched in the {@link VecPartUsageSpecification} of the document
+     * that provides the specifications of this usage.
+     */
+    public PartUsageBuilder withInstanciatedUsage(final String identification) {
+        final VecPartUsage instanciatedUsage = specificationLocator.find(VecPartUsageSpecification.class,
+                                                                         DefaultValues.COMP_USAGE_SPEC_IDENTIFICATION)
+                .orElseThrow(() -> new VecScriptingException(
+                        "No PartUsageSpecification '" + DefaultValues.COMP_USAGE_SPEC_IDENTIFICATION + "' found."))
+                .getPartUsages()
+                .stream()
+                .filter(u -> identification.equals(u.getIdentification()))
+                .findFirst()
+                .orElseThrow(() -> new VecScriptingException(
+                        "No PartUsage found with identification '" + identification + "'."));
+
+        partUsage.getInstanciatedUsage().add(instanciatedUsage);
 
         return this;
     }

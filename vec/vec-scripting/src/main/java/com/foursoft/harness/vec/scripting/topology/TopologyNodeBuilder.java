@@ -26,14 +26,28 @@
 package com.foursoft.harness.vec.scripting.topology;
 
 import com.foursoft.harness.vec.scripting.Builder;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecTopologyNode;
 
 public class TopologyNodeBuilder implements Builder<VecTopologyNode> {
 
     private final VecTopologyNode topologyNode = new VecTopologyNode();
 
-    TopologyNodeBuilder(String identification) {
+    private final VecSession session;
+
+    TopologyNodeBuilder(final VecSession session, String identification) {
+        this.session = session;
         topologyNode.setIdentification(identification);
+    }
+
+    /**
+     * References the {@link VecTopologyNode} of the topology of another document (e.g. the part master data of an
+     * assembly) that is instantiated by this node.
+     */
+    public TopologyNodeBuilder withInstantiatedNode(final String documentNumber, final String identification) {
+        topologyNode.setInstantiatedNode(
+                TopologySpecificationQueries.forDocument(session, documentNumber).findTopologyNode(identification));
+        return this;
     }
 
     @Override public VecTopologyNode build() {

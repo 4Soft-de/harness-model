@@ -151,6 +151,10 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
                         String.format("The occurrence '%s' can not be found.", identification)));
     }
 
+    VecOccurrenceOrUsage findOccurrenceOrUsage(final String identification) {
+        return occurrenceOrUsageLocator(compositionSpecification, partUsageSpecification).locate(identification);
+    }
+
     List<VecPartOccurrence> findOccurrences(final String[] occurrenceIds) {
         return Arrays.stream(occurrenceIds).map(this::findOccurrence).toList();
     }
@@ -158,10 +162,10 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
     public HarnessBuilder addConnection(final String wireElementReferenceId,
                                         final Customizer<ConnectivityBuilder> customizer) {
         final VecWireElementReference wireElementReference = wireElementReferenceLocator(
-                compositionSpecification).locate(wireElementReferenceId);
+                compositionSpecification, partUsageSpecification).locate(wireElementReferenceId);
 
         final ConnectivityBuilder builder = new ConnectivityBuilder(this.session, wireElementReference,
-                                                                    this::findOccurrence);
+                                                                    this::findOccurrenceOrUsage);
 
         customizer.customize(builder);
 
@@ -201,7 +205,8 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
         final PartOccurrenceBuilder builder = new PartOccurrenceBuilder(this.session, identification,
                                                                         partNumber,
-                                                                        this.schematicQuery);
+                                                                        this.schematicQuery,
+                                                                        this::findOccurrenceOrUsage);
 
         if (customizer != null) {
             customizer.customize(builder);
@@ -270,7 +275,7 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
     public HarnessBuilder withPlacements(final Customizer<PlacementSpecificationBuilder> customizer) {
         final PlacementSpecificationBuilder builder = new PlacementSpecificationBuilder(
-                partOccurrenceLocator(this.compositionSpecification),
+                this::findOccurrenceOrUsage,
                 nodeLocator(this.topologySpecification));
         customizer.customize(builder);
 
@@ -283,7 +288,8 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
 
     public HarnessBuilder withRoutings(final Customizer<RoutingSpecificationBuilder> customizer) {
         final RoutingSpecificationBuilder builder = new RoutingSpecificationBuilder(
-                wireElementReferenceLocator(compositionSpecification), segmentLocator(topologySpecification),
+                wireElementReferenceLocator(compositionSpecification, partUsageSpecification),
+                segmentLocator(topologySpecification),
                 configConstraintLocator(configurationConstraintSpecification));
 
         customizer.customize(builder);

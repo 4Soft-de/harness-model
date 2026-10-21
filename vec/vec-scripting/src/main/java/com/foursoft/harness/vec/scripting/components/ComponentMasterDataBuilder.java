@@ -28,6 +28,7 @@ package com.foursoft.harness.vec.scripting.components;
 import com.foursoft.harness.vec.v2x.VecDocumentType;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.VecScriptingException;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.components.protection.CorrugatedPipeSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.components.protection.WireProtectionSpecificationBuilder;
@@ -37,6 +38,7 @@ import com.foursoft.harness.vec.scripting.core.PartVersionBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.FuseSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.RelaySpecificationBuilder;
+import com.foursoft.harness.vec.scripting.harness.PartStructureBuilder;
 import com.foursoft.harness.vec.scripting.harness.VirtualPartStructureBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.scripting.schematic.SchematicBuilder;
@@ -171,6 +173,26 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         return this;
     }
 
+    /**
+     * Adds the bill of material of a composite part (e.g. an assembly) with its contents. The specifications of
+     * contents without a part number of their own (e.g. {@link #addSingleCoreForPartUsage(String, Customizer)}) have
+     * to be added before.
+     */
+    public ComponentMasterDataBuilder addPartStructure(final Customizer<PartStructureBuilder> customizer) {
+        final PartStructureBuilder builder = new PartStructureBuilder(session, partNumber,
+                                                                      partMasterDocument::getSpecificationWith);
+
+        customizer.customize(builder);
+
+        final PartStructureBuilder.PartStructureResult result = builder.build();
+
+        addPartOrUsageRelatedSpecification(result.bom(), true);
+
+        result.specifications().forEach(this::addSpecification);
+
+        return this;
+    }
+
     public ComponentMasterDataBuilder addSchematic(final Customizer<SchematicBuilder> customizer) {
         final SchematicBuilder builder = new SchematicBuilder(this.session);
 
@@ -253,6 +275,17 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
     }
 
+    public ComponentMasterDataBuilder addEEComponentSpecificationForPartUsage(
+            final String identification,
+            final Customizer<EEComponentSpecificationBuilder<VecEEComponentSpecification>> customizer) {
+        final EEComponentSpecificationBuilder<VecEEComponentSpecification> builder =
+                new EEComponentSpecificationBuilder<>(this.session,
+                                                      VecEEComponentSpecification.class,
+                                                      identification, this.partMasterDocument::getSpecificationWith,
+                                                      this::addSpecification, this::findInternalNode);
+        return addPartOrUsageRelatedSpecification(builder, customizer, false);
+    }
+
     public ComponentMasterDataBuilder addFuseSpecification(
             final Customizer<FuseSpecificationBuilder> customizer) {
         final FuseSpecificationBuilder builder =
@@ -287,6 +320,14 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
     }
 
+    public ComponentMasterDataBuilder addSingleCoreForPartUsage(final String identification,
+                                                                final Customizer<WireSingleCoreBuilder> customizer) {
+        final WireSingleCoreBuilder builder = new WireSingleCoreBuilder(this.session, identification,
+                                                                        this::addSpecification,
+                                                                        this.partMasterDocument::getSpecificationWith);
+        return addPartOrUsageRelatedSpecification(builder, customizer, false);
+    }
+
     public ComponentMasterDataBuilder addConnectorHousing(final Customizer<ConnectorSpecificationBuilder> customizer) {
         final ConnectorSpecificationBuilder builder = new ConnectorSpecificationBuilder(this.partNumber);
 
@@ -297,6 +338,13 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         final PlaceableElementSpecificationBuilder builder = new PlaceableElementSpecificationBuilder(this.partNumber,
                                                                                                       placementType);
         return addPartOrUsageRelatedSpecification(builder, null, true);
+    }
+
+    public ComponentMasterDataBuilder addPlaceabilityForPartUsage(final String identification,
+                                                                  final VecPlacementType placementType) {
+        final PlaceableElementSpecificationBuilder builder = new PlaceableElementSpecificationBuilder(identification,
+                                                                                                      placementType);
+        return addPartOrUsageRelatedSpecification(builder, null, false);
     }
 
     public ComponentMasterDataBuilder addPluggableTerminal() {
@@ -311,6 +359,15 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
 
         return addPartOrUsageRelatedSpecification(builder, customizer, true);
 
+    }
+
+    public ComponentMasterDataBuilder addPluggableTerminalForPartUsage(
+            final String identification, final Customizer<PluggableTerminalSpecificationBuilder> customizer) {
+        final PluggableTerminalSpecificationBuilder builder =
+                new PluggableTerminalSpecificationBuilder(this.session, this::addSpecification, identification,
+                                                          this.partMasterDocument::getSpecificationWith);
+
+        return addPartOrUsageRelatedSpecification(builder, customizer, false);
     }
 
     public ComponentMasterDataBuilder addWireProtection(
@@ -339,6 +396,13 @@ public class ComponentMasterDataBuilder implements Builder<ComponentMasterDataBu
         final VecTerminalPairingSpecification build = terminalPairingBuilder.build();
         this.addSpecification(build);
         return this;
+    }
+
+    private VecComponentNode findInternalNode(final String identification) {
+        if (internalSchematicQuery == null) {
+            throw new VecScriptingException("No internal schematic defined for '" + partNumber + "'.");
+        }
+        return internalSchematicQuery.findNode(identification);
     }
 
     public record PartDocumentsPair(VecPartVersion partVersion, List<VecDocumentVersion> documentVersions) {

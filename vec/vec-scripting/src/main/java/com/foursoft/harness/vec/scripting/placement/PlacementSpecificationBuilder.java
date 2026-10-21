@@ -34,10 +34,10 @@ import com.foursoft.harness.vec.v2x.*;
 public class PlacementSpecificationBuilder implements Builder<VecPlacementSpecification> {
 
     private final VecPlacementSpecification placementSpecification;
-    private final Locator<VecPartOccurrence> occurrenceLocator;
+    private final Locator<? extends VecOccurrenceOrUsage> occurrenceLocator;
     private final Locator<VecTopologyNode> nodeLocator;
 
-    public PlacementSpecificationBuilder(Locator<VecPartOccurrence> occurrenceLocator,
+    public PlacementSpecificationBuilder(Locator<? extends VecOccurrenceOrUsage> occurrenceLocator,
                                          Locator<VecTopologyNode> nodeLocator) {
         this.occurrenceLocator = occurrenceLocator;
         this.nodeLocator = nodeLocator;
@@ -55,10 +55,10 @@ public class PlacementSpecificationBuilder implements Builder<VecPlacementSpecif
     }
 
     public PlacementSpecificationBuilder addPlacement(String occurrenceId, String nodeId) {
-        final VecPartOccurrence vecPartOccurrence = occurrenceLocator.locate(occurrenceId);
+        final VecOccurrenceOrUsage occurrence = occurrenceLocator.locate(occurrenceId);
         final VecTopologyNode vecTopologyNode = nodeLocator.locate(nodeId);
 
-        final VecPlaceableElementRole placeableElementRole = vecPartOccurrence
+        final VecPlaceableElementRole placeableElementRole = occurrence
                 .getRoleWithType(VecPlaceableElementRole.class)
                 .orElseThrow(() -> new VecScriptingException("No PlaceableElementRole found for " + occurrenceId));
 
