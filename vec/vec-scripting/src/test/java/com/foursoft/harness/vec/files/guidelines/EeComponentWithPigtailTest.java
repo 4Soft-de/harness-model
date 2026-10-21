@@ -115,13 +115,12 @@ class EeComponentWithPigtailTest {
 
         // usage of the sensor with pigtail in a harness
         session.harness("H-100", "1", harness -> harness
-                .withTopology(topology -> topology
-                        .addNode("N-B12", node -> node
-                                .withInstantiatedNode(SENSOR_DOCUMENT, "N-SENSOR"))
-                        .addNode("N-X12", node -> node
-                                .withInstantiatedNode(SENSOR_DOCUMENT, "N-CONNECTOR"))
-                        .addSegment("N-B12", "N-X12", "S-B12", segment -> segment
-                                .withInstantiatedSegment(SENSOR_DOCUMENT, "S-PIGTAIL")))
+                // reuse of the topology of the pigtail
+                .withTopologyReusage(SENSOR_DOCUMENT, reusage -> reusage
+                        .withIdentification("RS-B12-ASSY-TOPOLOGY")
+                        .reuseNode("N-SENSOR", "N-B12")
+                        .reuseNode("N-CONNECTOR", "N-X12")
+                        .reuseSegment("S-PIGTAIL", "S-B12"))
                 // instantiated subcomponents: the sensor itself and the harness side connector
                 .addPartUsage("B12", SENSOR_DOCUMENT, sensor -> sensor
                         .withInstanciatedUsage("SENSOR")

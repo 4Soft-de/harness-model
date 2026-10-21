@@ -37,6 +37,8 @@ import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilde
 import com.foursoft.harness.vec.scripting.routing.RoutingSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.scripting.topology.TopologyBuilder;
+import com.foursoft.harness.vec.scripting.topology.TopologyReusageBuilder;
+import com.foursoft.harness.vec.scripting.topology.TopologySpecificationQueries;
 import com.foursoft.harness.vec.scripting.topology.TopologyZonesBuilder;
 import com.foursoft.harness.vec.scripting.variants.ConfigManagementBuilder;
 import com.foursoft.harness.vec.v2x.*;
@@ -257,6 +259,28 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         topologySpecification = builder.build();
 
         harnessDocumentBuilder.addSpecification(topologySpecification);
+
+        return this;
+    }
+
+    /**
+     * Reuses elements of the topology of another document (e.g. the topology of an assembly in its part master data)
+     * in the topology of the harness. Each call creates its own {@link VecReusageSpecification}.
+     */
+    public HarnessBuilder withTopologyReusage(final String templateDocumentNumber,
+                                              final Customizer<TopologyReusageBuilder> customizer) {
+        if (topologySpecification == null) {
+            withTopology(topology -> {
+            });
+        }
+
+        final TopologyReusageBuilder builder = new TopologyReusageBuilder(
+                templateDocumentNumber, TopologySpecificationQueries.forDocument(session, templateDocumentNumber),
+                topologySpecification);
+
+        customizer.customize(builder);
+
+        harnessDocumentBuilder.addSpecification(builder.build());
 
         return this;
     }

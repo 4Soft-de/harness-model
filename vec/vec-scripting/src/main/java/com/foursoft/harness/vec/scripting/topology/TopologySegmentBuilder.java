@@ -54,16 +54,6 @@ public class TopologySegmentBuilder extends ConfigurableElementBuilder<TopologyS
         segment.setEndNode(endNode);
     }
 
-    /**
-     * References the {@link VecTopologySegment} of the topology of another document (e.g. the part master data of an
-     * assembly) that is instantiated by this segment.
-     */
-    public TopologySegmentBuilder withInstantiatedSegment(final String documentNumber, final String identification) {
-        segment.setInstantiatedSegment(
-                TopologySpecificationQueries.forDocument(session, documentNumber).findTopologySegment(identification));
-        return this;
-    }
-
     @Override
     public VecTopologySegment build() {
         return segment;
