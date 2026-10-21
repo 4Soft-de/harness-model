@@ -63,8 +63,6 @@ public class WireSpecificationBuilder extends PartOrUsageRelatedSpecificationBui
     WireSpecificationBuilder withWireElement(VecWireElement wireElement) {
         wireSpecification.setWireElement(wireElement);
 
-        wireSpecification.setWireElementSpecification(wireElement.getWireElementSpecification());
-
         return this;
     }
 
