@@ -81,7 +81,7 @@ public class CoreSpecificationBuilder implements Builder<VecCoreSpecification> {
     public CoreSpecificationBuilder withNumberOfStrands(final int numberOfStrands) {
         this.coreSpecification.setNumberOfStrands(value(numberOfStrands, session.piece()));
         session.addXmlComment(this.coreSpecification.getNumberOfStrands(),
-                              " Unit `piece`, see: https://prostep-ivip.atlassian.net/browse/KBLFRM-1192 ");
+                              " Unit `piece`, see: https://github.com/prostep-ivip-e-V/vec/issues/1057 ");
         return this;
     }
 
