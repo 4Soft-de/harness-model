@@ -25,7 +25,6 @@
  */
 package com.foursoft.harness.vec.scripting.eecomponents;
 
-import com.foursoft.harness.vec.v2x.VecPluggableTerminalTypeLiteral;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.core.PartOrUsageRelatedSpecificationBuilder;
@@ -58,9 +57,7 @@ public class EEComponentSpecificationBuilder<T extends VecEEComponentSpecificati
                 .orElseGet(() -> {
                     final VecPluggableTerminalSpecification result = new VecPluggableTerminalSpecification();
                     result.setIdentification("PTC-EE-COMP-PIN");
-                    // "Integrated" is not one of the literals VEC 2.2.0 defines for PluggableTerminalType.
-                    result.setTerminalTypeLiteral(
-                            new VecPluggableTerminalTypeLiteral.Custom("Integrated"));
+                    result.setTerminalTypeLiteral(VecPluggableTerminalType.STANDARD);
                     specificationRegistry.register(result);
                     return result;
                 });
