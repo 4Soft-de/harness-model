@@ -30,13 +30,10 @@ import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
 import com.foursoft.harness.vec.scripting.DefaultValues;
 import com.foursoft.harness.vec.scripting.VecSession;
-import com.foursoft.harness.vec.scripting.components.PartOccurrenceBuilder;
-import com.foursoft.harness.vec.scripting.components.PartUsageBuilder;
+import com.foursoft.harness.vec.scripting.composite.CompositePartDefinition;
+import com.foursoft.harness.vec.scripting.composite.CompositePartDefinitionContext;
 import com.foursoft.harness.vec.scripting.core.DocumentVersionBuilder;
-import com.foursoft.harness.vec.scripting.placement.PlacementSpecificationBuilder;
-import com.foursoft.harness.vec.scripting.routing.RoutingSpecificationBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
-import com.foursoft.harness.vec.scripting.topology.TopologyBuilder;
 import com.foursoft.harness.vec.scripting.topology.TopologyZonesBuilder;
 import com.foursoft.harness.vec.scripting.variants.ConfigManagementBuilder;
 import com.foursoft.harness.vec.v2x.*;
@@ -45,47 +42,48 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.foursoft.harness.vec.scripting.Queries.*;
+import static com.foursoft.harness.vec.scripting.Queries.configConstraintLocator;
 
-public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
+public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult>, CompositePartDefinition<HarnessBuilder> {
 
     private final VecSession session;
-    private final String documentNumber;
 
     private final DocumentVersionBuilder harnessDocumentBuilder;
-    private final VecCompositionSpecification compositionSpecification;
-    private VecPartUsageSpecification partUsageSpecification;
+    private final CompositePartDefinitionContext compositePartDefinition;
     private VecCompositionSpecification modulesCompositionSpecification;
 
     private VecVariantConfigurationSpecification variantConfigurationSpecification;
 
-    private VecContactingSpecification contactingSpecification;
     private VecConnectionSpecification schematic;
     private ConnectionSpecificationQueries schematicQuery = new ConnectionSpecificationQueries();
 
     private final List<VecPartVersion> createdParts = new ArrayList<>();
-    private VecTopologySpecification topologySpecification;
     private VecConfigurationConstraintSpecification configurationConstraintSpecification;
     private VecTopologyZoneSpecification topologyZonesSpecification;
 
     public HarnessBuilder(final VecSession session, final String documentNumber, final String version) {
         this.session = session;
-        this.documentNumber = documentNumber;
         this.harnessDocumentBuilder = initializeDocument(documentNumber, version);
-        this.compositionSpecification = initializeCompositionSpecification();
+        this.compositePartDefinition = new CompositePartDefinitionContext(
+                session, harnessDocumentBuilder, harnessDocumentBuilder::getSpecificationWith, () -> schematicQuery,
+                id -> configConstraintLocator(configurationConstraintSpecification).locate(id), documentNumber);
+        // A harness description always contains the container of its components.
+        this.compositePartDefinition.compositionSpecification();
+    }
+
+    @Override
+    public CompositePartDefinitionContext compositePartDefinition() {
+        return compositePartDefinition;
+    }
+
+    @Override
+    public HarnessBuilder self() {
+        return this;
     }
 
     @Override
     public HarnessResult build() {
-        if (contactingSpecification != null) {
-            harnessDocumentBuilder.addSpecification(contactingSpecification);
-        }
-
-        this.harnessDocumentBuilder.addSpecification(compositionSpecification);
-
-        if (partUsageSpecification != null) {
-            harnessDocumentBuilder.addSpecification(partUsageSpecification);
-        }
+        compositePartDefinition.finish();
 
         if (modulesCompositionSpecification != null) {
             harnessDocumentBuilder.addSpecification(modulesCompositionSpecification);
@@ -98,32 +96,9 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         return new HarnessResult(createdParts, harnessDocumentBuilder.build());
     }
 
-    private VecContactingSpecification contactingSpecification() {
-        if (contactingSpecification == null) {
-            contactingSpecification = new VecContactingSpecification();
-            contactingSpecification.setIdentification(this.documentNumber);
-
-        }
-        return contactingSpecification;
-    }
-
     private DocumentVersionBuilder initializeDocument(final String documentNumber, final String version) {
         return new DocumentVersionBuilder(session, documentNumber, version).documentType(
                 VecDocumentType.HARNESS_DESCRIPTION);
-    }
-
-    private VecCompositionSpecification initializeCompositionSpecification() {
-        final VecCompositionSpecification compositionSpecification = new VecCompositionSpecification();
-        compositionSpecification.setIdentification(DefaultValues.COMP_COMPOSITION_SPEC_IDENTIFICATION);
-        return compositionSpecification;
-    }
-
-    private void ensurePartUsageSpecification() {
-        if (partUsageSpecification == null) {
-            partUsageSpecification = new VecPartUsageSpecification();
-            partUsageSpecification.setIdentification(DefaultValues.COMP_USAGE_SPEC_IDENTIFICATION);
-        }
-
     }
 
     private void ensureModulesCompositionSpecification() {
@@ -141,77 +116,8 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         }
     }
 
-    VecPartOccurrence findOccurrence(final String identification) {
-        return this.compositionSpecification.getComponents()
-                .stream()
-                .filter(o -> o.getIdentification()
-                        .equals(identification))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(
-                        String.format("The occurrence '%s' can not be found.", identification)));
-    }
-
     List<VecPartOccurrence> findOccurrences(final String[] occurrenceIds) {
-        return Arrays.stream(occurrenceIds).map(this::findOccurrence).toList();
-    }
-
-    public HarnessBuilder addConnection(final String wireElementReferenceId,
-                                        final Customizer<ConnectivityBuilder> customizer) {
-        final VecWireElementReference wireElementReference = wireElementReferenceLocator(
-                compositionSpecification).locate(wireElementReferenceId);
-
-        final ConnectivityBuilder builder = new ConnectivityBuilder(this.session, wireElementReference,
-                                                                    this::findOccurrence);
-
-        customizer.customize(builder);
-
-        final List<VecContactPoint> result = builder.build();
-
-        contactingSpecification().getContactPoints().addAll(result);
-
-        return this;
-    }
-
-    public HarnessBuilder addPartOccurrence(
-            final String identification, final String partNumber) {
-        return this.addPartOccurrence(identification, partNumber, null);
-    }
-
-    public HarnessBuilder addPartUsage(final String identification, final String specificationsDocumentNumber,
-                                       final Customizer<PartUsageBuilder> customizer) {
-        ensurePartUsageSpecification();
-
-        final VecDocumentVersion specifications = session.findDocument(specificationsDocumentNumber);
-
-        final PartUsageBuilder builder = new PartUsageBuilder(session, identification,
-                                                              specifications::getSpecificationWith,
-                                                              this.schematicQuery);
-
-        customizer.customize(builder);
-
-        final VecPartUsage result = builder.build();
-
-        partUsageSpecification.getPartUsages().add(result);
-
-        return this;
-    }
-
-    public HarnessBuilder addPartOccurrence(
-            final String identification, final String partNumber, final Customizer<PartOccurrenceBuilder> customizer) {
-
-        final PartOccurrenceBuilder builder = new PartOccurrenceBuilder(this.session, identification,
-                                                                        partNumber,
-                                                                        this.schematicQuery);
-
-        if (customizer != null) {
-            customizer.customize(builder);
-        }
-
-        final VecPartOccurrence result = builder.build();
-
-        this.compositionSpecification.getComponents().add(result);
-
-        return this;
+        return Arrays.stream(occurrenceIds).map(compositePartDefinition::findOccurrence).toList();
     }
 
     public HarnessBuilder addVariant(final String partNumber, final Customizer<VariantBuilder> customizer) {
@@ -242,55 +148,15 @@ public class HarnessBuilder implements Builder<HarnessBuilder.HarnessResult> {
         return this;
     }
 
-    public HarnessBuilder withTopology(final Customizer<TopologyBuilder> customizer) {
-        final TopologyBuilder builder = new TopologyBuilder(session,
-                                                            configConstraintLocator(
-                                                                    configurationConstraintSpecification));
-
-        customizer.customize(builder);
-
-        topologySpecification = builder.build();
-
-        harnessDocumentBuilder.addSpecification(topologySpecification);
-
-        return this;
-    }
-
     public HarnessBuilder withTopologyZones(final Customizer<TopologyZonesBuilder> customizer) {
-        final TopologyZonesBuilder builder = new TopologyZonesBuilder(this.session, this.topologySpecification);
+        final TopologyZonesBuilder builder = new TopologyZonesBuilder(this.session,
+                                                                      compositePartDefinition.topologySpecification());
 
         customizer.customize(builder);
 
         topologyZonesSpecification = builder.build();
 
         harnessDocumentBuilder.addSpecification(topologyZonesSpecification);
-
-        return this;
-    }
-
-    public HarnessBuilder withPlacements(final Customizer<PlacementSpecificationBuilder> customizer) {
-        final PlacementSpecificationBuilder builder = new PlacementSpecificationBuilder(
-                partOccurrenceLocator(this.compositionSpecification),
-                nodeLocator(this.topologySpecification));
-        customizer.customize(builder);
-
-        final VecPlacementSpecification placementSpecification = builder.build();
-
-        harnessDocumentBuilder.addSpecification(placementSpecification);
-
-        return this;
-    }
-
-    public HarnessBuilder withRoutings(final Customizer<RoutingSpecificationBuilder> customizer) {
-        final RoutingSpecificationBuilder builder = new RoutingSpecificationBuilder(
-                wireElementReferenceLocator(compositionSpecification), segmentLocator(topologySpecification),
-                configConstraintLocator(configurationConstraintSpecification));
-
-        customizer.customize(builder);
-
-        final VecRoutingSpecification routingSpecification = builder.build();
-
-        harnessDocumentBuilder.addSpecification(routingSpecification);
 
         return this;
     }

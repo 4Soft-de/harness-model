@@ -28,6 +28,8 @@ package com.foursoft.harness.vec.scripting.components;
 import com.foursoft.harness.vec.common.util.StreamUtils;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.Locator;
+import com.foursoft.harness.vec.scripting.VecScriptingException;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.scripting.components.protection.CorrugatedPipeRoleBuilder;
 import com.foursoft.harness.vec.scripting.eecomponents.EEComponentRoleBuilder;
@@ -35,8 +37,6 @@ import com.foursoft.harness.vec.scripting.eecomponents.FuseRoleBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ConnectionSpecificationQueries;
 import com.foursoft.harness.vec.v2x.*;
 import com.foursoft.harness.vec.v2x.visitor.StrictBaseVisitor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
@@ -45,11 +45,10 @@ import static java.util.function.Predicate.not;
 
 public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PartOccurrenceBuilder.class);
-
     private final VecSession session;
     private final String partNumber;
     private final ConnectionSpecificationQueries connectionSpecificationQuery;
+    private final Locator<? extends VecOccurrenceOrUsage> subComponentLocator;
 
     private final VecPartOccurrence partOccurrence = new VecPartOccurrence();
     private List<? extends Builder<? extends VecRole>> roleBuilders;
@@ -57,9 +56,19 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
     public PartOccurrenceBuilder(final VecSession session, final String identification,
                                  final String partNumber,
                                  final ConnectionSpecificationQueries connectionSpecificationQuery) {
+        this(session, identification, partNumber, connectionSpecificationQuery, id -> {
+            throw new VecScriptingException("Subcomponents are not supported in this context.");
+        });
+    }
+
+    public PartOccurrenceBuilder(final VecSession session, final String identification,
+                                 final String partNumber,
+                                 final ConnectionSpecificationQueries connectionSpecificationQuery,
+                                 final Locator<? extends VecOccurrenceOrUsage> subComponentLocator) {
         this.session = session;
         this.partNumber = partNumber;
         this.connectionSpecificationQuery = connectionSpecificationQuery;
+        this.subComponentLocator = subComponentLocator;
         partOccurrence.setIdentification(identification);
 
         instantiatePartOccurrence();
@@ -80,6 +89,28 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
         final T builder = StreamUtils.checkAndCast(roleBuilders, clazz).findAny().orElseThrow();
 
         customizer.customize(builder);
+
+        return this;
+    }
+
+    /**
+     * References the {@link VecPartOccurrence} of the part master data of a composite part (e.g. an assembly) that is
+     * instantiated by this occurrence.
+     */
+    public PartOccurrenceBuilder withInstanciatedOccurrence(final String compositePartNumber,
+                                                            final String identification) {
+        final VecPartVersion compositePart = session.findPartVersionByPartNumber(compositePartNumber);
+        final VecPartOccurrence instanciatedOccurrence = session.findPartMasterDocument(compositePart)
+                .getSpecificationsWithType(VecCompositionSpecification.class)
+                .stream()
+                .flatMap(c -> c.getComponents().stream())
+                .filter(o -> identification.equals(o.getIdentification()))
+                .findFirst()
+                .orElseThrow(() -> new VecScriptingException(
+                        "No PartOccurrence '" + identification + "' found in the part master data of '" +
+                                compositePartNumber + "'."));
+
+        partOccurrence.getInstanciatedOccurrence().add(instanciatedOccurrence);
 
         return this;
     }
@@ -152,8 +183,8 @@ public class PartOccurrenceBuilder implements Builder<VecPartOccurrence> {
         @Override
         public Builder<? extends VecRole> visitVecPartStructureSpecification(final VecPartStructureSpecification aBean)
                 throws RuntimeException {
-            LOGGER.warn("Instantiating of PartStructures not supported at the moment!");
-            return null;
+            return new PartWithSubComponentsRoleBuilder(partOccurrence.getIdentification(), aBean,
+                                                        subComponentLocator);
         }
 
         @Override
