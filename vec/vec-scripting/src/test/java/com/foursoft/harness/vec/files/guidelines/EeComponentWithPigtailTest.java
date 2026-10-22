@@ -75,43 +75,46 @@ class EeComponentWithPigtailTest {
                 .addSingleCoreForPartUsage("PIGTAIL", wire -> wire
                         .withCSA(0.35)
                         .withColor("BK"))
+                // contents of the assembly
+                .addPartUsage("SENSOR", sensor -> sensor
+                        .addEEComponentSpecification("EECS-SENSOR", role -> role
+                                .withConnectorHousingRole("X1"))
+                        .addPlaceableElementSpecification("PES-SENSOR"))
+                .addPartUsage("W1", wire -> wire
+                        .addWireSpecification("WS-PIGTAIL", role -> role
+                                .wireElementRef("1", ref -> ref.withIdentification("W1"))))
+                .addPartUsage("W2", wire -> wire
+                        .addWireSpecification("WS-PIGTAIL", role -> role
+                                .wireElementRef("1", ref -> ref.withIdentification("W2"))))
+                .addPartUsage("CONTACT-S1", contact -> contact
+                        .addPluggableTerminalSpecification("PTS-UNI-CONT"))
+                .addPartUsage("CONTACT-S2", contact -> contact
+                        .addPluggableTerminalSpecification("PTS-UNI-CONT"))
+                .addPartOccurrence("CONNECTOR", "CON-0042")
+                .addPartOccurrence("CONTACT-C1", "TRM-0815")
+                .addPartOccurrence("CONTACT-C2", "TRM-0815")
+                // contacting on both sides of the pigtail
+                .addConnection("W1", cnn -> cnn
+                        .addEndAtHousingComponent("SENSOR", "X1", "1", "CONTACT-S1")
+                        .addEnd("CONNECTOR", "1", "CONTACT-C1"))
+                .addConnection("W2", cnn -> cnn
+                        .addEndAtHousingComponent("SENSOR", "X1", "2", "CONTACT-S2")
+                        .addEnd("CONNECTOR", "2", "CONTACT-C2"))
+                // topology of the pigtail
+                .withTopology(topology -> topology
+                        .addSegment("N-SENSOR", "N-CONNECTOR", "S-PIGTAIL", segment -> segment
+                                .withSegmentLength(500, VecLengthClassification.DESIGNED)))
+                .withPlacements(placements -> placements
+                        .addPlacement("SENSOR", "N-SENSOR")
+                        .addPlacement("CONNECTOR", "N-CONNECTOR"))
+                .withRoutings(routings -> routings
+                        .addRouting("W1", "S-PIGTAIL")
+                        .addRouting("W2", "S-PIGTAIL"))
                 // bill of material
                 .addPartStructure(bom -> bom
                         .withContent(VecPartStructureContentType.ASSEMBLY)
-                        .addPartUsage("SENSOR", sensor -> sensor
-                                .addEEComponentSpecification("EECS-SENSOR", role -> role
-                                        .withConnectorHousingRole("X1"))
-                                .addPlaceableElementSpecification("PES-SENSOR"))
-                        .addPartUsage("W1", wire -> wire
-                                .addWireSpecification("WS-PIGTAIL", role -> role
-                                        .wireElementRef("1", ref -> ref.withIdentification("W1"))))
-                        .addPartUsage("W2", wire -> wire
-                                .addWireSpecification("WS-PIGTAIL", role -> role
-                                        .wireElementRef("1", ref -> ref.withIdentification("W2"))))
-                        .addPartUsage("CONTACT-S1", contact -> contact
-                                .addPluggableTerminalSpecification("PTS-UNI-CONT"))
-                        .addPartUsage("CONTACT-S2", contact -> contact
-                                .addPluggableTerminalSpecification("PTS-UNI-CONT"))
-                        .addPartOccurrence("CONNECTOR", "CON-0042")
-                        .addPartOccurrence("CONTACT-C1", "TRM-0815")
-                        .addPartOccurrence("CONTACT-C2", "TRM-0815")
-                        // contacting on both sides of the pigtail
-                        .addConnection("W1", cnn -> cnn
-                                .addEndAtHousingComponent("SENSOR", "X1", "1", "CONTACT-S1")
-                                .addEnd("CONNECTOR", "1", "CONTACT-C1"))
-                        .addConnection("W2", cnn -> cnn
-                                .addEndAtHousingComponent("SENSOR", "X1", "2", "CONTACT-S2")
-                                .addEnd("CONNECTOR", "2", "CONTACT-C2"))
-                        // topology of the pigtail
-                        .withTopology(topology -> topology
-                                .addSegment("N-SENSOR", "N-CONNECTOR", "S-PIGTAIL", segment -> segment
-                                        .withSegmentLength(500, VecLengthClassification.DESIGNED)))
-                        .withPlacements(placements -> placements
-                                .addPlacement("SENSOR", "N-SENSOR")
-                                .addPlacement("CONNECTOR", "N-CONNECTOR"))
-                        .withRoutings(routings -> routings
-                                .addRouting("W1", "S-PIGTAIL")
-                                .addRouting("W2", "S-PIGTAIL"))));
+                        .withContents("SENSOR", "W1", "W2", "CONTACT-S1", "CONTACT-S2",
+                                      "CONNECTOR", "CONTACT-C1", "CONTACT-C2")));
 
         // usage of the sensor with pigtail in a harness
         session.harness("H-100", "1", harness -> harness
