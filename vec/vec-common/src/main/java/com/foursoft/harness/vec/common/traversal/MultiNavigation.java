@@ -93,6 +93,19 @@ public interface MultiNavigation<S, T> extends Navigation<S, Stream<T>> {
     }
 
     /**
+     * Returns a navigation which leads to every element only once, e.g. when several elements of this
+     * navigation share the same target.
+     * <p>
+     * Elements are compared by {@link Object#equals(Object)}, the encounter order is kept and the first
+     * occurrence wins, see {@link Stream#distinct()}.
+     *
+     * @return A navigation leading to the distinct elements.
+     */
+    default MultiNavigation<S, T> distinct() {
+        return source -> from(source).distinct();
+    }
+
+    /**
      * Reduces this navigation to a single valued one with the given reduction.
      * <p>
      * This is the general way from many elements to at most one. Use it whenever choosing the result needs
