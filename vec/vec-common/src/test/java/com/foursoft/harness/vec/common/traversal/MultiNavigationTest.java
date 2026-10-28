@@ -102,6 +102,17 @@ class MultiNavigationTest {
                 .containsExactly(SCREW_M6, SCREW_M8);
     }
 
+    @Test
+    void distinctDropsDuplicatesKeepingTheEncounterOrder() {
+        final MultiNavigation<Assembly, Grade> grades = PARTS
+                .ofType(Screw.class)
+                .then(Navigations.nullable(Screw::grade));
+        final Assembly assembly = assemblyWith(SCREW_M6, SCREW_M8, new Screw("M5", GRADE_8_8));
+
+        assertThat(grades.listFrom(assembly)).containsExactly(GRADE_8_8, GRADE_10_9, GRADE_8_8);
+        assertThat(grades.distinct().listFrom(assembly)).containsExactly(GRADE_8_8, GRADE_10_9);
+    }
+
     /**
      * The general way from many elements to at most one. Reductions whose rules depend on the elements as a
      * whole cannot be expressed as a filter or a mapping, so they are authored as a collector.
