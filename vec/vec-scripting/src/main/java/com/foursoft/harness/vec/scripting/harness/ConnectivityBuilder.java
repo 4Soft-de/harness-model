@@ -27,21 +27,23 @@ package com.foursoft.harness.vec.scripting.harness;
 
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.Customizer;
+import com.foursoft.harness.vec.scripting.VecScriptingException;
 import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 
 public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
     private final VecSession session;
     private final VecWireElementReference wireElementReference;
-    private final Function<String, VecPartOccurrence> occurrenceLocator;
+    private final Function<String, ? extends VecOccurrenceOrUsage> occurrenceLocator;
     private final List<VecContactPoint> createdContactPoints = new ArrayList<>();
 
     public ConnectivityBuilder(final VecSession session, final VecWireElementReference wireElementReference,
-                               final Function<String, VecPartOccurrence> occurrenceLocator) {
+                               final Function<String, ? extends VecOccurrenceOrUsage> occurrenceLocator) {
         this.session = session;
         this.wireElementReference = wireElementReference;
         this.occurrenceLocator = occurrenceLocator;
@@ -52,7 +54,41 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
     }
 
     public ConnectivityBuilder addEnd(final String connectorId, final String cavityNumber, final String terminalId) {
-        final VecContactPoint cp = createContactPointWithWireMounting(connectorId + "." + cavityNumber, we -> {
+        final VecConnectorHousingRole connector = occurrenceLocator.apply(connectorId)
+                .getRoleWithType(VecConnectorHousingRole.class)
+                .orElseThrow();
+
+        return addEnd(connectorId + "." + cavityNumber, connector, cavityNumber, terminalId);
+    }
+
+    /**
+     * Adds a wire end that is contacted into a cavity of a {@link VecHousingComponent} of an E/E component (e.g. the
+     * wires of a pigtail in the housing of a sensor). The {@link VecEEComponentRole} of the component has to contain
+     * a {@link VecConnectorHousingRole} for the housing component (see
+     * {@link com.foursoft.harness.vec.scripting.eecomponents.AbstractEEComponentRoleBuilder#withConnectorHousingRole(String)}).
+     */
+    public ConnectivityBuilder addEndAtHousingComponent(final String componentId, final String housingComponentId,
+                                                        final String cavityNumber, final String terminalId) {
+        final VecConnectorHousingRole connector = occurrenceLocator.apply(componentId)
+                .getRoleWithType(VecEEComponentRole.class)
+                .orElseThrow()
+                .getHousingComponentReves()
+                .stream()
+                .filter(h -> housingComponentId.equals(h.getIdentification()))
+                .map(VecHousingComponentReference::getConnectorHousingRole)
+                .filter(Objects::nonNull)
+                .findAny()
+                .orElseThrow(() -> new VecScriptingException(
+                        "No ConnectorHousingRole found for housing component '" + housingComponentId + "' of '" +
+                                componentId + "'."));
+
+        return addEnd(componentId + "." + housingComponentId + "." + cavityNumber, connector, cavityNumber,
+                      terminalId);
+    }
+
+    private ConnectivityBuilder addEnd(final String endpointId, final VecConnectorHousingRole connector,
+                                       final String cavityNumber, final String terminalId) {
+        final VecContactPoint cp = createContactPointWithWireMounting(endpointId, we -> {
         }, null);
 
         if (terminalId != null) {
@@ -66,10 +102,6 @@ public class ConnectivityBuilder implements Builder<List<VecContactPoint>> {
         final VecCavityMounting cavityMounting = new VecCavityMounting();
         cp.getCavityMountings()
                 .add(cavityMounting);
-
-        final VecConnectorHousingRole connector = occurrenceLocator.apply(connectorId)
-                .getRoleWithType(VecConnectorHousingRole.class)
-                .orElseThrow();
 
         final VecCavityReference cavityReference = HarnessQueries.findCavity(connector, cavityNumber);
         cavityMounting.getEquippedCavityRef()

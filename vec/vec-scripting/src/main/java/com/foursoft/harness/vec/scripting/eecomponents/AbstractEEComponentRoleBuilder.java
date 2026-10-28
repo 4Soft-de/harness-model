@@ -28,6 +28,7 @@ package com.foursoft.harness.vec.scripting.eecomponents;
 import com.foursoft.harness.vec.scripting.Builder;
 import com.foursoft.harness.vec.scripting.VecScriptingException;
 import com.foursoft.harness.vec.scripting.VecSession;
+import com.foursoft.harness.vec.scripting.components.ConnectorHousingRoleBuilder;
 import com.foursoft.harness.vec.scripting.schematic.ComponentNodeLookup;
 import com.foursoft.harness.vec.v2x.*;
 
@@ -51,7 +52,32 @@ public abstract class AbstractEEComponentRoleBuilder<T extends VecEEComponentRol
 
     @Override
     public T build() {
+        eeComponentRole.getHousingComponentReves()
+                .stream()
+                .filter(h -> h.getConnectorHousingRole() == null)
+                .forEach(h -> session.addXmlComment(h, "Embedded ConnectorHousingRole omitted."));
         return eeComponentRole;
+    }
+
+    /**
+     * Instantiates the {@link VecConnectorHousingSpecification} of a {@link VecHousingComponent} with an embedded
+     * {@link VecConnectorHousingRole} including its slot and cavity references, e.g. to contact wires into the
+     * cavities of the component.
+     */
+    public AbstractEEComponentRoleBuilder<T> withConnectorHousingRole(final String housingComponentId) {
+        final VecHousingComponentReference housing = eeComponentRole.getHousingComponentReves()
+                .stream()
+                .filter(h -> housingComponentId.equals(h.getIdentification()))
+                .findFirst()
+                .orElseThrow(() -> new VecScriptingException(
+                        "No HousingComponent found with identification '" + housingComponentId + "'."));
+        final ConnectorHousingRoleBuilder builder = new ConnectorHousingRoleBuilder(
+                housingComponentId, housing.getHousingComponent().getHousingSpecification(),
+                (connectorId, nodeId) -> {
+                    throw new VecScriptingException("ComponentConnectors are not supported here.");
+                });
+        housing.setConnectorHousingRole(builder.build());
+        return this;
     }
 
     private T createEeComponentRole(final String identification,
@@ -107,7 +133,6 @@ public abstract class AbstractEEComponentRoleBuilder<T extends VecEEComponentRol
         housingComponentReference.setIdentification(housingComponent.getIdentification());
         housingComponentReference.setHousingComponent(housingComponent);
 
-        session.addXmlComment(housingComponentReference, "Embedded ConnectorHousingRole omitted.");
         housingComponentReference.getPinComponentReves()
                 .addAll(housingComponent.getPinComponents()
                                 .stream()
@@ -122,7 +147,10 @@ public abstract class AbstractEEComponentRoleBuilder<T extends VecEEComponentRol
         pinComponentReference.setIdentification(pinComponent.getIdentification());
         pinComponentReference.setPinComponent(pinComponent);
 
-        final VecTerminalRole terminalRole = new VecBoltTerminalRole();
+        final VecTerminalRole terminalRole =
+                pinComponent.getPinSpecification() instanceof VecPluggableTerminalSpecification
+                        ? new VecPluggableTerminalRole()
+                        : new VecBoltTerminalRole();
         terminalRole.setIdentification(pinComponentReference.getIdentification());
         terminalRole.setTerminalSpecification(pinComponent.getPinSpecification());
         pinComponentReference.setTerminalRole(terminalRole);

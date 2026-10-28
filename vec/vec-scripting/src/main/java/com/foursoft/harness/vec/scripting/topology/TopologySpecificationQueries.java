@@ -25,7 +25,9 @@
  */
 package com.foursoft.harness.vec.scripting.topology;
 
+import com.foursoft.harness.vec.scripting.DefaultValues;
 import com.foursoft.harness.vec.scripting.VecScriptingException;
+import com.foursoft.harness.vec.scripting.VecSession;
 import com.foursoft.harness.vec.v2x.VecTopologyNode;
 import com.foursoft.harness.vec.v2x.VecTopologySegment;
 import com.foursoft.harness.vec.v2x.VecTopologySpecification;
@@ -42,6 +44,19 @@ public class TopologySpecificationQueries {
 
     public TopologySpecificationQueries(final VecTopologySpecification topologySpecification) {
         this.topologySpecification = topologySpecification;
+    }
+
+    /**
+     * Queries for the {@link VecTopologySpecification} of the given document, e.g. to instantiate the topology of a
+     * composite part in a using context.
+     */
+    public static TopologySpecificationQueries forDocument(final VecSession session, final String documentNumber) {
+        return new TopologySpecificationQueries(session.findDocument(documentNumber)
+                                                        .getSpecificationWith(VecTopologySpecification.class,
+                                                                              DefaultValues.TOPO_SPEC_IDENTIFICATION)
+                                                        .orElseThrow(() -> new VecScriptingException(
+                                                                "No TopologySpecification found in document '" +
+                                                                        documentNumber + "'.")));
     }
 
     private VecTopologySpecification topo() {
