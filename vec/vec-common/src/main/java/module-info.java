@@ -24,6 +24,7 @@
  * =========================LICENSE_END==================================
  */
 module com.foursoft.harness.vec.common {
+    requires transitive com.foursoft.harness.navext.runtime;
     requires org.slf4j;
     requires java.xml;
     exports com.foursoft.harness.vec.common;

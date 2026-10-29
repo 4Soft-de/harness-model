@@ -34,7 +34,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecRouting;
 import com.foursoft.harness.vec.v2x.VecRoutingSpecification;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.abbreviatedClassName;
+import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 public class RoutingSpecificationTransformer implements Transformer<KblHarness, VecRoutingSpecification> {
 
@@ -42,7 +42,7 @@ public class RoutingSpecificationTransformer implements Transformer<KblHarness, 
     public TransformationResult<VecRoutingSpecification> transform(final TransformationContext context,
                                                                    final KblHarness source) {
         final VecRoutingSpecification destination = new VecRoutingSpecification();
-        destination.setIdentification(abbreviatedClassName(destination.getClass()) + "-" + source.getPartNumber());
+        destination.setIdentification(abbreviatedModelClassName(destination.getClass()) + "-" + source.getPartNumber());
 
         return TransformationResult.from(destination)
                 .withDownstream(KblRouting.class, VecRouting.class,

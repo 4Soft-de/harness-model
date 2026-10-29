@@ -5,7 +5,7 @@ This file was created with KBL2VEC PoC Converter (https://github.com/4Soft-de/ha
 This is just a showcase implementation for KBL mapping in the VEC.
 This is not intended for productive use and is not complete!
 -->
-<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
+<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="VecContent_KBL_container" xsi:schemaLocation="">
   <VecVersion>2.2.0</VecVersion>
   <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
@@ -452,12 +452,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_1">
         <Identification>ROUTING_BAUKST_BATTERIE_PLUS-Multi-branchable1/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_1</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00020">
+        <StartVector id="CartesianVector3D_00020">
           <X>-0.999473</X>
           <Y>0.013345</Y>
           <Z>-0.0296</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00021">
+        <EndVector id="CartesianVector3D_00021">
           <X>-0.0</X>
           <Y>0.0</Y>
           <Z>1.0</Z>
@@ -843,7 +843,7 @@ This file was created with KBL2VEC PoC Converter (https://github.com/4Soft-de/ha
 This is just a showcase implementation for KBL mapping in the VEC.
 This is not intended for productive use and is not complete!
 -->
-<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
+<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="VecContent_KBL_container" xsi:schemaLocation="">
   <VecVersion>2.2.0</VecVersion>
   <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
@@ -2057,12 +2057,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_1">
         <Identification>ROUTING_BAUKST_LTGS_GENERATOR-Multi-branchable142/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_1</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00058">
+        <StartVector id="CartesianVector3D_00058">
           <X>0.358231</X>
           <Y>0.931382</Y>
           <Z>0.064796</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00059">
+        <EndVector id="CartesianVector3D_00059">
           <X>-0.649703</X>
           <Y>0.682776</Y>
           <Z>-0.334221</Z>
@@ -2208,12 +2208,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_2">
         <Identification>ROUTING_BAUKST_LTGS_GENERATOR-Multi-branchable142/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_2</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00060">
+        <StartVector id="CartesianVector3D_00060">
           <X>0.293821</X>
           <Y>-0.954568</Y>
           <Z>0.049693</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00061">
+        <EndVector id="CartesianVector3D_00061">
           <X>0.649703</X>
           <Y>-0.682776</Y>
           <Z>0.334221</Z>
@@ -2269,12 +2269,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_3">
         <Identification>ROUTING_BAUKST_LTGS_GENERATOR-Multi-branchable142/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_3</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00062">
+        <StartVector id="CartesianVector3D_00062">
           <X>-0.649703</X>
           <Y>0.682776</Y>
           <Z>-0.334221</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00063">
+        <EndVector id="CartesianVector3D_00063">
           <X>-0.998294</X>
           <Y>-0.057522</Y>
           <Z>-0.010053</Z>
@@ -3277,7 +3277,7 @@ This file was created with KBL2VEC PoC Converter (https://github.com/4Soft-de/ha
 This is just a showcase implementation for KBL mapping in the VEC.
 This is not intended for productive use and is not complete!
 -->
-<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
+<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="VecContent_KBL_container" xsi:schemaLocation="">
   <VecVersion>2.2.0</VecVersion>
   <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
@@ -43078,12 +43078,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_1">
         <Identification>0011_SW_Multi-branchable1/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_1</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01121">
+        <StartVector id="CartesianVector3D_01121">
           <X>-0.556009</X>
           <Y>-0.547</Y>
           <Z>-0.625815</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01122">
+        <EndVector id="CartesianVector3D_01122">
           <X>-1.0</X>
           <Y>0.0</Y>
           <Z>0.0</Z>
@@ -43274,12 +43274,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_2">
         <Identification>001_Scheinwerfer_blinker_li-Multi-branchable2/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_2</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01123">
+        <StartVector id="CartesianVector3D_01123">
           <X>0.984808</X>
           <Y>0.0</Y>
           <Z>-0.173648</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01124">
+        <EndVector id="CartesianVector3D_01124">
           <X>0.94044</X>
           <Y>0.134307</Y>
           <Z>0.312306</Z>
@@ -43425,12 +43425,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_3">
         <Identification>001_Scheinwerfer_li-Multi-branchable4/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_3</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01125">
+        <StartVector id="CartesianVector3D_01125">
           <X>-0.94044</X>
           <Y>-0.134307</Y>
           <Z>-0.312306</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01126">
+        <EndVector id="CartesianVector3D_01126">
           <X>-0.828173</X>
           <Y>-0.158072</Y>
           <Z>-0.537719</Z>
@@ -43576,12 +43576,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_4">
         <Identification>001_Scheinwerfer_Hupe_li-Multi-branchable5/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_4</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01127">
+        <StartVector id="CartesianVector3D_01127">
           <X>0.0</X>
           <Y>1.0</Y>
           <Z>0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01128">
+        <EndVector id="CartesianVector3D_01128">
           <X>0.747203</X>
           <Y>-0.267055</Y>
           <Z>0.60858</Z>
@@ -43772,12 +43772,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_5">
         <Identification>001_Scheinwerfer_Masse1_li-Multi-branchable6/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_5</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01129">
+        <StartVector id="CartesianVector3D_01129">
           <X>0.747203</X>
           <Y>-0.267055</Y>
           <Z>0.60858</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01130">
+        <EndVector id="CartesianVector3D_01130">
           <X>0.999908</X>
           <Y>-0.013528</Y>
           <Z>-2.11E-4</Z>
@@ -43833,12 +43833,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_6">
         <Identification>001_Scheinwerfer_Masse2_li-Multi-branchable7/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_6</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01131">
+        <StartVector id="CartesianVector3D_01131">
           <X>0.909645</X>
           <Y>0.415015</Y>
           <Z>-0.017549</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01132">
+        <EndVector id="CartesianVector3D_01132">
           <X>0.707107</X>
           <Y>0.0</Y>
           <Z>0.707107</Z>
@@ -43894,12 +43894,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_7">
         <Identification>Part1/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_7</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01133">
+        <StartVector id="CartesianVector3D_01133">
           <X>0.344993</X>
           <Y>0.449157</Y>
           <Z>0.824159</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01134">
+        <EndVector id="CartesianVector3D_01134">
           <X>0.260884</X>
           <Y>0.477474</Y>
           <Z>0.839022</Z>
@@ -43955,12 +43955,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_8">
         <Identification>001_Scheinwerfer_li-Multi-branchable141/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_8</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01135">
+        <StartVector id="CartesianVector3D_01135">
           <X>0.94044</X>
           <Y>0.134307</Y>
           <Z>0.312306</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01136">
+        <EndVector id="CartesianVector3D_01136">
           <X>-0.283055</X>
           <Y>-0.040118</Y>
           <Z>-0.958264</Z>
@@ -44016,12 +44016,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_9">
         <Identification>001_Scheinwerfer_rechts-Multi-branchable9/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_9</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01137">
+        <StartVector id="CartesianVector3D_01137">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>-0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01138">
+        <EndVector id="CartesianVector3D_01138">
           <X>0.96372</X>
           <Y>-0.202444</Y>
           <Z>0.173957</Z>
@@ -44212,12 +44212,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_10">
         <Identification>001_Scheinwerfer_rechts-Multi-branchable10/ElecRouteBody.1/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_10</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01139">
+        <StartVector id="CartesianVector3D_01139">
           <X>0.707107</X>
           <Y>0.0</Y>
           <Z>-0.707107</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01140">
+        <EndVector id="CartesianVector3D_01140">
           <X>0.707737</X>
           <Y>0.439355</Y>
           <Z>0.553241</Z>
@@ -44273,12 +44273,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_11">
         <Identification>001_Scheinwerfer_rechts-Multi-branchable11/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_11</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01141">
+        <StartVector id="CartesianVector3D_01141">
           <X>0.999998</X>
           <Y>-0.0</Y>
           <Z>0.002177</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01142">
+        <EndVector id="CartesianVector3D_01142">
           <X>0.734006</X>
           <Y>0.546833</Y>
           <Z>0.402751</Z>
@@ -44334,12 +44334,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_12">
         <Identification>001_Scheinwerfer_rechts-Multi-branchable12/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_12</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01143">
+        <StartVector id="CartesianVector3D_01143">
           <X>0.072658</X>
           <Y>0.886726</Y>
           <Z>-0.456551</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01144">
+        <EndVector id="CartesianVector3D_01144">
           <X>-0.638555</X>
           <Y>0.759902</Y>
           <Z>0.121643</Z>
@@ -44800,12 +44800,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_13">
         <Identification>001_Scheinwerfer_rechts-Multi-branchable104/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_13</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01145">
+        <StartVector id="CartesianVector3D_01145">
           <X>0.268389</X>
           <Y>0.846246</Y>
           <Z>0.460255</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01146">
+        <EndVector id="CartesianVector3D_01146">
           <X>-0.359945</X>
           <Y>0.926211</Y>
           <Z>0.112125</Z>
@@ -44906,12 +44906,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_14">
         <Identification>001_Scheinwerfer_rechts-Multi-branchable105/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_14</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01147">
+        <StartVector id="CartesianVector3D_01147">
           <X>0.96372</X>
           <Y>-0.202444</Y>
           <Z>0.173957</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01148">
+        <EndVector id="CartesianVector3D_01148">
           <X>0.359945</X>
           <Y>-0.926211</Y>
           <Z>-0.112125</Z>
@@ -44967,12 +44967,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_15">
         <Identification>001_Scheinwerfer_rechts-Multi-branchable105/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_15</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01149">
+        <StartVector id="CartesianVector3D_01149">
           <X>-0.858888</X>
           <Y>0.502949</Y>
           <Z>-0.096715</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01150">
+        <EndVector id="CartesianVector3D_01150">
           <X>-0.58566</X>
           <Y>0.810344</Y>
           <Z>0.018564</Z>
@@ -45028,12 +45028,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_16">
         <Identification>Wasserkasten-Multi-branchable15/ElecRouteBody.1/Split.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_16</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01151">
+        <StartVector id="CartesianVector3D_01151">
           <X>-0.048992</X>
           <Y>0.998674</Y>
           <Z>-0.015819</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01152">
+        <EndVector id="CartesianVector3D_01152">
           <X>-0.122045</X>
           <Y>0.992191</Y>
           <Z>-0.025743</Z>
@@ -45179,12 +45179,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_17">
         <Identification>Wasserkasten-Multi-branchable15/ElecRouteBody.1/Split.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_17</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01153">
+        <StartVector id="CartesianVector3D_01153">
           <X>-0.122045</X>
           <Y>0.992191</Y>
           <Z>-0.025743</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01154">
+        <EndVector id="CartesianVector3D_01154">
           <X>0.268179</X>
           <Y>0.846257</Y>
           <Z>0.460359</Z>
@@ -45375,12 +45375,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_18">
         <Identification>Wasserkasten-Multi-branchable15/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_18</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01155">
+        <StartVector id="CartesianVector3D_01155">
           <X>0.122045</X>
           <Y>-0.992191</Y>
           <Z>0.025743</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01156">
+        <EndVector id="CartesianVector3D_01156">
           <X>-0.0</X>
           <Y>0.988391</Y>
           <Z>0.151931</Z>
@@ -45436,12 +45436,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_19">
         <Identification>Wasserkasten-Multi-branchable15/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_19</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01157">
+        <StartVector id="CartesianVector3D_01157">
           <X>0.122045</X>
           <Y>-0.992191</Y>
           <Z>0.025743</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01158">
+        <EndVector id="CartesianVector3D_01158">
           <X>-0.269803</X>
           <Y>0.937126</Y>
           <Z>0.221363</Z>
@@ -45497,12 +45497,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_20">
         <Identification>Wasserkasten-Multi-branchable16/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_20</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01159">
+        <StartVector id="CartesianVector3D_01159">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>-0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01160">
+        <EndVector id="CartesianVector3D_01160">
           <X>0.630106</X>
           <Y>-0.77571</Y>
           <Z>-0.035234</Z>
@@ -45558,12 +45558,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_21">
         <Identification>Wasserkasten-Multi-branchable17/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_21</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01161">
+        <StartVector id="CartesianVector3D_01161">
           <X>0.009933</X>
           <Y>0.936426</Y>
           <Z>0.350724</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01162">
+        <EndVector id="CartesianVector3D_01162">
           <X>0.007717</X>
           <Y>0.727565</Y>
           <Z>0.685996</Z>
@@ -45619,12 +45619,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_22">
         <Identification>Wasserkasten-Multi-branchable31/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_22</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01163">
+        <StartVector id="CartesianVector3D_01163">
           <X>0.207912</X>
           <Y>-0.978148</Y>
           <Z>0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01164">
+        <EndVector id="CartesianVector3D_01164">
           <X>0.256636</X>
           <Y>-0.840488</Y>
           <Z>0.477197</Z>
@@ -45680,12 +45680,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_23">
         <Identification>Wasserkasten-Multi-branchable32/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_23</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01165">
+        <StartVector id="CartesianVector3D_01165">
           <X>0.589072</X>
           <Y>0.803922</Y>
           <Z>-0.081875</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01166">
+        <EndVector id="CartesianVector3D_01166">
           <X>0.0</X>
           <Y>0.0</Y>
           <Z>1.0</Z>
@@ -45741,12 +45741,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_24">
         <Identification>Wasserkasten-Multi-branchable33/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_24</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01167">
+        <StartVector id="CartesianVector3D_01167">
           <X>0.283055</X>
           <Y>0.040118</Y>
           <Z>0.958264</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01168">
+        <EndVector id="CartesianVector3D_01168">
           <X>0.0</X>
           <Y>0.0</Y>
           <Z>-1.0</Z>
@@ -45802,12 +45802,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_25">
         <Identification>Part3/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_25</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01169">
+        <StartVector id="CartesianVector3D_01169">
           <X>-0.201855</X>
           <Y>0.772399</Y>
           <Z>0.602208</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01170">
+        <EndVector id="CartesianVector3D_01170">
           <X>-0.505858</X>
           <Y>0.858516</Y>
           <Z>-0.084014</Z>
@@ -45863,12 +45863,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_26">
         <Identification>Part4/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_26</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01171">
+        <StartVector id="CartesianVector3D_01171">
           <X>-0.62521</X>
           <Y>-0.730486</Y>
           <Z>-0.274779</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01172">
+        <EndVector id="CartesianVector3D_01172">
           <X>-0.662239</X>
           <Y>-0.701278</Y>
           <Z>-0.263911</Z>
@@ -45924,12 +45924,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_27">
         <Identification>Part5/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_27</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01173">
+        <StartVector id="CartesianVector3D_01173">
           <X>-0.128711</X>
           <Y>0.925988</Y>
           <Z>0.354935</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01174">
+        <EndVector id="CartesianVector3D_01174">
           <X>-0.465356</X>
           <Y>0.819409</Y>
           <Z>0.334684</Z>
@@ -45985,12 +45985,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_28">
         <Identification>Part6/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_28</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01175">
+        <StartVector id="CartesianVector3D_01175">
           <X>-0.283055</X>
           <Y>-0.040118</Y>
           <Z>-0.958264</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01176">
+        <EndVector id="CartesianVector3D_01176">
           <X>0.405292</X>
           <Y>-0.856372</Y>
           <Z>-0.319945</Z>
@@ -46046,12 +46046,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_29">
         <Identification>Part8/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_29</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01177">
+        <StartVector id="CartesianVector3D_01177">
           <X>-0.009933</X>
           <Y>-0.936426</Y>
           <Z>-0.350724</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01178">
+        <EndVector id="CartesianVector3D_01178">
           <X>-0.009933</X>
           <Y>-0.936426</Y>
           <Z>-0.350724</Z>
@@ -46107,12 +46107,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_30">
         <Identification>Wasserkasten-Multi-branchable137/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_30</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01179">
+        <StartVector id="CartesianVector3D_01179">
           <X>0.122045</X>
           <Y>-0.992191</Y>
           <Z>0.025743</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01180">
+        <EndVector id="CartesianVector3D_01180">
           <X>-0.996503</X>
           <Y>-0.0</Y>
           <Z>0.083556</Z>
@@ -46168,12 +46168,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_31">
         <Identification>Cockpit-Multi-branchable34/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_31</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01181">
+        <StartVector id="CartesianVector3D_01181">
           <X>0.639094</X>
           <Y>-0.622591</Y>
           <Z>-0.451596</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01182">
+        <EndVector id="CartesianVector3D_01182">
           <X>0.714493</X>
           <Y>-0.696044</Y>
           <Z>-0.070867</Z>
@@ -46229,12 +46229,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_32">
         <Identification>Cockpit-Multi-branchable35/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_32</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01183">
+        <StartVector id="CartesianVector3D_01183">
           <X>-0.707107</X>
           <Y>-0.0</Y>
           <Z>-0.707107</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01184">
+        <EndVector id="CartesianVector3D_01184">
           <X>0.757011</X>
           <Y>-0.48278</Y>
           <Z>0.440292</Z>
@@ -46290,12 +46290,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_33">
         <Identification>Cockpit-Multi-branchable36/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_33</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01185">
+        <StartVector id="CartesianVector3D_01185">
           <X>-0.127615</X>
           <Y>-0.610301</Y>
           <Z>-0.781823</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01186">
+        <EndVector id="CartesianVector3D_01186">
           <X>0.0</X>
           <Y>-0.0</Y>
           <Z>1.0</Z>
@@ -46351,12 +46351,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_34">
         <Identification>Cockpit-Multi-branchable37/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_34</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01187">
+        <StartVector id="CartesianVector3D_01187">
           <X>0.706933</X>
           <Y>0.29624</Y>
           <Z>-0.642252</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01188">
+        <EndVector id="CartesianVector3D_01188">
           <X>0.881155</X>
           <Y>0.369247</Y>
           <Z>-0.295334</Z>
@@ -46412,12 +46412,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_35">
         <Identification>Cockpit-Multi-branchable38/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_35</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01189">
+        <StartVector id="CartesianVector3D_01189">
           <X>0.82573</X>
           <Y>0.212722</Y>
           <Z>-0.522418</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01190">
+        <EndVector id="CartesianVector3D_01190">
           <X>0.276075</X>
           <Y>0.071122</Y>
           <Z>-0.958501</Z>
@@ -46518,12 +46518,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_36">
         <Identification>Cockpit-Multi-branchable39/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_36</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01191">
+        <StartVector id="CartesianVector3D_01191">
           <X>-0.493662</X>
           <Y>0.676238</Y>
           <Z>0.546809</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01192">
+        <EndVector id="CartesianVector3D_01192">
           <X>-0.058144</X>
           <Y>0.823474</Y>
           <Z>0.564366</Z>
@@ -46669,12 +46669,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_37">
         <Identification>Cockpit-Multi-branchable40/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_37</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01193">
+        <StartVector id="CartesianVector3D_01193">
           <X>-1.0</X>
           <Y>-0.0</Y>
           <Z>0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01194">
+        <EndVector id="CartesianVector3D_01194">
           <X>-0.485325</X>
           <Y>0.833152</Y>
           <Z>0.265174</Z>
@@ -46775,12 +46775,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_38">
         <Identification>Cockpit-Multi-branchable41/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_38</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01195">
+        <StartVector id="CartesianVector3D_01195">
           <X>-1.0</X>
           <Y>-1.0E-6</Y>
           <Z>2.0E-6</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01196">
+        <EndVector id="CartesianVector3D_01196">
           <X>-0.81567</X>
           <Y>0.100897</Y>
           <Z>0.569651</Z>
@@ -46836,12 +46836,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_39">
         <Identification>Cockpit-Multi-branchable42/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_39</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01197">
+        <StartVector id="CartesianVector3D_01197">
           <X>0.834498</X>
           <Y>0.367873</Y>
           <Z>0.410222</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01198">
+        <EndVector id="CartesianVector3D_01198">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>0.0</Z>
@@ -46897,12 +46897,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_40">
         <Identification>Cockpit-Multi-branchable43/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_40</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01199">
+        <StartVector id="CartesianVector3D_01199">
           <X>0.856754</X>
           <Y>-0.105079</Y>
           <Z>0.504906</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01200">
+        <EndVector id="CartesianVector3D_01200">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>0.0</Z>
@@ -46958,12 +46958,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_41">
         <Identification>Cockpit-Multi-branchable44/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_41</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01201">
+        <StartVector id="CartesianVector3D_01201">
           <X>0.730056</X>
           <Y>0.576011</Y>
           <Z>0.367736</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01202">
+        <EndVector id="CartesianVector3D_01202">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>0.0</Z>
@@ -47019,12 +47019,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_42">
         <Identification>Cockpit-Multi-branchable45/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_42</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01203">
+        <StartVector id="CartesianVector3D_01203">
           <X>0.69464</X>
           <Y>0.682274</Y>
           <Z>-0.227986</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01204">
+        <EndVector id="CartesianVector3D_01204">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>-0.0</Z>
@@ -47080,12 +47080,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_43">
         <Identification>Cockpit-Multi-branchable46/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_43</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01205">
+        <StartVector id="CartesianVector3D_01205">
           <X>0.850134</X>
           <Y>0.49396</Y>
           <Z>-0.182417</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01206">
+        <EndVector id="CartesianVector3D_01206">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>-0.0</Z>
@@ -47141,12 +47141,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_44">
         <Identification>Cockpit-Multi-branchable47/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_44</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01207">
+        <StartVector id="CartesianVector3D_01207">
           <X>0.692983</X>
           <Y>0.577662</Y>
           <Z>-0.431372</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01208">
+        <EndVector id="CartesianVector3D_01208">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>-0.0</Z>
@@ -47202,12 +47202,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_45">
         <Identification>Cockpit-Multi-branchable48/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_45</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01209">
+        <StartVector id="CartesianVector3D_01209">
           <X>0.902853</X>
           <Y>-0.337602</Y>
           <Z>-0.266237</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01210">
+        <EndVector id="CartesianVector3D_01210">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>0.0</Z>
@@ -47263,12 +47263,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_46">
         <Identification>Cockpit-Multi-branchable49/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_46</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01211">
+        <StartVector id="CartesianVector3D_01211">
           <X>0.751183</X>
           <Y>0.255719</Y>
           <Z>-0.608549</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01212">
+        <EndVector id="CartesianVector3D_01212">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>-0.0</Z>
@@ -47324,12 +47324,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_47">
         <Identification>Cockpit-Multi-branchable50/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_47</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01213">
+        <StartVector id="CartesianVector3D_01213">
           <X>0.833913</X>
           <Y>-0.090758</Y>
           <Z>-0.544382</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01214">
+        <EndVector id="CartesianVector3D_01214">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>-0.0</Z>
@@ -47385,12 +47385,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_48">
         <Identification>Cockpit-Multi-branchable51/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_48</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01215">
+        <StartVector id="CartesianVector3D_01215">
           <X>-0.104086</X>
           <Y>0.016306</Y>
           <Z>-0.994435</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01216">
+        <EndVector id="CartesianVector3D_01216">
           <X>0.67387</X>
           <Y>0.153037</Y>
           <Z>0.722827</Z>
@@ -47491,12 +47491,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_49">
         <Identification>Cockpit-Multi-branchable52/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_49</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01217">
+        <StartVector id="CartesianVector3D_01217">
           <X>0.01174</X>
           <Y>0.820303</Y>
           <Z>-0.571809</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01218">
+        <EndVector id="CartesianVector3D_01218">
           <X>0.012604</X>
           <Y>0.880654</Y>
           <Z>0.473593</Z>
@@ -47597,12 +47597,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_50">
         <Identification>Cockpit-Multi-branchable53/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_50</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01219">
+        <StartVector id="CartesianVector3D_01219">
           <X>0.526799</X>
           <Y>-0.838407</Y>
           <Z>0.139849</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01220">
+        <EndVector id="CartesianVector3D_01220">
           <X>0.866025</X>
           <Y>-0.0</Y>
           <Z>0.5</Z>
@@ -47658,12 +47658,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_51">
         <Identification>Cockpit-Multi-branchable55/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_51</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01221">
+        <StartVector id="CartesianVector3D_01221">
           <X>0.491253</X>
           <Y>0.854928</Y>
           <Z>0.166637</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01222">
+        <EndVector id="CartesianVector3D_01222">
           <X>0.866025</X>
           <Y>0.0</Y>
           <Z>0.5</Z>
@@ -47719,12 +47719,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_52">
         <Identification>Cockpit-Multi-branchable57/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_52</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01223">
+        <StartVector id="CartesianVector3D_01223">
           <X>-0.037884</X>
           <Y>-0.981335</Y>
           <Z>0.188535</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01224">
+        <EndVector id="CartesianVector3D_01224">
           <X>-0.129084</X>
           <Y>-0.975043</Y>
           <Z>-0.180632</Z>
@@ -47780,12 +47780,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_53">
         <Identification>Cockpit-Multi-branchable58/ElecRouteBody.1/Split.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_53</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01225">
+        <StartVector id="CartesianVector3D_01225">
           <X>0.037884</X>
           <Y>0.981335</Y>
           <Z>-0.188535</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01226">
+        <EndVector id="CartesianVector3D_01226">
           <X>0.038349</X>
           <Y>0.993387</Y>
           <Z>-0.10822</Z>
@@ -47841,12 +47841,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_54">
         <Identification>Cockpit-Multi-branchable58/ElecRouteBody.1/Split.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_54</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01227">
+        <StartVector id="CartesianVector3D_01227">
           <X>0.038349</X>
           <Y>0.993387</Y>
           <Z>-0.10822</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01228">
+        <EndVector id="CartesianVector3D_01228">
           <X>0.037959</X>
           <Y>0.983281</Y>
           <Z>0.178093</Z>
@@ -47902,12 +47902,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_55">
         <Identification>Cockpit-Multi-branchable58/ElecRouteBody.1/Split.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_55</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01229">
+        <StartVector id="CartesianVector3D_01229">
           <X>0.037959</X>
           <Y>0.983281</Y>
           <Z>0.178093</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01230">
+        <EndVector id="CartesianVector3D_01230">
           <X>0.037744</X>
           <Y>0.977727</Y>
           <Z>0.206461</Z>
@@ -47963,12 +47963,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_56">
         <Identification>Cockpit-Multi-branchable59.1.1/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_56</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01231">
+        <StartVector id="CartesianVector3D_01231">
           <X>0.670122</X>
           <Y>-0.587755</Y>
           <Z>0.453299</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01232">
+        <EndVector id="CartesianVector3D_01232">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>0.0</Z>
@@ -48069,12 +48069,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_57">
         <Identification>Cockpit-Multi-branchable60/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_57</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01233">
+        <StartVector id="CartesianVector3D_01233">
           <X>0.5563</X>
           <Y>0.823313</Y>
           <Z>0.112632</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01234">
+        <EndVector id="CartesianVector3D_01234">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>-0.0</Z>
@@ -48175,12 +48175,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_58">
         <Identification>Cockpit-Multi-branchable65/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_58</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01235">
+        <StartVector id="CartesianVector3D_01235">
           <X>0.086402</X>
           <Y>0.971448</Y>
           <Z>-0.220959</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01236">
+        <EndVector id="CartesianVector3D_01236">
           <X>0.999998</X>
           <Y>-0.001879</Y>
           <Z>2.39E-4</Z>
@@ -48281,12 +48281,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_59">
         <Identification>Cockpit-Multi-branchable66/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_59</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01237">
+        <StartVector id="CartesianVector3D_01237">
           <X>0.92727</X>
           <Y>0.37193</Y>
           <Z>0.04287</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01238">
+        <EndVector id="CartesianVector3D_01238">
           <X>0.906308</X>
           <Y>0.0</Y>
           <Z>0.422618</Z>
@@ -48342,12 +48342,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_60">
         <Identification>Cockpit-Multi-branchable67/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_60</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01239">
+        <StartVector id="CartesianVector3D_01239">
           <X>0.7558</X>
           <Y>0.157887</Y>
           <Z>0.635482</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01240">
+        <EndVector id="CartesianVector3D_01240">
           <X>0.927184</X>
           <Y>0.0</Y>
           <Z>0.374607</Z>
@@ -48403,12 +48403,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_61">
         <Identification>Cockpit-Multi-branchable68/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_61</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01241">
+        <StartVector id="CartesianVector3D_01241">
           <X>-1.0</X>
           <Y>0.0</Y>
           <Z>0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01242">
+        <EndVector id="CartesianVector3D_01242">
           <X>0.164132</X>
           <Y>-0.835149</Y>
           <Z>0.524963</Z>
@@ -48509,12 +48509,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_62">
         <Identification>Cockpit-Multi-branchable69/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_62</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01243">
+        <StartVector id="CartesianVector3D_01243">
           <X>-0.077671</X>
           <Y>0.572062</Y>
           <Z>-0.816525</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01244">
+        <EndVector id="CartesianVector3D_01244">
           <X>-0.0</X>
           <Y>-0.0</Y>
           <Z>1.0</Z>
@@ -48660,12 +48660,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_63">
         <Identification>Cockpit-Multi-branchable70/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_63</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01245">
+        <StartVector id="CartesianVector3D_01245">
           <X>-0.513866</X>
           <Y>0.794076</Y>
           <Z>-0.32463</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01246">
+        <EndVector id="CartesianVector3D_01246">
           <X>-0.0</X>
           <Y>-0.642788</Y>
           <Z>0.766044</Z>
@@ -48721,12 +48721,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_64">
         <Identification>Cockpit-Multi-branchable71/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_64</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01247">
+        <StartVector id="CartesianVector3D_01247">
           <X>-0.619104</X>
           <Y>0.629126</Y>
           <Z>-0.470011</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01248">
+        <EndVector id="CartesianVector3D_01248">
           <X>-0.0</X>
           <Y>-0.34202</Y>
           <Z>0.939693</Z>
@@ -48782,12 +48782,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_65">
         <Identification>Cockpit-Multi-branchable72/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_65</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01249">
+        <StartVector id="CartesianVector3D_01249">
           <X>-0.724822</X>
           <Y>0.422989</Y>
           <Z>-0.543795</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01250">
+        <EndVector id="CartesianVector3D_01250">
           <X>-0.0</X>
           <Y>-0.0</Y>
           <Z>1.0</Z>
@@ -48843,12 +48843,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_66">
         <Identification>Cockpit-Multi-branchable73/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_66</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01251">
+        <StartVector id="CartesianVector3D_01251">
           <X>-0.835794</X>
           <Y>0.173924</Y>
           <Z>-0.520767</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01252">
+        <EndVector id="CartesianVector3D_01252">
           <X>-0.0</X>
           <Y>0.34202</Y>
           <Z>0.939693</Z>
@@ -48904,12 +48904,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_67">
         <Identification>Cockpit-Multi-branchable105/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_67</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01253">
+        <StartVector id="CartesianVector3D_01253">
           <X>0.881155</X>
           <Y>0.369247</Y>
           <Z>-0.295334</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01254">
+        <EndVector id="CartesianVector3D_01254">
           <X>0.129084</X>
           <Y>0.975043</Y>
           <Z>0.180632</Z>
@@ -48965,12 +48965,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_68">
         <Identification>Part10/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_68</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01255">
+        <StartVector id="CartesianVector3D_01255">
           <X>-0.328048</X>
           <Y>0.834339</Y>
           <Z>0.443016</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01256">
+        <EndVector id="CartesianVector3D_01256">
           <X>-0.684056</X>
           <Y>0.52424</Y>
           <Z>0.507188</Z>
@@ -49026,12 +49026,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_69">
         <Identification>Part11/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_69</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01257">
+        <StartVector id="CartesianVector3D_01257">
           <X>0.075664</X>
           <Y>0.953825</Y>
           <Z>0.290676</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01258">
+        <EndVector id="CartesianVector3D_01258">
           <X>-0.270028</X>
           <Y>0.863813</Y>
           <Z>0.425338</Z>
@@ -49087,12 +49087,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_70">
         <Identification>Part12/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_70</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01259">
+        <StartVector id="CartesianVector3D_01259">
           <X>0.289073</X>
           <Y>0.939536</Y>
           <Z>0.183601</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01260">
+        <EndVector id="CartesianVector3D_01260">
           <X>0.420033</X>
           <Y>0.901093</Y>
           <Z>0.107723</Z>
@@ -49148,12 +49148,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_71">
         <Identification>Part13/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_71</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01261">
+        <StartVector id="CartesianVector3D_01261">
           <X>-0.16731</X>
           <Y>0.905322</Y>
           <Z>0.390384</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01262">
+        <EndVector id="CartesianVector3D_01262">
           <X>-0.487208</X>
           <Y>0.727761</Y>
           <Z>0.482693</Z>
@@ -49209,12 +49209,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_72">
         <Identification>Part14/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_72</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01263">
+        <StartVector id="CartesianVector3D_01263">
           <X>0.941338</X>
           <Y>-0.272228</Y>
           <Z>0.199438</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01264">
+        <EndVector id="CartesianVector3D_01264">
           <X>0.962373</X>
           <Y>-0.259845</Y>
           <Z>0.079488</Z>
@@ -49270,12 +49270,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_73">
         <Identification>Part15/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_73</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01265">
+        <StartVector id="CartesianVector3D_01265">
           <X>-0.68899</X>
           <Y>-0.212679</Y>
           <Z>-0.692864</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01266">
+        <EndVector id="CartesianVector3D_01266">
           <X>-0.604158</X>
           <Y>-0.188394</Y>
           <Z>-0.774274</Z>
@@ -49331,12 +49331,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_74">
         <Identification>Part16/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_74</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01267">
+        <StartVector id="CartesianVector3D_01267">
           <X>0.797733</X>
           <Y>0.489997</Y>
           <Z>0.351461</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01268">
+        <EndVector id="CartesianVector3D_01268">
           <X>0.70989</X>
           <Y>0.617966</Y>
           <Z>0.337896</Z>
@@ -49392,12 +49392,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_75">
         <Identification>Part17/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_75</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01269">
+        <StartVector id="CartesianVector3D_01269">
           <X>-0.339787</X>
           <Y>0.940459</Y>
           <Z>0.009071</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01270">
+        <EndVector id="CartesianVector3D_01270">
           <X>-0.644668</X>
           <Y>0.754154</Y>
           <Z>-0.125118</Z>
@@ -49453,12 +49453,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_76">
         <Identification>Part19/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_76</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01271">
+        <StartVector id="CartesianVector3D_01271">
           <X>0.30375</X>
           <Y>0.538417</Y>
           <Z>-0.78603</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01272">
+        <EndVector id="CartesianVector3D_01272">
           <X>0.375956</X>
           <Y>-0.298019</Y>
           <Z>-0.877406</Z>
@@ -49514,12 +49514,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_77">
         <Identification>Part20/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_77</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01273">
+        <StartVector id="CartesianVector3D_01273">
           <X>-0.25203</X>
           <Y>0.830203</Y>
           <Z>-0.497236</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01274">
+        <EndVector id="CartesianVector3D_01274">
           <X>-0.380843</X>
           <Y>0.227755</Y>
           <Z>0.896151</Z>
@@ -49575,12 +49575,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_78">
         <Identification>Part21/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_78</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01275">
+        <StartVector id="CartesianVector3D_01275">
           <X>-0.203733</X>
           <Y>0.85935</Y>
           <Z>-0.469052</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01276">
+        <EndVector id="CartesianVector3D_01276">
           <X>-0.366121</X>
           <Y>0.390898</Y>
           <Z>0.844485</Z>
@@ -49636,12 +49636,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_79">
         <Identification>Part22/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_79</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01277">
+        <StartVector id="CartesianVector3D_01277">
           <X>0.619028</X>
           <Y>0.784942</Y>
           <Z>0.025902</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01278">
+        <EndVector id="CartesianVector3D_01278">
           <X>0.972106</X>
           <Y>0.232836</Y>
           <Z>0.028247</Z>
@@ -49697,12 +49697,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_80">
         <Identification>Part23/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_80</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01279">
+        <StartVector id="CartesianVector3D_01279">
           <X>0.554336</X>
           <Y>0.827426</Y>
           <Z>0.089875</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01280">
+        <EndVector id="CartesianVector3D_01280">
           <X>0.945725</X>
           <Y>0.323684</Y>
           <Z>0.028873</Z>
@@ -49758,12 +49758,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_81">
         <Identification>Part24/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_81</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01281">
+        <StartVector id="CartesianVector3D_01281">
           <X>0.368559</X>
           <Y>0.083316</Y>
           <Z>-0.925863</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01282">
+        <EndVector id="CartesianVector3D_01282">
           <X>0.392634</X>
           <Y>-0.633505</Y>
           <Z>-0.666716</Z>
@@ -49819,12 +49819,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_82">
         <Identification>Part2/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_82</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01283">
+        <StartVector id="CartesianVector3D_01283">
           <X>0.48195</X>
           <Y>-0.078262</Y>
           <Z>-0.872697</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01284">
+        <EndVector id="CartesianVector3D_01284">
           <X>0.514721</X>
           <Y>-0.034997</Y>
           <Z>-0.856643</Z>
@@ -49880,12 +49880,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_83">
         <Identification>Part7/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_83</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01285">
+        <StartVector id="CartesianVector3D_01285">
           <X>-0.720623</X>
           <Y>0.588694</Y>
           <Z>0.366254</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01286">
+        <EndVector id="CartesianVector3D_01286">
           <X>-0.795</X>
           <Y>0.334497</Y>
           <Z>0.506051</Z>
@@ -49941,12 +49941,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_84">
         <Identification>Part25/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_84</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01287">
+        <StartVector id="CartesianVector3D_01287">
           <X>-0.706933</X>
           <Y>-0.29624</Y>
           <Z>0.642252</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01288">
+        <EndVector id="CartesianVector3D_01288">
           <X>-0.706933</X>
           <Y>-0.29624</Y>
           <Z>0.642252</Z>
@@ -50002,12 +50002,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_85">
         <Identification>Part26/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_85</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01289">
+        <StartVector id="CartesianVector3D_01289">
           <X>-0.303534</X>
           <Y>0.168498</Y>
           <Z>0.937804</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01290">
+        <EndVector id="CartesianVector3D_01290">
           <X>-0.933664</X>
           <Y>0.181329</Y>
           <Z>0.308856</Z>
@@ -50063,12 +50063,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_86">
         <Identification>Part27/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_86</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01291">
+        <StartVector id="CartesianVector3D_01291">
           <X>-0.158113</X>
           <Y>-0.676905</Y>
           <Z>0.718888</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01292">
+        <EndVector id="CartesianVector3D_01292">
           <X>-0.177491</X>
           <Y>-0.669194</Y>
           <Z>0.72158</Z>
@@ -50124,12 +50124,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_87">
         <Identification>Part28/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_87</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01293">
+        <StartVector id="CartesianVector3D_01293">
           <X>0.441107</X>
           <Y>0.69675</Y>
           <Z>-0.565653</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01294">
+        <EndVector id="CartesianVector3D_01294">
           <X>0.399843</X>
           <Y>0.719817</Y>
           <Z>-0.56744</Z>
@@ -50185,12 +50185,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_88">
         <Identification>Cockpit-Multi-branchable136/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_88</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01295">
+        <StartVector id="CartesianVector3D_01295">
           <X>-0.241701</X>
           <Y>-0.88577</Y>
           <Z>0.396223</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01296">
+        <EndVector id="CartesianVector3D_01296">
           <X>0.809948</X>
           <Y>0.334005</Y>
           <Z>0.482104</Z>
@@ -50246,12 +50246,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_89">
         <Identification>Cockpit-Multi-branchable136/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_89</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01297">
+        <StartVector id="CartesianVector3D_01297">
           <X>0.809948</X>
           <Y>0.334005</Y>
           <Z>0.482104</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01298">
+        <EndVector id="CartesianVector3D_01298">
           <X>0.0</X>
           <Y>0.0</Y>
           <Z>-1.0</Z>
@@ -50307,12 +50307,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_90">
         <Identification>Cockpit-Multi-branchable136/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_90</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01299">
+        <StartVector id="CartesianVector3D_01299">
           <X>0.809948</X>
           <Y>0.334005</Y>
           <Z>0.482104</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01300">
+        <EndVector id="CartesianVector3D_01300">
           <X>0.0</X>
           <Y>0.0</Y>
           <Z>-1.0</Z>
@@ -50368,12 +50368,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_91">
         <Identification>Cockpit-Multi-branchable136/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_91</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01301">
+        <StartVector id="CartesianVector3D_01301">
           <X>0.809948</X>
           <Y>0.334005</Y>
           <Z>0.482104</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01302">
+        <EndVector id="CartesianVector3D_01302">
           <X>0.0</X>
           <Y>-0.0</Y>
           <Z>-1.0</Z>
@@ -50429,12 +50429,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_92">
         <Identification>Cockpit-Multi-branchable136/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_92</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01303">
+        <StartVector id="CartesianVector3D_01303">
           <X>0.037959</X>
           <Y>0.983281</Y>
           <Z>0.178093</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01304">
+        <EndVector id="CartesianVector3D_01304">
           <X>0.990791</X>
           <Y>-0.102025</Y>
           <Z>0.089018</Z>
@@ -50490,12 +50490,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_93">
         <Identification>Cockpit-Multi-branchable136/ElecRouteBody.6/Flexible Curve.6</Identification>
         <ReferenceSegment>TopologySegment_Segment_93</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01305">
+        <StartVector id="CartesianVector3D_01305">
           <X>0.037959</X>
           <Y>0.983281</Y>
           <Z>0.178093</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01306">
+        <EndVector id="CartesianVector3D_01306">
           <X>0.98129</X>
           <Y>-0.106516</Y>
           <Z>0.160389</Z>
@@ -50551,12 +50551,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_94">
         <Identification>Cockpit-Multi-branchable138/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_94</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01307">
+        <StartVector id="CartesianVector3D_01307">
           <X>0.122045</X>
           <Y>-0.992191</Y>
           <Z>0.025743</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01308">
+        <EndVector id="CartesianVector3D_01308">
           <X>0.0</X>
           <Y>-0.0</Y>
           <Z>-1.0</Z>
@@ -50612,12 +50612,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_95">
         <Identification>Cockpit-Multi-branchable138/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_95</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01309">
+        <StartVector id="CartesianVector3D_01309">
           <X>0.0</X>
           <Y>-0.0</Y>
           <Z>-1.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01310">
+        <EndVector id="CartesianVector3D_01310">
           <X>0.999318</X>
           <Y>-0.0</Y>
           <Z>0.03692</Z>
@@ -50673,12 +50673,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_96">
         <Identification>Cockpit-Multi-branchable138/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_96</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01311">
+        <StartVector id="CartesianVector3D_01311">
           <X>0.0</X>
           <Y>-0.0</Y>
           <Z>-1.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01312">
+        <EndVector id="CartesianVector3D_01312">
           <X>0.999998</X>
           <Y>-0.0</Y>
           <Z>-0.002022</Z>
@@ -50734,12 +50734,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_97">
         <Identification>Cockpit-Multi-branchable138/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_97</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01313">
+        <StartVector id="CartesianVector3D_01313">
           <X>0.0</X>
           <Y>-0.0</Y>
           <Z>-1.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01314">
+        <EndVector id="CartesianVector3D_01314">
           <X>0.999984</X>
           <Y>0.0</Y>
           <Z>0.00573</Z>
@@ -50795,12 +50795,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_98">
         <Identification>Cockpit-Multi-branchable138/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_98</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01315">
+        <StartVector id="CartesianVector3D_01315">
           <X>0.334749</X>
           <Y>0.271708</Y>
           <Z>-0.902285</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01316">
+        <EndVector id="CartesianVector3D_01316">
           <X>0.979933</X>
           <Y>0.0</Y>
           <Z>0.199328</Z>
@@ -50856,12 +50856,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_99">
         <Identification>Boden-Multi-branchable21/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_99</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01317">
+        <StartVector id="CartesianVector3D_01317">
           <X>0.005447</X>
           <Y>0.74322</Y>
           <Z>-0.669025</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01318">
+        <EndVector id="CartesianVector3D_01318">
           <X>0.291336</X>
           <Y>0.128382</Y>
           <Z>-0.947967</Z>
@@ -50962,12 +50962,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_100">
         <Identification>Boden-Multi-branchable22/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_100</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01319">
+        <StartVector id="CartesianVector3D_01319">
           <X>0.863584</X>
           <Y>-0.181081</Y>
           <Z>-0.470566</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01320">
+        <EndVector id="CartesianVector3D_01320">
           <X>0.974549</X>
           <Y>-0.204349</Y>
           <Z>-0.092174</Z>
@@ -51023,12 +51023,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_101">
         <Identification>Boden-Multi-branchable23/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_101</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01321">
+        <StartVector id="CartesianVector3D_01321">
           <X>-1.0</X>
           <Y>-6.6E-5</Y>
           <Z>0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01322">
+        <EndVector id="CartesianVector3D_01322">
           <X>-0.633342</X>
           <Y>-0.759895</Y>
           <Z>0.146417</Z>
@@ -51084,12 +51084,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_102">
         <Identification>Boden-Multi-branchable25/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_102</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01323">
+        <StartVector id="CartesianVector3D_01323">
           <X>0.0</X>
           <Y>-0.0</Y>
           <Z>-1.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01324">
+        <EndVector id="CartesianVector3D_01324">
           <X>0.970169</X>
           <Y>-0.231364</Y>
           <Z>0.072411</Z>
@@ -51145,12 +51145,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_103">
         <Identification>Boden-Multi-branchable26/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_103</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01325">
+        <StartVector id="CartesianVector3D_01325">
           <X>-0.039825</X>
           <Y>0.250907</Y>
           <Z>-0.967192</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01326">
+        <EndVector id="CartesianVector3D_01326">
           <X>0.032303</X>
           <Y>-0.203519</Y>
           <Z>-0.978538</Z>
@@ -51206,12 +51206,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_104">
         <Identification>Boden-Multi-branchable27/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_104</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01327">
+        <StartVector id="CartesianVector3D_01327">
           <X>-0.021084</X>
           <Y>0.132837</Y>
           <Z>-0.990914</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01328">
+        <EndVector id="CartesianVector3D_01328">
           <X>-0.079591</X>
           <Y>0.501442</Y>
           <Z>-0.861522</Z>
@@ -51267,12 +51267,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_105">
         <Identification>Boden-Multi-branchable28/ElecRouteBody.1/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_105</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01329">
+        <StartVector id="CartesianVector3D_01329">
           <X>0.906308</X>
           <Y>-0.0</Y>
           <Z>0.422618</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01330">
+        <EndVector id="CartesianVector3D_01330">
           <X>-0.516485</X>
           <Y>0.829841</Y>
           <Z>0.211205</Z>
@@ -51373,12 +51373,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_106">
         <Identification>Boden-Multi-branchable29/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_106</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01331">
+        <StartVector id="CartesianVector3D_01331">
           <X>0.906308</X>
           <Y>0.0</Y>
           <Z>0.422618</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01332">
+        <EndVector id="CartesianVector3D_01332">
           <X>0.079591</X>
           <Y>-0.501442</Y>
           <Z>0.861522</Z>
@@ -51434,12 +51434,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_107">
         <Identification>Boden-Multi-branchable30/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_107</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01333">
+        <StartVector id="CartesianVector3D_01333">
           <X>0.913199</X>
           <Y>0.020938</Y>
           <Z>-0.406976</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01334">
+        <EndVector id="CartesianVector3D_01334">
           <X>0.999506</X>
           <Y>0.022917</Y>
           <Z>-0.021512</Z>
@@ -51495,12 +51495,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_108">
         <Identification>Boden-Multi-branchable31/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_108</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01335">
+        <StartVector id="CartesianVector3D_01335">
           <X>0.986109</X>
           <Y>0.156433</Y>
           <Z>-0.055836</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01336">
+        <EndVector id="CartesianVector3D_01336">
           <X>0.0</X>
           <Y>-1.0</Y>
           <Z>-0.0</Z>
@@ -51556,12 +51556,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_109">
         <Identification>Boden-Multi-branchable32/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_109</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01337">
+        <StartVector id="CartesianVector3D_01337">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01338">
+        <EndVector id="CartesianVector3D_01338">
           <X>-0.170638</X>
           <Y>0.975513</Y>
           <Z>0.138767</Z>
@@ -51662,12 +51662,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_110">
         <Identification>Boden-Multi-branchable58/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_110</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01339">
+        <StartVector id="CartesianVector3D_01339">
           <X>0.999923</X>
           <Y>0.012427</Y>
           <Z>-8.2E-5</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01340">
+        <EndVector id="CartesianVector3D_01340">
           <X>-1.0</X>
           <Y>-0.0</Y>
           <Z>0.0</Z>
@@ -51813,12 +51813,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_111">
         <Identification>Part18/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_111</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01341">
+        <StartVector id="CartesianVector3D_01341">
           <X>0.291336</X>
           <Y>0.128382</Y>
           <Z>-0.947967</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01342">
+        <EndVector id="CartesianVector3D_01342">
           <X>0.291336</X>
           <Y>0.128382</Y>
           <Z>-0.947967</Z>
@@ -51874,12 +51874,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_112">
         <Identification>Dach-Multi-branchable62/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_112</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01343">
+        <StartVector id="CartesianVector3D_01343">
           <X>0.757011</X>
           <Y>-0.48278</Y>
           <Z>0.440292</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01344">
+        <EndVector id="CartesianVector3D_01344">
           <X>0.553094</X>
           <Y>0.281192</Y>
           <Z>0.784231</Z>
@@ -51980,12 +51980,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_113">
         <Identification>Dach-Multi-branchable63/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_113</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01345">
+        <StartVector id="CartesianVector3D_01345">
           <X>0.553094</X>
           <Y>0.281192</Y>
           <Z>0.784231</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01346">
+        <EndVector id="CartesianVector3D_01346">
           <X>0.0</X>
           <Y>0.997564</Y>
           <Z>-0.069756</Z>
@@ -52176,12 +52176,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_114">
         <Identification>Dach-Multi-branchable64/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_114</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01347">
+        <StartVector id="CartesianVector3D_01347">
           <X>0.553094</X>
           <Y>0.281192</Y>
           <Z>0.784231</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01348">
+        <EndVector id="CartesianVector3D_01348">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>-0.0</Z>
@@ -52372,12 +52372,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_115">
         <Identification>Schweller_Saeule_li-Multi-branchable74/ElecRouteBody.1/Split.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_115</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01349">
+        <StartVector id="CartesianVector3D_01349">
           <X>-0.283055</X>
           <Y>-0.040118</Y>
           <Z>-0.958264</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01350">
+        <EndVector id="CartesianVector3D_01350">
           <X>0.241701</X>
           <Y>0.88577</Y>
           <Z>-0.396223</Z>
@@ -52523,12 +52523,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_116">
         <Identification>Schweller_Saeule_li-Multi-branchable74/ElecRouteBody.1/Split.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_116</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01351">
+        <StartVector id="CartesianVector3D_01351">
           <X>0.998669</X>
           <Y>0.014176</Y>
           <Z>-0.049586</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01352">
+        <EndVector id="CartesianVector3D_01352">
           <X>0.5932</X>
           <Y>0.731475</Y>
           <Z>-0.336241</Z>
@@ -53034,12 +53034,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_117">
         <Identification>Schweller_Saeule_li-Multi-branchable74/ElecRouteBody.1/Split.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_117</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01353">
+        <StartVector id="CartesianVector3D_01353">
           <X>0.241701</X>
           <Y>0.88577</Y>
           <Z>-0.396223</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01354">
+        <EndVector id="CartesianVector3D_01354">
           <X>0.20945</X>
           <Y>0.003484</Y>
           <Z>-0.977813</Z>
@@ -53185,12 +53185,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_118">
         <Identification>Schweller_Saeule_li-Multi-branchable74/ElecRouteBody.1/Split.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_118</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01355">
+        <StartVector id="CartesianVector3D_01355">
           <X>0.261476</X>
           <Y>-0.003194</Y>
           <Z>-0.965205</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01356">
+        <EndVector id="CartesianVector3D_01356">
           <X>0.998669</X>
           <Y>0.014176</Y>
           <Z>-0.049586</Z>
@@ -53291,12 +53291,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_119">
         <Identification>Schweller_Saeule_li-Multi-branchable74/ElecRouteBody.1/Split.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_119</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01357">
+        <StartVector id="CartesianVector3D_01357">
           <X>0.20945</X>
           <Y>0.003484</Y>
           <Z>-0.977813</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01358">
+        <EndVector id="CartesianVector3D_01358">
           <X>0.261476</X>
           <Y>-0.003194</Y>
           <Z>-0.965205</Z>
@@ -53577,12 +53577,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_120">
         <Identification>Schweller_Saeule_li-Multi-branchable74/ElecRouteBody.2/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_120</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01359">
+        <StartVector id="CartesianVector3D_01359">
           <X>-0.261476</X>
           <Y>0.003194</Y>
           <Z>0.965205</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01360">
+        <EndVector id="CartesianVector3D_01360">
           <X>-0.123106</X>
           <Y>-0.105632</Y>
           <Z>0.986756</Z>
@@ -53638,12 +53638,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_121">
         <Identification>Schweller_Saeule_li-Multi-branchable78/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_121</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01361">
+        <StartVector id="CartesianVector3D_01361">
           <X>0.959584</X>
           <Y>0.275322</Y>
           <Z>0.058273</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01362">
+        <EndVector id="CartesianVector3D_01362">
           <X>0.09954</X>
           <Y>0.971776</Y>
           <Z>0.213876</Z>
@@ -53834,12 +53834,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_122">
         <Identification>Schweller_Saeule_li-Multi-branchable81/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_122</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01363">
+        <StartVector id="CartesianVector3D_01363">
           <X>0.09954</X>
           <Y>0.971776</Y>
           <Z>0.213876</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01364">
+        <EndVector id="CartesianVector3D_01364">
           <X>0.979535</X>
           <Y>0.084691</Y>
           <Z>0.182587</Z>
@@ -53985,12 +53985,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_123">
         <Identification>Part9/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_123</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01365">
+        <StartVector id="CartesianVector3D_01365">
           <X>0.9322</X>
           <Y>0.136503</Y>
           <Z>0.335217</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01366">
+        <EndVector id="CartesianVector3D_01366">
           <X>0.878882</X>
           <Y>-0.181479</Y>
           <Z>-0.441172</Z>
@@ -54046,12 +54046,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_124">
         <Identification>Part29/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_124</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01367">
+        <StartVector id="CartesianVector3D_01367">
           <X>-0.378108</X>
           <Y>0.913376</Y>
           <Z>-0.150927</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01368">
+        <EndVector id="CartesianVector3D_01368">
           <X>-0.418542</X>
           <Y>0.896745</Y>
           <Z>-0.143776</Z>
@@ -54107,12 +54107,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_125">
         <Identification>Part30/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_125</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01369">
+        <StartVector id="CartesianVector3D_01369">
           <X>0.007885</X>
           <Y>-0.991599</Y>
           <Z>0.129106</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01370">
+        <EndVector id="CartesianVector3D_01370">
           <X>0.126644</X>
           <Y>-0.985831</Y>
           <Z>0.109993</Z>
@@ -54168,12 +54168,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_126">
         <Identification>Schweller_Saeule_li-Multi-branchable139/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_126</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01371">
+        <StartVector id="CartesianVector3D_01371">
           <X>-0.20945</X>
           <Y>-0.003484</Y>
           <Z>0.977813</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01372">
+        <EndVector id="CartesianVector3D_01372">
           <X>-0.238922</X>
           <Y>0.348414</Y>
           <Z>0.90638</Z>
@@ -54229,12 +54229,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_127">
         <Identification>Schweller_Saeule_li-Multi-branchable140/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_127</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01373">
+        <StartVector id="CartesianVector3D_01373">
           <X>-0.25261</X>
           <Y>-0.951706</Y>
           <Z>0.174482</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01374">
+        <EndVector id="CartesianVector3D_01374">
           <X>0.0</X>
           <Y>-0.982567</Y>
           <Z>0.185909</Z>
@@ -54290,12 +54290,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_128">
         <Identification>Boden_Heck_Batterie-Multi-branchable75/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_128</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01375">
+        <StartVector id="CartesianVector3D_01375">
           <X>-0.369419</X>
           <Y>0.870482</Y>
           <Z>0.325254</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01376">
+        <EndVector id="CartesianVector3D_01376">
           <X>-0.0</X>
           <Y>-1.0</Y>
           <Z>0.0</Z>
@@ -54351,12 +54351,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_129">
         <Identification>Boden_Heck_Batterie-Multi-branchable76/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_129</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01377">
+        <StartVector id="CartesianVector3D_01377">
           <X>-0.446504</X>
           <Y>0.892553</Y>
           <Z>0.063117</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01378">
+        <EndVector id="CartesianVector3D_01378">
           <X>-0.0</X>
           <Y>1.0</Y>
           <Z>0.0</Z>
@@ -54502,12 +54502,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_130">
         <Identification>Boden_Heck_Batterie-Multi-branchable77/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_130</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01379">
+        <StartVector id="CartesianVector3D_01379">
           <X>-0.221645</X>
           <Y>0.914862</Y>
           <Z>0.337492</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01380">
+        <EndVector id="CartesianVector3D_01380">
           <X>-0.705557</X>
           <Y>-0.708647</Y>
           <Z>0.002895</Z>
@@ -54878,12 +54878,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_131">
         <Identification>Part33/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_131</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01381">
+        <StartVector id="CartesianVector3D_01381">
           <X>0.369419</X>
           <Y>-0.870482</Y>
           <Z>-0.325254</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01382">
+        <EndVector id="CartesianVector3D_01382">
           <X>0.51208</X>
           <Y>0.852637</Y>
           <Z>0.103842</Z>
@@ -54939,12 +54939,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_132">
         <Identification>Boden_Heck_Batterie-Multi-branchable135/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_132</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01383">
+        <StartVector id="CartesianVector3D_01383">
           <X>0.5932</X>
           <Y>0.731475</Y>
           <Z>-0.336241</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01384">
+        <EndVector id="CartesianVector3D_01384">
           <X>-0.369419</X>
           <Y>0.870482</Y>
           <Z>0.325254</Z>
@@ -55315,12 +55315,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_133">
         <Identification>Masseanbindung_Boden_Heck_li-Multi-branchable111.1/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_133</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01385">
+        <StartVector id="CartesianVector3D_01385">
           <X>-0.623896</X>
           <Y>-0.781508</Y>
           <Z>0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01386">
+        <EndVector id="CartesianVector3D_01386">
           <X>0.09954</X>
           <Y>0.971776</Y>
           <Z>0.213876</Z>
@@ -55466,12 +55466,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_134">
         <Identification>Masseanbindung_Boden_Heck_li-Multi-branchable111/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_134</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01387">
+        <StartVector id="CartesianVector3D_01387">
           <X>-1.0</X>
           <Y>0.0</Y>
           <Z>-0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01388">
+        <EndVector id="CartesianVector3D_01388">
           <X>0.09954</X>
           <Y>0.971776</Y>
           <Z>0.213876</Z>
@@ -55662,12 +55662,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_135">
         <Identification>Zentralsteckdose-Multi-branchable82/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_135</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01389">
+        <StartVector id="CartesianVector3D_01389">
           <X>0.949608</X>
           <Y>-0.179076</Y>
           <Z>0.257246</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01390">
+        <EndVector id="CartesianVector3D_01390">
           <X>0.777634</X>
           <Y>-0.146646</Y>
           <Z>0.611376</Z>
@@ -55723,12 +55723,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_136">
         <Identification>Zentralsteckdose-Multi-branchable83/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_136</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01391">
+        <StartVector id="CartesianVector3D_01391">
           <X>0.830617</X>
           <Y>-0.007859</Y>
           <Z>0.556789</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01392">
+        <EndVector id="CartesianVector3D_01392">
           <X>0.768433</X>
           <Y>-0.070499</Y>
           <Z>0.636035</Z>
@@ -55874,12 +55874,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_137">
         <Identification>Zentralsteckdose-Multi-branchable84/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_137</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01393">
+        <StartVector id="CartesianVector3D_01393">
           <X>0.942343</X>
           <Y>0.309327</Y>
           <Z>-0.127697</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01394">
+        <EndVector id="CartesianVector3D_01394">
           <X>0.967816</X>
           <Y>0.197281</Y>
           <Z>0.156244</Z>
@@ -56025,12 +56025,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_138">
         <Identification>SBBR_li-Multi-branchable85/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_138</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01395">
+        <StartVector id="CartesianVector3D_01395">
           <X>0.578197</X>
           <Y>-0.07628</Y>
           <Z>-0.812324</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01396">
+        <EndVector id="CartesianVector3D_01396">
           <X>0.584375</X>
           <Y>-0.139357</Y>
           <Z>-0.799429</Z>
@@ -56176,12 +56176,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_139">
         <Identification>SBBR_li-Multi-branchable86/ElecRouteBody.1/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_139</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01397">
+        <StartVector id="CartesianVector3D_01397">
           <X>0.584375</X>
           <Y>-0.139357</Y>
           <Z>-0.799429</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01398">
+        <EndVector id="CartesianVector3D_01398">
           <X>-1.0</X>
           <Y>-0.0</Y>
           <Z>-0.0</Z>
@@ -56237,12 +56237,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_140">
         <Identification>SBBR_li-Multi-branchable87/ElecRouteBody.1/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_140</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01399">
+        <StartVector id="CartesianVector3D_01399">
           <X>-0.813295</X>
           <Y>-0.408845</Y>
           <Z>0.414001</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01400">
+        <EndVector id="CartesianVector3D_01400">
           <X>1.0</X>
           <Y>0.0</Y>
           <Z>-0.0</Z>
@@ -56568,12 +56568,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_141">
         <Identification>Koppelstellen_Motor_Generator_Starteranschlusss-Multi-branchable88/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_141</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01401">
+        <StartVector id="CartesianVector3D_01401">
           <X>0.256522</X>
           <Y>0.966444</Y>
           <Z>-0.013508</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01402">
+        <EndVector id="CartesianVector3D_01402">
           <X>0.23785</X>
           <Y>0.8961</Y>
           <Z>0.374742</Z>
@@ -56629,12 +56629,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_142">
         <Identification>Koppelstellen_Motor_Generator_Starteranschlusss-Multi-branchable89/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_142</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01403">
+        <StartVector id="CartesianVector3D_01403">
           <X>0.25261</X>
           <Y>0.951706</Y>
           <Z>-0.174482</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01404">
+        <EndVector id="CartesianVector3D_01404">
           <X>0.250235</X>
           <Y>0.94276</Y>
           <Z>0.220422</Z>
@@ -56690,12 +56690,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_143">
         <Identification>Koppelstellen_Motor_Generator_Starteranschlusss-Multi-branchable90/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_143</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01405">
+        <StartVector id="CartesianVector3D_01405">
           <X>0.526212</X>
           <Y>0.742131</Y>
           <Z>0.415142</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01406">
+        <EndVector id="CartesianVector3D_01406">
           <X>-0.141596</X>
           <Y>0.989185</Y>
           <Z>0.038252</Z>
@@ -56796,12 +56796,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_144">
         <Identification>Koppelstellen_Motor_Generator_Starteranschlusss-Multi-branchable91/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_144</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01407">
+        <StartVector id="CartesianVector3D_01407">
           <X>0.77702</X>
           <Y>0.537112</Y>
           <Z>-0.328253</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01408">
+        <EndVector id="CartesianVector3D_01408">
           <X>-0.0</X>
           <Y>1.0</Y>
           <Z>0.0</Z>
@@ -56857,12 +56857,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_145">
         <Identification>Koppelstellen_Motor_Generator_Starteranschlusss-Multi-branchable92/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_145</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01409">
+        <StartVector id="CartesianVector3D_01409">
           <X>0.488561</X>
           <Y>0.236989</Y>
           <Z>0.839729</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01410">
+        <EndVector id="CartesianVector3D_01410">
           <X>0.368048</X>
           <Y>0.929807</Y>
           <Z>0.0</Z>
@@ -56918,12 +56918,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_146">
         <Identification>Koppelstellen_Motor_Generator_Starteranschlusss-Multi-branchable93/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_146</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01411">
+        <StartVector id="CartesianVector3D_01411">
           <X>-0.141596</X>
           <Y>0.989185</Y>
           <Z>0.038252</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01412">
+        <EndVector id="CartesianVector3D_01412">
           <X>0.0</X>
           <Y>-0.0</Y>
           <Z>-1.0</Z>
@@ -57249,12 +57249,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_147">
         <Identification>Part31/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_147</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01413">
+        <StartVector id="CartesianVector3D_01413">
           <X>-0.256522</X>
           <Y>-0.966444</Y>
           <Z>0.013508</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01414">
+        <EndVector id="CartesianVector3D_01414">
           <X>-0.256522</X>
           <Y>-0.966444</Y>
           <Z>0.013508</Z>
@@ -57310,12 +57310,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_148">
         <Identification>Part32/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_148</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01415">
+        <StartVector id="CartesianVector3D_01415">
           <X>0.224382</X>
           <Y>0.842068</Y>
           <Z>-0.490483</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01416">
+        <EndVector id="CartesianVector3D_01416">
           <X>0.219317</X>
           <Y>0.822754</Y>
           <Z>-0.524381</Z>
@@ -57371,12 +57371,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_149">
         <Identification>Heck-Multi-branchable95/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_149</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01417">
+        <StartVector id="CartesianVector3D_01417">
           <X>-0.318054</X>
           <Y>0.028797</Y>
           <Z>-0.947635</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01418">
+        <EndVector id="CartesianVector3D_01418">
           <X>-0.6587</X>
           <Y>0.059639</Y>
           <Z>-0.750038</Z>
@@ -57432,12 +57432,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_150">
         <Identification>Heck-Multi-branchable96/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_150</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01419">
+        <StartVector id="CartesianVector3D_01419">
           <X>-0.314444</X>
           <Y>0.925412</Y>
           <Z>-0.211512</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01420">
+        <EndVector id="CartesianVector3D_01420">
           <X>0.382161</X>
           <Y>0.863959</Y>
           <Z>0.327913</Z>
@@ -57538,12 +57538,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_151">
         <Identification>Heck-Multi-branchable96.1/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_151</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01421">
+        <StartVector id="CartesianVector3D_01421">
           <X>0.116639</X>
           <Y>0.972628</Y>
           <Z>-0.200971</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01422">
+        <EndVector id="CartesianVector3D_01422">
           <X>0.694411</X>
           <Y>0.257431</Y>
           <Z>-0.671955</Z>
@@ -57779,12 +57779,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_152">
         <Identification>Heck-Multi-branchable97/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_152</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01423">
+        <StartVector id="CartesianVector3D_01423">
           <X>-0.993311</X>
           <Y>0.112848</Y>
           <Z>-0.024474</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01424">
+        <EndVector id="CartesianVector3D_01424">
           <X>-0.707107</X>
           <Y>-0.0</Y>
           <Z>-0.707107</Z>
@@ -57930,12 +57930,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_153">
         <Identification>Heck-Multi-branchable99/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_153</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01425">
+        <StartVector id="CartesianVector3D_01425">
           <X>0.397312</X>
           <Y>-0.326993</Y>
           <Z>0.857449</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01426">
+        <EndVector id="CartesianVector3D_01426">
           <X>0.109945</X>
           <Y>-0.090486</Y>
           <Z>0.98981</Z>
@@ -57991,12 +57991,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_154">
         <Identification>Heck-Multi-branchable100/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_154</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01427">
+        <StartVector id="CartesianVector3D_01427">
           <X>0.145585</X>
           <Y>-0.305002</Y>
           <Z>0.941158</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01428">
+        <EndVector id="CartesianVector3D_01428">
           <X>-0.786377</X>
           <Y>0.013074</Y>
           <Z>0.617608</Z>
@@ -58187,12 +58187,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_155">
         <Identification>Heck-Multi-branchable101/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_155</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01429">
+        <StartVector id="CartesianVector3D_01429">
           <X>0.414374</X>
           <Y>0.288925</Y>
           <Z>0.863028</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01430">
+        <EndVector id="CartesianVector3D_01430">
           <X>-0.788011</X>
           <Y>-0.0</Y>
           <Z>0.615661</Z>
@@ -58473,12 +58473,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_156">
         <Identification>Heck-Multi-branchable106/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_156</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01431">
+        <StartVector id="CartesianVector3D_01431">
           <X>0.382161</X>
           <Y>0.863959</Y>
           <Z>0.327913</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01432">
+        <EndVector id="CartesianVector3D_01432">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>-0.0</Z>
@@ -58669,12 +58669,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_157">
         <Identification>Part34/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_157</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01433">
+        <StartVector id="CartesianVector3D_01433">
           <X>-0.687338</X>
           <Y>-0.262568</Y>
           <Z>0.677218</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01434">
+        <EndVector id="CartesianVector3D_01434">
           <X>-0.694411</X>
           <Y>-0.257431</Y>
           <Z>0.671955</Z>
@@ -58730,12 +58730,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_158">
         <Identification>Heck-Multi-branchable141/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_158</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01435">
+        <StartVector id="CartesianVector3D_01435">
           <X>0.382161</X>
           <Y>0.863959</Y>
           <Z>0.327913</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01436">
+        <EndVector id="CartesianVector3D_01436">
           <X>-0.98732</X>
           <Y>0.0</Y>
           <Z>0.158741</Z>
@@ -58791,12 +58791,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_159">
         <Identification>SBBR_links-Multi-branchable98/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_159</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01437">
+        <StartVector id="CartesianVector3D_01437">
           <X>-0.373819</X>
           <Y>0.072049</Y>
           <Z>-0.924699</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01438">
+        <EndVector id="CartesianVector3D_01438">
           <X>-1.0</X>
           <Y>-0.0</Y>
           <Z>-0.0</Z>
@@ -58897,12 +58897,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_160">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.1/Split.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_160</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01439">
+        <StartVector id="CartesianVector3D_01439">
           <X>-0.095403</X>
           <Y>0.956283</Y>
           <Z>-0.276443</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01440">
+        <EndVector id="CartesianVector3D_01440">
           <X>0.918295</X>
           <Y>-0.395897</Y>
           <Z>-0.0</Z>
@@ -59093,12 +59093,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_161">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_161</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01441">
+        <StartVector id="CartesianVector3D_01441">
           <X>0.095403</X>
           <Y>-0.956283</Y>
           <Z>0.276443</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01442">
+        <EndVector id="CartesianVector3D_01442">
           <X>0.0</X>
           <Y>-0.998358</Y>
           <Z>-0.057278</Z>
@@ -59154,12 +59154,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_162">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_162</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01443">
+        <StartVector id="CartesianVector3D_01443">
           <X>0.095403</X>
           <Y>-0.956283</Y>
           <Z>0.276443</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01444">
+        <EndVector id="CartesianVector3D_01444">
           <X>-0.0</X>
           <Y>-0.980803</Y>
           <Z>0.195002</Z>
@@ -59215,12 +59215,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_163">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.1/Split.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_163</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01445">
+        <StartVector id="CartesianVector3D_01445">
           <X>0.918295</X>
           <Y>-0.395897</Y>
           <Z>-0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01446">
+        <EndVector id="CartesianVector3D_01446">
           <X>0.998669</X>
           <Y>0.014176</Y>
           <Z>-0.049586</Z>
@@ -59366,12 +59366,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_164">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_164</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01447">
+        <StartVector id="CartesianVector3D_01447">
           <X>-0.871228</X>
           <Y>0.486137</Y>
           <Z>-0.068063</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01448">
+        <EndVector id="CartesianVector3D_01448">
           <X>-0.762713</X>
           <Y>-0.494843</Y>
           <Z>0.416412</Z>
@@ -59517,12 +59517,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_165">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_165</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01449">
+        <StartVector id="CartesianVector3D_01449">
           <X>-0.762713</X>
           <Y>-0.494843</Y>
           <Z>0.416412</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01450">
+        <EndVector id="CartesianVector3D_01450">
           <X>-0.380699</X>
           <Y>-0.0</Y>
           <Z>0.924699</Z>
@@ -59578,12 +59578,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_166">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.6/Flexible Curve.6</Identification>
         <ReferenceSegment>TopologySegment_Segment_166</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01451">
+        <StartVector id="CartesianVector3D_01451">
           <X>-0.762713</X>
           <Y>-0.494843</Y>
           <Z>0.416412</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01452">
+        <EndVector id="CartesianVector3D_01452">
           <X>-0.441818</X>
           <Y>-0.0</Y>
           <Z>0.897105</Z>
@@ -59639,12 +59639,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_167">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.7/Split.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_167</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01453">
+        <StartVector id="CartesianVector3D_01453">
           <X>-0.96372</X>
           <Y>0.202444</Y>
           <Z>-0.173957</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01454">
+        <EndVector id="CartesianVector3D_01454">
           <X>-0.97508</X>
           <Y>0.163482</Y>
           <Z>0.149973</Z>
@@ -60015,12 +60015,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_168">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.8/Flexible Curve.8</Identification>
         <ReferenceSegment>TopologySegment_Segment_168</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01455">
+        <StartVector id="CartesianVector3D_01455">
           <X>-0.661434</X>
           <Y>0.697462</Y>
           <Z>0.275777</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01456">
+        <EndVector id="CartesianVector3D_01456">
           <X>-0.0</X>
           <Y>0.969596</Y>
           <Z>0.244712</Z>
@@ -60076,12 +60076,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_169">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.9/Flexible Curve.9</Identification>
         <ReferenceSegment>TopologySegment_Segment_169</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01457">
+        <StartVector id="CartesianVector3D_01457">
           <X>-0.661434</X>
           <Y>0.697462</Y>
           <Z>0.275777</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01458">
+        <EndVector id="CartesianVector3D_01458">
           <X>-0.0</X>
           <Y>0.999909</Y>
           <Z>0.013463</Z>
@@ -60137,12 +60137,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_170">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.7/Split.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_170</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01459">
+        <StartVector id="CartesianVector3D_01459">
           <X>-0.97508</X>
           <Y>0.163482</Y>
           <Z>0.149973</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01460">
+        <EndVector id="CartesianVector3D_01460">
           <X>-0.661434</X>
           <Y>0.697462</Y>
           <Z>0.275777</Z>
@@ -60288,12 +60288,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_171">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.10/Flexible Curve.10</Identification>
         <ReferenceSegment>TopologySegment_Segment_171</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01461">
+        <StartVector id="CartesianVector3D_01461">
           <X>-0.97508</X>
           <Y>0.163482</Y>
           <Z>0.149973</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01462">
+        <EndVector id="CartesianVector3D_01462">
           <X>-0.840349</X>
           <Y>0.318425</Y>
           <Z>0.438655</Z>
@@ -60439,12 +60439,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_172">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.11/Flexible Curve.11</Identification>
         <ReferenceSegment>TopologySegment_Segment_172</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01463">
+        <StartVector id="CartesianVector3D_01463">
           <X>-0.840349</X>
           <Y>0.318425</Y>
           <Z>0.438655</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01464">
+        <EndVector id="CartesianVector3D_01464">
           <X>0.009363</X>
           <Y>0.0</Y>
           <Z>0.999956</Z>
@@ -60500,12 +60500,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_173">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_Fahrwerk/ElecRouteBody.12/Flexible Curve.12</Identification>
         <ReferenceSegment>TopologySegment_Segment_173</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01465">
+        <StartVector id="CartesianVector3D_01465">
           <X>-0.840349</X>
           <Y>0.318425</Y>
           <Z>0.438655</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01466">
+        <EndVector id="CartesianVector3D_01466">
           <X>0.021358</X>
           <Y>-0.0</Y>
           <Z>0.999772</Z>
@@ -60561,12 +60561,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_174">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_174</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01467">
+        <StartVector id="CartesianVector3D_01467">
           <X>0.09954</X>
           <Y>0.971776</Y>
           <Z>0.213876</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01468">
+        <EndVector id="CartesianVector3D_01468">
           <X>0.998756</X>
           <Y>-0.00939</Y>
           <Z>0.048963</Z>
@@ -60622,12 +60622,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_175">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_175</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01469">
+        <StartVector id="CartesianVector3D_01469">
           <X>0.998756</X>
           <Y>-0.00939</Y>
           <Z>0.048963</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01470">
+        <EndVector id="CartesianVector3D_01470">
           <X>0.0</X>
           <Y>-0.998087</Y>
           <Z>0.061831</Z>
@@ -60683,12 +60683,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_176">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_176</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01471">
+        <StartVector id="CartesianVector3D_01471">
           <X>0.998756</X>
           <Y>-0.00939</Y>
           <Z>0.048963</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01472">
+        <EndVector id="CartesianVector3D_01472">
           <X>0.0</X>
           <Y>-0.186552</Y>
           <Z>0.982445</Z>
@@ -60744,12 +60744,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_177">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_177</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01473">
+        <StartVector id="CartesianVector3D_01473">
           <X>0.998756</X>
           <Y>-0.00939</Y>
           <Z>0.048963</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01474">
+        <EndVector id="CartesianVector3D_01474">
           <X>0.995635</X>
           <Y>-0.0</Y>
           <Z>0.093334</Z>
@@ -60805,12 +60805,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_178">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_178</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01475">
+        <StartVector id="CartesianVector3D_01475">
           <X>0.998756</X>
           <Y>-0.00939</Y>
           <Z>0.048963</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01476">
+        <EndVector id="CartesianVector3D_01476">
           <X>0.999994</X>
           <Y>-0.0</Y>
           <Z>0.003582</Z>
@@ -60866,12 +60866,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_179">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.6/Flexible Curve.6</Identification>
         <ReferenceSegment>TopologySegment_Segment_179</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01477">
+        <StartVector id="CartesianVector3D_01477">
           <X>-0.369419</X>
           <Y>0.870482</Y>
           <Z>0.325254</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01478">
+        <EndVector id="CartesianVector3D_01478">
           <X>0.991592</X>
           <Y>-0.076809</Y>
           <Z>0.104141</Z>
@@ -60972,12 +60972,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_180">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.7/Flexible Curve.7</Identification>
         <ReferenceSegment>TopologySegment_Segment_180</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01479">
+        <StartVector id="CartesianVector3D_01479">
           <X>0.806271</X>
           <Y>0.032658</Y>
           <Z>0.590644</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01480">
+        <EndVector id="CartesianVector3D_01480">
           <X>0.009174</X>
           <Y>-0.202018</Y>
           <Z>0.979339</Z>
@@ -61033,12 +61033,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_181">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.8/Flexible Curve.8</Identification>
         <ReferenceSegment>TopologySegment_Segment_181</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01481">
+        <StartVector id="CartesianVector3D_01481">
           <X>0.991592</X>
           <Y>-0.076809</Y>
           <Z>0.104141</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01482">
+        <EndVector id="CartesianVector3D_01482">
           <X>0.998851</X>
           <Y>0.0</Y>
           <Z>0.047928</Z>
@@ -61094,12 +61094,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_182">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.9/Flexible Curve.9</Identification>
         <ReferenceSegment>TopologySegment_Segment_182</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01483">
+        <StartVector id="CartesianVector3D_01483">
           <X>0.991592</X>
           <Y>-0.076809</Y>
           <Z>0.104141</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01484">
+        <EndVector id="CartesianVector3D_01484">
           <X>0.999955</X>
           <Y>0.0</Y>
           <Z>-0.009475</Z>
@@ -61155,12 +61155,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_183">
         <Identification>V_TAB_VWK_120__GEO_ELX_001_____MOD_LTGS_KAEFER_T1_GESAMTVERLEGUNG-Multi-branchable137/ElecRouteBody.10/Flexible Curve.10</Identification>
         <ReferenceSegment>TopologySegment_Segment_183</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_01485">
+        <StartVector id="CartesianVector3D_01485">
           <X>0.991592</X>
           <Y>-0.076809</Y>
           <Z>0.104141</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_01486">
+        <EndVector id="CartesianVector3D_01486">
           <X>0.0</X>
           <Y>0.999958</Y>
           <Z>-0.009167</Z>
@@ -99825,7 +99825,7 @@ This file was created with KBL2VEC PoC Converter (https://github.com/4Soft-de/ha
 This is just a showcase implementation for KBL mapping in the VEC.
 This is not intended for productive use and is not complete!
 -->
-<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
+<vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="VecContent_KBL_container" xsi:schemaLocation="">
   <VecVersion>2.2.0</VecVersion>
   <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
@@ -103826,12 +103826,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_1">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_1</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00144">
+        <StartVector id="CartesianVector3D_00144">
           <X>0.989368</X>
           <Y>0.0</Y>
           <Z>-0.145435</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00145">
+        <EndVector id="CartesianVector3D_00145">
           <X>0.948591</X>
           <Y>0.311267</Y>
           <Z>-0.057346</Z>
@@ -103887,12 +103887,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_2">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_2</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00146">
+        <StartVector id="CartesianVector3D_00146">
           <X>0.999977</X>
           <Y>-0.0</Y>
           <Z>-0.006853</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00147">
+        <EndVector id="CartesianVector3D_00147">
           <X>0.912245</X>
           <Y>-0.394261</Y>
           <Z>-0.111209</Z>
@@ -103948,12 +103948,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_3">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_3</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00148">
+        <StartVector id="CartesianVector3D_00148">
           <X>0.990042</X>
           <Y>0.0</Y>
           <Z>-0.140773</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00149">
+        <EndVector id="CartesianVector3D_00149">
           <X>0.990042</X>
           <Y>0.0</Y>
           <Z>0.140773</Z>
@@ -104009,12 +104009,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_4">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_4</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00150">
+        <StartVector id="CartesianVector3D_00150">
           <X>0.990042</X>
           <Y>0.0</Y>
           <Z>0.140773</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00151">
+        <EndVector id="CartesianVector3D_00151">
           <X>0.0</X>
           <Y>-1.0</Y>
           <Z>0.0</Z>
@@ -104070,12 +104070,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_5">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_5</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00152">
+        <StartVector id="CartesianVector3D_00152">
           <X>0.990042</X>
           <Y>0.0</Y>
           <Z>0.140773</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00153">
+        <EndVector id="CartesianVector3D_00153">
           <X>0.990164</X>
           <Y>0.0</Y>
           <Z>-0.139909</Z>
@@ -104131,12 +104131,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_6">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_6</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00154">
+        <StartVector id="CartesianVector3D_00154">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>-0.0</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00155">
+        <EndVector id="CartesianVector3D_00155">
           <X>0.896632</X>
           <Y>0.33358</Y>
           <Z>-0.291163</Z>
@@ -104192,12 +104192,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_7">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_7</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00156">
+        <StartVector id="CartesianVector3D_00156">
           <X>0.999999</X>
           <Y>-0.0</Y>
           <Z>-0.001275</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00157">
+        <EndVector id="CartesianVector3D_00157">
           <X>0.920888</X>
           <Y>-0.364509</Y>
           <Z>-0.138201</Z>
@@ -104253,12 +104253,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_8">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_8</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00158">
+        <StartVector id="CartesianVector3D_00158">
           <X>0.920888</X>
           <Y>-0.364509</Y>
           <Z>-0.138201</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00159">
+        <EndVector id="CartesianVector3D_00159">
           <X>0.997503</X>
           <Y>0.06603</Y>
           <Z>0.025035</Z>
@@ -104314,12 +104314,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_9">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_9</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00160">
+        <StartVector id="CartesianVector3D_00160">
           <X>-0.0</X>
           <Y>-0.977245</Y>
           <Z>-0.212114</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00161">
+        <EndVector id="CartesianVector3D_00161">
           <X>-0.0</X>
           <Y>-1.0</Y>
           <Z>-0.0</Z>
@@ -104375,12 +104375,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_10">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_10</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00162">
+        <StartVector id="CartesianVector3D_00162">
           <X>0.997503</X>
           <Y>0.06603</Y>
           <Z>0.025035</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00163">
+        <EndVector id="CartesianVector3D_00163">
           <X>0.986992</X>
           <Y>-0.150331</Y>
           <Z>-0.056983</Z>
@@ -104436,12 +104436,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_11">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable3/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_11</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00164">
+        <StartVector id="CartesianVector3D_00164">
           <X>0.999991</X>
           <Y>-0.0</Y>
           <Z>-0.004265</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00165">
+        <EndVector id="CartesianVector3D_00165">
           <X>0.926185</X>
           <Y>-0.377068</Y>
           <Z>9.24E-4</Z>
@@ -104497,12 +104497,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_12">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_12</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00166">
+        <StartVector id="CartesianVector3D_00166">
           <X>0.998613</X>
           <Y>0.0</Y>
           <Z>-0.052653</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00167">
+        <EndVector id="CartesianVector3D_00167">
           <X>0.929247</X>
           <Y>-0.369214</Y>
           <Z>0.013447</Z>
@@ -104558,12 +104558,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_13">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_13</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00168">
+        <StartVector id="CartesianVector3D_00168">
           <X>0.993636</X>
           <Y>0.0</Y>
           <Z>0.112643</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00169">
+        <EndVector id="CartesianVector3D_00169">
           <X>0.890985</X>
           <Y>-0.453905</Y>
           <Z>0.01078</Z>
@@ -104619,12 +104619,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_14">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_14</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00170">
+        <StartVector id="CartesianVector3D_00170">
           <X>0.990164</X>
           <Y>0.0</Y>
           <Z>-0.139909</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00171">
+        <EndVector id="CartesianVector3D_00171">
           <X>0.769736</X>
           <Y>0.638259</Y>
           <Z>0.011485</Z>
@@ -104680,12 +104680,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_15">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_15</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00172">
+        <StartVector id="CartesianVector3D_00172">
           <X>0.890985</X>
           <Y>-0.453905</Y>
           <Z>0.01078</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00173">
+        <EndVector id="CartesianVector3D_00173">
           <X>0.713479</X>
           <Y>-0.700627</Y>
           <Z>-0.008316</Z>
@@ -104741,12 +104741,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_16">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_16</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00174">
+        <StartVector id="CartesianVector3D_00174">
           <X>0.713479</X>
           <Y>-0.700627</Y>
           <Z>-0.008316</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00175">
+        <EndVector id="CartesianVector3D_00175">
           <X>0.997571</X>
           <Y>0.069656</Y>
           <Z>8.27E-4</Z>
@@ -104802,12 +104802,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_17">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_17</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00176">
+        <StartVector id="CartesianVector3D_00176">
           <X>0.903943</X>
           <Y>-0.233188</Y>
           <Z>-0.358484</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00177">
+        <EndVector id="CartesianVector3D_00177">
           <X>0.991744</X>
           <Y>-3.0E-6</Y>
           <Z>-0.128237</Z>
@@ -104863,12 +104863,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_18">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_18</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00178">
+        <StartVector id="CartesianVector3D_00178">
           <X>0.903943</X>
           <Y>-0.233188</Y>
           <Z>-0.358484</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00179">
+        <EndVector id="CartesianVector3D_00179">
           <X>0.986962</X>
           <Y>-0.0</Y>
           <Z>-0.160951</Z>
@@ -104924,12 +104924,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_19">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.6/Flexible Curve.6</Identification>
         <ReferenceSegment>TopologySegment_Segment_19</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00180">
+        <StartVector id="CartesianVector3D_00180">
           <X>0.865801</X>
           <Y>0.144253</Y>
           <Z>-0.479144</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00181">
+        <EndVector id="CartesianVector3D_00181">
           <X>0.99741</X>
           <Y>-0.071925</Y>
           <Z>-0.0</Z>
@@ -104985,12 +104985,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_20">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.7/Flexible Curve.7</Identification>
         <ReferenceSegment>TopologySegment_Segment_20</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00182">
+        <StartVector id="CartesianVector3D_00182">
           <X>0.645713</X>
           <Y>0.668964</Y>
           <Z>-0.36816</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00183">
+        <EndVector id="CartesianVector3D_00183">
           <X>0.987515</X>
           <Y>0.0</Y>
           <Z>-0.157528</Z>
@@ -105046,12 +105046,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_21">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.8/Flexible Curve.8</Identification>
         <ReferenceSegment>TopologySegment_Segment_21</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00184">
+        <StartVector id="CartesianVector3D_00184">
           <X>0.504781</X>
           <Y>0.813781</Y>
           <Z>-0.288022</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00185">
+        <EndVector id="CartesianVector3D_00185">
           <X>0.998193</X>
           <Y>0.06009</Y>
           <Z>-0.0</Z>
@@ -105107,12 +105107,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_22">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.9/Flexible Curve.9</Identification>
         <ReferenceSegment>TopologySegment_Segment_22</ReferenceSegment>
-        <StartVector id="Cartesiantor3D_00186">
+        <StartVector id="CartesianVector3D_00186">
           <X>0.427164</X>
           <Y>0.869189</Y>
           <Z>-0.249079</Z>
         </StartVector>
-        <EndVector id="Cartesiantor3D_00187">
+        <EndVector id="CartesianVector3D_00187">
           <X>0.970755</X>
           <Y>0.240042</Y>
           <Z>0.003802</Z>

@@ -31,6 +31,8 @@ import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 
 import java.lang.reflect.InvocationTargetException;
 
+import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
+
 public abstract class PartOrUsageRelatedSpecificationBuilder<X extends VecPartOrUsageRelatedSpecification> implements
         Builder<X> {
 
@@ -42,17 +44,13 @@ public abstract class PartOrUsageRelatedSpecificationBuilder<X extends VecPartOr
         try {
             final T instance = clazz.getConstructor().newInstance();
 
-            instance.setIdentification(abbreviatedClassName(clazz) + "-" + partNumber);
+            instance.setIdentification(abbreviatedModelClassName(clazz) + "-" + partNumber);
 
             return instance;
         } catch (final InstantiationException | NoSuchMethodException | IllegalAccessException |
                        InvocationTargetException e) {
             throw new VecScriptingException("Error initializing PartOrUsageRelatedSpecification", e);
         }
-    }
-
-    private String abbreviatedClassName(final Class<?> clazz) {
-        return clazz.getSimpleName().replace("Vec", "").replaceAll("[^A-Z]", "");
     }
 
 }

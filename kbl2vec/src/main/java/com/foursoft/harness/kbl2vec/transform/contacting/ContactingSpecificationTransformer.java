@@ -36,7 +36,7 @@ import com.foursoft.harness.vec.v2x.VecContactingSpecification;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.abbreviatedClassName;
+import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 public class ContactingSpecificationTransformer implements Transformer<KblHarness, VecContactingSpecification> {
 
@@ -45,7 +45,7 @@ public class ContactingSpecificationTransformer implements Transformer<KblHarnes
                                                                       final KblHarness source) {
         final VecContactingSpecification destination = new VecContactingSpecification();
         destination.setIdentification(
-                abbreviatedClassName(destination.getClass()) + "-" + source.getPartNumber());
+                abbreviatedModelClassName(destination.getClass()) + "-" + source.getPartNumber());
 
         return TransformationResult.from(destination)
                 .withDownstream(KblContactPoint.class, VecContactPoint.class, () -> getContactPoints(source),

@@ -25,32 +25,11 @@
  */
 package com.foursoft.harness.vec.v2x.visitor;
 
-import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
-import com.foursoft.harness.vec.common.util.StringUtils;
+import com.foursoft.harness.vec.common.util.ModelClassXmlIdGenerator;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class DefaultXmlIdGenerator implements XmlIdGenerator {
-
-    private final AtomicInteger counter = new AtomicInteger(0);
-
-    public void createIdForXmlBean(final ModifiableIdentifiable aBean) {
-        createIdForXmlBean(aBean, derivePrefix(aBean));
-    }
-
-    protected void createIdForXmlBean(final ModifiableIdentifiable aBean, final String prefix) {
-        if (StringUtils.isEmpty(aBean.getXmlId())) {
-            aBean.setXmlId(generateNewXmlId(prefix));
-        }
-    }
-
-    protected String generateNewXmlId(final String prefix) {
-        return String.format("%s%05d", prefix, counter.getAndIncrement());
-    }
-
-    protected String derivePrefix(final ModifiableIdentifiable aBean) {
-        return aBean.getClass()
-                .getSimpleName()
-                .replace("Vec", "") + "_";
-    }
+/**
+ * The {@link ModelClassXmlIdGenerator} as an {@link XmlIdGenerator}, so it can be used with
+ * {@link XmlIdGenerator#generateIds(Visitable, XmlIdGenerator)}.
+ */
+public class DefaultXmlIdGenerator extends ModelClassXmlIdGenerator implements XmlIdGenerator {
 }
