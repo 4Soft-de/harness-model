@@ -38,14 +38,12 @@ import com.foursoft.harness.vec.v2x.VecPartVersion;
 
 import java.util.Optional;
 
+import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
+
 public final class Fragments {
 
     private Fragments() {
         throw new AssertionError("Can't instantiate utility class");
-    }
-
-    public static String abbreviatedClassName(final Class<?> clazz) {
-        return clazz.getSimpleName().replace("Vec", "").replaceAll("[^A-Z]", "");
     }
 
     public static <D extends VecPartOrUsageRelatedSpecification> TransformationFragment<D,
@@ -53,7 +51,7 @@ public final class Fragments {
             final KblPart source) {
         return (specification, builder) -> {
             specification.setIdentification(
-                    abbreviatedClassName(specification.getClass()) + "-" + source.getPartNumber());
+                    abbreviatedModelClassName(specification.getClass()) + "-" + source.getPartNumber());
             builder.withLinker(Query.of(source), VecPartVersion.class,
                                VecPartOrUsageRelatedSpecification::getDescribedPart);
         };

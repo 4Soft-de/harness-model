@@ -26,6 +26,7 @@
 package com.foursoft.harness.vec.rdf.common;
 
 import com.foursoft.harness.navext.runtime.model.Identifiable;
+import com.foursoft.harness.vec.common.util.ModelClassNames;
 import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
 import com.foursoft.harness.vec.rdf.common.meta.xmi.UmlLiteral;
 import com.foursoft.harness.vec.rdf.common.meta.xmi.UmlType;
@@ -42,11 +43,7 @@ import java.util.Optional;
 public class NamingStrategy {
 
     public static String modelName(final Class<?> clazz) {
-        if (clazz.getName().endsWith(".VecContent")) {
-            return clazz.getSimpleName();
-        }
-        return clazz.getSimpleName()
-                .replaceFirst("Vec", "");
+        return ModelClassNames.modelClassName(clazz);
     }
 
     public static String modelName(final Field field) {

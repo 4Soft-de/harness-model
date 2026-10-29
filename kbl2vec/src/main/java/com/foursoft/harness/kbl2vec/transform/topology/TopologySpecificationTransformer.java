@@ -35,7 +35,7 @@ import com.foursoft.harness.vec.v2x.VecTopologyNode;
 import com.foursoft.harness.vec.v2x.VecTopologySegment;
 import com.foursoft.harness.vec.v2x.VecTopologySpecification;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.abbreviatedClassName;
+import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 public class TopologySpecificationTransformer implements Transformer<KblHarness, VecTopologySpecification> {
     @Override
@@ -43,7 +43,7 @@ public class TopologySpecificationTransformer implements Transformer<KblHarness,
                                                                     final KblHarness source) {
         final VecTopologySpecification topologySpecification = new VecTopologySpecification();
         topologySpecification.setIdentification(
-                abbreviatedClassName(topologySpecification.getClass()) + "-" + source.getPartNumber());
+                abbreviatedModelClassName(topologySpecification.getClass()) + "-" + source.getPartNumber());
 
         return TransformationResult.from(topologySpecification)
                 .withDownstream(KblNode.class, VecTopologyNode.class,

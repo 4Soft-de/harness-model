@@ -38,7 +38,7 @@ import com.foursoft.harness.vec.v2x.VecConfigurationConstraintSpecification;
 
 import java.util.stream.Stream;
 
-import static com.foursoft.harness.kbl2vec.transform.Fragments.abbreviatedClassName;
+import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 public class ConfigurationConstraintSpecificationTransformer
         implements Transformer<KblHarness, VecConfigurationConstraintSpecification> {
@@ -47,7 +47,7 @@ public class ConfigurationConstraintSpecificationTransformer
                                                                                    final KblHarness source) {
         final VecConfigurationConstraintSpecification element = new VecConfigurationConstraintSpecification();
         element.setIdentification(
-                abbreviatedClassName(element.getClass()) + "-" + source.getPartNumber());
+                abbreviatedModelClassName(element.getClass()) + "-" + source.getPartNumber());
         return TransformationResult.from(element)
                 .withDownstream(KblModuleConfiguration.class, VecConfigurationConstraint.class,
                                 moduleConfigurationQuery(source),

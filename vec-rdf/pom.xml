@@ -25,6 +25,11 @@
         <dependencies>
             <dependency>
                 <groupId>com.foursoft.harness.vec</groupId>
+                <artifactId>vec-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.foursoft.harness.vec</groupId>
                 <artifactId>vec-v113</artifactId>
                 <version>${project.version}</version>
             </dependency>

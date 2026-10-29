@@ -29,11 +29,12 @@ import com.foursoft.harness.navext.runtime.io.read.XMLReader;
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
+import com.foursoft.harness.navext.runtime.model.ModifiableIdentifiable;
+import com.foursoft.harness.vec.common.util.ModelClassXmlIdGenerator;
 import com.foursoft.harness.vec.rdf.common.NamingStrategy;
 import com.foursoft.harness.vec.rdf.common.VecVersion;
 import com.foursoft.harness.vec.rdf.common.exception.VecRdfException;
 import com.foursoft.harness.vec.rdf.common.util.VecXmlApiUtils;
-import com.foursoft.harness.vec.rdf.common.util.XmlIdGenerator;
 import jakarta.xml.bind.Marshaller;
 import org.apache.jena.rdf.model.Statement;
 import org.slf4j.Logger;
@@ -121,9 +122,13 @@ public class VecModelWrapper {
     }
 
     public void write(final OutputStream s) {
-        final XmlIdGenerator idGenerator = new XmlIdGenerator("id_new_");
+        final ModelClassXmlIdGenerator idGenerator = new ModelClassXmlIdGenerator("id_new_");
 
-        genericVecModelTraversal(mergeContext.getRoot(), idGenerator::createIdForXmlBean);
+        genericVecModelTraversal(mergeContext.getRoot(), identifiable -> {
+            if (identifiable instanceof final ModifiableIdentifiable modifiableIdentifiable) {
+                idGenerator.createIdForXmlBean(modifiableIdentifiable);
+            }
+        });
 
         final XMLWriter<Identifiable> xmlWriter = createWriter();
 
