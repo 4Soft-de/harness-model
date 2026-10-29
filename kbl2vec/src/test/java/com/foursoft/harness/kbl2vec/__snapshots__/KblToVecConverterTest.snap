@@ -601,7 +601,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_0">
           <Identification>aaa10821339</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_0</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_342_1 PartOccurrence_id_342_0 PartOccurrence_id_350_0</SubComponent>
         </Role>
         <Part>PartVersion_id_331_0</Part>
       </Component>
@@ -2584,7 +2583,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_0">
           <Identification>aaa1082134a</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_0</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Fixing_occurrence_1 PartOccurrence_Wire_protection_occurrence_1 PartOccurrence_Wire_protection_occurrence_2 PartOccurrence_Wire_protection_occurrence_3 PartOccurrence_id_310_0 PartOccurrence_id_310_1 PartOccurrence_id_310_2 PartOccurrence_id_310_3 PartOccurrence_id_310_4 PartOccurrence_id_310_5 PartOccurrence_id_312_0 PartOccurrence_id_312_1 PartOccurrence_id_312_2 PartOccurrence_id_312_3 PartOccurrence_id_316_0 PartOccurrence_id_316_1 PartOccurrence_id_342_0 PartOccurrence_id_344_0 PartOccurrence_id_344_1 PartOccurrence_id_344_2 PartOccurrence_id_344_3 PartOccurrence_id_350_0 PartOccurrence_id_350_1 PartOccurrence_id_350_2</SubComponent>
         </Role>
         <Part>PartVersion_id_331_0</Part>
       </Component>
@@ -73219,7 +73217,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_0">
           <Identification>aaa108a1aaa</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_0</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Wire_protection_occurrence_103 PartOccurrence_Wire_protection_occurrence_104 PartOccurrence_Wire_protection_occurrence_105 PartOccurrence_Wire_protection_occurrence_12 PartOccurrence_Wire_protection_occurrence_13 PartOccurrence_Wire_protection_occurrence_18 PartOccurrence_Wire_protection_occurrence_19 PartOccurrence_Wire_protection_occurrence_2 PartOccurrence_Wire_protection_occurrence_21 PartOccurrence_Wire_protection_occurrence_24 PartOccurrence_Wire_protection_occurrence_25 PartOccurrence_Wire_protection_occurrence_27 PartOccurrence_Wire_protection_occurrence_3 PartOccurrence_Wire_protection_occurrence_31 PartOccurrence_Wire_protection_occurrence_38 PartOccurrence_Wire_protection_occurrence_39 PartOccurrence_Wire_protection_occurrence_4 PartOccurrence_Wire_protection_occurrence_40 PartOccurrence_Wire_protection_occurrence_41 PartOccurrence_Wire_protection_occurrence_42 PartOccurrence_Wire_protection_occurrence_43 PartOccurrence_Wire_protection_occurrence_44 PartOccurrence_Wire_protection_occurrence_47 PartOccurrence_Wire_protection_occurrence_49 PartOccurrence_Wire_protection_occurrence_50 PartOccurrence_Wire_protection_occurrence_51 PartOccurrence_Wire_protection_occurrence_52 PartOccurrence_Wire_protection_occurrence_53 PartOccurrence_Wire_protection_occurrence_55 PartOccurrence_Wire_protection_occurrence_56 PartOccurrence_Wire_protection_occurrence_58 PartOccurrence_Wire_protection_occurrence_6 PartOccurrence_Wire_protection_occurrence_66 PartOccurrence_Wire_protection_occurrence_68 PartOccurrence_Wire_protection_occurrence_69 PartOccurrence_Wire_protection_occurrence_7 PartOccurrence_Wire_protection_occurrence_70 PartOccurrence_Wire_protection_occurrence_71 PartOccurrence_Wire_protection_occurrence_77 PartOccurrence_Wire_protection_occurrence_78 PartOccurrence_Wire_protection_occurrence_79 PartOccurrence_Wire_protection_occurrence_80 PartOccurrence_Wire_protection_occurrence_84 PartOccurrence_Wire_protection_occurrence_86 PartOccurrence_Wire_protection_occurrence_88 PartOccurrence_Wire_protection_occurrence_9 PartOccurrence_Wire_protection_occurrence_90 PartOccurrence_Wire_protection_occurrence_94 PartOccurrence_Wire_protection_occurrence_95 PartOccurrence_id_303_0 PartOccurrence_id_303_1 PartOccurrence_id_303_10 PartOccurrence_id_303_11 PartOccurrence_id_303_12 PartOccurrence_id_303_19 PartOccurrence_id_303_3 PartOccurrence_id_303_4 PartOccurrence_id_303_5 PartOccurrence_id_303_6 PartOccurrence_id_303_7 PartOccurrence_id_303_8 PartOccurrence_id_303_9 PartOccurrence_id_305_11 PartOccurrence_id_310_0 PartOccurrence_id_310_1 PartOccurrence_id_310_10 PartOccurrence_id_310_11 PartOccurrence_id_310_12 PartOccurrence_id_310_2 PartOccurrence_id_310_3 PartOccurrence_id_310_33 PartOccurrence_id_310_34 PartOccurrence_id_310_35 PartOccurrence_id_310_36 PartOccurrence_id_310_37 PartOccurrence_id_310_38 PartOccurrence_id_310_39 PartOccurrence_id_310_4 PartOccurrence_id_310_40 PartOccurrence_id_310_41 PartOccurrence_id_310_42 PartOccurrence_id_310_43 PartOccurrence_id_310_44 PartOccurrence_id_310_45 PartOccurrence_id_310_46 PartOccurrence_id_310_47 PartOccurrence_id_310_48 PartOccurrence_id_310_49 PartOccurrence_id_310_5 PartOccurrence_id_310_50 PartOccurrence_id_310_51 PartOccurrence_id_310_52 PartOccurrence_id_310_53 PartOccurrence_id_310_54 PartOccurrence_id_310_55 PartOccurrence_id_310_56 PartOccurrence_id_310_57 PartOccurrence_id_310_58 PartOccurrence_id_310_6 PartOccurrence_id_310_7 PartOccurrence_id_310_8 PartOccurrence_id_310_9 PartOccurrence_id_312_0 PartOccurrence_id_312_1 PartOccurrence_id_312_10 PartOccurrence_id_312_2 PartOccurrence_id_312_3 PartOccurrence_id_312_4 PartOccurrence_id_312_46 PartOccurrence_id_312_47 PartOccurrence_id_312_48 PartOccurrence_id_312_49 PartOccurrence_id_312_5 PartOccurrence_id_312_50 PartOccurrence_id_312_51 PartOccurrence_id_312_52 PartOccurrence_id_312_53 PartOccurrence_id_312_54 PartOccurrence_id_312_55 PartOccurrence_id_312_56 PartOccurrence_id_312_57 PartOccurrence_id_312_58 PartOccurrence_id_312_59 PartOccurrence_id_312_6 PartOccurrence_id_312_60 PartOccurrence_id_312_61 PartOccurrence_id_312_62 PartOccurrence_id_312_63 PartOccurrence_id_312_68 PartOccurrence_id_312_69 PartOccurrence_id_312_7 PartOccurrence_id_312_8 PartOccurrence_id_312_9 PartOccurrence_id_316_101 PartOccurrence_id_316_102 PartOccurrence_id_316_106 PartOccurrence_id_316_108 PartOccurrence_id_316_110 PartOccurrence_id_316_111 PartOccurrence_id_316_112 PartOccurrence_id_316_114 PartOccurrence_id_316_115 PartOccurrence_id_316_118 PartOccurrence_id_316_119 PartOccurrence_id_316_120 PartOccurrence_id_316_121 PartOccurrence_id_316_124 PartOccurrence_id_316_125 PartOccurrence_id_316_126 PartOccurrence_id_316_127 PartOccurrence_id_316_128 PartOccurrence_id_316_130 PartOccurrence_id_316_131 PartOccurrence_id_316_15 PartOccurrence_id_316_17 PartOccurrence_id_316_21 PartOccurrence_id_316_22 PartOccurrence_id_316_26 PartOccurrence_id_316_27 PartOccurrence_id_316_28 PartOccurrence_id_316_3 PartOccurrence_id_316_30 PartOccurrence_id_316_39 PartOccurrence_id_316_4 PartOccurrence_id_316_40 PartOccurrence_id_316_41 PartOccurrence_id_316_45 PartOccurrence_id_316_46 PartOccurrence_id_316_47 PartOccurrence_id_316_48 PartOccurrence_id_316_49 PartOccurrence_id_316_51 PartOccurrence_id_316_52 PartOccurrence_id_316_53 PartOccurrence_id_316_54 PartOccurrence_id_316_55 PartOccurrence_id_316_56 PartOccurrence_id_316_71 PartOccurrence_id_316_74 PartOccurrence_id_316_83 PartOccurrence_id_316_95 PartOccurrence_id_316_99 PartOccurrence_id_342_12 PartOccurrence_id_342_13 PartOccurrence_id_342_14 PartOccurrence_id_342_15 PartOccurrence_id_342_17 PartOccurrence_id_342_18 PartOccurrence_id_342_2 PartOccurrence_id_342_3 PartOccurrence_id_342_4 PartOccurrence_id_342_7 PartOccurrence_id_342_8 PartOccurrence_id_342_9 PartOccurrence_id_344_100 PartOccurrence_id_344_101 PartOccurrence_id_344_102 PartOccurrence_id_344_103 PartOccurrence_id_344_104 PartOccurrence_id_344_105 PartOccurrence_id_344_106 PartOccurrence_id_344_107 PartOccurrence_id_344_108 PartOccurrence_id_344_109 PartOccurrence_id_344_110 PartOccurrence_id_344_117 PartOccurrence_id_344_118 PartOccurrence_id_344_119 PartOccurrence_id_344_120 PartOccurrence_id_344_121 PartOccurrence_id_344_122 PartOccurrence_id_344_123 PartOccurrence_id_344_124 PartOccurrence_id_344_125 PartOccurrence_id_344_126 PartOccurrence_id_344_127 PartOccurrence_id_344_128 PartOccurrence_id_344_129 PartOccurrence_id_344_130 PartOccurrence_id_344_131 PartOccurrence_id_344_167 PartOccurrence_id_344_168 PartOccurrence_id_344_169 PartOccurrence_id_344_170 PartOccurrence_id_344_171 PartOccurrence_id_344_172 PartOccurrence_id_344_181 PartOccurrence_id_344_182 PartOccurrence_id_344_183 PartOccurrence_id_344_184 PartOccurrence_id_344_185 PartOccurrence_id_344_186 PartOccurrence_id_344_187 PartOccurrence_id_344_188 PartOccurrence_id_344_189 PartOccurrence_id_344_190 PartOccurrence_id_344_191 PartOccurrence_id_344_192 PartOccurrence_id_344_193 PartOccurrence_id_344_194 PartOccurrence_id_344_195 PartOccurrence_id_344_196 PartOccurrence_id_344_197 PartOccurrence_id_344_198 PartOccurrence_id_344_199 PartOccurrence_id_344_200 PartOccurrence_id_344_201 PartOccurrence_id_344_202 PartOccurrence_id_344_203 PartOccurrence_id_344_206 PartOccurrence_id_344_207 PartOccurrence_id_344_208 PartOccurrence_id_344_209 PartOccurrence_id_344_210 PartOccurrence_id_344_211 PartOccurrence_id_344_212 PartOccurrence_id_344_213 PartOccurrence_id_344_214 PartOccurrence_id_344_215 PartOccurrence_id_344_216 PartOccurrence_id_344_217 PartOccurrence_id_344_218 PartOccurrence_id_344_219 PartOccurrence_id_344_220 PartOccurrence_id_344_221 PartOccurrence_id_344_226 PartOccurrence_id_344_227 PartOccurrence_id_344_245 PartOccurrence_id_344_246 PartOccurrence_id_344_249 PartOccurrence_id_344_251 PartOccurrence_id_344_252 PartOccurrence_id_344_253 PartOccurrence_id_344_254 PartOccurrence_id_344_255 PartOccurrence_id_344_256 PartOccurrence_id_344_257 PartOccurrence_id_344_258 PartOccurrence_id_344_259 PartOccurrence_id_344_260 PartOccurrence_id_344_261 PartOccurrence_id_344_262 PartOccurrence_id_344_263 PartOccurrence_id_344_264 PartOccurrence_id_344_265 PartOccurrence_id_344_266 PartOccurrence_id_344_267 PartOccurrence_id_344_268 PartOccurrence_id_344_269 PartOccurrence_id_344_270 PartOccurrence_id_344_280 PartOccurrence_id_344_281 PartOccurrence_id_344_298 PartOccurrence_id_344_299 PartOccurrence_id_344_300 PartOccurrence_id_344_301 PartOccurrence_id_344_302 PartOccurrence_id_344_311 PartOccurrence_id_344_312 PartOccurrence_id_344_314 PartOccurrence_id_344_315 PartOccurrence_id_344_331 PartOccurrence_id_344_332 PartOccurrence_id_344_333 PartOccurrence_id_344_64 PartOccurrence_id_344_65 PartOccurrence_id_344_66 PartOccurrence_id_344_67 PartOccurrence_id_344_68 PartOccurrence_id_344_69 PartOccurrence_id_344_70 PartOccurrence_id_344_71 PartOccurrence_id_344_72 PartOccurrence_id_344_73 PartOccurrence_id_344_74 PartOccurrence_id_344_75 PartOccurrence_id_344_76 PartOccurrence_id_344_79 PartOccurrence_id_344_81 PartOccurrence_id_344_82 PartOccurrence_id_344_85 PartOccurrence_id_344_86 PartOccurrence_id_344_87 PartOccurrence_id_344_88 PartOccurrence_id_344_89 PartOccurrence_id_344_90 PartOccurrence_id_344_91 PartOccurrence_id_344_92 PartOccurrence_id_350_0 PartOccurrence_id_350_1 PartOccurrence_id_350_10 PartOccurrence_id_350_100 PartOccurrence_id_350_101 PartOccurrence_id_350_102 PartOccurrence_id_350_103 PartOccurrence_id_350_104 PartOccurrence_id_350_105 PartOccurrence_id_350_106 PartOccurrence_id_350_107 PartOccurrence_id_350_108 PartOccurrence_id_350_109 PartOccurrence_id_350_11 PartOccurrence_id_350_110 PartOccurrence_id_350_111 PartOccurrence_id_350_112 PartOccurrence_id_350_113 PartOccurrence_id_350_114 PartOccurrence_id_350_115 PartOccurrence_id_350_116 PartOccurrence_id_350_117 PartOccurrence_id_350_118 PartOccurrence_id_350_119 PartOccurrence_id_350_12 PartOccurrence_id_350_120 PartOccurrence_id_350_121 PartOccurrence_id_350_122 PartOccurrence_id_350_123 PartOccurrence_id_350_124 PartOccurrence_id_350_125 PartOccurrence_id_350_126 PartOccurrence_id_350_127 PartOccurrence_id_350_13 PartOccurrence_id_350_14 PartOccurrence_id_350_15 PartOccurrence_id_350_16 PartOccurrence_id_350_17 PartOccurrence_id_350_18 PartOccurrence_id_350_19 PartOccurrence_id_350_2 PartOccurrence_id_350_20 PartOccurrence_id_350_21 PartOccurrence_id_350_22 PartOccurrence_id_350_23 PartOccurrence_id_350_24 PartOccurrence_id_350_25 PartOccurrence_id_350_26 PartOccurrence_id_350_27 PartOccurrence_id_350_28 PartOccurrence_id_350_29 PartOccurrence_id_350_3 PartOccurrence_id_350_30 PartOccurrence_id_350_31 PartOccurrence_id_350_32 PartOccurrence_id_350_33 PartOccurrence_id_350_34 PartOccurrence_id_350_35 PartOccurrence_id_350_36 PartOccurrence_id_350_37 PartOccurrence_id_350_38 PartOccurrence_id_350_39 PartOccurrence_id_350_4 PartOccurrence_id_350_40 PartOccurrence_id_350_41 PartOccurrence_id_350_42 PartOccurrence_id_350_43 PartOccurrence_id_350_44 PartOccurrence_id_350_45 PartOccurrence_id_350_46 PartOccurrence_id_350_47 PartOccurrence_id_350_48 PartOccurrence_id_350_49 PartOccurrence_id_350_5 PartOccurrence_id_350_50 PartOccurrence_id_350_51 PartOccurrence_id_350_52 PartOccurrence_id_350_53 PartOccurrence_id_350_54 PartOccurrence_id_350_55 PartOccurrence_id_350_56 PartOccurrence_id_350_57 PartOccurrence_id_350_58 PartOccurrence_id_350_59 PartOccurrence_id_350_6 PartOccurrence_id_350_60 PartOccurrence_id_350_61 PartOccurrence_id_350_62 PartOccurrence_id_350_63 PartOccurrence_id_350_64 PartOccurrence_id_350_65 PartOccurrence_id_350_66 PartOccurrence_id_350_67 PartOccurrence_id_350_68 PartOccurrence_id_350_69 PartOccurrence_id_350_7 PartOccurrence_id_350_70 PartOccurrence_id_350_71 PartOccurrence_id_350_72 PartOccurrence_id_350_73 PartOccurrence_id_350_74 PartOccurrence_id_350_75 PartOccurrence_id_350_76 PartOccurrence_id_350_77 PartOccurrence_id_350_78 PartOccurrence_id_350_79 PartOccurrence_id_350_8 PartOccurrence_id_350_80 PartOccurrence_id_350_81 PartOccurrence_id_350_82 PartOccurrence_id_350_83 PartOccurrence_id_350_84 PartOccurrence_id_350_85 PartOccurrence_id_350_86 PartOccurrence_id_350_87 PartOccurrence_id_350_88 PartOccurrence_id_350_89 PartOccurrence_id_350_9 PartOccurrence_id_350_90 PartOccurrence_id_350_91 PartOccurrence_id_350_92 PartOccurrence_id_350_93 PartOccurrence_id_350_94 PartOccurrence_id_350_95 PartOccurrence_id_350_96 PartOccurrence_id_350_97 PartOccurrence_id_350_98 PartOccurrence_id_350_99 PartOccurrence_id_416_0 PartOccurrence_id_416_1 PartOccurrence_id_416_2</SubComponent>
         </Role>
         <Part>PartVersion_id_331_0</Part>
       </Component>
@@ -73228,7 +73225,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_1">
           <Identification>aaa108a1aaa1B</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_1</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_303_13 PartOccurrence_id_303_14 PartOccurrence_id_303_15 PartOccurrence_id_303_16 PartOccurrence_id_303_17 PartOccurrence_id_303_18 PartOccurrence_id_303_20 PartOccurrence_id_305_11 PartOccurrence_id_344_271 PartOccurrence_id_344_272 PartOccurrence_id_344_273 PartOccurrence_id_344_274 PartOccurrence_id_344_275 PartOccurrence_id_344_276 PartOccurrence_id_344_277 PartOccurrence_id_344_278 PartOccurrence_id_344_279 PartOccurrence_id_344_282 PartOccurrence_id_350_128 PartOccurrence_id_350_211 PartOccurrence_id_350_212 PartOccurrence_id_416_2</SubComponent>
         </Role>
         <Part>PartVersion_id_331_1</Part>
       </Component>
@@ -73237,7 +73233,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_2">
           <Identification>aaa108a1aa6</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_2</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_305_12 PartOccurrence_id_316_1</SubComponent>
         </Role>
         <Part>PartVersion_id_331_2</Part>
       </Component>
@@ -73246,7 +73241,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_3">
           <Identification>aaa108a1aa61B</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_3</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_305_13 PartOccurrence_id_316_1</SubComponent>
         </Role>
         <Part>PartVersion_id_331_3</Part>
       </Component>
@@ -73255,7 +73249,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_4">
           <Identification>aaa108a1aa61CB</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_4</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_305_14 PartOccurrence_id_316_1</SubComponent>
         </Role>
         <Part>PartVersion_id_331_4</Part>
       </Component>
@@ -73264,7 +73257,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_5">
           <Identification>aaa108a1aa61D</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_5</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_305_15 PartOccurrence_id_316_0</SubComponent>
         </Role>
         <Part>PartVersion_id_331_5</Part>
       </Component>
@@ -73273,7 +73265,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_6">
           <Identification>aaa108a1aa61E</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_6</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_312_96 PartOccurrence_id_312_98 PartOccurrence_id_344_9 PartOccurrence_id_344_6 PartOccurrence_id_344_5 PartOccurrence_id_344_2 PartOccurrence_id_305_16 PartOccurrence_id_344_0 PartOccurrence_id_344_294 PartOccurrence_id_344_296 PartOccurrence_id_312_15 PartOccurrence_id_312_18 PartOccurrence_id_344_137 PartOccurrence_id_350_203 PartOccurrence_id_316_0 PartOccurrence_id_350_129 PartOccurrence_id_344_139 PartOccurrence_id_350_205 PartOccurrence_id_316_122 PartOccurrence_id_350_130</SubComponent>
         </Role>
         <Part>PartVersion_id_331_6</Part>
       </Component>
@@ -73282,7 +73273,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_7">
           <Identification>aaa108a1aa61F</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_7</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Fixing_occurrence_16 PartOccurrence_id_344_47 PartOccurrence_id_316_2 PartOccurrence_id_316_123 PartOccurrence_id_305_18 PartOccurrence_id_350_132 PartOccurrence_id_350_131 PartOccurrence_Fixing_occurrence_14 PartOccurrence_id_344_50</SubComponent>
         </Role>
         <Part>PartVersion_id_331_7</Part>
       </Component>
@@ -73291,7 +73281,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_8">
           <Identification>aaa108a1aa61FG</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_8</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Fixing_occurrence_16 PartOccurrence_id_305_21 PartOccurrence_id_316_2 PartOccurrence_Fixing_occurrence_14</SubComponent>
         </Role>
         <Part>PartVersion_id_331_8</Part>
       </Component>
@@ -73300,7 +73289,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_9">
           <Identification>aaa108a1aa61G</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_9</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Fixing_occurrence_16 PartOccurrence_id_316_2 PartOccurrence_Fixing_occurrence_14 PartOccurrence_id_305_17</SubComponent>
         </Role>
         <Part>PartVersion_id_331_9</Part>
       </Component>
@@ -73309,7 +73297,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_10">
           <Identification>aaa108a1aa61H</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_10</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Fixing_occurrence_15 PartOccurrence_id_305_20 PartOccurrence_Fixing_occurrence_13 PartOccurrence_id_316_2</SubComponent>
         </Role>
         <Part>PartVersion_id_331_10</Part>
       </Component>
@@ -73318,7 +73305,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_11">
           <Identification>aaa108a1aa61I</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_11</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Fixing_occurrence_15 PartOccurrence_Fixing_occurrence_13 PartOccurrence_id_316_2 PartOccurrence_id_305_19</SubComponent>
         </Role>
         <Part>PartVersion_id_331_11</Part>
       </Component>
@@ -73327,7 +73313,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_12">
           <Identification>aaa108a1aa61K</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_12</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_344_16 PartOccurrence_id_344_18 PartOccurrence_id_344_12 PartOccurrence_id_344_13 PartOccurrence_id_350_136 PartOccurrence_id_350_135 PartOccurrence_id_316_0</SubComponent>
         </Role>
         <Part>PartVersion_id_331_12</Part>
       </Component>
@@ -73336,7 +73321,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_13">
           <Identification>aaa108a1aa61L</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_13</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_344_49 PartOccurrence_id_316_63 PartOccurrence_Fixing_occurrence_15 PartOccurrence_id_316_59 PartOccurrence_Fixing_occurrence_16 PartOccurrence_id_344_235 PartOccurrence_id_350_138 PartOccurrence_id_350_137 PartOccurrence_id_316_2 PartOccurrence_id_344_244 PartOccurrence_Fixing_occurrence_13 PartOccurrence_Fixing_occurrence_14</SubComponent>
         </Role>
         <Part>PartVersion_id_331_13</Part>
       </Component>
@@ -73345,7 +73329,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_14">
           <Identification>aaa108a1a4a</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_14</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_312_85 PartOccurrence_id_312_86 PartOccurrence_id_312_87 PartOccurrence_id_316_67 PartOccurrence_id_310_75 PartOccurrence_id_310_74 PartOccurrence_id_310_73 PartOccurrence_id_344_127 PartOccurrence_id_350_139 PartOccurrence_id_344_283 PartOccurrence_id_350_184 PartOccurrence_id_344_284 PartOccurrence_id_344_285 PartOccurrence_id_350_2 PartOccurrence_id_344_95 PartOccurrence_id_316_18 PartOccurrence_Wire_protection_occurrence_57 PartOccurrence_id_344_94 PartOccurrence_Wire_protection_occurrence_64</SubComponent>
         </Role>
         <Part>PartVersion_id_331_14</Part>
       </Component>
@@ -73354,7 +73337,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_15">
           <Identification>aaa108a1a4a1B</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_15</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_310_75 PartOccurrence_id_310_74 PartOccurrence_id_310_73 PartOccurrence_id_344_127 PartOccurrence_id_350_139 PartOccurrence_id_350_140 PartOccurrence_id_350_184 PartOccurrence_id_350_2 PartOccurrence_id_316_18 PartOccurrence_Wire_protection_occurrence_64 PartOccurrence_id_312_85 PartOccurrence_id_312_86 PartOccurrence_id_312_87 PartOccurrence_id_316_67 PartOccurrence_id_344_283 PartOccurrence_id_344_284 PartOccurrence_id_344_285 PartOccurrence_id_344_95 PartOccurrence_Wire_protection_occurrence_57 PartOccurrence_id_344_93 PartOccurrence_id_344_94</SubComponent>
         </Role>
         <Part>PartVersion_id_331_15</Part>
       </Component>
@@ -73371,7 +73353,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_17">
           <Identification>aaa108a1a93</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_17</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_312_70 PartOccurrence_Wire_protection_occurrence_96 PartOccurrence_Wire_protection_occurrence_74 PartOccurrence_id_344_228 PartOccurrence_id_316_57 PartOccurrence_id_344_224 PartOccurrence_id_303_2 PartOccurrence_id_342_6 PartOccurrence_id_344_223 PartOccurrence_id_350_141 PartOccurrence_id_344_250 PartOccurrence_id_310_59 PartOccurrence_id_350_143 PartOccurrence_id_350_142 PartOccurrence_Wire_protection_occurrence_89 PartOccurrence_Wire_protection_occurrence_87 PartOccurrence_Wire_protection_occurrence_20 PartOccurrence_Wire_protection_occurrence_85 PartOccurrence_id_312_65 PartOccurrence_id_312_66 PartOccurrence_id_310_64 PartOccurrence_id_310_63 PartOccurrence_id_310_62 PartOccurrence_id_310_61 PartOccurrence_id_310_60 PartOccurrence_Fixing_occurrence_7 PartOccurrence_Fixing_occurrence_6 PartOccurrence_Fixing_occurrence_5 PartOccurrence_Fixing_occurrence_4 PartOccurrence_Fixing_occurrence_9 PartOccurrence_Fixing_occurrence_8 PartOccurrence_Fixing_occurrence_12 PartOccurrence_Wire_protection_occurrence_36 PartOccurrence_Wire_protection_occurrence_76 PartOccurrence_Wire_protection_occurrence_75</SubComponent>
         </Role>
         <Part>PartVersion_id_331_17</Part>
       </Component>
@@ -73380,7 +73361,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_18">
           <Identification>aaa108a1a931B</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_18</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Wire_protection_occurrence_74 PartOccurrence_id_312_71 PartOccurrence_id_344_229 PartOccurrence_id_316_57 PartOccurrence_id_344_225 PartOccurrence_id_344_222 PartOccurrence_id_310_59 PartOccurrence_id_350_145 PartOccurrence_id_350_144 PartOccurrence_id_350_146 PartOccurrence_Wire_protection_occurrence_87 PartOccurrence_Wire_protection_occurrence_20 PartOccurrence_Wire_protection_occurrence_85 PartOccurrence_id_342_16 PartOccurrence_Wire_protection_occurrence_81 PartOccurrence_id_312_64 PartOccurrence_id_310_64 PartOccurrence_id_310_63 PartOccurrence_id_310_62 PartOccurrence_id_310_61 PartOccurrence_id_310_60 PartOccurrence_Fixing_occurrence_7 PartOccurrence_Fixing_occurrence_6 PartOccurrence_Fixing_occurrence_5 PartOccurrence_Fixing_occurrence_4 PartOccurrence_Fixing_occurrence_9 PartOccurrence_Fixing_occurrence_8 PartOccurrence_id_312_67 PartOccurrence_Fixing_occurrence_12 PartOccurrence_Wire_protection_occurrence_36 PartOccurrence_Wire_protection_occurrence_76 PartOccurrence_Wire_protection_occurrence_75</SubComponent>
         </Role>
         <Part>PartVersion_id_331_18</Part>
       </Component>
@@ -73389,7 +73369,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_19">
           <Identification>aaa108a1224</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_19</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_344_309 PartOccurrence_Wire_protection_occurrence_73 PartOccurrence_Wire_protection_occurrence_72 PartOccurrence_id_316_97 PartOccurrence_id_344_307 PartOccurrence_id_316_117 PartOccurrence_id_344_308 PartOccurrence_id_316_72 PartOccurrence_id_316_73 PartOccurrence_id_350_186 PartOccurrence_id_350_147 PartOccurrence_Wire_protection_occurrence_29 PartOccurrence_Wire_protection_occurrence_26 PartOccurrence_Wire_protection_occurrence_22 PartOccurrence_id_342_11 PartOccurrence_id_316_25 PartOccurrence_id_316_24 PartOccurrence_id_350_149 PartOccurrence_id_344_115 PartOccurrence_id_350_148 PartOccurrence_id_344_116 PartOccurrence_id_344_310 PartOccurrence_id_342_0 PartOccurrence_Wire_protection_occurrence_17 PartOccurrence_Wire_protection_occurrence_16 PartOccurrence_Wire_protection_occurrence_14 PartOccurrence_Wire_protection_occurrence_35 PartOccurrence_Wire_protection_occurrence_34 PartOccurrence_Wire_protection_occurrence_11 PartOccurrence_id_350_150 PartOccurrence_Wire_protection_occurrence_10</SubComponent>
         </Role>
         <Part>PartVersion_id_331_19</Part>
       </Component>
@@ -73398,7 +73377,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_20">
           <Identification>aaa108a12241B</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_20</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Wire_protection_occurrence_73 PartOccurrence_Wire_protection_occurrence_72 PartOccurrence_id_344_305 PartOccurrence_id_344_307 PartOccurrence_id_316_117 PartOccurrence_id_344_308 PartOccurrence_id_344_303 PartOccurrence_id_344_304 PartOccurrence_id_316_72 PartOccurrence_Wire_protection_occurrence_29 PartOccurrence_Wire_protection_occurrence_28 PartOccurrence_Wire_protection_occurrence_26 PartOccurrence_Wire_protection_occurrence_46 PartOccurrence_Wire_protection_occurrence_22 PartOccurrence_id_342_10 PartOccurrence_id_316_23 PartOccurrence_id_350_149 PartOccurrence_id_350_148 PartOccurrence_id_344_111 PartOccurrence_id_344_112 PartOccurrence_id_342_0 PartOccurrence_id_342_1 PartOccurrence_id_350_151 PartOccurrence_Wire_protection_occurrence_5 PartOccurrence_id_350_156 PartOccurrence_id_350_155 PartOccurrence_id_350_157 PartOccurrence_Wire_protection_occurrence_17 PartOccurrence_Wire_protection_occurrence_16 PartOccurrence_Wire_protection_occurrence_14 PartOccurrence_Wire_protection_occurrence_11 PartOccurrence_Wire_protection_occurrence_10</SubComponent>
         </Role>
         <Part>PartVersion_id_331_20</Part>
       </Component>
@@ -73407,7 +73385,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_21">
           <Identification>aaa108a12241C</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_21</PartStructureSpecification>
-          <SubComponent>PartOccurrence_Wire_protection_occurrence_73 PartOccurrence_Wire_protection_occurrence_72 PartOccurrence_id_316_97 PartOccurrence_id_344_306 PartOccurrence_id_316_117 PartOccurrence_id_344_303 PartOccurrence_id_344_304 PartOccurrence_id_316_72 PartOccurrence_Wire_protection_occurrence_29 PartOccurrence_Wire_protection_occurrence_28 PartOccurrence_Wire_protection_occurrence_26 PartOccurrence_Wire_protection_occurrence_46 PartOccurrence_Wire_protection_occurrence_22 PartOccurrence_id_342_10 PartOccurrence_id_316_23 PartOccurrence_id_316_24 PartOccurrence_id_344_114 PartOccurrence_id_344_115 PartOccurrence_id_344_111 PartOccurrence_id_344_113 PartOccurrence_id_342_0 PartOccurrence_id_350_152 PartOccurrence_id_342_1 PartOccurrence_id_350_154 PartOccurrence_Wire_protection_occurrence_5 PartOccurrence_id_350_153 PartOccurrence_id_350_156 PartOccurrence_id_350_155 PartOccurrence_id_350_157 PartOccurrence_Wire_protection_occurrence_17 PartOccurrence_Wire_protection_occurrence_16 PartOccurrence_Wire_protection_occurrence_14 PartOccurrence_Wire_protection_occurrence_34 PartOccurrence_Wire_protection_occurrence_11 PartOccurrence_id_350_150 PartOccurrence_Wire_protection_occurrence_10</SubComponent>
         </Role>
         <Part>PartVersion_id_331_21</Part>
       </Component>
@@ -73416,7 +73393,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_22">
           <Identification>aaa108a1aaa1BB</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_22</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_344_77 PartOccurrence_id_344_78 PartOccurrence_id_350_158 PartOccurrence_id_350_159</SubComponent>
         </Role>
         <Part>PartVersion_id_331_22</Part>
       </Component>
@@ -73425,7 +73401,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_23">
           <Identification>aaa108a1aaa1BC</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_23</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_344_80 PartOccurrence_id_350_160</SubComponent>
         </Role>
         <Part>PartVersion_id_331_23</Part>
       </Component>
@@ -73434,7 +73409,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_24">
           <Identification>aaa108a1aaa1BD</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_24</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_344_83 PartOccurrence_id_350_161</SubComponent>
         </Role>
         <Part>PartVersion_id_331_24</Part>
       </Component>
@@ -73443,7 +73417,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_25">
           <Identification>aaa108a1aaa1BE</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_25</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_344_84 PartOccurrence_id_350_162</SubComponent>
         </Role>
         <Part>PartVersion_id_331_25</Part>
       </Component>
@@ -73452,7 +73425,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_26">
           <Identification>aaa108a1320</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_26</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_316_50 PartOccurrence_id_342_5 PartOccurrence_id_316_19 PartOccurrence_Wire_protection_occurrence_23 PartOccurrence_id_316_105 PartOccurrence_Wire_protection_occurrence_61 PartOccurrence_id_316_107 PartOccurrence_id_344_313 PartOccurrence_Wire_protection_occurrence_15 PartOccurrence_Wire_protection_occurrence_59 PartOccurrence_Wire_protection_occurrence_98 PartOccurrence_id_316_75 PartOccurrence_id_344_247 PartOccurrence_id_344_204 PartOccurrence_id_344_248 PartOccurrence_id_344_205 PartOccurrence_id_344_322 PartOccurrence_id_350_163 PartOccurrence_id_344_174 PartOccurrence_id_350_165 PartOccurrence_id_344_175 PartOccurrence_id_350_164 PartOccurrence_id_350_167 PartOccurrence_id_350_166 PartOccurrence_id_350_169 PartOccurrence_id_350_168 PartOccurrence_id_316_86 PartOccurrence_id_344_176 PartOccurrence_Wire_protection_occurrence_101 PartOccurrence_id_344_177 PartOccurrence_id_350_174 PartOccurrence_id_416_4 PartOccurrence_id_350_173 PartOccurrence_id_350_175 PartOccurrence_id_416_3 PartOccurrence_Wire_protection_occurrence_100 PartOccurrence_id_344_180 PartOccurrence_id_344_96 PartOccurrence_id_344_97 PartOccurrence_id_350_170 PartOccurrence_id_350_172 PartOccurrence_Wire_protection_occurrence_32 PartOccurrence_id_350_171</SubComponent>
         </Role>
         <Part>PartVersion_id_331_26</Part>
       </Component>
@@ -73461,7 +73433,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_27">
           <Identification>aaa108a13201B</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_27</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_316_75 PartOccurrence_id_344_247 PartOccurrence_id_344_204 PartOccurrence_id_344_248 PartOccurrence_id_316_50 PartOccurrence_id_342_5 PartOccurrence_id_344_322 PartOccurrence_id_344_173 PartOccurrence_id_344_175 PartOccurrence_id_350_167 PartOccurrence_id_350_169 PartOccurrence_id_350_168 PartOccurrence_id_316_19 PartOccurrence_Wire_protection_occurrence_23 PartOccurrence_id_316_105 PartOccurrence_Wire_protection_occurrence_61 PartOccurrence_id_316_86 PartOccurrence_id_316_107 PartOccurrence_id_344_313 PartOccurrence_id_344_176 PartOccurrence_Wire_protection_occurrence_101 PartOccurrence_id_344_177 PartOccurrence_id_350_174 PartOccurrence_id_416_4 PartOccurrence_id_350_173 PartOccurrence_id_350_176 PartOccurrence_id_350_175 PartOccurrence_id_416_3 PartOccurrence_Wire_protection_occurrence_100 PartOccurrence_id_344_180 PartOccurrence_Wire_protection_occurrence_15 PartOccurrence_Wire_protection_occurrence_59 PartOccurrence_id_344_97 PartOccurrence_id_350_170 PartOccurrence_id_350_172 PartOccurrence_Wire_protection_occurrence_32 PartOccurrence_Wire_protection_occurrence_98 PartOccurrence_id_350_171</SubComponent>
         </Role>
         <Part>PartVersion_id_331_27</Part>
       </Component>
@@ -73470,7 +73441,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_28">
           <Identification>aaa108a1379</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_28</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_316_43 PartOccurrence_id_344_316 PartOccurrence_id_350_178 PartOccurrence_id_344_317 PartOccurrence_id_350_177 PartOccurrence_id_316_84 PartOccurrence_id_344_178 PartOccurrence_id_344_179</SubComponent>
         </Role>
         <Part>PartVersion_id_331_28</Part>
       </Component>
@@ -73479,7 +73449,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_29">
           <Identification>aaa108a13791B</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_29</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_344_327 PartOccurrence_id_344_328 PartOccurrence_id_344_329 PartOccurrence_id_350_215 PartOccurrence_id_316_90 PartOccurrence_id_316_91 PartOccurrence_id_344_330</SubComponent>
         </Role>
         <Part>PartVersion_id_331_29</Part>
       </Component>
@@ -73488,7 +73457,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_30">
           <Identification>aaa108a13791C</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_30</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_316_85 PartOccurrence_id_344_318 PartOccurrence_id_316_89 PartOccurrence_id_344_319 PartOccurrence_id_344_323 PartOccurrence_id_344_324 PartOccurrence_id_350_214 PartOccurrence_id_344_325 PartOccurrence_id_344_326 PartOccurrence_id_344_320 PartOccurrence_id_344_321 PartOccurrence_id_350_213</SubComponent>
         </Role>
         <Part>PartVersion_id_331_30</Part>
       </Component>
@@ -73497,7 +73465,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_31">
           <Identification>aaa108a13791D</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_31</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_310_77 PartOccurrence_id_310_76 PartOccurrence_id_312_88 PartOccurrence_id_350_179 PartOccurrence_id_316_68 PartOccurrence_id_312_89 PartOccurrence_id_344_286 PartOccurrence_id_344_287 PartOccurrence_id_350_180</SubComponent>
         </Role>
         <Part>PartVersion_id_331_31</Part>
       </Component>
@@ -73506,7 +73473,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_32">
           <Identification>aaa108a13791E</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_32</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_342_21 PartOccurrence_id_342_20 PartOccurrence_id_350_181</SubComponent>
         </Role>
         <Part>PartVersion_id_331_32</Part>
       </Component>
@@ -73515,7 +73481,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_33">
           <Identification>aaa108a13791F</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_33</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_316_20 PartOccurrence_id_344_99 PartOccurrence_id_344_98 PartOccurrence_id_350_183 PartOccurrence_id_350_182</SubComponent>
         </Role>
         <Part>PartVersion_id_331_33</Part>
       </Component>
@@ -105789,7 +105754,6 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:PartWithSubComponentsRole" id="PartWithSubComponentsRole_id_353_0">
           <Identification>MDL123456</Identification>
           <PartStructureSpecification>PartStructureSpecification_id_353_0</PartStructureSpecification>
-          <SubComponent>PartOccurrence_id_312_0 PartOccurrence_id_312_1 PartOccurrence_id_312_2 PartOccurrence_id_316_1 PartOccurrence_id_316_10 PartOccurrence_id_316_11 PartOccurrence_id_316_3 PartOccurrence_id_316_4 PartOccurrence_id_316_6 PartOccurrence_id_417_0 PartOccurrence_id_342_0 PartOccurrence_id_342_1 PartOccurrence_id_342_2 PartOccurrence_id_342_3 PartOccurrence_id_342_4 PartOccurrence_id_344_1 PartOccurrence_id_344_2 PartOccurrence_id_344_3 PartOccurrence_id_344_4 PartOccurrence_id_344_5 PartOccurrence_id_344_6 PartOccurrence_id_344_7 PartOccurrence_id_344_8 PartOccurrence_id_344_9 PartOccurrence_id_350_1 PartOccurrence_id_350_2 PartOccurrence_id_350_3 PartOccurrence_id_350_4 PartOccurrence_id_350_5 PartOccurrence_id_350_6 PartOccurrence_id_350_7 PartOccurrence_id_350_8 PartOccurrence_id_350_9</SubComponent>
         </Role>
         <Part>PartVersion_id_331_0</Part>
       </Component>

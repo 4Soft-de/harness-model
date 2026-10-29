@@ -30,11 +30,8 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
-import com.foursoft.harness.vec.v2x.VecPartOccurrence;
 import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
 import com.foursoft.harness.vec.v2x.VecPartWithSubComponentsRole;
-
-import static com.foursoft.harness.kbl2vec.transform.Queries.partOccurrences;
 
 public class PartWithSubComponentsRole implements Transformer<KblModuleConfiguration, VecPartWithSubComponentsRole> {
     @Override
@@ -44,8 +41,6 @@ public class PartWithSubComponentsRole implements Transformer<KblModuleConfigura
         element.setIdentification(source.getParentModule().getPartNumber());
 
         return TransformationResult.from(element)
-                .withLinker(partOccurrences(source), VecPartOccurrence.class,
-                            VecPartWithSubComponentsRole::getSubComponent)
                 .withLinker(Query.of(source), VecPartStructureSpecification.class,
                             VecPartWithSubComponentsRole::setPartStructureSpecification)
                 .build();
