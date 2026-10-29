@@ -3339,6 +3339,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_Assembly_part_1">
       <Identification>PSS-O12a714551a2</Identification>
       <DescribedPart>PartVersion_Assembly_part_1</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_Fixing_occurrence_1 PartOccurrence_Fixing_occurrence_2 PartOccurrence_Fixing_occurrence_3</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_Assembly_part_1">
@@ -3941,6 +3942,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_1">
       <Identification>PSS-5Ga108313641B</Identification>
       <DescribedPart>PartVersion_id_304_1</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_82 PartOccurrence_id_310_83 PartOccurrence_id_310_84 PartOccurrence_id_310_85 PartOccurrence_id_310_86 PartOccurrence_id_310_87 PartOccurrence_id_310_88 PartOccurrence_id_310_89 PartOccurrence_id_310_90 PartOccurrence_id_310_91 PartOccurrence_id_312_100 PartOccurrence_id_312_101 PartOccurrence_id_312_102 PartOccurrence_id_312_103 PartOccurrence_id_312_104 PartOccurrence_id_312_105 PartOccurrence_id_312_106 PartOccurrence_id_312_107 PartOccurrence_id_312_108 PartOccurrence_id_312_109 PartOccurrence_id_316_133 PartOccurrence_id_316_134 PartOccurrence_id_316_135 PartOccurrence_id_316_136 PartOccurrence_id_350_216 PartOccurrence_id_350_217 PartOccurrence_id_350_218 PartOccurrence_id_350_219 PartOccurrence_id_344_334 PartOccurrence_id_344_335 PartOccurrence_id_344_336 PartOccurrence_id_344_337 PartOccurrence_id_344_338 PartOccurrence_id_344_339 PartOccurrence_id_344_340 PartOccurrence_id_344_341 PartOccurrence_id_344_342 PartOccurrence_id_344_343 PartOccurrence_id_344_344 PartOccurrence_id_344_345 PartOccurrence_id_344_346 PartOccurrence_id_344_347 PartOccurrence_id_344_348 PartOccurrence_id_344_349 PartOccurrence_id_344_350 PartOccurrence_id_344_351 PartOccurrence_id_344_352 PartOccurrence_id_344_353</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_1">
@@ -4418,6 +4420,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_3">
       <Identification>PSS-5Ga108313641C</Identification>
       <DescribedPart>PartVersion_id_304_3</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_92 PartOccurrence_id_310_94 PartOccurrence_id_310_96 PartOccurrence_id_310_98 PartOccurrence_id_310_100 PartOccurrence_id_310_102 PartOccurrence_id_310_104 PartOccurrence_id_310_106 PartOccurrence_id_312_110 PartOccurrence_id_312_111 PartOccurrence_id_312_112 PartOccurrence_id_312_113 PartOccurrence_id_312_114 PartOccurrence_id_312_115 PartOccurrence_id_312_116 PartOccurrence_id_312_117 PartOccurrence_id_316_138 PartOccurrence_id_316_140 PartOccurrence_id_316_142 PartOccurrence_id_350_220 PartOccurrence_id_350_221 PartOccurrence_id_350_222 PartOccurrence_id_344_354 PartOccurrence_id_344_355 PartOccurrence_id_344_356 PartOccurrence_id_344_357 PartOccurrence_id_344_358 PartOccurrence_id_344_359 PartOccurrence_id_344_360 PartOccurrence_id_344_361 PartOccurrence_id_344_362 PartOccurrence_id_344_363 PartOccurrence_id_344_364 PartOccurrence_id_344_365 PartOccurrence_id_344_366 PartOccurrence_id_344_367 PartOccurrence_id_344_368 PartOccurrence_id_344_369</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_3">
@@ -4688,6 +4691,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_5">
       <Identification>PSS-5Ga108313641D</Identification>
       <DescribedPart>PartVersion_id_304_5</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_108 PartOccurrence_id_310_110 PartOccurrence_id_310_112 PartOccurrence_id_310_114 PartOccurrence_id_312_118 PartOccurrence_id_312_119 PartOccurrence_id_312_120 PartOccurrence_id_312_121 PartOccurrence_id_316_144 PartOccurrence_id_316_146 PartOccurrence_id_350_223 PartOccurrence_id_350_224 PartOccurrence_id_344_370 PartOccurrence_id_344_371 PartOccurrence_id_344_372 PartOccurrence_id_344_373 PartOccurrence_id_344_374 PartOccurrence_id_344_375 PartOccurrence_id_344_376 PartOccurrence_id_344_377</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_5">
@@ -5284,6 +5288,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_7">
       <Identification>PSS-5Ga108313651B</Identification>
       <DescribedPart>PartVersion_id_304_7</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_116 PartOccurrence_id_310_117 PartOccurrence_id_310_118 PartOccurrence_id_310_119 PartOccurrence_id_310_120 PartOccurrence_id_310_121 PartOccurrence_id_310_122 PartOccurrence_id_310_123 PartOccurrence_id_310_124 PartOccurrence_id_310_125 PartOccurrence_id_312_122 PartOccurrence_id_312_123 PartOccurrence_id_312_124 PartOccurrence_id_312_125 PartOccurrence_id_312_126 PartOccurrence_id_312_127 PartOccurrence_id_312_128 PartOccurrence_id_312_129 PartOccurrence_id_312_130 PartOccurrence_id_312_131 PartOccurrence_id_316_148 PartOccurrence_id_316_149 PartOccurrence_id_316_150 PartOccurrence_id_316_151 PartOccurrence_id_350_225 PartOccurrence_id_350_226 PartOccurrence_id_350_227 PartOccurrence_id_350_228 PartOccurrence_id_344_378 PartOccurrence_id_344_379 PartOccurrence_id_344_380 PartOccurrence_id_344_381 PartOccurrence_id_344_382 PartOccurrence_id_344_383 PartOccurrence_id_344_384 PartOccurrence_id_344_385 PartOccurrence_id_344_386 PartOccurrence_id_344_387 PartOccurrence_id_344_388 PartOccurrence_id_344_389 PartOccurrence_id_344_390 PartOccurrence_id_344_391 PartOccurrence_id_344_392 PartOccurrence_id_344_393 PartOccurrence_id_344_394 PartOccurrence_id_344_395 PartOccurrence_id_344_396 PartOccurrence_id_344_397</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_7">
@@ -5372,6 +5377,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_9">
       <Identification>PSS-5Ga108313651C</Identification>
       <DescribedPart>PartVersion_id_304_9</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_126 PartOccurrence_id_310_128 PartOccurrence_id_310_130 PartOccurrence_id_310_132 PartOccurrence_id_316_152 PartOccurrence_id_316_154</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_9">
@@ -5761,6 +5767,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_11">
       <Identification>PSS-5Ga108313621B</Identification>
       <DescribedPart>PartVersion_id_304_11</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_134 PartOccurrence_id_310_135 PartOccurrence_id_310_140 PartOccurrence_id_310_141 PartOccurrence_id_310_168 PartOccurrence_id_310_170 PartOccurrence_id_312_136 PartOccurrence_id_312_137 PartOccurrence_id_312_138 PartOccurrence_id_312_139 PartOccurrence_id_312_156 PartOccurrence_id_312_157 PartOccurrence_id_316_156 PartOccurrence_id_316_159 PartOccurrence_id_316_173 PartOccurrence_id_350_231 PartOccurrence_id_350_232 PartOccurrence_id_350_242 PartOccurrence_id_344_405 PartOccurrence_id_344_406 PartOccurrence_id_344_407 PartOccurrence_id_344_408 PartOccurrence_id_344_409 PartOccurrence_id_344_410 PartOccurrence_id_344_411 PartOccurrence_id_344_412 PartOccurrence_id_344_443 PartOccurrence_id_344_444 PartOccurrence_id_344_445 PartOccurrence_id_344_446</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_11">
@@ -6017,6 +6024,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_13">
       <Identification>PSS-5Ga108313621D</Identification>
       <DescribedPart>PartVersion_id_304_13</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_142 PartOccurrence_id_310_144 PartOccurrence_id_310_148 PartOccurrence_id_310_149 PartOccurrence_id_312_142 PartOccurrence_id_312_143 PartOccurrence_id_312_144 PartOccurrence_id_312_145 PartOccurrence_id_316_160 PartOccurrence_id_316_163 PartOccurrence_id_350_235 PartOccurrence_id_350_236 PartOccurrence_id_344_416 PartOccurrence_id_344_417 PartOccurrence_id_344_418 PartOccurrence_id_344_419 PartOccurrence_id_344_420 PartOccurrence_id_344_421 PartOccurrence_id_344_422</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_13">
@@ -6406,6 +6414,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_15">
       <Identification>PSS-5Ga10831363</Identification>
       <DescribedPart>PartVersion_id_304_15</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_154 PartOccurrence_id_310_155 PartOccurrence_id_310_156 PartOccurrence_id_310_157 PartOccurrence_id_310_158 PartOccurrence_id_310_159 PartOccurrence_id_312_146 PartOccurrence_id_312_147 PartOccurrence_id_312_148 PartOccurrence_id_312_149 PartOccurrence_id_312_150 PartOccurrence_id_312_151 PartOccurrence_id_316_166 PartOccurrence_id_316_167 PartOccurrence_id_316_168 PartOccurrence_id_350_237 PartOccurrence_id_350_238 PartOccurrence_id_350_239 PartOccurrence_id_344_423 PartOccurrence_id_344_424 PartOccurrence_id_344_425 PartOccurrence_id_344_426 PartOccurrence_id_344_427 PartOccurrence_id_344_428 PartOccurrence_id_344_429 PartOccurrence_id_344_430 PartOccurrence_id_344_431 PartOccurrence_id_344_432 PartOccurrence_id_344_433 PartOccurrence_id_344_434</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_15">
@@ -6676,6 +6685,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_17">
       <Identification>PSS-5Ga108313631B</Identification>
       <DescribedPart>PartVersion_id_304_17</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_160 PartOccurrence_id_310_162 PartOccurrence_id_310_164 PartOccurrence_id_310_166 PartOccurrence_id_312_152 PartOccurrence_id_312_153 PartOccurrence_id_312_154 PartOccurrence_id_312_155 PartOccurrence_id_316_169 PartOccurrence_id_316_171 PartOccurrence_id_350_240 PartOccurrence_id_350_241 PartOccurrence_id_344_435 PartOccurrence_id_344_436 PartOccurrence_id_344_437 PartOccurrence_id_344_438 PartOccurrence_id_344_439 PartOccurrence_id_344_440 PartOccurrence_id_344_441 PartOccurrence_id_344_442</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_17">
@@ -6860,6 +6870,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:PartStructureSpecification" id="PartStructureSpecification_id_304_19">
       <Identification>PSS-5Ga108313621E</Identification>
       <DescribedPart>PartVersion_id_304_19</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_310_172 PartOccurrence_id_310_174 PartOccurrence_id_310_176 PartOccurrence_id_310_178 PartOccurrence_id_312_158 PartOccurrence_id_312_159 PartOccurrence_id_316_175 PartOccurrence_id_316_177 PartOccurrence_id_350_243 PartOccurrence_id_350_244 PartOccurrence_id_344_447 PartOccurrence_id_344_448 PartOccurrence_id_344_449</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_19">
@@ -99898,6 +99909,7 @@ This is not intended for productive use and is not complete!
       <Identification>PSS-AS0105563</Identification>
       <SpecialPartType>multifuse</SpecialPartType>
       <DescribedPart>PartVersion_id_304_1</DescribedPart>
+      <Content>Assembly</Content>
       <InBillOfMaterial>PartOccurrence_id_303_1 PartOccurrence_id_303_3 PartOccurrence_id_303_5 PartOccurrence_id_303_7 PartOccurrence_id_303_9 PartOccurrence_id_303_11</InBillOfMaterial>
     </Specification>
     <Specification xsi:type="vec:PlaceableElementSpecification" id="PlaceableElementSpecification_id_304_1">
