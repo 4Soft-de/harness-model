@@ -6,7 +6,7 @@ This is just a showcase implementation for KBL mapping in the VEC.
 This is not intended for productive use and is not complete!
 -->
 <vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
-  <VecVersion>2.1.0</VecVersion>
+  <VecVersion>2.2.0</VecVersion>
   <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
   <DocumentVersion id="DocumentVersion_id_315_1">
@@ -845,7 +845,7 @@ This is just a showcase implementation for KBL mapping in the VEC.
 This is not intended for productive use and is not complete!
 -->
 <vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
-  <VecVersion>2.1.0</VecVersion>
+  <VecVersion>2.2.0</VecVersion>
   <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
   <DocumentVersion id="DocumentVersion_id_309_0">
@@ -3280,7 +3280,7 @@ This is just a showcase implementation for KBL mapping in the VEC.
 This is not intended for productive use and is not complete!
 -->
 <vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
-  <VecVersion>2.1.0</VecVersion>
+  <VecVersion>2.2.0</VecVersion>
   <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
   <DocumentVersion id="DocumentVersion_Assembly_part_1">
@@ -99850,7 +99850,7 @@ This is just a showcase implementation for KBL mapping in the VEC.
 This is not intended for productive use and is not complete!
 -->
 <vec:VecContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vec="http://www.prostep.org/ecad-if/2011/vec" id="Content_KBL_container" xsi:schemaLocation="">
-  <VecVersion>2.1.0</VecVersion>
+  <VecVersion>2.2.0</VecVersion>
   <GeneratingSystemName>4Soft KBL2VEC Converter</GeneratingSystemName>
   <GeneratingSystemVersion>0.0.1</GeneratingSystemVersion>
   <DocumentVersion id="DocumentVersion_id_304_1">

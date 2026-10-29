@@ -34,6 +34,7 @@ import com.foursoft.harness.vec.v2x.VecContent;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecUnit;
+import com.foursoft.harness.vec.v2x.Version;
 
 import static com.foursoft.harness.kbl2vec.transform.Queries.allParts;
 
@@ -42,7 +43,7 @@ public class VecContentTransformer implements Transformer<KBLContainer, VecConte
     public TransformationResult<VecContent> transform(final TransformationContext context, final KBLContainer source) {
         final VecContent resultElement = new VecContent();
 
-        resultElement.setVecVersion("2.1.0");
+        resultElement.setVecVersion(Version.VERSION);
         resultElement.setGeneratingSystemName("4Soft KBL2VEC Converter");
         resultElement.setGeneratingSystemVersion("0.0.1");
 
