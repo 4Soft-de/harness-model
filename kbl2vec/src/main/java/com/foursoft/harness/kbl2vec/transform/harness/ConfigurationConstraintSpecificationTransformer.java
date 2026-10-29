@@ -38,6 +38,7 @@ import com.foursoft.harness.vec.v2x.VecConfigurationConstraintSpecification;
 
 import java.util.stream.Stream;
 
+import static com.foursoft.harness.kbl2vec.transform.Queries.partOccurrences;
 import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 public class ConfigurationConstraintSpecificationTransformer
@@ -45,6 +46,11 @@ public class ConfigurationConstraintSpecificationTransformer
     @Override
     public TransformationResult<VecConfigurationConstraintSpecification> transform(final TransformationContext context,
                                                                                    final KblHarness source) {
+        if (moduleConfigurationQuery(source).stream().noneMatch(this::constrainsAnything)) {
+            // A ConfigurationConstraintSpecification requires at least one ConfigurationConstraint.
+            return TransformationResult.noResult();
+        }
+
         final VecConfigurationConstraintSpecification element = new VecConfigurationConstraintSpecification();
         element.setIdentification(
                 abbreviatedModelClassName(element.getClass()) + "-" + source.getPartNumber());
@@ -71,5 +77,15 @@ public class ConfigurationConstraintSpecificationTransformer
             return Stream.concat(moduleConfigurations, standAloneConfigurations)
                     .toList();
         };
+    }
+
+    /**
+     * Whether a {@link VecConfigurationConstraint} is created for the configuration: a module's configuration
+     * constrains the module, a standalone configuration the components it controls, so a standalone configuration
+     * without controlled components is skipped by {@link ModuleConfigurationConfigurationConstraintTransformer}.
+     */
+    private boolean constrainsAnything(final KblModuleConfiguration configuration) {
+        return configuration.getParentModule() != null
+                || partOccurrences(configuration).stream().findAny().isPresent();
     }
 }
