@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecCavityPlugSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class CavityPlugSpecificationTransformer implements Transformer<KblCavityPlug, VecCavityPlugSpecification> {
 
@@ -39,7 +40,7 @@ public class CavityPlugSpecificationTransformer implements Transformer<KblCavity
     public TransformationResult<VecCavityPlugSpecification> transform(final TransformationContext context,
                                                                       final KblCavityPlug source) {
         final VecCavityPlugSpecification destination = new VecCavityPlugSpecification();
-        destination.setSpecialPartType(source.getPlugType());
+        destination.setSpecialPartType(definedOrNull(source.getPlugType()));
 
         return TransformationResult
                 .from(destination)

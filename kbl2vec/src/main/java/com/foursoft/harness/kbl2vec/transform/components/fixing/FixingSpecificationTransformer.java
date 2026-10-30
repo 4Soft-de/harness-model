@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecFixingSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class FixingSpecificationTransformer implements Transformer<KblFixing, VecFixingSpecification> {
 
@@ -39,7 +40,7 @@ public class FixingSpecificationTransformer implements Transformer<KblFixing, Ve
     public TransformationResult<VecFixingSpecification> transform(final TransformationContext context,
                                                                   final KblFixing source) {
         final VecFixingSpecification destination = new VecFixingSpecification();
-        destination.setSpecialPartType(source.getFixingType());
+        destination.setSpecialPartType(definedOrNull(source.getFixingType()));
 
         return TransformationResult.from(destination)
                 .withFragment(commonSpecificationAttributes(source))

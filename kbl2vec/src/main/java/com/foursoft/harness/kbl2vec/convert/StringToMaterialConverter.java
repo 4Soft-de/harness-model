@@ -26,9 +26,10 @@
 package com.foursoft.harness.kbl2vec.convert;
 
 import com.foursoft.harness.vec.v2x.VecMaterial;
-import com.google.common.base.Strings;
 
 import java.util.Optional;
+
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.isUndefined;
 
 public class StringToMaterialConverter implements Converter<String, Optional<VecMaterial>> {
 
@@ -40,7 +41,7 @@ public class StringToMaterialConverter implements Converter<String, Optional<Vec
 
     @Override
     public Optional<VecMaterial> convert(final String source) {
-        if (Strings.isNullOrEmpty(source)) {
+        if (isUndefined(source)) {
             return Optional.empty();
         }
         final VecMaterial material = new VecMaterial();
