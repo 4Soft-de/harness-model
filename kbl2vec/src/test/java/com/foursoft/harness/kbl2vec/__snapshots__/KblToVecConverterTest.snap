@@ -27007,12 +27007,6 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:VariantConfigurationSpecification" id="VariantConfigurationSpecification_id_328_0">
       <Identification>VCS-TAB016120</Identification>
-<!--This occurrence has no "Id" in the KBL data.-->
-      <VariantConfiguration id="VariantConfiguration_id_353_136">
-        <Identification>GenericIdentifier-220</Identification>
-        <LogisticControlExpression>L0L+QV0/QV3/QU8+I8L</LogisticControlExpression>
-        <ConfigurationType>Logistic</ConfigurationType>
-      </VariantConfiguration>
       <VariantConfiguration id="VariantConfiguration_id_353_0">
         <Identification>VarConf_aaa108a1aaa</Identification>
         <LogisticControlExpression>L0L+K8S</LogisticControlExpression>
@@ -27359,7 +27353,7 @@ This is not intended for productive use and is not complete!
 <!--This occurrence has no "Id" in the KBL data.-->
       <ConfigurationConstraint id="ConfigurationConstraint_id_353_136">
         <Identification>GenericIdentifier-221</Identification>
-        <ConfigInfo>VariantConfiguration_id_353_136</ConfigInfo>
+        <ConfigInfo>VariantConfiguration_id_353_29</ConfigInfo>
         <ConstrainedElements>PartOccurrence_Wire_protection_occurrence_92 PartOccurrence_Wire_protection_occurrence_93</ConstrainedElements>
       </ConfigurationConstraint>
     </Specification>

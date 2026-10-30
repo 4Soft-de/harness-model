@@ -36,8 +36,11 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecVariantConfiguration;
 import com.foursoft.harness.vec.v2x.VecVariantConfigurationSpecification;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.isUndefined;
 import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 public class VariantConfigurationSpecificationTransformer
@@ -48,11 +51,39 @@ public class VariantConfigurationSpecificationTransformer
         final VecVariantConfigurationSpecification element = new VecVariantConfigurationSpecification();
         element.setIdentification(
                 abbreviatedModelClassName(element.getClass()) + "-" + source.getPartNumber());
+        warnAboutDroppedProcessingInstructions(context, source);
         return TransformationResult.from(element)
+                // One VariantConfiguration per distinct logistic control expression (see the VEC guideline
+                // product-definition/harness), all configurations with the same expression reference it. The first one
+                // is retained, so module configurations come first: their identification is derived from the module.
                 .withDownstream(KblModuleConfiguration.class, VecVariantConfiguration.class,
                                 moduleConfigurationQuery(source),
-                                VecVariantConfigurationSpecification::getVariantConfigurations)
+                                VecVariantConfigurationSpecification::getVariantConfigurations,
+                                VariantConfigurationSpecificationTransformer::expressionKey, null)
                 .build();
+    }
+
+    /**
+     * The downstream transformations of a deduplicated configuration are not executed, so its processing instructions
+     * are lost.
+     */
+    private void warnAboutDroppedProcessingInstructions(final TransformationContext context, final KblHarness source) {
+        final Set<String> expressions = new HashSet<>();
+        moduleConfigurationQuery(source).stream()
+                .filter(c -> !isUndefined(c.getLogisticControlInformation()))
+                .filter(c -> !expressions.add(c.getLogisticControlInformation()))
+                .filter(c -> !c.getProcessingInstructions().isEmpty())
+                .forEach(c -> context.getLogger().warn(
+                        "'{}' has the same logistic control expression as another configuration, its processing " +
+                                "instructions are dropped.", c));
+    }
+
+    /**
+     * Configurations without an expression are never merged, each one is its own key.
+     */
+    private static Object expressionKey(final VecVariantConfiguration configuration) {
+        final String expression = configuration.getLogisticControlExpression();
+        return isUndefined(expression) ? configuration : expression;
     }
 
     Query<KblModuleConfiguration> moduleConfigurationQuery(final KblHarness source) {
@@ -64,7 +95,7 @@ public class VariantConfigurationSpecificationTransformer
                     source.getModuleConfigurations().stream()
                             .filter(c -> c.getConfigurationType() != KblModuleConfigurationType.MODULE_LIST);
 
-            return Stream.concat(standAloneModuleConfigurations, moduleModuleConfigurations)
+            return Stream.concat(moduleModuleConfigurations, standAloneModuleConfigurations)
                     .toList();
         };
     }
