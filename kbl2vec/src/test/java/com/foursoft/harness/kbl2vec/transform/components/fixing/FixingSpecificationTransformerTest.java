@@ -55,4 +55,22 @@ class FixingSpecificationTransformerTest {
                 .returns("TestFixingType", VecFixingSpecification::getSpecialPartType)
                 .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(vecPartVersion));
     }
+
+    @Test
+    void should_omitAnUndefinedFixingType() {
+        // Given
+        final FixingSpecificationTransformer transformer = new FixingSpecificationTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblFixing source = new KblFixing();
+        source.setFixingType("/NULL");
+        orchestrator.addMockMapping(source, new VecPartVersion());
+
+        // When
+        final VecFixingSpecification result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns(null, VecFixingSpecification::getSpecialPartType);
+    }
 }

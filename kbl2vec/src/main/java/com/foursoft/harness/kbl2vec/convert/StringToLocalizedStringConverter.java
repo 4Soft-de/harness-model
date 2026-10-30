@@ -27,9 +27,10 @@ package com.foursoft.harness.kbl2vec.convert;
 
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
-import com.google.common.base.Strings;
 
 import java.util.Optional;
+
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.isUndefined;
 
 public class StringToLocalizedStringConverter implements Converter<String, Optional<VecLocalizedString>> {
 
@@ -41,7 +42,7 @@ public class StringToLocalizedStringConverter implements Converter<String, Optio
 
     @Override
     public Optional<VecLocalizedString> convert(final String source) {
-        if (Strings.isNullOrEmpty(source)) {
+        if (isUndefined(source)) {
             return Optional.empty();
         }
         final VecLocalizedString localizedString = new VecLocalizedString();

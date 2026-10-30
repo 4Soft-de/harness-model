@@ -29,9 +29,10 @@ import com.foursoft.harness.kbl.v25.KblLanguageCode;
 import com.foursoft.harness.kbl.v25.KblLocalizedString;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
-import com.google.common.base.Strings;
 
 import java.util.Optional;
+
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.isUndefined;
 
 /**
  * Converts a {@link KblLocalizedString} into a {@link VecLocalizedString}. The language codes of both models are
@@ -48,7 +49,7 @@ public class LocalizedStringConverter implements Converter<KblLocalizedString, O
 
     @Override
     public Optional<VecLocalizedString> convert(final KblLocalizedString source) {
-        if (source == null || Strings.isNullOrEmpty(source.getValue())) {
+        if (source == null || isUndefined(source.getValue())) {
             return Optional.empty();
         }
         final VecLocalizedString localizedString = new VecLocalizedString();

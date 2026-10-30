@@ -36,6 +36,7 @@ import com.foursoft.harness.vec.v2x.VecTerminalSpecification;
 import com.foursoft.harness.vec.v2x.VecWireReception;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class TerminalSpecificationTransformer implements Transformer<KblGeneralTerminal, VecTerminalSpecification> {
 
@@ -43,7 +44,7 @@ public class TerminalSpecificationTransformer implements Transformer<KblGeneralT
     public TransformationResult<VecTerminalSpecification> transform(final TransformationContext context,
                                                                     final KblGeneralTerminal source) {
         final VecTerminalSpecification destination = new VecTerminalSpecification();
-        destination.setSpecialPartType(source.getTerminalType());
+        destination.setSpecialPartType(definedOrNull(source.getTerminalType()));
 
         return TransformationResult.from(destination)
                 .withFragment(commonSpecificationAttributes(source))
