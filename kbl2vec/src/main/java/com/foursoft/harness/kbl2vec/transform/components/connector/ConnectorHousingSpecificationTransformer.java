@@ -36,6 +36,7 @@ import com.foursoft.harness.vec.v2x.VecSlot;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class ConnectorHousingSpecificationTransformer
         implements Transformer<KblConnectorHousing, VecConnectorHousingSpecification> {
@@ -44,7 +45,7 @@ public class ConnectorHousingSpecificationTransformer
                                                                             final KblConnectorHousing connector) {
         final VecConnectorHousingSpecification specification = new VecConnectorHousingSpecification();
 
-        specification.setSpecialPartType(connector.getHousingType());
+        specification.setSpecialPartType(definedOrNull(connector.getHousingType()));
         if (StringUtils.isNotBlank(connector.getHousingCode())) {
             final VecCoding coding = new VecCoding();
             coding.setCoding(connector.getHousingCode());

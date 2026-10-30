@@ -26,9 +26,10 @@
 package com.foursoft.harness.kbl2vec.convert;
 
 import com.foursoft.harness.vec.v2x.VecColor;
-import com.google.common.base.Strings;
 
 import java.util.Optional;
+
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.isUndefined;
 
 public class StringToColorConverter implements Converter<String, Optional<VecColor>> {
 
@@ -40,7 +41,7 @@ public class StringToColorConverter implements Converter<String, Optional<VecCol
 
     @Override
     public Optional<VecColor> convert(final String source) {
-        if (Strings.isNullOrEmpty(source)) {
+        if (isUndefined(source)) {
             return Optional.empty();
         }
         final VecColor vecColor = new VecColor();

@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class AccessorySpecificationTransformer implements
         Transformer<KblAccessory, VecPartOrUsageRelatedSpecification> {
@@ -39,7 +40,7 @@ public class AccessorySpecificationTransformer implements
     public TransformationResult<VecPartOrUsageRelatedSpecification> transform(final TransformationContext context,
                                                                               final KblAccessory source) {
         final VecPartOrUsageRelatedSpecification destination = new VecPartOrUsageRelatedSpecification();
-        destination.setSpecialPartType(source.getAccessoryType());
+        destination.setSpecialPartType(definedOrNull(source.getAccessoryType()));
 
         return TransformationResult.from(destination)
                 .withFragment(commonSpecificationAttributes(source))
