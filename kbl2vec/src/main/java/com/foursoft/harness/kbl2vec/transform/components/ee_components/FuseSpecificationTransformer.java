@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
+import com.foursoft.harness.kbl.v25.KblComponent;
 import com.foursoft.harness.kbl.v25.KblFuse;
 import com.foursoft.harness.kbl.v25.KblFuseType;
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
@@ -33,6 +34,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecFuseSpecification;
+import com.foursoft.harness.vec.v2x.VecHousingComponent;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
@@ -41,8 +43,8 @@ import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 /**
  * Transforms a KBL {@link KblFuse}. The key of the fuse type is copied as it is, the predefined values of the VEC
  * {@code FuseType} (e.g. {@code Type_SF30}) are not interpreted. VEC has no counterpart for the nominal current, it
- * is mapped to {@code IMax}. KBL describes no internal structure of a fuse, therefore the specification has no
- * housing or pin components.
+ * is mapped to {@code IMax}. KBL describes no internal structure of a fuse, therefore the specification has a single
+ * {@link ComponentHousingTransformer housing component} without pin components.
  */
 public class FuseSpecificationTransformer implements Transformer<KblFuse, VecFuseSpecification> {
 
@@ -58,6 +60,8 @@ public class FuseSpecificationTransformer implements Transformer<KblFuse, VecFus
                 .withFragment(commonSpecificationAttributes(source))
                 .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
                                 Query.of(source::getNominalCurrent), VecFuseSpecification::setIMax)
+                .withDownstream(KblComponent.class, VecHousingComponent.class, Query.of(source),
+                                VecFuseSpecification::getHousingComponents)
                 .build();
     }
 }

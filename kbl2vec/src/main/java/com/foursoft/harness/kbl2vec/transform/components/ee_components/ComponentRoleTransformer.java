@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecEEComponentRole;
 import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
+import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
 
 public class ComponentRoleTransformer implements Transformer<KblComponentOccurrence, VecEEComponentRole> {
 
@@ -41,6 +42,8 @@ public class ComponentRoleTransformer implements Transformer<KblComponentOccurre
         final VecEEComponentRole destination = new VecEEComponentRole();
         destination.setIdentification(source.getId());
         return TransformationResult.from(destination)
+                .withDownstream(KblComponentOccurrence.class, VecHousingComponentReference.class, Query.of(source),
+                                VecEEComponentRole::getHousingComponentReves)
                 .withLinker(Query.of(source::getPart), VecEEComponentSpecification.class,
                             VecEEComponentRole::setEEComponentSpecification)
                 .build();

@@ -30,6 +30,7 @@ import com.foursoft.harness.kbl.v25.KblFuseType;
 import com.foursoft.harness.kbl.v25.KblNumericalValue;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecFuseSpecification;
+import com.foursoft.harness.vec.v2x.VecHousingComponent;
 import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import org.junit.jupiter.api.Test;
@@ -54,8 +55,10 @@ class FuseSpecificationTransformerTest {
 
         final VecPartVersion partVersion = new VecPartVersion();
         final VecNumericalValue iMax = new VecNumericalValue();
+        final VecHousingComponent housingComponent = new VecHousingComponent();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator()
                 .addMockMapping(source, partVersion)
+                .addMockMapping(source, housingComponent)
                 .addMockMapping(nominalCurrent, iMax);
 
         // When
@@ -66,7 +69,8 @@ class FuseSpecificationTransformerTest {
                 .returns("FS-F-001", VecFuseSpecification::getIdentification)
                 .returns("Type_SF30", VecFuseSpecification::getFuseType)
                 .returns(iMax, VecFuseSpecification::getIMax)
-                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(partVersion));
+                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(partVersion))
+                .satisfies(v -> assertThat(v.getHousingComponents()).containsExactly(housingComponent));
     }
 
     @Test
@@ -74,7 +78,8 @@ class FuseSpecificationTransformerTest {
         // Given
         final KblFuse source = new KblFuse();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator()
-                .addMockMapping(source, new VecPartVersion());
+                .addMockMapping(source, new VecPartVersion())
+                .addMockMapping(source, new VecHousingComponent());
 
         // When
         final VecFuseSpecification result = orchestrator.transform(transformer, source);

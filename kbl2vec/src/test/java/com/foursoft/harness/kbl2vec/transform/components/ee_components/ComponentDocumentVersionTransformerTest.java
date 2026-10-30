@@ -29,6 +29,7 @@ import com.foursoft.harness.kbl.v25.KblComponent;
 import com.foursoft.harness.kbl.v25.KblComponentBox;
 import com.foursoft.harness.kbl.v25.KblFuse;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
 import com.foursoft.harness.vec.v2x.VecFuseSpecification;
@@ -48,9 +49,11 @@ class ComponentDocumentVersionTransformerTest {
         final KblComponent source = new KblComponent();
         final VecGeneralTechnicalPartSpecification generalSpecification = new VecGeneralTechnicalPartSpecification();
         final VecEEComponentSpecification componentSpecification = new VecEEComponentSpecification();
+        final VecConnectorHousingSpecification housingSpecification = new VecConnectorHousingSpecification();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator()
                 .addMockMapping(source, generalSpecification)
                 .addMockMapping(source, componentSpecification)
+                .addMockMapping(source, housingSpecification)
                 .addMockMapping(source, new VecPartVersion());
 
         // When
@@ -58,7 +61,8 @@ class ComponentDocumentVersionTransformerTest {
 
         // Then
         assertThat(result).isNotNull();
-        assertThat(result.getSpecifications()).containsExactly(generalSpecification, componentSpecification);
+        assertThat(result.getSpecifications()).containsExactly(generalSpecification, componentSpecification,
+                                                             housingSpecification);
     }
 
     @Test
@@ -67,9 +71,11 @@ class ComponentDocumentVersionTransformerTest {
         final KblFuse source = new KblFuse();
         final VecGeneralTechnicalPartSpecification generalSpecification = new VecGeneralTechnicalPartSpecification();
         final VecFuseSpecification fuseSpecification = new VecFuseSpecification();
+        final VecConnectorHousingSpecification housingSpecification = new VecConnectorHousingSpecification();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator()
                 .addMockMapping(source, generalSpecification)
                 .addMockMapping(source, fuseSpecification)
+                .addMockMapping(source, housingSpecification)
                 .addMockMapping(source, new VecPartVersion());
 
         // When
@@ -77,7 +83,8 @@ class ComponentDocumentVersionTransformerTest {
 
         // Then
         assertThat(result).isNotNull();
-        assertThat(result.getSpecifications()).containsExactly(generalSpecification, fuseSpecification);
+        assertThat(result.getSpecifications()).containsExactly(generalSpecification, fuseSpecification,
+                                                             housingSpecification);
     }
 
     @Test
