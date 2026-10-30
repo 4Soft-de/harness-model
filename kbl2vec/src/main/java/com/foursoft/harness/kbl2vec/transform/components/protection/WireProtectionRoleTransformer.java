@@ -25,11 +25,13 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.protection;
 
+import com.foursoft.harness.kbl.v25.KblNumericalValue;
 import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecWireProtectionRole;
 import com.foursoft.harness.vec.v2x.VecWireProtectionSpecification;
 
@@ -45,6 +47,8 @@ public class WireProtectionRoleTransformer implements Transformer<KblWireProtect
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source::getPart), VecWireProtectionSpecification.class,
                             VecWireProtectionRole::setWireProtectionSpecification)
+                .withDownstream(KblNumericalValue.class, VecNumericalValue.class,
+                                Query.of(source::getProtectionLength), VecWireProtectionRole::setProtectionLength)
                 .build();
     }
 }
