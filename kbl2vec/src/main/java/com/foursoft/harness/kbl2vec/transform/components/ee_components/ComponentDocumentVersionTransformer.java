@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
 import com.foursoft.harness.vec.v2x.VecFuseSpecification;
@@ -54,7 +55,10 @@ public class ComponentDocumentVersionTransformer implements Transformer<KblPart,
                 builder.withDownstream(KblComponent.class, VecEEComponentSpecification.class, Query.of(source),
                                        VecDocumentVersion::getSpecifications);
             }
-            return builder.build();
+            return builder
+                    .withDownstream(KblComponent.class, VecConnectorHousingSpecification.class, Query.of(source),
+                                    VecDocumentVersion::getSpecifications)
+                    .build();
         }
         return TransformationResult.noResult();
     }

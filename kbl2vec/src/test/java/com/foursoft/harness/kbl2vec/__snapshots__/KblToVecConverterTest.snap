@@ -7033,6 +7033,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_0">
       <Identification>EECS-4Da106213641C</Identification>
       <DescribedPart>PartVersion_id_302_0</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_0">
+        <Identification>HC-4Da106213641C</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_0</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_0">
+      <Identification>CHS-4Da106213641C</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_1">
@@ -7058,6 +7065,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_1">
       <Identification>EECS-554104812a6</Identification>
       <DescribedPart>PartVersion_id_302_1</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_1">
+        <Identification>HC-554104812a6</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_1</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_1">
+      <Identification>CHS-554104812a6</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_2">
@@ -7083,6 +7097,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_2">
       <Identification>EECS-O1a281242129</Identification>
       <DescribedPart>PartVersion_id_302_2</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_2">
+        <Identification>HC-O1a281242129</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_2</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_2">
+      <Identification>CHS-O1a281242129</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_3">
@@ -7108,6 +7129,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_3">
       <Identification>EECS-O1a281242122</Identification>
       <DescribedPart>PartVersion_id_302_3</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_3">
+        <Identification>HC-O1a281242122</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_3</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_3">
+      <Identification>CHS-O1a281242122</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_4">
@@ -7133,6 +7161,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_4">
       <Identification>EECS-O1a281242124</Identification>
       <DescribedPart>PartVersion_id_302_4</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_4">
+        <Identification>HC-O1a281242124</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_4</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_4">
+      <Identification>CHS-O1a281242124</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_5">
@@ -7158,6 +7193,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_5">
       <Identification>EECS-WFD1TJDIFSVOHa21UFTU</Identification>
       <DescribedPart>PartVersion_id_302_5</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_5">
+        <Identification>HC-WFD1TJDIFSVOHa21UFTU</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_5</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_5">
+      <Identification>CHS-WFD1TJDIFSVOHa21UFTU</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_6">
@@ -7183,6 +7225,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_6">
       <Identification>EECS-O1a281242125</Identification>
       <DescribedPart>PartVersion_id_302_6</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_6">
+        <Identification>HC-O1a281242125</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_6</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_6">
+      <Identification>CHS-O1a281242125</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_7">
@@ -7208,6 +7257,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_7">
       <Identification>EECS-O12a3162012a</Identification>
       <DescribedPart>PartVersion_id_302_7</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_7">
+        <Identification>HC-O12a3162012a</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_7</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_7">
+      <Identification>CHS-O12a3162012a</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_8">
@@ -7233,6 +7289,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_8">
       <Identification>EECS-O12a316201a2</Identification>
       <DescribedPart>PartVersion_id_302_8</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_8">
+        <Identification>HC-O12a316201a2</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_8</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_8">
+      <Identification>CHS-O12a316201a2</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_9">
@@ -7258,6 +7321,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_9">
       <Identification>EECS-O12a316201a9</Identification>
       <DescribedPart>PartVersion_id_302_9</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_9">
+        <Identification>HC-O12a316201a9</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_9</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_9">
+      <Identification>CHS-O12a316201a9</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_10">
@@ -7283,6 +7353,13 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_10">
       <Identification>EECS-O12a316201a4</Identification>
       <DescribedPart>PartVersion_id_302_10</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_10">
+        <Identification>HC-O12a316201a4</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_10</HousingSpecification>
+      </HousingComponent>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_10">
+      <Identification>CHS-O12a316201a4</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_415_0">
@@ -71986,6 +72063,114 @@ This is not intended for productive use and is not complete!
         </WireMounting>
       </ContactPoint>
     </Specification>
+    <Specification xsi:type="vec:CouplingSpecification" id="CouplingSpecification_id_328_0">
+      <Identification>CS-TAB016120</Identification>
+      <CouplingPoint id="CouplingPoint_id_303_0">
+        <Identification>R_WISG_R9</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_4</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_0</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_1">
+        <Identification>SI_SIA_1_F1</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_7</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_1</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_2">
+        <Identification>SI_SITR_F1</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_61</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_2</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_3">
+        <Identification>SI_SITR_F2</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_62</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_3</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_4">
+        <Identification>SI_SITR_F3</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_63</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_4</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_5">
+        <Identification>SI_SITR_F4</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_57</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_5</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_6">
+        <Identification>SI_SITR_F5</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_58</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_6</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_7">
+        <Identification>SI_SITR_F6</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_59</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_7</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_8">
+        <Identification>SI_SITR_F8</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_52</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_8</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_9">
+        <Identification>SI_SITR_F9</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_40</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_9</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_10">
+        <Identification>SI_SITR_F10</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_42</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_10</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_11">
+        <Identification>SI_SITR_F11</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_43</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_11</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_12">
+        <Identification>SI_SITR_F12</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_48</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_12</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_13">
+        <Identification>SI_SITR_F23</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_66</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_13</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_14">
+        <Identification>SI_SITR_F24</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_67</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_14</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_15">
+        <Identification>SI_SITR_F25</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_68</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_15</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_16">
+        <Identification>SI_SITR_F26</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_69</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_16</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_17">
+        <Identification>SI_SITR_F27</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_64</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_17</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_18">
+        <Identification>SI_SITR_F28</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_65</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_18</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_19">
+        <Identification>SI_SITR_F31.1</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_41</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_19</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_20">
+        <Identification>SI_SITR_F31.2</Identification>
+        <FirstConnector>ConnectorHousingRole_id_441_41</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_20</SecondConnector>
+      </CouplingPoint>
+    </Specification>
     <Specification xsi:type="vec:CompositionSpecification" id="CompositionSpecification_id_328_0">
       <Identification>MODULES</Identification>
       <Component id="PartOccurrence_id_331_0">
@@ -76562,6 +76747,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_0">
           <Identification>R_WISG_R9</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_0</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_0">
+            <Identification>R_WISG_R9</Identification>
+            <HousingComponent>HousingComponent_id_302_0</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_0">
+              <Identification>R_WISG_R9</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_0</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_0</Part>
       </Component>
@@ -76574,6 +76767,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_1">
           <Identification>SI_SIA_1_F1</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_1</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_1">
+            <Identification>SI_SIA_1_F1</Identification>
+            <HousingComponent>HousingComponent_id_302_1</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_1">
+              <Identification>SI_SIA_1_F1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_1</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_1</Part>
       </Component>
@@ -76586,6 +76787,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_2">
           <Identification>SI_SITR_F1</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_2</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_2">
+            <Identification>SI_SITR_F1</Identification>
+            <HousingComponent>HousingComponent_id_302_2</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_2">
+              <Identification>SI_SITR_F1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_2</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
@@ -76598,6 +76807,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_3">
           <Identification>SI_SITR_F2</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_3</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_3">
+            <Identification>SI_SITR_F2</Identification>
+            <HousingComponent>HousingComponent_id_302_3</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_3">
+              <Identification>SI_SITR_F2</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_3</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
@@ -76610,6 +76827,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_4">
           <Identification>SI_SITR_F3</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_3</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_4">
+            <Identification>SI_SITR_F3</Identification>
+            <HousingComponent>HousingComponent_id_302_3</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_4">
+              <Identification>SI_SITR_F3</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_3</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
@@ -76622,6 +76847,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_5">
           <Identification>SI_SITR_F4</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_2</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_5">
+            <Identification>SI_SITR_F4</Identification>
+            <HousingComponent>HousingComponent_id_302_2</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_5">
+              <Identification>SI_SITR_F4</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_2</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
@@ -76634,6 +76867,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_6">
           <Identification>SI_SITR_F5</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_2</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_6">
+            <Identification>SI_SITR_F5</Identification>
+            <HousingComponent>HousingComponent_id_302_2</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_6">
+              <Identification>SI_SITR_F5</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_2</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
@@ -76646,6 +76887,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_7">
           <Identification>SI_SITR_F6</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_2</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_7">
+            <Identification>SI_SITR_F6</Identification>
+            <HousingComponent>HousingComponent_id_302_2</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_7">
+              <Identification>SI_SITR_F6</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_2</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
@@ -76658,6 +76907,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_8">
           <Identification>SI_SITR_F8</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_4</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_8">
+            <Identification>SI_SITR_F8</Identification>
+            <HousingComponent>HousingComponent_id_302_4</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_8">
+              <Identification>SI_SITR_F8</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_4</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_4</Part>
       </Component>
@@ -76670,6 +76927,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_9">
           <Identification>SI_SITR_F9</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_3</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_9">
+            <Identification>SI_SITR_F9</Identification>
+            <HousingComponent>HousingComponent_id_302_3</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_9">
+              <Identification>SI_SITR_F9</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_3</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
@@ -76682,6 +76947,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_10">
           <Identification>SI_SITR_F10</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_5</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_10">
+            <Identification>SI_SITR_F10</Identification>
+            <HousingComponent>HousingComponent_id_302_5</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_10">
+              <Identification>SI_SITR_F10</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_5</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_5</Part>
       </Component>
@@ -76694,6 +76967,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_11">
           <Identification>SI_SITR_F11</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_6</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_11">
+            <Identification>SI_SITR_F11</Identification>
+            <HousingComponent>HousingComponent_id_302_6</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_11">
+              <Identification>SI_SITR_F11</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_6</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_6</Part>
       </Component>
@@ -76706,6 +76987,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_12">
           <Identification>SI_SITR_F12</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_3</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_12">
+            <Identification>SI_SITR_F12</Identification>
+            <HousingComponent>HousingComponent_id_302_3</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_12">
+              <Identification>SI_SITR_F12</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_3</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
@@ -76718,6 +77007,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_13">
           <Identification>SI_SITR_F23</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_7</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_13">
+            <Identification>SI_SITR_F23</Identification>
+            <HousingComponent>HousingComponent_id_302_7</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_13">
+              <Identification>SI_SITR_F23</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_7</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_7</Part>
       </Component>
@@ -76730,6 +77027,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_14">
           <Identification>SI_SITR_F24</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_14">
+            <Identification>SI_SITR_F24</Identification>
+            <HousingComponent>HousingComponent_id_302_8</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_14">
+              <Identification>SI_SITR_F24</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_8</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
@@ -76742,6 +77047,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_15">
           <Identification>SI_SITR_F25</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_15">
+            <Identification>SI_SITR_F25</Identification>
+            <HousingComponent>HousingComponent_id_302_8</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_15">
+              <Identification>SI_SITR_F25</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_8</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
@@ -76754,6 +77067,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_16">
           <Identification>SI_SITR_F26</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_16">
+            <Identification>SI_SITR_F26</Identification>
+            <HousingComponent>HousingComponent_id_302_8</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_16">
+              <Identification>SI_SITR_F26</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_8</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
@@ -76766,6 +77087,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_17">
           <Identification>SI_SITR_F27</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_17">
+            <Identification>SI_SITR_F27</Identification>
+            <HousingComponent>HousingComponent_id_302_8</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_17">
+              <Identification>SI_SITR_F27</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_8</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
@@ -76778,6 +77107,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_18">
           <Identification>SI_SITR_F28</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_18">
+            <Identification>SI_SITR_F28</Identification>
+            <HousingComponent>HousingComponent_id_302_8</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_18">
+              <Identification>SI_SITR_F28</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_8</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
@@ -76790,6 +77127,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_19">
           <Identification>SI_SITR_F31.1</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_9</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_19">
+            <Identification>SI_SITR_F31.1</Identification>
+            <HousingComponent>HousingComponent_id_302_9</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_19">
+              <Identification>SI_SITR_F31.1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_9</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_9</Part>
       </Component>
@@ -76802,6 +77147,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_20">
           <Identification>SI_SITR_F31.2</Identification>
           <EEComponentSpecification>EEComponentSpecification_id_302_10</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_20">
+            <Identification>SI_SITR_F31.2</Identification>
+            <HousingComponent>HousingComponent_id_302_10</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_20">
+              <Identification>SI_SITR_F31.2</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_10</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_10</Part>
       </Component>
@@ -97970,6 +98323,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_1">
           <Identification>MFS_740_C150_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_0</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_1">
+            <Identification>MFS_740_C150_1</Identification>
+            <HousingComponent>HousingComponent_id_302_0</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_1">
+              <Identification>MFS_740_C150_1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_0</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_0</Part>
       </Component>
@@ -97978,6 +98339,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_3">
           <Identification>MFS_740_C110_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_1</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_3">
+            <Identification>MFS_740_C110_1</Identification>
+            <HousingComponent>HousingComponent_id_302_1</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_3">
+              <Identification>MFS_740_C110_1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_1</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_1</Part>
       </Component>
@@ -97986,6 +98355,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_5">
           <Identification>MFS_740_C80_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_2</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_5">
+            <Identification>MFS_740_C80_1</Identification>
+            <HousingComponent>HousingComponent_id_302_2</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_5">
+              <Identification>MFS_740_C80_1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_2</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
@@ -97994,6 +98371,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_7">
           <Identification>MFS_740_C40_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_3</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_7">
+            <Identification>MFS_740_C40_1</Identification>
+            <HousingComponent>HousingComponent_id_302_3</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_7">
+              <Identification>MFS_740_C40_1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_3</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
@@ -98002,6 +98387,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_9">
           <Identification>MFS_740_C50_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_4</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_9">
+            <Identification>MFS_740_C50_1</Identification>
+            <HousingComponent>HousingComponent_id_302_4</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_9">
+              <Identification>MFS_740_C50_1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_4</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_4</Part>
       </Component>
@@ -98010,6 +98403,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_11">
           <Identification>MFS_740_C60_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_5</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_11">
+            <Identification>MFS_740_C60_1</Identification>
+            <HousingComponent>HousingComponent_id_302_5</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_11">
+              <Identification>MFS_740_C60_1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_5</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_5</Part>
       </Component>
@@ -98115,11 +98516,18 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_0">
       <Identification>FS-MFS_740_C150</Identification>
       <DescribedPart>PartVersion_id_302_0</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_0">
+        <Identification>HC-MFS_740_C150</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_0</HousingSpecification>
+      </HousingComponent>
       <FuseType>Type_SF30</FuseType>
       <IMax id="NumericalValue_id_392_0">
         <UnitComponent>CustomUnit_id_346_3</UnitComponent>
         <ValueComponent>150.0</ValueComponent>
       </IMax>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_0">
+      <Identification>CHS-MFS_740_C150</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_1">
@@ -98143,11 +98551,18 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_1">
       <Identification>FS-MFS_740_C110</Identification>
       <DescribedPart>PartVersion_id_302_1</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_1">
+        <Identification>HC-MFS_740_C110</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_1</HousingSpecification>
+      </HousingComponent>
       <FuseType>Type_SF30</FuseType>
       <IMax id="NumericalValue_id_392_1">
         <UnitComponent>CustomUnit_id_346_3</UnitComponent>
         <ValueComponent>110.0</ValueComponent>
       </IMax>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_1">
+      <Identification>CHS-MFS_740_C110</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_2">
@@ -98171,11 +98586,18 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_2">
       <Identification>FS-MFS_740_C80</Identification>
       <DescribedPart>PartVersion_id_302_2</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_2">
+        <Identification>HC-MFS_740_C80</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_2</HousingSpecification>
+      </HousingComponent>
       <FuseType>Type_SF30</FuseType>
       <IMax id="NumericalValue_id_392_2">
         <UnitComponent>CustomUnit_id_346_3</UnitComponent>
         <ValueComponent>80.0</ValueComponent>
       </IMax>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_2">
+      <Identification>CHS-MFS_740_C80</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_3">
@@ -98199,11 +98621,18 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_3">
       <Identification>FS-MFS_740_C40</Identification>
       <DescribedPart>PartVersion_id_302_3</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_3">
+        <Identification>HC-MFS_740_C40</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_3</HousingSpecification>
+      </HousingComponent>
       <FuseType>Type_SF30</FuseType>
       <IMax id="NumericalValue_id_392_3">
         <UnitComponent>CustomUnit_id_346_3</UnitComponent>
         <ValueComponent>40.0</ValueComponent>
       </IMax>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_3">
+      <Identification>CHS-MFS_740_C40</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_4">
@@ -98227,11 +98656,18 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_4">
       <Identification>FS-MFS_740_C50</Identification>
       <DescribedPart>PartVersion_id_302_4</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_4">
+        <Identification>HC-MFS_740_C50</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_4</HousingSpecification>
+      </HousingComponent>
       <FuseType>Type_SF30</FuseType>
       <IMax id="NumericalValue_id_392_4">
         <UnitComponent>CustomUnit_id_346_3</UnitComponent>
         <ValueComponent>50.0</ValueComponent>
       </IMax>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_4">
+      <Identification>CHS-MFS_740_C50</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_5">
@@ -98255,11 +98691,18 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_5">
       <Identification>FS-MFS_740_C60</Identification>
       <DescribedPart>PartVersion_id_302_5</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_5">
+        <Identification>HC-MFS_740_C60</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_5</HousingSpecification>
+      </HousingComponent>
       <FuseType>Type_SF30</FuseType>
       <IMax id="NumericalValue_id_392_5">
         <UnitComponent>CustomUnit_id_346_3</UnitComponent>
         <ValueComponent>60.0</ValueComponent>
       </IMax>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_5">
+      <Identification>CHS-MFS_740_C60</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_6">
@@ -98283,11 +98726,18 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_6">
       <Identification>FS-FUS00113114</Identification>
       <DescribedPart>PartVersion_id_302_6</DescribedPart>
+      <HousingComponent id="HousingComponent_id_302_6">
+        <Identification>HC-FUS00113114</Identification>
+        <HousingSpecification>ConnectorHousingSpecification_id_302_6</HousingSpecification>
+      </HousingComponent>
       <FuseType>Type_C</FuseType>
       <IMax id="NumericalValue_id_392_6">
         <UnitComponent>CustomUnit_id_346_3</UnitComponent>
         <ValueComponent>25.0</ValueComponent>
       </IMax>
+    </Specification>
+    <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_302_6">
+      <Identification>CHS-FUS00113114</Identification>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_413_0">
@@ -103822,6 +104272,44 @@ This is not intended for productive use and is not complete!
         </WireMounting>
       </ContactPoint>
     </Specification>
+    <Specification xsi:type="vec:CouplingSpecification" id="CouplingSpecification_id_328_0">
+      <Identification>CS-LTG0011200</Identification>
+      <CouplingPoint id="CouplingPoint_id_303_0">
+        <Identification>MF1_F1</Identification>
+        <FirstConnector>ConnectorHousingRole_id_442_0</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_0</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_2">
+        <Identification>MF1_F2</Identification>
+        <FirstConnector>ConnectorHousingRole_id_442_1</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_2</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_4">
+        <Identification>MF1_F3</Identification>
+        <FirstConnector>ConnectorHousingRole_id_442_2</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_4</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_6">
+        <Identification>MF1_F4</Identification>
+        <FirstConnector>ConnectorHousingRole_id_442_3</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_6</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_8">
+        <Identification>MF1_F5</Identification>
+        <FirstConnector>ConnectorHousingRole_id_442_4</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_8</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_10">
+        <Identification>MF1_F6</Identification>
+        <FirstConnector>ConnectorHousingRole_id_442_5</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_10</SecondConnector>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_303_12">
+        <Identification>SR1.1_FS4</Identification>
+        <FirstConnector>ConnectorHousingRole_id_442_9</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_303_12</SecondConnector>
+      </CouplingPoint>
+    </Specification>
     <Specification xsi:type="vec:CompositionSpecification" id="CompositionSpecification_id_328_0">
       <Identification>MODULES</Identification>
       <Component id="PartOccurrence_id_331_0">
@@ -104485,6 +104973,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_0">
           <Identification>MF1_F1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_0</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_0">
+            <Identification>MF1_F1</Identification>
+            <HousingComponent>HousingComponent_id_302_0</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_0">
+              <Identification>MF1_F1</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_0</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_1</InstanciatedOccurrence>
         <Part>PartVersion_id_302_0</Part>
@@ -104503,6 +104999,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_2">
           <Identification>MF1_F2</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_1</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_2">
+            <Identification>MF1_F2</Identification>
+            <HousingComponent>HousingComponent_id_302_1</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_2">
+              <Identification>MF1_F2</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_1</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_3</InstanciatedOccurrence>
         <Part>PartVersion_id_302_1</Part>
@@ -104521,6 +105025,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_4">
           <Identification>MF1_F3</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_2</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_4">
+            <Identification>MF1_F3</Identification>
+            <HousingComponent>HousingComponent_id_302_2</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_4">
+              <Identification>MF1_F3</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_2</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_5</InstanciatedOccurrence>
         <Part>PartVersion_id_302_2</Part>
@@ -104539,6 +105051,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_6">
           <Identification>MF1_F4</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_3</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_6">
+            <Identification>MF1_F4</Identification>
+            <HousingComponent>HousingComponent_id_302_3</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_6">
+              <Identification>MF1_F4</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_3</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_7</InstanciatedOccurrence>
         <Part>PartVersion_id_302_3</Part>
@@ -104557,6 +105077,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_8">
           <Identification>MF1_F5</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_4</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_8">
+            <Identification>MF1_F5</Identification>
+            <HousingComponent>HousingComponent_id_302_4</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_8">
+              <Identification>MF1_F5</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_4</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_9</InstanciatedOccurrence>
         <Part>PartVersion_id_302_4</Part>
@@ -104575,6 +105103,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_10">
           <Identification>MF1_F6</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_5</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_10">
+            <Identification>MF1_F6</Identification>
+            <HousingComponent>HousingComponent_id_302_5</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_10">
+              <Identification>MF1_F6</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_5</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_11</InstanciatedOccurrence>
         <Part>PartVersion_id_302_5</Part>
@@ -104593,6 +105129,14 @@ This is not intended for productive use and is not complete!
         <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_12">
           <Identification>SR1.1_FS4</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_6</EEComponentSpecification>
+          <HousingComponentRef id="HousingComponentReference_id_303_12">
+            <Identification>SR1.1_FS4</Identification>
+            <HousingComponent>HousingComponent_id_302_6</HousingComponent>
+            <ConnectorHousingRole id="ConnectorHousingRole_id_303_12">
+              <Identification>SR1.1_FS4</Identification>
+              <ConnectorHousingSpecification>ConnectorHousingSpecification_id_302_6</ConnectorHousingSpecification>
+            </ConnectorHousingRole>
+          </HousingComponentRef>
         </Role>
         <Part>PartVersion_id_302_6</Part>
       </Component>
