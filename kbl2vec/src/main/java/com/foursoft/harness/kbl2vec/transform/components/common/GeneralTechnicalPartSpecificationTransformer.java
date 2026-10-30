@@ -56,6 +56,9 @@ public class GeneralTechnicalPartSpecificationTransformer
         } else if (source instanceof final KblCavityPlug kblCavityPlug) {
             colorConverter.convert(kblCavityPlug.getColour())
                     .ifPresent(specification.getColorInformations()::add);
+        } else if (source instanceof final KblFuse kblFuse) {
+            colorConverter.convert(kblFuse.getColour())
+                    .ifPresent(specification.getColorInformations()::add);
         }
 
         return TransformationResult.from(specification)
