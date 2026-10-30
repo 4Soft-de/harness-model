@@ -7030,6 +7030,10 @@ This is not intended for productive use and is not complete!
         </Value>
       </MassInformation>
     </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_0">
+      <Identification>EECS-4Da106213641C</Identification>
+      <DescribedPart>PartVersion_id_302_0</DescribedPart>
+    </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_1">
     <Description xsi:type="vec:LocalizedString" id="LocalizedString_00027">
@@ -7050,6 +7054,10 @@ This is not intended for productive use and is not complete!
           <ValueComponent>7.0</ValueComponent>
         </Value>
       </MassInformation>
+    </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_1">
+      <Identification>EECS-554104812a6</Identification>
+      <DescribedPart>PartVersion_id_302_1</DescribedPart>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_2">
@@ -7072,6 +7080,10 @@ This is not intended for productive use and is not complete!
         </Value>
       </MassInformation>
     </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_2">
+      <Identification>EECS-O1a281242129</Identification>
+      <DescribedPart>PartVersion_id_302_2</DescribedPart>
+    </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_3">
     <Description xsi:type="vec:LocalizedString" id="LocalizedString_00029">
@@ -7092,6 +7104,10 @@ This is not intended for productive use and is not complete!
           <ValueComponent>1.0</ValueComponent>
         </Value>
       </MassInformation>
+    </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_3">
+      <Identification>EECS-O1a281242122</Identification>
+      <DescribedPart>PartVersion_id_302_3</DescribedPart>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_4">
@@ -7114,6 +7130,10 @@ This is not intended for productive use and is not complete!
         </Value>
       </MassInformation>
     </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_4">
+      <Identification>EECS-O1a281242124</Identification>
+      <DescribedPart>PartVersion_id_302_4</DescribedPart>
+    </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_5">
     <Description xsi:type="vec:LocalizedString" id="LocalizedString_00031">
@@ -7134,6 +7154,10 @@ This is not intended for productive use and is not complete!
           <ValueComponent>40.0</ValueComponent>
         </Value>
       </MassInformation>
+    </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_5">
+      <Identification>EECS-WFD1TJDIFSVOHa21UFTU</Identification>
+      <DescribedPart>PartVersion_id_302_5</DescribedPart>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_6">
@@ -7156,6 +7180,10 @@ This is not intended for productive use and is not complete!
         </Value>
       </MassInformation>
     </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_6">
+      <Identification>EECS-O1a281242125</Identification>
+      <DescribedPart>PartVersion_id_302_6</DescribedPart>
+    </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_7">
     <Description xsi:type="vec:LocalizedString" id="LocalizedString_00033">
@@ -7176,6 +7204,10 @@ This is not intended for productive use and is not complete!
           <ValueComponent>6.0</ValueComponent>
         </Value>
       </MassInformation>
+    </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_7">
+      <Identification>EECS-O12a3162012a</Identification>
+      <DescribedPart>PartVersion_id_302_7</DescribedPart>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_8">
@@ -7198,6 +7230,10 @@ This is not intended for productive use and is not complete!
         </Value>
       </MassInformation>
     </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_8">
+      <Identification>EECS-O12a316201a2</Identification>
+      <DescribedPart>PartVersion_id_302_8</DescribedPart>
+    </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_9">
     <Description xsi:type="vec:LocalizedString" id="LocalizedString_00035">
@@ -7219,6 +7255,10 @@ This is not intended for productive use and is not complete!
         </Value>
       </MassInformation>
     </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_9">
+      <Identification>EECS-O12a316201a9</Identification>
+      <DescribedPart>PartVersion_id_302_9</DescribedPart>
+    </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_10">
     <Description xsi:type="vec:LocalizedString" id="LocalizedString_00036">
@@ -7239,6 +7279,10 @@ This is not intended for productive use and is not complete!
           <ValueComponent>6.0</ValueComponent>
         </Value>
       </MassInformation>
+    </Specification>
+    <Specification xsi:type="vec:EEComponentSpecification" id="EEComponentSpecification_id_302_10">
+      <Identification>EECS-O12a316201a4</Identification>
+      <DescribedPart>PartVersion_id_302_10</DescribedPart>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_415_0">
@@ -76515,6 +76559,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Massepunkt hinter Schalttafel Mitte</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_0">
+          <Identification>R_WISG_R9</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_0</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_0</Part>
       </Component>
       <Component id="PartOccurrence_id_303_1">
@@ -76523,6 +76571,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Zündanlassschalter</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_1">
+          <Identification>SI_SIA_1_F1</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_1</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_1</Part>
       </Component>
       <Component id="PartOccurrence_id_303_2">
@@ -76531,6 +76583,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Schlussleuchte links</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_2">
+          <Identification>SI_SITR_F1</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_2</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
       <Component id="PartOccurrence_id_303_3">
@@ -76539,6 +76595,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Scheinwerfer vorn rechts</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_3">
+          <Identification>SI_SITR_F2</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_3</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
       <Component id="PartOccurrence_id_303_4">
@@ -76547,6 +76607,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Scheinwerfer vorn links</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_4">
+          <Identification>SI_SITR_F3</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_3</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
       <Component id="PartOccurrence_id_303_5">
@@ -76555,6 +76619,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Scheinwerfer vorn rechts</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_5">
+          <Identification>SI_SITR_F4</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_2</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
       <Component id="PartOccurrence_id_303_6">
@@ -76563,6 +76631,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Scheinwerfer vorn links</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_6">
+          <Identification>SI_SITR_F5</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_2</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
       <Component id="PartOccurrence_id_303_7">
@@ -76571,6 +76643,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Scheinwerfer vorn rechts</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_7">
+          <Identification>SI_SITR_F6</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_2</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
       <Component id="PartOccurrence_id_303_8">
@@ -76579,6 +76655,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Warnlichtschalter</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_8">
+          <Identification>SI_SITR_F8</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_4</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_4</Part>
       </Component>
       <Component id="PartOccurrence_id_303_9">
@@ -76587,6 +76667,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Lenkstockkombinationsschalter</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_9">
+          <Identification>SI_SITR_F9</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_3</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
       <Component id="PartOccurrence_id_303_10">
@@ -76595,6 +76679,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Schalter für beheizbare Heckscheibe</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_10">
+          <Identification>SI_SITR_F10</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_5</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_5</Part>
       </Component>
       <Component id="PartOccurrence_id_303_11">
@@ -76603,6 +76691,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Schalter für elektrische Einbauten</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_11">
+          <Identification>SI_SITR_F11</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_6</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_6</Part>
       </Component>
       <Component id="PartOccurrence_id_303_12">
@@ -76611,6 +76703,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Kontrollleuchte für Öldruck</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_12">
+          <Identification>SI_SITR_F12</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_3</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
       <Component id="PartOccurrence_id_303_13">
@@ -76619,6 +76715,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Sicherungshalter A</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_13">
+          <Identification>SI_SITR_F23</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_7</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_7</Part>
       </Component>
       <Component id="PartOccurrence_id_303_14">
@@ -76627,6 +76727,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Sicherungshalter A</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_14">
+          <Identification>SI_SITR_F24</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
       <Component id="PartOccurrence_id_303_15">
@@ -76635,6 +76739,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Sicherungshalter A</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_15">
+          <Identification>SI_SITR_F25</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
       <Component id="PartOccurrence_id_303_16">
@@ -76643,6 +76751,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Sicherungshalter A</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_16">
+          <Identification>SI_SITR_F26</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
       <Component id="PartOccurrence_id_303_17">
@@ -76651,6 +76763,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Sicherungshalter A</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_17">
+          <Identification>SI_SITR_F27</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
       <Component id="PartOccurrence_id_303_18">
@@ -76659,6 +76775,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Sicherungshalter A</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_18">
+          <Identification>SI_SITR_F28</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_8</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_8</Part>
       </Component>
       <Component id="PartOccurrence_id_303_19">
@@ -76667,6 +76787,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Sicherungshalter A</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_19">
+          <Identification>SI_SITR_F31.1</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_9</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_9</Part>
       </Component>
       <Component id="PartOccurrence_id_303_20">
@@ -76675,6 +76799,10 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Sicherungshalter A</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_20">
+          <Identification>SI_SITR_F31.2</Identification>
+          <EEComponentSpecification>EEComponentSpecification_id_302_10</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_10</Part>
       </Component>
       <Component id="PartOccurrence_id_316_132">
@@ -97839,26 +97967,50 @@ This is not intended for productive use and is not complete!
       <Identification>COMPONENTS</Identification>
       <Component id="PartOccurrence_id_303_1">
         <Identification>MFS_740_C150_1</Identification>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_1">
+          <Identification>MFS_740_C150_1</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_0</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_0</Part>
       </Component>
       <Component id="PartOccurrence_id_303_3">
         <Identification>MFS_740_C110_1</Identification>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_3">
+          <Identification>MFS_740_C110_1</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_1</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_1</Part>
       </Component>
       <Component id="PartOccurrence_id_303_5">
         <Identification>MFS_740_C80_1</Identification>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_5">
+          <Identification>MFS_740_C80_1</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_2</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_2</Part>
       </Component>
       <Component id="PartOccurrence_id_303_7">
         <Identification>MFS_740_C40_1</Identification>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_7">
+          <Identification>MFS_740_C40_1</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_3</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_3</Part>
       </Component>
       <Component id="PartOccurrence_id_303_9">
         <Identification>MFS_740_C50_1</Identification>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_9">
+          <Identification>MFS_740_C50_1</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_4</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_4</Part>
       </Component>
       <Component id="PartOccurrence_id_303_11">
         <Identification>MFS_740_C60_1</Identification>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_11">
+          <Identification>MFS_740_C60_1</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_5</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_5</Part>
       </Component>
     </Specification>
@@ -97943,7 +98095,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00004">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00005">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 150A</Value>
     </Description>
@@ -97955,10 +98107,23 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_302_0">
       <Identification>GTPS-MFS_740_C150</Identification>
       <DescribedPart>PartVersion_id_302_0</DescribedPart>
+      <ColorInformation id="Color_00004">
+        <Key>zinn</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+    </Specification>
+    <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_0">
+      <Identification>FS-MFS_740_C150</Identification>
+      <DescribedPart>PartVersion_id_302_0</DescribedPart>
+      <FuseType>Type_SF30</FuseType>
+      <IMax id="NumericalValue_id_392_0">
+        <UnitComponent>CustomUnit_id_346_3</UnitComponent>
+        <ValueComponent>150.0</ValueComponent>
+      </IMax>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00005">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00007">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 110A</Value>
     </Description>
@@ -97970,10 +98135,23 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_302_1">
       <Identification>GTPS-MFS_740_C110</Identification>
       <DescribedPart>PartVersion_id_302_1</DescribedPart>
+      <ColorInformation id="Color_00006">
+        <Key>zinn</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+    </Specification>
+    <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_1">
+      <Identification>FS-MFS_740_C110</Identification>
+      <DescribedPart>PartVersion_id_302_1</DescribedPart>
+      <FuseType>Type_SF30</FuseType>
+      <IMax id="NumericalValue_id_392_1">
+        <UnitComponent>CustomUnit_id_346_3</UnitComponent>
+        <ValueComponent>110.0</ValueComponent>
+      </IMax>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_2">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00006">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00009">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 80A</Value>
     </Description>
@@ -97985,10 +98163,23 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_302_2">
       <Identification>GTPS-MFS_740_C80</Identification>
       <DescribedPart>PartVersion_id_302_2</DescribedPart>
+      <ColorInformation id="Color_00008">
+        <Key>zinn</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+    </Specification>
+    <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_2">
+      <Identification>FS-MFS_740_C80</Identification>
+      <DescribedPart>PartVersion_id_302_2</DescribedPart>
+      <FuseType>Type_SF30</FuseType>
+      <IMax id="NumericalValue_id_392_2">
+        <UnitComponent>CustomUnit_id_346_3</UnitComponent>
+        <ValueComponent>80.0</ValueComponent>
+      </IMax>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_3">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00007">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00011">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 40A</Value>
     </Description>
@@ -98000,10 +98191,23 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_302_3">
       <Identification>GTPS-MFS_740_C40</Identification>
       <DescribedPart>PartVersion_id_302_3</DescribedPart>
+      <ColorInformation id="Color_00010">
+        <Key>zinn</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+    </Specification>
+    <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_3">
+      <Identification>FS-MFS_740_C40</Identification>
+      <DescribedPart>PartVersion_id_302_3</DescribedPart>
+      <FuseType>Type_SF30</FuseType>
+      <IMax id="NumericalValue_id_392_3">
+        <UnitComponent>CustomUnit_id_346_3</UnitComponent>
+        <ValueComponent>40.0</ValueComponent>
+      </IMax>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_4">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00008">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00013">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 50A</Value>
     </Description>
@@ -98015,10 +98219,23 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_302_4">
       <Identification>GTPS-MFS_740_C50</Identification>
       <DescribedPart>PartVersion_id_302_4</DescribedPart>
+      <ColorInformation id="Color_00012">
+        <Key>zinn</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+    </Specification>
+    <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_4">
+      <Identification>FS-MFS_740_C50</Identification>
+      <DescribedPart>PartVersion_id_302_4</DescribedPart>
+      <FuseType>Type_SF30</FuseType>
+      <IMax id="NumericalValue_id_392_4">
+        <UnitComponent>CustomUnit_id_346_3</UnitComponent>
+        <ValueComponent>50.0</ValueComponent>
+      </IMax>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_5">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00009">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00015">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 60A</Value>
     </Description>
@@ -98030,10 +98247,23 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_302_5">
       <Identification>GTPS-MFS_740_C60</Identification>
       <DescribedPart>PartVersion_id_302_5</DescribedPart>
+      <ColorInformation id="Color_00014">
+        <Key>zinn</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+    </Specification>
+    <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_5">
+      <Identification>FS-MFS_740_C60</Identification>
+      <DescribedPart>PartVersion_id_302_5</DescribedPart>
+      <FuseType>Type_SF30</FuseType>
+      <IMax id="NumericalValue_id_392_5">
+        <UnitComponent>CustomUnit_id_346_3</UnitComponent>
+        <ValueComponent>60.0</ValueComponent>
+      </IMax>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_302_6">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00010">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00017">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_C 25A</Value>
     </Description>
@@ -98045,14 +98275,27 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_302_6">
       <Identification>GTPS-FUS00113114</Identification>
       <DescribedPart>PartVersion_id_302_6</DescribedPart>
+      <ColorInformation id="Color_00016">
+        <Key>weiss</Key>
+        <ReferenceSystem>ACME Inc.</ReferenceSystem>
+      </ColorInformation>
+    </Specification>
+    <Specification xsi:type="vec:FuseSpecification" id="FuseSpecification_id_302_6">
+      <Identification>FS-FUS00113114</Identification>
+      <DescribedPart>PartVersion_id_302_6</DescribedPart>
+      <FuseType>Type_C</FuseType>
+      <IMax id="NumericalValue_id_392_6">
+        <UnitComponent>CustomUnit_id_346_3</UnitComponent>
+        <ValueComponent>25.0</ValueComponent>
+      </IMax>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_413_0">
-    <Abbreviation id="LocalizedString_00011">
+    <Abbreviation id="LocalizedString_00018">
       <LanguageCode>De</LanguageCode>
       <Value>HSB30V</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00012">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00019">
       <LanguageCode>De</LanguageCode>
       <Value>Hauptsicherungsbox</Value>
     </Description>
@@ -98606,7 +98849,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00015">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00022">
       <LanguageCode>De</LanguageCode>
       <Value>BUCHSENGEHAEUSE_6-POL</Value>
     </Description>
@@ -98619,7 +98862,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:ConnectorHousingSpecification" id="ConnectorHousingSpecification_id_315_0">
       <Identification>CHS-ECP001706</Identification>
       <DescribedPart>PartVersion_id_315_0</DescribedPart>
-      <Coding id="Coding_00013">
+      <Coding id="Coding_00020">
         <Coding>A</Coding>
       </Coding>
       <Slot xsi:type="vec:Slot" id="Slot_id_341_0">
@@ -98652,14 +98895,14 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_315_0">
       <Identification>GTPS-ECP001706</Identification>
       <DescribedPart>PartVersion_id_315_0</DescribedPart>
-      <ColorInformation id="Color_00014">
+      <ColorInformation id="Color_00021">
         <Key>schwarz</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </ColorInformation>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_8">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00017">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00024">
       <LanguageCode>De</LanguageCode>
       <Value>RD-FLACHSTECKERGEHAEUSE 2-POLIG 2,8MM SCHWARZ</Value>
     </Description>
@@ -98690,14 +98933,14 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_315_8">
       <Identification>GTPS-ECP001822</Identification>
       <DescribedPart>PartVersion_id_315_8</DescribedPart>
-      <ColorInformation id="Color_00016">
+      <ColorInformation id="Color_00023">
         <Key>schwarz</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </ColorInformation>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_2">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00019">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00026">
       <LanguageCode>De</LanguageCode>
       <Value>Steckgehaeuse_5Pol_Klima</Value>
     </Description>
@@ -98737,14 +98980,14 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="GeneralTechnicalPartSpecification_id_315_2">
       <Identification>GTPS-ECP001982BS</Identification>
       <DescribedPart>PartVersion_id_315_2</DescribedPart>
-      <ColorInformation id="Color_00018">
+      <ColorInformation id="Color_00025">
         <Key>orange</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </ColorInformation>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_3">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00020">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00027">
       <LanguageCode>De</LanguageCode>
       <Value>FLACHKONTAKTGEH_4POL</Value>
     </Description>
@@ -98784,7 +99027,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_5">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00021">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00028">
       <LanguageCode>De</LanguageCode>
       <Value>DUMMY_BUCHSENGEH_1POL</Value>
     </Description>
@@ -98815,7 +99058,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_9">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00022">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00029">
       <LanguageCode>De</LanguageCode>
       <Value>BATTERIEKLEMME_PLUS</Value>
     </Description>
@@ -98846,7 +99089,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_7">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00023">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00030">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH</Value>
     </Description>
@@ -98877,7 +99120,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_4">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00024">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00031">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH_M6-10MM2</Value>
     </Description>
@@ -98908,7 +99151,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00025">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00032">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH</Value>
     </Description>
@@ -98939,7 +99182,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_315_10">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00026">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00033">
       <LanguageCode>De</LanguageCode>
       <Value>Verbinder</Value>
     </Description>
@@ -98970,7 +99213,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00028">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00035">
       <LanguageCode>De</LanguageCode>
       <Value>box</Value>
     </Description>
@@ -99005,14 +99248,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_0">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00027">
+      <PlatingMaterial id="Material_00034">
         <Key>au</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00030">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00037">
       <LanguageCode>De</LanguageCode>
       <Value>flat</Value>
     </Description>
@@ -99047,14 +99290,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_1">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00029">
+      <PlatingMaterial id="Material_00036">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_2">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00032">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00039">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -99095,14 +99338,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_2">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00031">
+      <PlatingMaterial id="Material_00038">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_3">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00034">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00041">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -99137,14 +99380,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_3">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00033">
+      <PlatingMaterial id="Material_00040">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_4">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00036">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00043">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -99179,14 +99422,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_4">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00035">
+      <PlatingMaterial id="Material_00042">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_5">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00038">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00045">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -99221,14 +99464,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_5">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00037">
+      <PlatingMaterial id="Material_00044">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_6">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00040">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00047">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -99269,14 +99512,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_6">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00039">
+      <PlatingMaterial id="Material_00046">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_7">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00042">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00049">
       <LanguageCode>De</LanguageCode>
       <Value>box</Value>
     </Description>
@@ -99311,14 +99554,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_7">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00041">
+      <PlatingMaterial id="Material_00048">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_8">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00044">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00051">
       <LanguageCode>De</LanguageCode>
       <Value>flat</Value>
     </Description>
@@ -99353,14 +99596,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_8">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00043">
+      <PlatingMaterial id="Material_00050">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_9">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00046">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00053">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -99401,14 +99644,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_9">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00045">
+      <PlatingMaterial id="Material_00052">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_10">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00048">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00055">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -99443,14 +99686,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_10">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00047">
+      <PlatingMaterial id="Material_00054">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_326_11">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00050">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00057">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -99491,14 +99734,14 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:TerminalReceptionSpecification" id="TerminalReceptionSpecification_id_326_11">
       <Identification>TRS</Identification>
-      <PlatingMaterial id="Material_00049">
+      <PlatingMaterial id="Material_00056">
         <Key>sn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </PlatingMaterial>
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00053">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00060">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -99513,7 +99756,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_0">
       <Identification>WIRE</Identification>
-      <Type id="WireType_00051">
+      <Type id="WireType_00058">
         <Type>individual wire</Type>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </Type>
@@ -99531,7 +99774,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_0">
       <Identification>WIRE-INS</Identification>
 <!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
-      <BaseColor id="Color_00052">
+      <BaseColor id="Color_00059">
         <Key>bl</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
@@ -99553,7 +99796,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00057">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00064">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -99568,7 +99811,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_1">
       <Identification>WIRE</Identification>
-      <Type id="WireType_00054">
+      <Type id="WireType_00061">
         <Type>individual wire</Type>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </Type>
@@ -99586,11 +99829,11 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_1">
       <Identification>WIRE-INS</Identification>
 <!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
-      <BaseColor id="Color_00055">
+      <BaseColor id="Color_00062">
         <Key>ws</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
-      <FirstIdentificationColor id="Color_00056">
+      <FirstIdentificationColor id="Color_00063">
         <Key>gn</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
@@ -99612,7 +99855,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_2">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00060">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00067">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -99627,7 +99870,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_2">
       <Identification>WIRE</Identification>
-      <Type id="WireType_00058">
+      <Type id="WireType_00065">
         <Type>individual wire</Type>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </Type>
@@ -99645,7 +99888,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_2">
       <Identification>WIRE-INS</Identification>
 <!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
-      <BaseColor id="Color_00059">
+      <BaseColor id="Color_00066">
         <Key>rt</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
@@ -99667,7 +99910,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_3">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00063">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00070">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -99682,7 +99925,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_3">
       <Identification>WIRE</Identification>
-      <Type id="WireType_00061">
+      <Type id="WireType_00068">
         <Type>individual wire</Type>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </Type>
@@ -99700,7 +99943,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_3">
       <Identification>WIRE-INS</Identification>
 <!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
-      <BaseColor id="Color_00062">
+      <BaseColor id="Color_00069">
         <Key>br</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
@@ -99722,7 +99965,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_4">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00067">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00074">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -99737,7 +99980,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_4">
       <Identification>WIRE</Identification>
-      <Type id="WireType_00064">
+      <Type id="WireType_00071">
         <Type>individual wire</Type>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </Type>
@@ -99755,11 +99998,11 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_4">
       <Identification>WIRE-INS</Identification>
 <!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
-      <BaseColor id="Color_00065">
+      <BaseColor id="Color_00072">
         <Key>ws</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
-      <FirstIdentificationColor id="Color_00066">
+      <FirstIdentificationColor id="Color_00073">
         <Key>bl</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
@@ -99781,7 +100024,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_5">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00070">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00077">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -99796,7 +100039,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_5">
       <Identification>WIRE</Identification>
-      <Type id="WireType_00068">
+      <Type id="WireType_00075">
         <Type>individual wire</Type>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </Type>
@@ -99814,7 +100057,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_5">
       <Identification>WIRE-INS</Identification>
 <!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
-      <BaseColor id="Color_00069">
+      <BaseColor id="Color_00076">
         <Key>sw</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
@@ -99836,7 +100079,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_6">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00074">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00081">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -99851,7 +100094,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_6">
       <Identification>WIRE</Identification>
-      <Type id="WireType_00071">
+      <Type id="WireType_00078">
         <Type>individual wire</Type>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </Type>
@@ -99869,11 +100112,11 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_6">
       <Identification>WIRE-INS</Identification>
 <!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
-      <BaseColor id="Color_00072">
+      <BaseColor id="Color_00079">
         <Key>rt</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
-      <FirstIdentificationColor id="Color_00073">
+      <FirstIdentificationColor id="Color_00080">
         <Key>sw</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </FirstIdentificationColor>
@@ -99895,7 +100138,7 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_327_7">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00077">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00084">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -99910,7 +100153,7 @@ This is not intended for productive use and is not complete!
     </Specification>
     <Specification xsi:type="vec:WireElementSpecification" id="WireElementSpecification_id_327_7">
       <Identification>WIRE</Identification>
-      <Type id="WireType_00075">
+      <Type id="WireType_00082">
         <Type>individual wire</Type>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </Type>
@@ -99928,7 +100171,7 @@ This is not intended for productive use and is not complete!
     <Specification xsi:type="vec:InsulationSpecification" id="InsulationSpecification_id_327_7">
       <Identification>WIRE-INS</Identification>
 <!--Assignment to colortypes based on order in KBL file. Dialect specific color type mapping required.-->
-      <BaseColor id="Color_00076">
+      <BaseColor id="Color_00083">
         <Key>br</Key>
         <ReferenceSystem>ACME Inc.</ReferenceSystem>
       </BaseColor>
@@ -99950,11 +100193,11 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00078">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00085">
       <LanguageCode>De</LanguageCode>
       <Value>Signalliste</Value>
     </Description>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00079">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00086">
       <LanguageCode>En</LanguageCode>
       <Value>Signal list</Value>
     </Description>
@@ -99991,11 +100234,11 @@ This is not intended for productive use and is not complete!
     </Specification>
   </DocumentVersion>
   <DocumentVersion id="DocumentVersion_id_328_0_1">
-    <Abbreviation id="LocalizedString_00170">
+    <Abbreviation id="LocalizedString_00177">
       <LanguageCode>De</LanguageCode>
       <Value>LTGS</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00171">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00178">
       <LanguageCode>De</LanguageCode>
       <Value>Leitungsstrang</Value>
     </Description>
@@ -100093,7 +100336,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00080">
+        <LengthInformation id="SegmentLength_00087">
           <Length id="NumericalValue_Virtual_length_1">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>188.788275</ValueComponent>
@@ -100114,7 +100357,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00081">
+        <LengthInformation id="SegmentLength_00088">
           <Length id="NumericalValue_Virtual_length_2">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>202.235831</ValueComponent>
@@ -100135,7 +100378,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00082">
+        <LengthInformation id="SegmentLength_00089">
           <Length id="NumericalValue_Virtual_length_3">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>100.5</ValueComponent>
@@ -100156,7 +100399,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00083">
+        <LengthInformation id="SegmentLength_00090">
           <Length id="NumericalValue_Virtual_length_4">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>36.016251</ValueComponent>
@@ -100177,7 +100420,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00084">
+        <LengthInformation id="SegmentLength_00091">
           <Length id="NumericalValue_Virtual_length_5">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>201.001417</ValueComponent>
@@ -100198,7 +100441,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00085">
+        <LengthInformation id="SegmentLength_00092">
           <Length id="NumericalValue_Virtual_length_6">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>163.057516</ValueComponent>
@@ -100219,7 +100462,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00086">
+        <LengthInformation id="SegmentLength_00093">
           <Length id="NumericalValue_Virtual_length_7">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>186.696448</ValueComponent>
@@ -100240,7 +100483,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00087">
+        <LengthInformation id="SegmentLength_00094">
           <Length id="NumericalValue_Virtual_length_8">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>100.58779</ValueComponent>
@@ -100261,7 +100504,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00088">
+        <LengthInformation id="SegmentLength_00095">
           <Length id="NumericalValue_Virtual_length_9">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>29.350609</ValueComponent>
@@ -100282,7 +100525,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00089">
+        <LengthInformation id="SegmentLength_00096">
           <Length id="NumericalValue_Virtual_length_10">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>201.000175</ValueComponent>
@@ -100303,7 +100546,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00090">
+        <LengthInformation id="SegmentLength_00097">
           <Length id="NumericalValue_Virtual_length_11">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>521.982907</ValueComponent>
@@ -100324,7 +100567,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00091">
+        <LengthInformation id="SegmentLength_00098">
           <Length id="NumericalValue_Virtual_length_12">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>524.722074</ValueComponent>
@@ -100345,7 +100588,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00092">
+        <LengthInformation id="SegmentLength_00099">
           <Length id="NumericalValue_Virtual_length_13">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>589.552182</ValueComponent>
@@ -100366,7 +100609,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00093">
+        <LengthInformation id="SegmentLength_00100">
           <Length id="NumericalValue_Virtual_length_14">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>251.630657</ValueComponent>
@@ -100387,7 +100630,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00094">
+        <LengthInformation id="SegmentLength_00101">
           <Length id="NumericalValue_Virtual_length_15">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>251.301932</ValueComponent>
@@ -100408,7 +100651,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00095">
+        <LengthInformation id="SegmentLength_00102">
           <Length id="NumericalValue_Virtual_length_16">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>101.11461</ValueComponent>
@@ -100429,7 +100672,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00096">
+        <LengthInformation id="SegmentLength_00103">
           <Length id="NumericalValue_Virtual_length_17">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>441.582478</ValueComponent>
@@ -100450,7 +100693,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00097">
+        <LengthInformation id="SegmentLength_00104">
           <Length id="NumericalValue_Virtual_length_18">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>264.93077</ValueComponent>
@@ -100471,7 +100714,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00098">
+        <LengthInformation id="SegmentLength_00105">
           <Length id="NumericalValue_Virtual_length_19">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>213.851609</ValueComponent>
@@ -100492,7 +100735,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00099">
+        <LengthInformation id="SegmentLength_00106">
           <Length id="NumericalValue_Virtual_length_20">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>268.499445</ValueComponent>
@@ -100513,7 +100756,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00100">
+        <LengthInformation id="SegmentLength_00107">
           <Length id="NumericalValue_Virtual_length_21">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>332.666183</ValueComponent>
@@ -100534,7 +100777,7 @@ This is not intended for productive use and is not complete!
           <ValueDetermination>Estimated</ValueDetermination>
           <CrossSectionAreaType>Reserved</CrossSectionAreaType>
         </CrossSectionAreaInformation>
-        <LengthInformation id="SegmentLength_00101">
+        <LengthInformation id="SegmentLength_00108">
           <Length id="NumericalValue_Virtual_length_22">
             <UnitComponent>SIUnit_id_346_1</UnitComponent>
             <ValueComponent>390.36618</ValueComponent>
@@ -100563,7 +100806,7 @@ This is not intended for productive use and is not complete!
       <Identification>Families</Identification>
       <ModuleFamily id="ModuleFamily_id_332_0">
         <Identification>000</Identification>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00102">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00109">
           <LanguageCode>De</LanguageCode>
           <Value>LEITUNGSSTRANG</Value>
         </Description>
@@ -101658,12 +101901,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_1">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_1</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00103">
+        <StartVector id="CartesianVector3D_00110">
           <X>0.989368</X>
           <Y>0.0</Y>
           <Z>-0.145435</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00104">
+        <EndVector id="CartesianVector3D_00111">
           <X>0.948591</X>
           <Y>0.311267</Y>
           <Z>-0.057346</Z>
@@ -101719,12 +101962,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_2">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_2</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00105">
+        <StartVector id="CartesianVector3D_00112">
           <X>0.999977</X>
           <Y>-0.0</Y>
           <Z>-0.006853</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00106">
+        <EndVector id="CartesianVector3D_00113">
           <X>0.912245</X>
           <Y>-0.394261</Y>
           <Z>-0.111209</Z>
@@ -101780,12 +102023,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_3">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_3</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00107">
+        <StartVector id="CartesianVector3D_00114">
           <X>0.990042</X>
           <Y>0.0</Y>
           <Z>-0.140773</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00108">
+        <EndVector id="CartesianVector3D_00115">
           <X>0.990042</X>
           <Y>0.0</Y>
           <Z>0.140773</Z>
@@ -101841,12 +102084,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_4">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_4</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00109">
+        <StartVector id="CartesianVector3D_00116">
           <X>0.990042</X>
           <Y>0.0</Y>
           <Z>0.140773</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00110">
+        <EndVector id="CartesianVector3D_00117">
           <X>0.0</X>
           <Y>-1.0</Y>
           <Z>0.0</Z>
@@ -101902,12 +102145,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_5">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable1/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_5</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00111">
+        <StartVector id="CartesianVector3D_00118">
           <X>0.990042</X>
           <Y>0.0</Y>
           <Z>0.140773</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00112">
+        <EndVector id="CartesianVector3D_00119">
           <X>0.990164</X>
           <Y>0.0</Y>
           <Z>-0.139909</Z>
@@ -101963,12 +102206,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_6">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_6</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00113">
+        <StartVector id="CartesianVector3D_00120">
           <X>1.0</X>
           <Y>-0.0</Y>
           <Z>-0.0</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00114">
+        <EndVector id="CartesianVector3D_00121">
           <X>0.896632</X>
           <Y>0.33358</Y>
           <Z>-0.291163</Z>
@@ -102024,12 +102267,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_7">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_7</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00115">
+        <StartVector id="CartesianVector3D_00122">
           <X>0.999999</X>
           <Y>-0.0</Y>
           <Z>-0.001275</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00116">
+        <EndVector id="CartesianVector3D_00123">
           <X>0.920888</X>
           <Y>-0.364509</Y>
           <Z>-0.138201</Z>
@@ -102085,12 +102328,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_8">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_8</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00117">
+        <StartVector id="CartesianVector3D_00124">
           <X>0.920888</X>
           <Y>-0.364509</Y>
           <Z>-0.138201</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00118">
+        <EndVector id="CartesianVector3D_00125">
           <X>0.997503</X>
           <Y>0.06603</Y>
           <Z>0.025035</Z>
@@ -102146,12 +102389,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_9">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_9</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00119">
+        <StartVector id="CartesianVector3D_00126">
           <X>-0.0</X>
           <Y>-0.977245</Y>
           <Z>-0.212114</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00120">
+        <EndVector id="CartesianVector3D_00127">
           <X>-0.0</X>
           <Y>-1.0</Y>
           <Z>-0.0</Z>
@@ -102207,12 +102450,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_10">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable2/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_10</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00121">
+        <StartVector id="CartesianVector3D_00128">
           <X>0.997503</X>
           <Y>0.06603</Y>
           <Z>0.025035</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00122">
+        <EndVector id="CartesianVector3D_00129">
           <X>0.986992</X>
           <Y>-0.150331</Y>
           <Z>-0.056983</Z>
@@ -102268,12 +102511,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_11">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable3/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_11</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00123">
+        <StartVector id="CartesianVector3D_00130">
           <X>0.999991</X>
           <Y>-0.0</Y>
           <Z>-0.004265</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00124">
+        <EndVector id="CartesianVector3D_00131">
           <X>0.926185</X>
           <Y>-0.377068</Y>
           <Z>9.24E-4</Z>
@@ -102329,12 +102572,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_12">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_12</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00125">
+        <StartVector id="CartesianVector3D_00132">
           <X>0.998613</X>
           <Y>0.0</Y>
           <Z>-0.052653</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00126">
+        <EndVector id="CartesianVector3D_00133">
           <X>0.929247</X>
           <Y>-0.369214</Y>
           <Z>0.013447</Z>
@@ -102390,12 +102633,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_13">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable4/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_13</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00127">
+        <StartVector id="CartesianVector3D_00134">
           <X>0.993636</X>
           <Y>0.0</Y>
           <Z>0.112643</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00128">
+        <EndVector id="CartesianVector3D_00135">
           <X>0.890985</X>
           <Y>-0.453905</Y>
           <Z>0.01078</Z>
@@ -102451,12 +102694,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_14">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.1/Flexible Curve.1</Identification>
         <ReferenceSegment>TopologySegment_Segment_14</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00129">
+        <StartVector id="CartesianVector3D_00136">
           <X>0.990164</X>
           <Y>0.0</Y>
           <Z>-0.139909</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00130">
+        <EndVector id="CartesianVector3D_00137">
           <X>0.769736</X>
           <Y>0.638259</Y>
           <Z>0.011485</Z>
@@ -102512,12 +102755,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_15">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.2/Flexible Curve.2</Identification>
         <ReferenceSegment>TopologySegment_Segment_15</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00131">
+        <StartVector id="CartesianVector3D_00138">
           <X>0.890985</X>
           <Y>-0.453905</Y>
           <Z>0.01078</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00132">
+        <EndVector id="CartesianVector3D_00139">
           <X>0.713479</X>
           <Y>-0.700627</Y>
           <Z>-0.008316</Z>
@@ -102573,12 +102816,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_16">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.3/Flexible Curve.3</Identification>
         <ReferenceSegment>TopologySegment_Segment_16</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00133">
+        <StartVector id="CartesianVector3D_00140">
           <X>0.713479</X>
           <Y>-0.700627</Y>
           <Z>-0.008316</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00134">
+        <EndVector id="CartesianVector3D_00141">
           <X>0.997571</X>
           <Y>0.069656</Y>
           <Z>8.27E-4</Z>
@@ -102634,12 +102877,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_17">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.4/Flexible Curve.4</Identification>
         <ReferenceSegment>TopologySegment_Segment_17</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00135">
+        <StartVector id="CartesianVector3D_00142">
           <X>0.903943</X>
           <Y>-0.233188</Y>
           <Z>-0.358484</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00136">
+        <EndVector id="CartesianVector3D_00143">
           <X>0.991744</X>
           <Y>-3.0E-6</Y>
           <Z>-0.128237</Z>
@@ -102695,12 +102938,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_18">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.5/Flexible Curve.5</Identification>
         <ReferenceSegment>TopologySegment_Segment_18</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00137">
+        <StartVector id="CartesianVector3D_00144">
           <X>0.903943</X>
           <Y>-0.233188</Y>
           <Z>-0.358484</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00138">
+        <EndVector id="CartesianVector3D_00145">
           <X>0.986962</X>
           <Y>-0.0</Y>
           <Z>-0.160951</Z>
@@ -102756,12 +102999,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_19">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.6/Flexible Curve.6</Identification>
         <ReferenceSegment>TopologySegment_Segment_19</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00139">
+        <StartVector id="CartesianVector3D_00146">
           <X>0.865801</X>
           <Y>0.144253</Y>
           <Z>-0.479144</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00140">
+        <EndVector id="CartesianVector3D_00147">
           <X>0.99741</X>
           <Y>-0.071925</Y>
           <Z>-0.0</Z>
@@ -102817,12 +103060,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_20">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.7/Flexible Curve.7</Identification>
         <ReferenceSegment>TopologySegment_Segment_20</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00141">
+        <StartVector id="CartesianVector3D_00148">
           <X>0.645713</X>
           <Y>0.668964</Y>
           <Z>-0.36816</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00142">
+        <EndVector id="CartesianVector3D_00149">
           <X>0.987515</X>
           <Y>0.0</Y>
           <Z>-0.157528</Z>
@@ -102878,12 +103121,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_21">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.8/Flexible Curve.8</Identification>
         <ReferenceSegment>TopologySegment_Segment_21</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00143">
+        <StartVector id="CartesianVector3D_00150">
           <X>0.504781</X>
           <Y>0.813781</Y>
           <Z>-0.288022</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00144">
+        <EndVector id="CartesianVector3D_00151">
           <X>0.998193</X>
           <Y>0.06009</Y>
           <Z>-0.0</Z>
@@ -102939,12 +103182,12 @@ This is not intended for productive use and is not complete!
       <GeometrySegment id="GeometrySegment3D_Segment_22">
         <Identification>ROUTING_HUT_TF01_MULTI-FUSE_V01VW-Multi-branchable5/ElecRouteBody.9/Flexible Curve.9</Identification>
         <ReferenceSegment>TopologySegment_Segment_22</ReferenceSegment>
-        <StartVector id="CartesianVector3D_00145">
+        <StartVector id="CartesianVector3D_00152">
           <X>0.427164</X>
           <Y>0.869189</Y>
           <Z>-0.249079</Z>
         </StartVector>
-        <EndVector id="CartesianVector3D_00146">
+        <EndVector id="CartesianVector3D_00153">
           <X>0.970755</X>
           <Y>0.240042</Y>
           <Z>0.003802</Z>
@@ -103662,7 +103905,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00147">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00154">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger</Value>
         </Description>
@@ -104235,10 +104478,14 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00148">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00155">
           <LanguageCode>De</LanguageCode>
           <Value>Tetrathrow</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_0">
+          <Identification>MF1_F1</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_0</EEComponentSpecification>
+        </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_1</InstanciatedOccurrence>
         <Part>PartVersion_id_302_0</Part>
       </Component>
@@ -104249,10 +104496,14 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00149">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00156">
           <LanguageCode>De</LanguageCode>
           <Value>Hydraulikpumpe</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_2">
+          <Identification>MF1_F2</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_1</EEComponentSpecification>
+        </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_3</InstanciatedOccurrence>
         <Part>PartVersion_id_302_1</Part>
       </Component>
@@ -104263,10 +104514,14 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00150">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00157">
           <LanguageCode>De</LanguageCode>
           <Value>Ölablass</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_4">
+          <Identification>MF1_F3</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_2</EEComponentSpecification>
+        </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_5</InstanciatedOccurrence>
         <Part>PartVersion_id_302_2</Part>
       </Component>
@@ -104277,10 +104532,14 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00151">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00158">
           <LanguageCode>De</LanguageCode>
           <Value>Heckscheibenmotor</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_6">
+          <Identification>MF1_F4</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_3</EEComponentSpecification>
+        </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_7</InstanciatedOccurrence>
         <Part>PartVersion_id_302_3</Part>
       </Component>
@@ -104291,10 +104550,14 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00152">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00159">
           <LanguageCode>De</LanguageCode>
           <Value>Kompressor</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_8">
+          <Identification>MF1_F5</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_4</EEComponentSpecification>
+        </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_9</InstanciatedOccurrence>
         <Part>PartVersion_id_302_4</Part>
       </Component>
@@ -104305,10 +104568,14 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00153">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00160">
           <LanguageCode>De</LanguageCode>
           <Value>Beifahrersitz</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_10">
+          <Identification>MF1_F6</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_5</EEComponentSpecification>
+        </Role>
         <InstanciatedOccurrence>PartOccurrence_id_303_11</InstanciatedOccurrence>
         <Part>PartVersion_id_302_5</Part>
       </Component>
@@ -104319,10 +104586,14 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00154">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00161">
           <LanguageCode>De</LanguageCode>
           <Value>Plusverbindung (30) Ltgs. Motorraum</Value>
         </Description>
+        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_12">
+          <Identification>SR1.1_FS4</Identification>
+          <EEComponentSpecification>FuseSpecification_id_302_6</EEComponentSpecification>
+        </Role>
         <Part>PartVersion_id_302_6</Part>
       </Component>
       <Component id="PartOccurrence_id_316_0">
@@ -104353,7 +104624,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00155">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00162">
           <LanguageCode>De</LanguageCode>
           <Value>2-Faden-Lampe für Scheinwerfer rechts</Value>
         </Description>
@@ -104423,7 +104694,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00156">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00163">
           <LanguageCode>De</LanguageCode>
           <Value>Hydraulikpumpe für ABS</Value>
         </Description>
@@ -104477,7 +104748,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00157">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00164">
           <LanguageCode>De</LanguageCode>
           <Value>2-Faden-Lampe für Scheinwerfer links</Value>
         </Description>
@@ -104543,7 +104814,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00158">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00165">
           <LanguageCode>De</LanguageCode>
           <Value>Klimakompressor</Value>
         </Description>
@@ -104605,7 +104876,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00159">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00166">
           <LanguageCode>De</LanguageCode>
           <Value>Motor für Faltschiebedach</Value>
         </Description>
@@ -104663,7 +104934,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00160">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00167">
           <LanguageCode>De</LanguageCode>
           <Value>beheizbare Heckscheibe</Value>
         </Description>
@@ -104741,7 +105012,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00161">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00168">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -104911,7 +105182,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00162">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00169">
           <LanguageCode>De</LanguageCode>
           <Value>Plusverbindung (30) im Leitungsstrang Motorraum</Value>
         </Description>
@@ -104953,7 +105224,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00163">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00170">
           <LanguageCode>De</LanguageCode>
           <Value>Verbindung (15a) im Leitungsstrang hinten</Value>
         </Description>
@@ -105278,7 +105549,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00164">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00171">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -105311,7 +105582,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00165">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00172">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -105344,7 +105615,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00166">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00173">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -105377,7 +105648,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00167">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00174">
           <LanguageCode>De</LanguageCode>
           <Value>Relais- und Sicherungsträger 1</Value>
         </Description>
@@ -105410,7 +105681,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00168">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00175">
           <LanguageCode>De</LanguageCode>
           <Value>Batterie</Value>
         </Description>
@@ -105571,7 +105842,7 @@ This is not intended for productive use and is not complete!
           <Type>Alias-Ref</Type>
           <Scope>VOBES</Scope>
         </AliasId>
-        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00169">
+        <Description xsi:type="vec:LocalizedString" id="LocalizedString_00176">
           <LanguageCode>De</LanguageCode>
           <Value>Test</Value>
         </Description>
@@ -105766,7 +106037,7 @@ This is not intended for productive use and is not complete!
       <PropertyType>partcolour</PropertyType>
       <Value>zinn</Value>
     </CustomProperty>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00172">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00179">
       <LanguageCode>De</LanguageCode>
       <Value>Multifuse</Value>
     </Description>
@@ -105781,7 +106052,7 @@ This is not intended for productive use and is not complete!
     </AliasId>
   </PartVersion>
   <PartVersion id="PartVersion_id_309_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00173">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00180">
       <LanguageCode>De</LanguageCode>
       <Value>Dichtung</Value>
     </Description>
@@ -105791,7 +106062,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>CavityPlug</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_311_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00174">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00181">
       <LanguageCode>De</LanguageCode>
       <Value>Dichtung</Value>
     </Description>
@@ -105801,7 +106072,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>CavitySeal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_311_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00175">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00182">
       <LanguageCode>De</LanguageCode>
       <Value>Dichtung</Value>
     </Description>
@@ -105811,7 +106082,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>CavitySeal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00176">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00183">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 150A</Value>
     </Description>
@@ -105821,7 +106092,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00177">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00184">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 110A</Value>
     </Description>
@@ -105831,7 +106102,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_2">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00178">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00185">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 80A</Value>
     </Description>
@@ -105841,7 +106112,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_3">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00179">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00186">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 40A</Value>
     </Description>
@@ -105851,7 +106122,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_4">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00180">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00187">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 50A</Value>
     </Description>
@@ -105861,7 +106132,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_5">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00181">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00188">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_SF30 60A</Value>
     </Description>
@@ -105871,7 +106142,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_302_6">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00182">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00189">
       <LanguageCode>De</LanguageCode>
       <Value>Sicherung Type_C 25A</Value>
     </Description>
@@ -105881,11 +106152,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Fuse</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_413_0">
-    <Abbreviation id="LocalizedString_00183">
+    <Abbreviation id="LocalizedString_00190">
       <LanguageCode>De</LanguageCode>
       <Value>HSB30V</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00184">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00191">
       <LanguageCode>De</LanguageCode>
       <Value>Hauptsicherungsbox</Value>
     </Description>
@@ -105895,7 +106166,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>EEComponent</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00185">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00192">
       <LanguageCode>De</LanguageCode>
       <Value>BUCHSENGEHAEUSE_6-POL</Value>
     </Description>
@@ -105910,7 +106181,7 @@ This is not intended for productive use and is not complete!
     </AliasId>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_8">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00186">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00193">
       <LanguageCode>De</LanguageCode>
       <Value>RD-FLACHSTECKERGEHAEUSE 2-POLIG 2,8MM SCHWARZ</Value>
     </Description>
@@ -105925,7 +106196,7 @@ This is not intended for productive use and is not complete!
     </AliasId>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_2">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00187">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00194">
       <LanguageCode>De</LanguageCode>
       <Value>Steckgehaeuse_5Pol_Klima</Value>
     </Description>
@@ -105935,7 +106206,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_3">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00188">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00195">
       <LanguageCode>De</LanguageCode>
       <Value>FLACHKONTAKTGEH_4POL</Value>
     </Description>
@@ -105945,7 +106216,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_5">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00189">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00196">
       <LanguageCode>De</LanguageCode>
       <Value>DUMMY_BUCHSENGEH_1POL</Value>
     </Description>
@@ -105955,7 +106226,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_9">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00190">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00197">
       <LanguageCode>De</LanguageCode>
       <Value>BATTERIEKLEMME_PLUS</Value>
     </Description>
@@ -105965,7 +106236,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_7">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00191">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00198">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH</Value>
     </Description>
@@ -105975,7 +106246,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_4">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00192">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00199">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH_M6-10MM2</Value>
     </Description>
@@ -105985,7 +106256,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00193">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00200">
       <LanguageCode>De</LanguageCode>
       <Value>KABELSCHUH</Value>
     </Description>
@@ -105995,7 +106266,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_315_10">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00194">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00201">
       <LanguageCode>De</LanguageCode>
       <Value>Verbinder</Value>
     </Description>
@@ -106005,7 +106276,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>ConnectorHousing</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00195">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00202">
       <LanguageCode>De</LanguageCode>
       <Value>box</Value>
     </Description>
@@ -106015,7 +106286,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00196">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00203">
       <LanguageCode>De</LanguageCode>
       <Value>flat</Value>
     </Description>
@@ -106025,7 +106296,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_2">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00197">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00204">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -106035,7 +106306,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_3">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00198">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00205">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -106045,7 +106316,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_4">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00199">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00206">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -106055,7 +106326,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_5">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00200">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00207">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -106065,7 +106336,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_6">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00201">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00208">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -106075,7 +106346,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_7">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00202">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00209">
       <LanguageCode>De</LanguageCode>
       <Value>box</Value>
     </Description>
@@ -106085,7 +106356,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_8">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00203">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00210">
       <LanguageCode>De</LanguageCode>
       <Value>flat</Value>
     </Description>
@@ -106095,7 +106366,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_9">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00204">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00211">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -106105,7 +106376,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_10">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00205">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00212">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -106115,7 +106386,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_326_11">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00206">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00213">
       <LanguageCode>De</LanguageCode>
       <Value>cable_shoe</Value>
     </Description>
@@ -106125,7 +106396,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Terminal</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00207">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00214">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -106135,7 +106406,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_1">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00208">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00215">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -106145,7 +106416,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_2">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00209">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00216">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -106155,7 +106426,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_3">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00210">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00217">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -106165,7 +106436,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_4">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00211">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00218">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -106175,7 +106446,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_5">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00212">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00219">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -106185,7 +106456,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_6">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00213">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00220">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -106195,7 +106466,7 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_327_7">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00214">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00221">
       <LanguageCode>De</LanguageCode>
       <Value>Unspezifizierter Draht</Value>
     </Description>
@@ -106205,11 +106476,11 @@ This is not intended for productive use and is not complete!
     <PrimaryPartType>Wire</PrimaryPartType>
   </PartVersion>
   <PartVersion id="PartVersion_id_328_0">
-    <Abbreviation id="LocalizedString_00215">
+    <Abbreviation id="LocalizedString_00222">
       <LanguageCode>De</LanguageCode>
       <Value>LTGS</Value>
     </Abbreviation>
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00216">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00223">
       <LanguageCode>De</LanguageCode>
       <Value>Leitungsstrang</Value>
     </Description>
@@ -106224,7 +106495,7 @@ This is not intended for productive use and is not complete!
     </AliasId>
   </PartVersion>
   <PartVersion id="PartVersion_id_331_0">
-    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00217">
+    <Description xsi:type="vec:LocalizedString" id="LocalizedString_00224">
       <LanguageCode>De</LanguageCode>
       <Value>Modul</Value>
     </Description>

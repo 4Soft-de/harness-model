@@ -49,7 +49,7 @@ public class GenericComponentDocumentVersionTransformer implements Transformer<K
                 source instanceof KblGeneralWire || source instanceof KblWireProtection ||
                 source instanceof KblCoPackPart || source instanceof KblCavityPlug || source instanceof KblCavitySeal ||
                 source instanceof KblAccessory || source instanceof KblFixing || source instanceof KblGeneralTerminal ||
-                source instanceof KblComponentBox) {
+                source instanceof KblComponentBox || source instanceof KblComponent) {
             return TransformationResult.noResult();
         }
         context.getLogger().warn(
