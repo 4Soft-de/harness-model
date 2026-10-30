@@ -35,6 +35,7 @@ import com.foursoft.harness.vec.v2x.VecPartStructureSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 import static com.foursoft.harness.kbl2vec.transform.Queries.partOccurrences;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class AssemblyPartStructureSpecification implements
         Transformer<KblAssemblyPart, VecPartStructureSpecification> {
@@ -44,7 +45,7 @@ public class AssemblyPartStructureSpecification implements
 
         final VecPartStructureSpecification element = new VecPartStructureSpecification();
         element.setContentLiteral(VecPartStructureContentType.ASSEMBLY);
-        element.setSpecialPartType(source.getPartType());
+        element.setSpecialPartType(definedOrNull(source.getPartType()));
 
         return TransformationResult.from(element)
                 .withLinker(partOccurrences(source.getConnectionOrOccurrences()), VecPartOccurrence.class,

@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class CoPackSpecificaionTransformer implements Transformer<KblCoPackPart, VecPartOrUsageRelatedSpecification> {
 
@@ -39,7 +40,7 @@ public class CoPackSpecificaionTransformer implements Transformer<KblCoPackPart,
     public TransformationResult<VecPartOrUsageRelatedSpecification> transform(final TransformationContext context,
                                                                               final KblCoPackPart source) {
         final VecPartOrUsageRelatedSpecification destination = new VecPartOrUsageRelatedSpecification();
-        destination.setSpecialPartType(source.getPartType());
+        destination.setSpecialPartType(definedOrNull(source.getPartType()));
 
         return TransformationResult.from(destination)
                 .withFragment(commonSpecificationAttributes(source))

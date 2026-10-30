@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecWireProtectionSpecification;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class WireProtectionSpecificationTransformer
         implements Transformer<KblWireProtection, VecWireProtectionSpecification> {
@@ -40,7 +41,7 @@ public class WireProtectionSpecificationTransformer
     public TransformationResult<VecWireProtectionSpecification> transform(final TransformationContext context,
                                                                           final KblWireProtection source) {
         final VecWireProtectionSpecification destination = new VecWireProtectionSpecification();
-        destination.setSpecialPartType(source.getProtectionType());
+        destination.setSpecialPartType(definedOrNull(source.getProtectionType()));
 
         return TransformationResult.from(destination)
                 .withFragment(commonSpecificationAttributes(source))

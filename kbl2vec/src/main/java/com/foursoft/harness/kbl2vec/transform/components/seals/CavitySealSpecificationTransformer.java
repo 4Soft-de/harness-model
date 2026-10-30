@@ -35,6 +35,7 @@ import com.foursoft.harness.vec.v2x.VecCavitySealSpecification;
 import com.foursoft.harness.vec.v2x.VecValueRange;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
 
 public class CavitySealSpecificationTransformer implements Transformer<KblCavitySeal, VecCavitySealSpecification> {
 
@@ -42,7 +43,7 @@ public class CavitySealSpecificationTransformer implements Transformer<KblCavity
     public TransformationResult<VecCavitySealSpecification> transform(final TransformationContext context,
                                                                       final KblCavitySeal source) {
         final VecCavitySealSpecification destination = new VecCavitySealSpecification();
-        destination.setSpecialPartType(source.getSealType());
+        destination.setSpecialPartType(definedOrNull(source.getSealType()));
 
         return TransformationResult
                 .from(destination)
