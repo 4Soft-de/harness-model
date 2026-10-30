@@ -25,9 +25,11 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.protection;
 
+import com.foursoft.harness.kbl.v25.KblNumericalValue;
 import com.foursoft.harness.kbl.v25.KblWireProtection;
 import com.foursoft.harness.kbl.v25.KblWireProtectionOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.vec.v2x.VecNumericalValue;
 import com.foursoft.harness.vec.v2x.VecWireProtectionRole;
 import com.foursoft.harness.vec.v2x.VecWireProtectionSpecification;
 import org.junit.jupiter.api.Test;
@@ -54,6 +56,25 @@ class WireProtectionRoleTransformerTest {
 
         assertThat(result).isNotNull()
                 .returns("TestId", VecWireProtectionRole::getIdentification)
-                .returns(vecWireProtectionSpecification, VecWireProtectionRole::getWireProtectionSpecification);
+                .returns(vecWireProtectionSpecification, VecWireProtectionRole::getWireProtectionSpecification)
+                .returns(null, VecWireProtectionRole::getProtectionLength);
+    }
+
+    @Test
+    void should_transformProtectionLength() {
+        final WireProtectionRoleTransformer transformer = new WireProtectionRoleTransformer();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator();
+
+        final KblWireProtectionOccurrence source = new KblWireProtectionOccurrence();
+        final KblNumericalValue protectionLength = new KblNumericalValue();
+        source.setProtectionLength(protectionLength);
+
+        final VecNumericalValue vecProtectionLength = new VecNumericalValue();
+        orchestrator.addMockMapping(protectionLength, vecProtectionLength);
+
+        final VecWireProtectionRole result = orchestrator.transform(transformer, source);
+
+        assertThat(result).isNotNull()
+                .returns(vecProtectionLength, VecWireProtectionRole::getProtectionLength);
     }
 }

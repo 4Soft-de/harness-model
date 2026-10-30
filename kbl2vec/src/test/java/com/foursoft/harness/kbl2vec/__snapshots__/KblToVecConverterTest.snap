@@ -2925,6 +2925,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___105_343_01.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_1">
           <Identification>N___105_343_01.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_1">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>209.800923</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_1">
@@ -2937,6 +2941,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___105_343_01.2</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_2">
           <Identification>N___105_343_01.2</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_2">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>96.30979</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_2">
@@ -2949,6 +2957,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___105_343_01.3</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_3">
           <Identification>N___105_343_01.3</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_3">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>36.518424</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_3">
@@ -94114,6 +94126,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_41_42_772.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_1">
           <Identification>N___103_113_01-2008_04_28-09_41_42_772.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_1">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>258.661146</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_1">
@@ -94126,6 +94142,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_42_13_601.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_2">
           <Identification>N___103_113_01-2008_04_28-09_42_13_601.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_2">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>266.511877</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_2">
@@ -94138,6 +94158,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_42_56_774.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_3">
           <Identification>N___103_113_01-2008_04_28-09_42_56_774.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_3">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>233.501227</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_3">
@@ -94150,6 +94174,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_43_38_587.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_4">
           <Identification>N___103_113_01-2008_04_28-09_43_38_587.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_4">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>762.832172</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_4">
@@ -94162,6 +94190,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_43_56_088.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_5">
           <Identification>N___103_113_01-2008_04_28-09_43_56_088.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_5">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>89.198101</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_5">
@@ -94174,6 +94206,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_44_09_119.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_6">
           <Identification>N___103_113_01-2008_04_28-09_44_09_119.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_6">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>90.070765</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_6">
@@ -94186,6 +94222,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_44_30_370.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_7">
           <Identification>N___103_113_01-2008_04_28-09_44_30_370.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_7">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>32.743668</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_7">
@@ -94198,6 +94238,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_326_01-2008_04_28-09_47_03_702.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_8">
           <Identification>N___107_326_01-2008_04_28-09_47_03_702.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_8">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>231.821141</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_2</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_8">
@@ -94210,6 +94254,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_326_01-2008_04_28-09_47_40_750.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_9">
           <Identification>N___107_326_01-2008_04_28-09_47_40_750.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_9">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>727.560453</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_2</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_9">
@@ -94222,6 +94270,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_58_19_181.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_10">
           <Identification>N___103_113_01-2008_04_29-09_58_19_181.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_10">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>222.559312</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_10">
@@ -94234,6 +94286,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_58_45_099.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_11">
           <Identification>N___103_113_01-2008_04_29-09_58_45_099.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_11">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>453.492617</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_11">
@@ -94246,6 +94302,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_58_58_272.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_12">
           <Identification>N___103_113_01-2008_04_29-09_58_58_272.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_12">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>325.695321</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_12">
@@ -94258,6 +94318,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_59_20_069.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_13">
           <Identification>N___103_113_01-2008_04_29-09_59_20_069.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_13">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>483.962096</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_13">
@@ -94270,6 +94334,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_59_36_597.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_14">
           <Identification>N___103_113_01-2008_04_29-09_59_36_597.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_14">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>146.872363</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_14">
@@ -94282,6 +94350,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_59_49_763.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_15">
           <Identification>N___103_113_01-2008_04_29-09_59_49_763.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_15">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>163.63924</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_15">
@@ -94294,6 +94366,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_326_01-2008_05_05-09_51_56_468.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_16">
           <Identification>N___107_326_01-2008_05_05-09_51_56_468.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_16">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>443.492201</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_2</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_16">
@@ -94306,6 +94382,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_326_01-2008_05_05-09_55_02_623.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_17">
           <Identification>N___107_326_01-2008_05_05-09_55_02_623.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_17">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>222.559312</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_2</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_17">
@@ -94318,6 +94398,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_326_01-2008_05_05-10_08_38_545.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_18">
           <Identification>N___107_326_01-2008_05_05-10_08_38_545.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_18">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>315.695326</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_2</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_18">
@@ -94330,6 +94414,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_326_01-2008_05_09-10_32_40_662.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_19">
           <Identification>N___107_326_01-2008_05_09-10_32_40_662.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_19">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>463.961625</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_2</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_19">
@@ -94342,6 +94430,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_05-2008_04_28-08_50_20_718.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_20">
           <Identification>N___103_113_05-2008_04_28-08_50_20_718.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_20">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>172.675929</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_3</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_20">
@@ -94354,6 +94446,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___105_095_01-2008_04_28-08_56_16_343.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_21">
           <Identification>N___105_095_01-2008_04_28-08_56_16_343.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_21">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>147.037155</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_4</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_21">
@@ -94366,6 +94462,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_57_59_516.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_22">
           <Identification>N___103_113_01-2008_04_28-09_57_59_516.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_22">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>727.237133</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_22">
@@ -94378,6 +94478,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_58_46_173.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_23">
           <Identification>N___103_113_01-2008_04_28-09_58_46_173.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_23">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>68.212157</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_23">
@@ -94390,6 +94494,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-09_59_11_892.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_24">
           <Identification>N___103_113_01-2008_04_28-09_59_11_892.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_24">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>113.888475</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_24">
@@ -94402,6 +94510,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_06_27_794.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_25">
           <Identification>N___103_113_01-2008_04_28-10_06_27_794.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_25">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>0.0</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_25">
@@ -94414,6 +94526,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_16_11_137.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_26">
           <Identification>N___103_113_01-2008_04_28-10_16_11_137.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_26">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>208.41627</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_26">
@@ -94426,6 +94542,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_16_34_966.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_27">
           <Identification>N___103_113_01-2008_04_28-10_16_34_966.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_27">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>142.957047</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_27">
@@ -94438,6 +94558,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_16_51_076.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_28">
           <Identification>N___103_113_01-2008_04_28-10_16_51_076.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_28">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>163.283972</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_28">
@@ -94450,6 +94574,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_17_22_108.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_29">
           <Identification>N___103_113_01-2008_04_28-10_17_22_108.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_29">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>99.467241</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_29">
@@ -94462,6 +94590,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_35_48_511.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_30">
           <Identification>N___103_113_01-2008_04_28-10_35_48_511.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_30">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>105.763378</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_30">
@@ -94474,6 +94606,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_36_12_715.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_31">
           <Identification>N___103_113_01-2008_04_28-10_36_12_715.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_31">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>122.566613</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_31">
@@ -94486,6 +94622,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_36_30_356.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_32">
           <Identification>N___103_113_01-2008_04_28-10_36_30_356.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_32">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>108.276178</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_32">
@@ -94498,6 +94638,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_36_51_403.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_33">
           <Identification>N___103_113_01-2008_04_28-10_36_51_403.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_33">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>104.829523</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_33">
@@ -94510,6 +94654,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_37_45_608.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_34">
           <Identification>N___103_113_01-2008_04_28-10_37_45_608.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_34">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>264.746301</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_34">
@@ -94522,6 +94670,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_38_01_811.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_35">
           <Identification>N___103_113_01-2008_04_28-10_38_01_811.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_35">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>198.592473</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_35">
@@ -94534,6 +94686,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_28-10_38_30_953.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_36">
           <Identification>N___103_113_01-2008_04_28-10_38_30_953.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_36">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>236.885647</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_36">
@@ -94546,6 +94702,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_17_26_656.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_37">
           <Identification>N___103_113_01-2008_04_29-09_17_26_656.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_37">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>195.232631</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_37">
@@ -94558,6 +94718,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_17_47_461.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_38">
           <Identification>N___103_113_01-2008_04_29-09_17_47_461.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_38">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>76.278818</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_38">
@@ -94570,6 +94734,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_18_11_371.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_39">
           <Identification>N___103_113_01-2008_04_29-09_18_11_371.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_39">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>128.41997</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_39">
@@ -94582,6 +94750,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_18_44_194.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_40">
           <Identification>N___103_113_01-2008_04_29-09_18_44_194.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_40">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>119.464243</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_40">
@@ -94594,6 +94766,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_19_04_422.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_41">
           <Identification>N___103_113_01-2008_04_29-09_19_04_422.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_41">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>106.620974</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_41">
@@ -94606,6 +94782,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_19_27_724.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_42">
           <Identification>N___103_113_01-2008_04_29-09_19_27_724.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_42">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>108.395335</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_42">
@@ -94618,6 +94798,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_19_45_969.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_43">
           <Identification>N___103_113_01-2008_04_29-09_19_45_969.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_43">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>128.145793</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_43">
@@ -94630,6 +94814,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_20_07_227.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_44">
           <Identification>N___103_113_01-2008_04_29-09_20_07_227.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_44">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>105.406357</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_44">
@@ -94642,6 +94830,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_20_43_421.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_45">
           <Identification>N___103_113_01-2008_04_29-09_20_43_421.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_45">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>38.597906</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_45">
@@ -94654,6 +94846,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_20_59_653.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_46">
           <Identification>N___103_113_01-2008_04_29-09_20_59_653.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_46">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>207.337119</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_46">
@@ -94666,6 +94862,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_21_17_227.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_47">
           <Identification>N___103_113_01-2008_04_29-09_21_17_227.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_47">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>154.538013</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_47">
@@ -94678,6 +94878,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_21_30_150.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_48">
           <Identification>N___103_113_01-2008_04_29-09_21_30_150.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_48">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>123.832286</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_48">
@@ -94690,6 +94894,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_21_48_582.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_49">
           <Identification>N___103_113_01-2008_04_29-09_21_48_582.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_49">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>130.33498</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_49">
@@ -94702,6 +94910,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_22_18_924.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_50">
           <Identification>N___103_113_01-2008_04_29-09_22_18_924.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_50">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>76.016745</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_50">
@@ -94714,6 +94926,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_22_33_751.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_51">
           <Identification>N___103_113_01-2008_04_29-09_22_33_751.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_51">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>61.785777</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_51">
@@ -94726,6 +94942,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_22_48_875.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_52">
           <Identification>N___103_113_01-2008_04_29-09_22_48_875.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_52">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>94.186817</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_52">
@@ -94738,6 +94958,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_23_39_006.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_53">
           <Identification>N___103_113_01-2008_04_29-09_23_39_006.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_53">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>55.259429</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_53">
@@ -94750,6 +94974,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_24_10_861.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_54">
           <Identification>N___103_113_01-2008_04_29-09_24_10_861.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_54">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>59.92666</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_54">
@@ -94762,6 +94990,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_24_28_061.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_55">
           <Identification>N___103_113_01-2008_04_29-09_24_28_061.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_55">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>65.890215</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_55">
@@ -94774,6 +95006,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_24_46_618.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_56">
           <Identification>N___103_113_01-2008_04_29-09_24_46_618.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_56">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>69.557495</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_56">
@@ -94786,6 +95022,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_25_53_669.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_57">
           <Identification>N___103_113_01-2008_04_29-09_25_53_669.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_57">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>135.289879</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_57">
@@ -94798,6 +95038,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_26_17_002.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_58">
           <Identification>N___103_113_01-2008_04_29-09_26_17_002.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_58">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>57.308669</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_58">
@@ -94810,6 +95054,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_04_29-09_26_33_015.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_59">
           <Identification>N___103_113_01-2008_04_29-09_26_33_015.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_59">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>53.987496</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_59">
@@ -94822,6 +95070,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_25_30_896.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_60">
           <Identification>N___103_113_01-2008_05_09-12_25_30_896.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_60">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>302.473741</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_60">
@@ -94834,6 +95086,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_26_01_912.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_61">
           <Identification>N___103_113_01-2008_05_09-12_26_01_912.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_61">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>194.458741</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_61">
@@ -94846,6 +95102,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_27_57_615.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_62">
           <Identification>N___103_113_01-2008_05_09-12_27_57_615.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_62">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>146.75801</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_62">
@@ -94858,6 +95118,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_28_21_896.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_63">
           <Identification>N___103_113_01-2008_05_09-12_28_21_896.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_63">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>64.948605</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_63">
@@ -94870,6 +95134,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_28_41_928.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_64">
           <Identification>N___103_113_01-2008_05_09-12_28_41_928.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_64">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>95.648932</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_64">
@@ -94882,6 +95150,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_28_54_928.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_65">
           <Identification>N___103_113_01-2008_05_09-12_28_54_928.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_65">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>101.098451</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_65">
@@ -94894,6 +95166,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_29_09_365.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_66">
           <Identification>N___103_113_01-2008_05_09-12_29_09_365.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_66">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>473.90239</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_66">
@@ -94906,6 +95182,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_29_20_709.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_67">
           <Identification>N___103_113_01-2008_05_09-12_29_20_709.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_67">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>295.031384</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_67">
@@ -94918,6 +95198,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_29_34_506.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_68">
           <Identification>N___103_113_01-2008_05_09-12_29_34_506.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_68">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>316.601269</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_68">
@@ -94930,6 +95214,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_29_50_756.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_69">
           <Identification>N___103_113_01-2008_05_09-12_29_50_756.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_69">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>174.208962</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_69">
@@ -94942,6 +95230,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_30_08_912.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_70">
           <Identification>N___103_113_01-2008_05_09-12_30_08_912.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_70">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>246.906027</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_70">
@@ -94954,6 +95246,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_30_21_740.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_71">
           <Identification>N___103_113_01-2008_05_09-12_30_21_740.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_71">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>197.771786</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_71">
@@ -94966,6 +95262,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_31_14_459.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_72">
           <Identification>N___103_113_01-2008_05_09-12_31_14_459.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_72">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>1324.433065</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_72">
@@ -94978,6 +95278,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_32_13_178.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_73">
           <Identification>N___103_113_01-2008_05_09-12_32_13_178.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_73">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>652.916045</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_73">
@@ -94990,6 +95294,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_34_22_350.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_74">
           <Identification>N___103_113_01-2008_05_09-12_34_22_350.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_74">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>156.174429</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_74">
@@ -95002,6 +95310,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_34_55_475.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_75">
           <Identification>N___103_113_01-2008_05_09-12_34_55_475.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_75">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>2385.721077</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_75">
@@ -95014,6 +95326,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_35_12_021.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_76">
           <Identification>N___103_113_01-2008_05_09-12_35_12_021.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_76">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>778.811047</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_76">
@@ -95026,6 +95342,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_41_45_850.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_77">
           <Identification>N___103_113_01-2008_05_09-12_41_45_850.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_77">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>455.808666</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_77">
@@ -95038,6 +95358,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_42_15_240.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_78">
           <Identification>N___103_113_01-2008_05_09-12_42_15_240.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_78">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>737.556114</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_78">
@@ -95050,6 +95374,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2009_09_28-10_43_33_465.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_79">
           <Identification>N___103_113_01-2009_09_28-10_43_33_465.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_79">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>524.771662</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_79">
@@ -95062,6 +95390,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_42_52_396.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_80">
           <Identification>N___103_113_01-2008_05_09-12_42_52_396.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_80">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>208.641503</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_80">
@@ -95074,6 +95406,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_43_07_584.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_81">
           <Identification>N___103_113_01-2008_05_09-12_43_07_584.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_81">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>199.840252</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_81">
@@ -95086,6 +95422,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_45_09_209.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_82">
           <Identification>N___103_113_01-2008_05_09-12_45_09_209.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_82">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>144.978669</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_82">
@@ -95098,6 +95438,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_45_20_600.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_83">
           <Identification>N___103_113_01-2008_05_09-12_45_20_600.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_83">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>92.878808</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_83">
@@ -95110,6 +95454,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_45_34_271.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_84">
           <Identification>N___103_113_01-2008_05_09-12_45_34_271.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_84">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>120.819483</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_84">
@@ -95122,6 +95470,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_54_56_990.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_85">
           <Identification>N___103_113_01-2008_05_09-12_54_56_990.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_85">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>252.316264</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_85">
@@ -95134,6 +95486,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_55_09_678.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_86">
           <Identification>N___103_113_01-2008_05_09-12_55_09_678.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_86">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>278.169457</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_86">
@@ -95146,6 +95502,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_55_25_818.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_87">
           <Identification>N___103_113_01-2008_05_09-12_55_25_818.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_87">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>447.935675</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_87">
@@ -95158,6 +95518,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_57_01_459.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_88">
           <Identification>N___103_113_01-2008_05_09-12_57_01_459.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_88">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>88.757529</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_88">
@@ -95170,6 +95534,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_57_47_771.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_89">
           <Identification>N___103_113_01-2008_05_09-12_57_47_771.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_89">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>837.969328</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_89">
@@ -95182,6 +95550,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-12_58_00_428.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_90">
           <Identification>N___103_113_01-2008_05_09-12_58_00_428.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_90">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>140.3918</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_90">
@@ -95194,6 +95566,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-13_07_57_381.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_91">
           <Identification>N___103_113_01-2008_05_09-13_07_57_381.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_91">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>181.121954</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_91">
@@ -95206,6 +95582,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_328_01-2008_05_09-13_45_55_271.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_92">
           <Identification>N___107_328_01-2008_05_09-13_45_55_271.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_92">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>67.158761</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_5</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_92">
@@ -95218,6 +95598,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_328_01-2008_05_09-13_54_51_568.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_93">
           <Identification>N___107_328_01-2008_05_09-13_54_51_568.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_93">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>113.963193</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_5</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_93">
@@ -95230,6 +95614,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___102_871_01-2008_05_09-13_56_53_334.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_94">
           <Identification>N___102_871_01-2008_05_09-13_56_53_334.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_94">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>68.757782</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_6</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_94">
@@ -95242,6 +95630,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___102_871_01-2008_05_09-13_58_46_693.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_95">
           <Identification>N___102_871_01-2008_05_09-13_58_46_693.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_95">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>120.3918</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_6</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_95">
@@ -95254,6 +95646,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___107_326_01-2008_05_09-14_00_01_037.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_96">
           <Identification>N___107_326_01-2008_05_09-14_00_01_037.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_96">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>837.969328</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_2</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_96">
@@ -95266,6 +95662,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_18_19_928.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_97">
           <Identification>N___103_113_01-2008_05_09-14_18_19_928.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_97">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>295.141098</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_97">
@@ -95278,6 +95678,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_18_59_771.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_98">
           <Identification>N___103_113_01-2008_05_09-14_18_59_771.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_98">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>252.662391</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_98">
@@ -95290,6 +95694,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_19_11_537.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_99">
           <Identification>N___103_113_01-2008_05_09-14_19_11_537.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_99">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>372.265302</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_99">
@@ -95302,6 +95710,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_19_22_271.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_100">
           <Identification>N___103_113_01-2008_05_09-14_19_22_271.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_100">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>1105.415351</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_100">
@@ -95314,6 +95726,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_19_39_068.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_101">
           <Identification>N___103_113_01-2008_05_09-14_19_39_068.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_101">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>67.609886</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_101">
@@ -95326,6 +95742,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_20_00_162.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_102">
           <Identification>N___103_113_01-2008_05_09-14_20_00_162.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_102">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>858.022366</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_102">
@@ -95338,6 +95758,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_20_17_646.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_103">
           <Identification>N___103_113_01-2008_05_09-14_20_17_646.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_103">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>549.966699</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_103">
@@ -95350,6 +95774,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_20_38_021.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_104">
           <Identification>N___103_113_01-2008_05_09-14_20_38_021.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_104">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>269.413747</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_104">
@@ -95362,6 +95790,10 @@ This is not intended for productive use and is not complete!
         <Identification>N___103_113_01-2008_05_09-14_22_08_678.1</Identification>
         <Role xsi:type="vec:WireProtectionRole" id="WireProtectionRole_Wire_protection_occurrence_105">
           <Identification>N___103_113_01-2008_05_09-14_22_08_678.1</Identification>
+          <ProtectionLength id="NumericalValue_Protection_length_105">
+            <UnitComponent>SIUnit_id_346_1</UnitComponent>
+            <ValueComponent>273.956766</ValueComponent>
+          </ProtectionLength>
           <WireProtectionSpecification>WireProtectionSpecification_Wire_protection_1</WireProtectionSpecification>
         </Role>
         <Role xsi:type="vec:PlaceableElementRole" id="PlaceableElementRole_Wire_protection_occurrence_105">
