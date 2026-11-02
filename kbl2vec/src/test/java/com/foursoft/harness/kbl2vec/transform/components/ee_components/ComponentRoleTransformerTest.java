@@ -34,6 +34,7 @@ import com.foursoft.harness.vec.v2x.VecEEComponentRole;
 import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
 import com.foursoft.harness.vec.v2x.VecFuseRole;
 import com.foursoft.harness.vec.v2x.VecFuseSpecification;
+import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,8 +50,10 @@ class ComponentRoleTransformerTest {
         source.setPart(part);
 
         final VecFuseSpecification specification = new VecFuseSpecification();
+        final VecHousingComponentReference housingReference = new VecHousingComponentReference();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator()
-                .addMockMapping(part, specification);
+                .addMockMapping(part, specification)
+                .addMockMapping(source, housingReference);
 
         // When
         final VecEEComponentRole result = orchestrator.transform(new ComponentRoleTransformer(), source);
@@ -58,7 +61,8 @@ class ComponentRoleTransformerTest {
         // Then
         assertThat(result).isInstanceOf(VecFuseRole.class)
                 .returns("F1", VecEEComponentRole::getIdentification)
-                .returns(specification, VecEEComponentRole::getEEComponentSpecification);
+                .returns(specification, VecEEComponentRole::getEEComponentSpecification)
+                .satisfies(v -> assertThat(v.getHousingComponentReves()).containsExactly(housingReference));
     }
 
     @Test
@@ -70,6 +74,7 @@ class ComponentRoleTransformerTest {
         // When
         final VecEEComponentRole result = new TestConversionOrchestrator()
                 .addMockMapping(source.getPart(), new VecEEComponentSpecification())
+                .addMockMapping(source, new VecHousingComponentReference())
                 .transform(new ComponentRoleTransformer(), source);
 
         // Then
@@ -85,6 +90,7 @@ class ComponentRoleTransformerTest {
         // When
         final VecEEComponentRole result = new TestConversionOrchestrator()
                 .addMockMapping(source.getPart(), new VecEEComponentSpecification())
+                .addMockMapping(source, new VecHousingComponentReference())
                 .transform(new ComponentRoleTransformer(), source);
 
         // Then

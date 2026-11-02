@@ -35,6 +35,7 @@ import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecEEComponentRole;
 import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
 import com.foursoft.harness.vec.v2x.VecFuseRole;
+import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
 
 /**
  * Transforms the role of a component occurrence. The occurrence of a fuse gets a {@link VecFuseRole}, it is recognised
@@ -48,6 +49,8 @@ public class ComponentRoleTransformer implements Transformer<KblComponentOccurre
         final VecEEComponentRole destination = isFuse(source) ? new VecFuseRole() : new VecEEComponentRole();
         destination.setIdentification(source.getId());
         return TransformationResult.from(destination)
+                .withDownstream(KblComponentOccurrence.class, VecHousingComponentReference.class, Query.of(source),
+                                VecEEComponentRole::getHousingComponentReves)
                 .withLinker(Query.of(source::getPart), VecEEComponentSpecification.class,
                             VecEEComponentRole::setEEComponentSpecification)
                 .build();

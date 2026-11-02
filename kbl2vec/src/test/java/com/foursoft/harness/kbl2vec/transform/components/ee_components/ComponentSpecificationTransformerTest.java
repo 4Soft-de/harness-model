@@ -28,6 +28,7 @@ package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 import com.foursoft.harness.kbl.v25.KblComponent;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
+import com.foursoft.harness.vec.v2x.VecHousingComponent;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import org.junit.jupiter.api.Test;
 
@@ -41,8 +42,10 @@ class ComponentSpecificationTransformerTest {
         final KblComponent source = new KblComponent();
         source.setPartNumber("R-001");
         final VecPartVersion partVersion = new VecPartVersion();
+        final VecHousingComponent housingComponent = new VecHousingComponent();
         final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator()
-                .addMockMapping(source, partVersion);
+                .addMockMapping(source, partVersion)
+                .addMockMapping(source, housingComponent);
 
         // When
         final VecEEComponentSpecification result = orchestrator.transform(new ComponentSpecificationTransformer(),
@@ -51,6 +54,7 @@ class ComponentSpecificationTransformerTest {
         // Then
         assertThat(result).isNotNull()
                 .returns("EECS-R-001", VecEEComponentSpecification::getIdentification)
-                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(partVersion));
+                .satisfies(v -> assertThat(v.getDescribedPart()).containsExactly(partVersion))
+                .satisfies(v -> assertThat(v.getHousingComponents()).containsExactly(housingComponent));
     }
 }

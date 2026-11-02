@@ -26,16 +26,19 @@
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
 import com.foursoft.harness.kbl.v25.KblComponent;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
+import com.foursoft.harness.vec.v2x.VecHousingComponent;
 
 import static com.foursoft.harness.kbl2vec.transform.Fragments.commonSpecificationAttributes;
 
 /**
  * Transforms a KBL {@link KblComponent} without a more specific class. KBL describes no internal structure of a
- * component, therefore the specification has no housing or pin components.
+ * component, therefore the specification has a single {@link ComponentHousingTransformer housing component} without
+ * pin components.
  */
 public class ComponentSpecificationTransformer implements Transformer<KblComponent, VecEEComponentSpecification> {
 
@@ -45,6 +48,8 @@ public class ComponentSpecificationTransformer implements Transformer<KblCompone
         final VecEEComponentSpecification destination = new VecEEComponentSpecification();
         return TransformationResult.from(destination)
                 .withFragment(commonSpecificationAttributes(source))
+                .withDownstream(KblComponent.class, VecHousingComponent.class, Query.of(source),
+                                VecEEComponentSpecification::getHousingComponents)
                 .build();
     }
 }
