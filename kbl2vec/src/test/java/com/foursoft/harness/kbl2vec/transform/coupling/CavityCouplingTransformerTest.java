@@ -1,0 +1,60 @@
+/*-
+ * ========================LICENSE_START=================================
+ * KBL to VEC Converter
+ * %%
+ * Copyright (C) 2025 - 2026 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
+package com.foursoft.harness.kbl2vec.transform.coupling;
+
+import com.foursoft.harness.kbl.v25.KblCavityOccurrence;
+import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.kbl2vec.transform.coupling.Matings.CavityMating;
+import com.foursoft.harness.vec.v2x.VecCavityCoupling;
+import com.foursoft.harness.vec.v2x.VecCavityReference;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class CavityCouplingTransformerTest {
+
+    @Test
+    void should_coupleTheMatedCavities() {
+        // Given
+        final KblCavityOccurrence first = new KblCavityOccurrence();
+        final KblCavityOccurrence second = new KblCavityOccurrence();
+
+        final VecCavityReference firstReference = new VecCavityReference();
+        final VecCavityReference secondReference = new VecCavityReference();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator()
+                .addMockMapping(first, firstReference)
+                .addMockMapping(second, secondReference);
+
+        // When
+        final VecCavityCoupling result = orchestrator.transform(new CavityCouplingTransformer(),
+                                                                new CavityMating(first, second));
+
+        // Then
+        assertThat(result).isNotNull()
+                .returns(firstReference, VecCavityCoupling::getFirstCavity)
+                .returns(secondReference, VecCavityCoupling::getSecondCavity);
+    }
+}

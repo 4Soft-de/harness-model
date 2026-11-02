@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.coupling.Matings.HousingMating;
 import com.foursoft.harness.vec.v2x.VecCouplingPoint;
 import com.foursoft.harness.vec.v2x.VecCouplingSpecification;
 
@@ -40,8 +41,9 @@ import java.util.List;
 import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 /**
- * Couples the components of the harness with the component slots they are mounted on. Only the occurrences of the
- * harness itself are considered, the occurrences of an assembly part belong to its part master data.
+ * Couples the components of the harness with the component slots they are mounted on, and the mated housings of the
+ * harness (see {@link Matings}). Only the occurrences of the harness itself are considered, the occurrences of an
+ * assembly part belong to its part master data.
  */
 public class CouplingSpecificationTransformer implements Transformer<KblHarness, VecCouplingSpecification> {
 
@@ -49,7 +51,8 @@ public class CouplingSpecificationTransformer implements Transformer<KblHarness,
     public TransformationResult<VecCouplingSpecification> transform(final TransformationContext context,
                                                                     final KblHarness source) {
         final List<KblComponentOccurrence> mountedComponents = mountedComponents(source);
-        if (mountedComponents.isEmpty()) {
+        final List<HousingMating> matings = Matings.of(context, source);
+        if (mountedComponents.isEmpty() && matings.isEmpty()) {
             return TransformationResult.noResult();
         }
         final VecCouplingSpecification destination = new VecCouplingSpecification();
@@ -57,6 +60,8 @@ public class CouplingSpecificationTransformer implements Transformer<KblHarness,
         return TransformationResult.from(destination)
                 .withDownstream(KblComponentOccurrence.class, VecCouplingPoint.class,
                                 Query.fromLists(mountedComponents), VecCouplingSpecification::getCouplingPoints)
+                .withDownstream(HousingMating.class, VecCouplingPoint.class, Query.fromLists(matings),
+                                VecCouplingSpecification::getCouplingPoints)
                 .build();
     }
 

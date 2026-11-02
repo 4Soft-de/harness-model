@@ -28,11 +28,17 @@ package com.foursoft.harness.kbl2vec.transform.coupling;
 import com.foursoft.harness.kbl.v25.KblComponentBoxOccurrence;
 import com.foursoft.harness.kbl.v25.KblComponentOccurrence;
 import com.foursoft.harness.kbl.v25.KblComponentSlotOccurrence;
+import com.foursoft.harness.kbl.v25.KblConnectorOccurrence;
 import com.foursoft.harness.kbl.v25.KblHarness;
+import com.foursoft.harness.kbl.v25.KblSlotOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
+import com.foursoft.harness.kbl2vec.transform.coupling.Matings.HousingMating;
+import com.foursoft.harness.kbl2vec.transform.coupling.Matings.SlotMating;
 import com.foursoft.harness.vec.v2x.VecCouplingPoint;
 import com.foursoft.harness.vec.v2x.VecCouplingSpecification;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -62,6 +68,34 @@ class CouplingSpecificationTransformerTest {
         // Then
         assertThat(result).isNotNull()
                 .returns("CS-H-001", VecCouplingSpecification::getIdentification)
+                .satisfies(v -> assertThat(v.getCouplingPoints()).containsExactly(couplingPoint));
+    }
+
+    @Test
+    void should_coupleMatedHousings_withoutMountedComponents() {
+        // Given
+        final KblConnectorOccurrence connector = new KblConnectorOccurrence();
+        final KblSlotOccurrence slot = new KblSlotOccurrence();
+        connector.getSlots().add(slot);
+        final KblConnectorOccurrence matedConnector = new KblConnectorOccurrence();
+        final KblSlotOccurrence matedSlot = new KblSlotOccurrence();
+        matedConnector.getSlots().add(matedSlot);
+        slot.getMatedSlots().add(matedSlot);
+        final KblHarness source = new KblHarness();
+        source.getConnectorOccurrences().add(connector);
+        source.getConnectorOccurrences().add(matedConnector);
+
+        final VecCouplingPoint couplingPoint = new VecCouplingPoint();
+        final TestConversionOrchestrator orchestrator = new TestConversionOrchestrator()
+                .addMockMapping(new HousingMating(connector, matedConnector,
+                                                  List.of(new SlotMating(slot, matedSlot, List.of()))),
+                                couplingPoint);
+
+        // When
+        final VecCouplingSpecification result = orchestrator.transform(transformer, source);
+
+        // Then
+        assertThat(result).isNotNull()
                 .satisfies(v -> assertThat(v.getCouplingPoints()).containsExactly(couplingPoint));
     }
 
