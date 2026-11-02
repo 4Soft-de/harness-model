@@ -97967,7 +97967,7 @@ This is not intended for productive use and is not complete!
       <Identification>COMPONENTS</Identification>
       <Component id="PartOccurrence_id_303_1">
         <Identification>MFS_740_C150_1</Identification>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_1">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_1">
           <Identification>MFS_740_C150_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_0</EEComponentSpecification>
         </Role>
@@ -97975,7 +97975,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_303_3">
         <Identification>MFS_740_C110_1</Identification>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_3">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_3">
           <Identification>MFS_740_C110_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_1</EEComponentSpecification>
         </Role>
@@ -97983,7 +97983,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_303_5">
         <Identification>MFS_740_C80_1</Identification>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_5">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_5">
           <Identification>MFS_740_C80_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_2</EEComponentSpecification>
         </Role>
@@ -97991,7 +97991,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_303_7">
         <Identification>MFS_740_C40_1</Identification>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_7">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_7">
           <Identification>MFS_740_C40_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_3</EEComponentSpecification>
         </Role>
@@ -97999,7 +97999,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_303_9">
         <Identification>MFS_740_C50_1</Identification>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_9">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_9">
           <Identification>MFS_740_C50_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_4</EEComponentSpecification>
         </Role>
@@ -98007,7 +98007,7 @@ This is not intended for productive use and is not complete!
       </Component>
       <Component id="PartOccurrence_id_303_11">
         <Identification>MFS_740_C60_1</Identification>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_11">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_11">
           <Identification>MFS_740_C60_1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_5</EEComponentSpecification>
         </Role>
@@ -104482,7 +104482,7 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Tetrathrow</Value>
         </Description>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_0">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_0">
           <Identification>MF1_F1</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_0</EEComponentSpecification>
         </Role>
@@ -104500,7 +104500,7 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Hydraulikpumpe</Value>
         </Description>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_2">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_2">
           <Identification>MF1_F2</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_1</EEComponentSpecification>
         </Role>
@@ -104518,7 +104518,7 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Ölablass</Value>
         </Description>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_4">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_4">
           <Identification>MF1_F3</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_2</EEComponentSpecification>
         </Role>
@@ -104536,7 +104536,7 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Heckscheibenmotor</Value>
         </Description>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_6">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_6">
           <Identification>MF1_F4</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_3</EEComponentSpecification>
         </Role>
@@ -104554,7 +104554,7 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Kompressor</Value>
         </Description>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_8">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_8">
           <Identification>MF1_F5</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_4</EEComponentSpecification>
         </Role>
@@ -104572,7 +104572,7 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Beifahrersitz</Value>
         </Description>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_10">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_10">
           <Identification>MF1_F6</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_5</EEComponentSpecification>
         </Role>
@@ -104590,7 +104590,7 @@ This is not intended for productive use and is not complete!
           <LanguageCode>De</LanguageCode>
           <Value>Plusverbindung (30) Ltgs. Motorraum</Value>
         </Description>
-        <Role xsi:type="vec:EEComponentRole" id="EEComponentRole_id_303_12">
+        <Role xsi:type="vec:FuseRole" id="FuseRole_id_303_12">
           <Identification>SR1.1_FS4</Identification>
           <EEComponentSpecification>FuseSpecification_id_302_6</EEComponentSpecification>
         </Role>

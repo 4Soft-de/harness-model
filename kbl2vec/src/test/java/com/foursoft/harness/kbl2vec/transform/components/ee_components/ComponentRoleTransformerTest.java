@@ -25,10 +25,14 @@
  */
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
+import com.foursoft.harness.kbl.v25.KblComponent;
 import com.foursoft.harness.kbl.v25.KblComponentOccurrence;
 import com.foursoft.harness.kbl.v25.KblFuse;
+import com.foursoft.harness.kbl.v25.KblFuseOccurrence;
 import com.foursoft.harness.kbl2vec.core.TestConversionOrchestrator;
 import com.foursoft.harness.vec.v2x.VecEEComponentRole;
+import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
+import com.foursoft.harness.vec.v2x.VecFuseRole;
 import com.foursoft.harness.vec.v2x.VecFuseSpecification;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +41,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ComponentRoleTransformerTest {
 
     @Test
-    void should_transformComponentRole() {
+    void should_transformFuseRole_forTheOccurrenceOfAFusePart() {
         // Given
         final KblComponentOccurrence source = new KblComponentOccurrence();
         source.setId("F1");
@@ -52,8 +56,38 @@ class ComponentRoleTransformerTest {
         final VecEEComponentRole result = orchestrator.transform(new ComponentRoleTransformer(), source);
 
         // Then
-        assertThat(result).isNotNull()
+        assertThat(result).isInstanceOf(VecFuseRole.class)
                 .returns("F1", VecEEComponentRole::getIdentification)
                 .returns(specification, VecEEComponentRole::getEEComponentSpecification);
+    }
+
+    @Test
+    void should_transformFuseRole_forAFuseOccurrence() {
+        // Given
+        final KblFuseOccurrence source = new KblFuseOccurrence();
+        source.setPart(new KblComponent());
+
+        // When
+        final VecEEComponentRole result = new TestConversionOrchestrator()
+                .addMockMapping(source.getPart(), new VecEEComponentSpecification())
+                .transform(new ComponentRoleTransformer(), source);
+
+        // Then
+        assertThat(result).isInstanceOf(VecFuseRole.class);
+    }
+
+    @Test
+    void should_transformEEComponentRole_forOtherComponents() {
+        // Given
+        final KblComponentOccurrence source = new KblComponentOccurrence();
+        source.setPart(new KblComponent());
+
+        // When
+        final VecEEComponentRole result = new TestConversionOrchestrator()
+                .addMockMapping(source.getPart(), new VecEEComponentSpecification())
+                .transform(new ComponentRoleTransformer(), source);
+
+        // Then
+        assertThat(result).isExactlyInstanceOf(VecEEComponentRole.class);
     }
 }
