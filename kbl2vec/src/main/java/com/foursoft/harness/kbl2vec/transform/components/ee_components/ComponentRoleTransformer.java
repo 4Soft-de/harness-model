@@ -26,23 +26,34 @@
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
 import com.foursoft.harness.kbl.v25.KblComponentOccurrence;
+import com.foursoft.harness.kbl.v25.KblFuse;
+import com.foursoft.harness.kbl.v25.KblFuseOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecEEComponentRole;
 import com.foursoft.harness.vec.v2x.VecEEComponentSpecification;
+import com.foursoft.harness.vec.v2x.VecFuseRole;
 
+/**
+ * Transforms the role of a component occurrence. The occurrence of a fuse gets a {@link VecFuseRole}, it is recognised
+ * by the occurrence class ({@link KblFuseOccurrence}) or by the class of its part ({@link KblFuse}).
+ */
 public class ComponentRoleTransformer implements Transformer<KblComponentOccurrence, VecEEComponentRole> {
 
     @Override
     public TransformationResult<VecEEComponentRole> transform(final TransformationContext context,
                                                               final KblComponentOccurrence source) {
-        final VecEEComponentRole destination = new VecEEComponentRole();
+        final VecEEComponentRole destination = isFuse(source) ? new VecFuseRole() : new VecEEComponentRole();
         destination.setIdentification(source.getId());
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source::getPart), VecEEComponentSpecification.class,
                             VecEEComponentRole::setEEComponentSpecification)
                 .build();
+    }
+
+    private static boolean isFuse(final KblComponentOccurrence source) {
+        return source instanceof KblFuseOccurrence || source.getPart() instanceof KblFuse;
     }
 }
