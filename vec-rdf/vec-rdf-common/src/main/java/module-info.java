@@ -27,7 +27,7 @@ module com.foursoft.harness.vec.rdf.common {
     requires com.foursoft.harness.navext.runtime;
     requires com.foursoft.harness.vec.common;
     requires org.slf4j;
-    requires Saxon.HE;
+    requires net.sf.saxon;
     requires org.apache.commons.lang3;
     requires jakarta.xml.bind;
     requires org.apache.jena.core;
