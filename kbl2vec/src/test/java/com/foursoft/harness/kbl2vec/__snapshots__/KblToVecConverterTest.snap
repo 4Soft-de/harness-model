@@ -104309,6 +104309,46 @@ This is not intended for productive use and is not complete!
         <FirstConnector>ConnectorHousingRole_id_442_9</FirstConnector>
         <SecondConnector>ConnectorHousingRole_id_303_12</SecondConnector>
       </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_341_59">
+        <FirstConnector>ConnectorHousingRole_id_416_0</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_316_11</SecondConnector>
+        <SlotCoupling id="SlotCoupling_id_341_59">
+          <FirstSlot>SlotReference_id_341_59</FirstSlot>
+          <SecondSlot>SlotReference_id_341_20</SecondSlot>
+        </SlotCoupling>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_341_62">
+        <FirstConnector>ConnectorHousingRole_id_416_3</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_316_9</SecondConnector>
+        <SlotCoupling id="SlotCoupling_id_341_62">
+          <FirstSlot>SlotReference_id_341_62</FirstSlot>
+          <SecondSlot>SlotReference_id_341_17</SecondSlot>
+        </SlotCoupling>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_341_64">
+        <FirstConnector>ConnectorHousingRole_id_416_5</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_316_5</SecondConnector>
+        <SlotCoupling id="SlotCoupling_id_341_64">
+          <FirstSlot>SlotReference_id_341_64</FirstSlot>
+          <SecondSlot>SlotReference_id_341_10</SecondSlot>
+        </SlotCoupling>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_341_65">
+        <FirstConnector>ConnectorHousingRole_id_416_6</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_316_2</SecondConnector>
+        <SlotCoupling id="SlotCoupling_id_341_65">
+          <FirstSlot>SlotReference_id_341_65</FirstSlot>
+          <SecondSlot>SlotReference_id_341_4</SecondSlot>
+        </SlotCoupling>
+      </CouplingPoint>
+      <CouplingPoint id="CouplingPoint_id_341_66">
+        <FirstConnector>ConnectorHousingRole_id_416_7</FirstConnector>
+        <SecondConnector>ConnectorHousingRole_id_316_8</SecondConnector>
+        <SlotCoupling id="SlotCoupling_id_341_66">
+          <FirstSlot>SlotReference_id_341_66</FirstSlot>
+          <SecondSlot>SlotReference_id_341_15</SecondSlot>
+        </SlotCoupling>
+      </CouplingPoint>
     </Specification>
     <Specification xsi:type="vec:CompositionSpecification" id="CompositionSpecification_id_328_0">
       <Identification>MODULES</Identification>
