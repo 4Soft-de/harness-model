@@ -20,6 +20,21 @@ Currently unsupported features (future work):
 - Component
 - Coupling
 
+### Configuration
+
+The conversion is configured with `ConversionProperties`, passed to the converter:
+
+```java
+final ConversionProperties properties = new ConversionProperties();
+properties.setDefaultLanguageCode(VecLanguageCode.EN);
+final KblToVecConverter converter = new KblToVecConverter(properties);
+```
+
+Besides the default language of plain KBL strings, it holds the reference systems of colours, wire types and
+materials, the company names of generated documents and the clamping of 3D curves. KBL has no source and no
+determination type for masses; `defaultMassInformationSource` and `defaultValueDetermination` are written into every
+`MassInformation` if set, they are unset by default.
+
 ### Architecture
 
 ```mermaid

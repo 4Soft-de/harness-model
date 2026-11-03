@@ -31,8 +31,8 @@ import com.foursoft.harness.vec.v2x.VecValueDetermination;
 
 public class ConversionProperties {
     private VecLanguageCode defaultLanguageCode = VecLanguageCode.DE;
-    private String defaultMassInformationSource = "Series";
-    private VecValueDetermination defaultValueDetermination = VecValueDetermination.MEASURED;
+    private String defaultMassInformationSource;
+    private VecValueDetermination defaultValueDetermination;
     private String defaultColorReferenceSystem = "ACME Inc.";
     private String defaultWireTypeReferenceSystem = "ACME Inc.";
     private String defaultMaterialReferenceSystem = "ACME Inc.";
@@ -48,6 +48,12 @@ public class ConversionProperties {
         this.defaultLanguageCode = defaultLanguageCode;
     }
 
+    /**
+     * KBL does not say where a mass comes from. If set, the value (e.g. {@code Series}, an open enumeration) becomes
+     * the {@code ValueSource} of every {@code MassInformation}. Unset by default.
+     *
+     * @return The source of the masses, {@code null} if it is not written.
+     */
     public String getDefaultMassInformationSource() {
         return defaultMassInformationSource;
     }
@@ -56,6 +62,12 @@ public class ConversionProperties {
         this.defaultMassInformationSource = defaultMassInformationSource;
     }
 
+    /**
+     * KBL does not say how a mass has been determined. If set, the value becomes the {@code DeterminationType} of every
+     * {@code MassInformation}. Unset by default.
+     *
+     * @return The determination of the masses, {@code null} if it is not written.
+     */
     public VecValueDetermination getDefaultValueDetermination() {
         return defaultValueDetermination;
     }
