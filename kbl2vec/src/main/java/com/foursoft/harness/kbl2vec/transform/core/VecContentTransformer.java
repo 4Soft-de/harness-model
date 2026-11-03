@@ -31,6 +31,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecContent;
+import com.foursoft.harness.vec.v2x.VecCopyrightInformation;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 import com.foursoft.harness.vec.v2x.VecUnit;
@@ -55,8 +56,10 @@ public class VecContentTransformer implements Transformer<KBLContainer, VecConte
                                 This is just a showcase implementation for KBL mapping in the VEC.
                                 This is not intended for productive use and is not complete!
                                 """)
-//                .downstreamTransformation(KblPart.class, VecCopyrightInformation.class, allParts(source),
-//                                          resultElement::getCopyrightInformations)
+                // One CopyrightInformation per distinct copyright note, referenced by the parts with that note.
+                .withDownstream(KblPart.class, VecCopyrightInformation.class, allParts(source),
+                                VecContent::getCopyrightInformations,
+                                c -> c.getCopyrightNotes().get(0).getValue(), null)
                 .withDownstream(KblUnit.class, VecUnit.class, source::getUnits, VecContent::getUnits)
                 .withDownstream(KblPart.class, VecPartVersion.class, allParts(source),
                                 VecContent::getPartVersions)

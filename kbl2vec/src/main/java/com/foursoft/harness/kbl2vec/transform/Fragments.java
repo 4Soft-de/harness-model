@@ -31,6 +31,7 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationFragment;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
+import com.foursoft.harness.kbl2vec.transform.pdm.PdmFragments;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartOrUsageRelatedSpecification;
@@ -75,6 +76,8 @@ public final class Fragments {
             builder.withLinker(source, VecPartVersion.class, VecDocumentVersion::getReferencedPart);
             builder.withLinker(source::getExternalReferences, VecDocumentVersion.class,
                                VecDocumentVersion::getRelatedDocument);
+            PdmFragments.<D>copyright(source).performFragment(dv, builder);
+            PdmFragments.<D>history(source, context).performFragment(dv, builder);
         };
     }
 }
