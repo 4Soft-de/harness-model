@@ -32,6 +32,7 @@ import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.TransformationResult.Builder;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.pdm.PdmFragments;
 import com.foursoft.harness.vec.v2x.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -68,7 +69,12 @@ public class PartVersionTransformer implements Transformer<KblPart, VecPartVersi
             resultBuilder.withComment("Part_number_type cannot be mapped at the moment (see KBLFRM-1267)");
         }
 
+        if (source instanceof KblModule) {
+            // A module has no document version that could hold its history.
+            resultBuilder.withFragment(PdmFragments.history(source, context));
+        }
         return resultBuilder
+                .withFragment(PdmFragments.copyright(source))
                 .withDownstream(KblAliasIdentification.class, VecAliasIdentification.class, source::getAliasIds,
                                 VecPartVersion::getAliasIds)
                 .withDownstream(KblProcessingInstruction.class, VecCustomProperty.class,

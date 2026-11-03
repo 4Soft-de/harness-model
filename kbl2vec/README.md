@@ -35,6 +35,24 @@ materials, the company names of generated documents and the clamping of 3D curve
 determination type for masses; `defaultMassInformationSource` and `defaultValueDetermination` are written into every
 `MassInformation` if set, they are unset by default.
 
+#### Date formats
+
+KBL does not define a format for its date strings (`Change_date`, `Creation.Date`, `Approval.Date`), VEC uses
+`xs:dateTime`. The formats are set as [`DateTimeFormatter`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/format/DateTimeFormatter.html)
+patterns, they are tried in the given order. A pattern without a time results in the start of the day. Dates that match
+none of the patterns are omitted with a warning (a `Creation` without a date is omitted entirely, its date is mandatory
+in VEC).
+
+The default is `ddMMyy` (e.g. `270115`), the format of the VOBES dialect of the test data. Other formats:
+
+```java
+final ConversionProperties properties = new ConversionProperties();
+// ISO 8601, e.g. 2015-01-27 or 2015-01-27T10:15:00
+properties.setDateFormats(List.of("yyyy-MM-dd", "yyyy-MM-dd'T'HH:mm:ss"));
+// German, e.g. 27.01.2015
+properties.setDateFormats(List.of("dd.MM.yyyy"));
+```
+
 ### Architecture
 
 ```mermaid

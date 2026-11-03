@@ -41,6 +41,7 @@ public class ConverterRegistry {
     private final StringToMaterialConverter stringToMaterialConverter;
     private final DoublesToCartesianVector2DConverter doublesToCartesianVector2DConverter;
     private final DoublesToCartesianVector3DConverter doublesToCartesianVector3DConverter;
+    private final StringToDateTimeConverter stringToDateTimeConverter;
 
     public ConverterRegistry(final ConversionProperties conversionProperties) {
         Objects.requireNonNull(conversionProperties);
@@ -54,6 +55,7 @@ public class ConverterRegistry {
                 conversionProperties.getDefaultMaterialReferenceSystem());
         doublesToCartesianVector2DConverter = new DoublesToCartesianVector2DConverter();
         doublesToCartesianVector3DConverter = new DoublesToCartesianVector3DConverter();
+        stringToDateTimeConverter = new StringToDateTimeConverter(conversionProperties.getDateFormats());
     }
 
     public Converter<String, Optional<VecLocalizedString>> getStringToLocalizedString() {
@@ -82,5 +84,9 @@ public class ConverterRegistry {
 
     public DoublesToCartesianVector3DConverter getDoublesToCartesianVector3DConverter() {
         return doublesToCartesianVector3DConverter;
+    }
+
+    public StringToDateTimeConverter getStringToDateTimeConverter() {
+        return stringToDateTimeConverter;
     }
 }

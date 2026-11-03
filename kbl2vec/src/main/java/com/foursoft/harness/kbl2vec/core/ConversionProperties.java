@@ -29,6 +29,8 @@ import com.foursoft.harness.kbl2vec.transform.geometry.Clamping;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecValueDetermination;
 
+import java.util.List;
+
 public class ConversionProperties {
     private VecLanguageCode defaultLanguageCode = VecLanguageCode.DE;
     private String defaultMassInformationSource;
@@ -39,6 +41,7 @@ public class ConversionProperties {
     private String defaultExternalReferenceCompanyName = "ACME Inc.";
     private Clamping default3DCurveClamping = Clamping.UNCLAMPED;
     private String defaultSignalListCompanyName = "ACME Inc.";
+    private List<String> dateFormats = List.of("ddMMyy");
 
     public VecLanguageCode getDefaultLanguageCode() {
         return defaultLanguageCode;
@@ -122,5 +125,28 @@ public class ConversionProperties {
 
     public void setDefaultSignalListCompanyName(final String defaultSignalListCompanyName) {
         this.defaultSignalListCompanyName = defaultSignalListCompanyName;
+    }
+
+    /**
+     * The patterns ({@link java.time.format.DateTimeFormatter}) of the date strings in the KBL (e.g.
+     * {@code Change_date}, {@code Creation.Date}, {@code Approval.Date}). KBL does not define a date format. The
+     * patterns are tried in the given order, the first one that parses the complete string is used. A pattern may
+     * contain a time, otherwise the date is converted to the start of the day.
+     * <p>
+     * The default is {@code ddMMyy} (e.g. {@code 270115}), the format of the VOBES dialect. Examples:
+     * <ul>
+     *     <li>ISO 8601: {@code setDateFormats(List.of("yyyy-MM-dd", "yyyy-MM-dd'T'HH:mm:ss"))}</li>
+     *     <li>German: {@code setDateFormats(List.of("dd.MM.yyyy"))}</li>
+     * </ul>
+     * Dates that match none of the patterns are omitted with a warning.
+     *
+     * @return The date patterns, in the order they are tried.
+     */
+    public List<String> getDateFormats() {
+        return dateFormats;
+    }
+
+    public void setDateFormats(final List<String> dateFormats) {
+        this.dateFormats = List.copyOf(dateFormats);
     }
 }
