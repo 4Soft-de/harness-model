@@ -39,6 +39,9 @@ public class MassInformationTransformer implements Transformer<KblNumericalValue
     public TransformationResult<VecMassInformation> transform(final TransformationContext context,
                                                               final KblNumericalValue source) {
         final VecMassInformation massInformation = new VecMassInformation();
+        // KBL has neither a source nor a determination type for a mass, both can only be configured.
+        massInformation.setValueSource(context.getConversionProperties().getDefaultMassInformationSource());
+        massInformation.setDeterminationType(context.getConversionProperties().getDefaultValueDetermination());
 
         return TransformationResult.from(massInformation).withDownstream(KblNumericalValue.class,
                                                                          VecNumericalValue.class,

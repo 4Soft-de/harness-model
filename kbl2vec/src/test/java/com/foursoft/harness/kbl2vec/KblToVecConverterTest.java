@@ -30,12 +30,15 @@ import au.com.origin.snapshots.junit5.SnapshotExtension;
 import com.foursoft.harness.kbl.v25.KBLContainer;
 import com.foursoft.harness.kbl.v25.KblReader;
 import com.foursoft.harness.kbl2vec.core.ConversionOrchestrator;
+import com.foursoft.harness.kbl2vec.core.ConversionProperties;
 import com.foursoft.harness.kbl2vec.core.Processor;
 import com.foursoft.harness.navext.runtime.io.utils.ValidationEventLogger;
 import com.foursoft.harness.navext.runtime.io.write.XMLWriter;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.XMLMeta;
 import com.foursoft.harness.navext.runtime.io.write.xmlmeta.comments.Comments;
 import com.foursoft.harness.vec.v2x.VecContent;
+import com.foursoft.harness.vec.v2x.VecMassInformation;
+import com.foursoft.harness.vec.v2x.VecValueDetermination;
 import jakarta.xml.bind.Marshaller;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -132,6 +135,32 @@ class KblToVecConverterTest {
         assertThat(xmlIdsAlreadyPresentWhenCustomPostProcessorRuns.get(0))
                 .as("XmlIdPostProcessor must have run before the custom post-processor")
                 .isTrue();
+    }
+
+    @Test
+    void should_applyTheGivenConversionProperties() throws IOException {
+        final ConversionProperties properties = new ConversionProperties();
+        properties.setDefaultMassInformationSource("Series");
+        properties.setDefaultValueDetermination(VecValueDetermination.MEASURED);
+
+        assertThat(massInformations(new KblToVecConverter(properties))).isNotEmpty()
+                .allSatisfy(m -> assertThat(m)
+                        .returns("Series", VecMassInformation::getValueSource)
+                        .returns(VecValueDetermination.MEASURED, VecMassInformation::getDeterminationType));
+        assertThat(massInformations(new KblToVecConverter())).isNotEmpty()
+                .allSatisfy(m -> assertThat(m)
+                        .returns(null, VecMassInformation::getValueSource)
+                        .returns(null, VecMassInformation::getDeterminationType));
+    }
+
+    private List<VecMassInformation> massInformations(final KblToVecConverter converter) throws IOException {
+        try (final InputStream is = getClass().getResourceAsStream("/vobes_sample_kbl24_battery_plus_cable.kbl")) {
+            final KBLContainer kblContainer = new KblReader(new ValidationEventLogger()).read(is);
+            return converter.convert(kblContainer).entityMapping().values().stream()
+                    .filter(VecMassInformation.class::isInstance)
+                    .map(VecMassInformation.class::cast)
+                    .toList();
+        }
     }
 
     public void writeToStream(final ConversionOrchestrator.Result<VecContent> result, final OutputStream stream) {

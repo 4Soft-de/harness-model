@@ -52,13 +52,25 @@ public class KblToVecConverter {
     private final ReflectionsBasedTransformerRegistry registry;
     private final List<Processor<KBLContainer>> preProcessors;
     private final List<Processor<VecContent>> postProcessors;
+    private final ConversionProperties conversionProperties;
 
     public KblToVecConverter() {
-        this(List.of(), List.of());
+        this(new ConversionProperties());
+    }
+
+    public KblToVecConverter(final ConversionProperties conversionProperties) {
+        this(conversionProperties, List.of(), List.of());
     }
 
     public KblToVecConverter(final List<Processor<KBLContainer>> preProcessors,
                              final List<Processor<VecContent>> postProcessors) {
+        this(new ConversionProperties(), preProcessors, postProcessors);
+    }
+
+    public KblToVecConverter(final ConversionProperties conversionProperties,
+                             final List<Processor<KBLContainer>> preProcessors,
+                             final List<Processor<VecContent>> postProcessors) {
+        this.conversionProperties = conversionProperties;
         registry = new ReflectionsBasedTransformerRegistry();
         this.preProcessors = new ArrayList<>(preProcessors);
         this.postProcessors = new ArrayList<>(postProcessors);
@@ -78,7 +90,7 @@ public class KblToVecConverter {
         final ConversionOrchestrator<KBLContainer, VecContent> orchestrator = new ConversionOrchestrator<>(
                 KBLContainer.class,
                 VecContent.class,
-                registry, new ConversionProperties());
+                registry, conversionProperties);
 
         orchestrator.addPostProcessor(new XmlIdPostProcessor());
 
