@@ -36,10 +36,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class StringToDateTimeConverterTest {
 
     @Test
-    void should_parseTheVobesFormat_byDefault() {
+    void should_parseTheVobesFormats_byDefault() {
         final StringToDateTimeConverter converter =
                 new StringToDateTimeConverter(new ConversionProperties().getDateFormats());
 
+        assertThat(converter.convert("27.01.2015")).map(XMLGregorianCalendar::toXMLFormat)
+                .hasValue("2015-01-27T00:00:00");
         assertThat(converter.convert("270115")).map(XMLGregorianCalendar::toXMLFormat)
                 .hasValue("2015-01-27T00:00:00");
     }

@@ -41,7 +41,7 @@ public class ConversionProperties {
     private String defaultExternalReferenceCompanyName = "ACME Inc.";
     private Clamping default3DCurveClamping = Clamping.UNCLAMPED;
     private String defaultSignalListCompanyName = "ACME Inc.";
-    private List<String> dateFormats = List.of("ddMMyy");
+    private List<String> dateFormats = List.of("dd.MM.yyyy", "ddMMyy");
 
     public VecLanguageCode getDefaultLanguageCode() {
         return defaultLanguageCode;
@@ -133,7 +133,8 @@ public class ConversionProperties {
      * patterns are tried in the given order, the first one that parses the complete string is used. A pattern may
      * contain a time, otherwise the date is converted to the start of the day.
      * <p>
-     * The default is {@code ddMMyy} (e.g. {@code 270115}), the format of the VOBES dialect. Examples:
+     * The default is {@code dd.MM.yyyy} (e.g. {@code 27.01.2015}) and {@code ddMMyy} (e.g. {@code 270115}), the
+     * formats found in VOBES files. Examples:
      * <ul>
      *     <li>ISO 8601: {@code setDateFormats(List.of("yyyy-MM-dd", "yyyy-MM-dd'T'HH:mm:ss"))}</li>
      *     <li>German: {@code setDateFormats(List.of("dd.MM.yyyy"))}</li>

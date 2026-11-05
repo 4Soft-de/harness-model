@@ -75,7 +75,8 @@ class ChangeDescriptionTransformerTest {
     void should_omitUndefinedValues() {
         // Given
         final KblChange source = new KblChange();
-        source.setChangeDate("27.01.2015");
+        source.setDescription("Initial release");
+        source.setChangeDate("2015-01-27");
         source.setResponsibleDesigner("/NULL");
         source.setChangeRequest("/NULL");
 
@@ -88,5 +89,17 @@ class ChangeDescriptionTransformerTest {
                 .returns(null, VecChangeDescription::getResponsibleDesigner)
                 .returns(null, VecChangeDescription::getApprover);
         assertThat(result.getRelatedChangeRequests()).isEmpty();
+    }
+
+    @Test
+    void should_notTransform_whenNothingIsKnownAboutTheChange() {
+        // Given: as in VOBES production data, but with a date that matches no date format.
+        final KblChange source = new KblChange();
+        source.setChangeDate("2015-01-27");
+        source.setResponsibleDesigner("/NULL");
+        source.setDesignerDepartment("/NULL");
+
+        // When / Then
+        assertThat(new TestConversionOrchestrator().transform(transformer, source)).isNull();
     }
 }
