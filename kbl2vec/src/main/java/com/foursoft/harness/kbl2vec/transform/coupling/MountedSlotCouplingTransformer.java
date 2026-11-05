@@ -25,6 +25,7 @@
  */
 package com.foursoft.harness.kbl2vec.transform.coupling;
 
+import com.foursoft.harness.kbl.v25.KblComponentOccurrence;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
@@ -43,14 +44,14 @@ public class MountedSlotCouplingTransformer implements Transformer<MountedSlot, 
     @Override
     public TransformationResult<VecSlotCoupling> transform(final TransformationContext context,
                                                            final MountedSlot source) {
+        final KblComponentOccurrence occurrence = source.occurrence();
         final VecSlotCoupling destination = new VecSlotCoupling();
         return TransformationResult.from(destination)
-                .withLinker(Query.of(() -> Mountings.slot(source.occurrence()).orElse(null)), VecSlotReference.class,
+                .withLinker(Query.of(() -> Mountings.slot(occurrence).orElse(null)), VecSlotReference.class,
                             VecSlotCoupling::setFirstSlot)
                 .withLinker(Query.of(source), VecSlotReference.class, VecSlotCoupling::setSecondSlot)
                 .withDownstream(MountedCavity.class, VecCavityCoupling.class,
-                                Query.fromLists(Mountings.cavities(source.occurrence())),
-                                VecSlotCoupling::getCavityCouplings)
+                                Query.fromLists(Mountings.cavities(occurrence)), VecSlotCoupling::getCavityCouplings)
                 .build();
     }
 }
