@@ -30,14 +30,17 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.components.ee_components.ComponentCavities.ComponentCavity;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
 import com.foursoft.harness.vec.v2x.VecHousingComponent;
+import com.foursoft.harness.vec.v2x.VecPinComponent;
 
 import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 /**
  * KBL describes no interfaces of a {@link KblComponent}. To be able to couple it with the slot it is mounted on, every
- * component gets a single {@link VecHousingComponent} without pin components.
+ * component gets a single {@link VecHousingComponent}. Its pin components are derived from the cavities its
+ * occurrences are mounted on (see {@link ComponentCavities}), a component that is not mounted on cavities has none.
  */
 public class ComponentHousingTransformer implements Transformer<KblComponent, VecHousingComponent> {
 
@@ -49,6 +52,9 @@ public class ComponentHousingTransformer implements Transformer<KblComponent, Ve
         return TransformationResult.from(destination)
                 .withLinker(Query.of(source), VecConnectorHousingSpecification.class,
                             VecHousingComponent::setHousingSpecification)
+                .withDownstream(ComponentCavity.class, VecPinComponent.class,
+                                Query.fromLists(ComponentCavities.cavities(source)),
+                                VecHousingComponent::getPinComponents)
                 .build();
     }
 }
