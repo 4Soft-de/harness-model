@@ -31,37 +31,47 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.components.ee_components.ComponentCavities;
+import com.foursoft.harness.kbl2vec.transform.components.ee_components.ComponentCavities.MountedSlot;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 import com.foursoft.harness.vec.v2x.VecCouplingPoint;
+import com.foursoft.harness.vec.v2x.VecSlotCoupling;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
- * Couples the housing of a mounted component with the housing of the component slot it is mounted on. The other
- * elements of the {@code Mounting} (component box, cavities) are not evaluated: the component describes no pins
- * that could be mated with the cavities.
+ * Couples the housing of a mounted component with the housing it is mounted on: a component slot, or the component
+ * slot / connector of the cavities it is mounted on. If it is mounted on cavities, the slots and cavities are coupled
+ * as well, with the cavities derived for the component's housing (see {@link ComponentCavities}). A mounted component
+ * box is not evaluated, it is the component box of the mounted slot.
  */
 public class CouplingPointTransformer implements Transformer<KblComponentOccurrence, VecCouplingPoint> {
 
     @Override
     public TransformationResult<VecCouplingPoint> transform(final TransformationContext context,
                                                             final KblComponentOccurrence source) {
-        final List<KblComponentSlotOccurrence> slots = source.getMounting().stream()
-                .filter(KblComponentSlotOccurrence.class::isInstance)
-                .map(KblComponentSlotOccurrence.class::cast)
-                .toList();
-        if (slots.isEmpty()) {
+        final Optional<Object> housing = Mountings.housing(source);
+        if (housing.isEmpty()) {
             return TransformationResult.noResult();
         }
-        if (slots.size() > 1) {
+        final long componentSlots = source.getMounting().stream()
+                .filter(KblComponentSlotOccurrence.class::isInstance)
+                .count();
+        if (componentSlots > 1) {
             context.getLogger().warn("'{}' is mounted on {} component slots, only the first one is coupled.", source,
-                                     slots.size());
+                                     componentSlots);
         }
+        final List<MountedSlot> slots = Mountings.cavities(source).isEmpty()
+                ? List.of()
+                : List.of(new MountedSlot(source));
         final VecCouplingPoint destination = new VecCouplingPoint();
         destination.setIdentification(source.getId());
         return TransformationResult.from(destination)
-                .withLinker(Query.of(slots.get(0)), VecConnectorHousingRole.class, VecCouplingPoint::setFirstConnector)
+                .withLinker(Query.of(housing.get()), VecConnectorHousingRole.class, VecCouplingPoint::setFirstConnector)
                 .withLinker(Query.of(source), VecConnectorHousingRole.class, VecCouplingPoint::setSecondConnector)
+                .withDownstream(MountedSlot.class, VecSlotCoupling.class, Query.fromLists(slots),
+                                VecCouplingPoint::getSlotCouplings)
                 .build();
     }
 }

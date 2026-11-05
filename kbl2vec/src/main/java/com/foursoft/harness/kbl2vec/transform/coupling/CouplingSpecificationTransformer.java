@@ -26,7 +26,6 @@
 package com.foursoft.harness.kbl2vec.transform.coupling;
 
 import com.foursoft.harness.kbl.v25.KblComponentOccurrence;
-import com.foursoft.harness.kbl.v25.KblComponentSlotOccurrence;
 import com.foursoft.harness.kbl.v25.KblHarness;
 import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
@@ -41,9 +40,9 @@ import java.util.List;
 import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 /**
- * Couples the components of the harness with the component slots they are mounted on, and the mated housings of the
- * harness (see {@link Matings}). Only the occurrences of the harness itself are considered, the occurrences of an
- * assembly part belong to its part master data.
+ * Couples the components of the harness with the component slots / cavities they are mounted on, and the mated housings
+ * of the harness (see {@link Matings}). Only the occurrences of the harness itself are considered, the occurrences of
+ * an assembly part belong to its part master data.
  */
 public class CouplingSpecificationTransformer implements Transformer<KblHarness, VecCouplingSpecification> {
 
@@ -69,7 +68,7 @@ public class CouplingSpecificationTransformer implements Transformer<KblHarness,
         return source.getConnectionOrOccurrences().stream()
                 .filter(KblComponentOccurrence.class::isInstance)
                 .map(KblComponentOccurrence.class::cast)
-                .filter(c -> c.getMounting().stream().anyMatch(KblComponentSlotOccurrence.class::isInstance))
+                .filter(Mountings::isMounted)
                 .toList();
     }
 }

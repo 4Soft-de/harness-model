@@ -30,9 +30,11 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.components.ee_components.ComponentCavities.MountedCavity;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 import com.foursoft.harness.vec.v2x.VecHousingComponent;
 import com.foursoft.harness.vec.v2x.VecHousingComponentReference;
+import com.foursoft.harness.vec.v2x.VecPinComponentReference;
 
 public class ComponentHousingReferenceTransformer
         implements Transformer<KblComponentOccurrence, VecHousingComponentReference> {
@@ -47,6 +49,9 @@ public class ComponentHousingReferenceTransformer
                                 VecHousingComponentReference::setConnectorHousingRole)
                 .withLinker(Query.of(source::getPart), VecHousingComponent.class,
                             VecHousingComponentReference::setHousingComponent)
+                .withDownstream(MountedCavity.class, VecPinComponentReference.class,
+                                Query.fromLists(ComponentCavities.mountedCavities(source)),
+                                VecHousingComponentReference::getPinComponentReves)
                 .build();
     }
 }

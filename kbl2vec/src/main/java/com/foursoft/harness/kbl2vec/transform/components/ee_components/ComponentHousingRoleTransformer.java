@@ -30,8 +30,12 @@ import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.components.ee_components.ComponentCavities.MountedSlot;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
+import com.foursoft.harness.vec.v2x.VecSlotReference;
+
+import java.util.List;
 
 public class ComponentHousingRoleTransformer
         implements Transformer<KblComponentOccurrence, VecConnectorHousingRole> {
@@ -41,7 +45,12 @@ public class ComponentHousingRoleTransformer
                                                                    final KblComponentOccurrence source) {
         final VecConnectorHousingRole destination = new VecConnectorHousingRole();
         destination.setIdentification(source.getId());
+        final List<MountedSlot> slots = ComponentCavities.mountedCavities(source).isEmpty()
+                ? List.of()
+                : List.of(new MountedSlot(source));
         return TransformationResult.from(destination)
+                .withDownstream(MountedSlot.class, VecSlotReference.class, Query.fromLists(slots),
+                                VecConnectorHousingRole::getSlotReferences)
                 .withLinker(Query.of(source::getPart), VecConnectorHousingSpecification.class,
                             VecConnectorHousingRole::setConnectorHousingSpecification)
                 .build();

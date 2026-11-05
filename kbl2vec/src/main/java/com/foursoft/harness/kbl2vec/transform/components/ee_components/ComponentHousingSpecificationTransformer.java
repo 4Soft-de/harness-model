@@ -26,16 +26,22 @@
 package com.foursoft.harness.kbl2vec.transform.components.ee_components;
 
 import com.foursoft.harness.kbl.v25.KblComponent;
+import com.foursoft.harness.kbl2vec.core.Query;
 import com.foursoft.harness.kbl2vec.core.TransformationContext;
 import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
+import com.foursoft.harness.kbl2vec.transform.components.ee_components.ComponentCavities.ComponentSlot;
 import com.foursoft.harness.vec.v2x.VecConnectorHousingSpecification;
+import com.foursoft.harness.vec.v2x.VecSlot;
+
+import java.util.List;
 
 import static com.foursoft.harness.vec.common.util.ModelClassNames.abbreviatedModelClassName;
 
 /**
  * The housing of the single {@link ComponentHousingTransformer housing component} of a {@link KblComponent}. KBL
- * describes no slots or cavities of a component, therefore none are defined.
+ * describes no slots or cavities of a component. If its occurrences are mounted on cavities, the housing gets a single
+ * slot with the derived cavities (see {@link ComponentCavities}), otherwise it has none.
  */
 public class ComponentHousingSpecificationTransformer
         implements Transformer<KblComponent, VecConnectorHousingSpecification> {
@@ -45,6 +51,12 @@ public class ComponentHousingSpecificationTransformer
                                                                             final KblComponent source) {
         final VecConnectorHousingSpecification destination = new VecConnectorHousingSpecification();
         destination.setIdentification(abbreviatedModelClassName(destination.getClass()) + "-" + source.getPartNumber());
-        return TransformationResult.of(destination);
+        final List<ComponentSlot> slots = ComponentCavities.cavities(source).isEmpty()
+                ? List.of()
+                : List.of(new ComponentSlot(source));
+        return TransformationResult.from(destination)
+                .withDownstream(ComponentSlot.class, VecSlot.class, Query.fromLists(slots),
+                                VecConnectorHousingSpecification::getSlots)
+                .build();
     }
 }
