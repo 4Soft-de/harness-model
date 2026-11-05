@@ -34,6 +34,7 @@ import com.foursoft.harness.navext.runtime.model.Identifiable;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -133,22 +134,28 @@ public final class ComponentCavities {
      * assigned to the derived cavity of the same position.
      */
     public static List<MountedCavity> mountedCavities(final KblComponentOccurrence occurrence) {
-        final List<Object> mounted = mountedCavityOccurrences(occurrence);
+        final List<NumberedCavity> mounted = mountedCavityOccurrences(occurrence);
         if (mounted.isEmpty()) {
             return List.of();
         }
         final String suffix = suffix(occurrence.getPart(), occurrence);
         return IntStream.range(0, mounted.size())
-                .mapToObj(i -> new MountedCavity(occurrence, mounted.get(i), (i + 1) + suffix))
+                .mapToObj(i -> new MountedCavity(occurrence, mounted.get(i).cavity(), (i + 1) + suffix))
                 .toList();
     }
 
-    private static List<Object> mountedCavityOccurrences(final KblComponentOccurrence occurrence) {
+    /**
+     * A mounted cavity occurrence with its cavity number.
+     */
+    private record NumberedCavity(Object cavity, String cavityNumber) {
+    }
+
+    private static List<NumberedCavity> mountedCavityOccurrences(final KblComponentOccurrence occurrence) {
         return occurrence.getMounting().stream()
-                .filter(mounted -> cavityNumber(mounted) != null)
-                .map(Object.class::cast)
                 .distinct()
-                .sorted(Comparator.comparing(ComponentCavities::cavityNumber, CAVITY_NUMBER_ORDER))
+                .map(mounted -> cavityNumber(mounted).map(number -> new NumberedCavity(mounted, number)))
+                .flatMap(Optional::stream)
+                .sorted(Comparator.comparing(NumberedCavity::cavityNumber, CAVITY_NUMBER_ORDER))
                 .toList();
     }
 
@@ -165,7 +172,7 @@ public final class ComponentCavities {
         }
         final Set<String> suffixes = occurrences.stream()
                 .flatMap(occurrence -> mountedCavityOccurrences(occurrence).stream())
-                .map(ComponentCavities::cavityNumber)
+                .map(NumberedCavity::cavityNumber)
                 .map(number -> {
                     final Matcher matcher = LEADING_NUMBER.matcher(number);
                     return matcher.matches() ? matcher.group(2) : null;
@@ -177,14 +184,14 @@ public final class ComponentCavities {
         return "";
     }
 
-    private static String cavityNumber(final Object mounted) {
+    private static Optional<String> cavityNumber(final Object mounted) {
         if (mounted instanceof final KblComponentCavityOccurrence cavity && cavity.getPart() != null) {
-            return cavity.getPart().getCavityNumber();
+            return Optional.ofNullable(cavity.getPart().getCavityNumber());
         }
         if (mounted instanceof final KblCavityOccurrence cavity && cavity.getPart() != null) {
-            return cavity.getPart().getCavityNumber();
+            return Optional.ofNullable(cavity.getPart().getCavityNumber());
         }
-        return null;
+        return Optional.empty();
     }
 
     /**
