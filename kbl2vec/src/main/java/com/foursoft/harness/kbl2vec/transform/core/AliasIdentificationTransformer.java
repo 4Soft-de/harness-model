@@ -31,14 +31,16 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecAliasIdentification;
 
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
+
 public class AliasIdentificationTransformer implements Transformer<KblAliasIdentification, VecAliasIdentification> {
     @Override
     public TransformationResult<VecAliasIdentification> transform(final TransformationContext context,
                                                                   final KblAliasIdentification source) {
         final VecAliasIdentification aliasIdentification = new VecAliasIdentification();
         aliasIdentification.setIdentificationValue(source.getAliasId());
-        aliasIdentification.setScope(source.getScope());
-        aliasIdentification.setType(source.getDescription());
+        aliasIdentification.setScope(definedOrNull(source.getScope()));
+        aliasIdentification.setType(definedOrNull(source.getDescription()));
         //TODO: The LocalizedDescription is currently not handled
         return TransformationResult.of(aliasIdentification);
     }

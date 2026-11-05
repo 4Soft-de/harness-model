@@ -46,9 +46,10 @@ public class ConnectorHousingSpecificationTransformer
         final VecConnectorHousingSpecification specification = new VecConnectorHousingSpecification();
 
         specification.setSpecialPartType(definedOrNull(connector.getHousingType()));
-        if (StringUtils.isNotBlank(connector.getHousingCode())) {
+        final String housingCode = definedOrNull(connector.getHousingCode());
+        if (StringUtils.isNotBlank(housingCode)) {
             final VecCoding coding = new VecCoding();
-            coding.setCoding(connector.getHousingCode());
+            coding.setCoding(housingCode);
             specification.setCoding(coding);
         }
 

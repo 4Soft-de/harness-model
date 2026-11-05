@@ -31,6 +31,8 @@ import com.foursoft.harness.kbl2vec.core.TransformationResult;
 import com.foursoft.harness.kbl2vec.core.Transformer;
 import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 
+import static com.foursoft.harness.kbl2vec.utils.UndefinedValues.definedOrNull;
+
 public class ExternalReferenceDocumentVersionTransformer
         implements Transformer<KblExternalReference, VecDocumentVersion> {
 
@@ -38,14 +40,14 @@ public class ExternalReferenceDocumentVersionTransformer
     public TransformationResult<VecDocumentVersion> transform(final TransformationContext context,
                                                               final KblExternalReference source) {
         final VecDocumentVersion destination = new VecDocumentVersion();
-        destination.setDocumentType(source.getDocumentType());
+        destination.setDocumentType(definedOrNull(source.getDocumentType()));
         destination.setDocumentNumber(source.getDocumentNumber());
         destination.setCompanyName(context.getConversionProperties().getDefaultExternalReferenceCompanyName());
-        destination.setFileName(source.getFileName());
+        destination.setFileName(definedOrNull(source.getFileName()));
         destination.setDocumentVersion(source.getChangeLevel());
-        destination.setCreatingSystem(source.getCreatingSystem());
-        destination.setLocation(source.getLocation());
-        destination.setDataFormat(source.getDataFormat());
+        destination.setCreatingSystem(definedOrNull(source.getCreatingSystem()));
+        destination.setLocation(definedOrNull(source.getLocation()));
+        destination.setDataFormat(definedOrNull(source.getDataFormat()));
         return TransformationResult.of(destination);
     }
 }
