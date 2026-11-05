@@ -57,8 +57,8 @@ class ComponentCavityStructureTest {
     private final KblComponent component = component();
     private final KblComponentCavityOccurrence mountedOn = componentCavity("2A");
     private final KblComponentOccurrence occurrence = occurrence(component, mountedOn);
-    private final ComponentCavity cavity = new ComponentCavity(component, "2A");
-    private final MountedCavity mountedCavity = new MountedCavity(occurrence, mountedOn, "2A");
+    private final ComponentCavity cavity = new ComponentCavity(component, "1A");
+    private final MountedCavity mountedCavity = new MountedCavity(occurrence, mountedOn, "1A");
 
     @Test
     void should_giveTheHousingSpecificationASlot_withTheDerivedCavities() {
@@ -78,7 +78,7 @@ class ComponentCavityStructureTest {
         // Then
         assertThat(specification.getSlots()).containsExactly(slot);
         assertThat(vecSlot.getCavities()).hasSize(1);
-        assertThat(vecCavity.getCavityNumber()).isEqualTo("2A");
+        assertThat(vecCavity.getCavityNumber()).isEqualTo("1A");
     }
 
     @Test
@@ -100,7 +100,7 @@ class ComponentCavityStructureTest {
         // Then
         assertThat(housingComponent.getPinComponents()).containsExactly(pinComponent);
         assertThat(vecPinComponent)
-                .returns("2A", VecPinComponent::getIdentification)
+                .returns("1A", VecPinComponent::getIdentification)
                 .returns(vecCavity, VecPinComponent::getReferencedCavity);
     }
 
@@ -142,10 +142,10 @@ class ComponentCavityStructureTest {
                 .returns(slot, VecSlotReference::getReferencedSlot)
                 .satisfies(v -> assertThat(v.getCavityReferences()).containsExactly(cavityReference));
         assertThat(vecCavityReference)
-                .returns("2A", VecCavityReference::getIdentification)
+                .returns("1A", VecCavityReference::getIdentification)
                 .returns(vecCavity, VecCavityReference::getReferencedCavity);
         assertThat(vecPinComponentReference)
-                .returns("2A", VecPinComponentReference::getIdentification)
+                .returns("1A", VecPinComponentReference::getIdentification)
                 .returns(pinComponent, VecPinComponentReference::getPinComponent);
     }
 
