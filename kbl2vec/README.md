@@ -43,7 +43,8 @@ patterns, they are tried in the given order. A pattern without a time results in
 none of the patterns are omitted with a warning (a `Creation` without a date is omitted entirely, its date is mandatory
 in VEC).
 
-The default is `ddMMyy` (e.g. `270115`), the format of the VOBES dialect of the test data. Other formats:
+The default is `dd.MM.yyyy` (e.g. `27.01.2015`) and `ddMMyy` (e.g. `270115`), the formats found in VOBES files.
+Other formats:
 
 ```java
 final ConversionProperties properties = new ConversionProperties();

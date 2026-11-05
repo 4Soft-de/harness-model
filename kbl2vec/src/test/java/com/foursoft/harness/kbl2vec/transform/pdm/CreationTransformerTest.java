@@ -61,7 +61,7 @@ class CreationTransformerTest {
         // Given
         final KblCreation source = new KblCreation();
         source.setName("Kyriazis");
-        source.setDate("27.01.2015");
+        source.setDate("2015-01-27");
 
         // When / Then
         assertThat(new TestConversionOrchestrator().transform(transformer, source)).isNull();

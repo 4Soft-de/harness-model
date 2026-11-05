@@ -54,6 +54,16 @@ public class ChangeDescriptionTransformer implements Transformer<KblChange, VecC
         person(source.getResponsibleDesigner(), source.getDesignerDepartment())
                 .ifPresent(destination::setResponsibleDesigner);
         person(source.getApproverName(), source.getApproverDepartment()).ifPresent(destination::setApprover);
+        if (isEmpty(destination)) {
+            // E.g. a change with an unknown designer and a date in an unknown format.
+            return TransformationResult.noResult();
+        }
         return TransformationResult.of(destination);
+    }
+
+    private static boolean isEmpty(final VecChangeDescription description) {
+        return description.getIdentification() == null && description.getDescriptions().isEmpty()
+                && description.getRelatedChangeRequests().isEmpty() && description.getChangeDate() == null
+                && description.getResponsibleDesigner() == null && description.getApprover() == null;
     }
 }
