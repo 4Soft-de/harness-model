@@ -41,25 +41,43 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.tuple;
 
 class ComponentCavitiesTest {
 
     @Test
-    void should_deriveTheDistinctCavityNumbers_ofAllOccurrences() {
+    void should_deriveAsManyCavitiesAsTheOccurrenceWithTheMostMountedCavities() {
         // Given
         final KblComponent component = new KblComponent();
-        final KblComponentOccurrence first = occurrence(component, componentCavity("10A"), componentCavity("2A"));
-        final KblComponentOccurrence second = occurrence(component, componentCavity("2A"), connectorCavity("1"));
-        second.getMounting().add(new KblComponentBoxOccurrence());
-        second.getMounting().add(new KblComponentSlotOccurrence());
+        for (final String number : List.of("1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "9A")) {
+            occurrence(component, componentCavity(number));
+        }
+        final KblComponentCavityOccurrence second = componentCavity("2A");
+        final KblComponentCavityOccurrence tenth = componentCavity("10A");
+        final KblComponentOccurrence occurrence = occurrence(component, tenth, second);
+        occurrence.getMounting().add(new KblComponentBoxOccurrence());
+        occurrence.getMounting().add(new KblComponentSlotOccurrence());
 
         // When
         final List<ComponentCavity> result = ComponentCavities.cavities(component);
 
-        // Then
-        assertThat(result).extracting(ComponentCavity::cavityNumber).containsExactly("1", "2A", "10A");
-        assertThat(ComponentCavities.mountedCavities(first)).extracting(MountedCavity::cavityNumber)
-                .containsExactly("10A", "2A");
+        // Then: numbered from 1 with the common suffix, coupled in numerical order.
+        assertThat(result).extracting(ComponentCavity::cavityNumber).containsExactly("1A", "2A");
+        assertThat(ComponentCavities.mountedCavities(occurrence))
+                .extracting(MountedCavity::mountedOn, MountedCavity::cavityNumber)
+                .containsExactly(tuple(second, "1A"), tuple(tenth, "2A"));
+    }
+
+    @Test
+    void should_numberTheCavitiesWithoutSuffix_whenTheMountedCavitiesHaveNoCommonSuffix() {
+        // Given
+        final KblComponent component = new KblComponent();
+        occurrence(component, componentCavity("122"));
+        occurrence(component, componentCavity("4B"), connectorCavity("1"));
+
+        // When / Then
+        assertThat(ComponentCavities.cavities(component)).extracting(ComponentCavity::cavityNumber)
+                .containsExactly("1", "2");
     }
 
     @Test

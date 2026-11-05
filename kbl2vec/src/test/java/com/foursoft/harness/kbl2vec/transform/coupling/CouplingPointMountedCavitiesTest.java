@@ -64,7 +64,7 @@ class CouplingPointMountedCavitiesTest {
         final KblComponentOccurrence source = occurrence();
         source.getMounting().add(componentSlot);
         source.getMounting().add(componentCavity);
-        final MountedCavity mountedCavity = new MountedCavity(source, componentCavity, "2A");
+        final MountedCavity mountedCavity = new MountedCavity(source, componentCavity, "1A");
 
         final VecConnectorHousingRole slotRole = new VecConnectorHousingRole();
         final VecConnectorHousingRole componentRole = new VecConnectorHousingRole();

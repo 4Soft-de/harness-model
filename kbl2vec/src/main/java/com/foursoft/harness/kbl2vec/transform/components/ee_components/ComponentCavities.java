@@ -32,22 +32,31 @@ import com.foursoft.harness.kbl.v25.KblComponentOccurrence;
 import com.foursoft.harness.navext.runtime.model.Identifiable;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
- * KBL describes no cavities of a component, but a component occurrence can be mounted on cavities ({@code
- * Component_cavity_occurrence} of a component box, {@code Cavity_occurrence} of a connector). The cavities of the
- * component are derived from these mountings: the distinct cavity numbers of all mounted cavities of all occurrences of
- * the component become the cavities (and pin components) of its single housing.
- * <p> The records are the sources of the transformation. They are {@link Identifiable} by the component (occurrence)
- * and the cavity number, so that the XML ids of the VEC elements are derived from the KBL ids.
+ * KBL describes no cavities of a component, but a component occurrence can be mounted on cavities
+ * ({@code Component_cavity_occurrence} of a component box, {@code Cavity_occurrence} of a connector). The cavities of
+ * the component are derived from these mountings:
+ * <ul>
+ *     <li>The single housing of the component gets as many cavities (and pin components) as the occurrence with the
+ *     most mounted cavities is mounted on.</li>
+ *     <li>They are numbered from {@code 1}. If all mounted cavity numbers of the component's occurrences have the same
+ *     suffix (e.g. {@code 1A}, {@code 2A}), the derived numbers get it as well ({@code 1A}, …).</li>
+ *     <li>The mounted cavities of an occurrence are coupled with the derived cavities in numerical order.</li>
+ * </ul>
+ * The records are the sources of the transformation. They are {@link Identifiable} by the component (occurrence) and
+ * the derived cavity number, so that the XML ids of the VEC elements are derived from the KBL ids.
  */
 public final class ComponentCavities {
 
-    private static final Pattern LEADING_NUMBER = Pattern.compile("^(\\d+)(.*)$");
+    private static final Pattern LEADING_NUMBER = Pattern.compile("^(\\d+)(\\D*)$");
     private static final Pattern NO_XML_ID_CHARACTER = Pattern.compile("[^A-Za-z0-9_.-]");
 
     /**
@@ -86,6 +95,8 @@ public final class ComponentCavities {
 
     /**
      * A cavity of a component occurrence, mounted on a cavity of a component box or connector.
+     *
+     * @param cavityNumber The derived number of the component's cavity, not the number of the mounted cavity.
      */
     public record MountedCavity(KblComponentOccurrence occurrence, Object mountedOn, String cavityNumber)
             implements Identifiable {
@@ -104,30 +115,66 @@ public final class ComponentCavities {
     }
 
     /**
-     * @return The derived cavities of the component, sorted by their cavity number.
+     * @return The derived cavities of the component, in the order of their numbers.
      */
     public static List<ComponentCavity> cavities(final KblComponent component) {
-        return component.getRefComponentOccurrence().stream()
-                .flatMap(occurrence -> mountedCavities(occurrence).stream())
-                .map(MountedCavity::cavityNumber)
-                .distinct()
-                .sorted(CAVITY_NUMBER_ORDER)
-                .map(number -> new ComponentCavity(component, number))
+        final int count = component.getRefComponentOccurrence().stream()
+                .mapToInt(occurrence -> mountedCavityOccurrences(occurrence).size())
+                .max()
+                .orElse(0);
+        final String suffix = suffix(component, null);
+        return IntStream.rangeClosed(1, count)
+                .mapToObj(number -> new ComponentCavity(component, number + suffix))
                 .toList();
     }
 
     /**
-     * @return The cavities the occurrence is mounted on, in the order of the mounting.
+     * @return The cavities the occurrence is mounted on, in the numerical order of the mounted cavities, each one
+     * assigned to the derived cavity of the same position.
      */
     public static List<MountedCavity> mountedCavities(final KblComponentOccurrence occurrence) {
-        return occurrence.getMounting().stream()
-                .map(mounted -> {
-                    final String cavityNumber = cavityNumber(mounted);
-                    return cavityNumber == null ? null : new MountedCavity(occurrence, mounted, cavityNumber);
-                })
-                .filter(Objects::nonNull)
-                .distinct()
+        final List<Object> mounted = mountedCavityOccurrences(occurrence);
+        if (mounted.isEmpty()) {
+            return List.of();
+        }
+        final String suffix = suffix(occurrence.getPart(), occurrence);
+        return IntStream.range(0, mounted.size())
+                .mapToObj(i -> new MountedCavity(occurrence, mounted.get(i), (i + 1) + suffix))
                 .toList();
+    }
+
+    private static List<Object> mountedCavityOccurrences(final KblComponentOccurrence occurrence) {
+        return occurrence.getMounting().stream()
+                .filter(mounted -> cavityNumber(mounted) != null)
+                .map(Object.class::cast)
+                .distinct()
+                .sorted(Comparator.comparing(ComponentCavities::cavityNumber, CAVITY_NUMBER_ORDER))
+                .toList();
+    }
+
+    /**
+     * @param additional An occurrence to consider in addition to the ones known by the component, may be {@code null}.
+     * @return The common suffix of all mounted cavity numbers, empty if they have none or different ones.
+     */
+    private static String suffix(final KblComponent component, final KblComponentOccurrence additional) {
+        final Set<KblComponentOccurrence> occurrences = component == null
+                ? new HashSet<>()
+                : new HashSet<>(component.getRefComponentOccurrence());
+        if (additional != null) {
+            occurrences.add(additional);
+        }
+        final Set<String> suffixes = occurrences.stream()
+                .flatMap(occurrence -> mountedCavityOccurrences(occurrence).stream())
+                .map(ComponentCavities::cavityNumber)
+                .map(number -> {
+                    final Matcher matcher = LEADING_NUMBER.matcher(number);
+                    return matcher.matches() ? matcher.group(2) : null;
+                })
+                .collect(Collectors.toSet());
+        if (suffixes.size() == 1 && !suffixes.contains(null)) {
+            return suffixes.iterator().next();
+        }
+        return "";
     }
 
     private static String cavityNumber(final Object mounted) {
