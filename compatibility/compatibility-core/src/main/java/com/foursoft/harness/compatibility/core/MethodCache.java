@@ -83,4 +83,19 @@ public class MethodCache {
         return Optional.of(method);
     }
 
+    /**
+     * Gets the method with the given name of the given class without reporting a missing one, for callers
+     * that expect a method to be missing and handle that case.
+     *
+     * @param clazz      Class whose method is requested. Its cache has to be initialized.
+     * @param methodName Name of the method.
+     * @return Possibly-empty Optional containing the method.
+     */
+    public static Optional<Method> find(final Class<?> clazz, final String methodName) {
+        final Map<String, Method> methodNameToMethodMap = CLASS_TO_METHODS_MAP.get(clazz);
+        return methodNameToMethodMap == null
+                ? Optional.empty()
+                : Optional.ofNullable(methodNameToMethodMap.get(methodName));
+    }
+
 }

@@ -63,6 +63,21 @@ class NameBasedClassMapperTest {
     }
 
     @Test
+    void mapsAClassWithoutCounterpartToNull() {
+        final NameBasedClassMapper mapper = new NameBasedClassMapper(
+                "com.foursoft.harness.compatibility.core.wrapper.fixture.evolution.oldmodel",
+                "com.foursoft.harness.compatibility.core.wrapper.fixture.evolution.newmodel") {
+        };
+
+        for (int i = 0; i < 2; i++) {
+            // Twice: the failed lookup is cached and has to answer the same.
+            assertThat(mapper.map(
+                    com.foursoft.harness.compatibility.core.wrapper.fixture.evolution.oldmodel.OnlyOldElement.class))
+                    .isNull();
+        }
+    }
+
+    @Test
     void keepsRejectingAClassFromNeitherPackage() {
         // A rejected class must not end up in the cache, otherwise the second call would answer with
         // null instead of the exception.
