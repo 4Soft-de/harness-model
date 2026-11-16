@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.util.IdCreator;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
 import com.foursoft.harness.vec.v2x.VecCableLeadThroughOutlet;
@@ -34,7 +35,6 @@ import com.foursoft.harness.vec.v2x.VecPlacementPoint;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -60,7 +60,8 @@ public class CableLeadThroughWrapper extends DefaultWrapper {
         final String methodName = method.getName();
         if ("getOutlets".equals(methodName)) {
             if (outlets == null) {
-                outlets = getResultList("getPlacementPoint", com.foursoft.harness.vec.v12x.VecPlacementPoint.class)
+                // VEC 1.2 has a single placement point, VEC 2.x a list of outlets with one placement point each.
+                outlets = getResultObject("getPlacementPoint", com.foursoft.harness.vec.v12x.VecPlacementPoint.class)
                         .stream()
                         .map(this::wrapPointWithOutlet)
                         .collect(Collectors.toCollection(ArrayList::new));
@@ -75,7 +76,8 @@ public class CableLeadThroughWrapper extends DefaultWrapper {
         final VecPlacementPoint wrappedPlacementPoint = getContext().getWrapperProxyFactory().createProxy(
                 placementPoint);
         final VecCableLeadThroughOutlet outlet = new VecCableLeadThroughOutlet();
-        outlet.setXmlId(UUID.randomUUID().toString().substring(0, 10));
+        // An xs:ID has to be an NCName, so it must not start with a digit as a bare UUID may.
+        outlet.setXmlId(IdCreator.generateXmlId(outlet));
         outlet.setPlacementPoint(wrappedPlacementPoint);
         outlet.setIdentification("CableLeadThroughOutlet_" + placementPoint.getIdentification());
         return outlet;

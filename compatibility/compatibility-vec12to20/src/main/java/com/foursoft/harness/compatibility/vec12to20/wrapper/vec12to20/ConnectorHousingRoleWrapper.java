@@ -73,7 +73,9 @@ public class ConnectorHousingRoleWrapper extends DefaultWrapper {
             }
             return slot;
         } else if ("setComponentConnector".equals(methodName)) {
+            // VEC 1.2 has no such property, so the value is only kept by this wrapper.
             slot = (List<VecComponentConnector>) allArguments[0];
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);

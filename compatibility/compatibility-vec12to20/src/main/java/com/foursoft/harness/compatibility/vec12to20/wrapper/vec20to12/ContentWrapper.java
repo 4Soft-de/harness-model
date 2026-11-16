@@ -59,7 +59,7 @@ public class ContentWrapper extends ReflectionBasedWrapper {
         }
 
         if ("setVecVersion".equals(method.getName()) && allArguments.length == 1) {
-            getResultObject("setVecVersion", Void.class, allArguments);
+            // Only the converted view changes its version, the wrapped VEC 2.x content keeps its own.
             vecVersion = (String) allArguments[0];
             return null;
         }
