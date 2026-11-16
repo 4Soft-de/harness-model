@@ -58,7 +58,6 @@ public class ContentWrapper extends ReflectionBasedWrapper {
         }
 
         if ("setVecVersion".equals(method.getName()) && allArguments.length == 1) {
-            getResultObject("setVecVersion", Void.class, allArguments);
             vecVersion = (String) allArguments[0];
             return null;
         }

@@ -67,14 +67,18 @@ public class WireProtectionSpecificationWrapper extends AbstractSpecificationRef
             throws Throwable {
 
         if ("getAbrasionResistanceClasses".equals(method.getName())) {
-            abrasionResistanceClasses = createAbrasionResistanceClasses();
+            // Created once, so that repeated calls return the same, modifiable list, and a list set before is
+            // not overwritten.
+            if (abrasionResistanceClasses == null) {
+                abrasionResistanceClasses = createAbrasionResistanceClasses();
+            }
             return abrasionResistanceClasses;
         }
 
         if ("setAbrasionResistanceClasses".equals(method.getName())) {
             setAbrasionResistanceClasses(
                     (List<com.foursoft.harness.vec.v113.VecAbrasionResistanceClass>) allArguments[0]);
-            return abrasionResistanceClasses;
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);
@@ -100,7 +104,7 @@ public class WireProtectionSpecificationWrapper extends AbstractSpecificationRef
                     abrasionResistanceClass.setReferenceSystem(c.getClassReferenceSystem());
                     return abrasionResistanceClass;
                 })
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

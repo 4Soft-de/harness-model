@@ -66,7 +66,8 @@ public class WireSpecificationWrapper extends ReflectionBasedWrapper {
                                     allArguments)
                             .orElse(null);
             if (null == wireElement12) {
-                return null;
+                // The list itself, so that repeated calls return the same, modifiable list.
+                return wireElements;
             }
             wireElements.add(getContext().getWrapperProxyFactory().createProxy(wireElement12));
 

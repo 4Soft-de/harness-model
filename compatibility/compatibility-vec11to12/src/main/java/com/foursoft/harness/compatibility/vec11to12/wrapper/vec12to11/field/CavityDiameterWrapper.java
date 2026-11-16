@@ -91,10 +91,10 @@ public class CavityDiameterWrapper {
      */
     public void setCavityDiameter(final VecNumericalValue diameter)
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        final VecSize vecSize = createSize(diameter);
-
-        final com.foursoft.harness.vec.v12x.VecSize value =
-                context.getWrapperProxyFactory().createProxy(vecSize);
+        // Removing the diameter removes the dimension it is stored in.
+        final com.foursoft.harness.vec.v12x.VecSize value = diameter == null
+                ? null
+                : context.getWrapperProxyFactory().createProxy(createSize(diameter));
 
         final Method declaredMethod = target.getClass()
                 .getDeclaredMethod(Constants.SET_CAVITY_DIMENSION, com.foursoft.harness.vec.v12x.VecSize.class);

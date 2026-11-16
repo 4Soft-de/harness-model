@@ -30,6 +30,7 @@ import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v12x.VecNumericalValue;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -90,30 +91,37 @@ public class TapeSpecificationWrapper extends WireProtectionSpecificationWrapper
         return null;
     }
 
+    // The lists are created once, so that repeated calls return the same, modifiable list, and a list set
+    // before is not overwritten.
+
     private List<com.foursoft.harness.vec.v113.VecNumericalValue> getCoilCoreDiameters() {
-        coilCoreDiameters = getValueList("getCoilCoreDiameter");
+        if (coilCoreDiameters == null) {
+            coilCoreDiameters = getValueList("getCoilCoreDiameter");
+        }
         return coilCoreDiameters;
     }
 
     private List<com.foursoft.harness.vec.v113.VecNumericalValue> getThicknesses() {
-        thicknesses = getValueList("getThickness");
+        if (thicknesses == null) {
+            thicknesses = getValueList("getThickness");
+        }
         return thicknesses;
     }
 
     private List<com.foursoft.harness.vec.v113.VecNumericalValue> getWidths() {
-        widths = getValueList("getWidth");
+        if (widths == null) {
+            widths = getValueList("getWidth");
+        }
         return widths;
     }
 
     private List<com.foursoft.harness.vec.v113.VecNumericalValue> getValueList(final String methodName) {
-
-        final com.foursoft.harness.vec.v113.VecNumericalValue numericalValue = getResultObject(methodName,
-                                                                                               VecNumericalValue.class)
+        final List<com.foursoft.harness.vec.v113.VecNumericalValue> values = new ArrayList<>(1);
+        getResultObject(methodName, VecNumericalValue.class)
                 .map(getContext().getWrapperProxyFactory()::createProxy)
                 .map(com.foursoft.harness.vec.v113.VecNumericalValue.class::cast)
-                .orElse(null);
-
-        return numericalValue == null ? null : List.of(numericalValue);
+                .ifPresent(values::add);
+        return values;
     }
 
 }

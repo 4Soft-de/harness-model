@@ -29,6 +29,8 @@ import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v113.VecDocumentVersion}
@@ -52,10 +54,18 @@ public class DocumentVersionWrapper extends DefaultWrapper {
         if ("getSpecificationsWithType".equals(method.getName())) {
             final Class<?> vec12xClass = (Class<?>) allArguments[0];
             final Class<?> vec11xClass = getContext().getClassMapper().map(vec12xClass);
+            if (vec11xClass == null) {
+                // The requested class does not exist in the wrapped version, so there are no such objects.
+                return new ArrayList<>();
+            }
             return wrapList("getSpecificationsWithType", vec12xClass, vec11xClass);
         } else if ("getSpecificationWithType".equals(method.getName())) {
             final Class<?> vec12xClass = (Class<?>) allArguments[0];
             final Class<?> vec11xClass = getContext().getClassMapper().map(vec12xClass);
+            if (vec11xClass == null) {
+                // The requested class does not exist in the wrapped version, so there are no such objects.
+                return Optional.empty();
+            }
             return wrapOptional("getSpecificationWithType", vec12xClass, vec11xClass);
         }
 
