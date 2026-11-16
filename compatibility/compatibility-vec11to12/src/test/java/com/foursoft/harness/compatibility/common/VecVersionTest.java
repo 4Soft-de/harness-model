@@ -58,10 +58,11 @@ class VecVersionTest {
                 .isNotPresent();
         assertThat(VecVersion.findVersion("1.2.3"))
                 .isNotPresent();
+        assertThat(VecVersion.findVersion("<VecVersion>1.2.1</VecVersion>"))
+                .contains(VecVersion.VEC12X);
+        // Not a release of the VEC.
         assertThat(VecVersion.findVersion("<VecVersion>1.2.3</VecVersion>"))
-                .isPresent()
-                .get()
-                .isEqualTo(VecVersion.VEC12X);
+                .isNotPresent();
 
         final VecContent vec12x = new VecContent();
         vec12x.setVecVersion(VecVersion.VEC12X.getCurrentVersion());
@@ -69,11 +70,12 @@ class VecVersionTest {
                 .isPresent()
                 .get()
                 .isEqualTo(VecVersion.VEC12X);
+        vec12x.setVecVersion("1.2.0");
+        assertThat(VecVersion.findVersion(vec12x))
+                .contains(VecVersion.VEC12X);
         vec12x.setVecVersion("1.2.3");
         assertThat(VecVersion.findVersion(vec12x))
-                .isPresent()
-                .get()
-                .isEqualTo(VecVersion.VEC12X);
+                .isNotPresent();
 
         final com.foursoft.harness.vec.v113.VecContent vec11x = new com.foursoft.harness.vec.v113.VecContent();
         vec11x.setVecVersion(VecVersion.VEC11X.getCurrentVersion());

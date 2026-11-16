@@ -39,7 +39,7 @@ import java.lang.reflect.Method;
 @Wraps(com.foursoft.harness.vec.v12x.VecContent.class)
 public class ContentWrapper extends DefaultWrapper {
 
-    private String vecVersion = VecVersion.VEC20X.getCurrentVersion();
+    private String vecVersion = VecVersion.VEC2XX.getCurrentVersion();
 
     /**
      * Creates this wrapper.

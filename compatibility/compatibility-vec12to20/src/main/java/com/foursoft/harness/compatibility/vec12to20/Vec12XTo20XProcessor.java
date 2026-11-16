@@ -65,18 +65,18 @@ public class Vec12XTo20XProcessor implements VecProcessor {
             final com.foursoft.harness.vec.v12x.VecReader vec12xReader = new com.foursoft.harness.vec.v12x.VecReader(
                     eventConsumer);
             final com.foursoft.harness.vec.v12x.VecContent vec12x = vec12xReader.read(inputStream);
-            if (targetVersion == VecVersion.VEC20X) {
+            if (targetVersion == VecVersion.VEC2XX) {
                 return convertVec(vec12x, vecProcessTask);
             } else if (targetVersion == VecVersion.VEC12X) {
                 return targetClass.cast(vec12x);
             }
-        } else if (sourceVersion == VecVersion.VEC20X) {
+        } else if (sourceVersion == VecVersion.VEC2XX) {
             final com.foursoft.harness.vec.v2x.VecReader vec20xReader = new com.foursoft.harness.vec.v2x.VecReader(
                     eventConsumer);
             final com.foursoft.harness.vec.v2x.VecContent vec2x = vec20xReader.read(inputStream);
             if (targetVersion == VecVersion.VEC12X) {
                 return convertVec(vec2x, vecProcessTask);
-            } else if (targetVersion == VecVersion.VEC20X) {
+            } else if (targetVersion == VecVersion.VEC2XX) {
                 return targetClass.cast(vec2x);
             }
         }
@@ -110,13 +110,13 @@ public class Vec12XTo20XProcessor implements VecProcessor {
         if (sourceVersion == VecVersion.VEC12X) {
             if (targetVersion == VecVersion.VEC12X) {
                 return targetClass.cast(content);
-            } else if (targetVersion == VecVersion.VEC20X) {
+            } else if (targetVersion == VecVersion.VEC2XX) {
                 return convertVec(content, vecProcessTask);
             }
-        } else if (sourceVersion == VecVersion.VEC20X) {
+        } else if (sourceVersion == VecVersion.VEC2XX) {
             if (targetVersion == VecVersion.VEC12X) {
                 return convertVec(content, vecProcessTask);
-            } else if (targetVersion == VecVersion.VEC20X) {
+            } else if (targetVersion == VecVersion.VEC2XX) {
                 return targetClass.cast(content);
             }
         }
