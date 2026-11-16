@@ -52,7 +52,9 @@
         <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
         <sonar.organization>4soft-de</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <!-- Point every module at the aggregate report, so that tests in one module are credited for
+             the code they exercise in another one. See coverage-report/pom.xml. -->
+        <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/coverage-report/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
         <!-- build and release properties -->
         <sonar.projectKey>4Soft-de_harness-model</sonar.projectKey>
@@ -79,6 +81,7 @@
         <module>compatibility</module>
         <module>vec-rdf</module>
         <module>kbl2vec</module>
+        <module>coverage-report</module>
     </modules>
 
     <scm>
