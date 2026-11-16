@@ -28,10 +28,18 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
+import com.foursoft.harness.vec.v113.VecSpecification;
+import com.foursoft.harness.vec.v12x.VecWireEndAccessorySpecification;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecDocumentVersion}
@@ -39,6 +47,8 @@ import java.util.Optional;
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecDocumentVersion.class)
 public class DocumentVersionWrapper extends ReflectionBasedWrapper {
+
+    private List<VecSpecification> specifications;
 
     /**
      * Creates this wrapper.
@@ -52,6 +62,13 @@ public class DocumentVersionWrapper extends ReflectionBasedWrapper {
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
+        if ("getSpecifications".equals(method.getName())) {
+            // Created once, so that repeated calls return the same, modifiable list.
+            if (specifications == null) {
+                specifications = createSpecifications();
+            }
+            return specifications;
+        }
         if ("getSpecificationsWithType".equals(method.getName())) {
             final Class<?> vec11xClass = (Class<?>) allArguments[0];
             final Class<?> vec12xClass = getContext().getClassMapper().map(vec11xClass);
@@ -71,6 +88,30 @@ public class DocumentVersionWrapper extends ReflectionBasedWrapper {
         }
 
         return super.wrapObject(obj, method, allArguments);
+    }
+
+    /**
+     * VEC 1.2 references the wire reception specification of a wire end accessory specification, VEC 1.1
+     * contains it there. Listing it in the document as well would write it twice, with the same id. So a wire
+     * reception specification of a wire end accessory specification of this document is only written inside
+     * the latter.
+     */
+    private List<VecSpecification> createSpecifications() {
+        final List<com.foursoft.harness.vec.v12x.VecSpecification> sourceSpecifications =
+                getResultList("getSpecifications", com.foursoft.harness.vec.v12x.VecSpecification.class);
+        final Set<Object> containedInAccessories = Collections.newSetFromMap(new IdentityHashMap<>());
+        sourceSpecifications.stream()
+                .filter(VecWireEndAccessorySpecification.class::isInstance)
+                .map(VecWireEndAccessorySpecification.class::cast)
+                .map(VecWireEndAccessorySpecification::getWireReceptionSpecification)
+                .filter(Objects::nonNull)
+                .forEach(containedInAccessories::add);
+        return sourceSpecifications.stream()
+                .filter(specification -> !containedInAccessories.contains(specification))
+                .map(getContext().getWrapperProxyFactory()::createProxy)
+                .filter(VecSpecification.class::isInstance)
+                .map(VecSpecification.class::cast)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

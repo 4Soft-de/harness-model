@@ -8,6 +8,7 @@
   - Satisfies:              untyped (xs:anyType) in 1.2, boolean in 2.x, class not existing in 1.1.3
   - DefaultDimension:       [1..1] in 1.2, [0..*] in 2.x
   - WireReceptionType:      [0..1] in 1.2, [0..*] in 2.x
+  - WireReceptionSpecification of a WireEndAccessorySpecification: referenced in 1.2, contained in 1.1.3
   - BoltTerminal*, TerminalPairingSpecification, RequirementsConformanceSpecification,
     DefaultDimensionSpecification, WireReceptionSpecification: classes not existing in 1.1.3
 -->
@@ -78,6 +79,21 @@
       <MaxTerminalCount>4</MaxTerminalCount>
     </Specification>
   </DocumentVersion>
+  <DocumentVersion id="dv_seal">
+    <CompanyName>4Soft</CompanyName>
+    <DocumentNumber>SEAL-1</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>1</DocumentVersion>
+    <ReferencedPart>pv_seal</ReferencedPart>
+    <Specification xsi:type="vec:WireReceptionSpecification" id="wrs_seal">
+      <Identification>WRS_SEAL</Identification>
+    </Specification>
+    <Specification xsi:type="vec:WireEndAccessorySpecification" id="weas_seal">
+      <Identification>WEAS_SEAL</Identification>
+      <DescribedPart>pv_seal</DescribedPart>
+      <WireReceptionSpecification>wrs_seal</WireReceptionSpecification>
+    </Specification>
+  </DocumentVersion>
   <PartVersion id="pv_ring">
     <CompanyName>4Soft</CompanyName>
     <PartNumber>RING-1</PartNumber>
@@ -90,6 +106,12 @@
     <PartNumber>BOLT-1</PartNumber>
     <PartVersion>1</PartVersion>
     <PrimaryPartType>BoltTerminal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="pv_seal">
+    <CompanyName>4Soft</CompanyName>
+    <PartNumber>SEAL-1</PartNumber>
+    <PartVersion>1</PartVersion>
+    <PrimaryPartType>WireEndAccessory</PrimaryPartType>
   </PartVersion>
   <Unit xsi:type="vec:SIUnit" id="unit_mm">
     <SiUnitName>Metre</SiUnitName>

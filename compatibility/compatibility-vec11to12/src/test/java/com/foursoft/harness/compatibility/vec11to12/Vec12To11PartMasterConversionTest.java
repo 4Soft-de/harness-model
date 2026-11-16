@@ -33,6 +33,7 @@ import com.foursoft.harness.vec.v113.VecPartVersion;
 import com.foursoft.harness.vec.v113.VecPrimaryPartType;
 import com.foursoft.harness.vec.v113.VecRingTerminalSpecification;
 import com.foursoft.harness.vec.v113.VecSpecification;
+import com.foursoft.harness.vec.v113.VecWireEndAccessorySpecification;
 import com.foursoft.harness.vec.v113.validation.SchemaFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -89,9 +90,11 @@ class Vec12To11PartMasterConversionTest {
         assertThat(differences).containsOnly(
                 // RequirementsConformanceSpecification, TerminalPairingSpecification and
                 // BoltTerminalSpecification do not exist in VEC 1.1.3.
-                Map.entry("DocumentVersion/Specification", "7 -> 4"),
-                Map.entry("Specification/Identification", "7 -> 4"),
-                Map.entry("Specification/DescribedPart", "4 -> 2"),
+                Map.entry("DocumentVersion/Specification", "9 -> 5"),
+                Map.entry("Specification/Identification", "9 -> 5"),
+                Map.entry("Specification/DescribedPart", "5 -> 3"),
+                // The wire reception specification of the seal moved into its wire end accessory specification.
+                Map.entry("WireReceptionSpecification/Identification", "0 -> 1"),
                 Map.entry("Specification/ConformanceStatement", "1 -> 0"),
                 Map.entry("ConformanceStatement/Satisfies", "1 -> 0"),
                 Map.entry("ConformanceStatement/DocumentVersion", "1 -> 0"),
@@ -107,6 +110,16 @@ class Vec12To11PartMasterConversionTest {
                 .extracting(VecSpecification::getIdentification)
                 .containsExactly("GTPS_RING", "RTS_RING", "WRS_RING", "DDS_RING");
         assertThat(documentVersion("BOLT-1").getSpecifications()).isEmpty();
+    }
+
+    @Test
+    void wireReceptionSpecificationIsContainedInItsWireEndAccessorySpecificationOnly() {
+        final VecDocumentVersion seal = documentVersion("SEAL-1");
+
+        assertThat(seal.getSpecifications())
+                .singleElement()
+                .isInstanceOfSatisfying(VecWireEndAccessorySpecification.class, accessory -> assertThat(
+                        accessory.getWireReceptionSpecification().getIdentification()).isEqualTo("WRS_SEAL"));
     }
 
     @Test
