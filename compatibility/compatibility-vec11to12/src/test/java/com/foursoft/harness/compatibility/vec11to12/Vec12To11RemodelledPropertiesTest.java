@@ -90,6 +90,40 @@ class Vec12To11RemodelledPropertiesTest {
         assertThat(downgradedOneOfAll.getRelationType()).isEqualTo(VecPartRelationType.ONE_OF_ALL);
     }
 
+    @Test
+    void abrasionResistanceClassesAreTheRobustnessPropertiesOfTheirClass() {
+        final com.foursoft.harness.vec.v12x.VecGeneralTechnicalPartSpecification gtps =
+                new com.foursoft.harness.vec.v12x.VecGeneralTechnicalPartSpecification();
+        gtps.getRobustnessProperties().add(robustness("AbrasionResistance", "B", "VDA"));
+        gtps.getRobustnessProperties().add(robustness("LiquidIngressProtection", "7", "ISO 20653"));
+        final com.foursoft.harness.vec.v12x.VecWireProtectionSpecification source =
+                new com.foursoft.harness.vec.v12x.VecWireProtectionSpecification();
+        final com.foursoft.harness.vec.v12x.VecDocumentVersion documentVersion =
+                new com.foursoft.harness.vec.v12x.VecDocumentVersion();
+        documentVersion.getSpecifications().add(gtps);
+        documentVersion.getSpecifications().add(source);
+        source.setParentDocumentVersion(documentVersion);
+
+        final com.foursoft.harness.vec.v113.VecWireProtectionSpecification downgraded = proxy(source);
+
+        // The class names the influence; the class key is the level, as the class key of VEC 1.1 is.
+        assertThat(downgraded.getAbrasionResistanceClasses())
+                .singleElement()
+                .returns("B", com.foursoft.harness.vec.v113.VecAbrasionResistanceClass::getClassKey)
+                .returns("VDA", com.foursoft.harness.vec.v113.VecAbrasionResistanceClass::getReferenceSystem);
+    }
+
+    private com.foursoft.harness.vec.v12x.VecRobustnessProperties robustness(final String clazz,
+                                                                            final String classKey,
+                                                                            final String referenceSystem) {
+        final com.foursoft.harness.vec.v12x.VecRobustnessProperties robustness =
+                new com.foursoft.harness.vec.v12x.VecRobustnessProperties();
+        robustness.setClazz(clazz);
+        robustness.setClassKey(classKey);
+        robustness.setClassReferenceSystem(referenceSystem);
+        return robustness;
+    }
+
     private <T> T proxy(final Object source) {
         return downgrade.getWrapperProxyFactory().createProxy(source);
     }

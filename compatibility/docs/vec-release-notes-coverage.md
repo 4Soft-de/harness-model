@@ -107,7 +107,7 @@ which call every getter and setter of every model class in both directions.
 | KBLFRM-799 | "Power" split in PinComponentType | open literals +PowerSupply, +PowerDistribution, +NotConnected; -Power, -"Not connected" | Down | R1 string pass-through, no literal mapping | - | covered, lossy (valid, because 1.1.3 PinComponentType is a plain string, but "PowerSupply"/"PowerDistribution"/"NotConnected" are not mapped back to "Power"/"Not connected", which 1.1.3 consumers know) |
 | KBLFRM-800 | DocumentTypes for symbols | open literals +SchematicSymbol, +NetworkSymbol | Down | R1 | - | covered |
 | KBLFRM-804 | Plugging compatibility of HousingComponent | HousingComponent +CompatibleTypes | Down | R6 | - | covered, lossy |
-| KBLFRM-811 | SealingClass/AbrasionResistanceClass -> RobustnessProperties | SealingClass and AbrasionResistanceClass removed from CavityPart-, ConnectorHousing-, Grommet-, TerminalSpecification and WireProtectionSpecification | Down | The robustness data itself is kept (GTPS.RobustnessProperties exists in 1.1.3, R1). Wrappers rebuild SealingClass and AbrasionResistanceClass from the RobustnessProperties of the GTPS in the same document. | w12to11/specification/AbstractSpecificationReflectionBasedWrapper.java; w12to11/specification/wireprotection/WireProtectionSpecificationWrapper.java | **GAP (wrong handling)**: entries are selected by `ClassKey` equalsIgnoreCase "SealingClass"/"AbrasionResistanceClass". In VEC 1.2 ClassKey is the level (A, B, C) and the influence is in `Class` (e.g. LiquidIngressProtection), so spec-conformant data yields empty lists. Where the convention does match, 1.1.3 AbrasionResistanceClass.ClassKey gets the literal "AbrasionResistanceClass" instead of a level. The first GTPS of a multi-part document is used for every specification. Zone.RequiredSealingClass is always empty (M11). Up 1.1.3 -> 1.2 does not convert SealingClass/AbrasionResistanceClass at all (lost). |
+| KBLFRM-811 | SealingClass/AbrasionResistanceClass -> RobustnessProperties | SealingClass and AbrasionResistanceClass removed from CavityPart-, ConnectorHousing-, Grommet-, TerminalSpecification and WireProtectionSpecification | Down | The robustness data itself is kept (GTPS.RobustnessProperties exists in 1.1.3, R1). Wrappers rebuild SealingClass and AbrasionResistanceClass from the RobustnessProperties of the GTPS in the same document. | w12to11/specification/AbstractSpecificationReflectionBasedWrapper.java; w12to11/specification/wireprotection/WireProtectionSpecificationWrapper.java | AbrasionResistanceClass: covered. The entries whose `Class` is "AbrasionResistance" (the literal VEC 2.x added with KBLFRM-1022) are taken, their ClassKey is the level and their ClassReferenceSystem the reference system, as in 1.1.3. **SealingClass: GAP (wrong handling)**: entries are selected by `ClassKey` equalsIgnoreCase "SealingClass". In VEC 1.2 ClassKey is the level and the influence is in `Class`, so spec-conformant data yields empty lists. No 1:1 mapping exists: the sealing class of 1.1.3 is an IP code, which VEC 1.2 splits into SolidParticleProtection and LiquidIngressProtection. The first GTPS of a multi-part document is used for every specification. Zone.RequiredSealingClass is always empty (M11). Up 1.1.3 -> 1.2 does not convert SealingClass/AbrasionResistanceClass at all (lost). |
 | KBLFRM-812 | Redefined NetGroup/ConnectionGroup | ConnectionGroup -NetGroup; ConnectionGroupType string -> open enum | Down | value `netGroup` on v12x ConnectionGroup (null); backRef `refConnectionGroup` on v12x NetGroup; type R1 | M11, M11 | covered |
 | KBLFRM-816 | Typing of cavity add-ons | CavityAddOn +Type (WireAddOnType) [1..1]; new WireReceptionAddOn | Down | R6 / R4 | - | covered, lossy. Up 1.1.3 -> 1.2 needs something: value `type` on v113 CavityAddOn (M11) returns null for the mandatory 1.2 CavityAddOn.Type, so upgraded output is schema-invalid. |
 | KBLFRM-817 | Taping with WireProtectionRole | same change set as KBLFRM-878 | Down | see KBLFRM-878 | see KBLFRM-878 | covered, lossy |
@@ -375,13 +375,14 @@ Rows marked "open enum" are string -> OpenEnumeration changes. Both bindings typ
    in a DocumentVersion of the same file, or is used by several roles. The result is schema-invalid
    (duplicate IDs). Fixed for part master data: a WireReceptionSpecification of a WireEndAccessorySpecification
    of the same document is written inside the latter only. Still open for WireEndAccessoryRoles.
-2. **SealingClass/AbrasionResistanceClass depend on a data convention (KBLFRM-811, open question).** The
-   wrappers pick the RobustnessProperties whose `ClassKey` is "SealingClass"/"AbrasionResistanceClass". The
-   VEC 1.2 documentation defines ClassKey as the *level* (e.g. A, B, C) and `Class` as the influence, and
-   RobustnessClass has no "SealingClass" literal. So data following the documentation yields no
-   SealingClass/AbrasionResistanceClass in 1.1.3, and where the convention matches, ClassKey gets a literal
-   instead of a level. Whether the producers of the converted data follow this convention decides whether
-   the mapping has to change. The underlying RobustnessProperties survive on the GTPS.
+2. **SealingClass depends on a data convention (KBLFRM-811, open question).** The wrappers pick the
+   RobustnessProperties whose `ClassKey` is "SealingClass". The VEC 1.2 documentation defines ClassKey as
+   the *level* and `Class` as the influence, and RobustnessClass has no "SealingClass" literal. So data
+   following the documentation yields no SealingClass in 1.1.3. A sealing class is an IP code, which VEC 1.2
+   splits into SolidParticleProtection and LiquidIngressProtection (ISO 20653), so there is no 1:1 mapping
+   back. The underlying RobustnessProperties survive on the GTPS.
+   AbrasionResistanceClass no longer depends on a convention: it is taken from the entries whose `Class`
+   is "AbrasionResistance".
    (w12to11/specification/AbstractSpecificationReflectionBasedWrapper.java,
    w12to11/specification/wireprotection/WireProtectionSpecificationWrapper.java)
 3. **Mandatory 1.1.3 properties that come out null or empty, giving schema-invalid output (GAP).**
