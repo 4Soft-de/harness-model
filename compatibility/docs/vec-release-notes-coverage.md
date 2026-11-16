@@ -89,7 +89,7 @@ which call every getter and setter of every model class in both directions.
 | KBLFRM-928 | Instantiation of topologies | TopologyNode +InstantiatedNode, TopologySegment +InstantiatedSegment, PartUsage +InstanciatedUsage (inferred attribution confirmed by the diff) | Down | R6 | - | covered, lossy |
 | KBLFRM-930 | FIT rates | GeneralTechnicalPartSpecification +FitRate | Down | R6 | T11/Vec12To11PartMasterConversionTest#onlyWhatVec113CannotExpressIsLeftOut ("FitRate 1 -> 0") | covered by test (lossy) |
 | KBLFRM-954 | XML schema pattern restrictions | technique (first use: CodingName, KBLFRM-942) | Down | R1 (pattern-restricted strings remain strings) | - | covered |
-| KBLFRM-964 | Complex PartRelations with custom expression | PartRelation +CustomRelationExpression; PartRelationType (closed enum) +Custom | Down | Expression R6; RelationType R7 | core/wrapper/ReflectionBasedWrapper.java | **GAP**: RelationType=Custom has no 1.1.3 constant and becomes null (error logged). PartRelation.RelationType is [1..1] in 1.1.3, so the output is schema-invalid. The expression is lost. |
+| KBLFRM-964 | Complex PartRelations with custom expression | PartRelation +CustomRelationExpression; PartRelationType (closed enum) +Custom | Down | Expression R6. PartRelationWrapper converts RelationType Custom to Optional, the weakest statement the closed 1.1.3 enum can make, and logs a warning naming the expression. | w12to11/PartRelationWrapper.java | covered, lossy (the expression is lost: a 1.1.3 PartRelation is no ExtendableElement and cannot carry custom properties) |
 | KBLFRM-973 | Orthogonal grouping (AssignmentGroups) | new AssignmentGroup(+Specification), FunctionalAssignmentGroup, FunctionalRequirement, DocumentRelatedAssignmentGroup; ConfigurableElement +AssociatedAssignmentGroups | Down | R4 / R6 | - | covered, lossy |
 | KBLFRM-974 | Ferrite | new FerriteSpecification/FerriteRole; PrimaryPartType +Ferrite | Down | PartVersionWrapper maps Ferrite -> Other. Spec and role R4. | w12to11/PartVersionWrapper.java | covered, lossy (PartUsage.PrimaryPartUsageType gets the same replacement (PrimaryPartTypeMapping); specification and role dropped). |
 | KBLFRM-365 | Deprecation of CavityDesign | no structural change | Down | R1 | - | covered |
@@ -390,7 +390,6 @@ Rows marked "open enum" are string -> OpenEnumeration changes. Both bindings typ
    - MatingPoint.FirstTerminalRole/SecondTerminalRole pointing to a Bolt-, Bridge- or
      OpenWireEndTerminalRole, which is dropped by R4 (KBLFRM-840, -897, -630). Rarer: SpecificRole.Specification,
      TerminalRole.TerminalSpecification, ExternalMapping.MappedElement pointing to a dropped class.
-   - PartRelation.RelationType = Custom: closed enum, no 1.1.3 constant (KBLFRM-964).
    - Properties that 1.2 made optional: ChangeDescription.ResponsibleDesigner (KBLFRM-810),
      PartWithSubComponentsRole.SubComponent (KBLFRM-842), WireGrouping.WireGroupSpecification (KBLFRM-894).
 4. **TopologyZones (KBLFRM-472, GAP).** Zones are lost because TopologySpecification.Zone is always empty,

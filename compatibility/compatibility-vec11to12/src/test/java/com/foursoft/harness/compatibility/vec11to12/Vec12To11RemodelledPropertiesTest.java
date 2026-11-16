@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec11to12;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.vec.v113.VecPartRelationType;
 import com.foursoft.harness.vec.v113.VecPrimaryPartType;
 import org.junit.jupiter.api.Test;
 
@@ -70,6 +71,23 @@ class Vec12To11RemodelledPropertiesTest {
 
         assertThat(downgradedBolt.getPrimaryPartUsageType()).isEqualTo(VecPrimaryPartType.TERMINAL);
         assertThat(downgradedRing.getPrimaryPartUsageType()).isEqualTo(VecPrimaryPartType.RING_TERMINAL);
+    }
+
+    @Test
+    void customPartRelationBecomesOptional() {
+        final com.foursoft.harness.vec.v12x.VecPartRelation custom = new com.foursoft.harness.vec.v12x.VecPartRelation();
+        custom.setRelationType(com.foursoft.harness.vec.v12x.VecPartRelationType.CUSTOM);
+        custom.setCustomRelationExpression("two of all");
+        final com.foursoft.harness.vec.v12x.VecPartRelation oneOfAll =
+                new com.foursoft.harness.vec.v12x.VecPartRelation();
+        oneOfAll.setRelationType(com.foursoft.harness.vec.v12x.VecPartRelationType.ONE_OF_ALL);
+
+        final com.foursoft.harness.vec.v113.VecPartRelation downgradedCustom = proxy(custom);
+        final com.foursoft.harness.vec.v113.VecPartRelation downgradedOneOfAll = proxy(oneOfAll);
+
+        // VEC 1.1 requires a relation type and has no Custom, so the weakest statement stands in for it.
+        assertThat(downgradedCustom.getRelationType()).isEqualTo(VecPartRelationType.OPTIONAL);
+        assertThat(downgradedOneOfAll.getRelationType()).isEqualTo(VecPartRelationType.ONE_OF_ALL);
     }
 
     private <T> T proxy(final Object source) {
