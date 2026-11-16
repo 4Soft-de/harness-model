@@ -48,7 +48,7 @@ public enum VecVersion {
     /**
      * Enum value for the VEC 1.2.X.
      */
-    VEC12X("1.2.X", "1.2.0"),
+    VEC12X("1.2.X", "1.2.2"),
 
     /**
      * Enum value for the VEC 2.X.X.

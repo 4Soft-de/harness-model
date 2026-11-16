@@ -40,6 +40,17 @@ class VecVersionTest {
     }
 
     @Test
+    void writesTheSchemaVersionOfTheModel() {
+        // A converted document claims the version of the schema its model is generated from.
+        assertThat(VecVersion.VEC11X.getCurrentVersion())
+                .isEqualTo(com.foursoft.harness.vec.v113.Version.VERSION)
+                .isEqualTo("1.1.3");
+        assertThat(VecVersion.VEC12X.getCurrentVersion())
+                .isEqualTo(com.foursoft.harness.vec.v12x.Version.VERSION)
+                .isEqualTo("1.2.2");
+    }
+
+    @Test
     void testFindVersion() {
         assertThat(VecVersion.findVersion("1"))
                 .isNotPresent();
