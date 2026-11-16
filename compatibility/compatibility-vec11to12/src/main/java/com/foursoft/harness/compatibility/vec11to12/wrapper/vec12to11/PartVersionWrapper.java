@@ -28,31 +28,19 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
 import com.foursoft.harness.compatibility.core.Context;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
-import com.foursoft.harness.vec.v113.VecPrimaryPartType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
-import java.util.Map;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecPartVersion}
  * to {@link com.foursoft.harness.vec.v113.VecPartVersion}.
  * <p>
- * VEC 1.2 added primary part types which VEC 1.1 does not know. As the primary part type is mandatory in
- * VEC 1.1, such a part gets the closest, more general type VEC 1.1 offers instead of none.
+ * Converts the primary part type, see {@link PrimaryPartTypeMapping}.
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecPartVersion.class)
 public class PartVersionWrapper extends ReflectionBasedWrapper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PartVersionWrapper.class);
-
-    private static final Map<com.foursoft.harness.vec.v12x.VecPrimaryPartType, VecPrimaryPartType> REPLACEMENTS =
-            Map.of(com.foursoft.harness.vec.v12x.VecPrimaryPartType.BOLT_TERMINAL, VecPrimaryPartType.TERMINAL,
-                   com.foursoft.harness.vec.v12x.VecPrimaryPartType.OPEN_WIRE_END, VecPrimaryPartType.TERMINAL,
-                   com.foursoft.harness.vec.v12x.VecPrimaryPartType.CAPACITOR, VecPrimaryPartType.EE_COMPONENT,
-                   com.foursoft.harness.vec.v12x.VecPrimaryPartType.DIODE, VecPrimaryPartType.EE_COMPONENT,
-                   com.foursoft.harness.vec.v12x.VecPrimaryPartType.FERRITE, VecPrimaryPartType.OTHER);
+    private final PrimaryPartTypeMapping primaryPartTypeMapping = new PrimaryPartTypeMapping();
 
     /**
      * Creates this wrapper.
@@ -68,20 +56,10 @@ public class PartVersionWrapper extends ReflectionBasedWrapper {
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         if ("getPrimaryPartType".equals(method.getName())) {
             return getResultObject("getPrimaryPartType", com.foursoft.harness.vec.v12x.VecPrimaryPartType.class)
-                    .map(this::toVec11PrimaryPartType)
+                    .map(primaryPartTypeMapping::toVec11)
                     .orElse(null);
         }
         return super.wrapObject(obj, method, allArguments);
-    }
-
-    private VecPrimaryPartType toVec11PrimaryPartType(final com.foursoft.harness.vec.v12x.VecPrimaryPartType type) {
-        final VecPrimaryPartType replacement = REPLACEMENTS.get(type);
-        if (replacement != null) {
-            LOGGER.debug("Primary part type {} does not exist in VEC 1.1, it is converted to {}.", type,
-                         replacement);
-            return replacement;
-        }
-        return VecPrimaryPartType.valueOf(type.name());
     }
 
 }

@@ -1,0 +1,85 @@
+/*-
+ * ========================LICENSE_START=================================
+ * Compatibility VEC 1.1.X To VEC 1.2.X
+ * %%
+ * Copyright (C) 2020 - 2026 4Soft GmbH
+ * %%
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * =========================LICENSE_END==================================
+ */
+package com.foursoft.harness.compatibility.vec11to12;
+
+import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.vec.v113.VecPrimaryPartType;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * Properties VEC 1.2 models differently than VEC 1.1, read from VEC 1.2 objects through the VEC 1.1 API.
+ */
+class Vec12To11RemodelledPropertiesTest {
+
+    private final CompatibilityContext downgrade = new Vec11XTo12XCompatibilityWrapper().getContext();
+
+    @Test
+    void wireSpecificationListsTheWireElementsOfEveryLevel() {
+        final com.foursoft.harness.vec.v12x.VecWireElement cable = wireElement("cable");
+        final com.foursoft.harness.vec.v12x.VecWireElement pair = wireElement("pair");
+        pair.getSubWireElements().add(wireElement("core 1"));
+        pair.getSubWireElements().add(wireElement("core 2"));
+        cable.getSubWireElements().add(pair);
+        cable.getSubWireElements().add(wireElement("drain wire"));
+        final com.foursoft.harness.vec.v12x.VecWireSpecification source =
+                new com.foursoft.harness.vec.v12x.VecWireSpecification();
+        source.setWireElement(cable);
+
+        final com.foursoft.harness.vec.v113.VecWireSpecification downgraded = proxy(source);
+
+        assertThat(downgraded.getWireElements())
+                .extracting(com.foursoft.harness.vec.v113.VecWireElement::getIdentification)
+                .containsExactly("cable", "pair", "core 1", "core 2", "drain wire");
+        assertThat(downgraded.getWireElements()).isSameAs(downgraded.getWireElements());
+    }
+
+    @Test
+    void primaryPartUsageTypeUnknownToVec11BecomesTheGeneralOne() {
+        final com.foursoft.harness.vec.v12x.VecPartUsage boltTerminal = new com.foursoft.harness.vec.v12x.VecPartUsage();
+        boltTerminal.setPrimaryPartUsageType(com.foursoft.harness.vec.v12x.VecPrimaryPartType.BOLT_TERMINAL);
+        final com.foursoft.harness.vec.v12x.VecPartUsage ringTerminal = new com.foursoft.harness.vec.v12x.VecPartUsage();
+        ringTerminal.setPrimaryPartUsageType(com.foursoft.harness.vec.v12x.VecPrimaryPartType.RING_TERMINAL);
+
+        final com.foursoft.harness.vec.v113.VecPartUsage downgradedBolt = proxy(boltTerminal);
+        final com.foursoft.harness.vec.v113.VecPartUsage downgradedRing = proxy(ringTerminal);
+
+        assertThat(downgradedBolt.getPrimaryPartUsageType()).isEqualTo(VecPrimaryPartType.TERMINAL);
+        assertThat(downgradedRing.getPrimaryPartUsageType()).isEqualTo(VecPrimaryPartType.RING_TERMINAL);
+    }
+
+    private <T> T proxy(final Object source) {
+        return downgrade.getWrapperProxyFactory().createProxy(source);
+    }
+
+    private com.foursoft.harness.vec.v12x.VecWireElement wireElement(final String identification) {
+        final com.foursoft.harness.vec.v12x.VecWireElement wireElement = new com.foursoft.harness.vec.v12x.VecWireElement();
+        wireElement.setIdentification(identification);
+        return wireElement;
+    }
+
+}
