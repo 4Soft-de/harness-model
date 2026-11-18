@@ -26,6 +26,7 @@
 package com.foursoft.harness.compatibility.vec12to20.wrapper.vec12to20;
 
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
+import com.foursoft.harness.compatibility.core.util.IdCreator;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
@@ -34,7 +35,6 @@ import com.foursoft.harness.vec.v2x.VecPartVersion;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecPartVersion}
@@ -53,17 +53,19 @@ public class PartVersionWrapper extends DefaultWrapper {
         super(context, target);
     }
 
-    protected List<VecLocalizedString> preferredUseCases = new ArrayList<>();
+    protected List<VecLocalizedString> preferredUseCases;
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
         if ("getPreferredUseCases".equals(methodName)) {
-            if (preferredUseCases.isEmpty() || !containsGermanString(preferredUseCases)) {
-                final String xmlId = getResultObject("getXmlId", String.class)
-                        .orElse(UUID.randomUUID().toString().substring(0, 10));
+            if (preferredUseCases == null) {
+                // VEC 1.2 has a single plain string without a language, VEC 2.x a list of localized strings.
+                preferredUseCases = new ArrayList<>();
                 getResultObject("getPreferredUseCase", String.class)
-                        .ifPresent(result -> preferredUseCases.add(wrapToGerman(result, xmlId)));
+                        .filter(text -> !text.isBlank())
+                        .ifPresent(text -> preferredUseCases.add(
+                                wrapToGerman(text, IdCreator.generateXmlId(VecLocalizedString.class))));
             }
             return preferredUseCases;
         }
@@ -77,10 +79,6 @@ public class PartVersionWrapper extends DefaultWrapper {
         result.setValue(text);
         result.setXmlId(xmlId);
         return result;
-    }
-
-    private boolean containsGermanString(final List<VecLocalizedString> list) {
-        return list.stream().anyMatch(ls -> ls.getLanguageCode() == VecLanguageCode.DE);
     }
 
 }

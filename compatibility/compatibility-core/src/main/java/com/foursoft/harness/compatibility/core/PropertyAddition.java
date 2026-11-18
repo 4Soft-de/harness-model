@@ -34,6 +34,7 @@ package com.foursoft.harness.compatibility.core;
  *   <li>{@link Value} – a scalar or object-reference property with a getter and setter</li>
  *   <li>{@link MutableList} – a {@code List}-returning getter with no setter (JAXB lazy-init)</li>
  *   <li>{@link BackRef} – a read-only {@code Set}-returning back-reference with no setter</li>
+ *   <li>{@link Renamed} – a property that exists in the source version under another name</li>
  * </ul>
  */
 public sealed interface PropertyAddition {
@@ -46,6 +47,18 @@ public sealed interface PropertyAddition {
 
     record BackRef(String propertyName) implements PropertyAddition {}
 
+    /**
+     * A property that is read from another property of the source version, e.g. because the property was
+     * renamed or became a list (and got the plural name of a list).
+     * <p>
+     * The value is adapted to the return type of the target version, so a single value read for a list
+     * property becomes a list with that value. Only the getter is redirected.
+     *
+     * @param propertyName       Name of the property in the target version.
+     * @param sourcePropertyName Name of the property in the source version which provides the value.
+     */
+    record Renamed(String propertyName, String sourcePropertyName) implements PropertyAddition {}
+
     static Value value(final String propertyName) {
         return new Value(propertyName);
     }
@@ -56,5 +69,9 @@ public sealed interface PropertyAddition {
 
     static BackRef backRef(final String propertyName) {
         return new BackRef(propertyName);
+    }
+
+    static Renamed renamed(final String propertyName, final String sourcePropertyName) {
+        return new Renamed(propertyName, sourcePropertyName);
     }
 }

@@ -49,6 +49,12 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionBasedWrapper.class);
 
+    private static final String GET_PREFIX = "get";
+    private static final String IS_PREFIX = "is";
+    private static final String SET_PREFIX = "set";
+
+    private static final ReturnValueAdapter RETURN_VALUE_ADAPTER = new ReturnValueAdapter();
+
     // One wrapper exists per wrapped object, so these collections are created on demand: most wrapped
     // objects have no property additions at all and never touch anything but collectionsByMethod.
     private Map<Object, Object> collectionsByMethod = Map.of();
@@ -60,6 +66,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
     private Map<String, List<Object>> listPropertyStore = Map.of();
     private Set<String> backRefPropertyGetters = Set.of();
     private Map<String, Set<Object>> backRefPropertyStore = Map.of();
+    private Map<String, String> renamedGetters = Map.of();
 
     private final WrapperHelper wrapperHelper;
     private final Context context;
@@ -94,6 +101,8 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
                     registerListProperty(l.propertyName());
                 } else if (addition instanceof final PropertyAddition.BackRef b) {
                     registerBackRefProperty(b.propertyName());
+                } else if (addition instanceof final PropertyAddition.Renamed renamed) {
+                    registerRenamedProperty(renamed.propertyName(), renamed.sourcePropertyName());
                 }
             }
         }
@@ -102,9 +111,13 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
     @Override
     public final Object invoke(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final Object returnValue = innerInvoke(obj, method, allArguments);
-        // In case the return value is a List. This should prevent NPEs when trying to loop over the list.
-        if (returnValue == null && List.class.isAssignableFrom(method.getReturnType())) {
-            return new ArrayList<>();
+        if (returnValue == null) {
+            // In case the return value is a List. This should prevent NPEs when trying to loop over the list.
+            if (List.class.isAssignableFrom(method.getReturnType())) {
+                return new ArrayList<>();
+            }
+            // A primitive cannot be null, the proxy would fail with a NullPointerException on unboxing.
+            return RETURN_VALUE_ADAPTER.defaultValue(method.getReturnType());
         }
         return returnValue;
     }
@@ -170,6 +183,21 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         backRefPropertyGetters.add("get" + capitalize(propertyName));
     }
 
+    /**
+     * Registers a property which is read from another property of the target object, see
+     * {@link PropertyAddition.Renamed}. Both a {@code get} and an {@code is} getter are redirected.
+     *
+     * @param propertyName       Property name in camelCase as seen by the caller.
+     * @param sourcePropertyName Property name in camelCase on the target object.
+     */
+    protected void registerRenamedProperty(final String propertyName, final String sourcePropertyName) {
+        renamedGetters = mutable(renamedGetters);
+        final String capitalised = capitalize(propertyName);
+        final String sourceCapitalised = capitalize(sourcePropertyName);
+        renamedGetters.put(GET_PREFIX + capitalised, GET_PREFIX + sourceCapitalised);
+        renamedGetters.put(IS_PREFIX + capitalised, GET_PREFIX + sourceCapitalised);
+    }
+
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
 
@@ -189,6 +217,15 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         if (backRefPropertyGetters.contains(methodName)) {
             backRefPropertyStore = mutable(backRefPropertyStore);
             return backRefPropertyStore.computeIfAbsent(methodName, k -> new HashSet<>());
+        }
+
+        final String renamedGetter = renamedGetters.get(methodName);
+        if (renamedGetter != null) {
+            return getTargetObject(method, renamedGetter, allArguments);
+        }
+        if (isSetterWithoutTarget(method, allArguments)) {
+            keepValueOfSetterWithoutTarget(method, allArguments[0]);
+            return null;
         }
 
         return defaultInvoke(method, allArguments);
@@ -236,43 +273,104 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
     }
 
     private Object defaultInvoke(final Method method, final Object[] allArguments) {
-        return getTargetObject(method, allArguments);
+        return getTargetObject(method, method.getName(), allArguments);
     }
 
     private boolean isCollection(final Class<?> o) {
         return Collection.class.isAssignableFrom(o) || Array.class.isAssignableFrom(o);
     }
 
-    private Object getTargetObject(final Method method, final Object[] objects) {
-        final Optional<Method> targetMethodOpt = MethodCache.get(nonProxyTargetClass, method.getName());
-        if (targetMethodOpt.isEmpty()) {
-            final String errorMsg = String.format("Could not find a target method for source method %s for class %s.",
-                                                  method.getName(), nonProxyTargetClass.getName());
-            throw new WrapperException(errorMsg);
-        }
-        final Method targetMethod = targetMethodOpt.get();
+    private Object getTargetObject(final Method method, final String targetMethodName, final Object[] objects) {
+        final Method targetMethod = findTargetMethod(targetMethodName);
 
         final Object targetMethodResult;
         try {
-            targetMethodResult = targetMethod.invoke(target, objects);
+            targetMethodResult = targetMethod.invoke(target, RETURN_VALUE_ADAPTER.toArguments(objects, targetMethod));
         } catch (final IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
             final String args = objects == null ? "[]" : Arrays.stream(objects)
-                    .map(Object::toString)
+                    .map(String::valueOf)
                     .collect(Collectors.joining(", "));
             final String errorMsg = String.format("Cannot invoke method %s on class %s with args '%s'.",
                                                   targetMethod.getName(), target.getClass(), args);
             throw new WrapperException(errorMsg, e);
         }
 
-        if (targetMethodResult == null) {
+        final Class<?> returnType = method.getReturnType();
+        if (Collection.class.isAssignableFrom(returnType)) {
+            if (objects != null && objects.length > 0) {
+                // The result depends on the arguments, so it must not be cached per method.
+                return RETURN_VALUE_ADAPTER.toCollection(extractObject(targetMethodResult, targetMethod), method);
+            }
+            // Cached, so that repeated calls return the same, modifiable collection.
+            collectionsByMethod = mutable(collectionsByMethod);
+            return collectionsByMethod.computeIfAbsent(
+                    method, m -> RETURN_VALUE_ADAPTER.toCollection(extractObject(targetMethodResult, targetMethod),
+                                                                   method));
+        }
+        if (targetMethodResult == null || Map.class.isAssignableFrom(returnType)) {
             return null;
         }
-
-        final Class<?> returnType = targetMethod.getReturnType();
-        return extractObject(targetMethodResult, returnType, method);
+        return RETURN_VALUE_ADAPTER.toSingleValue(extractObject(targetMethodResult, targetMethod), method);
     }
 
-    private Object extractObject(final Object targetObject, final Class<?> targetType, final Object method) {
+    /**
+     * Finds the method to invoke on the target object. A boolean getter is called {@code isX} or
+     * {@code getX} depending on whether the property is typed as a boolean, which may differ between the
+     * two versions of a model, so the respective other prefix is tried as well.
+     */
+    private Method findTargetMethod(final String targetMethodName) {
+        return MethodCache.find(nonProxyTargetClass, targetMethodName)
+                .or(() -> alternativeBooleanGetterName(targetMethodName)
+                        .flatMap(name -> MethodCache.find(nonProxyTargetClass, name)))
+                .orElseThrow(() -> new WrapperException(
+                        String.format("Could not find a target method for source method %s for class %s.",
+                                      targetMethodName, nonProxyTargetClass.getName())));
+    }
+
+    /**
+     * A setter of a property the wrapped object does not have - because the other version of the model does
+     * not know the property, or knows it only as a list, which JAXB offers no setter for.
+     */
+    private boolean isSetterWithoutTarget(final Method method, final Object[] allArguments) {
+        final String methodName = method.getName();
+        return methodName.startsWith(SET_PREFIX) && methodName.length() > SET_PREFIX.length()
+                && allArguments != null && allArguments.length == 1
+                && MethodCache.find(nonProxyTargetClass, methodName).isEmpty();
+    }
+
+    /**
+     * Keeps the value of a setter the wrapped object cannot take, in the same way as a
+     * {@link PropertyAddition.Value value addition}: the getter of the property returns it from now on.
+     */
+    private void keepValueOfSetterWithoutTarget(final Method setter, final Object value) {
+        final String property = setter.getName().substring(SET_PREFIX.length());
+        final String getterName = hasMethod(setter.getDeclaringClass(), IS_PREFIX + property)
+                ? IS_PREFIX + property
+                : GET_PREFIX + property;
+        registerValueProperty(getterName, setter.getName());
+        valuePropertyValues = mutable(valuePropertyValues);
+        valuePropertyValues.put(getterName, value);
+    }
+
+    private boolean hasMethod(final Class<?> clazz, final String methodName) {
+        return Arrays.stream(clazz.getMethods()).anyMatch(m -> m.getName().equals(methodName));
+    }
+
+    private Optional<String> alternativeBooleanGetterName(final String methodName) {
+        if (methodName.startsWith(IS_PREFIX) && methodName.length() > IS_PREFIX.length()) {
+            return Optional.of(GET_PREFIX + methodName.substring(IS_PREFIX.length()));
+        }
+        if (methodName.startsWith(GET_PREFIX) && methodName.length() > GET_PREFIX.length()) {
+            return Optional.of(IS_PREFIX + methodName.substring(GET_PREFIX.length()));
+        }
+        return Optional.empty();
+    }
+
+    private Object extractObject(final Object targetMethodResult, final Method targetMethod) {
+        return targetMethodResult == null ? null : extractObject(targetMethodResult, targetMethod.getReturnType());
+    }
+
+    private Object extractObject(final Object targetObject, final Class<?> targetType) {
         if (Map.class.isAssignableFrom(targetType)) {
             return null;
         }
@@ -280,14 +378,13 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
         if (isClassOfInterest(targetType)) {
             return context.getWrapperProxyFactory().createProxy(targetObject);
         } else if (isCollection(targetType)) {
-            if (method == null) {
-                return extractObjectsOfPotentialCollection(targetObject);
-            }
-            collectionsByMethod = mutable(collectionsByMethod);
-            return collectionsByMethod.computeIfAbsent(method, c -> extractObjectsOfPotentialCollection(targetObject));
+            return extractObjectsOfPotentialCollection(targetObject);
         } else if (targetType.isEnum()) {
             final Class<? extends Enum<?>> enumClass = (Class<? extends Enum<?>>) targetType;
             return extractEnum(enumClass.cast(targetObject), enumClass);
+        } else if (targetType == Object.class && isClassOfInterest(targetObject.getClass())) {
+            // An untyped property (xs:anyType) may still hold a model object.
+            return extractObject(targetObject, targetObject.getClass());
         } else {
             return targetObject;
         }
@@ -333,7 +430,7 @@ public class ReflectionBasedWrapper implements InvocationHandler, CompatibilityW
             if (object == null) {
                 targetObject = null;
             } else {
-                targetObject = extractObject(object, object.getClass(), null);
+                targetObject = extractObject(object, object.getClass());
             }
             interestingObjects.add(targetObject);
         }

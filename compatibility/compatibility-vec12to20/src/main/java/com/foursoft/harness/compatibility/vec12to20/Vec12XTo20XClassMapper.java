@@ -49,7 +49,7 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
     private final PurePropertyAdditions propertyAdditions;
 
     /**
-     * Creates a VEC 1.1 to VEC 1.2 Class Mapper.
+     * Creates a VEC 1.2 to VEC 2.X Class Mapper.
      */
     public Vec12XTo20XClassMapper() {
         super(Constants.PACKAGE_VEC12X, Constants.PACKAGE_VEC20X);
@@ -63,7 +63,6 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
                           value("boltShape")
                 )
                 .register(VecBoundingBox.class, extendableElementPropertiesPlus())
-                .register(VecBridgeTerminalRole.class, list("connection"))
                 .register(VecBuildingBlockPositioning2D.class, value("identification"))
                 .register(VecBuildingBlockPositioning3D.class, value("identification"))
                 .register(VecCableLeadThroughReference.class,
@@ -85,7 +84,6 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
                 )
                 .register(VecCavityAddOn.class, extendableElementPropertiesPlus())
                 .register(VecCavityMapping.class, extendableElementPropertiesPlus())
-                .register(VecCavityReference.class, list("componentPort"))
                 .register(VecCavitySpecification.class, value("cavitySealingLength"))
                 .register(VecComponentConnector.class,
                           backRef("refConnectorHousingRole"),
@@ -126,12 +124,12 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
                 )
                 .register(VecContent.class, list("quantityKinds"), list("resourceVersions"))
                 .register(VecDefaultDimension.class, extendableElementPropertiesPlus())
-                .register(VecDefaultDimensionSpecification.class, list("defaultDimensions"))
+                // DefaultDimension [1..1] became [0..*].
+                .register(VecDefaultDimensionSpecification.class, renamed("defaultDimensions", "defaultDimension"))
                 .register(VecDocumentVersion.class, value("confidentialityLevel"),
                           list("documentClassifications"))
                 .register(VecFixingSpecification.class, value("maximumWidthA"),
                           value("maximumWidthB"))
-                .register(VecEEComponentRole.class, list("componentNode"))
                 .register(VecEEComponentSpecification.class,
                           value("voltageRating"), value("componentNode"))
                 .register(VecExtendableElement.class, backRef("refReusage"))
@@ -148,7 +146,6 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
                 .register(VecGrommetSpecification.class, value("mountingType"))
                 .register(VecHousingComponent.class, configurableElementPropertiesPlus(list("segmentConnectionPoints"))
                 )
-                .register(VecHousingComponentReference.class, list("componentConnector"))
                 .register(VecInsulationSpecification.class,
                           list("allowedLabelingTechnologies"),
                           value("labelingTechnology"),
@@ -158,10 +155,7 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
                 .register(VecMapping.class,
                           value("identificationA"),
                           value("identificationB"))
-                .register(VecMatingDetail.class, list("connection"))
-                .register(VecMatingPoint.class, list("connection"))
-                .register(VecMeasurementPoint.class, extendableElementPropertiesPlus())
-                .register(VecMeasurePointPosition.class, extendableElementPropertiesPlus())
+                .register(VecLocalPosition.class, extendableElementPropertiesPlus())
                 .register(VecModularSlot.class, list("layouts"))
                 .register(VecModularSlotAddOn.class, extendableElementPropertiesPlus())
                 .register(VecModuleFamily.class, configurableElementPropertiesPlus())
@@ -204,8 +198,9 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
                         value("determinationType")
                 ))
                 .register(VecPinWireMappingPoint.class, extendableElementPropertiesPlus())
-                .register(VecPinWireMappingSpecification.class, list("pinWireMappingPoints"))
-                .register(VecTerminalRole.class, list("componentPort"))
+                // PinWireMappingPoint [1..1] became [0..*].
+                .register(VecPinWireMappingSpecification.class,
+                          renamed("pinWireMappingPoints", "pinWireMappingPoint"))
                 .register(VecTerminalSpecification.class,
                           value("connectionALength"),
                           list("minimumDistances"),
@@ -221,7 +216,6 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
 
                 // ── additions discovered via Vec12To20ProxyCoverageTest ─────────────────────────────
                 // extendableElement classes not yet covered
-                .register(VecPlacementPointPosition.class, extendableElementPropertiesPlus())
                 .register(VecPowerConsumption.class, extendableElementPropertiesPlus())
                 .register(VecRequirementsConformanceStatement.class, extendableElementPropertiesPlus())
                 .register(VecSealedCavitiesAssignment.class, extendableElementPropertiesPlus())
@@ -249,13 +243,11 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
                 .register(VecTerminalReceptionSpecification.class,
                           value("contactRangeLength"), value("testingPullOutForce"))
                 .register(VecWireElementReference.class,
-                          list("connection"), list("connectionGroup"),
                           value("labelPosition"), value("labelType"), value("labelValue"),
                           value("labelingTechnology"), backRef("refCableSealEntryReference"))
                 .register(VecWireEnd.class,
-                          list("connectionEnd"), value("cutBackLength"), value("insulationPullbackLength"),
+                          value("cutBackLength"), value("insulationPullbackLength"),
                           value("strippingLength"), backRef("refWireTupleTermination"))
-                .register(VecWireGrouping.class, list("connectionGroup"))
                 .register(VecWireProtectionRole.class, list("materialLengths"))
 
                 // scalar / reference value additions
@@ -295,7 +287,20 @@ public class Vec12XTo20XClassMapper extends NameBasedClassMapper implements Prop
                           value("insulationCrimpLegHeight"), value("insulationCrimpLength"),
                           value("insulationCrimpShape"), value("rearBellMouthLength"),
                           value("sheetThickness"), value("wireTipProtrusion"),
-                          list("coreCrimpDetails"), list("wireReceptionTypes"))
+                          list("coreCrimpDetails"),
+                          // WireReceptionType [0..1] became [0..*].
+                          renamed("wireReceptionTypes", "wireReceptionType"))
+                // ── VEC 2.X.X read as VEC 1.2.X: properties VEC 2.x removed, renamed or made a list ──────────
+                .register(com.foursoft.harness.vec.v2x.VecComponentNode.class, backRef("refConnectorHousingRole"))
+                .register(com.foursoft.harness.vec.v2x.VecPlacementPoint.class, backRef("refCableLeadThrough"))
+                .register(com.foursoft.harness.vec.v2x.VecDefaultDimensionSpecification.class,
+                          renamed("defaultDimension", "defaultDimensions"))
+                .register(com.foursoft.harness.vec.v2x.VecPinWireMappingSpecification.class,
+                          renamed("pinWireMappingPoint", "pinWireMappingPoints"))
+                .register(com.foursoft.harness.vec.v2x.VecWireReceptionSpecification.class,
+                          renamed("wireReceptionType", "wireReceptionTypes"))
+                // A tolerance is no ExtendableElement any more.
+                .register(com.foursoft.harness.vec.v2x.VecTolerance.class, extendableElementPropertiesPlus())
         ;
     }
 

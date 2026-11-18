@@ -34,6 +34,7 @@ import com.foursoft.harness.vec.v2x.VecConnectorHousingRole;
 
 import java.lang.reflect.Method;
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecConnectorHousingRole}
@@ -59,17 +60,21 @@ public class ConnectorHousingRoleWrapper extends ReflectionBasedWrapper {
         final String methodName = method.getName();
         if ("getComponentNode".equals(methodName)) {
             if (node == null) {
-                node = getResultList("getComponentConnector", VecComponentConnector.class, allArguments[0]).stream()
+                node = getResultList("getComponentConnector", VecComponentConnector.class).stream()
                         .map(VecComponentConnector::getParentComponentNode)
+                        .filter(Objects::nonNull)
                         .distinct()
-                        .min(Comparator.comparing(VecComponentNode::getIdentification))
+                        .min(Comparator.comparing(VecComponentNode::getIdentification,
+                                                  Comparator.nullsLast(Comparator.naturalOrder())))
                         .map(getContext().getWrapperProxyFactory()::createProxy)
                         .map(com.foursoft.harness.vec.v12x.VecComponentNode.class::cast)
                         .orElse(null);
             }
             return node;
         } else if ("setComponentNode".equals(methodName)) {
+            // VEC 2.x has no such property, so the value is only kept by this wrapper.
             node = (com.foursoft.harness.vec.v12x.VecComponentNode) allArguments[0];
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);

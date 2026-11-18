@@ -36,13 +36,18 @@ import net.bytebuddy.description.modifier.Visibility;
 import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.implementation.InvocationHandlerAdapter;
 import net.bytebuddy.matcher.ElementMatcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.util.Collection;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static net.bytebuddy.matcher.ElementMatchers.*;
 
@@ -52,6 +57,8 @@ import static net.bytebuddy.matcher.ElementMatchers.*;
  * Use the {@link WrapperProxyFactoryBuilder} to construct one.
  */
 public final class WrapperProxyFactory {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(WrapperProxyFactory.class);
 
     private static final String CALLBACK = "callback";
     private static final TypeCache<Object> TYPE_CACHE = new TypeCache<>(TypeCache.Sort.SOFT);
@@ -70,6 +77,12 @@ public final class WrapperProxyFactory {
      */
     private final Map<Object, Object> objectByObject = new IdentityHashMap<>();
 
+    /**
+     * Source classes already reported as having no counterpart, so that a model with thousands of such
+     * objects logs each class once instead of once per object.
+     */
+    private final Set<Class<?>> reportedUnmappedClasses = ConcurrentHashMap.newKeySet();
+
     private final ClassMapper classMapper;
     private final WrapperRegistry registry;
 
@@ -83,7 +96,9 @@ public final class WrapperProxyFactory {
      *
      * @param target Object to create the proxy for.
      * @param <T>    Dynamic return type, independent of the given object's class.
-     * @return Proxy for the given class.
+     * @return Proxy for the given class, or {@code null} if the class of the object has no counterpart in
+     * the other version of the model (see {@link ClassMapper#map(Class)}). Such an object cannot be
+     * represented there and is left out of the converted model.
      * @throws WrapperException In case the proxy couldn't be created.
      */
     public <T> T createProxy(final Object target) throws WrapperException {
@@ -104,11 +119,20 @@ public final class WrapperProxyFactory {
         final Class<?> classToMap = ClassUtils.getNonProxyClass(target.getClass());
         final Class<?> mappedClass = classMapper.map(classToMap);
         if (mappedClass == null) {
+            if (reportedUnmappedClasses.add(classToMap)) {
+                LOGGER.warn("{} has no counterpart in {} and is left out of the converted model.",
+                            classToMap.getName(), oppositePackageOf(classToMap));
+            }
             return null;
         }
 
         final InvocationHandler callback = registry.createInvocationHandler(target);
-        final Class<?> proxyType = TYPE_CACHE.findOrInsert(target.getClass().getClassLoader(), target.getClass(), () ->
+        // The proxy type depends on the source class AND on the class it is mapped to: the same source class
+        // is mapped to different classes by different mappers (e.g. VEC 1.2 to 1.1.3 and to 2.x), and the
+        // cache is shared by all factories of the JVM. The key must be ordered: mapping A to B and B to A
+        // are two different proxy types.
+        final List<Class<?>> proxyTypeKey = List.of(target.getClass(), mappedClass);
+        final Class<?> proxyType = TYPE_CACHE.findOrInsert(target.getClass().getClassLoader(), proxyTypeKey, () ->
                 new ByteBuddy().subclass(mappedClass)
                         .defineField(CALLBACK, InvocationHandler.class, Visibility.PUBLIC)
                         .method(not(isDeclaredBy(Object.class)).and(not(named("accept")))
@@ -122,6 +146,12 @@ public final class WrapperProxyFactory {
         final Field field = proxy.getClass().getDeclaredField(CALLBACK);
         ReflectionUtils.setFieldValue(proxy, field, callback);
         return proxy;
+    }
+
+    private String oppositePackageOf(final Class<?> clazz) {
+        return classMapper.isFromSourcePackage(clazz)
+                ? classMapper.getTargetPackageName()
+                : classMapper.getSourcePackageName();
     }
 
     /**

@@ -28,12 +28,18 @@ package com.foursoft.harness.compatibility.vec11to12.wrapper.vec12to11;
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 
+import java.lang.reflect.Method;
+
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecPartUsage}
  * to {@link com.foursoft.harness.vec.v113.VecPartUsage}.
+ * <p>
+ * Converts the primary part usage type, see {@link PrimaryPartTypeMapping}.
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecPartUsage.class)
 public class PartUsageWrapper extends OccurrenceOrUsageWrapper {
+
+    private final PrimaryPartTypeMapping primaryPartTypeMapping = new PrimaryPartTypeMapping();
 
     /**
      * Creates this wrapper.
@@ -43,6 +49,16 @@ public class PartUsageWrapper extends OccurrenceOrUsageWrapper {
      */
     public PartUsageWrapper(final CompatibilityContext context, final Object target) {
         super(context, target);
+    }
+
+    @Override
+    protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
+        if ("getPrimaryPartUsageType".equals(method.getName())) {
+            return getResultObject("getPrimaryPartUsageType", com.foursoft.harness.vec.v12x.VecPrimaryPartType.class)
+                    .map(primaryPartTypeMapping::toVec11)
+                    .orElse(null);
+        }
+        return super.wrapObject(obj, method, allArguments);
     }
 
 }

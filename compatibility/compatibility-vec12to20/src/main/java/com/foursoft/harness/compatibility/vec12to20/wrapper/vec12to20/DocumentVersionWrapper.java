@@ -33,6 +33,8 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecDocumentVersion}
@@ -60,7 +62,8 @@ public class DocumentVersionWrapper extends DefaultWrapper {
         final String methodName = method.getName();
         if ("getNumberOfSheets".equals(methodName)) {
             if (numberOfSheets == null) {
-                handleValue(getResultObject("getNumberOfSheets", String.class).orElse("0"));
+                // A document without a number of sheets keeps having none, instead of getting a 0.
+                getResultObject("getNumberOfSheets", String.class).ifPresent(this::handleValue);
             }
             return numberOfSheets;
         } else if ("setNumberOfSheets".equals(methodName)) {
@@ -69,10 +72,18 @@ public class DocumentVersionWrapper extends DefaultWrapper {
         } else if ("getSpecificationsWithType".equals(method.getName())) {
             final Class<?> vec20xClass = (Class<?>) allArguments[0];
             final Class<?> vec12xClass = getContext().getClassMapper().map(vec20xClass);
+            if (vec12xClass == null) {
+                // The requested class does not exist in the wrapped version, so there are no such objects.
+                return new ArrayList<>();
+            }
             return wrapList("getSpecificationsWithType", vec20xClass, vec12xClass);
         } else if ("getSpecificationWithType".equals(method.getName())) {
             final Class<?> vec20xClass = (Class<?>) allArguments[0];
             final Class<?> vec12xClass = getContext().getClassMapper().map(vec20xClass);
+            if (vec12xClass == null) {
+                // The requested class does not exist in the wrapped version, so there are no such objects.
+                return Optional.empty();
+            }
             return wrapOptional("getSpecificationWithType", vec20xClass, vec12xClass);
         }
 
@@ -81,10 +92,10 @@ public class DocumentVersionWrapper extends DefaultWrapper {
 
     private void handleValue(final String value) {
         try {
-            numberOfSheets = new BigInteger(value);
+            numberOfSheets = new BigInteger(value.trim());
         } catch (final NumberFormatException e) {
-            LOGGER.error("Cannot convert value '{}' for 'numberOfSheets' to Integer.", value);
-            numberOfSheets = BigInteger.ZERO;
+            // VEC 1.2 allows any text here, VEC 2.x an integer only. A made up number would be wrong data.
+            LOGGER.warn("Cannot convert value '{}' for 'numberOfSheets' to Integer, it is left out.", value);
         }
     }
 

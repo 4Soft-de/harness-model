@@ -39,6 +39,8 @@ import java.lang.reflect.Method;
 @Wraps(com.foursoft.harness.vec.v12x.VecBuildingBlockSpecification3D.class)
 public class BuildingBlockSpecification3DWrapper extends ReflectionBasedWrapper {
 
+    private Object zone;
+
     /**
      * Creates this wrapper.
      *
@@ -52,9 +54,17 @@ public class BuildingBlockSpecification3DWrapper extends ReflectionBasedWrapper 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         if ("getZone".equals(method.getName())) {
-            return getResultObject("getTopologyZone", VecTopologyZone.class, allArguments)
-                    .map(getContext().getWrapperProxyFactory()::createProxy)
-                    .orElse(null);
+            if (zone == null) {
+                zone = getResultObject("getTopologyZone", VecTopologyZone.class, allArguments)
+                        .map(getContext().getWrapperProxyFactory()::createProxy)
+                        .orElse(null);
+            }
+            return zone;
+        }
+        if ("setZone".equals(method.getName())) {
+            // The wrapped VEC 1.2 object takes a VEC 1.2 topology zone only, so the value is kept here.
+            zone = allArguments[0];
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);

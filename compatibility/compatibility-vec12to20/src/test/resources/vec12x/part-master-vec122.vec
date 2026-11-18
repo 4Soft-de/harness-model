@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Synthetic part master data in VEC 1.2.2. Every element is chosen because VEC 1.1.3 or VEC 2.x models it
+  differently, so that a conversion has to touch it:
+  - PreferredUseCase:       string in 1.2, list of localized strings in 2.x
+  - NumberOfSheets:         string in 1.2, integer in 2.x
+  - BoltNominalSize:        untyped (xs:anyType) in 1.2, string in 2.x, not existing in 1.1.3
+  - Satisfies:              untyped (xs:anyType) in 1.2, boolean in 2.x, class not existing in 1.1.3
+  - DefaultDimension:       [1..1] in 1.2, [0..*] in 2.x
+  - WireReceptionType:      [0..1] in 1.2, [0..*] in 2.x
+  - WireReceptionSpecification of a WireEndAccessorySpecification: referenced in 1.2, contained in 1.1.3
+  - BoltTerminal*, TerminalPairingSpecification, RequirementsConformanceSpecification,
+    DefaultDimensionSpecification, WireReceptionSpecification: classes not existing in 1.1.3
+-->
+<vec:VecContent xmlns:vec="http://www.prostep.org/ecad-if/2011/vec"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="content_1">
+  <VecVersion>1.2.2</VecVersion>
+  <GeneratingSystemName>harness-model tests</GeneratingSystemName>
+  <DocumentVersion id="dv_ring">
+    <CompanyName>4Soft</CompanyName>
+    <DocumentNumber>RING-1</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>1</DocumentVersion>
+    <NumberOfSheets>3</NumberOfSheets>
+    <ReferencedPart>pv_ring</ReferencedPart>
+    <Specification xsi:type="vec:GeneralTechnicalPartSpecification" id="gtps_ring">
+      <Identification>GTPS_RING</Identification>
+      <DescribedPart>pv_ring</DescribedPart>
+      <FitRate>0.5</FitRate>
+    </Specification>
+    <Specification xsi:type="vec:RingTerminalSpecification" id="rts_ring">
+      <Identification>RTS_RING</Identification>
+      <DescribedPart>pv_ring</DescribedPart>
+      <BoltNominalSize>M8</BoltNominalSize>
+      <BoltType>Stud</BoltType>
+      <TorsionProtection>true</TorsionProtection>
+    </Specification>
+    <Specification xsi:type="vec:WireReceptionSpecification" id="wrs_ring">
+      <Identification>WRS_RING</Identification>
+      <WireReceptionType>Crimp</WireReceptionType>
+    </Specification>
+    <Specification xsi:type="vec:RequirementsConformanceSpecification" id="rcs_ring">
+      <Identification>RCS_RING</Identification>
+      <DescribedPart>pv_ring</DescribedPart>
+      <ConformanceStatement id="rcst_ring">
+        <Satisfies>true</Satisfies>
+        <DocumentVersion>dv_ring</DocumentVersion>
+      </ConformanceStatement>
+    </Specification>
+    <Specification xsi:type="vec:DefaultDimensionSpecification" id="dds_ring">
+      <Identification>DDS_RING</Identification>
+      <DefaultDimension id="dd_ring">
+        <DimensionValueRange id="dd_range">
+          <UnitComponent>unit_mm</UnitComponent>
+          <Minimum>0.0</Minimum>
+          <Maximum>100.0</Maximum>
+        </DimensionValueRange>
+        <DimensionType>Length</DimensionType>
+        <ToleranceIndication id="dd_tolerance">
+          <LowerBoundary>-0.5</LowerBoundary>
+          <UpperBoundary>0.5</UpperBoundary>
+        </ToleranceIndication>
+      </DefaultDimension>
+    </Specification>
+    <Specification xsi:type="vec:TerminalPairingSpecification" id="tps_ring">
+      <Identification>TPS_RING</Identification>
+    </Specification>
+  </DocumentVersion>
+  <DocumentVersion id="dv_bolt">
+    <CompanyName>4Soft</CompanyName>
+    <DocumentNumber>BOLT-1</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>1</DocumentVersion>
+    <ReferencedPart>pv_bolt</ReferencedPart>
+    <Specification xsi:type="vec:BoltTerminalSpecification" id="bts_bolt">
+      <Identification>BTS_BOLT</Identification>
+      <DescribedPart>pv_bolt</DescribedPart>
+      <BoltNominalSize>M6</BoltNominalSize>
+      <MaxTerminalCount>4</MaxTerminalCount>
+    </Specification>
+  </DocumentVersion>
+  <DocumentVersion id="dv_seal">
+    <CompanyName>4Soft</CompanyName>
+    <DocumentNumber>SEAL-1</DocumentNumber>
+    <DocumentType>PartMaster</DocumentType>
+    <DocumentVersion>1</DocumentVersion>
+    <ReferencedPart>pv_seal</ReferencedPart>
+    <Specification xsi:type="vec:WireReceptionSpecification" id="wrs_seal">
+      <Identification>WRS_SEAL</Identification>
+    </Specification>
+    <Specification xsi:type="vec:WireEndAccessorySpecification" id="weas_seal">
+      <Identification>WEAS_SEAL</Identification>
+      <DescribedPart>pv_seal</DescribedPart>
+      <WireReceptionSpecification>wrs_seal</WireReceptionSpecification>
+    </Specification>
+  </DocumentVersion>
+  <PartVersion id="pv_ring">
+    <CompanyName>4Soft</CompanyName>
+    <PartNumber>RING-1</PartNumber>
+    <PartVersion>1</PartVersion>
+    <PrimaryPartType>RingTerminal</PrimaryPartType>
+    <PreferredUseCase>Battery connection</PreferredUseCase>
+  </PartVersion>
+  <PartVersion id="pv_bolt">
+    <CompanyName>4Soft</CompanyName>
+    <PartNumber>BOLT-1</PartNumber>
+    <PartVersion>1</PartVersion>
+    <PrimaryPartType>BoltTerminal</PrimaryPartType>
+  </PartVersion>
+  <PartVersion id="pv_seal">
+    <CompanyName>4Soft</CompanyName>
+    <PartNumber>SEAL-1</PartNumber>
+    <PartVersion>1</PartVersion>
+    <PrimaryPartType>WireEndAccessory</PrimaryPartType>
+  </PartVersion>
+  <Unit xsi:type="vec:SIUnit" id="unit_mm">
+    <SiUnitName>Metre</SiUnitName>
+    <SiPrefix>Milli</SiPrefix>
+  </Unit>
+</vec:VecContent>

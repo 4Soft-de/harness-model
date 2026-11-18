@@ -30,9 +30,12 @@ import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
 import com.foursoft.harness.vec.v2x.VecCableLeadThrough;
 import com.foursoft.harness.vec.v2x.VecCableLeadThroughOutlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Wrapper to wrap {@link VecCableLeadThrough}
@@ -40,6 +43,8 @@ import java.util.stream.Collectors;
  */
 @Wraps(VecCableLeadThrough.class)
 public class CableLeadThroughWrapper extends ReflectionBasedWrapper {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CableLeadThroughWrapper.class);
 
     /**
      * Creates this wrapper.
@@ -55,11 +60,19 @@ public class CableLeadThroughWrapper extends ReflectionBasedWrapper {
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         final String methodName = method.getName();
         if ("getPlacementPoint".equals(methodName)) {
-            return getResultList("getOutlets", VecCableLeadThroughOutlet.class, allArguments[0]).stream()
+            // VEC 2.x has a list of outlets with one placement point each, VEC 1.2 a single placement point.
+            final List<VecCableLeadThroughOutlet> outlets =
+                    getResultList("getOutlets", VecCableLeadThroughOutlet.class);
+            if (outlets.size() > 1) {
+                LOGGER.warn("The cable lead through has {} outlets, VEC 1.2 takes the first one only.",
+                            outlets.size());
+            }
+            return outlets.stream()
                     .map(VecCableLeadThroughOutlet::getPlacementPoint)
+                    .filter(Objects::nonNull)
+                    .findFirst()
                     .map(getContext().getWrapperProxyFactory()::createProxy)
-                    .map(com.foursoft.harness.vec.v12x.VecPlacementPoint.class::cast)
-                    .collect(Collectors.toList());
+                    .orElse(null);
         }
         return super.wrapObject(obj, method, allArguments);
     }

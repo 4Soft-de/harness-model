@@ -40,6 +40,7 @@ import java.lang.reflect.Method;
 public class OccurrenceOrUsageViewItem3DWrapper extends ReflectionBasedWrapper {
 
     private VecOccurrenceOrUsage occurrenceOrUsage;
+    private boolean occurrenceOrUsageSet;
 
     /**
      * Creates this wrapper.
@@ -54,10 +55,17 @@ public class OccurrenceOrUsageViewItem3DWrapper extends ReflectionBasedWrapper {
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         if ("getOccurrenceOrUsage".equals(method.getName())) {
-            wrapListToSingleElement("getOccurrenceOrUsage", VecOccurrenceOrUsage.class)
-                    .ifPresent(occUrUsage -> occurrenceOrUsage = occUrUsage);
-
+            if (!occurrenceOrUsageSet) {
+                wrapListToSingleElement("getOccurrenceOrUsage", VecOccurrenceOrUsage.class)
+                        .ifPresent(occUrUsage -> occurrenceOrUsage = occUrUsage);
+            }
             return occurrenceOrUsage;
+        }
+        if ("setOccurrenceOrUsage".equals(method.getName())) {
+            // VEC 1.2 holds a list of occurrences or usages without a setter, so the value is kept here.
+            occurrenceOrUsage = (VecOccurrenceOrUsage) allArguments[0];
+            occurrenceOrUsageSet = true;
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);

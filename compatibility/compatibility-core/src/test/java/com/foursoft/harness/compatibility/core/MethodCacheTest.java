@@ -65,6 +65,16 @@ class MethodCacheTest {
     }
 
     @Test
+    void findsTheMethodLikeGetButWithoutReportingAMissingOne() {
+        MethodCache.initClassCache(MappedBean.class);
+
+        assertThat(MethodCache.find(MappedBean.class, "getName"))
+                .isEqualTo(MethodCache.get(MappedBean.class, "getName"));
+        assertThat(MethodCache.find(MappedBean.class, "getSomethingElse")).isEmpty();
+        assertThat(MethodCache.find(UninitialisedBean.class, "getName")).isEmpty();
+    }
+
+    @Test
     void isSafeToInitialiseAndReadFromSeveralThreads() throws Exception {
         final ExecutorService executor = Executors.newFixedThreadPool(8);
         try {

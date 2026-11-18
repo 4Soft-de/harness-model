@@ -80,8 +80,8 @@ public class VecReaderFactory {
             return compatibilityContext.getWrapperProxyFactory().createProxy(vecContent);
         }
 
-        if (VecVersion.VEC20X == vecVersion) {
-            LOGGER.debug("Trying to read VEC {}.", VecVersion.VEC20X.getCurrentVersion());
+        if (VecVersion.VEC2XX == vecVersion) {
+            LOGGER.debug("Trying to read VEC {}.", VecVersion.VEC2XX.getCurrentVersion());
 
             final VecReader vec20xReader = new VecReader(eventConsumer);
             return vec20xReader.read(inputStream);
