@@ -60,8 +60,19 @@ class Vec12To20ProxyCoverageTest {
     private static final CompatibilityContext CONTEXT =
             new Vec12XTo20XCompatibilityWrapper().getContext();
 
-    public static Stream<Class<?>> vec12xXmlTypeClasses() {
-        final Reflections reflections = new Reflections(Constants.PACKAGE_VEC12X);
+    static Stream<Class<?>> vec12xXmlTypeClasses() {
+        return xmlTypeClassesOf(Constants.PACKAGE_VEC12X);
+    }
+
+    /**
+     * The opposite direction: objects of the newer version read through the API of the older one.
+     */
+    static Stream<Class<?>> vec2xXmlTypeClasses() {
+        return xmlTypeClassesOf(Constants.PACKAGE_VEC20X);
+    }
+
+    static Stream<Class<?>> xmlTypeClassesOf(final String packageName) {
+        final Reflections reflections = new Reflections(packageName);
         return reflections.getTypesAnnotatedWith(XmlType.class)
                 .stream()
                 .filter(c -> !c.isInterface())
@@ -72,7 +83,7 @@ class Vec12To20ProxyCoverageTest {
     }
 
     @ParameterizedTest(name = "{0}")
-    @MethodSource("vec12xXmlTypeClasses")
+    @MethodSource({"vec12xXmlTypeClasses", "vec2xXmlTypeClasses"})
     @DisplayName("All proxy methods callable without exception for")
     void allProxyMethodsShouldBeCallableWithoutException(final Class<?> vec12xClass) throws Exception {
         final Object source = vec12xClass.getDeclaredConstructor().newInstance();

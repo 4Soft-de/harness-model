@@ -29,6 +29,7 @@ import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * Wrapper to wrap {@link com.foursoft.harness.vec.v12x.VecOccurrenceOrUsage}
@@ -51,6 +52,10 @@ public class OccurrenceOrUsageWrapper extends ReflectionBasedWrapper {
         if ("getRolesWithType".equals(method.getName())) {
             final Class<?> vec11xClass = (Class<?>) allArguments[0];
             final Class<?> vec12xClass = getContext().getClassMapper().map(vec11xClass);
+            if (vec12xClass == null) {
+                // The requested class does not exist in the wrapped version, so there are no such objects.
+                return new ArrayList<>();
+            }
             return wrapList("getRolesWithType", vec11xClass, vec12xClass);
         }
 

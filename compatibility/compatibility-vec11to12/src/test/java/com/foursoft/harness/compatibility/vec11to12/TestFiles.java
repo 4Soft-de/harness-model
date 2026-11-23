@@ -34,6 +34,7 @@ public final class TestFiles {
     public static final String OLD_BEETLE = "/vec11x/oldbeetle_vec113.vec";
     public static final String WIRE_PROTECTION_11X = "/vec11x/wire_protection+111_222_333.vec";
     public static final String WIRE_PROTECTION_12X = "/vec12x/wire_protection+111_222_333.vec";
+    public static final String PART_MASTER_V122 = "/vec12x/part-master-vec122.vec";
 
     private TestFiles() {
         // hide constructor

@@ -39,6 +39,7 @@ import java.lang.reflect.Method;
 public class PartOccurrenceWrapper extends OccurrenceOrUsageWrapper {
 
     private VecPartUsage realizedPartUsage;
+    private boolean realizedPartUsageSet;
 
     /**
      * Creates this wrapper.
@@ -53,10 +54,17 @@ public class PartOccurrenceWrapper extends OccurrenceOrUsageWrapper {
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         if ("getRealizedPartUsage".equals(method.getName())) {
-            wrapListToSingleElement("getRealizedPartUsage", VecPartUsage.class)
-                    .ifPresent(partUsage -> realizedPartUsage = partUsage);
-
+            if (!realizedPartUsageSet) {
+                wrapListToSingleElement("getRealizedPartUsage", VecPartUsage.class)
+                        .ifPresent(partUsage -> realizedPartUsage = partUsage);
+            }
             return realizedPartUsage;
+        }
+        if ("setRealizedPartUsage".equals(method.getName())) {
+            // VEC 1.2 holds a list of part usages without a setter, so the value is kept here.
+            realizedPartUsage = (VecPartUsage) allArguments[0];
+            realizedPartUsageSet = true;
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);

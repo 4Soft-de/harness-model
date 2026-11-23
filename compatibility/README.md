@@ -70,6 +70,12 @@ implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility
 implementation group: 'com.foursoft.harness.compatibility', name: 'compatibility-vec12to20', version: 'VERSION'
 ```
 
+## Coverage of the VEC versions
+
+[docs/vec-release-notes-coverage.md](docs/vec-release-notes-coverage.md) matches every issue of the VEC
+release notes from 1.2.0 to 2.2.0 against its handling in this library, and lists what a conversion cannot
+carry over and the known open gaps.
+
 ## Contributing
 
 See [parent ReadMe](https://github.com/4Soft-de/harness-model/blob/develop/README.md#contributing).

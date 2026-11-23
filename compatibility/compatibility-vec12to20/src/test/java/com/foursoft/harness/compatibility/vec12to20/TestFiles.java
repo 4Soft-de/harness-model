@@ -32,6 +32,7 @@ import java.util.Objects;
 public final class TestFiles {
 
     public static final String OLD_BEETLE_V12X = "/vec12x/oldbeetle_vec12x.vec";
+    public static final String PART_MASTER_V122 = "/vec12x/part-master-vec122.vec";
 
     private TestFiles() {
         // hide constructor

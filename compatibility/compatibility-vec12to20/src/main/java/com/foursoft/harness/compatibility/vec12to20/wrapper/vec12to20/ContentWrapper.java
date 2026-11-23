@@ -39,7 +39,7 @@ import java.lang.reflect.Method;
 @Wraps(com.foursoft.harness.vec.v12x.VecContent.class)
 public class ContentWrapper extends DefaultWrapper {
 
-    private String vecVersion = VecVersion.VEC20X.getCurrentVersion();
+    private String vecVersion = VecVersion.VEC2XX.getCurrentVersion();
 
     /**
      * Creates this wrapper.
@@ -58,7 +58,7 @@ public class ContentWrapper extends DefaultWrapper {
         }
 
         if ("setVecVersion".equals(method.getName()) && allArguments.length == 1) {
-            getResultObject("setVecVersion", Void.class, allArguments);
+            // Only the converted view changes its version, the wrapped VEC 1.2 content keeps its own.
             vecVersion = (String) allArguments[0];
             return null;
         }

@@ -48,7 +48,11 @@ public class WireProtectionSpecificationWrapper extends AbstractSpecificationRef
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WireProtectionSpecificationWrapper.class);
 
-    private static final String ABRASION_RESISTANCE_CLASS = "AbrasionResistanceClass";
+    /**
+     * The robustness class of abrasion resistance. The open enumeration of VEC 1.2 has no literal for it; this
+     * is the one VEC 2.x introduced.
+     */
+    private static final String ABRASION_RESISTANCE = "AbrasionResistance";
 
     private List<VecAbrasionResistanceClass> abrasionResistanceClasses;
 
@@ -67,14 +71,18 @@ public class WireProtectionSpecificationWrapper extends AbstractSpecificationRef
             throws Throwable {
 
         if ("getAbrasionResistanceClasses".equals(method.getName())) {
-            abrasionResistanceClasses = createAbrasionResistanceClasses();
+            // Created once, so that repeated calls return the same, modifiable list, and a list set before is
+            // not overwritten.
+            if (abrasionResistanceClasses == null) {
+                abrasionResistanceClasses = createAbrasionResistanceClasses();
+            }
             return abrasionResistanceClasses;
         }
 
         if ("setAbrasionResistanceClasses".equals(method.getName())) {
             setAbrasionResistanceClasses(
                     (List<com.foursoft.harness.vec.v113.VecAbrasionResistanceClass>) allArguments[0]);
-            return abrasionResistanceClasses;
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);
@@ -91,8 +99,10 @@ public class WireProtectionSpecificationWrapper extends AbstractSpecificationRef
             return new ArrayList<>();
         }
 
+        // VEC 1.2 models the abrasion resistance as robustness properties: the class names the influence, the
+        // class key the level, as the class key of VEC 1.1 does.
         return gtps.getRobustnessProperties().stream()
-                .filter(c -> ABRASION_RESISTANCE_CLASS.equalsIgnoreCase(c.getClassKey()))
+                .filter(c -> ABRASION_RESISTANCE.equalsIgnoreCase(c.getClazz()))
                 .map(c -> {
                     final VecAbrasionResistanceClass abrasionResistanceClass = new VecAbrasionResistanceClass();
                     abrasionResistanceClass.setXmlId(IdCreator.generateXmlId(VecAbrasionResistanceClass.class));
@@ -100,7 +110,7 @@ public class WireProtectionSpecificationWrapper extends AbstractSpecificationRef
                     abrasionResistanceClass.setReferenceSystem(c.getClassReferenceSystem());
                     return abrasionResistanceClass;
                 })
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

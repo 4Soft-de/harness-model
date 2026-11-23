@@ -40,6 +40,17 @@ class VecVersionTest {
     }
 
     @Test
+    void writesTheSchemaVersionOfTheModel() {
+        // A converted document claims the version of the schema its model is generated from.
+        assertThat(VecVersion.VEC11X.getCurrentVersion())
+                .isEqualTo(com.foursoft.harness.vec.v113.Version.VERSION)
+                .isEqualTo("1.1.3");
+        assertThat(VecVersion.VEC12X.getCurrentVersion())
+                .isEqualTo(com.foursoft.harness.vec.v12x.Version.VERSION)
+                .isEqualTo("1.2.2");
+    }
+
+    @Test
     void testFindVersion() {
         assertThat(VecVersion.findVersion("1"))
                 .isNotPresent();
@@ -47,10 +58,11 @@ class VecVersionTest {
                 .isNotPresent();
         assertThat(VecVersion.findVersion("1.2.3"))
                 .isNotPresent();
+        assertThat(VecVersion.findVersion("<VecVersion>1.2.1</VecVersion>"))
+                .contains(VecVersion.VEC12X);
+        // Not a release of the VEC.
         assertThat(VecVersion.findVersion("<VecVersion>1.2.3</VecVersion>"))
-                .isPresent()
-                .get()
-                .isEqualTo(VecVersion.VEC12X);
+                .isNotPresent();
 
         final VecContent vec12x = new VecContent();
         vec12x.setVecVersion(VecVersion.VEC12X.getCurrentVersion());
@@ -58,11 +70,12 @@ class VecVersionTest {
                 .isPresent()
                 .get()
                 .isEqualTo(VecVersion.VEC12X);
+        vec12x.setVecVersion("1.2.0");
+        assertThat(VecVersion.findVersion(vec12x))
+                .contains(VecVersion.VEC12X);
         vec12x.setVecVersion("1.2.3");
         assertThat(VecVersion.findVersion(vec12x))
-                .isPresent()
-                .get()
-                .isEqualTo(VecVersion.VEC12X);
+                .isNotPresent();
 
         final com.foursoft.harness.vec.v113.VecContent vec11x = new com.foursoft.harness.vec.v113.VecContent();
         vec11x.setVecVersion(VecVersion.VEC11X.getCurrentVersion());

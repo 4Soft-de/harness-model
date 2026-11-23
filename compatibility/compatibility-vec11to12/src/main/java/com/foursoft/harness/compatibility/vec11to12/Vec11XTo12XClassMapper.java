@@ -61,6 +61,8 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper implements Prop
         // VEC 1.2.X -> VEC 1.1.X
         classMap.put(VecNURBSCurve.class, VecBSplineCurve.class);
         classMap.put(VecTopologyZone.class, VecZone.class);
+        // VEC 1.2 split the tape specific properties off into a TapeRole, VEC 1.1 has the WireProtectionRole only.
+        classMap.put(com.foursoft.harness.vec.v12x.VecTapeRole.class, VecWireProtectionRole.class);
 
         // ── pure property additions — properties new in VEC 1.2.X handled automatically by DefaultWrapper
         propertyAdditions = new PurePropertyAdditions()
@@ -153,6 +155,33 @@ public class Vec11XTo12XClassMapper extends NameBasedClassMapper implements Prop
                 .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("gradient"))
                 .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("tapeOverlap"))
                 .register(com.foursoft.harness.vec.v12x.VecWireProtectionRole.class, value("tapingDirection"))
+                .register(com.foursoft.harness.vec.v12x.VecConnectionGroup.class, value("netGroup"))
+                .register(com.foursoft.harness.vec.v12x.VecFileBasedInstruction.class, value("location"))
+                .register(com.foursoft.harness.vec.v12x.VecTopologyZone.class,
+                          renamed("parentZone", "parentTopologyZone"),
+                          value("parentTopologySpecification"),
+                          list("requiredSealingClasses"))
+                // Renamed: VEC 1.2 references the wire element references directly instead of the wire roles.
+                .register(com.foursoft.harness.vec.v12x.VecWireGrouping.class,
+                          renamed("relatedWireRole", "relatedWireElementReference"))
+                // Back references to classes VEC 1.2 removed.
+                .register(com.foursoft.harness.vec.v12x.VecAbstractSlot.class, backRef("refCompatibilityStatement"))
+                .register(com.foursoft.harness.vec.v12x.VecCavity.class, backRef("refCompatibilityStatement"))
+                .register(com.foursoft.harness.vec.v12x.VecCavityPartSpecification.class,
+                          backRef("refCompatibilityStatement"))
+                .register(com.foursoft.harness.vec.v12x.VecCavitySpecification.class,
+                          backRef("refCompatibilityStatement"))
+                .register(com.foursoft.harness.vec.v12x.VecConnectorHousingSpecification.class,
+                          backRef("refCompatibilityStatement"))
+                .register(com.foursoft.harness.vec.v12x.VecTerminalSpecification.class,
+                          backRef("refCompatibilityStatement"))
+                .register(com.foursoft.harness.vec.v12x.VecWireSpecification.class,
+                          backRef("refCompatibilityStatement"))
+                .register(com.foursoft.harness.vec.v12x.VecConductorSpecification.class, backRef("refContactSystem"))
+                .register(com.foursoft.harness.vec.v12x.VecPartVersion.class, backRef("refContactSystem"),
+                          backRef("refExtensionSlot"), backRef("refModularSlot"))
+                .register(com.foursoft.harness.vec.v12x.VecCartesianPoint3D.class, backRef("refBSplineCurve"))
+                .register(com.foursoft.harness.vec.v12x.VecNetGroup.class, backRef("refConnectionGroup"))
         ;
     }
 

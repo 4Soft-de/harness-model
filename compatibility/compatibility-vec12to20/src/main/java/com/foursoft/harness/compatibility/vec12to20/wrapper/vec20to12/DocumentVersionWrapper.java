@@ -32,6 +32,8 @@ import com.foursoft.harness.vec.v2x.VecDocumentVersion;
 
 import java.lang.reflect.Method;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Wrapper to wrap {@link VecDocumentVersion}
@@ -57,10 +59,10 @@ public class DocumentVersionWrapper extends ReflectionBasedWrapper {
         final String methodName = method.getName();
         if ("getNumberOfSheets".equals(methodName)) {
             if (numberOfSheets == null) {
+                // A document without a number of sheets keeps having none, instead of getting a "0".
                 numberOfSheets = getResultObject("getNumberOfSheets", BigInteger.class)
-                        .orElse(BigInteger.ZERO)
-                        .toString();
-                return numberOfSheets;
+                        .map(BigInteger::toString)
+                        .orElse(null);
             }
             return numberOfSheets;
         } else if ("setNumberOfSheets".equals(methodName)) {
@@ -69,10 +71,18 @@ public class DocumentVersionWrapper extends ReflectionBasedWrapper {
         } else if ("getSpecificationsWithType".equals(method.getName())) {
             final Class<?> vec12xClass = (Class<?>) allArguments[0];
             final Class<?> vec20xClass = getContext().getClassMapper().map(vec12xClass);
+            if (vec20xClass == null) {
+                // The requested class does not exist in the wrapped version, so there are no such objects.
+                return new ArrayList<>();
+            }
             return wrapList("getSpecificationsWithType", vec12xClass, vec20xClass);
         } else if ("getSpecificationWithType".equals(method.getName())) {
             final Class<?> vec12xClass = (Class<?>) allArguments[0];
             final Class<?> vec20xClass = getContext().getClassMapper().map(vec12xClass);
+            if (vec20xClass == null) {
+                // The requested class does not exist in the wrapped version, so there are no such objects.
+                return Optional.empty();
+            }
             return wrapOptional("getSpecificationWithType", vec12xClass, vec20xClass);
         }
 

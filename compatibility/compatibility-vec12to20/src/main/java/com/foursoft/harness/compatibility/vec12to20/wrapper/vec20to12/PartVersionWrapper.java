@@ -28,10 +28,12 @@ package com.foursoft.harness.compatibility.vec12to20.wrapper.vec20to12;
 import com.foursoft.harness.compatibility.core.CompatibilityContext;
 import com.foursoft.harness.compatibility.core.wrapper.ReflectionBasedWrapper;
 import com.foursoft.harness.compatibility.core.wrapper.Wraps;
+import com.foursoft.harness.vec.v2x.VecLanguageCode;
 import com.foursoft.harness.vec.v2x.VecLocalizedString;
 import com.foursoft.harness.vec.v2x.VecPartVersion;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * Wrapper to wrap {@link VecPartVersion}
@@ -57,13 +59,22 @@ public class PartVersionWrapper extends ReflectionBasedWrapper {
         final String methodName = method.getName();
         if ("getPreferredUseCase".equals(methodName)) {
             if (preferredUseCase == null) {
-                preferredUseCase = getResultObject("getPreferredUseCase", VecLocalizedString.class)
+                // VEC 2.x has a list of localized strings, VEC 1.2 a single plain string. The German one is
+                // preferred, as the upgrade to VEC 2.x declares the VEC 1.2 string as German.
+                final List<VecLocalizedString> useCases =
+                        getResultList("getPreferredUseCases", VecLocalizedString.class);
+                preferredUseCase = useCases.stream()
+                        .filter(useCase -> useCase.getLanguageCode() == VecLanguageCode.DE)
+                        .findFirst()
+                        .or(() -> useCases.stream().findFirst())
                         .map(VecLocalizedString::getValue)
-                        .orElse("");
+                        .orElse(null);
             }
             return preferredUseCase;
         } else if ("setPreferredUseCase".equals(methodName)) {
+            // VEC 2.x has no single valued property, so the value is only kept by this wrapper.
             preferredUseCase = (String) allArguments[0];
+            return null;
         }
 
         return super.wrapObject(obj, method, allArguments);

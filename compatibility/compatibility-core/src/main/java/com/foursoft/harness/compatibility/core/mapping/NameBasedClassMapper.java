@@ -29,6 +29,7 @@ import com.foursoft.harness.compatibility.core.exception.WrapperException;
 import com.foursoft.harness.compatibility.core.util.ClassUtils;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -41,9 +42,10 @@ public abstract class NameBasedClassMapper implements ClassMapper {
 
     /**
      * Caches the outcome of {@link #map(Class)}, which is called for every proxy creation and for every
-     * enum value read through a proxy. The cache is bound to the lifetime of this mapper.
+     * enum value read through a proxy. The cache is bound to the lifetime of this mapper. A class without a
+     * counterpart is cached as an empty {@link Optional}, so its failing lookup is not repeated.
      */
-    private final Map<Class<?>, Class<?>> mappedClasses = new ConcurrentHashMap<>();
+    private final Map<Class<?>, Optional<Class<?>>> mappedClasses = new ConcurrentHashMap<>();
 
     /**
      * Creates a new class mapper which helps in converting classes
@@ -57,12 +59,19 @@ public abstract class NameBasedClassMapper implements ClassMapper {
         this.targetPackage = targetPackage;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return The class with the same simple name in the opposite package, or {@code null} if the opposite
+     * package has no such class - the class was added or removed by the newer version of the model.
+     * @throws WrapperException If the class is from neither of the two packages.
+     */
     @Override
     public Class<?> map(final Class<?> clazz) {
-        return mappedClasses.computeIfAbsent(clazz, this::mapUncached);
+        return mappedClasses.computeIfAbsent(clazz, this::mapUncached).orElse(null);
     }
 
-    private Class<?> mapUncached(final Class<?> clazz) {
+    private Optional<Class<?>> mapUncached(final Class<?> clazz) {
         final boolean isSource = isFromSourcePackage(clazz);
         final boolean isTarget = isFromTargetPackage(clazz);
         if (!isSource && !isTarget) {
@@ -74,10 +83,9 @@ public abstract class NameBasedClassMapper implements ClassMapper {
         final String oppositePackageName = isSource ? targetPackage : sourcePackage;
 
         try {
-            return ClassUtils.getMappedClass(clazz, oppositePackageName);
-        } catch (final ClassNotFoundException e) {
-            final String errorMsg = String.format("Could not map class %s.", clazz.getName());
-            throw new WrapperException(errorMsg, e);
+            return Optional.of(ClassUtils.getMappedClass(clazz, oppositePackageName));
+        } catch (final ClassNotFoundException ignored) {
+            return Optional.empty();
         }
     }
 

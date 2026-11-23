@@ -50,6 +50,8 @@ public abstract class AbstractSpecificationReflectionBasedWrapper extends Reflec
 
     private static final String SEALING_CLASS = "SealingClass";
 
+    private List<VecSealingClass> sealingClasses;
+
     protected AbstractSpecificationReflectionBasedWrapper(final Context context,
                                                           final Object target) {
         super(context, target);
@@ -69,16 +71,20 @@ public abstract class AbstractSpecificationReflectionBasedWrapper extends Reflec
     }
 
     protected List<VecSealingClass> getSealingClasses() {
-        final VecGeneralTechnicalPartSpecification gtps = getGeneralTechnicalPartSpecification();
-        if (gtps == null) {
-            LOGGER.debug("There was no VecGeneralTechnicalPartSpecification found!");
-            return new ArrayList<>();
+        // Created once, so that repeated calls return the same, modifiable list.
+        if (sealingClasses == null) {
+            final VecGeneralTechnicalPartSpecification gtps = getGeneralTechnicalPartSpecification();
+            if (gtps == null) {
+                LOGGER.debug("There was no VecGeneralTechnicalPartSpecification found!");
+                sealingClasses = new ArrayList<>();
+            } else {
+                sealingClasses = gtps.getRobustnessProperties().stream()
+                        .filter(c -> SEALING_CLASS.equalsIgnoreCase(c.getClassKey()))
+                        .map(this::createVecSealingClass)
+                        .collect(Collectors.toCollection(ArrayList::new));
+            }
         }
-
-        return gtps.getRobustnessProperties().stream()
-                .filter(c -> SEALING_CLASS.equalsIgnoreCase(c.getClassKey()))
-                .map(this::createVecSealingClass)
-                .collect(Collectors.toList());
+        return sealingClasses;
     }
 
     private VecSealingClass createVecSealingClass(final VecRobustnessProperties c) {
@@ -94,6 +100,9 @@ public abstract class AbstractSpecificationReflectionBasedWrapper extends Reflec
         final VecSpecification targetSpecification = (VecSpecification) getTarget();
         if (targetSpecification.getParentDocumentVersion() != null) {
             return targetSpecification.getParentDocumentVersion();
+        } else if (getContext().getContent() == null) {
+            // A specification which is not part of a document, and no content to search it in.
+            return null;
         } else {
             return ((VecContent) getContext().getContent()).getDocumentVersions().stream()
                     .filter(VecPredicates.partMasterDocument())

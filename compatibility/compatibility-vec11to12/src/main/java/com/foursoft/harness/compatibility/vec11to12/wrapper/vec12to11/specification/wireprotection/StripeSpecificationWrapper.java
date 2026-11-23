@@ -33,6 +33,7 @@ import com.foursoft.harness.vec.v113.VecNumericalValue;
 import com.foursoft.harness.vec.v113.VecNumericalValueProperty;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,6 +42,8 @@ import java.util.List;
  */
 @Wraps(com.foursoft.harness.vec.v12x.VecStripeSpecification.class)
 public class StripeSpecificationWrapper extends WireProtectionSpecificationWrapper {
+
+    private List<VecCustomProperty> customProperties;
 
     /**
      * Creates this wrapper.
@@ -55,7 +58,12 @@ public class StripeSpecificationWrapper extends WireProtectionSpecificationWrapp
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         if ("getCustomProperties".equals(method.getName())) {
-            return getCustomPropertiesWithThickness();
+            // Created once: repeated calls return the same, modifiable list, and the thickness property, which
+            // gets a new id, is not created again on every call.
+            if (customProperties == null) {
+                customProperties = getCustomPropertiesWithThickness();
+            }
+            return customProperties;
         }
 
         return super.wrapObject(obj, method, allArguments);
@@ -63,8 +71,8 @@ public class StripeSpecificationWrapper extends WireProtectionSpecificationWrapp
 
     // The VEC 1.1.3 stores the thickness as a CustomProperty.
     private List<VecCustomProperty> getCustomPropertiesWithThickness() {
-        final List<VecCustomProperty> customProperties =
-                wrapList("getCustomProperties", VecCustomProperty.class);
+        final List<VecCustomProperty> properties =
+                new ArrayList<>(wrapList("getCustomProperties", VecCustomProperty.class));
 
         getResultObject("getThickness", com.foursoft.harness.vec.v12x.VecNumericalValue.class)
                 .map(getContext().getWrapperProxyFactory()::createProxy)
@@ -75,10 +83,10 @@ public class StripeSpecificationWrapper extends WireProtectionSpecificationWrapp
                     vecNumericalValueProperty.setXmlId(xmlId);
                     vecNumericalValueProperty.setPropertyType("Thickness");
                     vecNumericalValueProperty.setValue(thickness);
-                    customProperties.add(vecNumericalValueProperty);
+                    properties.add(vecNumericalValueProperty);
                 });
 
-        return customProperties;
+        return properties;
     }
 
 }

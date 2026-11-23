@@ -32,6 +32,7 @@ import com.foursoft.harness.vec.v12x.VecCartesianPoint3D;
 import com.foursoft.harness.vec.v12x.VecNURBSControlPoint;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -43,6 +44,8 @@ import java.util.stream.Collectors;
 @Wraps(com.foursoft.harness.vec.v12x.VecNURBSCurve.class)
 public class BSplineCurveWrapper extends ReflectionBasedWrapper {
 
+    private List<Object> controlPoints;
+
     /**
      * Creates this wrapper.
      *
@@ -53,20 +56,24 @@ public class BSplineCurveWrapper extends ReflectionBasedWrapper {
         super(context, target);
     }
 
-    private static VecCartesianPoint3D convertToBSplineControlPoint(final VecNURBSControlPoint point) {
+    private VecCartesianPoint3D convertToBSplineControlPoint(final VecNURBSControlPoint point) {
         return point.getCartesianPoint3D();
     }
 
     @Override
     protected Object wrapObject(final Object obj, final Method method, final Object[] allArguments) throws Throwable {
         if ("getControlPoint".equals(method.getName())) {
-            return getControlPoint(allArguments);
+            // Created once, so that repeated calls return the same, modifiable list.
+            if (controlPoints == null) {
+                controlPoints = getControlPoint(allArguments);
+            }
+            return controlPoints;
         }
 
         return super.wrapObject(obj, method, allArguments);
     }
 
-    private Object getControlPoint(final Object[] args) {
+    private List<Object> getControlPoint(final Object[] args) {
         // VecNURBSControlPoint has no counterpart in VEC 1.1, thus custom handling is needed.
         // Invoke VecNURBSCurve#getControlPoints and convert that one by one.
         final List<VecNURBSControlPoint> vec12xControlPoints =
@@ -74,9 +81,10 @@ public class BSplineCurveWrapper extends ReflectionBasedWrapper {
         // Convert each NURBS ControlPoint to a BSpline ControlPoint and create a proxy for that element.
         return vec12xControlPoints.stream()
                 .filter(Objects::nonNull)
-                .map(BSplineCurveWrapper::convertToBSplineControlPoint)
+                .map(this::convertToBSplineControlPoint)
+                .filter(Objects::nonNull)
                 .map(getContext().getWrapperProxyFactory()::createProxy)
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 }
