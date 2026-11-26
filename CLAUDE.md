@@ -67,9 +67,11 @@ Note the trailing `=` (empty value means "all snapshots"). Do **not** edit
 `src/test/resources/snapshot.properties` to do this, and note that `-Dsnapshot.update-snapshot=all`
 looks plausible but is silently ignored.
 
-Always review the regenerated diff before committing. Adding an element shifts the deterministic XML
-IDs of everything after it, so a small mapping change legitimately produces a large diff; check that
-the *structural* changes are the ones you intended.
+Always review the regenerated diff before committing. Mapped elements take their XML ID from the
+source element, but counter-based IDs, collision suffixes and `GenericIdentifier-<n>` depend on the
+processing order, so adding an element shifts them for everything after it and a small mapping change
+can legitimately produce a large diff (see section 10 of `kbl2vec/ARCHITECTURE.md`); check that the
+*structural* changes are the ones you intended.
 
 ## License headers are added by the build — never write them by hand
 
